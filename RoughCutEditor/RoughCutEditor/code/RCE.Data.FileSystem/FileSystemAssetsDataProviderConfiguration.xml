@@ -1,0 +1,14 @@
+﻿<configuration>
+  <AssetsPath>C:\Media\</AssetsPath>
+  <AssetsUriTemplate>http://localhost/media/{0}</AssetsUriTemplate>
+  <AllowedVideoAssets>.WMV,.ISM,.ISML,.CSM</AllowedVideoAssets>
+  <AllowedAudioAssets>.MP3,.WMA</AllowedAudioAssets>
+  <AllowedImageAssets>.BMP,.JPG,.PNG</AllowedImageAssets>
+</configuration>
+<!--<configuration>
+  <AssetsPath>e:\web\indoorworxc\htdocs\Media\</AssetsPath>
+  <AssetsUriTemplate>http://www.indoorworx.com/media/{0}</AssetsUriTemplate>
+  <AllowedVideoAssets>.WMV,.ISM,.ISML,.CSM</AllowedVideoAssets>
+  <AllowedAudioAssets>.MP3,.WMA</AllowedAudioAssets>
+  <AllowedImageAssets>.BMP,.JPG,.PNG</AllowedImageAssets>
+</configuration>-->

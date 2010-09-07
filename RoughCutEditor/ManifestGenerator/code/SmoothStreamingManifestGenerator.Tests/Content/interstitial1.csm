@@ -1,0 +1,19 @@
+﻿<SmoothStreamingMedia MajorVersion="2" MinorVersion="0" Duration="34730000">
+  <Clip Url="http://mediadl.microsoft.com/mediadl/iisnet/smoothmedia/Experience/BigBuckBunny_720p.ism/Manifest" ClipBegin="6673333" ClipEnd="46280000">
+    <StreamIndex Type="video" Subtype="WVC1" Chunks="2" Url="QualityLevels({bitrate})/Fragments(video={start time})">
+      <QualityLevel Index="0" Bitrate="3450000" FourCC="WVC1" MaxWidth="1280" MaxHeight="720" CodecPrivateData="250000010fd3fe27f1678a27f859f180c8800000010e5a4040" />
+      <QualityLevel Index="1" Bitrate="1950000" FourCC="WVC1" MaxWidth="848" MaxHeight="480" CodecPrivateData="250000010fd3fc27f1678a27f859f180c8800000010e5a4040" />
+      <QualityLevel Index="2" Bitrate="1250000" FourCC="WVC1" MaxWidth="640" MaxHeight="360" CodecPrivateData="250000010fd3e627f1678a27f859f180c8800000010e5a4040" />
+      <QualityLevel Index="3" Bitrate="900000" FourCC="WVC1" MaxWidth="512" MaxHeight="288" CodecPrivateData="250000010fd3dc27f1678a27f859f180c8800000010e5a4040" />
+      <QualityLevel Index="4" Bitrate="600000" FourCC="WVC1" MaxWidth="400" MaxHeight="224" CodecPrivateData="250000010fd3d227f1678a27f859f180c8800000010e5a4040" />
+      <QualityLevel Index="5" Bitrate="400000" FourCC="WVC1" MaxWidth="312" MaxHeight="176" CodecPrivateData="250000010fd3cc27f1678a27f859f180c8800000010e5a4040" />
+      <c t="6673333" />
+      <c t="26693333" d="20020000" />
+    </StreamIndex>
+    <StreamIndex Type="audio" Subtype="WmaPro" Chunks="2" Url="QualityLevels({bitrate})/Fragments(audio={start time})">
+      <QualityLevel Index="0" Bitrate="48000" Channels="2" SamplingRate="48000" BitsPerSample="16" PacketSize="2048" AudioTag="354" CodecPrivateData="1000030000000000000000000000600042c0" />
+      <c t="0" />
+      <c t="26879999" d="20053334" />
+    </StreamIndex>
+  </Clip>
+</SmoothStreamingMedia>

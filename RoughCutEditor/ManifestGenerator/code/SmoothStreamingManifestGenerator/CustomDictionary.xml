@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dictionary>
+  <Words>
+    <Recognized>
+      <Word>pbp</Word>
+      <Word>PlayByPlay</Word>
+      <Word>ByPlay</Word>
+    </Recognized>
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>pbp</Acronym>
+      <Acronym>PlayByPlay</Acronym>
+      <Acronym>ID</Acronym>
+      <Acronym>ByPlay</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>

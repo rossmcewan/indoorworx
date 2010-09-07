@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ab1a182a-c0ad-4c9a-ad24-96c17d61f8b9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="RCE.Services.Contracts.Client" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/RCE.Web/DataService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DataService11.disco" MetadataType="Disco" ID="cb5ffe8c-ec23-402d-8c9a-6a8181436911" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/DataService.svc?disco" />
+    <MetadataFile FileName="DataService22.wsdl" MetadataType="Wsdl" ID="b261407c-9676-4497-a259-6a8a54c2ce30" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/DataService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="DataService23.wsdl" MetadataType="Wsdl" ID="0da11d0b-0248-4bd6-935c-f3915237d9f2" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/DataService.svc?wsdl" />
+    <MetadataFile FileName="DataService44.xsd" MetadataType="Schema" ID="4c2e32e8-8ad0-4948-acd4-3aba4d638ba2" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/DataService.svc?xsd=xsd1" />
+    <MetadataFile FileName="DataService45.xsd" MetadataType="Schema" ID="04dfd472-b27e-4b54-a542-624e16a2006e" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/DataService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DataService46.xsd" MetadataType="Schema" ID="bef8cf46-6d0b-43dd-9423-c4f91591d488" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/DataService.svc?xsd=xsd3" />
+    <MetadataFile FileName="DataService47.xsd" MetadataType="Schema" ID="e016e2a0-81b2-403e-aa3e-fa6af23f235d" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/DataService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

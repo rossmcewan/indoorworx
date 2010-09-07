@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <Parameter Name="ModulesCatalog" Value="ModulesCatalog.xaml"/>
+  <Parameter Name="DataServiceUrl" Value="http://www.indoorworx.com/RCE/DataService.svc"/>
+  <Parameter Name="AssetsDataServiceUrl" Value="http://www.indoorworx.com/RCE/AssetsDataService.svc"/>
+  <Parameter Name="LoggerServiceUri" Value="http://www.indoorworx.com/RCE/LaggerService.svc"/>
+  <Parameter Name="ExpressionEncoderServiceUrl" Value="http://www.indoorworx.com/RCE/ExpressionEncoderService.svc"/>
+  <Parameter Name="CompositeStreamManifestUri" Value="http://www.indoorworx.com/RCE/CompositeStreamManifestService.svc"/>
+  <Parameter Name="UserName" Value="RCE\Default" />
+  <Parameter Name="CDN" Value="http://rcecdn" />
+  <Parameter Name="MetadataFields" Value="Title;Duration;Frame Rate;Height;Width" />
+  <Parameter Name="MaxNumberOfItems" Value="1000" />
+  <Parameter Name="CommentTypes" Value="Global;Playhead;Shot;Ink" />
+  <Parameter Name="UndoLevel" Value="20" />
+  <Parameter Name="TitleTemplates" Value="Spinner|http://www.indoorworx.com/RCE/TitleTemplates/Spinner.xaml;ScrollingCenter|http://www.indoorworx.com/RCE/TitleTemplates/ScrollingCenter.xaml;FadeCenter|http://www.indoorworx.com/RCE/TitleTemplates/FadeCenter.xaml;ZoomCenter|http://www.indoorworx.com/RCE/TitleTemplates/ZoomCenter.xaml" />
+  <Parameter Name="SearchWithinAssetsLimit" Value="15"/>
+  <Parameter Name="MarkInOffsetInSeconds" Value="3"/>
+  <Parameter Name="MaxNumberOfAudioTracks" Value="2"/>
+  <Parameter Name="SnapModeEnabled" Value="false"/>
+  <Parameter Name="DefaultTimelineDurationInSeconds" Value="7200"/>
+  <Parameter Name="DefaultThumbnailImageUri" Value="http://www.indoorworx.com/RCE/Images/DefaultThumbnail.jpg"/>
+  <Parameter Name="CommentDurationInSeconds" Value="60"/>
+</Settings>

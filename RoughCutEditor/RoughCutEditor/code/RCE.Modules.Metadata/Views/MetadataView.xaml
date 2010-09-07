@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="RCE.Modules.Metadata.MetadataView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:Converters="clr-namespace:RCE.Infrastructure.Converters;assembly=RCE.Infrastructure"
+    xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows" >
+    <UserControl.Resources>
+        <Converters:BooleanToVisibilityConverter  x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid  Visibility="{Binding Converter={StaticResource BooleanToVisibilityConverter}, Path=ShowMetadataInformation}" VerticalAlignment="Stretch" Margin="4,0,0,0">
+        <ListBox BorderThickness="0" VerticalContentAlignment="Stretch" 
+                 ItemsSource="{Binding AssetMetadataDetails}" 
+                 ItemTemplate="{StaticResource MetadataItemTemplate}" 
+                 Background="Transparent" Style="{StaticResource MetadataListBoxStyle}" />
+    </Grid>
+</UserControl>

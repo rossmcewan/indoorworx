@@ -1,0 +1,20 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IExpressionEncoderService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None">
+                        <message algorithmSuite="Default" />
+                    </security>
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://rossmcewan/RCE.Web/ExpressionEncoderService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IExpressionEncoderService"
+                contract="ExpressionEncoderService.IExpressionEncoderService"
+                name="BasicHttpBinding_IExpressionEncoderService" />
+        </client>
+    </system.serviceModel>
+</configuration>

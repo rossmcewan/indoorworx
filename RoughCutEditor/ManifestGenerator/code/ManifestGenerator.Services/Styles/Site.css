@@ -1,0 +1,65 @@
+﻿body
+{
+    font-family: Helvetica, Arial, Geneva, Helvetica, sans-serif;
+    color: #494d56;
+    font-size: 90%;
+    background: #fafafa;
+}
+
+fieldset
+{
+    border: 0;
+    padding: 0px 20px;
+}
+
+legend
+{
+    font-size: 1.4em;
+    margin-bottom: 15px;
+}
+
+label
+{
+    float: left;
+    width: 90px;
+    font-weight: bold;
+}
+
+fieldset.rce label
+{
+    float: left;
+    width: 180px;
+    font-weight: bold;
+}
+
+input, textarea
+{
+    width: 180px;
+    margin-bottom: 5px;
+    border: solid 1px #494d56;
+}
+
+textarea
+{
+    width: 250px;
+    height: 150px;
+    margin-top:10px
+}
+
+input.uri
+{
+    width: 430px;
+}
+
+input.button
+{
+    margin-left: 90px;
+    width: 100px;
+    border: solid 1px #494d56;
+    background-color: #CCC;
+}
+
+fieldset.rce input.button
+{
+    margin-left: 0px;
+}

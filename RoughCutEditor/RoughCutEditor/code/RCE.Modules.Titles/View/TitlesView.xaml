@@ -1,0 +1,96 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:CustomControls="clr-namespace:RCE.Infrastructure.Controls;assembly=RCE.Infrastructure"
+    xmlns:Titles="clr-namespace:RCE.Modules.Titles"
+    xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+    xmlns:DragDrop="clr-namespace:RCE.Infrastructure.DragDrop;assembly=RCE.Infrastructure"
+    x:Class="RCE.Modules.Titles.TitlesView">
+    <UserControl.Resources>
+        <DataTemplate x:Name="TitleDragTemplate">
+            <Titles:TitlePreview />
+        </DataTemplate>
+        <DataTemplate x:Name="TitleTemplate">
+        	<Titles:TitlePreview DragDrop:DragDropManager.IsDragSource="True"
+                                 DragDrop:DragDropManager.DragData="{Binding}"
+                                 DragDrop:DragDropManager.DragTemplate="{StaticResource TitleDragTemplate}"/>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="0.9*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <Border Background="{StaticResource ToolBarBrush}" CornerRadius="8,8,8,8" Style="{StaticResource ToolBarBorderStyle}">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                    <TextBlock Height="14" Width="80" Text="Main Text" Margin="20,0,-25,2" TextWrapping="Wrap" FontSize="12" Foreground="{StaticResource ForegroundBrushAlternative}" />
+                    <Border Background="{StaticResource ToolBarFieldBackgroundBrush}" 
+                            CornerRadius="5,5,5,5" 
+                            Margin="12,4,10,4" Style="{StaticResource ToolBarBorderStyle}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox
+                                            Text="{Binding MainTitle, Mode=TwoWay}"
+                                            Name="MainTextBox"
+                                            Width="130" 
+                                            Height="20" 
+                                            Margin="3,0,3,0" 
+                                            Foreground="{StaticResource ForegroundBrush}" 
+                                            FontSize="10"
+                                            FontWeight="Bold" 
+                                            BorderThickness="0" 
+                                            HorizontalAlignment="Left"
+                                            Background="#00FFFFFF"/>
+                                </StackPanel>
+                    </Border>
+                    
+                    <TextBlock Height="14" Width="80" Text="Sub Text" Margin="5,0,-20,2" TextWrapping="Wrap" FontSize="12" Foreground="{StaticResource ForegroundBrushAlternative}" />
+                    <Border Background="{StaticResource ToolBarFieldBackgroundBrush}" 
+                            CornerRadius="5,5,5,5" 
+                            Margin="2,4,20,4" Style="{StaticResource ToolBarBorderStyle}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox 
+                                        Text="{Binding SubTitle, Mode=TwoWay}"
+                                        Name="SubTextBox"
+                                        VerticalAlignment="Center" 
+                                        Width="130"
+                                        Height="20" 
+                                        Margin="3,0,3,0" 
+                                        Foreground="{StaticResource ForegroundBrush}" 
+                                        FontSize="10" 
+                                        FontWeight="Bold" 
+                                        BorderThickness="0" 
+                                        HorizontalAlignment="Left" 
+                                        Background="#00FFFFFF"/>
+                                </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        
+        <ListBox x:Name="TitleList" Grid.Row="1"
+                 ItemsSource="{Binding TitleTemplates}"
+                 ItemTemplate="{StaticResource TitleTemplate}" 
+				 Style="{StaticResource SharedListBoxStyle}">
+            <ListBox.Template>
+                <ControlTemplate>
+                    <Grid>
+                        <ScrollViewer Style="{StaticResource ScrollViewerStyle}" VerticalScrollBarVisibility="Auto">
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </Grid>
+                </ControlTemplate>
+            </ListBox.Template>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <CustomControls:WrapPanel Width="Auto"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <Popup x:Name="DragPopup" IsOpen="True">
+            <ContentControl x:Name="DragPopupContent" Opacity="0.5"/>
+        </Popup>
+    </Grid>
+</UserControl>

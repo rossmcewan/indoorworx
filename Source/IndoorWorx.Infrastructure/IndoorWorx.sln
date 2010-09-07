@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.Infrastructure", "IndoorWorx.Infrastructure.csproj", "{DF3B24C9-443A-42C6-84AE-8C796C091498}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Default", "Default", "{6509D8EC-4953-4E72-9B3A-710165B58362}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{07A54CE4-CDC7-4800-83E8-2FA9E6B35A3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.Infrastructure.Silverlight", "..\IndoorWorx.Infrastructure.Silverlight\IndoorWorx.Infrastructure.Silverlight.csproj", "{74DA0835-9E56-474D-A3A9-92D99CDCB3C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,8 +19,16 @@ Global
 		{DF3B24C9-443A-42C6-84AE-8C796C091498}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF3B24C9-443A-42C6-84AE-8C796C091498}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF3B24C9-443A-42C6-84AE-8C796C091498}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74DA0835-9E56-474D-A3A9-92D99CDCB3C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74DA0835-9E56-474D-A3A9-92D99CDCB3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74DA0835-9E56-474D-A3A9-92D99CDCB3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74DA0835-9E56-474D-A3A9-92D99CDCB3C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DF3B24C9-443A-42C6-84AE-8C796C091498} = {6509D8EC-4953-4E72-9B3A-710165B58362}
+		{74DA0835-9E56-474D-A3A9-92D99CDCB3C0} = {07A54CE4-CDC7-4800-83E8-2FA9E6B35A3E}
 	EndGlobalSection
 EndGlobal

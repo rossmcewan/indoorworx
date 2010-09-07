@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="ftp://ftp.indoorworx.com/RCE2/" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="IndoorWorx FTP" publishMethod="FTP" replaceMatchingFiles="False" userName="0105603|indoorworxc" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJ4O2npET6UGahhvmOqhudwAAAAACAAAAAAADZgAAqAAAABAAAADH+LvolQAFRVns7ULdhRn9AAAAAASAAACgAAAAEAAAAM7zHmJ8TM1w7cGNwnLQytQYAAAAp5YVjB2SnLVk2IadZ45KtfDTWcjiK8e2FAAAAPjBnEhHqw0Wf7Eke9r1hbpOC5nY" SelectedForPublish="True">
+    <file relUrl="ClientBin/RCE.Modules.Markers.xap" publishTime="08/08/2010 21:41:01" />
+    <file relUrl="Default.aspx" publishTime="08/08/2010 21:27:52" />
+    <file relUrl="APITestPage.aspx" publishTime="05/18/2010 14:34:02" />
+    <file relUrl="ClientBin/RCE.Modules.CommentsBar.xap" publishTime="08/08/2010 21:41:02" />
+    <file relUrl="TitleTemplates/ZoomCenter.xaml" publishTime="03/31/2010 12:23:00" />
+    <file relUrl="ClientBin/RCE.Modules.Library.xap" publishTime="08/08/2010 21:40:51" />
+    <file relUrl="CompositeStreamManifestService.svc" publishTime="08/08/2010 17:36:29" />
+    <file relUrl="ClientBin/RCE.Modules.Search.xap" publishTime="08/08/2010 21:41:26" />
+    <file relUrl="bin/Microsoft.Practices.Unity.Configuration.dll" publishTime="03/31/2010 12:23:36" />
+    <file relUrl="Web.config" publishTime="08/08/2010 21:54:07" />
+    <file relUrl="bin/Microsoft.Practices.Unity.dll" publishTime="03/31/2010 12:23:38" />
+    <file relUrl="bin/System.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="bin/Microsoft.Practices.ObjectBuilder2.dll" publishTime="03/31/2010 12:23:40" />
+    <file relUrl="bin/SmoothStreamingManifestGenerator.dll" publishTime="08/08/2010 21:21:08" />
+    <file relUrl="ClientBin/RCE.Modules.Timeline.xap" publishTime="08/08/2010 21:40:54" />
+    <file relUrl="SplashScreen/SplashScreen.xaml" publishTime="03/31/2010 12:22:58" />
+    <file relUrl="bin/RCE.Services.Infrastructure.pdb" publishTime="08/08/2010 21:21:11" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.dll" publishTime="03/31/2010 12:23:22" />
+    <file relUrl="bin/Scripts/CreateDatabase.sql" publishTime="03/31/2010 12:21:02" />
+    <file relUrl="DataService.svc" publishTime="03/31/2010 12:22:58" />
+    <file relUrl="bin/RCE.Services.dll" publishTime="08/08/2010 21:21:08" />
+    <file relUrl="bin/SMPTETimecode.dll" publishTime="08/08/2010 21:21:07" />
+    <file relUrl="ClientBin/RCE.xap" publishTime="08/08/2010 21:40:24" />
+    <file relUrl="bin/LAgger.Service.dll" publishTime="08/08/2010 21:21:07" />
+    <file relUrl="SplashScreen/SplashScreen.js" publishTime="03/31/2010 12:22:58" />
+    <file relUrl="bin/SMPTETimecode.pdb" publishTime="08/08/2010 21:21:07" />
+    <file relUrl="bin/LAgger.Service.pdb" publishTime="08/08/2010 21:21:07" />
+    <file relUrl="ClientBin/RCE.Modules.Ads.xap" publishTime="08/08/2010 21:40:46" />
+    <file relUrl="TitleTemplates/FadeCenter.xaml" publishTime="03/31/2010 12:23:00" />
+    <file relUrl="clientaccesspolicy.xml" publishTime="08/07/2010 20:26:30" />
+    <file relUrl="AssetsDataService.svc" publishTime="03/31/2010 12:22:58" />
+    <file relUrl="ClientBin/RCE.Modules.CompositeOutput.xap" publishTime="08/08/2010 21:41:06" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll" publishTime="03/31/2010 12:23:24" />
+    <file relUrl="bin/RCE.Services.CSM.dll" publishTime="08/08/2010 21:21:09" />
+    <file relUrl="ClientBin/RCE.Modules.Settings.xap" publishTime="08/08/2010 21:40:58" />
+    <file relUrl="ClientBin/RCE.Modules.Player.xap" publishTime="08/08/2010 21:40:48" />
+    <file relUrl="LaggerService.svc" publishTime="03/31/2010 12:22:58" />
+    <file relUrl="bin/RCE.Services.Contracts.pdb" publishTime="08/08/2010 21:21:08" />
+    <file relUrl="bin/RCE.Services.CSM.pdb" publishTime="08/08/2010 21:21:09" />
+    <file relUrl="bin/RCE.Metadata.Strategies.dll" publishTime="08/08/2010 21:21:11" />
+    <file relUrl="ExpressionEncoderService.svc" publishTime="03/31/2010 12:22:58" />
+    <file relUrl="bin/RCE.Data.Sql.dll" publishTime="08/08/2010 21:21:10" />
+    <file relUrl="bin/RCE.Metadata.Strategies.pdb" publishTime="08/08/2010 21:21:11" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Data.dll" publishTime="03/31/2010 12:23:22" />
+    <file relUrl="ClientBin/RCE.Modules.Services.xap" publishTime="08/08/2010 21:40:47" />
+    <file relUrl="bin/RCE.Data.Demo.dll" publishTime="08/08/2010 21:21:09" />
+    <file relUrl="bin/RCE.Data.Sql.pdb" publishTime="08/08/2010 21:21:10" />
+    <file relUrl="bin/RCE.Data.Demo.pdb" publishTime="08/08/2010 21:21:09" />
+    <file relUrl="ClientBin/RCE.Modules.Metadata.xap" publishTime="08/08/2010 21:40:53" />
+    <file relUrl="Silverlight.js" publishTime="03/31/2010 12:22:58" />
+    <file relUrl="bin/RCE.Data.FileSystem.dll" publishTime="08/08/2010 21:21:10" />
+    <file relUrl="TitleTemplates/ScrollingCenter.xaml" publishTime="03/31/2010 12:23:00" />
+    <file relUrl="ClientBin/RCE.Modules.Titles.xap" publishTime="08/08/2010 21:40:59" />
+    <file relUrl="bin/RCE.Data.FileSystem.pdb" publishTime="08/08/2010 21:21:10" />
+    <file relUrl="ClientBin/RCE.Modules.EncoderOutput.xap" publishTime="08/08/2010 21:40:52" />
+    <file relUrl="bin/SmoothStreamingManifestGenerator.pdb" publishTime="08/08/2010 21:21:08" />
+    <file relUrl="ClientBin/RCE.Modules.Projects.xap" publishTime="08/08/2010 21:40:57" />
+    <file relUrl="bin/RCE.Services.Infrastructure.dll" publishTime="08/08/2010 21:21:11" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll" publishTime="03/31/2010 12:23:26" />
+    <file relUrl="ClientBin/RCE.Modules.Comment.xap" publishTime="08/08/2010 21:40:56" />
+    <file relUrl="Copy of Web.config" publishTime="08/07/2010 15:26:42" />
+    <file relUrl="bin/RCE.Web.dll" publishTime="08/08/2010 21:57:04" />
+    <file relUrl="bin/RCE.Services.pdb" publishTime="08/08/2010 21:21:08" />
+    <file relUrl="Settings.xml" publishTime="08/08/2010 18:53:24" />
+    <file relUrl="Images/DefaultThumbnail.jpg" publishTime="03/31/2010 12:22:58" />
+    <file relUrl="bin/RCE.Web.pdb" publishTime="08/08/2010 21:57:04" />
+    <file relUrl="bin/FileSystemAssetsDataProviderConfiguration.xml" publishTime="03/31/2010 12:21:02" />
+    <file relUrl="bin/RCE.Services.Contracts.dll" publishTime="08/08/2010 21:21:08" />
+    <file relUrl="TitleTemplates/Spinner.xaml" publishTime="03/31/2010 12:23:00" />
+  </publishProfile>
+</publishData>

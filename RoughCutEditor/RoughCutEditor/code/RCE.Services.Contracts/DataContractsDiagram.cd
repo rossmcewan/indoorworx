@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RCE.Services.Contracts.Anchor">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\Anchor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.AudioItem">
+    <Position X="9.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\AudioItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.Comment">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAACAAAAAA=</HashCode>
+      <FileName>Contracts\Comment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.CommentCollection" Collapsed="true">
+    <Position X="23.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\CommentCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.Container">
+    <Position X="18.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgCEAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Contracts\Container.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RCE.Services.Contracts.ImageItem">
+    <Position X="7.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ImageItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.Item">
+    <Position X="8.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Contracts\Item.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Resources" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RCE.Services.Contracts.ItemCollection" Collapsed="true">
+    <Position X="25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ItemCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.MediaBin">
+    <Position X="20.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\MediaBin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.MediaItem">
+    <Position X="9.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\MediaItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.Project">
+    <Position X="16.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAhAAACAEAAQAgAAABAAAAiAAQAAAAICAAEIAA=</HashCode>
+      <FileName>Contracts\Project.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MediaBin" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Timeline" />
+      <Property Name="Comments" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RCE.Services.Contracts.RceObject">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACCAAAAAAAAAAIABAAAAAAAAAAAAQAEAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\RceObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.Resource">
+    <Position X="14" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgQAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\Resource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.ResourceCollection" Collapsed="true">
+    <Position X="26.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ResourceCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.Shot">
+    <Position X="5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAABIAAAAIIAA=</HashCode>
+      <FileName>Contracts\Shot.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Source" />
+      <Property Name="SourceAnchor" />
+      <Property Name="TrackAnchor" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RCE.Services.Contracts.ShotCollection" Collapsed="true">
+    <Position X="23.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ShotCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.Track">
+    <Position X="18.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAEEAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Contracts\Track.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Shots" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RCE.Services.Contracts.TrackCollection" Collapsed="true">
+    <Position X="25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\TrackCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.Transition" Collapsed="true">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\Transition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.TransitionCollection" Collapsed="true">
+    <Position X="26.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\TransitionCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RCE.Services.Contracts.VideoItem">
+    <Position X="11.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAACAAAAAAAAAEAAAAAAAAAAACAAAABAAAA=</HashCode>
+      <FileName>Contracts\VideoItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="RCE.Services.Contracts.IDataService" Collapsed="true">
+    <Position X="23.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAACAgAABAAAAAAAAgAggAAAAAA=</HashCode>
+      <FileName>Services\IDataService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="RCE.Services.Contracts.Resolution" Collapsed="true">
+    <Position X="23.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\Resolution.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RCE.Services.Contracts.TrackType" Collapsed="true">
+    <Position X="23.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Contracts\TrackType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Microsoft.Imm.Sdk.Media.SmpteFrameRate" Collapsed="true">
+    <Position X="25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAABAAAAAAAgAAAAAAAAjAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Contracts\SmpteFrameRate.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

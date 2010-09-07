@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2eb0e830-4088-4608-9d24-45d3f90a565e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="RCE.Services.Contracts.Client" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/RCE.Web/ExpressionEncoderService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ExpressionEncoderService55.xsd" MetadataType="Schema" ID="7e525be1-f643-480f-ab01-2b7d299ee49e" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/ExpressionEncoderService.svc?xsd=xsd4" />
+    <MetadataFile FileName="ExpressionEncoderService56.xsd" MetadataType="Schema" ID="d430bc80-3ddb-4cfa-8c8b-7a6bba2cd849" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/ExpressionEncoderService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ExpressionEncoderService11.disco" MetadataType="Disco" ID="24526414-2e8d-441c-8252-238dfc3934ff" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/ExpressionEncoderService.svc?disco" />
+    <MetadataFile FileName="ExpressionEncoderService57.xsd" MetadataType="Schema" ID="1b9db729-c36c-4e72-9761-c7b35691d79e" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/ExpressionEncoderService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ExpressionEncoderService58.xsd" MetadataType="Schema" ID="1c9ee827-63e2-4ff4-b303-0922a43aa9c4" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/ExpressionEncoderService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ExpressionEncoderService59.xsd" MetadataType="Schema" ID="96a2dcc2-517c-40cc-98e5-cc5714090a59" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/ExpressionEncoderService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ExpressionEncoderService11.wsdl" MetadataType="Wsdl" ID="4bce3406-b264-4885-a16f-e0923ab07a8a" SourceId="1" SourceUrl="http://rossmcewan/RCE.Web/ExpressionEncoderService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

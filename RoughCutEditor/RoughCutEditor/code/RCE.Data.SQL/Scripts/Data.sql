@@ -1,0 +1,21 @@
+USE RoughCutEditor
+GO
+INSERT [dbo].[Container] ([Id], [Title], [ParentContainerId]) VALUES (N'http://rce.litwareinc.com/samples/2.0/Containers/1C15D40B-F54B-4b43-B32B-97E1070BAFF3', N' MediaLibrary', NULL)
+INSERT [dbo].[Container] ([Id], [Title], [ParentContainerId]) VALUES (N'http://rce.litwareinc.com/samples/2.0/Containers/1C15D40B-F54B-4b43-B32B-97E1070BAFF1', N'Images', N'http://rce.litwareinc.com/samples/2.0/Containers/1C15D40B-F54B-4b43-B32B-97E1070BAFF3')
+INSERT [dbo].[Item] ([Id], [Title], [Description], [ItemType]) VALUES (N'http://rce.litwareinc.com/samples/2.0/AudioItems/11111111-1111-1111-1111-111111111111', N'Gleen Block on Prism', N'Test', N'Audio')
+INSERT [dbo].[Item] ([Id], [Title], [Description], [ItemType]) VALUES (N'http://rce.litwareinc.com/samples/2.0/ImageItems/11111111-1111-1111-1111-111111111111', N'RCE Sample', N'Test', N'Image')
+INSERT [dbo].[Item] ([Id], [Title], [Description], [ItemType]) VALUES (N'http://rce.litwareinc.com/samples/2.0/VideoItems/11111111-1111-1111-1111-111111111111', N'Live Framework', N'Test', N'Video')
+INSERT [dbo].[Resource] ([Id], [Ref], [ResourceType], [ItemId]) VALUES (N'http://rce.litwareinc.com/samples/2.0/Resources/11111111-1111-1111-1111-111111111111', N'http://mschnlnine.vo.llnwd.net/d1/ch9/5/9/4/1/5/4/MTLfxHelloWorldMEWA_ch9.wmv', N'Master', N'http://rce.litwareinc.com/samples/2.0/VideoItems/11111111-1111-1111-1111-111111111111')
+INSERT [dbo].[Resource] ([Id], [Ref], [ResourceType], [ItemId]) VALUES (N'http://rce.litwareinc.com/samples/2.0/Resources/11111111-1111-1111-1111-111111111112', N'http://herdingcode.com/wp-content/uploads/HerdingCode-0011-Glenn-Block-Part-1.mp3', N'Master', N'http://rce.litwareinc.com/samples/2.0/AudioItems/11111111-1111-1111-1111-111111111111')
+INSERT [dbo].[Resource] ([Id], [Ref], [ResourceType], [ItemId]) VALUES (N'http://rce.litwareinc.com/samples/2.0/Resources/11111111-1111-1111-1111-111111111113', N'http://blogs.msdn.com/blogfiles/imm/IMMSharepoint_20_2D_20Video_20Accent_thumb.jpg', N'Master', N'http://rce.litwareinc.com/samples/2.0/ImageItems/11111111-1111-1111-1111-111111111111')
+INSERT [dbo].[ImageFormat] ([Id], [ResolutionX], [ResolutionY]) VALUES (N'http://rce.litwareinc.com/samples/2.0/Resources/11111111-1111-1111-1111-111111111113', 640, 753)
+INSERT [dbo].[VideoFormat] ([Id], [Duration], [FrameRate], [ResolutionX], [ResolutionY]) VALUES (N'http://rce.litwareinc.com/samples/2.0/Resources/11111111-1111-1111-1111-111111111111', 673.8, N'Smpte25', 320, 240)
+INSERT [dbo].[AudioFormat] ([Id], [Duration]) VALUES (N'http://rce.litwareinc.com/samples/2.0/Resources/11111111-1111-1111-1111-111111111112', 2286)
+INSERT [dbo].[Container_Items] ([ContainerId], [ItemId]) VALUES (N'http://rce.litwareinc.com/samples/2.0/Containers/1C15D40B-F54B-4b43-B32B-97E1070BAFF1', N'http://rce.litwareinc.com/samples/2.0/ImageItems/11111111-1111-1111-1111-111111111111')
+INSERT [dbo].[Container_Items] ([ContainerId], [ItemId]) VALUES (N'http://rce.litwareinc.com/samples/2.0/Containers/1C15D40B-F54B-4b43-B32B-97E1070BAFF3', N'http://rce.litwareinc.com/samples/2.0/AudioItems/11111111-1111-1111-1111-111111111111')
+INSERT [dbo].[Container_Items] ([ContainerId], [ItemId]) VALUES (N'http://rce.litwareinc.com/samples/2.0/Containers/1C15D40B-F54B-4b43-B32B-97E1070BAFF3', N'http://rce.litwareinc.com/samples/2.0/VideoItems/11111111-1111-1111-1111-111111111111')
+INSERT [dbo].[TitleTemplate] ([Id], [TemplateName]) VALUES (N'http://rce.litwareinc.com/samples/2.0/TitleTemplate/11111111-1111-1111-1111-111111111111', N'Spinner')
+INSERT [dbo].[TitleTemplate] ([Id], [TemplateName]) VALUES (N'http://rce.litwareinc.com/samples/2.0/TitleTemplate/11111111-1111-1111-1111-111111111112', N'ScrollingCenter')
+INSERT [dbo].[TitleTemplate] ([Id], [TemplateName]) VALUES (N'http://rce.litwareinc.com/samples/2.0/TitleTemplate/11111111-1111-1111-1111-111111111113', N'FadeCenter')
+INSERT [dbo].[TitleTemplate] ([Id], [TemplateName]) VALUES (N'http://rce.litwareinc.com/samples/2.0/TitleTemplate/11111111-1111-1111-1111-111111111114', N'ZoomCenter')
+

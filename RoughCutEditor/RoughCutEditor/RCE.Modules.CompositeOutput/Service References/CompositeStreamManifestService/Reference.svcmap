@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="40e6ceed-b0b5-47c2-bfb7-835d6618bd75" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="RCE.Services.Contracts.Client" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/RCE.Web/CompositeStreamManifestService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CompositeStreamManifestService.disco" MetadataType="Disco" ID="c324ccdd-2ee2-48b7-a2ca-26fe7dae3bb8" SourceId="1" SourceUrl="http://localhost/RCE.Web/CompositeStreamManifestService.svc?disco" />
+    <MetadataFile FileName="CompositeStreamManifestService.xsd" MetadataType="Schema" ID="cb14ef14-12ed-4b2b-af31-d7b08419d152" SourceId="1" SourceUrl="http://localhost/RCE.Web/CompositeStreamManifestService.svc?xsd=xsd3" />
+    <MetadataFile FileName="CompositeStreamManifestService.wsdl" MetadataType="Wsdl" ID="995a9daa-8495-48e2-837e-80327a475640" SourceId="1" SourceUrl="http://localhost/RCE.Web/CompositeStreamManifestService.svc?wsdl" />
+    <MetadataFile FileName="CompositeStreamManifestService1.xsd" MetadataType="Schema" ID="5d270f2a-7e02-4a4c-9144-f7f9de135a5b" SourceId="1" SourceUrl="http://localhost/RCE.Web/CompositeStreamManifestService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CompositeStreamManifestService2.xsd" MetadataType="Schema" ID="b9cb6cc7-b0ac-40e3-91e6-3c10a8aa6105" SourceId="1" SourceUrl="http://localhost/RCE.Web/CompositeStreamManifestService.svc?xsd=xsd4" />
+    <MetadataFile FileName="CompositeStreamManifestService3.xsd" MetadataType="Schema" ID="b4fac887-c7a2-41df-a73f-614d12b7b0c4" SourceId="1" SourceUrl="http://localhost/RCE.Web/CompositeStreamManifestService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CompositeStreamManifestService4.xsd" MetadataType="Schema" ID="c5066a78-d3c4-46ea-ae4f-f4658aaf6f0f" SourceId="1" SourceUrl="http://localhost/RCE.Web/CompositeStreamManifestService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

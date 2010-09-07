@@ -1,0 +1,532 @@
+﻿<?xml version="1.0"?>
+<SmoothStreamingMedia
+  MajorVersion="2"
+  MinorVersion="1"
+  Duration="1708809000">
+  <Clip
+    Url="http://www.indoorworx.com/SmoothStreaming/Amazing_Caves_1080.ism/Manifest"
+    ClipBegin="0"
+    ClipEnd="853810001">
+<StreamIndex
+  Type="video"
+  Name="video"
+  Chunks="43"
+  QualityLevels="8"
+  MaxWidth="852"
+  MaxHeight="480"
+  DisplayWidth="852"
+  DisplayHeight="480"
+  Url="QualityLevels({bitrate})/Fragments(video={start time})">
+  <QualityLevel
+    Index="0"
+    Bitrate="1644000"
+    FourCC="H264"
+    MaxWidth="852"
+    MaxHeight="480"
+    CodecPrivateData="00000001674D401E965606C1EF3FFF820001FF2840000003004000000A1818001915C0006457FF18E303000322B8000C8AFFE31C3B4244A70000000168EA5352" />
+  <QualityLevel
+    Index="1"
+    Bitrate="1241000"
+    FourCC="H264"
+    MaxWidth="852"
+    MaxHeight="480"
+    CodecPrivateData="00000001674D401E965606C1EF3FFF820001FF2840000003004000000A18180012EF80004BBEFF18E30300025DF0000977DFE31C3B4244A70000000168EA5352" />
+  <QualityLevel
+    Index="2"
+    Bitrate="937000"
+    FourCC="H264"
+    MaxWidth="852"
+    MaxHeight="480"
+    CodecPrivateData="00000001674D401E965606C1EF3FFF820001FF2840000003004000000A18100039300001C985FC638C08001C980000E4C2FE31C3B4244A700000000168EA5352" />
+  <QualityLevel
+    Index="3"
+    Bitrate="708000"
+    FourCC="H264"
+    MaxWidth="568"
+    MaxHeight="320"
+    CodecPrivateData="00000001674D4015965604814F2FFF820001FF2840000003004000000A1810002B36000159B5FC638C0800159B0000ACDAFE31C3B4244A700000000168EA5352" />
+  <QualityLevel
+    Index="4"
+    Bitrate="534000"
+    FourCC="H264"
+    MaxWidth="568"
+    MaxHeight="320"
+    CodecPrivateData="00000001674D4015965604814F2FFF820001FF2840000003004000000A1810002097000104BFFC638C0800104B8000825FFE31C3B4244A700000000168EA5352" />
+  <QualityLevel
+    Index="5"
+    Bitrate="403000"
+    FourCC="H264"
+    MaxWidth="568"
+    MaxHeight="320"
+    CodecPrivateData="00000001674D4015965604814F2FFF820001FF2840000003004000000A18080062600006263FF18E301000C4C0000C4C7FE31C3B4244A70000000168EA5352" />
+  <QualityLevel
+    Index="6"
+    Bitrate="305000"
+    FourCC="H264"
+    MaxWidth="480"
+    MaxHeight="272"
+    CodecPrivateData="00000001674D401596560F0477FE080007F0A10000030001000003002860200129D000129DBFC638C0400253A000253B7F8C70ED09129C0000000168EA5352" />
+  <QualityLevel
+    Index="7"
+    Bitrate="230000"
+    FourCC="H264"
+    MaxWidth="480"
+    MaxHeight="272"
+    CodecPrivateData="00000001674D401596560F0477FE080007F0A100000300010000030028600003824000704E7F18E300001C1200038273F8C70ED09129C00000000168EA5352" />
+<c
+  t="0" />
+<c
+  t="20070000" />
+<c
+  t="40090000" />
+<c
+  t="60110000" />
+<c
+  t="80130000" />
+<c
+  t="100150000" />
+<c
+  t="120170000" />
+<c
+  t="140190000" />
+<c
+  t="160210000" />
+<c
+  t="180230000" />
+<c
+  t="200250000" />
+<c
+  t="220270000" />
+<c
+  t="240290000" />
+<c
+  t="260310000" />
+<c
+  t="280330000" />
+<c
+  t="300350000" />
+<c
+  t="319950000" />
+<c
+  t="339970000" />
+<c
+  t="359990000" />
+<c
+  t="380010000" />
+<c
+  t="400030000" />
+<c
+  t="420050000" />
+<c
+  t="440070000" />
+<c
+  t="460090000" />
+<c
+  t="480110000" />
+<c
+  t="500130000" />
+<c
+  t="520150000" />
+<c
+  t="540170000" />
+<c
+  t="560190000" />
+<c
+  t="580210000" />
+<c
+  t="600230000" />
+<c
+  t="620250000" />
+<c
+  t="640270000" />
+<c
+  t="660290000" />
+<c
+  t="680310000" />
+<c
+  t="699910000" />
+<c
+  t="719930000" />
+<c
+  t="739950000" />
+<c
+  t="759970000" />
+<c
+  t="779990000" />
+<c
+  t="800010000" />
+<c
+  t="820030000" />
+<c
+  t="840050000"
+  d="13760001" />
+</StreamIndex>
+<StreamIndex
+  Type="audio"
+  Index="0"
+  Name="audio"
+  Chunks="43"
+  QualityLevels="1"
+  Url="QualityLevels({bitrate})/Fragments(audio={start time})">
+  <QualityLevel
+    FourCC="AACL"
+    Bitrate="256000"
+    SamplingRate="44100"
+    Channels="2"
+    BitsPerSample="16"
+    PacketSize="4"
+    AudioTag="255"
+    CodecPrivateData="121008C400002000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" />
+<c
+  t="0" />
+<c
+  t="20201360" />
+<c
+  t="40170521" />
+<c
+  t="60139682" />
+<c
+  t="80108843" />
+<c
+  t="100078004" />
+<c
+  t="120047165" />
+<c
+  t="140016326" />
+<c
+  t="160217687" />
+<c
+  t="180186848" />
+<c
+  t="200156008" />
+<c
+  t="220125170" />
+<c
+  t="240094331" />
+<c
+  t="260063492" />
+<c
+  t="280032652" />
+<c
+  t="300001814" />
+<c
+  t="320203174" />
+<c
+  t="340172335" />
+<c
+  t="360141496" />
+<c
+  t="380110657" />
+<c
+  t="400079818" />
+<c
+  t="420048979" />
+<c
+  t="440018140" />
+<c
+  t="460219501" />
+<c
+  t="480188662" />
+<c
+  t="500157822" />
+<c
+  t="520126984" />
+<c
+  t="540096145" />
+<c
+  t="560065306" />
+<c
+  t="580034467" />
+<c
+  t="600003628" />
+<c
+  t="620204988" />
+<c
+  t="640174149" />
+<c
+  t="660143310" />
+<c
+  t="680112471" />
+<c
+  t="700081632" />
+<c
+  t="720050793" />
+<c
+  t="740019954" />
+<c
+  t="760221315" />
+<c
+  t="780190476" />
+<c
+  t="800159637" />
+<c
+  t="820128798" />
+<c
+  t="840097959"
+  d="15092971" />
+</StreamIndex>
+</Clip>
+  <Clip
+    Url="http://www.indoorworx.com/SmoothStreaming/Amazing_Caves_1080.ism/Manifest"
+    ClipBegin="0"
+    ClipEnd="853810000">
+<StreamIndex
+  Type="video"
+  Name="video"
+  Chunks="43"
+  QualityLevels="8"
+  MaxWidth="852"
+  MaxHeight="480"
+  DisplayWidth="852"
+  DisplayHeight="480"
+  Url="QualityLevels({bitrate})/Fragments(video={start time})">
+  <QualityLevel
+    Index="0"
+    Bitrate="1644000"
+    FourCC="H264"
+    MaxWidth="852"
+    MaxHeight="480"
+    CodecPrivateData="00000001674D401E965606C1EF3FFF820001FF2840000003004000000A1818001915C0006457FF18E303000322B8000C8AFFE31C3B4244A70000000168EA5352" />
+  <QualityLevel
+    Index="1"
+    Bitrate="1241000"
+    FourCC="H264"
+    MaxWidth="852"
+    MaxHeight="480"
+    CodecPrivateData="00000001674D401E965606C1EF3FFF820001FF2840000003004000000A18180012EF80004BBEFF18E30300025DF0000977DFE31C3B4244A70000000168EA5352" />
+  <QualityLevel
+    Index="2"
+    Bitrate="937000"
+    FourCC="H264"
+    MaxWidth="852"
+    MaxHeight="480"
+    CodecPrivateData="00000001674D401E965606C1EF3FFF820001FF2840000003004000000A18100039300001C985FC638C08001C980000E4C2FE31C3B4244A700000000168EA5352" />
+  <QualityLevel
+    Index="3"
+    Bitrate="708000"
+    FourCC="H264"
+    MaxWidth="568"
+    MaxHeight="320"
+    CodecPrivateData="00000001674D4015965604814F2FFF820001FF2840000003004000000A1810002B36000159B5FC638C0800159B0000ACDAFE31C3B4244A700000000168EA5352" />
+  <QualityLevel
+    Index="4"
+    Bitrate="534000"
+    FourCC="H264"
+    MaxWidth="568"
+    MaxHeight="320"
+    CodecPrivateData="00000001674D4015965604814F2FFF820001FF2840000003004000000A1810002097000104BFFC638C0800104B8000825FFE31C3B4244A700000000168EA5352" />
+  <QualityLevel
+    Index="5"
+    Bitrate="403000"
+    FourCC="H264"
+    MaxWidth="568"
+    MaxHeight="320"
+    CodecPrivateData="00000001674D4015965604814F2FFF820001FF2840000003004000000A18080062600006263FF18E301000C4C0000C4C7FE31C3B4244A70000000168EA5352" />
+  <QualityLevel
+    Index="6"
+    Bitrate="305000"
+    FourCC="H264"
+    MaxWidth="480"
+    MaxHeight="272"
+    CodecPrivateData="00000001674D401596560F0477FE080007F0A10000030001000003002860200129D000129DBFC638C0400253A000253B7F8C70ED09129C0000000168EA5352" />
+  <QualityLevel
+    Index="7"
+    Bitrate="230000"
+    FourCC="H264"
+    MaxWidth="480"
+    MaxHeight="272"
+    CodecPrivateData="00000001674D401596560F0477FE080007F0A100000300010000030028600003824000704E7F18E300001C1200038273F8C70ED09129C00000000168EA5352" />
+<c
+  t="0" />
+<c
+  t="20070000" />
+<c
+  t="40090000" />
+<c
+  t="60110000" />
+<c
+  t="80130000" />
+<c
+  t="100150000" />
+<c
+  t="120170000" />
+<c
+  t="140190000" />
+<c
+  t="160210000" />
+<c
+  t="180230000" />
+<c
+  t="200250000" />
+<c
+  t="220270000" />
+<c
+  t="240290000" />
+<c
+  t="260310000" />
+<c
+  t="280330000" />
+<c
+  t="300350000" />
+<c
+  t="319950000" />
+<c
+  t="339970000" />
+<c
+  t="359990000" />
+<c
+  t="380010000" />
+<c
+  t="400030000" />
+<c
+  t="420050000" />
+<c
+  t="440070000" />
+<c
+  t="460090000" />
+<c
+  t="480110000" />
+<c
+  t="500130000" />
+<c
+  t="520150000" />
+<c
+  t="540170000" />
+<c
+  t="560190000" />
+<c
+  t="580210000" />
+<c
+  t="600230000" />
+<c
+  t="620250000" />
+<c
+  t="640270000" />
+<c
+  t="660290000" />
+<c
+  t="680310000" />
+<c
+  t="699910000" />
+<c
+  t="719930000" />
+<c
+  t="739950000" />
+<c
+  t="759970000" />
+<c
+  t="779990000" />
+<c
+  t="800010000" />
+<c
+  t="820030000" />
+<c
+  t="840050000"
+  d="13760001" />
+</StreamIndex>
+<StreamIndex
+  Type="audio"
+  Index="0"
+  Name="audio"
+  Chunks="43"
+  QualityLevels="1"
+  Url="QualityLevels({bitrate})/Fragments(audio={start time})">
+  <QualityLevel
+    FourCC="AACL"
+    Bitrate="256000"
+    SamplingRate="44100"
+    Channels="2"
+    BitsPerSample="16"
+    PacketSize="4"
+    AudioTag="255"
+    CodecPrivateData="121008C400002000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" />
+<c
+  t="0" />
+<c
+  t="20201360" />
+<c
+  t="40170521" />
+<c
+  t="60139682" />
+<c
+  t="80108843" />
+<c
+  t="100078004" />
+<c
+  t="120047165" />
+<c
+  t="140016326" />
+<c
+  t="160217687" />
+<c
+  t="180186848" />
+<c
+  t="200156008" />
+<c
+  t="220125170" />
+<c
+  t="240094331" />
+<c
+  t="260063492" />
+<c
+  t="280032652" />
+<c
+  t="300001814" />
+<c
+  t="320203174" />
+<c
+  t="340172335" />
+<c
+  t="360141496" />
+<c
+  t="380110657" />
+<c
+  t="400079818" />
+<c
+  t="420048979" />
+<c
+  t="440018140" />
+<c
+  t="460219501" />
+<c
+  t="480188662" />
+<c
+  t="500157822" />
+<c
+  t="520126984" />
+<c
+  t="540096145" />
+<c
+  t="560065306" />
+<c
+  t="580034467" />
+<c
+  t="600003628" />
+<c
+  t="620204988" />
+<c
+  t="640174149" />
+<c
+  t="660143310" />
+<c
+  t="680112471" />
+<c
+  t="700081632" />
+<c
+  t="720050793" />
+<c
+  t="740019954" />
+<c
+  t="760221315" />
+<c
+  t="780190476" />
+<c
+  t="800159637" />
+<c
+  t="820128798" />
+<c
+  t="840097959"
+  d="15092971" />
+</StreamIndex>
+</Clip>
+</SmoothStreamingMedia>

@@ -1,0 +1,18 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_ICompositeStreamManifestService"
+                    maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://localhost/RCE.Web/CompositeStreamManifestService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ICompositeStreamManifestService"
+                contract="CompositeStreamManifestService.ICompositeStreamManifestService"
+                name="BasicHttpBinding_ICompositeStreamManifestService" />
+        </client>
+    </system.serviceModel>
+</configuration>

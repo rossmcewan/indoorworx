@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RCE", "RCE", "{4E2C9BB4-27AA-4FCC-8F73-880549F45E7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManifestGenerator.Services", "code\ManifestGenerator.Services\ManifestGenerator.Services.csproj", "{8818F6EE-FCB1-4627-BE13-644C8FB20E48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothStreamingManifestGenerator", "code\SmoothStreamingManifestGenerator\SmoothStreamingManifestGenerator.csproj", "{524E3D97-AA1A-484D-B737-81B940E19776}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothStreamingManifestGenerator.Tests", "code\SmoothStreamingManifestGenerator.Tests\SmoothStreamingManifestGenerator.Tests.csproj", "{CD7AE605-B4A2-485A-8DD0-454B3A7EE672}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCE.Services.Contracts", "..\RoughCutEditor\code\RCE.Services.Contracts\RCE.Services.Contracts.csproj", "{01EB83B4-2BC2-4040-90A1-E9199E0DA430}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8818F6EE-FCB1-4627-BE13-644C8FB20E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8818F6EE-FCB1-4627-BE13-644C8FB20E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8818F6EE-FCB1-4627-BE13-644C8FB20E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8818F6EE-FCB1-4627-BE13-644C8FB20E48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{524E3D97-AA1A-484D-B737-81B940E19776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{524E3D97-AA1A-484D-B737-81B940E19776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{524E3D97-AA1A-484D-B737-81B940E19776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{524E3D97-AA1A-484D-B737-81B940E19776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD7AE605-B4A2-485A-8DD0-454B3A7EE672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD7AE605-B4A2-485A-8DD0-454B3A7EE672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD7AE605-B4A2-485A-8DD0-454B3A7EE672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD7AE605-B4A2-485A-8DD0-454B3A7EE672}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01EB83B4-2BC2-4040-90A1-E9199E0DA430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01EB83B4-2BC2-4040-90A1-E9199E0DA430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01EB83B4-2BC2-4040-90A1-E9199E0DA430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01EB83B4-2BC2-4040-90A1-E9199E0DA430}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{01EB83B4-2BC2-4040-90A1-E9199E0DA430} = {4E2C9BB4-27AA-4FCC-8F73-880549F45E7C}
+	EndGlobalSection
+EndGlobal

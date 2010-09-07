@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="RCE.Modules.Player.PlayerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:PlayerControl="clr-namespace:RCE.Modules.Player"
+    xmlns:CustomControls="clr-namespace:RCE.Infrastructure.Controls;assembly=RCE.Infrastructure"
+    xmlns:Loc="clr-namespace:RCE.Modules.Player.Resources"
+    xmlns:Infrastructure="clr-namespace:RCE.Infrastructure;assembly=RCE.Infrastructure"
+    xmlns:DragDrop="clr-namespace:RCE.Infrastructure.DragDrop;assembly=RCE.Infrastructure" xmlns:Commands="clr-namespace:Microsoft.Practices.Composite.Presentation.Commands;assembly=Microsoft.Practices.Composite.Presentation" mc:Ignorable="d"
+             Width="450">
+    <UserControl.Resources>
+        <Loc:Resources x:Key="Localization"/>
+    </UserControl.Resources>
+    <StackPanel Width="450">
+        <Grid x:Name="PlayerContainerGrid" DragDrop:DragDropManager.AllowDrop="True" DragDrop:DragDropManager.DropCommand="{Binding DropCommand}">
+            <DragDrop:DragDropManager.DropInfo>
+                <DragDrop:PlayerDropInfo/>
+            </DragDrop:DragDropManager.DropInfo>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="450"/>
+            </Grid.ColumnDefinitions>
+            <Border  Grid.Row="0" BorderThickness="1,1,1,0" BorderBrush="{StaticResource PlayerBorderBrush}">
+                <Infrastructure:CoreSmoothStreamingMediaElement 
+                      x:Name="Player"
+					  Width="450"
+                      Height="253.1249"
+                      AutoPlay="False" 
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      MediaEnded="Player_MediaEnded"/>
+            </Border>
+            <Border x:Name="BufferBar" Grid.Row="0" Visibility="Collapsed" Canvas.ZIndex="200">
+                <CustomControls:Spinner x:Name="Spinner" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="84" RenderTransformOrigin="0.5,0.5" >
+                    <CustomControls:Spinner.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="3" ScaleY="3"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </CustomControls:Spinner.RenderTransform>
+                </CustomControls:Spinner>
+            </Border>
+            <Border x:Name="ThumbnailBufferBar" Grid.Row="0" Visibility="Collapsed" Canvas.ZIndex="200">
+                <StackPanel Orientation="Vertical">
+                    <CustomControls:Spinner x:Name="ThumbnailSpinner" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="84" RenderTransformOrigin="0.5,0.5" >
+                        <CustomControls:Spinner.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="3" ScaleY="3"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </CustomControls:Spinner.RenderTransform>
+                    </CustomControls:Spinner>
+                    <TextBlock FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="Grabbing Thumbnail"/>
+                </StackPanel>
+            </Border>
+            <Image x:Name="PreviewImage" Height="253.1249" Stretch="Uniform" Opacity="0"/>
+            <PlayerControl:CommentViewer x:Name="CommentViewer" Grid.Row="0" Canvas.ZIndex="60" Visibility="Visible" VerticalContentAlignment="Top" VerticalAlignment="Top" Margin="0,0,0,0" Width="450" Height="253.125"/>
+            <StackPanel x:Name="ThemedPlayerBar" Style="{StaticResource PlayerBarStackPanelStyle}" Visibility="Visible" Grid.Row="1" Margin="0,0,0,0" VerticalAlignment="Bottom">
+                <Border Style="{StaticResource PlayerBarBorderStyle}">
+                    <Grid Style="{StaticResource PlayerBarGridStyle}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.815*"/>
+                            <ColumnDefinition Width="0.185*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,-1,0,0">
+                            <ToggleButton IsTabStop="False" x:Name="MuteIcon" Style="{StaticResource MainPlayerMuteButtonStyle}"  Click="Mute_Click" />
+                            <ToggleButton IsTabStop="False" Style="{StaticResource MainPlayerMediaRepeatButtonStyle}"  Click="MediaRepeat_Click">
+                                <Path Fill="White" Stretch="Fill" Stroke="Black" Data=""/>
+                            </ToggleButton>
+                            <Button IsTabStop="False" Style="{StaticResource MainPlayerFullScreenButtonStyle}"   ToolTipService.ToolTip="{Binding FullScreen, Source={StaticResource Localization}}" Click="FullScreen_Click"/>
+                            <Button IsTabStop="False" Style="{StaticResource MainPlayerApplicationFullScreenButtonStyle}"  ToolTipService.ToolTip="{Binding ApplicationFullScreen, Source={StaticResource Localization}}" Click="ApplicationFullScreen_Click"/>
+                            <Button IsTabStop="False"  Style="{StaticResource MainPlayerMoveToStartButtonStyle}"  ToolTipService.ToolTip="{Binding MoveToStart, Source={StaticResource Localization}}" Click="MoveToStart_Click" />
+                            <Button IsTabStop="False"  Style="{StaticResource MainPlayerRewindButtonStyle}" Commands:Click.Command="{Binding FastRewindCommand}"  ToolTipService.ToolTip="{Binding Rewind, Source={StaticResource Localization}}" />
+                            <CustomControls:CustomButton IsTabStop="False"  Style="{StaticResource MainPlayerFrameRewindButtonStyle}"  MouseLeftButtonDown="FrameRewind_MouseLeftButtonDown" MouseLeftButtonUp="FrameRewind_MouseLeftButtonUp" ToolTipService.ToolTip="{Binding FrameRewind, Source={StaticResource Localization}}" />
+                            <Button IsTabStop="False" x:Name="PlayButton" Style="{StaticResource MainPlayerPlayButtonStyle}"  Click="Play_Click" ToolTipService.ToolTip="{Binding Play, Source={StaticResource Localization}}" />
+                            <Button IsTabStop="False" x:Name="PauseButton" Style="{StaticResource MainPlayerPauseButtonStyle}"  Visibility="Collapsed" Click="Pause_Click" ToolTipService.ToolTip="{Binding Pause, Source={StaticResource Localization}}"/>
+                            <CustomControls:CustomButton IsTabStop="False" Style="{StaticResource MainPlayerFrameForwardButtonStyle}"  MouseLeftButtonDown="FrameForward_MouseLeftButtonDown" MouseLeftButtonUp="FrameForward_MouseLeftButtonUp" ToolTipService.ToolTip="{Binding FrameForward, Source={StaticResource Localization}}"/>
+                            <Button IsTabStop="False" Style="{StaticResource MainPlayerForwardButtonStyle}"  Commands:Click.Command="{Binding FastForwardCommand}" ToolTipService.ToolTip="{Binding Forward, Source={StaticResource Localization}}"/>
+                            <Button IsTabStop="False" Style="{StaticResource MainPlayerMoveToEndButtonStyle}"   ToolTipService.ToolTip="{Binding MoveToEnd, Source={StaticResource Localization}}" Click="MoveToEnd_Click"  />
+                            <ToggleButton x:Name="SlowMotionButton" IsTabStop="False"  Style="{StaticResource MainPlayerSlowMotionButtonStyle}" Click="SlowMotion_Click" />
+                            <Button IsTabStop="False" Style="{StaticResource MainPlayerMetadataButtonStyle}"   ToolTipService.ToolTip="{Binding ShowMetadata, Source={StaticResource Localization}}" Click="Metadata_Click"/>
+                            <ToggleButton IsTabStop="False" Style="{StaticResource MainPlayerShowHideCommentsButtonStyle}" IsChecked="true"  Click="ShowHideComments_Click"/>
+                            <Button IsTabStop="False" Style="{StaticResource MainPlayerCommentButtonStyle}"  ToolTipService.ToolTip="{Binding AddComment, Source={StaticResource Localization}}" Click="Comment_Click"/>
+                            <Button IsTabStop="False" Style="{StaticResource MainPlayerThumbnailButtonStyle}" ToolTipService.ToolTip="{Binding PickThumbnail, Source={StaticResource Localization}}" Click="Thumbnail_Click"/>
+                        </StackPanel>
+                        <TextBlock x:Name="Time" Style="{StaticResource PlayerBarTextBlockStyle}" Text="00:00:00:00" FontFamily="Arial"  Grid.Column="1" Foreground="{StaticResource ForegroundBrushAlternative}"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</UserControl>

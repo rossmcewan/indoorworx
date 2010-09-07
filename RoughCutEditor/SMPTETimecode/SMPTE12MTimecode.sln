@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMPTETimecode", "code\SMPTETimecode\SMPTETimecode.csproj", "{A1861304-5984-4CBD-B674-C358EF13D9CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMPTETimecode.Client", "code\SMPTETimecode.Client\SMPTETimecode.Client.csproj", "{9BB1BFDA-5A8D-468B-9C42-A053FC24F908}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMPTETimecode.Tests", "code\SMPTETimecode.Tests\SMPTETimecode.Tests.csproj", "{FE36490D-3C69-46FA-B7FC-22C7909B4CF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C85F7D73-906B-438C-B32E-B8150BA8C34C}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		SMPTE12MTimecode.vsmdi = SMPTE12MTimecode.vsmdi
+	EndProjectSection
+EndProject
+Global
+	
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = SMPTE12MTimecode.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1861304-5984-4CBD-B674-C358EF13D9CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1861304-5984-4CBD-B674-C358EF13D9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1861304-5984-4CBD-B674-C358EF13D9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1861304-5984-4CBD-B674-C358EF13D9CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BB1BFDA-5A8D-468B-9C42-A053FC24F908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BB1BFDA-5A8D-468B-9C42-A053FC24F908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BB1BFDA-5A8D-468B-9C42-A053FC24F908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BB1BFDA-5A8D-468B-9C42-A053FC24F908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE36490D-3C69-46FA-B7FC-22C7909B4CF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE36490D-3C69-46FA-B7FC-22C7909B4CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE36490D-3C69-46FA-B7FC-22C7909B4CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE36490D-3C69-46FA-B7FC-22C7909B4CF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

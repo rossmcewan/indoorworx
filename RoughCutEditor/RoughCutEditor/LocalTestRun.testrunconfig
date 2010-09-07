@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRunConfiguration name="Local Test Run" id="df9ce839-bdb8-4aa2-9d13-19b49a1fc9e9" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Description>This is a default test run configuration for a local test run.</Description>
+  <CodeCoverage enabled="true">
+    <Regular>
+      <CodeCoverageItem binaryFile="code\RCE.Services\bin\Debug\RCE.Services.dll" pdbFile="code\RCE.Services\bin\Debug\RCE.Services.pdb" instrumentInPlace="true" />
+      <CodeCoverageItem binaryFile="code\RCE.Data.Sql\bin\Debug\RCE.Data.Sql.dll" pdbFile="code\RCE.Data.Sql\bin\Debug\RCE.Data.Sql.pdb" instrumentInPlace="true" />
+      <CodeCoverageItem binaryFile="code\LAgger.Service\bin\Debug\LAgger.Service.dll" pdbFile="code\LAgger.Service\bin\Debug\LAgger.Service.pdb" instrumentInPlace="true" />
+      <CodeCoverageItem binaryFile="code\RCE.Services.Infrastructure\bin\Debug\RCE.Services.Infrastructure.dll" pdbFile="code\RCE.Services.Infrastructure\bin\Debug\RCE.Services.Infrastructure.pdb" instrumentInPlace="true" />
+    </Regular>
+  </CodeCoverage>
+  <TestTypeSpecific />
+</TestRunConfiguration>

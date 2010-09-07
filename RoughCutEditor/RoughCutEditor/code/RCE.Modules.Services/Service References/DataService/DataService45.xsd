@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/rce/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://rossmcewan/RCE.Web/DataService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SMPTETimecode" />
+  <xs:import schemaLocation="http://rossmcewan/RCE.Web/DataService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://rossmcewan/RCE.Web/DataService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:element name="LoadMediaBin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="mediaBinUri" nillable="true" type="xs:anyURI" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadMediaBinResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.microsoft.com/rce/" minOccurs="0" name="LoadMediaBinResult" nillable="true" type="q1:MediaBin" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="MediaBin">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.microsoft.com/rce/" base="q2:Container">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q3="http://schemas.microsoft.com/rce/" name="MediaBin" nillable="true" type="q3:MediaBin" />
+  <xs:complexType name="Container">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.microsoft.com/rce/" base="q4:RceObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Containers" nillable="true" type="q4:ArrayOfContainer" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Items" nillable="true" type="q4:ArrayOfItem" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q5="http://schemas.microsoft.com/rce/" name="Container" nillable="true" type="q5:Container" />
+  <xs:complexType name="RceObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Creator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:anyURI" />
+      <xs:element minOccurs="0" name="IsLoaded" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q6="http://schemas.microsoft.com/rce/" name="RceObject" nillable="true" type="q6:RceObject" />
+  <xs:complexType name="ArrayOfContainer">
+    <xs:sequence>
+      <xs:element xmlns:q7="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="Container" nillable="true" type="q7:Container" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q8="http://schemas.microsoft.com/rce/" name="ArrayOfContainer" nillable="true" type="q8:ArrayOfContainer" />
+  <xs:complexType name="ArrayOfItem">
+    <xs:sequence>
+      <xs:element xmlns:q9="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="Item" nillable="true" type="q9:Item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q10="http://schemas.microsoft.com/rce/" name="ArrayOfItem" nillable="true" type="q10:ArrayOfItem" />
+  <xs:complexType name="Item">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://schemas.microsoft.com/rce/" base="q11:RceObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Metadata" nillable="true" type="q11:ArrayOfMetadataField" />
+          <xs:element minOccurs="0" name="Resources" nillable="true" type="q11:ArrayOfResource" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q12="http://schemas.microsoft.com/rce/" name="Item" nillable="true" type="q12:Item" />
+  <xs:complexType name="ArrayOfMetadataField">
+    <xs:sequence>
+      <xs:element xmlns:q13="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="MetadataField" nillable="true" type="q13:MetadataField" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q14="http://schemas.microsoft.com/rce/" name="ArrayOfMetadataField" nillable="true" type="q14:ArrayOfMetadataField" />
+  <xs:complexType name="MetadataField">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q15="http://schemas.microsoft.com/rce/" name="MetadataField" nillable="true" type="q15:MetadataField" />
+  <xs:complexType name="ArrayOfResource">
+    <xs:sequence>
+      <xs:element xmlns:q16="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="Resource" nillable="true" type="q16:Resource" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q17="http://schemas.microsoft.com/rce/" name="ArrayOfResource" nillable="true" type="q17:ArrayOfResource" />
+  <xs:complexType name="Resource">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q18="http://schemas.microsoft.com/rce/" base="q18:RceObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MimeType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Ref" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ResourceType" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q19="http://schemas.microsoft.com/rce/" name="Resource" nillable="true" type="q19:Resource" />
+  <xs:complexType name="VideoItem">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q20="http://schemas.microsoft.com/rce/" base="q20:MediaItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Duration" nillable="true" type="xs:double" />
+          <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/SMPTETimecode" minOccurs="0" name="FrameRate" type="q21:SmpteFrameRate" />
+          <xs:element minOccurs="0" name="Height" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="ThumbnailSource" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Width" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q22="http://schemas.microsoft.com/rce/" name="VideoItem" nillable="true" type="q22:VideoItem" />
+  <xs:complexType name="MediaItem">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q23="http://schemas.microsoft.com/rce/" base="q23:Item">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q24="http://schemas.microsoft.com/rce/" name="MediaItem" nillable="true" type="q24:MediaItem" />
+  <xs:complexType name="SmoothStreamingVideoItem">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q25="http://schemas.microsoft.com/rce/" base="q25:VideoItem">
+        <xs:sequence>
+          <xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DataStreams" nillable="true" type="q26:ArrayOfstring" />
+          <xs:element xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ExternalManifests" nillable="true" type="q27:ArrayOfanyURI" />
+          <xs:element minOccurs="0" name="StartPosition" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q28="http://schemas.microsoft.com/rce/" name="SmoothStreamingVideoItem" nillable="true" type="q28:SmoothStreamingVideoItem" />
+  <xs:complexType name="ImageItem">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q29="http://schemas.microsoft.com/rce/" base="q29:MediaItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Height" type="xs:int" />
+          <xs:element minOccurs="0" name="Width" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q30="http://schemas.microsoft.com/rce/" name="ImageItem" nillable="true" type="q30:ImageItem" />
+  <xs:complexType name="AudioItem">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q31="http://schemas.microsoft.com/rce/" base="q31:MediaItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Duration" nillable="true" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q32="http://schemas.microsoft.com/rce/" name="AudioItem" nillable="true" type="q32:AudioItem" />
+  <xs:element name="LoadTitleTemplates">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTitleTemplatesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.microsoft.com/rce/" minOccurs="0" name="LoadTitleTemplatesResult" nillable="true" type="q33:ArrayOfTitleTemplate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfTitleTemplate">
+    <xs:sequence>
+      <xs:element xmlns:q34="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="TitleTemplate" nillable="true" type="q34:TitleTemplate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q35="http://schemas.microsoft.com/rce/" name="ArrayOfTitleTemplate" nillable="true" type="q35:ArrayOfTitleTemplate" />
+  <xs:complexType name="TitleTemplate">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q36="http://schemas.microsoft.com/rce/" base="q36:RceObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="TemplateName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q37="http://schemas.microsoft.com/rce/" name="TitleTemplate" nillable="true" type="q37:TitleTemplate" />
+  <xs:element name="LoadProject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="site" nillable="true" type="xs:anyURI" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadProjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.microsoft.com/rce/" minOccurs="0" name="LoadProjectResult" nillable="true" type="q38:Project" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="Project">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q39="http://schemas.microsoft.com/rce/" base="q39:Container">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AdOpportunities" nillable="true" type="q39:ArrayOfAdOpportunity" />
+          <xs:element minOccurs="0" name="AutoSaveInterval" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Comments" nillable="true" type="q39:ArrayOfComment" />
+          <xs:element minOccurs="0" name="Duration" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="Markers" nillable="true" type="q39:ArrayOfMarker" />
+          <xs:element minOccurs="0" name="MediaBin" nillable="true" type="q39:MediaBin" />
+          <xs:element minOccurs="0" name="Metadata" nillable="true" type="xs:anyType" />
+          <xs:element minOccurs="0" name="ProjectThumbnail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Resolution" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RippleMode" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SmpteFrameRate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StartTimeCode" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="Timeline" nillable="true" type="q39:ArrayOfTrack" />
+          <xs:element minOccurs="0" name="Titles" nillable="true" type="q39:ArrayOfTitle" />
+          <xs:element minOccurs="0" name="Transitions" nillable="true" type="q39:ArrayOfTransition" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q40="http://schemas.microsoft.com/rce/" name="Project" nillable="true" type="q40:Project" />
+  <xs:complexType name="ArrayOfAdOpportunity">
+    <xs:sequence>
+      <xs:element xmlns:q41="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="AdOpportunity" nillable="true" type="q41:AdOpportunity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q42="http://schemas.microsoft.com/rce/" name="ArrayOfAdOpportunity" nillable="true" type="q42:ArrayOfAdOpportunity" />
+  <xs:complexType name="AdOpportunity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="ser:guid" />
+      <xs:element minOccurs="0" name="TemplateType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Time" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q43="http://schemas.microsoft.com/rce/" name="AdOpportunity" nillable="true" type="q43:AdOpportunity" />
+  <xs:complexType name="ArrayOfComment">
+    <xs:sequence>
+      <xs:element xmlns:q44="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="Comment" nillable="true" type="q44:Comment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q45="http://schemas.microsoft.com/rce/" name="ArrayOfComment" nillable="true" type="q45:ArrayOfComment" />
+  <xs:complexType name="Comment">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q46="http://schemas.microsoft.com/rce/" base="q46:Anchor">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q47="http://schemas.microsoft.com/rce/" name="Comment" nillable="true" type="q47:Comment" />
+  <xs:complexType name="Anchor">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q48="http://schemas.microsoft.com/rce/" base="q48:RceObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MarkIn" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="MarkOut" nillable="true" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q49="http://schemas.microsoft.com/rce/" name="Anchor" nillable="true" type="q49:Anchor" />
+  <xs:complexType name="InkComment">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q50="http://schemas.microsoft.com/rce/" base="q50:Comment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Strokes" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q51="http://schemas.microsoft.com/rce/" name="InkComment" nillable="true" type="q51:InkComment" />
+  <xs:complexType name="ArrayOfMarker">
+    <xs:sequence>
+      <xs:element xmlns:q52="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="Marker" nillable="true" type="q52:Marker" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q53="http://schemas.microsoft.com/rce/" name="ArrayOfMarker" nillable="true" type="q53:ArrayOfMarker" />
+  <xs:complexType name="Marker">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Time" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q54="http://schemas.microsoft.com/rce/" name="Marker" nillable="true" type="q54:Marker" />
+  <xs:complexType name="ArrayOfTrack">
+    <xs:sequence>
+      <xs:element xmlns:q55="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="Track" nillable="true" type="q55:Track" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q56="http://schemas.microsoft.com/rce/" name="ArrayOfTrack" nillable="true" type="q56:ArrayOfTrack" />
+  <xs:complexType name="Track">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q57="http://schemas.microsoft.com/rce/" base="q57:Container">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Number" type="xs:int" />
+          <xs:element minOccurs="0" name="Shots" nillable="true" type="q57:ArrayOfShot" />
+          <xs:element minOccurs="0" name="TrackType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Volume" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q58="http://schemas.microsoft.com/rce/" name="Track" nillable="true" type="q58:Track" />
+  <xs:complexType name="ArrayOfShot">
+    <xs:sequence>
+      <xs:element xmlns:q59="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="Shot" nillable="true" type="q59:Shot" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q60="http://schemas.microsoft.com/rce/" name="ArrayOfShot" nillable="true" type="q60:ArrayOfShot" />
+  <xs:complexType name="Shot">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q61="http://schemas.microsoft.com/rce/" base="q61:Item">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Comments" nillable="true" type="q61:ArrayOfComment" />
+          <xs:element minOccurs="0" name="Source" nillable="true" type="q61:Item" />
+          <xs:element minOccurs="0" name="SourceAnchor" nillable="true" type="q61:Anchor" />
+          <xs:element minOccurs="0" name="TrackAnchor" nillable="true" type="q61:Anchor" />
+          <xs:element minOccurs="0" name="Volume" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q62="http://schemas.microsoft.com/rce/" name="Shot" nillable="true" type="q62:Shot" />
+  <xs:complexType name="ArrayOfTitle">
+    <xs:sequence>
+      <xs:element xmlns:q63="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="Title" nillable="true" type="q63:Title" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q64="http://schemas.microsoft.com/rce/" name="ArrayOfTitle" nillable="true" type="q64:ArrayOfTitle" />
+  <xs:complexType name="Title">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q65="http://schemas.microsoft.com/rce/" base="q65:RceObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="TextBlockCollection" nillable="true" type="q65:ArrayOfTextBlock" />
+          <xs:element minOccurs="0" name="TitleTemplate" nillable="true" type="q65:TitleTemplate" />
+          <xs:element minOccurs="0" name="TrackAnchor" nillable="true" type="q65:Anchor" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q66="http://schemas.microsoft.com/rce/" name="Title" nillable="true" type="q66:Title" />
+  <xs:complexType name="ArrayOfTextBlock">
+    <xs:sequence>
+      <xs:element xmlns:q67="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="TextBlock" nillable="true" type="q67:TextBlock" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q68="http://schemas.microsoft.com/rce/" name="ArrayOfTextBlock" nillable="true" type="q68:ArrayOfTextBlock" />
+  <xs:complexType name="TextBlock">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q69="http://schemas.microsoft.com/rce/" base="q69:RceObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q70="http://schemas.microsoft.com/rce/" name="TextBlock" nillable="true" type="q70:TextBlock" />
+  <xs:complexType name="ArrayOfTransition">
+    <xs:sequence>
+      <xs:element xmlns:q71="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="Transition" nillable="true" type="q71:Transition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q72="http://schemas.microsoft.com/rce/" name="ArrayOfTransition" nillable="true" type="q72:ArrayOfTransition" />
+  <xs:complexType name="Transition">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q73="http://schemas.microsoft.com/rce/" base="q73:RceObject">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q74="http://schemas.microsoft.com/rce/" name="Transition" nillable="true" type="q74:Transition" />
+  <xs:complexType name="ExpressionEncoderMetadata">
+    <xs:sequence>
+      <xs:element xmlns:q75="http://schemas.microsoft.com/rce/" minOccurs="0" name="Settings" nillable="true" type="q75:ExpressionEncoderSettings" />
+      <xs:element xmlns:q76="http://schemas.microsoft.com/rce/" minOccurs="0" name="WindowsMediaHeaderProperties" nillable="true" type="q76:WindowsMediaHeaderProperties" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q77="http://schemas.microsoft.com/rce/" name="ExpressionEncoderMetadata" nillable="true" type="q77:ExpressionEncoderMetadata" />
+  <xs:complexType name="ExpressionEncoderSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AspectRatio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FrameRate" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Height" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ResizeMode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Width" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q78="http://schemas.microsoft.com/rce/" name="ExpressionEncoderSettings" nillable="true" type="q78:ExpressionEncoderSettings" />
+  <xs:complexType name="WindowsMediaHeaderProperties">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Copyright" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Genre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rating" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q79="http://schemas.microsoft.com/rce/" name="WindowsMediaHeaderProperties" nillable="true" type="q79:WindowsMediaHeaderProperties" />
+  <xs:element name="SaveProject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q80="http://schemas.microsoft.com/rce/" minOccurs="0" name="project" nillable="true" type="q80:Project" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveProjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveProjectResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProjectsByUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProjectsByUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q81="http://schemas.microsoft.com/rce/" minOccurs="0" name="GetProjectsByUserResult" nillable="true" type="q81:ArrayOfProject" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfProject">
+    <xs:sequence>
+      <xs:element xmlns:q82="http://schemas.microsoft.com/rce/" minOccurs="0" maxOccurs="unbounded" name="Project" nillable="true" type="q82:Project" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q83="http://schemas.microsoft.com/rce/" name="ArrayOfProject" nillable="true" type="q83:ArrayOfProject" />
+  <xs:element name="GetProject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="projectId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q84="http://schemas.microsoft.com/rce/" minOccurs="0" name="GetProjectResult" nillable="true" type="q84:Project" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteProject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="site" nillable="true" type="xs:anyURI" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteProjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteProjectResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

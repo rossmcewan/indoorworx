@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="RCE.Infrastructure.Controls.PlayerControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:Controls="clr-namespace:RCE.Infrastructure.Controls;assembly=RCE.Infrastructure"
+    xmlns:Loc="clr-namespace:RCE.Infrastructure.Resources"
+    mc:Ignorable="d">
+     <Grid x:Name="PlayerContainerGrid">
+        <Grid.RenderTransform>
+            <ScaleTransform x:Name="PlayerRenderTransform" ScaleX="1" ScaleY="1" />
+        </Grid.RenderTransform>
+    	<Border HorizontalAlignment="Stretch" Grid.Row="1" Background="{StaticResource SharedControlsBarBrush}">
+    		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" d:LayoutOverrides="Height">
+    			<ToggleButton IsTabStop="False" Style="{StaticResource MiniPlayerMuteButtonStyle}" Click="Mute_Click"/>
+    			<Grid x:Name="MuteIcon" Height="8" Width="8" Margin="-2, 0" Visibility="Collapsed">
+    				<Ellipse Stroke="#FFBF1B1B" StrokeThickness="1.5" Height="7.85" Width="7.85" />
+    				<Path Height="6.28" Width="6.28" Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FFBF1B1B" StrokeThickness="1.5" Data="M109.25,356.75 L149,396.5" d:LayoutOverrides="Width"/>
+    			</Grid>
+    			<Button x:Name="MarkInButton" Style="{StaticResource MiniPlayerMarkInButtonStyle}" IsTabStop="False" Click="MarkIn_Click" Visibility="Collapsed"/>
+    			<ToggleButton IsTabStop="False" x:Name="FastRewindButton" Style="{StaticResource MiniPlayerFastRewindButtonStyle}" Click="FastRewind_Click"/>
+    			<Controls:CustomButton IsTabStop="False" Style="{StaticResource MiniPlayerRewindButtonStyle}" MouseLeftButtonDown="Rewind_MouseLeftButtonDown" MouseLeftButtonUp="Rewind_MouseLeftButtonUp"/>
+    			<Button IsTabStop="False" x:Name="PlayButton" Style="{StaticResource MiniPlayerPlayButtonStyle}" Click="Play_Click"/>
+    			<Button IsTabStop="False" x:Name="PauseButton" Style="{StaticResource MiniPlayerPauseButtonStyle}" Click="Pause_Click" Visibility="Collapsed"/>
+    			<ToggleButton IsTabStop="False" x:Name="PlaySubClipButton" Style="{StaticResource MiniPlayerPlaySubClipButtonStyle}"  Click="PlaySubClip_Click" Visibility="Collapsed" />
+    			<ToggleButton IsTabStop="False" x:Name="SlowMotionButton" Style="{StaticResource MiniPlayerSlowMotionButtonStyle}" Click="SlowMotion_Click"/>
+    			<Button IsTabStop="False" Margin="1,0,1,0" x:Name="buttonGoToLive" ToolTipService.ToolTip="Go to live" Style="{StaticResource blackglass}" Click="GoToLive_Click" Cursor="Hand" Visibility="Collapsed" Width="20">
+    				<Canvas x:Name="IsLiveCanvas" Width="17.7442" Height="12.0816" Clip="F1 M 0,0L 17.7442,0L 17.7442,12.0816L 0,12.0816L 0,0">
+    					<Canvas x:Name="IsLiveInnerCanvas" Width="17.7442" Height="13.0884" Canvas.Left="0" Canvas.Top="0">
+    						<Ellipse x:Name="Ellipse" Width="9.3963" Height="9.3963" Canvas.Left="4.17393" Canvas.Top="1.34262" Stretch="Fill">
+    							<Ellipse.Fill>
+    								<RadialGradientBrush RadiusX="0.5" RadiusY="0.5" Center="0.5,0.500001" GradientOrigin="0.5,0.500001">
+    									<RadialGradientBrush.RelativeTransform>
+    										<TransformGroup/>
+    									</RadialGradientBrush.RelativeTransform>
+    									<GradientStop Color="#9923FF00" Offset="0"/>
+    									<GradientStop Color="#0023FF00" Offset="0.987603"/>
+    								</RadialGradientBrush>
+    							</Ellipse.Fill>
+    						</Ellipse>
+    						<Path x:Name="Path" Width="17.7442" Height="12.0816" Canvas.Left="0" Canvas.Top="-3.20375e-007" Stretch="Fill" Data="M 17.7442,5.96229C 17.7442,8.33476 16.8129,10.4897 15.2961,12.0816L 14.2004,11.065C 15.4697,9.73993 16.2497,7.94219 16.2497,5.96229C 16.2497,4.05953 15.5293,2.32501 14.3465,1.01656L 15.4422,-3.20375e-007C 16.8725,1.57521 17.7442,3.66696 17.7442,5.96229 Z M 0,5.96231C 0,3.66699 0.871644,1.57525 2.30198,3.68729e-005L 3.39765,1.01658C 2.21482,2.32504 1.49449,4.05956 1.49449,5.96232C 1.49449,7.9306 2.26529,9.71885 3.52149,11.0417L 2.42585,12.0582C 0.922126,10.4687 0,8.32317 0,5.96231 Z M 14.684,5.96232C 14.684,7.53095 14.0626,8.95443 13.0524,10L 12.0609,9.0801C 12.8472,8.27603 13.3318,7.17576 13.3318,5.96232C 13.3318,4.82601 12.9069,3.78896 12.2072,3.00142L 13.1986,2.08158C 14.1222,3.11055 14.684,4.47082 14.684,5.96232 Z M 3.06015,5.96232C 3.06015,4.47082 3.62197,3.11055 4.54553,2.08158L 5.53695,3.00143C 4.83728,3.78896 4.41231,4.82601 4.41231,5.96232C 4.41231,7.16415 4.88771,8.25496 5.66072,9.05694L 4.66934,9.97674C 3.67243,8.93336 3.06015,7.51933 3.06015,5.96232 Z M 8.87208,4.61751C 9.65816,4.61751 10.2954,5.25475 10.2954,6.04084C 10.2954,6.82692 9.65816,7.46416 8.87208,7.46416C 8.086,7.46416 7.44875,6.82692 7.44875,6.04084C 7.44875,5.25475 8.086,4.61751 8.87208,4.61751 Z M 8.87208,3.22194C 10.4289,3.22194 11.691,4.48401 11.691,6.04083C 11.691,7.59766 10.4289,8.85972 8.87208,8.85972C 7.31525,8.85972 6.05319,7.59766 6.05319,6.04083C 6.05319,4.48401 7.31526,3.22194 8.87208,3.22194 Z M 8.87208,3.76693C 7.61623,3.76693 6.59817,4.78499 6.59817,6.04084C 6.59817,7.29668 7.61624,8.31474 8.87208,8.31474C 10.1279,8.31474 11.146,7.29668 11.146,6.04084C 11.146,4.78499 10.1279,3.76693 8.87208,3.76693 Z ">
+    							<Path.Fill>
+    								<LinearGradientBrush StartPoint="0.461761,0.00155622" EndPoint="0.461761,1.04994">
+    									<GradientStop Color="#FF898989" Offset="0"/>
+    									<GradientStop Color="#FFFFFFFF" Offset="1"/>
+    								</LinearGradientBrush>
+    							</Path.Fill>
+    						</Path>
+    					</Canvas>
+    				</Canvas>
+    			</Button>
+    			<Controls:CustomButton IsTabStop="False" Style="{StaticResource MiniPlayerForwardButtonStyle}" MouseLeftButtonDown="Forward_MouseLeftButtonDown" MouseLeftButtonUp="Forward_MouseLeftButtonUp"/>
+    			<ToggleButton IsTabStop="False" x:Name="FastForwardButton" Style="{StaticResource MiniPlayerFastForwardButtonStyle}" Click="FastForward_Click"/>
+    			<Button x:Name="MarkOutButton" Style="{StaticResource MiniPlayerMarkOutButtonStyle}" IsTabStop="False" Click="MarkOut_Click" Visibility="Collapsed"/>
+    			<Button IsTabStop="False" Style="{StaticResource MiniPlayerMetadataButtonStyle}" Click="Metadata_Click"/>
+    			<Button IsTabStop="False" x:Name="Expand" Style="{StaticResource MiniPlayerExpandButtonStyle}" Click="Expand_Click" Visibility="Collapsed"/>
+				<Button IsTabStop="False" x:Name="GoToTimecodeButton" Style="{StaticResource MiniPlayerGoToButtonStyle}" Visibility="Collapsed" Click="GoToTimecodeButton_Click" />
+    		</StackPanel>
+    	</Border>
+    </Grid>
+</UserControl>
