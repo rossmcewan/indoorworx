@@ -144,9 +144,12 @@
     <Compile Include="ITimelineBarRegistry.cs" />
     <Compile Include="Models\EventData.cs" />
     <Compile Include="Models\EventOffset.cs" />
+    <Compile Include="Models\GearRatio.cs" />
+    <Compile Include="Models\GPSCoordinates.cs" />
     <Compile Include="Models\InStreamCollection.cs" />
     <Compile Include="Models\ITimelineBarElementModel.cs" />
     <Compile Include="Models\SmoothStreamingVideoAsset.cs" />
+    <Compile Include="Models\TelemetryTimeLineElement.cs" />
     <Compile Include="Security\ISecurityTokenService.cs" />
     <Compile Include="Models\AssetMetadata.cs" />
     <Compile Include="Models\Audit.cs" />

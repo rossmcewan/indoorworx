@@ -78,6 +78,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FJ.Core">
+      <HintPath>..\..\libs\Visifire\Silverlight Binaries\FJ.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Composite.Presentation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\CompositeAppGuidance\Microsoft.Practices.Composite.Presentation.dll</HintPath>
@@ -97,6 +100,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\Unity\Silverlight\Microsoft.Practices.Unity.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="SLVisifire.Charts">
+      <HintPath>..\..\libs\Visifire\Silverlight Binaries\SLVisifire.Charts.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="mscorlib" />
@@ -172,6 +178,10 @@
     <ProjectReference Include="..\..\..\SMPTETimecode\code\SMPTETimecode.Client\SMPTETimecode.Client.csproj">
       <Project>{9BB1BFDA-5A8D-468B-9C42-A053FC24F908}</Project>
       <Name>SMPTETimecode.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RCE.Modules.Telemetry\RCE.Modules.Telemetry.csproj">
+      <Project>{95B505FB-FB82-469C-AF21-2AD8CFF7656D}</Project>
+      <Name>RCE.Modules.Telemetry</Name>
     </ProjectReference>
     <ProjectReference Include="..\RCE.Infrastructure\RCE.Infrastructure.csproj">
       <Project>{9673EB3C-6B1A-4700-8E63-82265BE1F9BF}</Project>

@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="RCE.Modules.Telemetry.Views.TelemetryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <vc:Chart xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLVisifire.Charts" BorderThickness="0" ToolBarEnabled="False" >
+        <!--<vc:Chart.Titles>
+            <vc:Title Text="Telemetry" />
+        </vc:Chart.Titles>
+        <vc:Chart.AxesX>
+            <vc:Axis Title="Time" />
+        </vc:Chart.AxesX>
+        <vc:Chart.AxesY>
+            <vc:Axis Title="Watts" AxisType="Primary" />
+        </vc:Chart.AxesY>-->
+        <vc:Chart.Series>
+            <vc:DataSeries RenderAs="Line" AxisYType="Primary" >
+                <vc:DataSeries.DataPoints>
+                    <vc:DataPoint AxisXLabel="1" YValue="131" />
+                    <vc:DataPoint AxisXLabel="2" YValue="138" />
+                    <vc:DataPoint AxisXLabel="3" YValue="141" />
+                    <vc:DataPoint AxisXLabel="4" YValue="150" />
+                    <vc:DataPoint AxisXLabel="5" YValue="155" />
+                    <vc:DataPoint AxisXLabel="6" YValue="157" />
+                    <vc:DataPoint AxisXLabel="7" YValue="164" />
+                    <vc:DataPoint AxisXLabel="8" YValue="170" />
+                    <vc:DataPoint AxisXLabel="9" YValue="171" />
+                    <vc:DataPoint AxisXLabel="10" YValue="175" />
+                    <vc:DataPoint AxisXLabel="11" YValue="180" />
+                    <vc:DataPoint AxisXLabel="12" YValue="185" />
+                    <vc:DataPoint AxisXLabel="13" YValue="200" />
+                    <vc:DataPoint AxisXLabel="14" YValue="201" />
+                    <vc:DataPoint AxisXLabel="15" YValue="193" />
+                    <vc:DataPoint AxisXLabel="16" YValue="195" />
+                    <vc:DataPoint AxisXLabel="17" YValue="191" />
+                    <vc:DataPoint AxisXLabel="18" YValue="200" />
+                    <vc:DataPoint AxisXLabel="19" YValue="201" />
+                    <vc:DataPoint AxisXLabel="20" YValue="197" />
+                </vc:DataSeries.DataPoints>
+            </vc:DataSeries>
+        </vc:Chart.Series>
+    </vc:Chart>
+</UserControl>
