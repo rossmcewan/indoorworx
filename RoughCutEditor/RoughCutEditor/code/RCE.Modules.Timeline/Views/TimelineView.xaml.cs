@@ -942,7 +942,7 @@ namespace RCE.Modules.Timeline
             if (this.activeElement != null && this.activeElementDraggingOption != ElementPositionType.Position &&
                 this.activeElementDraggingOption != ElementPositionType.None)
             {
-                this.activeElement.RefreshPreview();
+                this.activeElement.RefreshPreview(RefreshSource.Drag);
             }
 
             if (this.movingElements && this.activeElement != null)
@@ -1657,7 +1657,7 @@ namespace RCE.Modules.Timeline
 
             foreach (TimelineElementView elementView in this.elementViews.Values)
             {
-                elementView.RefreshPreview();
+                elementView.RefreshPreview(RefreshSource.Zoom);
             }
         }
 

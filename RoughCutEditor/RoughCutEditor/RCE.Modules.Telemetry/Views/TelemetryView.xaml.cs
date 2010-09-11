@@ -17,6 +17,7 @@ namespace RCE.Modules.Telemetry.Views
         public TelemetryView()
         {
             InitializeComponent();
+            var c = new System.Windows.Controls.DataVisualization.Charting.Chart();            
         }
     }
 }

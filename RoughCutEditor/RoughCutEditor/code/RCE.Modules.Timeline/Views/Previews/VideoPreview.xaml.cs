@@ -68,6 +68,11 @@ namespace RCE.Modules.Timeline
             this.thumbnailService = ServiceLocator.Current.GetInstance(typeof(IThumbnailService)) as IThumbnailService;
         }
 
+        private TimelineElement Element
+        {
+            get { return this.DataContext as TimelineElement; }
+        }
+
         /// <summary>
         /// Sets the current video asset as selected asset.
         /// </summary>
@@ -92,14 +97,28 @@ namespace RCE.Modules.Timeline
             this.DownloadProgressBar.ReportProgress(progress, offset);
         }
 
+        private bool firstCall = true;
+        private double initialWidth = 0D;
         /// <summary>
         /// Refreshes the preview. This includes the progress bar and the filmstrip.
         /// </summary>
         /// <param name="currentWidth">Width of the current element.</param>
         public void Refresh(double currentWidth)
         {
+            Refresh(currentWidth, RefreshSource.Any);
+        }
+
+        public void Refresh(double currentWidth, RefreshSource refreshSource)
+        {
+            //if (firstCall || refreshSource == RefreshSource.Drag || refreshSource == RefreshSource.Zoom)
+            //{
+            //    this.initialWidth = currentWidth;
+            //    firstCall = false;
+            //}
             this.DownloadProgressBar.Refresh();
             this.UpdateFilmstrip(currentWidth);
+            this.Element.UpdateTelemetryForTimecodes();
+            //this.TelemetryView.Width = initialWidth;
         }
 
         /// <summary>

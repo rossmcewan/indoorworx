@@ -17,8 +17,11 @@
 namespace RCE.Infrastructure.Models
 {
     using System;
+    using System.Linq;
     using System.Collections.ObjectModel;
     using SMPTETimecode;
+using System.Collections.Generic;
+    using System.Windows;
 
     /// <summary>
     /// Specifies the properties of the elements in the timeline module.
@@ -191,6 +194,35 @@ namespace RCE.Infrastructure.Models
             this.InPosition = element.inPosition;
             this.OutPosition = element.OutPosition;
             this.Position = element.Position;
+        }
+
+        private List<Telemetry> baseTelemetryData = new List<Telemetry>()
+                {
+                    new Telemetry() { TimePosition = TimeSpan.FromMinutes(0), Watts = 0 },
+                    new Telemetry() { TimePosition = TimeSpan.FromMinutes(1), Watts = 303},
+                    new Telemetry() { TimePosition = TimeSpan.FromMinutes(2), Watts = 331},
+                    new Telemetry() { TimePosition = TimeSpan.FromMinutes(3), Watts = 282},
+                    new Telemetry() { TimePosition = TimeSpan.FromMinutes(4), Watts = 256},
+                    new Telemetry() { TimePosition = TimeSpan.FromMinutes(5), Watts = 257},
+                    new Telemetry() { TimePosition = TimeSpan.FromMinutes(6), Watts = 258},
+                    new Telemetry() { TimePosition = TimeSpan.FromMinutes(7), Watts = 232},
+                    new Telemetry() { TimePosition = TimeSpan.FromMinutes(8), Watts = 224},
+                    new Telemetry() { TimePosition = TimeSpan.FromMinutes(9), Watts = 224}
+                };
+
+        public void UpdateTelemetryForTimecodes()
+        {
+            this.telemetry = this.baseTelemetryData.Where(x => x.TimePosition.TotalSeconds >= InPosition.TotalSeconds && x.TimePosition.TotalSeconds <= OutPosition.TotalSeconds).ToList();
+            OnPropertyChanged("Telemetry");
+        }
+
+        private ICollection<Telemetry> telemetry = new List<Telemetry>();
+        public ICollection<Telemetry> Telemetry
+        {
+            get
+            {
+                return this.telemetry;
+            }
         }
     }
 }

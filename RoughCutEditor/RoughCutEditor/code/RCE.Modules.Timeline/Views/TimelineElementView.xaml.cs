@@ -172,6 +172,11 @@ namespace RCE.Modules.Timeline
         /// </summary>
         public void RefreshPreview()
         {
+            RefreshPreview(RefreshSource.Any);
+        }
+
+        public void RefreshPreview(RefreshSource refreshSource)
+        {
             VideoPreview videoPreview = this.previewControl as VideoPreview;
             AudioPreview audioPreview = this.previewControl as AudioPreview;
 
@@ -181,7 +186,7 @@ namespace RCE.Modules.Timeline
                                           ? this.MainCanvas.Width
                                           : this.MainCanvas.ActualWidth;
 
-                videoPreview.Refresh(currentWidth);
+                videoPreview.Refresh(currentWidth, refreshSource);
             }
 
             if (audioPreview != null)

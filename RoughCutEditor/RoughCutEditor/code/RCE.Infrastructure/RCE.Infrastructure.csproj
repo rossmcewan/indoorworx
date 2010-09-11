@@ -148,8 +148,9 @@
     <Compile Include="Models\GPSCoordinates.cs" />
     <Compile Include="Models\InStreamCollection.cs" />
     <Compile Include="Models\ITimelineBarElementModel.cs" />
+    <Compile Include="Models\RefreshSource.cs" />
     <Compile Include="Models\SmoothStreamingVideoAsset.cs" />
-    <Compile Include="Models\TelemetryTimeLineElement.cs" />
+    <Compile Include="Models\Telemetry.cs" />
     <Compile Include="Security\ISecurityTokenService.cs" />
     <Compile Include="Models\AssetMetadata.cs" />
     <Compile Include="Models\Audit.cs" />
