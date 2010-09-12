@@ -389,5 +389,14 @@ namespace RCE.Modules.Timeline.Tests.Mocks
                 thumbnail(this, EventArgs.Empty);
             }
         }
+
+        #region ITimelineView Members
+
+
+        public void RefreshElement(TimelineElement element, RefreshSource refreshSource)
+        {
+        }
+
+        #endregion
     }
 }

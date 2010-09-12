@@ -320,6 +320,15 @@ namespace RCE.Infrastructure.Models
             this.OnElementMoved(element);
         }
 
+        public void MoveElement(TimelineElement element, Track layer, TimeCode newPosition, RefreshSource refreshSource)
+        {
+            element.Position = newPosition;
+
+            layer.Shots.Sort(CompareElements);
+
+            this.OnElementMoved(element, refreshSource);
+        }
+
         /// <summary>
         /// Removes the given <paramref name="element"/> from <paramref name="layer">track</paramref>.
         /// </summary>
@@ -590,6 +599,15 @@ namespace RCE.Infrastructure.Models
             if (elementMovedHandler != null)
             {
                 elementMovedHandler(this, new TimelineElementEventArgs(timelineElement));
+            }
+        }
+
+        private void OnElementMoved(TimelineElement timelineElement, RefreshSource refreshSource)
+        {
+            EventHandler<TimelineElementEventArgs> elementMovedHandler = this.ElementMoved;
+            if (elementMovedHandler != null)
+            {
+                elementMovedHandler(this, new TimelineElementEventArgs(timelineElement, refreshSource));
             }
         }
 

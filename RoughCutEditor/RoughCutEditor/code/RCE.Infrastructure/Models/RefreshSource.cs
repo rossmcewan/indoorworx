@@ -15,6 +15,8 @@ namespace RCE.Infrastructure.Models
     {
         Any,
         Drag,
-        Zoom
+        Zoom,
+        RightTrim,
+        LeftTrim
     }
 }

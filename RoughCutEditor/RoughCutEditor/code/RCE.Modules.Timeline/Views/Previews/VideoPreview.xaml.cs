@@ -97,6 +97,17 @@ namespace RCE.Modules.Timeline
             this.DownloadProgressBar.ReportProgress(progress, offset);
         }
 
+        private double beforeRefreshSize = 0D;
+        public void BeforeRefresh()
+        {
+            beforeRefreshSize = this.TelemetryView.Width;
+        }
+
+        public void AfterRefresh()
+        {
+            this.TelemetryView.Width = beforeRefreshSize;
+        }
+
         private bool firstCall = true;
         private double initialWidth = 0D;
         /// <summary>
@@ -117,7 +128,7 @@ namespace RCE.Modules.Timeline
             //}
             this.DownloadProgressBar.Refresh();
             this.UpdateFilmstrip(currentWidth);
-            this.Element.UpdateTelemetryForTimecodes();
+            this.Element.UpdateTelemetry();
             //this.TelemetryView.Width = initialWidth;
         }
 

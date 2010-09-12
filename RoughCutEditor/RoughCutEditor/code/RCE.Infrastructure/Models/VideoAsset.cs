@@ -17,8 +17,10 @@
 namespace RCE.Infrastructure.Models
 {
     using System;
+    using System.Linq;
     using Services.Contracts;
     using SMPTETimecode;
+    using System.Collections.Generic;
 
     /// <summary>
     /// A class that represents a video asset.
@@ -89,6 +91,46 @@ namespace RCE.Infrastructure.Models
         /// <value>The source of the thumbnail.</value>
         public string ThumbnailSource { get; set; }
 
+        //private List<Telemetry> baseTelemetryData = new List<Telemetry>()
+        //        {
+        //            new Telemetry() { TimePosition = TimeSpan.FromMinutes(0), Watts = 0 },
+        //            new Telemetry() { TimePosition = TimeSpan.FromMinutes(1), Watts = 303},
+        //            new Telemetry() { TimePosition = TimeSpan.FromMinutes(2), Watts = 331},
+        //            new Telemetry() { TimePosition = TimeSpan.FromMinutes(3), Watts = 282},
+        //            new Telemetry() { TimePosition = TimeSpan.FromMinutes(4), Watts = 256},
+        //            new Telemetry() { TimePosition = TimeSpan.FromMinutes(5), Watts = 257},
+        //            new Telemetry() { TimePosition = TimeSpan.FromMinutes(6), Watts = 258},
+        //            new Telemetry() { TimePosition = TimeSpan.FromMinutes(7), Watts = 232},
+        //            new Telemetry() { TimePosition = TimeSpan.FromMinutes(8), Watts = 224},
+        //            new Telemetry() { TimePosition = TimeSpan.FromMinutes(9), Watts = 224}
+        //        };
+
+        private ICollection<Telemetry> baseTelemetry;
+        public ICollection<Telemetry> BaseTelemetry
+        {
+            get { return this.baseTelemetry; }
+            set { this.baseTelemetry = value; }
+        }
+
+        private ICollection<Telemetry> telemetry = new List<Telemetry>();
+        public ICollection<Telemetry> Telemetry
+        {
+            set
+            {
+                this.telemetry = value;
+                OnPropertyChanged("Telemetry");
+            }
+            get
+            {
+                return this.telemetry;
+            }
+        }
+
+        public void UpdateTelemetry(TimeCode inPosition, TimeCode outPosition)
+        {
+            this.Telemetry = this.baseTelemetry.Where(x => x.TimePosition.TotalSeconds >= inPosition.TotalSeconds && x.TimePosition.TotalSeconds <= outPosition.TotalSeconds).ToList();
+        }
+        
         /// <summary>
         /// Returns a <see cref="T:System.String" /> that represents the current <see cref="T:System.Object" />.
         /// </summary>

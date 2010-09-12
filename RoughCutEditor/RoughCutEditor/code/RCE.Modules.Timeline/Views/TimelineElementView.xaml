@@ -5,10 +5,12 @@
     
     <Border Background="{x:Null}" CornerRadius="3,3,3,3" x:Name="MainCanvas" Width="170">
         <Grid>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            
             <Canvas Grid.Column="0" HorizontalAlignment="Right" Canvas.ZIndex="20">
                 <Button x:Name="DeleteButton" Width="10" Height="10" Canvas.Left="-12" Canvas.Top="2" Cursor="Hand" Visibility="Collapsed" Style="{StaticResource TimelineDeleteButtonStyle}" Click="DeleteButton_Click"/>
             </Canvas>
@@ -138,7 +140,7 @@
                     <Path Height="5" Width="3" Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FF000000" StrokeThickness="0" Data="M4,0 L0,2.5 L4,5 z" x:Name="LeftSliderIconEnabled" />
                 </StackPanel>
             </Border>
-            
+
             <Border x:Name="RightSlider" Grid.Column="0" Width="5" HorizontalAlignment="Right" Cursor="SizeWE" Background="#00FFFFFF">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right">
                     <Path Height="5" Width="2" Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FF000000" StrokeThickness="0" Data="M0,0 L2,0 L2,5 L0,5 z" x:Name="RightSliderIconDisabled" HorizontalAlignment="Left" Margin="0,0,2,0" Visibility="Collapsed" />
@@ -154,6 +156,7 @@
                     </Path>
                 </StackPanel>
             </Border>
+            <Border x:Name="DragBorder" Grid.Column="0" Width="2" HorizontalAlignment="Left" Background="DarkGray"/>
         </Grid>
     </Border>
 </UserControl>

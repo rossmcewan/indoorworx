@@ -1674,11 +1674,18 @@
                             <Path Width="6.78589" Height="18.8332" Canvas.Left="1.85706" Canvas.Top="2.08337" Stretch="Fill" StrokeThickness="0.666583" StrokeMiterLimit="2.75" Stroke="{StaticResource playerIconBorder}" Data="F1 M 5.24998,2.74996L 5.24998,2.74996C 6.75574,2.74996 7.97637,3.97057 7.97637,5.47631L 7.97637,17.5236C 7.97637,19.0294 6.75574,20.25 5.24998,20.25L 5.24998,20.25C 3.74427,20.25 2.52364,19.0294 2.52364,17.5236L 2.52364,5.47631C 2.52364,3.97057 3.74427,2.74996 5.24998,2.74996 Z " Fill="{StaticResource playerIconFill}"/>
                             <Path Width="6.78589" Height="18.8332" Canvas.Left="10.357" Canvas.Top="2.0834" Stretch="Fill" StrokeThickness="0.666583" StrokeMiterLimit="2.75" Stroke="{StaticResource playerIconBorder}" Data="F1 M 13.75,2.74999L 13.75,2.74999C 15.2557,2.74999 16.4763,3.9706 16.4763,5.47634L 16.4763,17.5237C 16.4763,19.0294 15.2557,20.25 13.75,20.25L 13.75,20.25C 12.2442,20.25 11.0236,19.0294 11.0236,17.5237L 11.0236,5.47634C 11.0236,3.9706 12.2442,2.74999 13.75,2.74999 Z " Fill="{StaticResource playerIconFill}"/>
                         </Canvas>
+                        
                         <!--<ToolTipService.ToolTip>
                             <TextBlock Text="{Binding Pause, Source={StaticResource Localization}}" />
                         </ToolTipService.ToolTip>-->
-                        <vsm:VisualStateManager.VisualStateGroups>
+                        <vsm:VisualStateManager.VisualStateGroups>                            
                             <vsm:VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="MouseOver"
+                                                          GeneratedDuration="00:00:00.2000000" />
+                                    <VisualTransition From="Pressed"
+                                                          GeneratedDuration="00:00:00.2000000" />
+                                </VisualStateGroup.Transitions>
                                 <vsm:VisualState x:Name="Normal" >
                                 	<Storyboard>
                                 		<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)">
@@ -1697,14 +1704,8 @@
                                 			<EasingPointKeyFrame KeyTime="00:00:00" Value="0.5,1"/>
                                 		</PointAnimationUsingKeyFrames>
                                 	</Storyboard>
-                                </vsm:VisualState>
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition From="MouseOver"
-                                                          GeneratedDuration="00:00:00.2000000" />
-                                    <VisualTransition From="Pressed"
-                                                          GeneratedDuration="00:00:00.2000000" />
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="MouseOver">
+                                </vsm:VisualState>                                
+                                <vsm:VisualState x:Name="MouseOver">
                                     <Storyboard>
                                 		<PointAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.StartPoint)">
                                 			<EasingPointKeyFrame KeyTime="00:00:00" Value="0.5,0"/>
@@ -1722,7 +1723,7 @@
                                 			<EasingColorKeyFrame KeyTime="00:00:00" Value="#FF8CD6FC"/>
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
-                                </VisualState>
+                                </vsm:VisualState>
                                 <vsm:VisualState x:Name="Pressed" >
                                     <Storyboard>
                                         <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)">

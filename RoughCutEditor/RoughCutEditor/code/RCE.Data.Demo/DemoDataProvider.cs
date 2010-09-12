@@ -22,6 +22,7 @@ namespace RCE.Data.Demo
     using System.Linq;
     using Services.Contracts;
     using SMPTETimecode;
+    using System.IO;
 
     /// <summary>
     /// Provides the implementation for <see cref="IDataProvider"/> and <see cref="IAssetsDataProvider"/> that will retrieve data statically.
@@ -133,6 +134,12 @@ namespace RCE.Data.Demo
         /// </summary>
         private readonly ProjectCollection sampleProjects;
 
+        private static bool loading = false;
+
+        static DemoDataProvider()
+        {
+            LoadRootTelemetry();
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="DemoDataProvider"/> class.
         /// </summary>
@@ -266,6 +273,31 @@ namespace RCE.Data.Demo
                 Timeline = { this.sampleTracks[0], this.sampleTracks[1] },
                 Duration = 600
             });
+        }
+
+        private static bool loaded = false;
+        private static List<Telemetry> rootTelemetry = new List<Telemetry>();
+        private static void LoadRootTelemetry()
+        {
+            if (!loading && !loaded)
+            {
+                loading = true;
+                var lines = File.ReadAllLines(@"C:\Temp\Telemetry.csv");
+                int lineNumber = 1;
+                foreach (var line in lines)
+                {
+                    if (lineNumber % 15 == 0)
+                    {
+                        var values = line.Split(',');
+                        var time = TimeSpan.FromMinutes(Convert.ToDouble(values[0]));
+                        var watts = Convert.ToDecimal(values[1]);
+                        var percentageOfThreshold = (watts * 100M) / 300M;
+                        rootTelemetry.Add(new Telemetry() { TimePosition = time, PercentageOfThreshold = percentageOfThreshold });
+                    }
+                    lineNumber++;
+                }
+                loaded = true;
+            }
         }
         
         /// <summary>
@@ -513,7 +545,7 @@ namespace RCE.Data.Demo
         /// <returns>The <see cref="VideoItem"/>.</returns>
         private static VideoItem CreateVideoItem(Uri id, string title, double? duration, SmpteFrameRate frameRate, string reference, int width, int height, string resourceType)
         {
-            return new VideoItem
+            var result = new VideoItem
             {
                 Id = id,
                 Title = title,
@@ -529,8 +561,10 @@ namespace RCE.Data.Demo
                                            Ref = reference,
                                            ResourceType = resourceType,
                                        }
-                               }
+                               },
+                Telemetry = CreateRandomTelemetry(duration)
             };
+            return result;
         }
 
         /// <summary>
@@ -547,7 +581,7 @@ namespace RCE.Data.Demo
         /// <returns>The <see cref="VideoItem"/>.</returns>
         private static SmoothStreamingVideoItem CreateSmoothVideoItem(Uri id, string title, double? duration, SmpteFrameRate frameRate, string reference, int width, int height, string resourceType)
         {
-            return new SmoothStreamingVideoItem
+            var result = new SmoothStreamingVideoItem
             {
                 Id = id,
                 Title = title,
@@ -563,8 +597,26 @@ namespace RCE.Data.Demo
                                            Ref = reference,
                                            ResourceType = resourceType,
                                        }
-                               }
+                               },
+                Telemetry = CreateRandomTelemetry(duration)
             };
+            return result;
+        }
+
+        private static int TelemetryStart = 0;
+        private static int TelemetryEnd = 18638;
+        private static Random randomizer = new Random();
+        private static ICollection<Telemetry> CreateRandomTelemetry(double? duration)
+        {
+            var start = randomizer.Next(TelemetryStart, (TelemetryEnd - Convert.ToInt32(duration.GetValueOrDefault())));
+            var startSeconds = TimeSpan.FromSeconds(Convert.ToDouble(start));
+            var endSeconds = startSeconds.Add(TimeSpan.FromSeconds(Math.Min(start + duration.GetValueOrDefault(), TelemetryEnd)));
+            var result = rootTelemetry.Where(t => t.TimePosition >= startSeconds && t.TimePosition <= endSeconds).Select(t=>t.Clone()).ToList();
+            foreach (var telemetry in result)
+            {
+                telemetry.TimePosition = telemetry.TimePosition.Subtract(startSeconds);
+            }
+            return result;
         }
 
         /// <summary>

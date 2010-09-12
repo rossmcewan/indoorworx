@@ -98,6 +98,12 @@
     <Compile Include="..\RCE.Services.Contracts\Contracts\ContainerCollection.cs">
       <Link>Contracts\ContainerCollection.cs</Link>
     </Compile>
+    <Compile Include="..\RCE.Services.Contracts\Contracts\GearRatio.cs">
+      <Link>Contracts\GearRatio.cs</Link>
+    </Compile>
+    <Compile Include="..\RCE.Services.Contracts\Contracts\GPSCoordinates.cs">
+      <Link>Contracts\GPSCoordinates.cs</Link>
+    </Compile>
     <Compile Include="..\RCE.Services.Contracts\Contracts\ImageItem.cs">
       <Link>Contracts\ImageItem.cs</Link>
     </Compile>
@@ -145,6 +151,9 @@
     </Compile>
     <Compile Include="..\RCE.Services.Contracts\Contracts\SmoothStreamingVideoItem.cs">
       <Link>Contracts\SmoothStreamingVideoItem.cs</Link>
+    </Compile>
+    <Compile Include="..\RCE.Services.Contracts\Contracts\Telemetry.cs">
+      <Link>Contracts\Telemetry.cs</Link>
     </Compile>
     <Compile Include="..\RCE.Services.Contracts\Contracts\TextBlock.cs">
       <Link>Contracts\TextBlock.cs</Link>

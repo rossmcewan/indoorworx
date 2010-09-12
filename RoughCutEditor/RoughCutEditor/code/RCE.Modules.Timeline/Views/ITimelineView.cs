@@ -172,6 +172,8 @@ namespace RCE.Modules.Timeline
         /// <param name="element">The timeline element being refreshed.</param>
         void RefreshElement(TimelineElement element);
 
+        void RefreshElement(TimelineElement element, RefreshSource refreshSource);
+
         /// <summary>
         /// Selects a timeline element on the timeline.
         /// </summary>

@@ -19,6 +19,7 @@ namespace RCE.Services.Contracts
     using System;
     using System.Runtime.Serialization;
     using SMPTETimecode;
+using System.Collections.Generic;
 
     /// <summary>
     /// A class that represents a video item.
@@ -63,5 +64,11 @@ namespace RCE.Services.Contracts
         /// <value>The source of the thumbnail.</value>
         [DataMember]
         public string ThumbnailSource { get; set; }
+
+        /// <summary>
+        /// Gets or sets the telemetry associated with the video.
+        /// </summary>
+        [DataMember]
+        public ICollection<Telemetry> Telemetry { get; set; }
     }
 }

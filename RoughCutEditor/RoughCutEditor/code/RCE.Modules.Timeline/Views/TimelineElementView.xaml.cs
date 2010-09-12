@@ -200,11 +200,29 @@ namespace RCE.Modules.Timeline
         /// </summary>
         public void Refresh()
         {
+            Refresh(RefreshSource.Any);
+        }
+
+        public void Refresh(RefreshSource refreshSource)
+        {
             var width = this.Model.Duration.TotalSeconds * this.viewScale;
             var left = this.Model.Position.TotalSeconds * this.viewScale;
 
-            this.MainCanvas.Width = width;
-            Canvas.SetLeft(this, left);
+            if (refreshSource == RefreshSource.LeftTrim && width < this.MainCanvas.Width)
+            {
+                this.DragBorder.Margin = new Thickness(this.MainCanvas.Width - width, 0, 0, 0);
+            }
+            else if (refreshSource == RefreshSource.RightTrim && width < this.MainCanvas.Width)
+            {
+                this.DragBorder.Margin = new Thickness(width, 0, 0, 0);
+            }
+
+            if ((refreshSource != RefreshSource.LeftTrim && refreshSource != RefreshSource.RightTrim) || (width >= this.MainCanvas.Width))
+            {
+                this.DragBorder.Margin = new Thickness(width, 0, 0, 0);
+                this.MainCanvas.Width = width;
+                Canvas.SetLeft(this, left);
+            }
 
             // handlers
             if (!(this.Model.Asset is ImageAsset) && !(this.Model.Asset is TitleAsset))

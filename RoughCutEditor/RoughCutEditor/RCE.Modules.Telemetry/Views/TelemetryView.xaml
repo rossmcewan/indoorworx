@@ -1,4 +1,5 @@
-﻿<UserControl xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"  x:Class="RCE.Modules.Telemetry.Views.TelemetryView"
+﻿<UserControl x:Class="RCE.Modules.Telemetry.Views.TelemetryView" 
+    xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"               
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -213,7 +214,8 @@
     				</Setter.Value>
     			</Setter>
     		</Style>
-		<Style x:Key="LinearAxisStyle" TargetType="chartingToolkit:LinearAxis">
+		<Style x:Key="VLinearAxisStyle" TargetType="chartingToolkit:LinearAxis">
+            <Setter Property="Width" Value="0"/>
 			<Setter Property="IsTabStop" Value="False"/>
 			<Setter Property="TitleStyle">
 				<Setter.Value>
@@ -258,54 +260,110 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
-		
-	</UserControl.Resources>
-    <chartingToolkit:Chart Padding="0" Style="{StaticResource SimpleChartStyle}" >     
+        <Style x:Key="HLinearAxisStyle" TargetType="chartingToolkit:LinearAxis">
+            <Setter Property="Height" Value="0"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="TitleStyle">
+                <Setter.Value>
+                    <Style TargetType="visualizationToolkit:Title">
+                        <Setter Property="FontStyle" Value="Italic"/>
+                        <Setter Property="FontSize" Value="10"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="MajorTickMarkStyle">
+                <Setter.Value>
+                    <Style TargetType="Line">
+                        <Setter Property="Stroke" Value="Black"/>
+                        <Setter Property="X2" Value="0"/>
+                        <Setter Property="Y2" Value="0"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="MinorTickMarkStyle">
+                <Setter.Value>
+                    <Style TargetType="Line">
+                        <Setter Property="Stroke" Value="Gray"/>
+                        <Setter Property="X2" Value="0"/>
+                        <Setter Property="Y2" Value="0"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="GridLineStyle">
+                <Setter.Value>
+                    <Style TargetType="Line">
+                        <Setter Property="Stroke" Value="Gray"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="chartingToolkit:LinearAxis">
+                        <Grid x:Name="AxisGrid" Background="{TemplateBinding Background}">
+                            <visualizationToolkit:Title x:Name="AxisTitle" Style="{TemplateBinding TitleStyle}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <chartingToolkit:Chart Padding="0" Style="{StaticResource SimpleChartStyle}">     
         <chartingToolkit:Chart.Axes>
-            <chartingToolkit:CategoryAxis Orientation="X">
-                <chartingToolkit:CategoryAxis.Style>
-                    <Style TargetType="chartingToolkit:CategoryAxis">
-                        <Setter Property="MajorTickMarkStyle">
-                            <Setter.Value>
-                                <Style TargetType="Line">
-                                    <Setter Property="Stroke" Value="Gray"/>
-                                    <Setter Property="X2" Value="0"/>
-                                    <Setter Property="Y2" Value="0"/>
-                                </Style>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </chartingToolkit:CategoryAxis.Style>
-                <chartingToolkit:CategoryAxis.AxisLabelStyle>
-                    <Style TargetType="chartingToolkit:AxisLabel">
-                        <Setter Property="Height" Value="0"/>
-                        <Setter Property="Width" Value="0"/>
-                    </Style>
-                </chartingToolkit:CategoryAxis.AxisLabelStyle>
-            </chartingToolkit:CategoryAxis>
-            <!--<chartingToolkit:LinearAxis Orientation="X" Style="{StaticResource LinearAxisStyle}">
-                <chartingToolkit:LinearAxis.AxisLabelStyle>
-                    <Style TargetType="chartingToolkit:AxisLabel">
-                        <Setter Property="Height" Value="0"/>
-                        <Setter Property="Width" Value="0"/>
-                    </Style>
-                </chartingToolkit:LinearAxis.AxisLabelStyle>
-            </chartingToolkit:LinearAxis>-->
-            <chartingToolkit:LinearAxis Orientation="Y" Style="{StaticResource LinearAxisStyle}" Minimum="0" Maximum="400">
-                <chartingToolkit:LinearAxis.AxisLabelStyle>
-                    <Style TargetType="chartingToolkit:AxisLabel">
-                        <Setter Property="Width" Value="0"/>
-                        <Setter Property="Height" Value="0"/>
-                    </Style>
-                </chartingToolkit:LinearAxis.AxisLabelStyle>
-            </chartingToolkit:LinearAxis>
+            <chartingToolkit:LinearAxis Orientation="Y" Style="{StaticResource VLinearAxisStyle}" Minimum="0" Maximum="160" ShowGridLines="True"/>
+            <chartingToolkit:LinearAxis Orientation="X" Style="{StaticResource HLinearAxisStyle}" />
         </chartingToolkit:Chart.Axes>
-        <chartingToolkit:LineSeries             
-            ItemsSource="{Binding Telemetry, Mode=TwoWay}" 
-            DependentValueBinding="{Binding Watts, Mode=TwoWay}" 
-            IndependentValueBinding="{Binding TimePosition, Mode=TwoWay}"> 
+        <chartingToolkit:LineSeries                                                   
+            ItemsSource="{Binding Asset.Telemetry, Mode=TwoWay}" 
+            DependentValueBinding="{Binding PercentageOfThreshold, Mode=TwoWay}" 
+            IndependentValueBinding="{Binding TimePosition.TotalSeconds, Mode=TwoWay}">            
+            <chartingToolkit:LineSeries.DataPointStyle>                
+                <Style TargetType="chartingToolkit:LineDataPoint">
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Width" Value="0"/>
+                    <Setter Property="Height" Value="0"/>
+                </Style>
+            </chartingToolkit:LineSeries.DataPointStyle>
+        </chartingToolkit:LineSeries>
+        <chartingToolkit:LineSeries          
+            Title="50%"
+            ToolTipService.ToolTip="50%"
+            ItemsSource="{Binding Asset.Telemetry, Mode=TwoWay}" 
+            DependentValueBinding="{Binding MidThreshold, Mode=TwoWay}" 
+            IndependentValueBinding="{Binding TimePosition.TotalSeconds, Mode=TwoWay}">
             <chartingToolkit:LineSeries.DataPointStyle>
                 <Style TargetType="chartingToolkit:LineDataPoint">
+                    <Setter Property="Background" Value="Blue"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Width" Value="0"/>
+                    <Setter Property="Height" Value="0"/>
+                </Style>
+            </chartingToolkit:LineSeries.DataPointStyle>
+        </chartingToolkit:LineSeries>
+        <chartingToolkit:LineSeries     
+            Title="100%"
+            ToolTipService.ToolTip="100%"
+            ItemsSource="{Binding Asset.Telemetry, Mode=TwoWay}" 
+            DependentValueBinding="{Binding MaxThreshold, Mode=TwoWay}" 
+            IndependentValueBinding="{Binding TimePosition.TotalSeconds, Mode=TwoWay}">
+            <chartingToolkit:LineSeries.DataPointStyle>
+                <Style TargetType="chartingToolkit:LineDataPoint">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Width" Value="0"/>
+                    <Setter Property="Height" Value="0"/>
+                </Style>
+            </chartingToolkit:LineSeries.DataPointStyle>
+        </chartingToolkit:LineSeries>
+        <chartingToolkit:LineSeries  
+            Title="150%"
+            ToolTipService.ToolTip="150%"
+            ItemsSource="{Binding Asset.Telemetry, Mode=TwoWay}" 
+            DependentValueBinding="{Binding OverThreshold, Mode=TwoWay}" 
+            IndependentValueBinding="{Binding TimePosition.TotalSeconds, Mode=TwoWay}">
+            <chartingToolkit:LineSeries.DataPointStyle>
+                <Style TargetType="chartingToolkit:LineDataPoint">
+                    <Setter Property="Background" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="1"/>
                     <Setter Property="Width" Value="0"/>
                     <Setter Property="Height" Value="0"/>
                 </Style>

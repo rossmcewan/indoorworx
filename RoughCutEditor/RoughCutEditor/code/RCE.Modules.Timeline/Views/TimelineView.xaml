@@ -59,13 +59,13 @@
             <Grid x:Name="TimelineGrid" IsHitTestVisible="true">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="43" />
-                    <RowDefinition Height="122" />
+                    <RowDefinition Height="250" />
                     <RowDefinition Height="Auto" MinHeight="34" />
                     <RowDefinition Height="17" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Rectangle Grid.Row="0" x:Name="TopBar" Width="Auto" Height="41" RadiusX="4" RadiusY="4" VerticalAlignment="Top" Margin="0,0,0,2" Fill="{StaticResource TimelineRulerBackground}"/>
-                <Border Height="122" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Grid.Row="1" Style="{StaticResource TimelineVideoBarBorderStyle}" CornerRadius="4">
+                <Border Height="250" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Grid.Row="1" Style="{StaticResource TimelineVideoBarBorderStyle}" CornerRadius="4">
                 	<Rectangle x:Name="VideoBar" RadiusX="4" RadiusY="4" Stroke="#FF000000" Fill="{StaticResource TimelineVideoLayerBackground}" StrokeThickness="0" />
 
                 </Border>

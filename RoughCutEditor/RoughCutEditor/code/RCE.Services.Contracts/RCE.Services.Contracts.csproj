@@ -86,6 +86,8 @@
     <Compile Include="Contracts\CommentCollection.cs" />
     <Compile Include="Contracts\Container.cs" />
     <Compile Include="Contracts\ContainerCollection.cs" />
+    <Compile Include="Contracts\GearRatio.cs" />
+    <Compile Include="Contracts\GPSCoordinates.cs" />
     <Compile Include="Contracts\ImageItem.cs" />
     <Compile Include="Contracts\InkComment.cs" />
     <Compile Include="Contracts\Item.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Contracts\Shot.cs" />
     <Compile Include="Contracts\ShotCollection.cs" />
     <Compile Include="Contracts\SmoothStreamingVideoItem.cs" />
+    <Compile Include="Contracts\Telemetry.cs" />
     <Compile Include="Contracts\TextBlock.cs" />
     <Compile Include="Contracts\TextBlockCollection.cs" />
     <Compile Include="Contracts\TitleItem.cs" />

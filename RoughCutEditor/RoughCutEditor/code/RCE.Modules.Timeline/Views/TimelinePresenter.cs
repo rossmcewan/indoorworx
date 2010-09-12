@@ -1094,10 +1094,10 @@ namespace RCE.Modules.Timeline
                     break;
             }
 
-            this.timelineModel.MoveElement(this.selectedElement, track, newPosition);
+            this.timelineModel.MoveElement(this.selectedElement, track, newPosition, RefreshSource.LeftTrim);
             TimeCode oldInPosition = this.selectedElement.InPosition;
             this.selectedElement.InPosition = newInPosition;
-            this.View.RefreshElement(this.selectedElement);
+            this.View.RefreshElement(this.selectedElement, RefreshSource.LeftTrim);
             this.PublishElementMovedEvent(this.selectedElement, ElementPositionType.InPosition, oldInPosition, newInPosition);
 
             // Tooltip
@@ -1221,7 +1221,7 @@ namespace RCE.Modules.Timeline
 
             TimeCode oldOutPosition = this.selectedElement.OutPosition;
             this.selectedElement.OutPosition = newOutPosition;
-            this.View.RefreshElement(this.selectedElement);
+            this.View.RefreshElement(this.selectedElement, RefreshSource.RightTrim);
             this.PublishElementMovedEvent(this.selectedElement, ElementPositionType.OutPosition, oldOutPosition, newOutPosition);
 
             // tooltip
@@ -1649,7 +1649,7 @@ namespace RCE.Modules.Timeline
         {
             if (e.Element != null)
             {
-                this.View.RefreshElement(e.Element);
+                this.View.RefreshElement(e.Element, e.RefreshSource);
             }
         }
 

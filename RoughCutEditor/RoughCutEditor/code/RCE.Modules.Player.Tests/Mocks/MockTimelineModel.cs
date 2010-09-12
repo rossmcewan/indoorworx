@@ -174,5 +174,15 @@ namespace RCE.Modules.Player.Tests.Mocks
         {
             throw new NotImplementedException();
         }
+
+        #region ITimelineModel Members
+
+
+        public void MoveElement(TimelineElement element, Track layer, TimeCode newPosition, RefreshSource refreshSource)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

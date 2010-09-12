@@ -723,7 +723,7 @@ namespace RCE.Infrastructure.Translators
                     StartPosition = smoothStreamingVideoAsset.StartPosition,
                     DataStreams = smoothStreamingVideoAsset.DataStreams,
                     ExternalManifests = smoothStreamingVideoAsset.ExternalManifests,
-
+                    //Telemetry = smoothStreamingVideoAsset.Telemetry
                     // Metadata = videoAsset.Metadata
                 };
             }
@@ -746,7 +746,7 @@ namespace RCE.Infrastructure.Translators
                                Width = videoAsset.Width,
                                Resources = new ResourceCollection { new Resource { Ref = videoAsset.Source.ToString(), ResourceType = videoAsset.ResourceType.ToString() } },
                                ThumbnailSource = videoAsset.ThumbnailSource,
-                              
+                              //Telemetry = videoAsset.Telemetry
                                // Metadata = videoAsset.Metadata
                            };
             }
@@ -1130,7 +1130,8 @@ namespace RCE.Infrastructure.Translators
                                                        Source = videoAsset.Source,
                                                        StartPosition = item.StartPosition,
                                                        DataStreams = item.DataStreams,
-                                                       ExternalManifests = item.ExternalManifests
+                                                       ExternalManifests = item.ExternalManifests,
+                                                       BaseTelemetry = item.Telemetry
                                                    };
 
             return result;
@@ -1187,7 +1188,8 @@ namespace RCE.Infrastructure.Translators
                                         Modified = item.Modified,
                                         ModifiedBy = item.ModifiedBy,
                                         Metadata = item.Metadata,
-                                        ThumbnailSource = item.ThumbnailSource
+                                        ThumbnailSource = item.ThumbnailSource,
+                                        BaseTelemetry = item.Telemetry
                                     };
 
             SmpteFrameRate frameRate = (SmpteFrameRate)Enum.Parse(typeof(SmpteFrameRate), item.FrameRate.ToString(), false);

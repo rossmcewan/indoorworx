@@ -27,9 +27,14 @@ namespace RCE.Infrastructure.Models
         /// Initializes a new instance of the <see cref="TimelineElementEventArgs"/> class.
         /// </summary>
         /// <param name="timelineElement">The timeline element.</param>
-        public TimelineElementEventArgs(TimelineElement timelineElement)
+        public TimelineElementEventArgs(TimelineElement timelineElement) : this(timelineElement, RefreshSource.Any)
+        {
+        }
+
+        public TimelineElementEventArgs(TimelineElement timelineElement, RefreshSource source)
         {
             this.Element = timelineElement;
+            this.RefreshSource = source;
         }
 
         /// <summary>
@@ -37,5 +42,7 @@ namespace RCE.Infrastructure.Models
         /// </summary>
         /// <value>The element.</value>
         public TimelineElement Element { get; private set; }
+
+        public RefreshSource RefreshSource { get; set; }
     }
 }

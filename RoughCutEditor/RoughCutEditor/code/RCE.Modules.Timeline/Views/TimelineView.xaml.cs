@@ -552,6 +552,11 @@ namespace RCE.Modules.Timeline
             this.ElementViews[element.Id].Refresh();
         }
 
+        public void RefreshElement(TimelineElement element, RefreshSource refreshSource)
+        {
+            this.ElementViews[element.Id].Refresh(refreshSource);
+        }
+
         /// <summary>
         /// Selects the given element.
         /// </summary>

@@ -2,17 +2,18 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:t="clr-namespace:RCE.Modules.Telemetry.Views;assembly=RCE.Modules.Telemetry"             
-    Width="200" Height="122" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    Width="200" Height="250" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:Controls="clr-namespace:RCE.Modules.Timeline.Controls" 
              mc:Ignorable="d"
              x:Name="VideoPreviewControl">
     <Grid>
     	<Grid.RowDefinitions>
-    		<RowDefinition Height="86" />
+    		<RowDefinition Height="25" />
     		<RowDefinition Height="*" />
     	</Grid.RowDefinitions>
-    	<Border Background="{StaticResource VideoAssetBackground}" BorderThickness="1" CornerRadius="4,4,0,0" BorderBrush="{StaticResource PreviewControlBorderBrush}">
+    	<!--<Border Background="{StaticResource VideoAssetBackground}" BorderThickness="1" CornerRadius="4,4,0,0" BorderBrush="{StaticResource PreviewControlBorderBrush}">-->
+        <Border Background="Transparent" BorderThickness="1" CornerRadius="4,4,0,0" BorderBrush="{StaticResource PreviewControlBorderBrush}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>

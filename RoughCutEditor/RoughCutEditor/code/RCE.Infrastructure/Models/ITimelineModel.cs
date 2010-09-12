@@ -118,6 +118,8 @@ namespace RCE.Infrastructure.Models
         /// <param name="newPosition">The new position of the element.</param>
         void MoveElement(TimelineElement element, Track layer, TimeCode newPosition);
 
+        void MoveElement(TimelineElement element, Track layer, TimeCode newPosition, RefreshSource refreshSource);
+
         /// <summary>
         /// Removes the given <paramref name="element"/> from <paramref name="layer">track</paramref>.
         /// </summary>
