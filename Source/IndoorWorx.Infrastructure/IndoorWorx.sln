@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.Infrastructure.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.Computrainer", "..\IndoorWorx.Computrainer\IndoorWorx.Computrainer.csproj", "{FDA01ECD-B9D6-424F-A1A9-831F02841632}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.Silverlight", "..\IndoorWorx.Silverlight\IndoorWorx.Silverlight.csproj", "{FA9884F9-FED1-4BD9-88F0-26DB0FC18499}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.Silverlight.Web", "..\IndoorWorx.Silverlight.Web\IndoorWorx.Silverlight.Web.csproj", "{578911E6-E725-4027-808B-31989192CED5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{FDA01ECD-B9D6-424F-A1A9-831F02841632}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDA01ECD-B9D6-424F-A1A9-831F02841632}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDA01ECD-B9D6-424F-A1A9-831F02841632}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA9884F9-FED1-4BD9-88F0-26DB0FC18499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA9884F9-FED1-4BD9-88F0-26DB0FC18499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA9884F9-FED1-4BD9-88F0-26DB0FC18499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA9884F9-FED1-4BD9-88F0-26DB0FC18499}.Release|Any CPU.Build.0 = Release|Any CPU
+		{578911E6-E725-4027-808B-31989192CED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{578911E6-E725-4027-808B-31989192CED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{578911E6-E725-4027-808B-31989192CED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{578911E6-E725-4027-808B-31989192CED5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,5 +49,7 @@ Global
 		{DF3B24C9-443A-42C6-84AE-8C796C091498} = {6509D8EC-4953-4E72-9B3A-710165B58362}
 		{FDA01ECD-B9D6-424F-A1A9-831F02841632} = {6509D8EC-4953-4E72-9B3A-710165B58362}
 		{74DA0835-9E56-474D-A3A9-92D99CDCB3C0} = {07A54CE4-CDC7-4800-83E8-2FA9E6B35A3E}
+		{FA9884F9-FED1-4BD9-88F0-26DB0FC18499} = {07A54CE4-CDC7-4800-83E8-2FA9E6B35A3E}
+		{578911E6-E725-4027-808B-31989192CED5} = {07A54CE4-CDC7-4800-83E8-2FA9E6B35A3E}
 	EndGlobalSection
 EndGlobal
