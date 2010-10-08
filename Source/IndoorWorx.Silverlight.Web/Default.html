@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<!-- saved from url=(0014)about:internet -->
+<!--
+///////////////////////////////////////////////////////////////////////////////
+//	Default.html  		(April 2009)
+//
+//  This file is provided by Microsoft as a helper file for Web sites that
+//  incorporate the Silverlight plug-in. 
+// 
+//  Copyright 2009 (c) Microsoft Corporation. All rights reserved.
+//
+///////////////////////////////////////////////////////////////////////////////
+-->
+<head>
+    <title>Generic Web Application</title>
+
+    <style type="text/css">
+    html, body {
+	    height: 100%;
+	    overflow: auto;
+    }
+    body {
+	    padding: 0;
+	    margin: 0;
+    }
+    </style>
+    <script type="text/javascript" src="Silverlight.js"></script>
+    <script type="text/javascript" src="Silverlight.supportedUserAgent.js"></script>
+    <script type="text/javascript" src="js/AgInstall.js"></script>
+    <script type="text/javascript">
+
+        Silverlight.inject = function (params) {
+            new AgInstall.Installer(params);
+        }
+
+        Silverlight.onGetSilverlight = function () {
+            for (var i in Silverlight.installControls)
+                Silverlight.installControls[i].update(AgInstall.INSTALLING);
+        };
+
+        Silverlight.onRestartRequired = function () {
+            for (var i in Silverlight.installControls)
+                Silverlight.installControls[i].update(AgInstall.RESTART_REQUIRED);
+        };
+
+        Silverlight.onUpgradeRequired = function () {
+            for (var i in Silverlight.installControls)
+                Silverlight.installControls[i].update(AgInstall.UPGRADE_REQUIRED);
+        };
+
+        Silverlight.onInstallRequired = function () {
+            for (var i in Silverlight.installControls)
+                Silverlight.installControls[i].update(AgInstall.INSTALL_REQUIRED);
+        };
+
+        function pageLoaded() {
+            if (Silverlight.supportedUserAgent()) {
+                // silverlight is supported update any installers
+                for (var i in Silverlight.installControls)
+                    Silverlight.installControls[i].update();
+            }
+            else {
+                // silverlight is not supported, need to tell installers to report this
+                for (var i in Silverlight.installControls)
+                    Silverlight.installControls[i].update(AgInstall.NOT_SUPPORTED);
+            }
+        }
+    </script>
+    </head>
+
+    <body onload="pageLoaded()">
+    <!-- Runtime errors from Silverlight will be displayed here.
+	Errors will contain debugging information and should be removed or hidden when debugging is completed -->
+	<div id='errorLocation' style="font-size: small;color: Gray;"></div>
+
+    <div id="silverlightControlHost" style="height:100%;">
+        This application requires you to update your browser with the Microsoft Silverlight plug-in. Click <a href="http://go.microsoft.com/fwlink/?LinkID=124807">here</a> to update. Browser restart may be required.
+    </div>
+    <!--<div id="silverlightControlHost2" style="height:50%;">
+    </div>-->
+    
+    <script type="text/javascript">
+        Silverlight.inject(
+            {
+                source: "ClientBin/IndoorWorx.Silverlight.xap",
+                parentElement: "silverlightControlHost",
+                properties:
+                {
+                    width: "100%",
+                    height: "100%",
+                    background: "white",
+                    version: "2.0.31005.0"
+                },
+                // Contextual ui configuration
+                installerUiConfig:
+                {
+                    // The title of the application
+                    title: "Generic Silverlight Web Application",
+
+                    // The path of the image to display 
+                    // For optimal results use an image that is 165x124 pixels in size
+                    picture: "images/wide/light.jpg",
+
+                    // Leave the entire 'description' section commented out to get the default
+                    // descriptions.; The default text is specified in js/AgInstall.js.
+                    //
+                    // Note: If the custom text is shorter than the default text, some of the images
+                    // in the UI will be out of place,. To address this, add an appropriate number of
+                    // paragraphs or breaks before or after the custom text. See 'install: wide' below
+                    // for an example.
+                    /*description:
+                    {
+                    install:
+                    {
+                    wide: "<br /><br /><br />Add custom description and 'installation required' text here.<br /><br /><br /><br /><br /><br /><br />",
+                    narrow: "<p>Add custom description and 'installation required' text here.</p>",
+                    small: "<p>Add custom description and 'installation required' text here.</p>"
+                    },
+                    upgrade:
+                    {
+                    wide: "<p>Add custom description and 'upgrade required' text here.",
+                    narrow: "<p>Add custom description and 'upgrade required' text here.",
+                    small: "<p>Add custom description and 'upgrade required' text here.</p>"
+                    },
+                    // To use the default text for a section, comment out the lines with custom text
+                    installing, remember to keep the commas at the end of the lines as neccesary:
+                    {
+                    //wide: "<p>Add custom 'Silverlight is installing/upgrading' text here.</p>",
+                    //narrow: "<p>Add custom 'Silverlight is installing/upgrading' text here.</p>",
+                    //small: "<p>Add custom 'Silverlight is installing/upgrading' text here.</p>"
+                    },
+                    restart:
+                    {
+                    wide: "<p>Add custom 'Please restart browser' text here.",
+                    narrow: "<p>Add custom 'Please restart browser' text here.",
+                    small: "<p>Add custom 'Please restart browser' text here."
+                    },
+                                                
+                    notSupported:
+                    {
+                    wide: "<p>Add custom 'browser not compatible' text here.</p>",
+                    narrow: "<p>Add custom 'browser not compatible' text here.</p>",
+                    small: "<p>Add custom 'browser not compatible' text here.</p>"
+                    }
+                    },*/
+                    // Specify the custom text of the install button/link here.
+                    // In the large and narrow forms, an arrow graphic element is included.
+                    // In the small, text-only form, you can specify a > with &gt;
+                    // For example:, "Update and Go! &gt;"
+                    buttonLabel: "UPDATE AND START"
+                }
+            });
+      </script>
+</body>
+</html>
+

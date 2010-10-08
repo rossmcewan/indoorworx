@@ -11,6 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.Computrainer", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.Infrastructure.Silverlight", "..\IndoorWorx.Infrastructure.Silverlight\IndoorWorx.Infrastructure.Silverlight.csproj", "{74DA0835-9E56-474D-A3A9-92D99CDCB3C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.Silverlight", "..\IndoorWorx.Silverlight\IndoorWorx.Silverlight.csproj", "{9FF17F5F-7433-4C6C-A46D-C1BC01C4EED9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3B6E4565-B364-4862-9665-E630C5631D9C} = {3B6E4565-B364-4862-9665-E630C5631D9C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.Silverlight.Web", "..\IndoorWorx.Silverlight.Web\IndoorWorx.Silverlight.Web.csproj", "{3B6E4565-B364-4862-9665-E630C5631D9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +36,14 @@ Global
 		{74DA0835-9E56-474D-A3A9-92D99CDCB3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74DA0835-9E56-474D-A3A9-92D99CDCB3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74DA0835-9E56-474D-A3A9-92D99CDCB3C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FF17F5F-7433-4C6C-A46D-C1BC01C4EED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FF17F5F-7433-4C6C-A46D-C1BC01C4EED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FF17F5F-7433-4C6C-A46D-C1BC01C4EED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FF17F5F-7433-4C6C-A46D-C1BC01C4EED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B6E4565-B364-4862-9665-E630C5631D9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B6E4565-B364-4862-9665-E630C5631D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B6E4565-B364-4862-9665-E630C5631D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B6E4565-B364-4862-9665-E630C5631D9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,5 +52,7 @@ Global
 		{DF3B24C9-443A-42C6-84AE-8C796C091498} = {6509D8EC-4953-4E72-9B3A-710165B58362}
 		{FDA01ECD-B9D6-424F-A1A9-831F02841632} = {6509D8EC-4953-4E72-9B3A-710165B58362}
 		{74DA0835-9E56-474D-A3A9-92D99CDCB3C0} = {07A54CE4-CDC7-4800-83E8-2FA9E6B35A3E}
+		{9FF17F5F-7433-4C6C-A46D-C1BC01C4EED9} = {07A54CE4-CDC7-4800-83E8-2FA9E6B35A3E}
+		{3B6E4565-B364-4862-9665-E630C5631D9C} = {07A54CE4-CDC7-4800-83E8-2FA9E6B35A3E}
 	EndGlobalSection
 EndGlobal
