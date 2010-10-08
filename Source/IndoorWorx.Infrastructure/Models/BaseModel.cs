@@ -25,4 +25,5 @@ namespace IndoorWorx.Infrastructure.Models
                 }
             }
         }
+    }
 }
