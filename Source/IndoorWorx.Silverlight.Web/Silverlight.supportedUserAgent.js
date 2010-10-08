@@ -41,25 +41,21 @@ if (!window.Silverlight)
 //  return value: boolean
 //
 ///////////////////////////////////////////////////////////////////////////////
-Silverlight.supportedUserAgent = function(version, userAgent)
-{
-    try
-    {
+Silverlight.supportedUserAgent = function (version, userAgent) {
+    try {
         var ua = null;
 
-        if ( userAgent)
-        {
-           ua = userAgent;
+        if (userAgent) {
+            ua = userAgent;
         }
-        else
-        {
-           ua = window.navigator.userAgent;
+        else {
+            ua = window.navigator.userAgent;
         }
-        
-        var slua = {OS:'Unsupported',Browser:'Unsupported'};
-        
+
+        var slua = { OS: 'Unsupported', Browser: 'Unsupported' };
+
         //Silverlight does not support pre-Windows NT platforms
-        if (ua.indexOf('Windows NT') >= 0 || ua.indexOf('Mozilla/4.0 (compatible; MSIE 6.0)')>=0) {
+        if (ua.indexOf('Windows NT') >= 0 || ua.indexOf('Mozilla/4.0 (compatible; MSIE 6.0)') >= 0) {
             slua.OS = 'Windows';
         }
         else if (ua.indexOf('PPC Mac OS X') >= 0) {
@@ -68,14 +64,12 @@ Silverlight.supportedUserAgent = function(version, userAgent)
         else if (ua.indexOf('Intel Mac OS X') >= 0) {
             slua.OS = 'MacIntel';
         }
-        
-        if ( slua.OS != 'Unsupported' )
-        {
+
+        if (slua.OS != 'Unsupported') {
             if (ua.indexOf('MSIE') >= 0) {
-                if (navigator.userAgent.indexOf('Win64') == -1)
-                {
+                if (navigator.userAgent.indexOf('Win64') == -1) {
                     if (parseInt(ua.split('MSIE')[1]) >= 6) {
-                        slua.Browser  = 'MSIE';
+                        slua.Browser = 'MSIE';
                     }
                 }
             }
@@ -88,40 +82,42 @@ Silverlight.supportedUserAgent = function(version, userAgent)
                 else {
                     var minor = parseInt(versionArr[1]);
                     if ((major == 1) && (minor >= 5)) {
-                        slua.Browser  = 'Firefox';
+                        slua.Browser = 'Firefox';
                     }
                 }
             }
-            
+
+            else if (ua.indexOf('Chrome') >= 0) {
+                slua.Browser = 'Chrome';
+            }
+
             else if (ua.indexOf('Safari') >= 0) {
                 slua.Browser = 'Safari';
-            }            
+            }
+
+            
         }
-        
+
         //detect all unsupported platform combinations (IE on Mac, Safari on Win)
-        var supUA =   (!(   slua.OS == 'Unsupported' ||                             //Unsupported OS
+        var supUA = (!(slua.OS == 'Unsupported' ||                             //Unsupported OS
                             slua.Browser == 'Unsupported' ||                        //Unsupported Browser
                             (slua.OS == 'Windows' && slua.Browser == 'Safari') ||   //Safari is not supported on Windows
                             (slua.OS.indexOf('Mac') >= 0 && slua.Browser == 'MSIE')   //IE is not supported on Mac
                                 ));
 
-        if (version=='2.0')
-        {
+        if (version == '2.0') {
             //add PPC to unsupported list
-            return (supUA && (slua.OS != 'MacPPC' ));
+            return (supUA && (slua.OS != 'MacPPC'));
         }
-        else if (version == '1.0')
-        {
+        else if (version == '1.0') {
             //add win2k to unsupported list
-            return (supUA && ( ua.indexOf('Windows NT 5.0') < 0));
+            return (supUA && (ua.indexOf('Windows NT 5.0') < 0));
         }
-        else
-        {
-            return (supUA);  
-        }  
+        else {
+            return (supUA);
+        }
     }
-    catch (e)
-    {
+    catch (e) {
         return false;
     }
 }
