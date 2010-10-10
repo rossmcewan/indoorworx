@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure.Navigation;
+using IndoorWorx.UserProfile.Helpers;
 
 namespace IndoorWorx.UserProfile
 {
@@ -31,6 +32,7 @@ namespace IndoorWorx.UserProfile
 
         public void Initialize()
         {
+            Application.Current.Resources.Add("UserProfileResources", new ResourceWrapper());
             NavigationService.AddNavigationLink(new Infrastructure.Models.NavigationInfo()
             {
                 Content = "User Profile",

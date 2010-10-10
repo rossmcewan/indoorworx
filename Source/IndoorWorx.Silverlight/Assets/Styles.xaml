@@ -160,7 +160,7 @@
     -->
     <!-- Logo Icon Style -->
     <Style x:Key="LogoIcon" TargetType="ContentControl">
-        <Setter Property="Content" Value="lorem ipsum dolor sit" />
+        <Setter Property="Content" Value="yes it does" />
         <Setter Property="Foreground" Value="{StaticResource NavigationForegroundColorBrush}" />
         <Setter Property="Height" Value="24" />
         <Setter Property="Margin" Value="0" />
