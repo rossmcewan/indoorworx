@@ -503,7 +503,7 @@
         <Setter Property="Foreground" Value="{StaticResource NavigationForegroundColorBrush}" />
         <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
         <Setter Property="FontSize" Value="12"/>        
-        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0,2,0,0"/>
     </Style>
 

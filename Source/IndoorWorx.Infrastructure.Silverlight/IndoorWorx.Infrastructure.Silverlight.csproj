@@ -55,7 +55,25 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\AuditableModel.cs">
+      <Link>Models\AuditableModel.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\BaseModel.cs">
+      <Link>Models\BaseModel.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\NavigationInfo.cs">
+      <Link>Models\NavigationInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\Telemetry.cs">
+      <Link>Models\Telemetry.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\Video.cs">
+      <Link>Models\Video.cs</Link>
+    </Compile>
+    <Compile Include="IShell.cs" />
+    <Compile Include="Navigation\INavigationLinks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Navigation\INavigationService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

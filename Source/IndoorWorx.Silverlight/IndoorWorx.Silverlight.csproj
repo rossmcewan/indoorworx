@@ -51,6 +51,48 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamicNavigation">
+      <HintPath>..\..\Libraries\Silverlight\DavidPoll\DynamicNavigation.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicNavigation.Utilities">
+      <HintPath>..\..\Libraries\Silverlight\DavidPoll\DynamicNavigation.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Composite">
+      <HintPath>..\..\Libraries\Silverlight\Prism\Microsoft.Practices.Composite.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Composite.Presentation">
+      <HintPath>..\..\Libraries\Silverlight\Prism\Microsoft.Practices.Composite.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Composite.UnityExtensions">
+      <HintPath>..\..\Libraries\Silverlight\Prism\Microsoft.Practices.Composite.UnityExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\Libraries\Silverlight\ServiceLocation\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Silverlight">
+      <HintPath>..\..\Libraries\Silverlight\Unity\Microsoft.Practices.Unity.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="SLaB.Navigation.ContentLoaders">
+      <HintPath>..\..\Libraries\Silverlight\DavidPoll\SLaB\SLaB.Navigation.ContentLoaders.dll</HintPath>
+    </Reference>
+    <Reference Include="SLaB.Navigation.ContentLoaders.Auth">
+      <HintPath>..\..\Libraries\Silverlight\DavidPoll\SLaB\SLaB.Navigation.ContentLoaders.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="SLaB.Navigation.ContentLoaders.Error">
+      <HintPath>..\..\Libraries\Silverlight\DavidPoll\SLaB\SLaB.Navigation.ContentLoaders.Error.dll</HintPath>
+    </Reference>
+    <Reference Include="SLaB.Navigation.ContentLoaders.MEF">
+      <HintPath>..\..\Libraries\Silverlight\DavidPoll\SLaB\SLaB.Navigation.ContentLoaders.MEF.dll</HintPath>
+    </Reference>
+    <Reference Include="SLaB.Navigation.ContentLoaders.PageResource">
+      <HintPath>..\..\Libraries\Silverlight\DavidPoll\SLaB\SLaB.Navigation.ContentLoaders.PageResource.dll</HintPath>
+    </Reference>
+    <Reference Include="SLaB.Navigation.ContentLoaders.Utilities">
+      <HintPath>..\..\Libraries\Silverlight\DavidPoll\SLaB\SLaB.Navigation.ContentLoaders.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="SLaB.Navigation.ContentLoaders.Xap">
+      <HintPath>..\..\Libraries\Silverlight\DavidPoll\SLaB\SLaB.Navigation.ContentLoaders.Xap.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
@@ -94,6 +136,22 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Resources\ApplicationUris.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicationUris.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Resources\PrismResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrismResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Resources\ResourceDictionaryKeys.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceDictionaryKeys.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controls\TiledBackground.cs" />
     <Compile Include="Assets\Resources\ApplicationStrings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -105,6 +163,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Extensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\LoginInfo.cs" />
     <Compile Include="Models\UserExtensions.cs" />
@@ -123,6 +182,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SecurityQuestions.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\AuthorizationError.xaml.cs">
+      <DependentUpon>AuthorizationError.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ErrorWindow.xaml.cs">
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
@@ -132,10 +194,13 @@
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Login\LoginStatus.xaml.cs">
       <DependentUpon>LoginStatus.xaml</DependentUpon>
     </Compile>
@@ -183,6 +248,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Resource Include="ModulesCatalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Page Include="Views\AuthorizationError.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ErrorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
@@ -195,9 +268,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="Shell.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Login\LoginStatus.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
@@ -238,10 +315,22 @@
       <LastGenOutput>ApplicationStrings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>IndoorWorx.Silverlight</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Resources\ApplicationUris.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApplicationUris.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Assets\Resources\ErrorResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorResources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>IndoorWorx.Silverlight</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Resources\PrismResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PrismResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Resources\ResourceDictionaryKeys.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceDictionaryKeys.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\Resources\SecurityQuestions.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -255,6 +344,16 @@
   <ItemGroup>
     <Resource Include="Images\backgroundshadow.png" />
     <Resource Include="Images\backgroundtexture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IndoorWorx.Infrastructure.Silverlight\IndoorWorx.Infrastructure.Silverlight.csproj">
+      <Project>{74DA0835-9E56-474D-A3A9-92D99CDCB3C0}</Project>
+      <Name>IndoorWorx.Infrastructure.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IndoorWorx.Library.Silverlight\IndoorWorx.Library.Silverlight.csproj">
+      <Project>{D244AAA6-79A1-4879-9F49-B41059D1F6DA}</Project>
+      <Name>IndoorWorx.Library.Silverlight</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

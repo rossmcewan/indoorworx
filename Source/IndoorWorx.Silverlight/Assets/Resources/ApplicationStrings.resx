@@ -148,13 +148,13 @@
     <value>Home</value>
   </data>
   <data name="LoginButton" xml:space="preserve">
-    <value>|        LOGIN          </value>
+    <value>Login</value>
   </data>
   <data name="LoginWindowTitle" xml:space="preserve">
     <value>Login</value>
   </data>
   <data name="LogOffButton" xml:space="preserve">
-    <value>|        LOGOUT          </value>
+    <value>Logout</value>
   </data>
   <data name="NotRegisteredYetLabel" xml:space="preserve">
     <value>Not registered yet?</value>

@@ -27,7 +27,7 @@
             webContext.Authentication = new FormsAuthentication();
             //webContext.Authentication = new WindowsAuthentication();
             this.ApplicationLifetimeObjects.Add(webContext);
-        }
+        }        
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -40,7 +40,8 @@
             WebContext.Current.Authentication.LoadUser(this.Application_UserLoaded, null);
 
             // Show some UI to the user while LoadUser is in progress
-            this.InitializeRootVisual();
+            //this.InitializeRootVisual();
+            new Bootstrapper().Run();
         }
 
         /// <summary>
@@ -59,15 +60,15 @@
         /// using windows authentication or if the user had selected the "keep
         /// me signed in" option on a previous login).
         /// </summary>
-        protected virtual void InitializeRootVisual()
-        {
-            this.busyIndicator = new BusyIndicator();
-            this.busyIndicator.Content = new MainPage();
-            this.busyIndicator.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-            this.busyIndicator.VerticalContentAlignment = VerticalAlignment.Stretch;
+        //protected virtual void InitializeRootVisual()
+        //{
+        //    this.busyIndicator = new BusyIndicator();
+        //    this.busyIndicator.Content = new Shell();
+        //    this.busyIndicator.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+        //    this.busyIndicator.VerticalContentAlignment = VerticalAlignment.Stretch;
 
-            this.RootVisual = this.busyIndicator;
-        }
+        //    this.RootVisual = this.busyIndicator;
+        //}
 
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {

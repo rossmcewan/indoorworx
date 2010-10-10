@@ -1,0 +1,13 @@
+﻿<Modularity:ModuleCatalog xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:sys="clr-namespace:System;assembly=mscorlib"
+               xmlns:Modularity="clr-namespace:Microsoft.Practices.Composite.Modularity;assembly=Microsoft.Practices.Composite">
+    <Modularity:ModuleInfo Ref="IndoorWorx.Silverlight.xap" ModuleName="Library" ModuleType="IndoorWorx.Library.Module, IndoorWorx.Library.Silverlight, Version=1.0.0.0" InitializationMode="WhenAvailable" />
+    <Modularity:ModuleInfoGroup InitializationMode="WhenAvailable">
+        <Modularity:ModuleInfo ModuleName="UserProfile" ModuleType="IndoorWorx.UserProfile.Module, IndoorWorx.UserProfile.Silverlight, Version=1.0.0.0" Ref="IndoorWorx.UserProfile.Silverlight.xap">
+            <Modularity:ModuleInfo.DependsOn>
+                <sys:String>Library</sys:String>
+            </Modularity:ModuleInfo.DependsOn>
+        </Modularity:ModuleInfo>
+    </Modularity:ModuleInfoGroup>
+</Modularity:ModuleCatalog>
