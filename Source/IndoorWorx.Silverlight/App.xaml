@@ -9,12 +9,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Assets/Brushes.xaml"/>
-                <ResourceDictionary Source="Assets/Fonts.xaml"/>
-                <ResourceDictionary Source="Assets/CoreStyles.xaml"/>
+                <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/Brushes.xaml"/>
+                <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/Fonts.xaml"/>
+                <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/CoreStyles.xaml"/>
+                <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/SdkStyles.xaml"/>
+                <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/ToolkitStyles.xaml"/>
                 <ResourceDictionary Source="Assets/Styles.xaml"/>
-                <ResourceDictionary Source="Assets/SdkStyles.xaml"/>
-                <ResourceDictionary Source="Assets/ToolkitStyles.xaml"/>
                 <ResourceDictionary>
                     <app:ResourceWrapper x:Key="ResourceWrapper" />
                     <app:NotOperatorValueConverter x:Key="NotOperatorValueConverter" />

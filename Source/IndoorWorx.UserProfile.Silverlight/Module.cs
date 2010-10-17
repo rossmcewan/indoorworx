@@ -33,15 +33,15 @@ namespace IndoorWorx.UserProfile
         public void Initialize()
         {
             Application.Current.Resources.Add("UserProfileResources", new ResourceWrapper());
-            NavigationService.AddNavigationLink(new Infrastructure.Models.NavigationInfo()
-            {
-                Content = "User Profile",
-                IsAuthenticationRequired = true,
-                NavigationUri = "/IndoorWorx.UserProfile.Silverlight;component/Views/UserProfile.dyn.xaml",
-                PackageName = "IndoorWorx.UserProfile.Silverlight.xap",
-                Allow = new string[] { "*" },
-                Deny = new string[] { "?" }
-            });
+            //NavigationService.AddNavigationLink(new Infrastructure.Models.NavigationInfo()
+            //{
+            //    Content = "User Profile",
+            //    IsAuthenticationRequired = true,
+            //    NavigationUri = "/IndoorWorx.UserProfile.Silverlight;component/Views/UserProfile.dyn.xaml",
+            //    PackageName = "IndoorWorx.UserProfile.Silverlight.xap",
+            //    Allow = new string[] { "*" },
+            //    Deny = new string[] { "?" }
+            //});
         }
 
         #endregion

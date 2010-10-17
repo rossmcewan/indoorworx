@@ -12,7 +12,7 @@
     <RootNamespace>IndoorWorx.Silverlight.Web</RootNamespace>
     <AssemblyName>IndoorWorx.Silverlight.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <SilverlightApplicationList>{9FF17F5F-7433-4C6C-A46D-C1BC01C4EED9}|..\IndoorWorx.Silverlight\IndoorWorx.Silverlight.csproj|ClientBin|False,{C889B8D2-DB73-417E-B93D-D70218DBCFCB}|..\IndoorWorx.UserProfile.Silverlight\IndoorWorx.UserProfile.Silverlight.csproj|ClientBin|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{9FF17F5F-7433-4C6C-A46D-C1BC01C4EED9}|..\IndoorWorx.Silverlight\IndoorWorx.Silverlight.csproj|ClientBin|False,{C889B8D2-DB73-417E-B93D-D70218DBCFCB}|..\IndoorWorx.UserProfile.Silverlight\IndoorWorx.UserProfile.Silverlight.csproj|ClientBin|False,{5FC95272-5312-45A6-B2B4-DCE46FB87829}|..\IndoorWorx.Catalog.Silverlight\IndoorWorx.Catalog.Silverlight.csproj|ClientBin|False</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,6 +64,7 @@
     <Content Include="App_Data\aspnetdb_log.ldf">
       <DependentUpon>ASPNETDB.MDF</DependentUpon>
     </Content>
+    <Content Include="ClientBin\IndoorWorx.Catalog.Silverlight.xap" />
     <Content Include="ClientBin\IndoorWorx.Silverlight.xap" />
     <Content Include="ClientBin\IndoorWorx.UserProfile.Silverlight.xap" />
     <Content Include="css\blank.gif" />
@@ -151,7 +152,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52878</DevelopmentServerPort>
+          <DevelopmentServerPort>3415</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

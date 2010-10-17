@@ -11,9 +11,9 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Controls/BusyIndicator.xaml" /> 
-        <ResourceDictionary Source="Brushes.xaml" />
-        <ResourceDictionary Source="Fonts.xaml" />
-        <ResourceDictionary Source="CoreStyles.xaml" />
+        <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/Brushes.xaml" />
+        <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/Fonts.xaml" />
+        <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/CoreStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <!--

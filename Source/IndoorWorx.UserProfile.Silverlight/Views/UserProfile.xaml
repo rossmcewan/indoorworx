@@ -6,8 +6,7 @@
            xmlns:dyn="clr-namespace:DynamicNavigation;assembly=DynamicNavigation"                      
            mc:Ignorable="d"
            xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-                 MinHeight="500"
-           d:DesignWidth="640" d:DesignHeight="480" Style="{StaticResource PageStyle}" 
+           Style="{StaticResource PageStyle}" 
            Title="User Profile">
         <Grid>            
             <Grid.RowDefinitions>

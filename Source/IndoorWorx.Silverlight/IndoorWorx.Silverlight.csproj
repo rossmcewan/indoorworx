@@ -136,33 +136,38 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Assets\Resources\ApplicationUris.Designer.cs">
+    <Compile Include="Assets\Resources\ApplicationStrings.Designer.cs">
+      <DependentUpon>ApplicationStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Assets\Resources\ApplicationUris.Designer.cs">
       <DependentUpon>ApplicationUris.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Assets\Resources\ErrorResources.Designer.cs">
+      <DependentUpon>ErrorResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Assets\Resources\PrismResources.Designer.cs">
+      <DependentUpon>PrismResources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PrismResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Assets\Resources\ResourceDictionaryKeys.Designer.cs">
+      <DependentUpon>ResourceDictionaryKeys.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ResourceDictionaryKeys.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Resources\SecurityQuestions.Designer.cs">
+      <DependentUpon>SecurityQuestions.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controls\TiledBackground.cs" />
-    <Compile Include="Assets\Resources\ApplicationStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ApplicationStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\Resources\ErrorResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ErrorResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\LoginInfo.cs" />
@@ -177,11 +182,6 @@
     <Compile Include="Helpers\StringFormatValueConverter.cs" />
     <Compile Include="Helpers\TargetNullValueConverter.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
-    <Compile Include="Assets\Resources\SecurityQuestions.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SecurityQuestions.resx</DependentUpon>
-    </Compile>
     <Compile Include="Views\AuthorizationError.xaml.cs">
       <DependentUpon>AuthorizationError.xaml</DependentUpon>
     </Compile>
@@ -219,30 +219,10 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Assets\Brushes.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\CoreStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\Fonts.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\SDKStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Assets\Styles.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Assets\ToolkitStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\BusyIndicator.xaml">
       <Generator>MSBuild:Compile</Generator>

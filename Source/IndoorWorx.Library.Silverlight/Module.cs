@@ -12,15 +12,17 @@ using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Unity;
 using IndoorWorx.Infrastructure.Navigation;
 using IndoorWorx.Library.Navigation;
+using IndoorWorx.Infrastructure;
 
 namespace IndoorWorx.Library
 {
     public class Module : IModule
-    {
+    {        
         private readonly IUnityContainer unityContainer;
         public Module(IUnityContainer unityContainer)
         {
             this.unityContainer = unityContainer;
+            IoC.Initialize(this.unityContainer);
         }
 
         #region IModule Members
