@@ -92,6 +92,9 @@
     <Content Include="IndoorWorx.SilverlightTestPage.aspx" />
     <Content Include="IndoorWorx.SilverlightTestPage.html" />
     <Content Include="js\AgInstall.js" />
+    <Content Include="Mock\tri1.jpg" />
+    <Content Include="Mock\tri2.jpg" />
+    <Content Include="Mock\tri3.jpg" />
     <Content Include="Silverlight.js" />
     <Content Include="Silverlight.supportedUserAgent.js" />
     <Content Include="Web.config" />
@@ -151,7 +154,7 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
+          <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>3415</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>

@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using Microsoft.Practices.Composite.Events;
 using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Models;
+using System.Collections.ObjectModel;
 
 namespace IndoorWorx.Catalog.Services.Mocks
 {
@@ -24,165 +25,43 @@ namespace IndoorWorx.Catalog.Services.Mocks
 
         public void RetrieveCategories()
         {
-            List<Category> categories = new List<Category>();
+            ObservableCollection<Category> categories = new ObservableCollection<Category>();
             categories.Add(new Category()
             {
                 Title = "Cycling",
-                Catalogs = new List<Infrastructure.Models.Catalog>()
+                Catalogs = new ObservableCollection<Infrastructure.Models.Catalog>()
                 {
                     new Infrastructure.Models.Catalog()
                     {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
                         Title = "The Peleton",
-                        Children = new List<Infrastructure.Models.Catalog>()
-                {
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    }
-                }
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
-                    },
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Image = new Uri("http://http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg/636px-Robbie_McEwen_2007_Bay_Cycling_Classic_2.jpg", UriKind.Absolute),
-                        Title = "The Peleton"                       
+                        Children = new ObservableCollection<Infrastructure.Models.Catalog>()
+                            {
+                                new Infrastructure.Models.Catalog()
+                                {
+                                    Image = "http://localhost:3415/Mock/tri1.jpg",
+                                    Title = "Double Century 2010"                       
+                                },
+                                new Infrastructure.Models.Catalog()
+                                {
+                                    Image = "http://localhost:3415/Mock/tri2.jpg",
+                                    Title = "Kona 2011"                       
+                                },
+                                new Infrastructure.Models.Catalog()
+                                {
+                                    Image = "http://localhost:3415/Mock/tri3.jpg", 
+                                    Title = "The Jock 2010"                       
+                                }
+                            }
                     }
                 }
             });
             categories.Add(new Category()
             {
                 Title = "Rowing",
-                Catalogs = new List<Infrastructure.Models.Catalog>()
+                Catalogs = new ObservableCollection<Infrastructure.Models.Catalog>()
                 {
                     new Infrastructure.Models.Catalog()
                     {
-                        Image = new Uri("http://www.sportindustry.biz/resource/binary/cache/85df6bb0d9d1209c60fe1d043b5fe084/568x300_rowing2_n.jpg", UriKind.Absolute),
                         Title = "The Diamond"                       
                     }
                 }

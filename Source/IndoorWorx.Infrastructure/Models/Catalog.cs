@@ -18,23 +18,14 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private Uri image;
-        public virtual Uri Image
+        private string image;
+        public virtual string Image
         {
             get { return image; }
             set
             {
                 image = value;
                 FirePropertyChanged("Image");
-            }
-        }
-
-        public string ImageAsString
-        {
-            get 
-            { 
-                var uri = image.ToString();
-                return uri;
             }
         }
 
