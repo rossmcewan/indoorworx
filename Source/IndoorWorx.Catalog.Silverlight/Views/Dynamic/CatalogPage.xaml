@@ -8,26 +8,5 @@
            xmlns:views="clr-namespace:IndoorWorx.Catalog.Views"
            xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
            d:DesignWidth="640" d:DesignHeight="480"
-           Title="Catalog" Style="{StaticResource PageStyle}">
-    <Grid x:Name="LayoutRoot">
-        <!--<ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}" >-->
-
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}" 
-                           Text="{Binding Path=CatalogResources.PageTitle, Source={StaticResource CatalogResources}}"/>
-            <ContentControl x:Name="Content" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1"/>
-        </Grid>
-            <!--<StackPanel x:Name="ContentStackPanel">
-
-                <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}" 
-                           Text="{Binding Path=CatalogResources.PageTitle, Source={StaticResource CatalogResources}}"/>
-                <ContentControl x:Name="Content" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-            </StackPanel>-->
-
-        <!--</ScrollViewer>-->        
-    </Grid>
+           Title="Catalog" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch">
 </dyn:DynamicPage>

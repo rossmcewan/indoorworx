@@ -64,7 +64,7 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="MaxWidth" Value="{StaticResource ContentMaxWidth}" />
+        <!--<Setter Property="MaxWidth" Value="{StaticResource ContentMaxWidth}" />-->
         <Setter Property="BorderThickness" Value="1,0" />
     </Style>
     
@@ -75,10 +75,10 @@
     ***************************************************************************
     -->
     <Style x:Key="LayoutRootGridStyle" TargetType="Grid">
-        <Setter Property="MaxWidth" Value="{StaticResource ContentMaxWidth}" />
+        <!--<Setter Property="MaxWidth" Value="{StaticResource ContentMaxWidth}" />-->
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Margin" Value="46,0" />
-        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
     </Style>   
     
 
@@ -106,6 +106,8 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Padding" Value="30,0" />
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
@@ -126,7 +128,7 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Height" Value="87" />
         <Setter Property="Margin" Value="30,0" />
-        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
     </Style>
 
     <!-- 
@@ -473,7 +475,7 @@
     <!-- Login Container Style -->
     <Style x:Key="LoginContainerStyle" TargetType="Border">
         <Setter Property="Background" Value="#33000000"/>
-        <Setter Property="MaxWidth" Value="{StaticResource ContentMaxWidth}" />
+        <!--<Setter Property="MaxWidth" Value="{StaticResource ContentMaxWidth}" />-->
         <Setter Property="Margin" Value="0,38,0,0"/>       
         <Setter Property="Height" Value="26"/>
         <Setter Property="BorderThickness" Value="0,0,0,0.5"/>

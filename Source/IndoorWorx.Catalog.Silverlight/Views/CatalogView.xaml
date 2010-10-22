@@ -4,29 +4,30 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:coverflow="clr-namespace:DC.ControlLibrary;assembly=DC.ControlLibrary"   
-    xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"             
-    mc:Ignorable="d">    
+    xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"  
+    d:DesignHeight="500" d:DesignWidth="800"           
+    mc:Ignorable="d" >    
     <UserControl.Resources>
         <converters:UrlToImageConverter x:Key="UrlToImageConverter"/>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
-            <ColumnDefinition Width="325"/>
-            <ColumnDefinition Width="325"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="350"/>
-            <RowDefinition Height="175"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <layoutToolkit:Accordion 
+        <layoutToolkit:Accordion                    
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
             Grid.RowSpan="2"
             Margin="5"
             ItemsSource="{Binding Categories, Mode=TwoWay}" 
             SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"    
             DisplayMemberPath="Title"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
             SelectionMode="One">
             <layoutToolkit:Accordion.ContentTemplate>                
                 <DataTemplate>
@@ -47,7 +48,7 @@
                 </DataTemplate>
             </layoutToolkit:Accordion.ContentTemplate>
         </layoutToolkit:Accordion>
-        <sdk:TabControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" HorizontalAlignment="Stretch">
+        <sdk:TabControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <sdk:TabItem Header="Videos">
                 <Grid x:Name="imageGrid" Visibility="Visible" Background="Black">
                     <Grid.RowDefinitions>
@@ -84,9 +85,17 @@
                 </Grid>
             </sdk:TabItem>
         </sdk:TabControl>
-        <controlsToolkit:HeaderedContentControl Grid.Column="1" Grid.Row="1" Header="Description" FontSize="18">
-            
-        </controlsToolkit:HeaderedContentControl>
+        <Border CornerRadius="5" BorderBrush="Gray" BorderThickness="2" Grid.Column="1" Grid.Row="1" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource ContentTextStyle}" Foreground="{StaticResource BodyTextColorBrush}"  Text="{Binding CatalogResources.Description, Source={StaticResource CatalogResources}}"/>
+                <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}" Grid.Row="1">
+                </ScrollViewer>
+            </Grid>
+        </Border>
         <controlsToolkit:HeaderedContentControl Grid.Column="2" Grid.Row="1" Header="Libraries" FontSize="18">
             
         </controlsToolkit:HeaderedContentControl>

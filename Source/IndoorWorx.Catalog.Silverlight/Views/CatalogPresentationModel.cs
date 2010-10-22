@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -75,8 +76,10 @@ namespace IndoorWorx.Catalog.Views
             categoryService.CategoriesRetrieved += (sender, e) =>
                 {
                     Categories = e.Value;
+                    //SelectedCategory = Categories.LastOrDefault();
+                    //SelectedCategory = Categories.FirstOrDefault();
                 };
-            categoryService.RetrieveCategories();
+            categoryService.RetrieveCategories();            
         }
 
         #endregion
