@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlayerTelemetry", "VideoPlayerTelemetry\VideoPlayerTelemetry.csproj", "{79751957-26D4-4A97-AA74-503243338A72}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EDE72687-2FAB-4AE0-BC36-F07F580BB961} = {EDE72687-2FAB-4AE0-BC36-F07F580BB961}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlayerTelemetry.Web", "VideoPlayerTelemetry.Web\VideoPlayerTelemetry.Web.csproj", "{0F69495C-7D31-4B90-AD2D-D5E6A16AAA8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlayerTelemetry.Service", "VideoPlayerTelemetry.Service\VideoPlayerTelemetry.Service.csproj", "{EDE72687-2FAB-4AE0-BC36-F07F580BB961}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79751957-26D4-4A97-AA74-503243338A72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79751957-26D4-4A97-AA74-503243338A72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79751957-26D4-4A97-AA74-503243338A72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79751957-26D4-4A97-AA74-503243338A72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F69495C-7D31-4B90-AD2D-D5E6A16AAA8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F69495C-7D31-4B90-AD2D-D5E6A16AAA8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F69495C-7D31-4B90-AD2D-D5E6A16AAA8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F69495C-7D31-4B90-AD2D-D5E6A16AAA8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDE72687-2FAB-4AE0-BC36-F07F580BB961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDE72687-2FAB-4AE0-BC36-F07F580BB961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDE72687-2FAB-4AE0-BC36-F07F580BB961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDE72687-2FAB-4AE0-BC36-F07F580BB961}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

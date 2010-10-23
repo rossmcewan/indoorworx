@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{95B505FB-FB82-469C-AF21-2AD8CFF7656D}</ProjectGuid>
+    <ProjectGuid>{3AE67CED-746E-4EEE-9E43-99B73A5F35E8}</ProjectGuid>
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RCE.Modules.Telemetry</RootNamespace>
-    <AssemblyName>RCE.Modules.Telemetry</AssemblyName>
+    <RootNamespace>SmfSimplePlayer</RootNamespace>
+    <AssemblyName>SmfSimplePlayer</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -19,10 +19,10 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>RCE.Modules.Telemetry.xap</XapFilename>
+    <XapFilename>SmfSimplePlayer.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <SilverlightAppEntry>RCE.Modules.Telemetry.App</SilverlightAppEntry>
-    <TestPageFileName>RCE.Modules.TelemetryTestPage.html</TestPageFileName>
+    <SilverlightAppEntry>SmfSimplePlayer.App</SilverlightAppEntry>
+    <TestPageFileName>TestPage.html</TestPageFileName>
     <CreateTestPage>true</CreateTestPage>
     <ValidateXaml>true</ValidateXaml>
     <EnableOutOfBrowser>false</EnableOutOfBrowser>
@@ -60,40 +60,63 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FJ.Core">
-      <HintPath>..\libs\Visifire\Silverlight Binaries\FJ.Core.dll</HintPath>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Core">
+      <HintPath>..\microsoft-smf-bin-2.2010.0824.1\Microsoft.SilverlightMediaFramework.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins">
+      <HintPath>..\microsoft-smf-bin-2.2010.0824.1\Microsoft.SilverlightMediaFramework.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.ClearTextCaptions">
+      <HintPath>..\microsoft-smf-bin-2.2010.0824.1\Microsoft.SilverlightMediaFramework.Plugins.ClearTextCaptions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Heuristics">
+      <HintPath>..\microsoft-smf-bin-2.2010.0824.1\Microsoft.SilverlightMediaFramework.Plugins.Heuristics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Progressive">
+      <HintPath>..\microsoft-smf-bin-2.2010.0824.1\Microsoft.SilverlightMediaFramework.Plugins.Progressive.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming">
+      <HintPath>..\microsoft-smf-bin-2.2010.0824.1\Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.TimedText">
+      <HintPath>..\microsoft-smf-bin-2.2010.0824.1\Microsoft.SilverlightMediaFramework.Plugins.TimedText.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Utilities">
+      <HintPath>..\microsoft-smf-bin-2.2010.0824.1\Microsoft.SilverlightMediaFramework.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
-    <Reference Include="SLVisifire.Charts">
-      <HintPath>..\libs\Visifire\Silverlight Binaries\SLVisifire.Charts.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\..\..\..\..\..\Program Files\Microsoft SDKs\Silverlight\v3.0\Toolkit\Nov09\Bin\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Controls.Toolkit, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\TelemetryView.xaml.cs">
-      <DependentUpon>TelemetryView.xaml</DependentUpon>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomSmf.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Page Include="Views\TelemetryView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <None Include="README_PLEASE.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

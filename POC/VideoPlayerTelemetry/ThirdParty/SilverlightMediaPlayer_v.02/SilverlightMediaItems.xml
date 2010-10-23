@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SilverlightMediaItems>
+  <SilverlightMediaItem ID="1">
+    <Title>Demo</Title>
+    <StartPosition>0</StartPosition>
+    <ItemDuration></ItemDuration>
+    <PlayLength></PlayLength>
+    <AttributionVideo >Alexander Bell</AttributionVideo>
+    <AttributionAudio>Boston-What's Your Name</AttributionAudio>
+    <MediaSource>
+      http://www.webinfocentral.com/Video/Demo/jj2008_100.wmv
+    </MediaSource>
+    <PlaceholderSource>
+      http://www.webinfocentral.com/Video/Demo/ImgMain.JPG
+    </PlaceholderSource>
+    <Chapters>
+      <Chapter>
+        <Position>18</Position>
+        <ThumbnailSource>
+          http://www.webinfocentral.com/Video/Demo/ImgChapters/13P1010042.JPG
+        </ThumbnailSource>
+        <Title>Chapter1</Title>
+      </Chapter>
+      <Chapter>
+        <Position>37</Position>
+        <ThumbnailSource>
+          http://www.webinfocentral.com/Video/Demo/ImgChapters/18P1010048.JPG
+        </ThumbnailSource>
+        <Title>Chapter2</Title>
+      </Chapter>
+      <Chapter>
+        <Position>70</Position>
+        <ThumbnailSource>
+          http://www.webinfocentral.com/Video/Demo/ImgChapters/11P1010036.JPG
+        </ThumbnailSource>
+        <Title>Chapter3</Title>
+      </Chapter>
+      <Chapter>
+        <Position>107</Position>
+        <ThumbnailSource>
+          http://www.webinfocentral.com/Video/Demo/ImgChapters/08P1010026.JPG
+        </ThumbnailSource>
+        <Title>Chapter4</Title>
+      </Chapter>
+      <Chapter>
+        <Position>134</Position>
+        <ThumbnailSource>
+          http://www.webinfocentral.com/Video/Demo/ImgChapters/06P1010010.JPG
+        </ThumbnailSource>
+        <Title>Chapter5</Title>
+      </Chapter>
+    </Chapters>
+  </SilverlightMediaItem>
+</SilverlightMediaItems>
+ 
+  
+

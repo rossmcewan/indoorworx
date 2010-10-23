@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="VideoPlayerTelemetry.Service.Impl.DataService" CodeBehind="DataService.svc.cs" %>

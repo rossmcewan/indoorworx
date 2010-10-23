@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/VideoPlayerTelemetry.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VideoPlayerTelemetry.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:30187/DataService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfTelemetry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Telemetry" nillable="true" type="tns:Telemetry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTelemetry" nillable="true" type="tns:ArrayOfTelemetry" />
+  <xs:complexType name="Telemetry">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Altitude" type="xs:int" />
+      <xs:element minOccurs="0" name="Cadence" type="xs:int" />
+      <xs:element minOccurs="0" name="Distance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="GPSCoordinates" nillable="true" type="tns:GPSCoordinates" />
+      <xs:element minOccurs="0" name="GearRatio" nillable="true" type="tns:GearRatio" />
+      <xs:element minOccurs="0" name="HeartRate" type="xs:int" />
+      <xs:element minOccurs="0" name="PercentageOfThreshold" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Speed" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TimePosition" type="ser:duration" />
+      <xs:element minOccurs="0" name="Torque" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Watts" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Telemetry" nillable="true" type="tns:Telemetry" />
+  <xs:complexType name="GPSCoordinates">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Latitude" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Longitude" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GPSCoordinates" nillable="true" type="tns:GPSCoordinates" />
+  <xs:complexType name="GearRatio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BigRing" type="xs:int" />
+      <xs:element minOccurs="0" name="SmallRing" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GearRatio" nillable="true" type="tns:GearRatio" />
+</xs:schema>

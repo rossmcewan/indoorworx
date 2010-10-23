@@ -1,0 +1,43 @@
+﻿<UserControl xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Core="clr-namespace:Microsoft.SilverlightMediaFramework.Core;assembly=Microsoft.SilverlightMediaFramework.Core" 
+    xmlns:Media="clr-namespace:Microsoft.SilverlightMediaFramework.Core.Media;assembly=Microsoft.SilverlightMediaFramework.Core"
+    xmlns:local="clr-namespace:VideoPlayerTelemetry.Views"
+    x:Class="VideoPlayerTelemetry.Views.Player" >
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Core:SMFPlayer x:Name="player" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="6" HorizontalAlignment="Stretch"
+                        MediaOpened="player_MediaOpened" MediaEnded="player_MediaEnded" MediaFailed="player_MediaFailed" LogEntryReceived="player_LogEntryReceived"   
+                        VerticalAlignment="Stretch" Margin="0,0,0,0" PlaybackPositionDatabinding="{Binding PlaybackPosition, Mode=TwoWay}" AutoPlay="False">
+            <Core:SMFPlayer.Playlist  >
+             <Media:PlaylistItem DeliveryMethod="ProgressiveDownload" MediaSource="http://localhost:3814/Video/SuperSpeedway.mov" />
+                <!--<Media:PlaylistItem DeliveryMethod="AdaptiveStreaming"  MediaSource="http://localhost:3814/Video/FILE0001.ism" />-->
+                <!--<Media:PlaylistItem DeliveryMethod="AdaptiveStreaming" MediaSource="http://www.indoorworx.com/Media/File001.im/Manifest" />-->
+            </Core:SMFPlayer.Playlist>
+        </Core:SMFPlayer>
+            <sdk:GridSplitter Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" ShowsPreview="True" Height="4"/>
+        <local:LineGraph Grid.Row="0" Grid.ColumnSpan="2" />
+        <TextBox Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="100" BorderThickness="0"   Width="Auto" Height="Auto" TextWrapping="Wrap"
+                 Background="Transparent" Foreground="White" FontWeight="ExtraBold" FontSize="24" TextAlignment="Center" Text="{Binding CurrentInformation.Text,Mode=TwoWay}"/>
+        <sdk:GridSplitter Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" ShowsPreview="True" Height="4"/>
+
+        <local:TelemetryControl HorizontalAlignment="Stretch"  Grid.Row="4" Grid.Column="0" VerticalAlignment="Stretch" />
+  
+    </Grid>
+</UserControl>

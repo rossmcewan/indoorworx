@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RCE.Data.Demo</RootNamespace>
     <AssemblyName>RCE.Data.Demo</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -31,6 +31,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -77,6 +78,10 @@
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\POC\VideoPlayerTelemetry\VideoPlayerTelemetry\VideoPlayerTelemetry.csproj">
+      <Project>{79751957-26D4-4A97-AA74-503243338A72}</Project>
+      <Name>VideoPlayerTelemetry</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\SMPTETimecode\code\SMPTETimecode\SMPTETimecode.csproj">
       <Project>{A1861304-5984-4CBD-B674-C358EF13D9CB}</Project>
       <Name>SMPTETimecode</Name>

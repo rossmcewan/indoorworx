@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SilverlightMediaPlayer>
+  <Width>600</Width>
+  <Height>440</Height>
+  <AutoLoad>true</AutoLoad>
+  <AutoPlay>true</AutoPlay>
+  <ScaleMode>Zoom</ScaleMode>
+  <Skin>Classic</Skin>
+</SilverlightMediaPlayer>
+  
+

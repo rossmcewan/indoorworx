@@ -23,6 +23,7 @@ namespace RCE.Data.Demo
     using Services.Contracts;
     using SMPTETimecode;
     using System.IO;
+    using VideoPlayerTelemetry.Models;
 
     /// <summary>
     /// Provides the implementation for <see cref="IDataProvider"/> and <see cref="IAssetsDataProvider"/> that will retrieve data statically.
