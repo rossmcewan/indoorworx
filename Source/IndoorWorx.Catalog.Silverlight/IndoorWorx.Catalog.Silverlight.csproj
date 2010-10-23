@@ -81,6 +81,7 @@
     <Reference Include="Microsoft.Practices.Unity.Silverlight">
       <HintPath>..\..\Libraries\Silverlight\Unity\Microsoft.Practices.Unity.Silverlight.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Media.SmoothStreaming, Version=1.0.837.34, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />

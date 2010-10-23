@@ -29,5 +29,15 @@ namespace IndoorWorx.Catalog.Views
         }
 
         #endregion
+
+        private void SmoothStreamingMediaElement_SmoothStreamingErrorOccurred(object sender, Microsoft.Web.Media.SmoothStreaming.SmoothStreamingErrorEventArgs e)
+        {
+
+        }
+
+        private void SmoothStreamingMediaElement_ClipError(object sender, Microsoft.Web.Media.SmoothStreaming.ClipEventArgs e)
+        {
+
+        }
     }
 }
