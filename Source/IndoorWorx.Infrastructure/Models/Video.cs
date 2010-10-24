@@ -5,18 +5,40 @@ using System.Text;
 
 namespace IndoorWorx.Infrastructure.Models
 {
-    public class Video : AuditableModel
+    public partial class Video : AuditableModel
     {
         public virtual Guid Id { get; set; }
 
-        private Uri resourceUri;
-        public virtual Uri ResourceUri
+        private string title;
+        public virtual string Title
         {
-            get { return resourceUri; }
+            get { return title; }
             set
             {
-                resourceUri = value;
-                FirePropertyChanged("ResourceUri");
+                title = value;
+                FirePropertyChanged("Title");
+            }
+        }
+
+        private Uri streamUri;
+        public virtual Uri StreamUri
+        {
+            get { return streamUri; }
+            set
+            {
+                streamUri = value;
+                FirePropertyChanged("StreamUri");
+            }
+        }
+
+        private Uri imageUri;
+        public virtual Uri ImageUri
+        {
+            get { return imageUri; }
+            set
+            {
+                imageUri = value;
+                FirePropertyChanged("ImageUri");
             }
         }
 

@@ -5,11 +5,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:coverflow="clr-namespace:DC.ControlLibrary;assembly=DC.ControlLibrary"   
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight" 
+    xmlns:smf="clr-namespace:Microsoft.SilverlightMediaFramework.Core;assembly=Microsoft.SilverlightMediaFramework.Core" 
+    xmlns:smfmedia="clr-namespace:Microsoft.SilverlightMediaFramework.Core.Media;assembly=Microsoft.SilverlightMediaFramework.Core"
     xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"             
     d:DesignHeight="500" d:DesignWidth="800"           
     mc:Ignorable="d" >    
     <UserControl.Resources>
-        <converters:UrlToImageConverter x:Key="UrlToImageConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:BooleanToOppositeVisibilityConverter x:Key="BooleanToOppositeVisibilityConverter"/>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
@@ -71,19 +74,20 @@
                                 <GradientStop Color="#00000000" Offset="0"/>
                             </LinearGradientBrush>
                         </Grid.OpacityMask>
-                        <coverflow:CoverFlowControl x:Name="flowControl2" CacheMode="BitmapCache" ItemsSource="{Binding SelectedCategory.SelectedCatalog.Children, Mode=TwoWay}" SelectedItem="{Binding SelectedCategory.SelectedCatalog.SelectedCatalog, Mode=TwoWay}" Margin="5">
+                        <coverflow:CoverFlowControl x:Name="flowControl2" CacheMode="BitmapCache" ItemsSource="{Binding SelectedCategory.SelectedCatalog.Videos, Mode=TwoWay}" SelectedItem="{Binding SelectedCategory.SelectedCatalog.SelectedVideo, Mode=TwoWay}" Margin="5">
                             <coverflow:CoverFlowControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border CornerRadius="10" BorderBrush="#99444444" BorderThickness="2" Background="{Binding Image, Converter={StaticResource UrlToImageConverter}, Mode=TwoWay}" >
-                                        <smoothstreaming:SmoothStreamingMediaElement BufferingTime="00:00:05"  SmoothStreamingPlaybackMode="VideoOnly"  SmoothStreamingSource="http://www.indoorworx.com/media/FILE0001.ism/manifest" ClipError="SmoothStreamingMediaElement_ClipError"  SmoothStreamingErrorOccurred="SmoothStreamingMediaElement_SmoothStreamingErrorOccurred" AutoPlay="True"/>
-                                        <!--<Image Source="{Binding Image, Mode=OneWay}" Margin="5">
-                                        </Image>-->
+                                    <Border CornerRadius="10" BorderBrush="#99444444" BorderThickness="2">
+                                        <Grid>
+                                            <Image Source="{Binding ImageUri.OriginalString, Mode=OneWay}" Margin="5"/>
+                                            <Button Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10"  Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                                        </Grid>
                                     </Border>
                                 </DataTemplate>
                             </coverflow:CoverFlowControl.ItemTemplate>
                         </coverflow:CoverFlowControl>
                     </Grid>
-                    <TextBlock Text="{Binding SelectedCategory.SelectedCatalog.SelectedCatalog.Title, Mode=TwoWay}" Foreground="White" HorizontalAlignment="Center" Grid.Row="1" Margin="5" FontSize="25" />
+                    <TextBlock Text="{Binding SelectedCategory.SelectedCatalog.SelectedVideo.Title, Mode=TwoWay}" Foreground="White" HorizontalAlignment="Center" Grid.Row="1" Margin="5" FontSize="25" />
                 </Grid>
             </sdk:TabItem>
         </sdk:TabControl>

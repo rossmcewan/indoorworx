@@ -40,25 +40,25 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private ICollection<Catalog> children = new List<Catalog>();
-        public virtual ICollection<Catalog> Children
+        private ICollection<Video> videos = new List<Video>();
+        public virtual ICollection<Video> Videos
         {
-            get { return children; }
+            get { return videos; }
             set
             {
-                children = value;
-                FirePropertyChanged("Children");
+                videos = value;
+                FirePropertyChanged("Videos");
             }
         }
 
-        private Catalog selectedCatalog;
-        public virtual Catalog SelectedCatalog
+        private Video selectedVideo;
+        public virtual Video SelectedVideo
         {
-            get { return selectedCatalog; }
+            get { return selectedVideo; }
             set
             {
-                selectedCatalog = value;
-                FirePropertyChanged("SelectedCatalog");
+                selectedVideo = value;
+                FirePropertyChanged("SelectedVideo");
             }
         }
     }

@@ -9,6 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Microsoft.Web.Media.SmoothStreaming;
+using Microsoft.SilverlightMediaFramework.Core;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -36,6 +38,43 @@ namespace IndoorWorx.Catalog.Views
         }
 
         private void SmoothStreamingMediaElement_ClipError(object sender, Microsoft.Web.Media.SmoothStreaming.ClipEventArgs e)
+        {
+
+        }
+
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            var item = flowControl2.ItemContainerGenerator.ContainerFromItem(Model.SelectedCategory.SelectedCatalog.SelectedVideo ?? Model.SelectedCategory.SelectedCatalog.Videos.FirstOrDefault());
+
+            var player = FindVisualChild<SmoothStreamingMediaElement>(item);
+            
+            //var player = FindVisualChild<SMFPlayer>(item);
+            Model.PlaySelectedPreview(() =>
+                {
+                    PreviewWindow preview = new PreviewWindow();
+                    preview.DataContext = Model.SelectedCategory.SelectedCatalog.SelectedVideo;
+                    preview.Show();
+                });
+        }
+
+        private TChildItem FindVisualChild<TChildItem>(DependencyObject obj) where TChildItem : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                if (child != null && child is TChildItem)
+                    return (TChildItem)child;
+                else
+                {
+                    TChildItem childOfChild = FindVisualChild<TChildItem>(child);
+                    if (childOfChild != null)
+                        return childOfChild;
+                }
+            }
+            return null;
+        }
+
+        private void player_MediaFailed(object sender, Microsoft.SilverlightMediaFramework.Core.CustomEventArgs<Exception> e)
         {
 
         }

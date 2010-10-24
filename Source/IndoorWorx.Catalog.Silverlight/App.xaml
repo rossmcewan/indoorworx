@@ -7,9 +7,9 @@
                 <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/Brushes.xaml"/>
                 <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/Fonts.xaml"/>
                 <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/CoreStyles.xaml"/>
-                <ResourceDictionary Source="Assets/Styles.xaml"/>
                 <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/SdkStyles.xaml"/>
                 <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/ToolkitStyles.xaml"/>
+                <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/PlayerStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

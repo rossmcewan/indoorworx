@@ -76,10 +76,30 @@ namespace IndoorWorx.Catalog.Views
             categoryService.CategoriesRetrieved += (sender, e) =>
                 {
                     Categories = e.Value;
+                    SelectedCategory = Categories.FirstOrDefault();
+                    if (SelectedCategory != null)
+                    {
+                        SelectedCategory.SelectedCatalog = SelectedCategory.Catalogs.FirstOrDefault();
+                        if (SelectedCategory.SelectedCatalog != null)
+                            SelectedCategory.SelectedCatalog.SelectedVideo = SelectedCategory.SelectedCatalog.Videos.FirstOrDefault();
+                    }
                     //SelectedCategory = Categories.LastOrDefault();
                     //SelectedCategory = Categories.FirstOrDefault();
                 };
             categoryService.RetrieveCategories();            
+        }
+
+        #endregion
+
+        #region ICatalogPresentationModel Members
+
+
+        public void PlaySelectedPreview(Action play)
+        {
+            var video = SelectedCategory.SelectedCatalog.SelectedVideo ?? SelectedCategory.SelectedCatalog.Videos.FirstOrDefault();
+            if(video != null)
+                video.IsPlaying = true;
+            play();
         }
 
         #endregion

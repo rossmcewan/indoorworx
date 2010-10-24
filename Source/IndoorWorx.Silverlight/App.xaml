@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/CoreStyles.xaml"/>
                 <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/SdkStyles.xaml"/>
                 <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/ToolkitStyles.xaml"/>
+                <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/PlayerStyles.xaml"/>
                 <ResourceDictionary Source="Assets/Styles.xaml"/>
                 <ResourceDictionary>
                     <app:ResourceWrapper x:Key="ResourceWrapper" />

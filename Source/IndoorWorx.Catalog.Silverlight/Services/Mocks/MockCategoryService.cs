@@ -34,21 +34,24 @@ namespace IndoorWorx.Catalog.Services.Mocks
                     new Infrastructure.Models.Catalog()
                     {
                         Title = "The Peleton",
-                        Children = new ObservableCollection<Infrastructure.Models.Catalog>()
+                        Videos = new ObservableCollection<Infrastructure.Models.Video>()
                             {
-                                new Infrastructure.Models.Catalog()
+                                new Infrastructure.Models.Video()
                                 {
-                                    Image = "http://localhost:3415/Mock/tri1.jpg",
+                                    StreamUri = new Uri("http://www.indoorworx.com/media/FILE0001.ism/manifest",UriKind.Absolute),
+                                    ImageUri = new Uri("http://localhost:3415/Mock/tri1.jpg",UriKind.Absolute),
                                     Title = "Double Century 2010"                       
                                 },
-                                new Infrastructure.Models.Catalog()
+                                new Infrastructure.Models.Video()
                                 {
-                                    Image = "http://localhost:3415/Mock/tri2.jpg",
+                                    StreamUri = new Uri("http://www.indoorworx.com/media/FILE0001.ism/manifest",UriKind.Absolute),
+                                    ImageUri = new Uri("http://localhost:3415/Mock/tri2.jpg",UriKind.Absolute),
                                     Title = "Kona 2011"                       
                                 },
-                                new Infrastructure.Models.Catalog()
+                                new Infrastructure.Models.Video()
                                 {
-                                    Image = "http://localhost:3415/Mock/tri3.jpg", 
+                                    StreamUri = new Uri("http://www.indoorworx.com/media/FILE0001.ism/manifest",UriKind.Absolute),
+                                    ImageUri = new Uri("http://localhost:3415/Mock/tri3.jpg", UriKind.Absolute),
                                     Title = "The Jock 2010"                       
                                 }
                             }
