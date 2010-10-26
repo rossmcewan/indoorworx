@@ -39,9 +39,11 @@ namespace IndoorWorx.Catalog
         {
             Application.Current.Resources.Add("CatalogResources", new ResourceWrapper());
 
-            unityContainer.RegisterType<ICatalogPresentationModel, CatalogPresentationModel>();
-            unityContainer.RegisterType<ICatalogView, CatalogView>();
+            //unityContainer.RegisterType<ICatalogPresentationModel, CatalogPresentationModel>();
             unityContainer.RegisterType<ICategoryService, Services.Mocks.MockCategoryService>();
+//            unityContainer.RegisterType<ICatalogView, CatalogView>();
+            unityContainer.RegisterInstance<ICatalogPresentationModel>(unityContainer.Resolve<CatalogPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<ICatalogView>(unityContainer.Resolve<CatalogView>(), new ContainerControlledLifetimeManager());
             
             NavigationService.AddNavigationLink(new Infrastructure.Models.NavigationInfo()
             {

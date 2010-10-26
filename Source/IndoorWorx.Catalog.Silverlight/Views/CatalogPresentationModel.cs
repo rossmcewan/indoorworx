@@ -98,7 +98,7 @@ namespace IndoorWorx.Catalog.Views
         {
             var video = SelectedCategory.SelectedCatalog.SelectedVideo ?? SelectedCategory.SelectedCatalog.Videos.FirstOrDefault();
             if(video != null)
-                video.IsPlaying = true;
+                video.IsSelected = true;
             play();
         }
 

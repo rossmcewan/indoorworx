@@ -17,8 +17,8 @@
     <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -80,7 +80,7 @@
                                     <Border CornerRadius="10" BorderBrush="#99444444" BorderThickness="2">
                                         <Grid>
                                             <Image Source="{Binding ImageUri.OriginalString, Mode=OneWay}" Margin="5"/>
-                                            <Button Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10"  Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                                            <Button Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10"  Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding CatalogResources.PlayButtonTooltip, Source={StaticResource CatalogResources}}" Visibility="{Binding IsSelected, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
@@ -97,13 +97,34 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Style="{StaticResource ContentTextStyle}" Foreground="{StaticResource BodyTextColorBrush}"  Text="{Binding CatalogResources.Description, Source={StaticResource CatalogResources}}"/>
-                <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}" Grid.Row="1">
+                <TextBlock Style="{StaticResource ContentHeaderStyle}" Foreground="{StaticResource BodyTextColorBrush}" Text="{Binding CatalogResources.TrainingSetsTitle, Source={StaticResource CatalogResources}}" Margin="2"/>
+                <ListBox 
+                    ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Stretch" 
+                    HorizontalAlignment="Stretch" 
+                    Margin="10" 
+                    DisplayMemberPath="Name"
+                    ItemsSource="{Binding SelectedCategory.SelectedCatalog.SelectedVideo.TrainingSets, Mode=OneWay}" 
+                    SelectedItem="{Binding SelectedCategory.SelectedCatalog.SelectedVideo.SelectedTrainingSet, Mode=TwoWay}">
+                    
+                </ListBox>
+                <!--<ScrollViewer Style="{StaticResource PageScrollViewerStyle}" Grid.Row="1">
+                </ScrollViewer>-->
+            </Grid>
+        </Border>
+        <Border CornerRadius="5" BorderBrush="Gray" BorderThickness="2" Grid.Column="2" Grid.Row="1" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource ContentHeaderStyle}" Foreground="{StaticResource BodyTextColorBrush}" Text="{Binding CatalogResources.DescriptionTitle, Source={StaticResource CatalogResources}}" Margin="2"/>
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" BorderBrush="Transparent" Grid.Row="1">
+                    <TextBlock Style="{StaticResource ContentTextStyle}" Text="{Binding SelectedCategory.SelectedCatalog.SelectedVideo.SelectedTrainingSet.Description, Mode=OneWay}" TextWrapping="Wrap" Margin="10"/>
                 </ScrollViewer>
             </Grid>
         </Border>
-        <controlsToolkit:HeaderedContentControl Grid.Column="2" Grid.Row="1" Header="Libraries" FontSize="18">
-            
-        </controlsToolkit:HeaderedContentControl>
     </Grid>
 </UserControl>

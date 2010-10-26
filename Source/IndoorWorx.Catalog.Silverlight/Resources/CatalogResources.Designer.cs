@@ -63,9 +63,9 @@ namespace IndoorWorx.Catalog.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
-        public static string Description {
+        public static string DescriptionTitle {
             get {
-                return ResourceManager.GetString("Description", resourceCulture);
+                return ResourceManager.GetString("DescriptionTitle", resourceCulture);
             }
         }
         
@@ -75,6 +75,24 @@ namespace IndoorWorx.Catalog.Resources {
         public static string PageTitle {
             get {
                 return ResourceManager.GetString("PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview this video.
+        /// </summary>
+        public static string PlayButtonTooltip {
+            get {
+                return ResourceManager.GetString("PlayButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Training Sets.
+        /// </summary>
+        public static string TrainingSetsTitle {
+            get {
+                return ResourceManager.GetString("TrainingSetsTitle", resourceCulture);
             }
         }
     }

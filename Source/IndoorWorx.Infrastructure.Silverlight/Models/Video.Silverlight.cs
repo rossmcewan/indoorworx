@@ -13,14 +13,25 @@ namespace IndoorWorx.Infrastructure.Models
 {
     public partial class Video
     {
-        private bool playing = false;
-        public virtual bool IsPlaying
+        private bool selected = false;
+        public virtual bool IsSelected
         {
-            get { return playing; }
+            get { return selected; }
             set
             {                
-                playing = value;
-                FirePropertyChanged("IsPlaying");
+                selected = value;
+                FirePropertyChanged("IsSelected");
+            }
+        }
+
+        private TrainingSet selectedTrainingSet;
+        public virtual TrainingSet SelectedTrainingSet
+        {
+            get { return selectedTrainingSet; }
+            set
+            {
+                selectedTrainingSet = value;
+                FirePropertyChanged("SelectedTrainingSet");
             }
         }
     }

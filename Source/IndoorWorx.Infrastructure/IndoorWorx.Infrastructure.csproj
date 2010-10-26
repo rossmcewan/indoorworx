@@ -45,6 +45,7 @@
     <Compile Include="Models\Catalog.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\NavigationInfo.cs" />
+    <Compile Include="Models\TrainingSet.cs" />
     <Compile Include="Models\Telemetry.cs" />
     <Compile Include="Models\Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

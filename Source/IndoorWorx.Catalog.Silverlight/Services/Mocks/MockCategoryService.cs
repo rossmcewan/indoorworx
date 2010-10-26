@@ -40,7 +40,20 @@ namespace IndoorWorx.Catalog.Services.Mocks
                                 {
                                     StreamUri = new Uri("http://www.indoorworx.com/media/FILE0001.ism/manifest",UriKind.Absolute),
                                     ImageUri = new Uri("http://localhost:3415/Mock/tri1.jpg",UriKind.Absolute),
-                                    Title = "Double Century 2010"                       
+                                    Title = "Double Century 2010",
+                                    TrainingSets = new List<TrainingSet>()
+                                    {
+                                        new TrainingSet()
+                                        {
+                                            Name = "Entire Ride",
+                                            Description = "A good 2 hour session through the rolling hills of the Suikerbosrand Nature Reserve. This includes some hard climbs followed by recovery as we go down the other side."
+                                        },
+                                        new TrainingSet()
+                                        {
+                                            Name = "2 x 20",
+                                            Description = "A good 15 minute warm-up over the rolling roads of the Suikerbosrand Nature Reserve; followed by 2 hard 20 minute intervals performed at 95-105% of FTP, with 5 minute recovery intervals. The cool down is a 10 minute easy pedal down the Rand Waterboard road."
+                                        }
+                                    }
                                 },
                                 new Infrastructure.Models.Video()
                                 {

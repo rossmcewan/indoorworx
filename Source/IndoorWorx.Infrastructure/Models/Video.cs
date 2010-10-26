@@ -52,5 +52,16 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("Telemetry");
             }
         }
+
+        private ICollection<TrainingSet> trainingSets = new List<TrainingSet>();
+        public virtual ICollection<TrainingSet> TrainingSets
+        {
+            get { return trainingSets; }
+            set
+            {
+                trainingSets = value;
+                FirePropertyChanged("TrainingSets");
+            }
+        }
     }
 }

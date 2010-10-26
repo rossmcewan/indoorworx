@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IndoorWorx.Infrastructure.Models
 {
-    public class Catalog : BaseModel
+    public partial class Catalog : BaseModel
     {
         private string title;
         public virtual string Title
@@ -49,17 +49,6 @@ namespace IndoorWorx.Infrastructure.Models
                 videos = value;
                 FirePropertyChanged("Videos");
             }
-        }
-
-        private Video selectedVideo;
-        public virtual Video SelectedVideo
-        {
-            get { return selectedVideo; }
-            set
-            {
-                selectedVideo = value;
-                FirePropertyChanged("SelectedVideo");
-            }
-        }
+        }        
     }
 }

@@ -463,6 +463,17 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
     </Style>
 
+    <!-- Content Header Style -->
+    <Style x:Key="ContentHeaderStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource NavigationForegroundColorBrush}" />
+        <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}" />
+        <Setter Property="FontSize" Value="{StaticResource ContentFontSize}" />
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="0,2,0,2" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+
     <!--PageHyperlinkButtonStyle-->
     <Style x:Key="PageHyperlinkButtonStyle" TargetType="HyperlinkButton">
         <Setter Property="TargetName" Value="_new" />

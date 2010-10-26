@@ -20,7 +20,12 @@ namespace IndoorWorx.Catalog.Views.Dynamic
         public CatalogPage()
         {
             InitializeComponent();
-            this.Content = IoC.Resolve<ICatalogView>() as UIElement;
+            var contentElement = IoC.Resolve<ICatalogView>() as UserControl;
+            if (contentElement.Parent != null)
+            {
+                (contentElement.Parent as CatalogPage).Content = null;
+            }
+            this.Content = contentElement;
         }
 
         private ICatalogView View
