@@ -64,6 +64,7 @@
     <Content Include="App_Data\aspnetdb_log.ldf">
       <DependentUpon>ASPNETDB.MDF</DependentUpon>
     </Content>
+    <Content Include="clientaccesspolicy.xml" />
     <Content Include="ClientBin\IndoorWorx.Catalog.Silverlight.xap" />
     <Content Include="ClientBin\IndoorWorx.Silverlight.xap" />
     <Content Include="ClientBin\IndoorWorx.UserProfile.Silverlight.xap" />

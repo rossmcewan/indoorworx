@@ -38,20 +38,25 @@ namespace IndoorWorx.Catalog.Services.Mocks
                             {
                                 new Infrastructure.Models.Video()
                                 {
-                                    StreamUri = new Uri("http://www.indoorworx.com/media/FILE0001.ism/manifest",UriKind.Absolute),
+                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                     ImageUri = new Uri("http://localhost:3415/Mock/tri1.jpg",UriKind.Absolute),
-                                    Title = "Double Century 2010",
+                                    Title = "Rand Waterboard Intervals",
                                     TrainingSets = new List<TrainingSet>()
                                     {
                                         new TrainingSet()
                                         {
                                             Name = "Entire Ride",
-                                            Description = "A good 2 hour session through the rolling hills of the Suikerbosrand Nature Reserve. This includes some hard climbs followed by recovery as we go down the other side."
+                                            Description = "The entire ride entails a quick warm up, followed by 2 by 2 minutes at 120 % FTP with 2 minutes RI; followed by 5 minutes at 110% FTP with 5 minutes RI. We repeat this 5 times before a quick cool down. This is a great set ... dig deep."
                                         },
                                         new TrainingSet()
                                         {
-                                            Name = "2 x 20",
-                                            Description = "A good 15 minute warm-up over the rolling roads of the Suikerbosrand Nature Reserve; followed by 2 hard 20 minute intervals performed at 95-105% of FTP, with 5 minute recovery intervals. The cool down is a 10 minute easy pedal down the Rand Waterboard road."
+                                            Name = "5 x 5",
+                                            Description = "A quick warm up, followed by 5 by 5 minutes at 110% FTP with 5 minutes RI. This is followed by a quick cool down."
+                                        },
+                                        new TrainingSet()
+                                        {
+                                            Name = "15 x 2",
+                                            Description = "A quick warm up, followed by 15 by 2 minutes at 120% FTP with 2 minutes RI. This is followed by a quick cool down. Prepare to suffer."
                                         }
                                     }
                                 },

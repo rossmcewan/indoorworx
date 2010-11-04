@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Web.Media.SmoothStreaming;
 using Microsoft.SilverlightMediaFramework.Core;
+using Telerik.Windows.Controls;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -18,7 +19,7 @@ namespace IndoorWorx.Catalog.Views
     {
         public CatalogView(ICatalogPresentationModel model)
         {
-            InitializeComponent();
+            InitializeComponent();            
             this.DataContext = model;
             model.View = this;
         }
@@ -44,7 +45,7 @@ namespace IndoorWorx.Catalog.Views
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            var item = flowControl2.ItemContainerGenerator.ContainerFromItem(Model.SelectedCategory.SelectedCatalog.SelectedVideo ?? Model.SelectedCategory.SelectedCatalog.Videos.FirstOrDefault());
+            var item = radTileView.ItemContainerGenerator.ContainerFromItem(Model.SelectedCategory.SelectedCatalog.SelectedVideo ?? Model.SelectedCategory.SelectedCatalog.Videos.FirstOrDefault());
 
             var player = FindVisualChild<SmoothStreamingMediaElement>(item);
             
@@ -75,6 +76,11 @@ namespace IndoorWorx.Catalog.Views
         }
 
         private void player_MediaFailed(object sender, Microsoft.SilverlightMediaFramework.Core.CustomEventArgs<Exception> e)
+        {
+
+        }
+
+        private void radTileView_TileStateChanged(object sender, Telerik.Windows.RadRoutedEventArgs e)
         {
 
         }

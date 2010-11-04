@@ -219,10 +219,14 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Assets\Styles.xaml">
+    <Page Include="Assets\JetPack\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Assets\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\BusyIndicator.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -299,19 +303,23 @@
     <EmbeddedResource Include="Assets\Resources\ApplicationUris.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ApplicationUris.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\Resources\ErrorResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorResources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>IndoorWorx.Silverlight</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\Resources\PrismResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PrismResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\Resources\ResourceDictionaryKeys.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceDictionaryKeys.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\Resources\SecurityQuestions.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
