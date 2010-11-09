@@ -61,6 +61,15 @@ namespace IndoorWorx.Silverlight.Assets.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DividerStyle.
+        /// </summary>
+        internal static string DividerStyle {
+            get {
+                return ResourceManager.GetString("DividerStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LinkStyle.
         /// </summary>
         internal static string LinkStyle {

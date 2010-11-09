@@ -17,6 +17,7 @@ namespace IndoorWorx.Catalog.Views.Dynamic
 {
     public partial class CatalogPage : DynamicPage
     {
+        bool reloadRequired = true;
         public CatalogPage()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace IndoorWorx.Catalog.Views.Dynamic
             if (contentElement.Parent != null)
             {
                 (contentElement.Parent as CatalogPage).Content = null;
+                reloadRequired = false;
             }
             this.Content = contentElement;
         }
@@ -36,7 +38,8 @@ namespace IndoorWorx.Catalog.Views.Dynamic
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            View.Model.LoadCategories();
+            if(reloadRequired)
+                View.Model.LoadCategories();
         }
     }
 }

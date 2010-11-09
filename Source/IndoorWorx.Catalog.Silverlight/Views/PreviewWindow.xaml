@@ -4,7 +4,8 @@
            xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
            xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"
            xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"                      
-           Width="400" Height="400"                    
+           Width="400" Height="400"       
+           ResizeMode="NoResize"        
            WindowStartupLocation="CenterOwner"
            telerik:StyleManager.Theme="Windows7"                   
            Header="{Binding Title, Mode=OneWay}">

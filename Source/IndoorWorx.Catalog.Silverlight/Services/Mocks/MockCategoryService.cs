@@ -75,18 +75,7 @@ namespace IndoorWorx.Catalog.Services.Mocks
                             }
                     }
                 }
-            });
-            categories.Add(new Category()
-            {
-                Title = "Rowing",
-                Catalogs = new ObservableCollection<Infrastructure.Models.Catalog>()
-                {
-                    new Infrastructure.Models.Catalog()
-                    {
-                        Title = "The Diamond"                       
-                    }
-                }
-            });
+            });            
             if (CategoriesRetrieved != null)
                 CategoriesRetrieved(this, new DataEventArgs<ICollection<Category>>(categories));
         }

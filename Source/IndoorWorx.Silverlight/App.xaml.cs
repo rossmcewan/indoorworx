@@ -6,19 +6,19 @@
     using System.Windows;
     using System.Windows.Controls;
     using IndoorWorx.Silverlight.Controls;
+    using Telerik.Windows.Controls;
 
     /// <summary>
     /// Main <see cref="Application"/> class.
     /// </summary>
     public partial class App : Application
     {
-        private BusyIndicator busyIndicator;
-
         /// <summary>
         /// Creates a new <see cref="App"/> instance.
         /// </summary>
         public App()
         {
+            StyleManager.ApplicationTheme = new Windows7Theme();
             InitializeComponent();
 
             // Create a WebContext and add it to the ApplicationLifetimeObjects

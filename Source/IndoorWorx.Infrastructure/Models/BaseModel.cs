@@ -8,6 +8,17 @@ namespace IndoorWorx.Infrastructure.Models
 {
     public abstract class BaseModel : INotifyPropertyChanged
     {
+        private Guid id;
+        public virtual Guid Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                FirePropertyChanged("Id");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public virtual void FirePropertyChanged(string propertyName)

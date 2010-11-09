@@ -15,6 +15,7 @@ using IndoorWorx.Infrastructure.Models;
     using System.ServiceModel.DomainServices.Client.ApplicationServices;
     using SLaB.Navigation.ContentLoaders.Auth;
     using SLaB.Navigation.ContentLoaders.Error;
+    using System.Windows.Shapes;
 
     /// <summary>
     /// <see cref="UserControl"/> class providing the main UI for the application.
@@ -112,6 +113,7 @@ using IndoorWorx.Infrastructure.Models;
                 authRule.Parts.Add(new Allow() { Users = navigation.GetAllowedRolesAsString() });
                 NavigationAuthorizer _authorizer = GetAuthorizer();
                 _authorizer.Rules.Add(authRule);
+                LinksStackPanel.Children.Add(GetDivider());
                 LinksStackPanel.Children.Add(hb);
             }
             else
@@ -139,6 +141,13 @@ using IndoorWorx.Infrastructure.Models;
                     return;
                 }
             }
+        }
+
+        private UIElement GetDivider()
+        {
+            var rectangle = new Rectangle();
+            rectangle.Style = Application.Current.Resources[ResourceDictionaryKeys.DividerStyle] as Style;
+            return rectangle;
         }
 
         private HyperlinkButton GetHyperlinkButtonFor(NavigationInfo navigation)

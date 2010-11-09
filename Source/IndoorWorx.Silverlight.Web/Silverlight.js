@@ -371,7 +371,7 @@ Silverlight.buildHTML = function (slProperties) {
             htmlBuilder.push('<param name="' + Silverlight.HtmlAttributeEncode(name) + '" value="' + Silverlight.HtmlAttributeEncode(slProperties[name]) + '" />');
         }
     }
-    htmlBuilder.push('<\/object>');
+    htmlBuilder.push('<\/object><iframe id="_sl_historyFrame" style="visibility:hidden;height:0px;width:0px;border:0px"></iframe>');
     return htmlBuilder.join('');
 };
 
