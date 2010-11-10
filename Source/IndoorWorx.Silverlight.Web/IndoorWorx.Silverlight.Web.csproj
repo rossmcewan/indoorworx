@@ -32,6 +32,71 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\..\Libraries\Default\NHibernate\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\Libraries\Default\NHibernate\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\Libraries\Default\NHibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\Libraries\Default\NHibernate\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Composite">
+      <HintPath>..\..\Libraries\Default\Prism\Microsoft.Practices.Composite.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Composite.Presentation">
+      <HintPath>..\..\Libraries\Default\Prism\Microsoft.Practices.Composite.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Composite.UnityExtensions">
+      <HintPath>..\..\Libraries\Default\Prism\Microsoft.Practices.Composite.UnityExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Default\EntLib\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Default\EntLib\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Default\EntLib\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Default\EntLib\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\Libraries\Default\CommonServiceLocation\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Default\Unity\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Default\Unity\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Default\Unity\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Default\Unity\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\Libraries\Default\NHibernate\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>..\..\Libraries\Default\NHibernate\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq">
+      <HintPath>..\..\Libraries\Default\NHibernate\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -42,6 +107,7 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ServiceModel.DomainServices.Server" />
     <Reference Include="System.Web.Extensions">
@@ -58,12 +124,14 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ASPNETDB.MDF" />
     <Content Include="App_Data\aspnetdb_log.ldf">
       <DependentUpon>ASPNETDB.MDF</DependentUpon>
     </Content>
+    <Content Include="CategoryService.svc" />
     <Content Include="clientaccesspolicy.xml" />
     <Content Include="ClientBin\IndoorWorx.Catalog.Silverlight.xap" />
     <Content Include="ClientBin\IndoorWorx.Silverlight.xap" />
@@ -76,6 +144,7 @@
     <Content Include="css\slInstallSmall.css" />
     <Content Include="css\slInstallWide.css" />
     <Content Include="Default.html" />
+    <Content Include="Global.asax" />
     <Content Include="images\narrow\divider.png" />
     <Content Include="images\narrow\panel_bottom.png" />
     <Content Include="images\narrow\panel_loop.png" />
@@ -107,7 +176,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ICategoryService.cs" />
     <Compile Include="Resources\ValidationErrorResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -135,7 +209,24 @@
       <LastGenOutput>RegistrationDataResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\IndoorWorx.Catalog\IndoorWorx.Catalog.csproj">
+      <Project>{EFB2B27B-411E-4382-83FF-12A84F5AC021}</Project>
+      <Name>IndoorWorx.Catalog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IndoorWorx.Infrastructure\IndoorWorx.Infrastructure.csproj">
+      <Project>{DF3B24C9-443A-42C6-84AE-8C796C091498}</Project>
+      <Name>IndoorWorx.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IndoorWorx.Library\IndoorWorx.Library.csproj">
+      <Project>{C8468E7F-C6B0-40A9-BE81-F2EC34DC7772}</Project>
+      <Name>IndoorWorx.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IndoorWorx.NHibernate\IndoorWorx.NHibernate.csproj">
+      <Project>{11B702BE-C0C0-4F83-9ECB-928235ED0C0F}</Project>
+      <Name>IndoorWorx.NHibernate</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="images\narrow\Thumbs.db" />
     <None Include="images\small\Thumbs.db" />

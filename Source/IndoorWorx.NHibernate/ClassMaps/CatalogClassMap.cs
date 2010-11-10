@@ -13,9 +13,9 @@ namespace IndoorWorx.NHibernate.ClassMaps
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
             Map(x => x.Image);
-            Map(x => x.Title);
+            Map(x => x.Title).Not.Nullable();
             Map(x => x.Description);
-            HasMany(x => x.Videos).KeyColumn("Catalog");
+            HasMany(x => x.Videos).KeyColumn("Catalog").Cascade.SaveUpdate();
         }
     }
 }

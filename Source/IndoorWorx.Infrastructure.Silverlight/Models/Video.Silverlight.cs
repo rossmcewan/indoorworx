@@ -24,8 +24,8 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private TrainingSet selectedTrainingSet;
-        public virtual TrainingSet SelectedTrainingSet
+        private Video selectedTrainingSet;
+        public virtual Video SelectedTrainingSet
         {
             get { return selectedTrainingSet; }
             set

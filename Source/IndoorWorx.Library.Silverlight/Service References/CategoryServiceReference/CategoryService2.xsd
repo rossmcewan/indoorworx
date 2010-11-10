@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3415/CategoryService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Category" nillable="true" type="tns:Category" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCategory" nillable="true" type="tns:ArrayOfCategory" />
+  <xs:complexType name="Category">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Catalogs" nillable="true" type="tns:ArrayOfCatalog" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Category" nillable="true" type="tns:Category" />
+  <xs:complexType name="BaseModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:anyType">
+        <xs:annotation>
+          <xs:appinfo>
+            <ActualType Name="guid" Namespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BaseModel" nillable="true" type="tns:BaseModel" />
+  <xs:complexType name="ArrayOfCatalog">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Catalog" nillable="true" type="tns:Catalog" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCatalog" nillable="true" type="tns:ArrayOfCatalog" />
+  <xs:complexType name="Catalog">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Image" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Videos" nillable="true" type="tns:ArrayOfVideo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Catalog" nillable="true" type="tns:Catalog" />
+  <xs:complexType name="ArrayOfVideo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Video" nillable="true" type="tns:Video" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVideo" nillable="true" type="tns:ArrayOfVideo" />
+  <xs:complexType name="Video">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AuditableModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" type="ser:guid" />
+          <xs:element minOccurs="0" name="ImageUri" nillable="true" type="xs:anyURI" />
+          <xs:element minOccurs="0" name="StreamUri" nillable="true" type="xs:anyURI" />
+          <xs:element minOccurs="0" name="Telemetry" nillable="true" type="tns:ArrayOfTelemetry" />
+          <xs:element minOccurs="0" name="TelemetryData" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TrainingSets" nillable="true" type="tns:ArrayOfVideo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Video" nillable="true" type="tns:Video" />
+  <xs:complexType name="AuditableModel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Created" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Modified" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AuditableModel" nillable="true" type="tns:AuditableModel" />
+  <xs:complexType name="ArrayOfTelemetry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Telemetry" nillable="true" type="tns:Telemetry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTelemetry" nillable="true" type="tns:ArrayOfTelemetry" />
+  <xs:complexType name="Telemetry">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Altitude" type="xs:double" />
+          <xs:element minOccurs="0" name="Cadence" type="xs:int" />
+          <xs:element minOccurs="0" name="Distance" type="xs:double" />
+          <xs:element minOccurs="0" name="HeartRate" type="xs:int" />
+          <xs:element minOccurs="0" name="Id" type="xs:anyType">
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="int" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Speed" type="xs:double" />
+          <xs:element minOccurs="0" name="TimePosition" type="ser:duration" />
+          <xs:element minOccurs="0" name="Torque" type="xs:double" />
+          <xs:element minOccurs="0" name="Watts" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Telemetry" nillable="true" type="tns:Telemetry" />
+</xs:schema>

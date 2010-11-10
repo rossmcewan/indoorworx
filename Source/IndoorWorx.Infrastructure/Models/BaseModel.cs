@@ -19,7 +19,7 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public virtual event PropertyChangedEventHandler PropertyChanged;
 
         public virtual void FirePropertyChanged(string propertyName)
         {

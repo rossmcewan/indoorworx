@@ -81,39 +81,9 @@
     <Reference Include="Microsoft.Practices.Unity.Silverlight">
       <HintPath>..\..\Libraries\Silverlight\Unity\Microsoft.Practices.Unity.Silverlight.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SilverlightMediaFramework.Core, Version=2.2010.1001.1, Culture=neutral, PublicKeyToken=6687ff884a90c6a6, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Silverlight\SMF\Microsoft.SilverlightMediaFramework.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins, Version=2.2010.1001.1, Culture=neutral, PublicKeyToken=3dd5df9571bfd1e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Silverlight\SMF\Microsoft.SilverlightMediaFramework.Plugins.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.ClearTextCaptions">
-      <HintPath>..\..\Libraries\Silverlight\SMF\Microsoft.SilverlightMediaFramework.Plugins.ClearTextCaptions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Heuristics, Version=2.2010.1001.1, Culture=neutral, PublicKeyToken=24473241fae5094b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Silverlight\SMF\Microsoft.SilverlightMediaFramework.Plugins.Heuristics.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Progressive, Version=2.2010.1001.1, Culture=neutral, PublicKeyToken=f5b35820df7ecf58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Silverlight\SMF\Microsoft.SilverlightMediaFramework.Plugins.Progressive.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming, Version=2.2010.1001.1, Culture=neutral, PublicKeyToken=17913f4360e6936c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Silverlight\SMF\Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.TimedText, Version=2.2010.1001.1, Culture=neutral, PublicKeyToken=5f67d0f7027ac716, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Silverlight\SMF\Microsoft.SilverlightMediaFramework.Plugins.TimedText.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SilverlightMediaFramework.Utilities, Version=2.2010.1001.1, Culture=neutral, PublicKeyToken=2018901a52f7a62c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Silverlight\SMF\Microsoft.SilverlightMediaFramework.Utilities.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Media.SmoothStreaming, Version=1.0.837.34, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -163,6 +133,10 @@
     <ProjectReference Include="..\IndoorWorx.Infrastructure.Silverlight\IndoorWorx.Infrastructure.Silverlight.csproj">
       <Project>{74DA0835-9E56-474D-A3A9-92D99CDCB3C0}</Project>
       <Name>IndoorWorx.Infrastructure.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IndoorWorx.Library.Silverlight\IndoorWorx.Library.Silverlight.csproj">
+      <Project>{D244AAA6-79A1-4879-9F49-B41059D1F6DA}</Project>
+      <Name>IndoorWorx.Library.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

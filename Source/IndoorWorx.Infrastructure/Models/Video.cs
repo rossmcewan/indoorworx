@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace IndoorWorx.Infrastructure.Models
 {
@@ -17,6 +18,17 @@ namespace IndoorWorx.Infrastructure.Models
             {
                 title = value;
                 FirePropertyChanged("Title");
+            }
+        }
+
+        private string description;
+        public virtual string Description
+        {
+            get { return description; }
+            set
+            {
+                description = value;
+                FirePropertyChanged("Description");
             }
         }
 
@@ -42,19 +54,43 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private ICollection<Telemetry> telemetry = new List<Telemetry>();
-        public virtual ICollection<Telemetry> Telemetry
+        private string telemetryData;
+        public virtual string TelemetryData
         {
-            get { return telemetry; }
+            get { return telemetryData; }
             set
             {
-                telemetry = value;
-                FirePropertyChanged("Telemetry");
+                telemetryData = value;
+                FirePropertyChanged("TelemetryData");
             }
         }
 
-        private ICollection<TrainingSet> trainingSets = new List<TrainingSet>();
-        public virtual ICollection<TrainingSet> TrainingSets
+        public virtual ICollection<Telemetry> Telemetry
+        {
+            get
+            {
+                List<Telemetry> telemetry = new List<Telemetry>();
+                using (var reader = new StringReader(TelemetryData))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        try
+                        {
+                            telemetry.Add(Models.Telemetry.Parse(line));
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                    }                    
+                }
+                return telemetry;
+            }
+        }
+
+        private ICollection<Video> trainingSets = new List<Video>();
+        public virtual ICollection<Video> TrainingSets
         {
             get { return trainingSets; }
             set

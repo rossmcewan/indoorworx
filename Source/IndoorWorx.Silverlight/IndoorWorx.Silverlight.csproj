@@ -286,6 +286,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
+    <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Libs\System.Windows.Controls.Data.DataForm.Toolkit.dll" />

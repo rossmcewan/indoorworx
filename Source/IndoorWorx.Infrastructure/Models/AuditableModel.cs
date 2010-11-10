@@ -7,8 +7,8 @@ namespace IndoorWorx.Infrastructure.Models
 {
     public abstract class AuditableModel : BaseModel
     {
-        private DateTime created;
-        public virtual DateTime Created
+        private DateTime? created;
+        public virtual DateTime? Created
         {
             get { return created; }
             set

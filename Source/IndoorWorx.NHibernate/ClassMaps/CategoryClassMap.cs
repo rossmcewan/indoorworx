@@ -13,8 +13,8 @@ namespace IndoorWorx.NHibernate.ClassMaps
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
             Map(x => x.Description);
-            Map(x => x.Title);
-            HasMany(x => x.Catalogs).KeyColumn("Category");
+            Map(x => x.Title).Not.Nullable();
+            HasMany(x => x.Catalogs).KeyColumn("Category").Cascade.SaveUpdate();
         }
     }
 }

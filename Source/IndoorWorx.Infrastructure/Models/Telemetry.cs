@@ -7,28 +7,39 @@ namespace IndoorWorx.Infrastructure.Models
 {
     public class Telemetry : BaseModel
     {
-        public virtual Guid Id { get; set; }
+        public virtual TimeSpan TimePosition { get; set; }
 
-        public virtual Video Video { get; set; }
+        public virtual double Torque { get; set; }
 
-        //TimePosition - the position of this telemetry element, relative to the entire duration
+        public virtual double Speed { get; set; }
 
-        //Torque - cycling/rowing specific - anything with a ergometer
+        public virtual double Watts { get; set; }
 
-        //Watts
+        public virtual double Distance { get; set; }
 
-        //Speed - in km/h
+        public virtual int Cadence { get; set; }
 
-        //Distance - in km
+        public virtual int HeartRate { get; set; }
 
-        //Cadence
+        public virtual int Id { get; set; }
 
-        //Heart Rate
+        public virtual double Altitude { get; set; }
 
-        //Altitude
-
-        //GPS co-ordinates
-
-        //Gear
+        public static Telemetry Parse(string s)
+        {
+            var elements = s.Split(',');
+            return new Telemetry()
+            {
+                TimePosition = TimeSpan.FromMinutes(Convert.ToDouble(elements[0])),
+                Torque = Convert.ToDouble(elements[1]),
+                Speed = Convert.ToDouble(elements[2]),
+                Watts = Convert.ToDouble(elements[3]),
+                Distance = Convert.ToDouble(elements[4]),
+                Cadence = Convert.ToInt32(elements[5]),
+                HeartRate = Convert.ToInt32(elements[6]),
+                Id = Convert.ToInt32(elements[7]),
+                Altitude = Convert.ToDouble(elements[8])
+            };
+        }
     }
 }
