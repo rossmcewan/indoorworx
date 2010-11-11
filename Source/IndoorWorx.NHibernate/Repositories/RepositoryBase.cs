@@ -5,12 +5,13 @@ using System.Text;
 using IndoorWorx.Infrastructure.Repositories;
 using NHibernate;
 using NHibernate.Linq;
+using System.Linq.Expressions;
 
 namespace IndoorWorx.NHibernate.Repositories
 {
     public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
-        private readonly ISessionFactory sessionFactory;
+        protected readonly ISessionFactory sessionFactory;
         public RepositoryBase(ISessionFactory sessionFactory)
         {
             this.sessionFactory = sessionFactory;
@@ -18,7 +19,7 @@ namespace IndoorWorx.NHibernate.Repositories
 
         #region IRepository<T> Members
 
-        public T Get(object id)
+        public virtual T Get(object id)
         {
             using (var session = sessionFactory.OpenSession())
             {
@@ -26,46 +27,46 @@ namespace IndoorWorx.NHibernate.Repositories
             }
         }
 
-        public ICollection<T> FindAll(params System.Linq.Expressions.Expression<Func<T, bool>>[] where)
+        public virtual ICollection<T> FindAll(Expression<Func<T, bool>> where)
         {
             using (var session = sessionFactory.OpenSession())
             {
                 var result = from t in session.Query<T>() select t;
-                foreach (var whereClause in where)
+                if(where != null)
                 {
-                    result = result.Where(whereClause);
+                    result = result.Where(where);
                 }
                 return result.ToList();
             }
         }
 
-        public T FindOne(params System.Linq.Expressions.Expression<Func<T, bool>>[] where)
+        public virtual T FindOne(Expression<Func<T, bool>> where)
         {
             using (var session = sessionFactory.OpenSession())
             {
                 var result = from t in session.Query<T>() select t;
-                foreach (var whereClause in where)
+                if (where != null)
                 {
-                    result = result.Where(whereClause);
+                    result = result.Where(where);
                 }
                 return result.SingleOrDefault();
             }
         }
 
-        public T FindFirst(params System.Linq.Expressions.Expression<Func<T, bool>>[] where)
+        public virtual T FindFirst(Expression<Func<T, bool>> where)
         {
             using (var session = sessionFactory.OpenSession())
             {
                 var result = from t in session.Query<T>() select t;
-                foreach (var whereClause in where)
+                if (where != null)
                 {
-                    result = result.Where(whereClause);
+                    result = result.Where(where);
                 }
                 return result.FirstOrDefault();
             }
         }
 
-        public T Save(T entity)
+        public virtual T Save(T entity)
         {
             using (var session = sessionFactory.OpenSession())
             {

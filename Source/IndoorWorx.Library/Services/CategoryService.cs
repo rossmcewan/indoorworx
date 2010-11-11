@@ -27,7 +27,8 @@ namespace IndoorWorx.Library.Services
 
         public ICollection<Infrastructure.Models.Category> FindAll()
         {
-            return CategoryRepository.FindAll();
+            var result = CategoryRepository.FindAll(null);                
+            return result;
         }
 
         #endregion

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace IndoorWorx.Infrastructure.Models
 {
+    [DataContract(IsReference = true)]
     public abstract class BaseModel : INotifyPropertyChanged
     {
         private Guid id;
+        [DataMember]
         public virtual Guid Id
         {
             get { return id; }

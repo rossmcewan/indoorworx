@@ -162,6 +162,11 @@
     <Content Include="IndoorWorx.SilverlightTestPage.aspx" />
     <Content Include="IndoorWorx.SilverlightTestPage.html" />
     <Content Include="js\AgInstall.js" />
+    <Content Include="Mock\cape-argus.jpg" />
+    <Content Include="Mock\cyclechallenge.jpg" />
+    <Content Include="Mock\mtn_energade.jpg" />
+    <Content Include="Mock\randwaterboard.JPG" />
+    <Content Include="Mock\suikerbosrand.JPG" />
     <Content Include="Mock\tri1.jpg" />
     <Content Include="Mock\tri2.jpg" />
     <Content Include="Mock\tri3.jpg" />

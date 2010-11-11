@@ -2,27 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace IndoorWorx.Infrastructure.Models
 {
+    [DataContract(IsReference = true)]
     public class Telemetry : BaseModel
     {
+        [DataMember]
         public virtual TimeSpan TimePosition { get; set; }
 
+        [DataMember]
         public virtual double Torque { get; set; }
 
+        [DataMember]
         public virtual double Speed { get; set; }
 
+        [DataMember]
         public virtual double Watts { get; set; }
 
+        [DataMember]
         public virtual double Distance { get; set; }
 
+        [DataMember]
         public virtual int Cadence { get; set; }
 
+        [DataMember]
         public virtual int HeartRate { get; set; }
 
+        [DataMember]
         public virtual int Id { get; set; }
 
+        [DataMember]
         public virtual double Altitude { get; set; }
 
         public static Telemetry Parse(string s)

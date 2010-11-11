@@ -26,7 +26,6 @@ namespace IndoorWorx.NHibernate
             var sessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(x => x.FromConnectionStringWithKey("IndoorWorx")))
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<Module>())
-                .ExposeConfiguration(x=>new SchemaExport(x).Create(true,true))
                 .BuildSessionFactory();
             Container.RegisterInstance<ISessionFactory>(SessionFactoryNames.IndoorWorx, sessionFactory);
 

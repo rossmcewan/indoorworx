@@ -60,7 +60,10 @@
       <HintPath>..\..\Libraries\Default\NHibernate\Remotion.Data.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,6 +81,8 @@
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\VideoRepository.cs" />
+    <Compile Include="Serialization\DataContractSurrogate.cs" />
+    <Compile Include="ServiceModel\DataContractSurrogateExtensionElement.cs" />
     <Compile Include="UserTypes\UriType.cs" />
   </ItemGroup>
   <ItemGroup>

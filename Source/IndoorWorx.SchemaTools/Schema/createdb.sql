@@ -22,6 +22,7 @@ alter table [Video]  drop constraint FK30300B576669A625
        Image NVARCHAR(255) null,
        Title NVARCHAR(255) not null,
        Description NVARCHAR(255) null,
+       Sequence INT null,
        Category UNIQUEIDENTIFIER null,
        primary key (Id)
     )
@@ -30,6 +31,7 @@ alter table [Video]  drop constraint FK30300B576669A625
         Id UNIQUEIDENTIFIER not null,
        Description NVARCHAR(255) null,
        Title NVARCHAR(255) not null,
+       Sequence INT null,
        primary key (Id)
     )
 
@@ -41,6 +43,7 @@ alter table [Video]  drop constraint FK30300B576669A625
        CreatedBy NVARCHAR(255) null,
        Modified DATETIME null,
        ModifiedBy NVARCHAR(255) null,
+       Sequence INT null,
        ImageUri NVARCHAR(255) null,
        StreamUri NVARCHAR(255) not null,
        Catalog UNIQUEIDENTIFIER null,

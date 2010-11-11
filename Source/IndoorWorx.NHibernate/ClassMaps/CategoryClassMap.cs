@@ -11,10 +11,11 @@ namespace IndoorWorx.NHibernate.ClassMaps
     {
         public CategoryClassMap()
         {
-            Id(x => x.Id).GeneratedBy.GuidComb();
+            Id(x => x.Id).GeneratedBy.GuidComb();            
             Map(x => x.Description);
             Map(x => x.Title).Not.Nullable();
-            HasMany(x => x.Catalogs).KeyColumn("Category").Cascade.SaveUpdate();
+            Map(x => x.Sequence);
+            HasMany(x => x.Catalogs).KeyColumn("Category").Cascade.SaveUpdate().Fetch.Subselect();
         }
     }
 }

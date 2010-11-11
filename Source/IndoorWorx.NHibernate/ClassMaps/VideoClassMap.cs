@@ -19,9 +19,10 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.CreatedBy);
             Map(x => x.Modified);
             Map(x => x.ModifiedBy);
+            Map(x => x.Sequence);
             Map(x => x.ImageUri).CustomType<UriType>();
             Map(x => x.StreamUri).CustomType<UriType>().Not.Nullable();
-            HasMany(x => x.TrainingSets).KeyColumn("Parent").Cascade.SaveUpdate();
+            HasMany(x => x.TrainingSets).KeyColumn("Parent").Cascade.SaveUpdate().Fetch.Subselect();
         }
     }
 }

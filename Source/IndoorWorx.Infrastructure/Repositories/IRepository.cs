@@ -10,11 +10,11 @@ namespace IndoorWorx.Infrastructure.Repositories
     {
         T Get(object id);
 
-        ICollection<T> FindAll(params Expression<Func<T,bool>>[] where);
+        ICollection<T> FindAll(Expression<Func<T, bool>> where);
 
-        T FindOne(params Expression<Func<T, bool>>[] where);
+        T FindOne(Expression<Func<T, bool>> where);
 
-        T FindFirst(params Expression<Func<T, bool>>[] where);
+        T FindFirst(Expression<Func<T, bool>> where);
 
         T Save(T entity);
     }

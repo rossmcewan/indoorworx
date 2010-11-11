@@ -54,6 +54,8 @@ namespace IndoorWorx.NHibernate.UserTypes
 
             //And save it in the Uri object. This would be the place to make sure that your string 
             //is valid for use with the System.Uri class, but i will leave that to you
+            if (string.IsNullOrWhiteSpace(uriString))
+                return null;
             Uri result = new Uri(uriString, UriKind.Absolute);
             return result;
         }

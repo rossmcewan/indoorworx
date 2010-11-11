@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace IndoorWorx.Infrastructure.Models
 {
+    [DataContract(IsReference = true)]
     public class NavigationInfo : BaseModel
     {
         private string content;
+        [DataMember]
         public virtual string Content
         {
             get { return content; }
@@ -19,6 +22,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private string navigationUri;
+        [DataMember]
         public virtual string NavigationUri
         {
             get { return navigationUri; }
@@ -30,6 +34,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private string packageName;
+        [DataMember]
         public virtual string PackageName
         {
             get { return packageName; }
@@ -41,6 +46,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private bool authenticationRequired;
+        [DataMember]
         public virtual bool IsAuthenticationRequired
         {
             get { return authenticationRequired; }
@@ -52,6 +58,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private ICollection<string> allow = new List<string>();
+        [DataMember]
         public virtual ICollection<string> Allow
         {
             get { return allow; }
@@ -63,6 +70,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private ICollection<string> deny = new List<string>();
+        [DataMember]
         public virtual ICollection<string> Deny
         {
             get { return deny; }

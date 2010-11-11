@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Runtime.Serialization;
 
 namespace IndoorWorx.Infrastructure.Models
 {
+    [DataContract(IsReference = true)]
     public partial class Video : AuditableModel
     {
-        public virtual Guid Id { get; set; }
-
         private string title;
+        [DataMember]
         public virtual string Title
         {
             get { return title; }
@@ -22,6 +23,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private string description;
+        [DataMember]
         public virtual string Description
         {
             get { return description; }
@@ -33,6 +35,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private Uri streamUri;
+        [DataMember]
         public virtual Uri StreamUri
         {
             get { return streamUri; }
@@ -44,6 +47,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private Uri imageUri;
+        [DataMember]
         public virtual Uri ImageUri
         {
             get { return imageUri; }
@@ -55,6 +59,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private string telemetryData;
+        [DataMember]
         public virtual string TelemetryData
         {
             get { return telemetryData; }
@@ -62,6 +67,18 @@ namespace IndoorWorx.Infrastructure.Models
             {
                 telemetryData = value;
                 FirePropertyChanged("TelemetryData");
+            }
+        }
+
+        private int sequence;
+        [DataMember]
+        public virtual int Sequence
+        {
+            get { return sequence; }
+            set
+            {
+                sequence = value;
+                FirePropertyChanged("Sequence");
             }
         }
 
@@ -90,6 +107,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private ICollection<Video> trainingSets = new List<Video>();
+        [DataMember]
         public virtual ICollection<Video> TrainingSets
         {
             get { return trainingSets; }

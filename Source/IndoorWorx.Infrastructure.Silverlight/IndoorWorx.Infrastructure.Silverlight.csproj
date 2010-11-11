@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="Microsoft.Web.Media.SmoothStreaming, Version=1.0.837.34, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />

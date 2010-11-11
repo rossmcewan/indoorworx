@@ -5,8 +5,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:coverflow="clr-namespace:DC.ControlLibrary;assembly=DC.ControlLibrary"   
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight" 
-    xmlns:smf="clr-namespace:Microsoft.SilverlightMediaFramework.Core;assembly=Microsoft.SilverlightMediaFramework.Core" 
-    xmlns:smfmedia="clr-namespace:Microsoft.SilverlightMediaFramework.Core.Media;assembly=Microsoft.SilverlightMediaFramework.Core"
     xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"  
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"     
     d:DesignHeight="500" d:DesignWidth="800"           
@@ -49,7 +47,10 @@
             </telerik:RadOutlookBar.ContentTemplate> 
             <telerik:RadOutlookBar.TitleTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Title, Mode=TwoWay}"/>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource HeaderTextStyle}" Text="{Binding Title, Mode=TwoWay}" />
+                        <TextBlock Style="{StaticResource ContentBodyTextStyle}" Text="{Binding Description, Mode=TwoWay}"/>
+                    </StackPanel>
                 </DataTemplate>
             </telerik:RadOutlookBar.TitleTemplate>
         </telerik:RadOutlookBar>
@@ -91,43 +92,39 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="2*"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <Image Source="{Binding ImageUri.OriginalString, Mode=OneWay}" Margin="5" Grid.ColumnSpan="2"/>
-                                    <Button Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10" Grid.ColumnSpan="2"  Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding CatalogResources.PlayButtonTooltip, Source={StaticResource CatalogResources}}" Visibility="{Binding IsSelected, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                    <Border CornerRadius="5" BorderBrush="Gray" BorderThickness="2" Grid.Column="0" Grid.Row="1" Margin="5">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="*"/>
-                                            </Grid.RowDefinitions>
-                                            <TextBlock Text="{Binding CatalogResources.TrainingSetsTitle, Source={StaticResource CatalogResources}}" Margin="2"/>
-                                            <ListBox 
-                                                ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                                                ScrollViewer.HorizontalScrollBarVisibility="Auto" 
-                                                Grid.Row="1" 
-                                                VerticalAlignment="Stretch" 
-                                                HorizontalAlignment="Stretch" 
-                                                Margin="10" 
-                                                DisplayMemberPath="Name"
-                                                ItemsSource="{Binding TrainingSets, Mode=OneWay}" 
-                                                SelectedItem="{Binding SelectedTrainingSet, Mode=TwoWay}">
-                                            </ListBox>
-                                        </Grid>
-                                    </Border>
-                                    <Border CornerRadius="5" BorderBrush="Gray" BorderThickness="2" Grid.Column="1" Grid.Row="1" Margin="5">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="*"/>
-                                            </Grid.RowDefinitions>
-                                            <TextBlock Text="{Binding CatalogResources.DescriptionTitle, Source={StaticResource CatalogResources}}" Margin="2"/>
-                                            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" BorderBrush="Transparent" Grid.Row="1">
-                                                <TextBlock Text="{Binding SelectedTrainingSet.Description, Mode=OneWay}" TextWrapping="Wrap" Margin="10"/>
-                                            </ScrollViewer>
-                                        </Grid>
-                                    </Border>
+                                    <Image Source="http://localhost:3415/Mock/mtn_energade.jpg" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Opacity="0.5"/>
+                                    <telerik:RadTileView telerik:StyleManager.Theme="Transparent" Grid.ColumnSpan="2" MaximizeMode="ZeroOrOne" MinimizedItemsPosition="Bottom" MinimizedRowHeight="180" TileStateChangeTrigger="None">
+                                        <telerik:RadTileViewItem Header="Preview" TileState="Maximized">
+                                            <Grid>
+                                                <Image Source="{Binding ImageUri.OriginalString, Mode=OneWay}" Margin="5"/>
+                                                <Button Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10" Grid.ColumnSpan="2"  Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding CatalogResources.PlayButtonTooltip, Source={StaticResource CatalogResources}}" Visibility="{Binding IsSelected, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                            </Grid>
+                                        </telerik:RadTileViewItem>
+                                        <telerik:RadTileViewItem Header="{Binding CatalogResources.TrainingSetsTitle, Source={StaticResource CatalogResources}}">
+                                            <Grid>
+                                                <ListBox 
+                                                    ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                                    ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                                                    VerticalAlignment="Stretch" 
+                                                    HorizontalAlignment="Stretch" 
+                                                    Margin="10" 
+                                                    DisplayMemberPath="Title"
+                                                    ItemsSource="{Binding TrainingSets, Mode=OneWay}" 
+                                                    SelectedItem="{Binding SelectedTrainingSet, Mode=TwoWay}">
+                                                </ListBox>
+                                            </Grid>
+                                        </telerik:RadTileViewItem>
+                                        <telerik:RadTileViewItem Header="{Binding CatalogResources.DescriptionTitle, Source={StaticResource CatalogResources}}">
+                                            <Grid>
+                                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" BorderBrush="Transparent">
+                                                    <TextBlock Text="{Binding SelectedTrainingSet.Description, Mode=OneWay}" TextWrapping="Wrap" />
+                                                </ScrollViewer>
+                                            </Grid>
+                                        </telerik:RadTileViewItem>
+                                        <telerik:RadTileViewItem Header="{Binding CatalogResources.ProfilesTitle, Source={StaticResource CatalogResources}}"></telerik:RadTileViewItem>
+                                    </telerik:RadTileView>                                                                        
                                 </Grid>
                             </telerik:RadFluidContentControl.LargeContent>
                         </telerik:RadFluidContentControl>
@@ -135,82 +132,5 @@
                 </DataTemplate>
             </telerik:RadTileView.ContentTemplate>
         </telerik:RadTileView>
-        <!--<sdk:TabControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <sdk:TabItem Header="Videos">
-                <Grid x:Name="imageGrid" Visibility="Visible">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.OpacityMask>
-                            <LinearGradientBrush EndPoint="0,.5" StartPoint="1,.5">
-                                <GradientStop Color="#00000000" Offset="1"/>
-                                <GradientStop Color="#FF000000" Offset="0.8"/>
-                                <GradientStop Color="#FE000000" Offset="0.2"/>
-                                <GradientStop Color="#00000000" Offset="0"/>
-                            </LinearGradientBrush>
-                        </Grid.OpacityMask>                        
-                        <coverflow:CoverFlowControl 
-                        x:Name="flowControl2" 
-                        CacheMode="BitmapCache" 
-                        ItemsSource="{Binding SelectedCategory.SelectedCatalog.Videos, Mode=TwoWay}" 
-                        SelectedItem="{Binding SelectedCategory.SelectedCatalog.SelectedVideo, Mode=TwoWay}" 
-                        Margin="5">
-                            <coverflow:CoverFlowControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Border CornerRadius="10" BorderBrush="#99444444" BorderThickness="2">
-                                        <Grid>
-                                            <Image Source="{Binding ImageUri.OriginalString, Mode=OneWay}" Margin="5"/>
-                                            <Button Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10"  Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding CatalogResources.PlayButtonTooltip, Source={StaticResource CatalogResources}}" Visibility="{Binding IsSelected, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </coverflow:CoverFlowControl.ItemTemplate>
-                        </coverflow:CoverFlowControl>
-                    </Grid>
-                    <TextBlock Text="{Binding SelectedCategory.SelectedCatalog.SelectedVideo.Title, Mode=TwoWay}" Foreground="White" HorizontalAlignment="Center" Grid.Row="1" Margin="5" FontSize="25" />
-                </Grid>
-            </sdk:TabItem>
-        </sdk:TabControl>-->
-        <!--<Border CornerRadius="5" BorderBrush="Gray" BorderThickness="2" Grid.Column="1" Grid.Row="1" Margin="5">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Style="{StaticResource ContentHeaderStyle}" Foreground="{StaticResource BodyTextColorBrush}" Text="{Binding CatalogResources.TrainingSetsTitle, Source={StaticResource CatalogResources}}" Margin="2"/>
-                <ListBox 
-                    ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                    ScrollViewer.HorizontalScrollBarVisibility="Auto" 
-                    Grid.Row="1" 
-                    VerticalAlignment="Stretch" 
-                    HorizontalAlignment="Stretch" 
-                    Margin="10" 
-                    DisplayMemberPath="Name"
-                    ItemsSource="{Binding SelectedCategory.SelectedCatalog.SelectedVideo.TrainingSets, Mode=OneWay}" 
-                    SelectedItem="{Binding SelectedCategory.SelectedCatalog.SelectedVideo.SelectedTrainingSet, Mode=TwoWay}">
-                    
-                </ListBox>
-            </Grid>
-        </Border>
-        <Border CornerRadius="5" BorderBrush="Gray" BorderThickness="2" Grid.Column="2" Grid.Row="1" Margin="5">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Style="{StaticResource ContentHeaderStyle}" Foreground="{StaticResource BodyTextColorBrush}" Text="{Binding CatalogResources.DescriptionTitle, Source={StaticResource CatalogResources}}" Margin="2"/>
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" BorderBrush="Transparent" Grid.Row="1">
-                    <TextBlock Style="{StaticResource ContentTextStyle}" Text="{Binding SelectedCategory.SelectedCatalog.SelectedVideo.SelectedTrainingSet.Description, Mode=OneWay}" TextWrapping="Wrap" Margin="10"/>
-                </ScrollViewer>
-            </Grid>
-        </Border>-->
     </Grid>
 </UserControl>

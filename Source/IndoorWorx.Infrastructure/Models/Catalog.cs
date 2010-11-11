@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace IndoorWorx.Infrastructure.Models
 {
+    [DataContract(IsReference = true)]
     public partial class Catalog : BaseModel
     {
         private string title;
+        [DataMember]
         public virtual string Title
         {
             get { return title; }
@@ -19,6 +22,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private string image;
+        [DataMember]
         public virtual string Image
         {
             get { return image; }
@@ -30,6 +34,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private string description;
+        [DataMember]
         public virtual string Description
         {
             get { return description; }
@@ -41,6 +46,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private ICollection<Video> videos = new List<Video>();
+        [DataMember]
         public virtual ICollection<Video> Videos
         {
             get { return videos; }
@@ -49,6 +55,18 @@ namespace IndoorWorx.Infrastructure.Models
                 videos = value;
                 FirePropertyChanged("Videos");
             }
-        }        
+        }
+
+        private int sequence;
+        [DataMember]
+        public virtual int Sequence
+        {
+            get { return sequence; }
+            set
+            {
+                sequence = value;
+                FirePropertyChanged("Sequence");
+            }
+        }
     }
 }

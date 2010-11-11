@@ -88,6 +88,15 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profiles.
+        /// </summary>
+        public static string ProfilesTitle {
+            get {
+                return ResourceManager.GetString("ProfilesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Training Sets.
         /// </summary>
         public static string TrainingSetsTitle {
