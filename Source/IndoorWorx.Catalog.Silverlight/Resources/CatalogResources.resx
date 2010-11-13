@@ -123,11 +123,17 @@
   <data name="PageTitle" xml:space="preserve">
     <value>Catalog</value>
   </data>
+  <data name="PauseButtonTooltip" xml:space="preserve">
+    <value>Stop the preview of this video</value>
+  </data>
   <data name="PlayButtonTooltip" xml:space="preserve">
     <value>Preview this video</value>
   </data>
   <data name="ProfilesTitle" xml:space="preserve">
     <value>Profiles</value>
+  </data>
+  <data name="ReviewsTitle" xml:space="preserve">
+    <value>Reviews</value>
   </data>
   <data name="TrainingSetsTitle" xml:space="preserve">
     <value>Training Sets</value>

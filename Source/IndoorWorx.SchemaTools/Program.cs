@@ -85,6 +85,7 @@ namespace IndoorWorx.SchemaTools
                         new Catalog()
                         {
                             Title = "MTN Energade",
+                            ImageUri = new Uri("http://localhost:3415/Mock/mtn_energade.jpg", UriKind.Absolute),
                             Sequence = 2,
                             Description = "Training videos filmed by the MTN Energade cycling team.",
                             Videos = new List<Video>()

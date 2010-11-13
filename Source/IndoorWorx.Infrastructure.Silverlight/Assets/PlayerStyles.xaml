@@ -9,6 +9,14 @@
         <GradientStop Color="#FFBFF0F8"
     		Offset="0.82" />
     </LinearGradientBrush>
+    <LinearGradientBrush x:Key="playerUIBorder" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF7D7F7F" Offset="0"/>
+        <GradientStop Color="Black" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="playerUIFill" EndPoint="0.5,0" StartPoint="0.5,1">
+        <GradientStop Color="#FF7D7F7F" Offset="0"/>
+        <GradientStop Color="#7F000000" Offset="1"/>
+    </LinearGradientBrush>
     <Style x:Key="MainPlayerButtonControlStyle" TargetType="Control">
         <Setter Property="Margin" Value="0,0,3,0"/>
     </Style>
@@ -175,6 +183,166 @@
                     		Data="F1 M 19.1038,18.3758C 19.1038,18.1121 19.2698,17.8719 19.5384,17.7474C 19.807,17.6229 20.1302,17.6364 20.3836,17.7827L 30.5198,23.627C 30.7488,23.7591 30.8861,23.9803 30.8865,24.2185C 30.8871,24.4567 30.7509,24.6784 30.5224,24.8113L 20.3919,30.7001C 20.139,30.847 19.8147,30.8614 19.5457,30.7375C 19.2768,30.6136 19.1096,30.3727 19.1095,30.109L 19.1038,18.3758 Z "
                     		UseLayoutRounding="False" Fill="{StaticResource playerIconFill}"/>
                     </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MainPlayerPauseButtonStyle"
+               TargetType="Button" BasedOn="{StaticResource MainPlayerButtonControlStyle}">
+        <Setter Property="Cursor"
+                    Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Width="34"
+                    		Height="38">
+                        <Grid Margin="0,2,0,0">
+                            <Ellipse x:Name="ellipse"
+                        			Stretch="Fill"
+                        			StrokeThickness="2"
+                        			StrokeMiterLimit="2.75" Margin="0,1,0,0" RenderTransformOrigin="0.5,0.5" >
+                                <Ellipse.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Ellipse.RenderTransform>
+                                <Ellipse.Stroke>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF052BA0" Offset="0"/>
+                                        <GradientStop Color="#FF8CD6FC" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Stroke>
+                                <Ellipse.Fill>
+                                    <LinearGradientBrush StartPoint="0.543065,0.0308619"
+                        					EndPoint="0.543065,0.969142">
+                                        <GradientStop Color="#FF7D7F7F"
+                        						Offset="0.013" />
+                                        <GradientStop Color="#7F000000"
+                        						Offset="1" />
+                                        <GradientStop Color="#B7313131" Offset="0.55"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse x:Name="ellipse1"
+                        			Stretch="Fill"
+                        			StrokeThickness="2"
+                        			StrokeMiterLimit="2.75" Margin="0,1,0,0" >
+                                <Ellipse.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                        <GradientStop Color="#FF7D7F7F" Offset="0"/>
+                                        <GradientStop Color="#7F000000" Offset="1"/>
+                                        <GradientStop Color="#B8373838" Offset="0.55"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                                <Ellipse.Stroke>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF7D7F7F" Offset="0"/>
+                                        <GradientStop Color="Black" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Stroke>
+                            </Ellipse>
+                        </Grid>
+                        <Canvas Width="19" HorizontalAlignment="Center" Margin="0,9,0,6">
+                            <Path Width="6.78589" Height="18.8332" Canvas.Left="1.85706" Canvas.Top="2.08337" Stretch="Fill" StrokeThickness="0.666583" StrokeMiterLimit="2.75" Stroke="{StaticResource playerIconBorder}" Data="F1 M 5.24998,2.74996L 5.24998,2.74996C 6.75574,2.74996 7.97637,3.97057 7.97637,5.47631L 7.97637,17.5236C 7.97637,19.0294 6.75574,20.25 5.24998,20.25L 5.24998,20.25C 3.74427,20.25 2.52364,19.0294 2.52364,17.5236L 2.52364,5.47631C 2.52364,3.97057 3.74427,2.74996 5.24998,2.74996 Z " Fill="{StaticResource playerIconFill}"/>
+                            <Path Width="6.78589" Height="18.8332" Canvas.Left="10.357" Canvas.Top="2.0834" Stretch="Fill" StrokeThickness="0.666583" StrokeMiterLimit="2.75" Stroke="{StaticResource playerIconBorder}" Data="F1 M 13.75,2.74999L 13.75,2.74999C 15.2557,2.74999 16.4763,3.9706 16.4763,5.47634L 16.4763,17.5237C 16.4763,19.0294 15.2557,20.25 13.75,20.25L 13.75,20.25C 12.2442,20.25 11.0236,19.0294 11.0236,17.5237L 11.0236,5.47634C 11.0236,3.9706 12.2442,2.74999 13.75,2.74999 Z " Fill="{StaticResource playerIconFill}"/>
+                        </Canvas>
+
+                        <!--<ToolTipService.ToolTip>
+                            <TextBlock Text="{Binding Pause, Source={StaticResource Localization}}" />
+                        </ToolTipService.ToolTip>-->
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="MouseOver"
+                                                          GeneratedDuration="00:00:00.2000000" />
+                                    <VisualTransition From="Pressed"
+                                                          GeneratedDuration="00:00:00.2000000" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" >
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <PointAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="(Shape.Stroke).(LinearGradientBrush.StartPoint)">
+                                            <EasingPointKeyFrame KeyTime="00:00:00" Value="0.5,1"/>
+                                        </PointAnimationUsingKeyFrames>
+                                        <PointAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="(Shape.Stroke).(LinearGradientBrush.EndPoint)">
+                                            <EasingPointKeyFrame KeyTime="00:00:00" Value="0.5,0"/>
+                                        </PointAnimationUsingKeyFrames>
+                                        <PointAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.StartPoint)">
+                                            <EasingPointKeyFrame KeyTime="00:00:00" Value="0.5,0"/>
+                                        </PointAnimationUsingKeyFrames>
+                                        <PointAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.EndPoint)">
+                                            <EasingPointKeyFrame KeyTime="00:00:00" Value="0.5,1"/>
+                                        </PointAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <PointAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.StartPoint)">
+                                            <EasingPointKeyFrame KeyTime="00:00:00" Value="0.5,0"/>
+                                        </PointAnimationUsingKeyFrames>
+                                        <PointAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.EndPoint)">
+                                            <EasingPointKeyFrame KeyTime="00:00:00" Value="0.5,1"/>
+                                        </PointAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
+                                            <EasingColorKeyFrame KeyTime="00:00:00" Value="#FF052BA0"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[1].(GradientStop.Offset)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.996"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                            <EasingColorKeyFrame KeyTime="00:00:00" Value="#FF8CD6FC"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed" >
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.666583"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.95"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.95"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
+                                            <EasingColorKeyFrame KeyTime="00:00:00" Value="#E4217DC3"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Offset)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.543"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)">
+                                            <EasingColorKeyFrame KeyTime="00:00:00" Value="#00217DC3"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Offset)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.013"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Offset)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.996"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                            <EasingColorKeyFrame KeyTime="00:00:00" Value="Transparent"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Unfocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

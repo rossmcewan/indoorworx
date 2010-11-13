@@ -24,6 +24,17 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private bool playing;
+        public virtual bool IsPlaying
+        {
+            get { return playing; }
+            set
+            {
+                playing = value;
+                FirePropertyChanged("IsPlaying");
+            }
+        }
+
         private Video selectedTrainingSet;
         public virtual Video SelectedTrainingSet
         {

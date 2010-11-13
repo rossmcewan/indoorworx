@@ -19,7 +19,7 @@ alter table [Video]  drop constraint FK30300B576669A625
 
     create table [Catalog] (
         Id UNIQUEIDENTIFIER not null,
-       Image NVARCHAR(255) null,
+       ImageUri NVARCHAR(255) null,
        Title NVARCHAR(255) not null,
        Description NVARCHAR(255) null,
        Sequence INT null,

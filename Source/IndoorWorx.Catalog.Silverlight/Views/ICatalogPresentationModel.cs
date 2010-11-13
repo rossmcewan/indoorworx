@@ -24,5 +24,7 @@ namespace IndoorWorx.Catalog.Views
         void LoadCategories();
 
         void PlaySelectedPreview(Action play);
+
+        void StopSelectedPreview(Action stop);
     }
 }

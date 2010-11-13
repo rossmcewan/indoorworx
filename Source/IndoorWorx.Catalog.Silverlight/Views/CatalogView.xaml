@@ -37,19 +37,23 @@
             x:Name="radOutlookBar">
             <telerik:RadOutlookBar.ContentTemplate>
                 <DataTemplate>
-                    <ListBox 
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                        ItemsSource="{Binding Catalogs, Mode=TwoWay}"
-                        SelectedItem="{Binding SelectedCatalog, Mode=TwoWay}"
-                        DisplayMemberPath="Title"/>
+                    <Grid>
+                        <Image Source="{Binding SelectedCatalog.ImageUri, Mode=OneWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Opacity="0.5"/>
+                        <ListBox 
+                            Background="Transparent"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch"
+                            ItemsSource="{Binding Catalogs, Mode=TwoWay}"
+                            SelectedItem="{Binding SelectedCatalog, Mode=TwoWay}"
+                            DisplayMemberPath="Title"/>
+                    </Grid>
                 </DataTemplate>
             </telerik:RadOutlookBar.ContentTemplate> 
             <telerik:RadOutlookBar.TitleTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Style="{StaticResource HeaderTextStyle}" Text="{Binding Title, Mode=TwoWay}" />
-                        <TextBlock Style="{StaticResource ContentBodyTextStyle}" Text="{Binding Description, Mode=TwoWay}"/>
+                        <TextBlock Style="{StaticResource ContentBodyTextStyle}" Text="{Binding SelectedCatalog.Description, Mode=TwoWay}"/>
                     </StackPanel>
                 </DataTemplate>
             </telerik:RadOutlookBar.TitleTemplate>
@@ -72,6 +76,7 @@
             <telerik:RadTileView.ContentTemplate>
                 <DataTemplate>
                     <Grid>
+                        <Image Source="{Binding ImageUri.OriginalString, Mode=OneWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
                         <telerik:RadFluidContentControl SmallToNormalThreshold="190, 140" Background="Transparent"
 								            NormalToSmallThreshold="190, 140" NormalToLargeThreshold="320, 320"
 								            LargeToNormalThreshold="320, 320">
@@ -92,42 +97,62 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="2*"/>
                                         <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Image Source="http://localhost:3415/Mock/mtn_energade.jpg" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Opacity="0.5"/>
-                                    <telerik:RadTileView telerik:StyleManager.Theme="Transparent" Grid.ColumnSpan="2" MaximizeMode="ZeroOrOne" MinimizedItemsPosition="Bottom" MinimizedRowHeight="180" TileStateChangeTrigger="None">
+                                    </Grid.RowDefinitions>                                    
+                                    <telerik:RadTileView telerik:StyleManager.Theme="Transparent" Grid.ColumnSpan="2" MaximizeMode="One" MinimizedItemsPosition="Left" MinimizedRowHeight="180" TileStateChangeTrigger="None">
                                         <telerik:RadTileViewItem Header="Preview" TileState="Maximized">
                                             <Grid>
-                                                <Image Source="{Binding ImageUri.OriginalString, Mode=OneWay}" Margin="5"/>
-                                                <Button Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10" Grid.ColumnSpan="2"  Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding CatalogResources.PlayButtonTooltip, Source={StaticResource CatalogResources}}" Visibility="{Binding IsSelected, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                <smoothstreaming:SmoothStreamingMediaElement Background="Transparent" SmoothStreamingPlaybackMode="VideoOnly" BufferingTime="00:00:05" SmoothStreamingSource="{Binding StreamUri.OriginalString, Mode=OneWay}" AutoPlay="False"/>
+                                                <!--<Button Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10" Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding CatalogResources.PlayButtonTooltip, Source={StaticResource CatalogResources}}" />-->
+                                                <Button Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10" Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding CatalogResources.PlayButtonTooltip, Source={StaticResource CatalogResources}}" Visibility="{Binding IsPlaying, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"/>
+                                                <Button Style="{StaticResource MainPlayerPauseButtonStyle}" Margin="10" Click="PauseButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding CatalogResources.PauseButtonTooltip, Source={StaticResource CatalogResources}}" Visibility="{Binding IsPlaying, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                                             </Grid>
-                                        </telerik:RadTileViewItem>
-                                        <telerik:RadTileViewItem Header="{Binding CatalogResources.TrainingSetsTitle, Source={StaticResource CatalogResources}}">
-                                            <Grid>
-                                                <ListBox 
-                                                    ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                                                    ScrollViewer.HorizontalScrollBarVisibility="Auto" 
-                                                    VerticalAlignment="Stretch" 
-                                                    HorizontalAlignment="Stretch" 
-                                                    Margin="10" 
-                                                    DisplayMemberPath="Title"
-                                                    ItemsSource="{Binding TrainingSets, Mode=OneWay}" 
-                                                    SelectedItem="{Binding SelectedTrainingSet, Mode=TwoWay}">
-                                                </ListBox>
-                                            </Grid>
-                                        </telerik:RadTileViewItem>
-                                        <telerik:RadTileViewItem Header="{Binding CatalogResources.DescriptionTitle, Source={StaticResource CatalogResources}}">
-                                            <Grid>
-                                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" BorderBrush="Transparent">
-                                                    <TextBlock Text="{Binding SelectedTrainingSet.Description, Mode=OneWay}" TextWrapping="Wrap" />
-                                                </ScrollViewer>
-                                            </Grid>
-                                        </telerik:RadTileViewItem>
-                                        <telerik:RadTileViewItem Header="{Binding CatalogResources.ProfilesTitle, Source={StaticResource CatalogResources}}"></telerik:RadTileViewItem>
-                                    </telerik:RadTileView>                                                                        
+                                        </telerik:RadTileViewItem>                                        
+                                        <telerik:RadTileViewItem Header="{Binding CatalogResources.ProfilesTitle, Source={StaticResource CatalogResources}}"/>
+                                        <telerik:RadTileViewItem Header="{Binding CatalogResources.ReviewsTitle, Source={StaticResource CatalogResources}}"/>
+                                    </telerik:RadTileView>
+                                    <Border Grid.Column="0" Grid.Row="1" CornerRadius="10" Margin="10">
+                                        <Border.Background>
+                                            <SolidColorBrush Color="White" Opacity="0.5"/>
+                                        </Border.Background>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="{Binding CatalogResources.TrainingSetsTitle, Source={StaticResource CatalogResources}}" Margin="5"/>
+                                            <ListBox 
+                                                Grid.Row="1"
+                                                ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                                ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                                                VerticalAlignment="Stretch" 
+                                                HorizontalAlignment="Stretch" 
+                                                Margin="10" 
+                                                DisplayMemberPath="Title"
+                                                ItemsSource="{Binding TrainingSets, Mode=OneWay}" 
+                                                SelectedItem="{Binding SelectedTrainingSet, Mode=TwoWay}">
+                                            </ListBox>
+                                        </Grid>
+                                    </Border>
+                                    <Border Grid.Column="1" Grid.Row="1" CornerRadius="10" Margin="10">
+                                        <Border.Background>
+                                            <SolidColorBrush Color="White" Opacity="0.5"/>
+                                        </Border.Background>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="{Binding CatalogResources.DescriptionTitle, Source={StaticResource CatalogResources}}" Margin="5"/>
+                                            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" BorderBrush="Transparent">
+                                                <TextBlock Text="{Binding SelectedTrainingSet.Description, Mode=OneWay}" TextWrapping="Wrap" />
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Border>
                                 </Grid>
                             </telerik:RadFluidContentControl.LargeContent>
-                        </telerik:RadFluidContentControl>
+                        </telerik:RadFluidContentControl>                        
                     </Grid>
                 </DataTemplate>
             </telerik:RadTileView.ContentTemplate>

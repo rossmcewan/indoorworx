@@ -21,15 +21,15 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private string image;
+        private Uri imageUri;
         [DataMember]
-        public virtual string Image
+        public virtual Uri ImageUri
         {
-            get { return image; }
+            get { return imageUri; }
             set
             {
-                image = value;
-                FirePropertyChanged("Image");
+                imageUri = value;
+                FirePropertyChanged("ImageUri");
             }
         }
 

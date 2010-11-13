@@ -79,6 +79,15 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stop the preview of this video.
+        /// </summary>
+        public static string PauseButtonTooltip {
+            get {
+                return ResourceManager.GetString("PauseButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preview this video.
         /// </summary>
         public static string PlayButtonTooltip {
@@ -93,6 +102,15 @@ namespace IndoorWorx.Catalog.Resources {
         public static string ProfilesTitle {
             get {
                 return ResourceManager.GetString("ProfilesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reviews.
+        /// </summary>
+        public static string ReviewsTitle {
+            get {
+                return ResourceManager.GetString("ReviewsTitle", resourceCulture);
             }
         }
         

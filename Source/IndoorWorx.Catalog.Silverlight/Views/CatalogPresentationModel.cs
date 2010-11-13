@@ -90,9 +90,19 @@ namespace IndoorWorx.Catalog.Views
         public void PlaySelectedPreview(Action play)
         {
             var video = SelectedCategory.SelectedCatalog.SelectedVideo ?? SelectedCategory.SelectedCatalog.Videos.FirstOrDefault();
-            if(video != null)
-                video.IsSelected = true;
+            if (video != null)
+            {
+                Application.Current.RootVisual.Dispatcher.BeginInvoke(() => video.IsPlaying = true);
+            }
             play();
+        }
+
+        public void StopSelectedPreview(Action stop)
+        {
+            var video = SelectedCategory.SelectedCatalog.SelectedVideo ?? SelectedCategory.SelectedCatalog.Videos.FirstOrDefault();
+            if (video != null)
+                Application.Current.RootVisual.Dispatcher.BeginInvoke(() => video.IsPlaying = false);
+            stop();
         }
 
         #endregion

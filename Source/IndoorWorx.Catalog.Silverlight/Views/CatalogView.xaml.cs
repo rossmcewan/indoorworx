@@ -44,17 +44,23 @@ namespace IndoorWorx.Catalog.Views
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
+            var player = GetPlayer();
+            Model.PlaySelectedPreview(() => player.Play());
+        }
+
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {            
+            var player = GetPlayer();
+            Model.StopSelectedPreview(() => player.Stop());
+        }
+
+        private SmoothStreamingMediaElement GetPlayer()
+        {
             var item = radTileView.ItemContainerGenerator.ContainerFromItem(Model.SelectedCategory.SelectedCatalog.SelectedVideo ?? Model.SelectedCategory.SelectedCatalog.Videos.FirstOrDefault());
 
             var player = FindVisualChild<SmoothStreamingMediaElement>(item);
-            
-            //var player = FindVisualChild<SMFPlayer>(item);
-            Model.PlaySelectedPreview(() =>
-                {
-                    PreviewWindow preview = new PreviewWindow();
-                    preview.DataContext = Model.SelectedCategory.SelectedCatalog.SelectedVideo;
-                    preview.Show();
-                });
+
+            return player;
         }
 
         private TChildItem FindVisualChild<TChildItem>(DependencyObject obj) where TChildItem : DependencyObject
