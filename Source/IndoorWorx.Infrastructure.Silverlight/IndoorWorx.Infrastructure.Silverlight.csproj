@@ -100,11 +100,17 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\NavigationInfo.cs">
       <Link>Models\NavigationInfo.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\Review.cs">
+      <Link>Models\Review.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Telemetry.cs">
       <Link>Models\Telemetry.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Video.cs">
       <Link>Models\Video.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\VideoReview.cs">
+      <Link>Models\VideoReview.cs</Link>
     </Compile>
     <Compile Include="Converters\BooleanToOppositeVisibilityConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />

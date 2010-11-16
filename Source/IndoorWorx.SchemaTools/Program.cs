@@ -105,7 +105,26 @@ namespace IndoorWorx.SchemaTools
                                             Sequence = 1,
                                             Title = "The Race",
                                             Description = "Ride with the men's elite champions of the MTN Energade cycling team doing Jo'burg's toughest race! Suffer with them on the break, close down the attacks, get yourself in a position to win the sprint! Suffer like the pros!",
-                                            StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute)
+                                            StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
+                                            Reviews = new List<VideoReview>()
+                                            {
+                                                new VideoReview()
+                                                {
+                                                    Created = DateTime.Now,
+                                                    CreatedBy = "ross.mcewan",
+                                                    Rating = 4,
+                                                    Title = "What a great ride!",
+                                                    Comment = "I loved this ride! It really felt like I was in the middle of the action!"
+                                                },
+                                                new VideoReview()
+                                                {
+                                                    Created = DateTime.Now,
+                                                    CreatedBy = "dianne.emery",
+                                                    Rating = 5,
+                                                    Title = "Awesome!",
+                                                    Comment = "Ride was great! Felt like I was one of the pros going for the win! Loved it!"
+                                                }
+                                            }
                                         }
                                     }
                                 },

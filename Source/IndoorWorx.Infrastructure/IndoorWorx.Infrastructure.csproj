@@ -56,12 +56,15 @@
     <Compile Include="Models\Catalog.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\NavigationInfo.cs" />
+    <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Telemetry.cs" />
     <Compile Include="Models\Video.cs" />
+    <Compile Include="Models\VideoReview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ICatalogRepository.cs" />
     <Compile Include="Repositories\ICategoryRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IReviewRepository.cs" />
     <Compile Include="Repositories\IVideoRepository.cs" />
     <Compile Include="ServiceModel\IoC.cs" />
     <Compile Include="ServiceModel\SilverlightFaultBehaviorExtensionElement.cs" />

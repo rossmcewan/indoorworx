@@ -117,5 +117,27 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("TrainingSets");
             }
         }
+
+        private ICollection<VideoReview> reviews = new List<VideoReview>();
+        [DataMember]
+        public virtual ICollection<VideoReview> Reviews
+        {
+            get { return reviews; }
+            set
+            {
+                reviews = value;
+                FirePropertyChanged("Reviews");
+            }
+        }
+
+        public virtual int AverageRating
+        {
+            get
+            {
+                if(Reviews.Any())
+                    return Convert.ToInt32(Reviews.Average(x => x.Rating));
+                return 0;
+            }
+        }
     }
 }

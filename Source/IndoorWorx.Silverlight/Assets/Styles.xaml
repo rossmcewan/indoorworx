@@ -23,7 +23,7 @@
     </LinearGradientBrush>
 
     <!-- LayoutRoot Grid Style -->
-    <Style x:Key="LayoutRootGridStyle" TargetType="Grid">
+    <!--<Style x:Key="LayoutRootGridStyle" TargetType="Grid">
         <Setter Property="TextOptions.TextHintingMode" Value="Animated"/>
         <Setter Property="Background">
             <Setter.Value>
@@ -33,8 +33,20 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
+    </Style>-->
+
+    <Style x:Key="LayoutRootGridStyle" TargetType="Grid">
+        <Setter Property="TextOptions.TextHintingMode" Value="Animated"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint=".05,.11" StartPoint="1.17,.95">
+                    <GradientStop Color="#000000" Offset="1"/>
+                    <GradientStop Color="#000000"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
     </Style>
-    
+
     <!-- Content Border Style -->
     <Style x:Key="ContentBorderStyle" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource NavPageLinedBrush}" />

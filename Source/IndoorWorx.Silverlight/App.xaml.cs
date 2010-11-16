@@ -18,7 +18,7 @@
         /// </summary>
         public App()
         {
-            StyleManager.ApplicationTheme = new Windows7Theme();
+            //StyleManager.ApplicationTheme = new Windows7Theme();
             InitializeComponent();
 
             // Create a WebContext and add it to the ApplicationLifetimeObjects
