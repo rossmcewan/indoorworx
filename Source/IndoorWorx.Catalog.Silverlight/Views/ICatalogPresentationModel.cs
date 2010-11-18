@@ -21,6 +21,10 @@ namespace IndoorWorx.Catalog.Views
 
         Category SelectedCategory { get; set; }
 
+        ICommand DesignTrainingSetCommand { get; set; }
+
+        ICommand PlayTrainingSetCommand { get; set; }
+
         void LoadCategories();
 
         void PlaySelectedPreview(Action play);

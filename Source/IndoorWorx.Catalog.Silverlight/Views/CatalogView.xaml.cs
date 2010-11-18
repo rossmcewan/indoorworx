@@ -175,7 +175,7 @@ namespace IndoorWorx.Catalog.Views
             chart.DefaultView.ChartArea.ZoomScrollSettingsY.ScrollMode = ScrollMode.None;
 
             chart.DefaultView.ChartLegend.Visibility = System.Windows.Visibility.Collapsed;
-            chart.DefaultView.ChartArea.AxisX.DefaultLabelFormat = "#VAL{HH:mm:ss}";
+            chart.DefaultView.ChartArea.AxisX.DefaultLabelFormat = "#VAL{HH:mm}";
             chart.DefaultView.ChartArea.AxisY.DefaultLabelFormat = "#VAL{p0}";
 
             chart.DefaultView.ChartArea.AxisY.AutoRange = false;

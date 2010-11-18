@@ -117,14 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AveragePowerLabel" xml:space="preserve">
+    <value>Average Power:</value>
+  </data>
   <data name="DescriptionTitle" xml:space="preserve">
     <value>Description</value>
+  </data>
+  <data name="DesignTrainingSetToolTip" xml:space="preserve">
+    <value>Design a new training set using this training set as the basis for it.</value>
+  </data>
+  <data name="IntensityFactorLabel" xml:space="preserve">
+    <value>Intensity Factor (IF):</value>
   </data>
   <data name="LoadingMediaProgressMessage" xml:space="preserve">
     <value>Loading media ...</value>
   </data>
   <data name="LoadingTelemetryProgressMessage" xml:space="preserve">
     <value>Loading telemetry ...</value>
+  </data>
+  <data name="NormalizedPowerLabel" xml:space="preserve">
+    <value>Normalized Power (NP):</value>
   </data>
   <data name="PageTitle" xml:space="preserve">
     <value>Catalog</value>
@@ -134,6 +146,9 @@
   </data>
   <data name="PlayButtonTooltip" xml:space="preserve">
     <value>Preview this video</value>
+  </data>
+  <data name="PlayTrainingSetToolTip" xml:space="preserve">
+    <value>Play this training set.</value>
   </data>
   <data name="ProfilesDescription" xml:space="preserve">
     <value>View the profiles for the selected training set.</value>
@@ -147,7 +162,13 @@
   <data name="ReviewsTitle" xml:space="preserve">
     <value>Reviews</value>
   </data>
+  <data name="TrainingMetricsTitle" xml:space="preserve">
+    <value>Training Metrics</value>
+  </data>
   <data name="TrainingSetsTitle" xml:space="preserve">
     <value>Training Sets</value>
+  </data>
+  <data name="VariabilityIndexLabel" xml:space="preserve">
+    <value>Variability Index (VI):</value>
   </data>
 </root>

@@ -123,6 +123,28 @@ namespace IndoorWorx.Catalog.Views
             stop();
         }
 
+        private ICommand designTrainingSetCommand;
+        public ICommand DesignTrainingSetCommand
+        {
+            get { return designTrainingSetCommand; }
+            set
+            {
+                designTrainingSetCommand = value;
+                FirePropertyChanged("DesignTrainingSetCommand");
+            }
+        }
+
+        private ICommand playTrainingSetCommand;
+        public ICommand PlayTrainingSetCommand
+        {
+            get { return playTrainingSetCommand; }
+            set
+            {
+                playTrainingSetCommand = value;
+                FirePropertyChanged("PlayTrainingSetCommand");
+            }
+        }
+
         #endregion
     }
 }

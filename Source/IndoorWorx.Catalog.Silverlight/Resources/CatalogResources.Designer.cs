@@ -61,11 +61,38 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Average Power:.
+        /// </summary>
+        public static string AveragePowerLabel {
+            get {
+                return ResourceManager.GetString("AveragePowerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string DescriptionTitle {
             get {
                 return ResourceManager.GetString("DescriptionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Design a new training set using this training set as the basis for it..
+        /// </summary>
+        public static string DesignTrainingSetToolTip {
+            get {
+                return ResourceManager.GetString("DesignTrainingSetToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intensity Factor (IF):.
+        /// </summary>
+        public static string IntensityFactorLabel {
+            get {
+                return ResourceManager.GetString("IntensityFactorLabel", resourceCulture);
             }
         }
         
@@ -84,6 +111,15 @@ namespace IndoorWorx.Catalog.Resources {
         public static string LoadingTelemetryProgressMessage {
             get {
                 return ResourceManager.GetString("LoadingTelemetryProgressMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normalized Power (NP):.
+        /// </summary>
+        public static string NormalizedPowerLabel {
+            get {
+                return ResourceManager.GetString("NormalizedPowerLabel", resourceCulture);
             }
         }
         
@@ -111,6 +147,15 @@ namespace IndoorWorx.Catalog.Resources {
         public static string PlayButtonTooltip {
             get {
                 return ResourceManager.GetString("PlayButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play this training set..
+        /// </summary>
+        public static string PlayTrainingSetToolTip {
+            get {
+                return ResourceManager.GetString("PlayTrainingSetToolTip", resourceCulture);
             }
         }
         
@@ -151,11 +196,29 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Training Metrics.
+        /// </summary>
+        public static string TrainingMetricsTitle {
+            get {
+                return ResourceManager.GetString("TrainingMetricsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Training Sets.
         /// </summary>
         public static string TrainingSetsTitle {
             get {
                 return ResourceManager.GetString("TrainingSetsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variability Index (VI):.
+        /// </summary>
+        public static string VariabilityIndexLabel {
+            get {
+                return ResourceManager.GetString("VariabilityIndexLabel", resourceCulture);
             }
         }
     }
