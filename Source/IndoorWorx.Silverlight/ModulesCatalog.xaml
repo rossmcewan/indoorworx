@@ -14,5 +14,11 @@
                 <sys:String>Library</sys:String>
             </Modularity:ModuleInfo.DependsOn>
         </Modularity:ModuleInfo>
+        <Modularity:ModuleInfo ModuleName="Designer" ModuleType="IndoorWorx.Designer.Module, IndoorWorx.Designer.Silverlight, Version=1.0.0.0" Ref="IndoorWorx.Designer.Silverlight.xap">
+            <Modularity:ModuleInfo.DependsOn>
+                <sys:String>Library</sys:String>
+                <sys:String>Catalog</sys:String>
+            </Modularity:ModuleInfo.DependsOn>
+        </Modularity:ModuleInfo>
     </Modularity:ModuleInfoGroup>
 </Modularity:ModuleCatalog>
