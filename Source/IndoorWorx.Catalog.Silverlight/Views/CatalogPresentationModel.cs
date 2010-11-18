@@ -70,9 +70,25 @@ namespace IndoorWorx.Catalog.Views
             }
         }
 
+        private bool busy;
+        public bool IsBusy
+        {
+            get { return busy; }
+            set
+            {
+                busy = value;
+                FirePropertyChanged("IsBusy");
+            }
+        }
+
         public void LoadCategories()
         {
             var categoryService = serviceLocator.GetInstance<ICategoryService>();
+            categoryService.CategoryRetrievalError += (sender, e) =>
+                {
+                    this.IsBusy = false;
+                    throw e.Value;
+                };
             categoryService.CategoriesRetrieved += (sender, e) =>
                 {
                     Categories = e.Value;
@@ -83,7 +99,9 @@ namespace IndoorWorx.Catalog.Views
                         if (SelectedCategory.SelectedCatalog != null)
                             SelectedCategory.SelectedCatalog.SelectedVideo = SelectedCategory.SelectedCatalog.Videos.FirstOrDefault();
                     }
+                    this.IsBusy = false;
                 };
+            this.IsBusy = true;
             categoryService.RetrieveCategories();            
         }
 

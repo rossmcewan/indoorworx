@@ -26,5 +26,7 @@ namespace IndoorWorx.Catalog.Views
         void PlaySelectedPreview(Action play);
 
         void StopSelectedPreview(Action stop);
+
+        bool IsBusy { get; set; }
     }
 }

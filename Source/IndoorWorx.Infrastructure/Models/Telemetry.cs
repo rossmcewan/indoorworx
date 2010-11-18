@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace IndoorWorx.Infrastructure.Models
 {
     [DataContract(IsReference = true)]
-    public class Telemetry : BaseModel
+    public partial class Telemetry : BaseModel
     {
         [DataMember]
         public virtual TimeSpan TimePosition { get; set; }
@@ -36,6 +36,8 @@ namespace IndoorWorx.Infrastructure.Models
         [DataMember]
         public virtual double Altitude { get; set; }
 
+        public virtual double PercentageThreshold { get; set; }
+        
         public static Telemetry Parse(string s)
         {
             var elements = s.Split(',');
@@ -49,7 +51,8 @@ namespace IndoorWorx.Infrastructure.Models
                 Cadence = Convert.ToInt32(elements[5]),
                 HeartRate = Convert.ToInt32(elements[6]),
                 Id = Convert.ToInt32(elements[7]),
-                Altitude = Convert.ToDouble(elements[8])
+                Altitude = Convert.ToDouble(elements[8]),
+                PercentageThreshold = Convert.ToDouble(elements[3]) / 300//must get this from the user
             };
         }
     }

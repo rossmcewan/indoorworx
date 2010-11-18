@@ -50,7 +50,7 @@
     <!-- Content Border Style -->
     <Style x:Key="ContentBorderStyle" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource NavPageLinedBrush}" />
-        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Gray"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
@@ -60,7 +60,7 @@
 
     <!-- Content Frame Style -->
     <Style x:Key="ContentFrameStyle" TargetType="navigation:Frame">
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="Gray"/>
         <Setter Property="BorderBrush" Value="#FFDADADA"/>
         <Setter Property="BorderThickness" Value="1,0,1,1"/>
         <Setter Property="Margin" Value="34,100,34,34"/>
@@ -72,7 +72,7 @@
 
     <!-- Background Border Style -->
     <Style x:Key="BackgroundBorderStyle" TargetType="Border">
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="#FFDADADA"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Margin" Value="34,100,34,34"/>
@@ -674,6 +674,15 @@
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="Margin" Value="24,16,24,2"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <Style x:Key="HeaderTextSmallMarginStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Segoe UI, Lucida Sans Unicode, Verdana"/>
+        <Setter Property="Foreground" Value="#FF0D700D"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Margin" Value="5"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
 

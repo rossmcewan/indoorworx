@@ -120,6 +120,12 @@
   <data name="DescriptionTitle" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="LoadingMediaProgressMessage" xml:space="preserve">
+    <value>Loading media ...</value>
+  </data>
+  <data name="LoadingTelemetryProgressMessage" xml:space="preserve">
+    <value>Loading telemetry ...</value>
+  </data>
   <data name="PageTitle" xml:space="preserve">
     <value>Catalog</value>
   </data>
@@ -129,8 +135,14 @@
   <data name="PlayButtonTooltip" xml:space="preserve">
     <value>Preview this video</value>
   </data>
+  <data name="ProfilesDescription" xml:space="preserve">
+    <value>View the profiles for the selected training set.</value>
+  </data>
   <data name="ProfilesTitle" xml:space="preserve">
     <value>Profiles</value>
+  </data>
+  <data name="ReviewsDescription" xml:space="preserve">
+    <value>View the reviews from other riders of the selected training set.</value>
   </data>
   <data name="ReviewsTitle" xml:space="preserve">
     <value>Reviews</value>

@@ -70,6 +70,24 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading media ....
+        /// </summary>
+        public static string LoadingMediaProgressMessage {
+            get {
+                return ResourceManager.GetString("LoadingMediaProgressMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading telemetry ....
+        /// </summary>
+        public static string LoadingTelemetryProgressMessage {
+            get {
+                return ResourceManager.GetString("LoadingTelemetryProgressMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Catalog.
         /// </summary>
         public static string PageTitle {
@@ -97,11 +115,29 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View the profiles for the selected training set..
+        /// </summary>
+        public static string ProfilesDescription {
+            get {
+                return ResourceManager.GetString("ProfilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profiles.
         /// </summary>
         public static string ProfilesTitle {
             get {
                 return ResourceManager.GetString("ProfilesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View the reviews from other riders of the selected training set..
+        /// </summary>
+        public static string ReviewsDescription {
+            get {
+                return ResourceManager.GetString("ReviewsDescription", resourceCulture);
             }
         }
         

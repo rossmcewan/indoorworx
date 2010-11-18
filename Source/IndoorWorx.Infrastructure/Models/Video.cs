@@ -58,15 +58,15 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private string telemetryData;
+        private Uri telemetryUri;
         [DataMember]
-        public virtual string TelemetryData
+        public virtual Uri TelemetryUri
         {
-            get { return telemetryData; }
+            get { return telemetryUri; } 
             set
             {
-                telemetryData = value;
-                FirePropertyChanged("TelemetryData");
+                telemetryUri = value;
+                FirePropertyChanged("TelemetryUri");
             }
         }
 
@@ -80,31 +80,7 @@ namespace IndoorWorx.Infrastructure.Models
                 sequence = value;
                 FirePropertyChanged("Sequence");
             }
-        }
-
-        public virtual ICollection<Telemetry> Telemetry
-        {
-            get
-            {
-                List<Telemetry> telemetry = new List<Telemetry>();
-                using (var reader = new StringReader(TelemetryData))
-                {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        try
-                        {
-                            telemetry.Add(Models.Telemetry.Parse(line));
-                        }
-                        catch
-                        {
-                            continue;
-                        }
-                    }                    
-                }
-                return telemetry;
-            }
-        }
+        }        
 
         private ICollection<Video> trainingSets = new List<Video>();
         [DataMember]

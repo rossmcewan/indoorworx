@@ -76,6 +76,7 @@ alter table [Video]  drop constraint FK30300B576669A625
        Sequence INT null,
        ImageUri NVARCHAR(255) null,
        StreamUri NVARCHAR(255) not null,
+       TelemetryUri NVARCHAR(255) null,
        Catalog UNIQUEIDENTIFIER null,
        Parent UNIQUEIDENTIFIER null,
        primary key (Id)

@@ -73,6 +73,7 @@
     <Compile Include="ServiceModel\UnityInstanceProvider.cs" />
     <Compile Include="ServiceModel\UnityServiceBehavior.cs" />
     <Compile Include="Services\ICategoryService.cs" />
+    <Compile Include="SmartDispatcher.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

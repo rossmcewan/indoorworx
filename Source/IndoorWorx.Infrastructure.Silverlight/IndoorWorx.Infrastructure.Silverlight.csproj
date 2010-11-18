@@ -119,10 +119,12 @@
     <Compile Include="IShell.cs" />
     <Compile Include="Models\Catalog.Silverlight.cs" />
     <Compile Include="Models\Category.Silverlight.cs" />
+    <Compile Include="Models\Telemetry.Silverlight.cs" />
     <Compile Include="Models\Video.Silverlight.cs" />
     <Compile Include="Navigation\INavigationLinks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Navigation\INavigationService.cs" />
+    <Compile Include="SmartDispatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\Brushes.xaml">

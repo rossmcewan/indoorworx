@@ -32,7 +32,7 @@ namespace IndoorWorx.Infrastructure.Models
             {
                 try
                 {
-                    handler(this, new PropertyChangedEventArgs(propertyName));
+                    SmartDispatcher.BeginInvoke(() => handler(this, new PropertyChangedEventArgs(propertyName)));
                 }
                 catch
                 {

@@ -7,6 +7,8 @@
     using System.Windows.Controls;
     using IndoorWorx.Silverlight.Controls;
     using Telerik.Windows.Controls;
+    using System.Windows.Controls.Theming;
+    using IndoorWorx.Infrastructure;
 
     /// <summary>
     /// Main <see cref="Application"/> class.
@@ -18,7 +20,9 @@
         /// </summary>
         public App()
         {
-            //StyleManager.ApplicationTheme = new Windows7Theme();
+            StyleManager.ApplicationTheme = new Telerik.Windows.Controls.TransparentTheme();
+            //ExpressionDarkTheme.SetIsApplicationTheme(this, true);
+            SmartDispatcher.Initialize(Deployment.Current.Dispatcher);
             InitializeComponent();
 
             // Create a WebContext and add it to the ApplicationLifetimeObjects
