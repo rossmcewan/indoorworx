@@ -178,7 +178,7 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View the reviews from other riders of the selected training set..
+        ///   Looks up a localized string similar to Read the reviews from other riders of the selected training set..
         /// </summary>
         public static string ReviewsDescription {
             get {
