@@ -8,9 +8,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using IndoorWorx.Designer.Silverlight.Resources;
+using IndoorWorx.Designer.Resources;
 
-namespace IndoorWorx.Designer.Silverlight.Helpers
+namespace IndoorWorx.Designer.Helpers 
 {
     public class ResourceWrapper
     {

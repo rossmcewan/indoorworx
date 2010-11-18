@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 using System.Windows.Navigation;
 using DynamicNavigation;
 using IndoorWorx.Infrastructure;
-using IndoorWorx.Designer.Silverlight.Views;
+using IndoorWorx.Designer.Views;
 
 namespace IndoorWorx.Designer.Views.Dynamic
 {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IndoorWorx.Designer.Silverlight.Resources {
+namespace IndoorWorx.Designer.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace IndoorWorx.Designer.Silverlight.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IndoorWorx.Designer.Silverlight.Resources.DesignerResources", typeof(DesignerResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IndoorWorx.Designer.Resources.DesignerResources", typeof(DesignerResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

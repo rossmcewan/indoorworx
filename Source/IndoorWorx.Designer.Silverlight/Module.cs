@@ -12,10 +12,10 @@ using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure.Navigation;
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Unity;
-using IndoorWorx.Designer.Silverlight.Resources;
+using IndoorWorx.Designer.Resources;
 using IndoorWorx.Infrastructure;
-using IndoorWorx.Designer.Silverlight.Helpers;
-using IndoorWorx.Designer.Silverlight.Views;
+using IndoorWorx.Designer.Helpers;
+using IndoorWorx.Designer.Views;
 
 namespace IndoorWorx.Designer
 {
@@ -40,10 +40,10 @@ namespace IndoorWorx.Designer
         {
             Application.Current.Resources.Add("DesignerResources", new ResourceWrapper());
 
-            unityContainer.RegisterType<IDesignerPresentationModel, DesignerPresentationModel>();
-            unityContainer.RegisterType<IDesignerView, DesignerView>();
-            //unityContainer.RegisterInstance<ICatalogPresentationModel>(unityContainer.Resolve<CatalogPresentationModel>(), new ContainerControlledLifetimeManager());
-            //unityContainer.RegisterInstance<ICatalogView>(unityContainer.Resolve<CatalogView>(), new ContainerControlledLifetimeManager());
+            //unityContainer.RegisterType<IDesignerPresentationModel, DesignerPresentationModel>();
+            //unityContainer.RegisterType<IDesignerView, DesignerView>();
+            unityContainer.RegisterInstance<IDesignerPresentationModel>(unityContainer.Resolve<DesignerPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IDesignerView>(unityContainer.Resolve<DesignerView>(), new ContainerControlledLifetimeManager());
             
             NavigationService.AddNavigationLink(new Infrastructure.Models.NavigationInfo()
             {
