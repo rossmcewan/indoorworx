@@ -14,6 +14,7 @@ using Telerik.Windows.Controls;
 using IndoorWorx.Infrastructure.Models;
 using IndoorWorx.Infrastructure;
 using Telerik.Windows.Controls.Charting;
+using IndoorWorx.Library.Controls;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -34,28 +35,6 @@ namespace IndoorWorx.Catalog.Views
         }
 
         #endregion
-
-        private TChildItem FindVisualChild<TChildItem>(DependencyObject obj) where TChildItem : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-            {
-                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-                if (child != null && child is TChildItem)
-                    return (TChildItem)child;
-                else
-                {
-                    TChildItem childOfChild = FindVisualChild<TChildItem>(child);
-                    if (childOfChild != null)
-                        return childOfChild;
-                }
-            }
-            return null;
-        }
-
-        private void radTileView_TileStateChanged(object sender, Telerik.Windows.RadRoutedEventArgs e)
-        {
-
-        }
 
         private void selectedVideoTile_TileStateChanged(object sender, Telerik.Windows.RadRoutedEventArgs e) 
         {
@@ -85,47 +64,12 @@ namespace IndoorWorx.Catalog.Views
 
         private void profileChart_Loaded(object sender, RoutedEventArgs e)
         {
-            var chart = sender as RadChart;
+            var chart = sender as TelemetryChart;
             var video = chart.DataContext as Video;
-
-            chart.DefaultView.ChartArea.EnableAnimations = false;
-            AreaSeriesDefinition lineSeries = new AreaSeriesDefinition();
-            lineSeries.ShowItemLabels = false;
-            lineSeries.ShowPointMarks = false;
-
-            SeriesMapping dataMapping = new SeriesMapping();
-            dataMapping.SeriesDefinition = lineSeries;
-            dataMapping.ItemMappings.Add(new ItemMapping("TimePositionAsDateTime", DataPointMember.XValue));
-            dataMapping.ItemMappings.Add(new ItemMapping("PercentageThreshold", DataPointMember.YValue));
-            dataMapping.ItemMappings[1].SamplingFunction = ChartSamplingFunction.KeepExtremes;
-
-            chart.SeriesMappings.Add(dataMapping);
-
-            chart.DefaultView.ChartArea.Foreground = new SolidColorBrush(Colors.Green);
-            chart.DefaultView.ChartArea.ZoomScrollSettingsX.ScrollMode = ScrollMode.None;
-            chart.DefaultView.ChartArea.ZoomScrollSettingsY.ScrollMode = ScrollMode.None;
-
-            chart.DefaultView.ChartLegend.Visibility = System.Windows.Visibility.Collapsed;
-            chart.DefaultView.ChartArea.AxisX.DefaultLabelFormat = "#VAL{HH:mm}";
-            chart.DefaultView.ChartArea.AxisY.DefaultLabelFormat = "#VAL{p0}";
-
-            chart.DefaultView.ChartArea.AxisY.AutoRange = false;
-            chart.DefaultView.ChartArea.AxisY.MajorGridLinesVisibility = Visibility.Collapsed;
-            chart.DefaultView.ChartArea.AxisY.MinorGridLinesVisibility = Visibility.Collapsed;
-            chart.DefaultView.ChartArea.AxisY.StripLinesVisibility = Visibility.Collapsed;
-            chart.DefaultView.ChartArea.AxisX.MajorGridLinesVisibility = Visibility.Collapsed;
-
-            chart.DefaultView.ChartArea.LabelFormatBehavior = LabelFormatBehavior.None;
-            chart.SamplingSettings.SamplingThreshold = 1000;
-            chart.DefaultView.ChartArea.EnableAnimations = false;
 
             if (video.SelectedTrainingSet.IsTelemetryLoaded)
             {
-                var max = video.SelectedTrainingSet.Telemetry.Max(x => x.PercentageThreshold);
-                chart.DefaultView.ChartArea.AxisY.AddRange(0, max, 0.2);
-                chart.DefaultView.ChartArea.AxisX.MinValue = DateTime.Today.ToOADate();
-                chart.DefaultView.ChartArea.AxisX.MaxValue = video.SelectedTrainingSet.Telemetry.Max(x => x.TimePositionAsDateTime).ToOADate();
-                chart.ItemsSource = video.SelectedTrainingSet.Telemetry;
+                chart.LoadTelemetry(video.SelectedTrainingSet.Telemetry);
             }
             else
             {
@@ -133,11 +77,7 @@ namespace IndoorWorx.Catalog.Views
                     {
                         SmartDispatcher.BeginInvoke(() =>
                             {
-                                var max = video.SelectedTrainingSet.Telemetry.Max(x => x.PercentageThreshold);
-                                chart.DefaultView.ChartArea.AxisY.AddRange(0, max, 0.2);
-                                chart.DefaultView.ChartArea.AxisX.MinValue = DateTime.Today.ToOADate();
-                                chart.DefaultView.ChartArea.AxisX.MaxValue = video.SelectedTrainingSet.Telemetry.Max(x => x.TimePositionAsDateTime).ToOADate();
-                                chart.ItemsSource = video.SelectedTrainingSet.Telemetry;
+                                chart.LoadTelemetry(video.SelectedTrainingSet.Telemetry);
                             });
                     };
             }

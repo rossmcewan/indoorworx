@@ -119,7 +119,7 @@
                                                                     <RowDefinition Height="*"/>
                                                                     <RowDefinition Height="*"/>
                                                                 </Grid.RowDefinitions>
-                                                                <telerik:RadChart x:Name="profileChart" Background="Transparent" Loaded="profileChart_Loaded"/>
+                                                                <libControls:TelemetryChart x:Name="profileChart" Background="Transparent" XAxisLabelVisibility="Collapsed" YAxisLabelVisibility="Collapsed" Loaded="profileChart_Loaded"/>
                                                                 <Grid Grid.Row="1">
                                                                     <Grid.RowDefinitions>
                                                                         <RowDefinition Height="Auto"/>
