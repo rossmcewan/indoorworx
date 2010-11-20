@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="IndoorWorx.Player.Controls.CircularGauge"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    mc:Ignorable="d">
+    
+        <telerik:RadGauge x:Name="radGauge">
+            <telerik:RadialGauge x:Name="radialGauge" >
+                <telerik:RadialScale x:Name="radialScale" IsInteractive="True">
+                    <telerik:RadialScale.MajorTick>
+                        <telerik:MajorTickProperties Length="0.2" TickWidth="0.1"/>
+                    </telerik:RadialScale.MajorTick>
+                    <telerik:RadialScale.MiddleTick>
+                        <telerik:MiddleTickProperties Length="0.1" TickWidth="0.2"/>
+                    </telerik:RadialScale.MiddleTick>
+                    <telerik:RadialScale.MinorTick>
+                        <telerik:MinorTickProperties Length="0.05" TickWidth="0.3" />
+                    </telerik:RadialScale.MinorTick>
+                    <telerik:IndicatorList>
+                        <telerik:Needle x:Name="needle" IsAnimated="True" Value="0"/>
+                    </telerik:IndicatorList>
+                </telerik:RadialScale>
+            </telerik:RadialGauge>
+        </telerik:RadGauge>
+</UserControl>

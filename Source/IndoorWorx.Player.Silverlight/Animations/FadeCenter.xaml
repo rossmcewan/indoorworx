@@ -1,0 +1,30 @@
+﻿<Canvas xmlns="http://schemas.microsoft.com/client/2007"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Width="220" Height="180">
+    <Canvas.Resources>
+        <Storyboard x:Name="InTransition" Duration="00:00:01">
+            <DoubleAnimation x:Name="MainIn" Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.Opacity)" From="0" To="1" Duration="00:00:01" />
+            <DoubleAnimation x:Name="SubIn" Storyboard.TargetName="SubTextField" Storyboard.TargetProperty="(UIElement.Opacity)" From="0" To="1" Duration="00:00:01" />
+        </Storyboard>
+        <Storyboard x:Name="OutTransition" Duration="00:00:01">
+            <DoubleAnimation x:Name="MainOut" Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.Opacity)" From="1" To="0" Duration="00:00:01" />
+            <DoubleAnimation x:Name="SubOut" Storyboard.TargetName="SubTextField" Storyboard.TargetProperty="(UIElement.Opacity)" From="1" To="0" Duration="00:00:01" />
+        </Storyboard>
+    </Canvas.Resources>
+    <Canvas x:Name="Content" Width="220" Height="180" Canvas.Left="0" Canvas.Top="0">
+        <TextBlock x:Name="MainTextField" Canvas.Left="-40" Canvas.Top="0" TextAlignment="Center" Width="220" Opacity="0" FontWeight="Bold" FontStyle="Italic" FontSize="12.6731" Text="{Binding CurrentVideoText.MainText}" Foreground="#FFFFFFFF">
+      <TextBlock.RenderTransform>
+        <TransformGroup>
+          <MatrixTransform Matrix="1.33333,0,0,1.33333,0,65.7744"/>
+        </TransformGroup>
+      </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock x:Name="SubTextField" Canvas.Left="-40" Canvas.Top="0" TextAlignment="Center" Width="220" Opacity="0" FontFamily="Segoe UI" FontWeight="Bold" FontStyle="Italic" FontSize="10.4597" Text="{Binding CurrentVideoText.SubText}" Foreground="#FFFFFFFF">
+      <TextBlock.RenderTransform>
+        <TransformGroup>
+          <MatrixTransform Matrix="1.33333,0,0,1.33333,0,88.6763"/>
+        </TransformGroup>
+      </TextBlock.RenderTransform>
+        </TextBlock>
+    </Canvas>
+</Canvas>

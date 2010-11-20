@@ -1,0 +1,80 @@
+﻿<Canvas xmlns="http://schemas.microsoft.com/client/2007"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Width="220" Height="180">
+    <Canvas.Resources>
+        <Storyboard x:Name="InTransition" Duration="00:00:01">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.Opacity)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubTextField" Storyboard.TargetProperty="(UIElement.Opacity)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="1.3333"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubTextField" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="1.3333"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="1.333"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubTextField" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="1.333"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="39"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="52"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="OutTransition" Duration="00:00:01">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.Opacity)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubTextField" Storyboard.TargetProperty="(UIElement.Opacity)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="0.10000000149011612"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubTextField" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="0.10000000149011612"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="0.10000000149011612"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubTextField" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="0.10000000149011612"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="39"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" BeginTime="00:00:00">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="69"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Canvas.Resources>
+    <Canvas x:Name="Content" Width="220" Height="180" Canvas.Left="0" Canvas.Top="0">
+        <TextBlock x:Name="MainTextField" Text="{Binding CurrentVideoText.MainText}" FontFamily="Segoe UI" FontSize="12.673100471496582" FontStretch="Normal" FontStyle="Italic" FontWeight="Bold" Foreground="#FFFFFFFF" Canvas.Left="-5.181" Canvas.Top="12.5" HorizontalAlignment="Left" VerticalAlignment="Center" Width="135.698" RenderTransformOrigin="0.495000004768372,0.490000009536743" TextAlignment="Center" Opacity="0">
+      <TextBlock.RenderTransform>
+        <TransformGroup>
+          <ScaleTransform x:Name="MainTextScale" ScaleX="0.1" ScaleY="0.1"/>
+          <SkewTransform/>
+          <RotateTransform/>
+          <TranslateTransform x:Name="MainTextTranslate" X="39" Y="69"/>
+        </TransformGroup>
+      </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock x:Name="SubTextField" FontFamily="Segoe UI" FontWeight="Bold" FontStyle="Italic" FontSize="10.4597" Text="{Binding CurrentVideoText.SubText}" Foreground="#FFFFFFFF" Canvas.Left="-5.694" Canvas.Top="0" Width="102.938" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" Opacity="0">
+      <TextBlock.RenderTransform>
+        <TransformGroup>
+          <ScaleTransform x:Name="SubTextScale" ScaleX="0.1" ScaleY="0.1"/>
+          <SkewTransform/>
+          <RotateTransform/>
+          <TranslateTransform x:Name="SubTextTranslate" X="54" Y="91"/>
+        </TransformGroup>
+      </TextBlock.RenderTransform>
+        </TextBlock>
+    </Canvas>
+</Canvas>

@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="IndoorWorx.Player.Controls.PlayerControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:IndoorWorx.Player.Controls;assembly=IndoorWorx.Player.Silverlight"
+    xmlns:infcontrols="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"             
+    xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming">
+    
+    <Grid x:Name="playerGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <infcontrols:TelemetryChart Grid.ColumnSpan="3"  Margin="0,0,0,24" />
+        <smoothstreaming:SmoothStreamingMediaElement Position="{Binding PlayerPosition, Mode=TwoWay}" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="videoPlayer" SmoothStreamingPlaybackMode="VideoOnly"  BufferingTime="00:00:05" 
+                                                     SmoothStreamingSource="http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest"  SmoothStreamingErrorOccurred="videoPlayer_SmoothStreamingErrorOccurred"  ManifestReady="videoPlayer_ManifestReady" MediaOpened="videoPlayer_MediaOpened" MediaEnded="videoPlayer_MediaEnded" 
+                                                     AutoPlay="False"/>
+        <controls:TelemetryDataControl Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Bottom"/>
+        <infcontrols:TelemetryChart Grid.Column="1" Margin="5" Grid.Row="2" />
+        <controls:CircularGauge  Grid.Column="2" Grid.Row="2" Margin="5"/>
+    </Grid>
+</UserControl>
