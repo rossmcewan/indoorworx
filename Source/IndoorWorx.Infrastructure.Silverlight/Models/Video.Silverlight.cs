@@ -20,6 +20,7 @@ namespace IndoorWorx.Infrastructure.Models
     {
         public event EventHandler TelemetryLoaded;
 
+
         private bool selected;
         public virtual bool IsSelected
         {
@@ -31,13 +32,14 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private bool playing;
+        private bool playing = false;
         public virtual bool IsPlaying
         {
             get { return playing; }
             set
             {
                 playing = value;
+               
                 FirePropertyChanged("IsPlaying");
             }
         }

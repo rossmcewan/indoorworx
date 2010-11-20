@@ -25,8 +25,8 @@
     </UserControl.Resources>
     
         <StackPanel Orientation="Vertical">
-            <StackPanel Grid.Row="0">
-                <TextBlock Text="Time:" Style="{StaticResource DataHeaderStyle}"/>
+            <StackPanel Grid.Row="0" >
+                <TextBlock Text="Time:" Style="{StaticResource DataHeaderStyle}" />
                 <TextBlock Text="{Binding PlayerPosition}" Style="{StaticResource DataItemStyle}"/>
             </StackPanel>
             <StackPanel Grid.Row="1">

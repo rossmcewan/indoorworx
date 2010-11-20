@@ -4,7 +4,40 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
     xmlns:controls="clr-namespace:IndoorWorx.Player.Controls;assembly=IndoorWorx.Player.Silverlight"
-    xmlns:infcontrols="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight">
+    xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"  
+    xmlns:infcontrols="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"
+    xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:BooleanToOppositeVisibilityConverter x:Key="BooleanToOppositeVisibilityConverter"/>
+        <Storyboard x:Key="mediaOpenedStory">
+            <DoubleAnimation From="0" To="1" Duration="0:0:1" Storyboard.TargetName="playButton" Storyboard.TargetProperty="Opacity"/>
+            <DoubleAnimation From="0" To="1" Duration="0:0:1" Storyboard.TargetName="stopButton" Storyboard.TargetProperty="Opacity"/>
+        </Storyboard>
+        <Storyboard x:Key="playStory">
+            <DoubleAnimation From="0.7" To="1" Duration="0:0:1" Storyboard.TargetName="mediaElement" Storyboard.TargetProperty="Opacity"/>
+        </Storyboard>
+        <Storyboard x:Key="stopStory">
+            <DoubleAnimation From="1" To="0.7" Duration="0:0:1" Storyboard.TargetName="mediaElement" Storyboard.TargetProperty="Opacity"/>
+        </Storyboard>
+        <Style x:Key="DataHeaderStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="150"/>
+        </Style>
+        <Style x:Key="DataItemStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="50"/>
+        </Style>
+    </UserControl.Resources>
     
     <Grid x:Name="playerGrid" Background="Transparent">
         
@@ -19,14 +52,45 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
- 
-        <infcontrols:VideoMediaElement DataContext="{Binding Video}" Grid.ColumnSpan="3" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
-        <infcontrols:TelemetryChart x:Name="profileChart" Grid.ColumnSpan="3" BorderThickness="0"  Margin="0,0,0,24" ShowProgress="True" CurrentProgress="{Binding CurrentPosition, Mode=OneWay}"/>
-        <!--<controls:PlayerControl x:Name="player" Grid.ColumnSpan="3" Grid.RowSpan="3"/>-->
         
-        <controls:TelemetryDataControl x:Name="dataControl" Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Top" BorderThickness="2"/>
+       <smoothstreaming:SmoothStreamingMediaElement x:Name="mediaElement"
+                                                     Grid.ColumnSpan="3" Grid.RowSpan="3"
+                                                     AutoPlay="False" Margin="5" 
+                                                     Background="Transparent" 
+                                                     SmoothStreamingPlaybackMode="VideoOnly"
+                                                     BufferingTime="00:00:05"
+                                                     SmoothStreamingSource="{Binding Video.StreamUri.OriginalString, Mode=OneWay}" 
+                                                     MediaOpened="mediaElement_MediaOpened" 
+                                                     MediaEnded="mediaElement_MediaEnded"
+                                                     MediaFailed="mediaElement_MediaFailed"
+                                                     SmoothStreamingErrorOccurred="mediaElement_SmoothStreamingErrorOccurred"/>
+
+        <infcontrols:TelemetryChart x:Name="profileChart" Grid.ColumnSpan="3" BorderThickness="0"  Margin="0,0,0,24" ShowProgress="True" CurrentProgress="{Binding CurrentPosition, Mode=OneWay}"/>
+       
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Top">
+            <StackPanel Grid.Row="0" >
+                <TextBlock Text="Time:" Style="{StaticResource DataHeaderStyle}" />
+                <TextBlock Text="{Binding PlayerPosition}" Style="{StaticResource DataItemStyle}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <TextBlock Text="Power:" Style="{StaticResource DataHeaderStyle}"/>
+                <TextBlock Name="txtPower" Style="{StaticResource DataItemStyle}"/>
+            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="playButton" Grid.Column="1" Style="{StaticResource MainPlayerPlayButtonStyle}" Click="PlayButton_Click" />
+                <Button x:Name="stopButton" Grid.Column="2" Style="{StaticResource MainPlayerPauseButtonStyle}"  Click="PauseButton_Click"/>
+                <Button x:Name="fullScreenButton" Grid.Column="0"  Style="{StaticResource MainPlayerFullScreenButtonStyle}"  Click="fullScreenButton_Click" />
+            </Grid>
+                
+       </StackPanel>
+        <!--<controls:TelemetryDataControl x:Name="dataControl" Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Top" BorderThickness="2"/>-->
         <infcontrols:TelemetryChart x:Name="zoomedChart" Grid.Column="1" Margin="5" Grid.Row="2"  BorderThickness="0" />
-        <controls:CircularGauge x:Name="gauge"  Grid.Column="2" Grid.Row="2"  BorderThickness="0" Margin="5"/>
+        <controls:CircularGauge x:Name="gauge" Grid.Column="2" Grid.Row="2"  BorderThickness="0" Margin="5"/>
         
     </Grid>
 

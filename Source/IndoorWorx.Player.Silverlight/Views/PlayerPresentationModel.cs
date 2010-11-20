@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Services;
 using System.Linq;
 using IndoorWorx.Infrastructure;
+using System.Windows.Threading;
 
 namespace IndoorWorx.Player.Views
 {
@@ -64,7 +65,6 @@ namespace IndoorWorx.Player.Views
         }
 
 
-
         private TimeSpan playerPosition = new TimeSpan();
         public TimeSpan PlayerPosition
         {
@@ -99,6 +99,57 @@ namespace IndoorWorx.Player.Views
                 currentVideoText = value;
                 FirePropertyChanged("CurrentVideoText");
             }
+        }
+
+        private void EnsurePlaying()
+        {
+            //if (player.CurrentState != SmoothStreamingMediaElementState.Playing && !ended)
+            //    videoPlayer.Play();
+        }
+
+
+        public void MediaOpened()
+        {
+            //var timer = new DispatcherTimer();
+            //timer.Interval = TimeSpan.FromSeconds(2);
+            //timer.Tick += (_sender, _e) =>
+            //{
+            //    EnsurePlaying();
+            //    var roundedSeconds = Math.Round(PlayerPosition.TotalSeconds);
+            //    if (roundedSeconds % 2 == 0)
+            //    {
+            //        ChartData data = null;
+            //        if (linked.TryGetValue(roundedSeconds, out data))
+            //        {
+            //            var val = data.YValue * 100;
+            //            needle.Value = val;
+            //            txtPower.Text = Math.Round(val).ToString();
+            //        }
+            //    }
+            //    if (PlayerPosition >= lengthOfClip)
+            //    {
+            //        this.ended = true;
+            //    }
+            //    else
+            //    {
+            //        var xpos = new DateTime(now.Year, now.Month, now.Day, PlayerPosition.Hours, PlayerPosition.Minutes, PlayerPosition.Seconds).ToOADate();
+            //        var rangeFrom = PlayerPosition.TotalSeconds / lengthOfClip.TotalSeconds;
+            //        var rangeTo = rangeFrom + zoomedLength; //playerPosition.Add(TimeSpan.FromMinutes(3)).TotalSeconds / lengthOfClip.TotalSeconds;
+            //        RadChart2.DefaultView.ChartArea.ZoomScrollSettingsX.SetSelectionRange(rangeFrom, rangeTo);
+            //        line.XIntercept = xpos;
+            //    }
+
+            //    if (information.Count > 0 && (information.Peek().StartTime.TotalSeconds <= PlayerPosition.TotalSeconds))
+            //    {
+            //        ShowText(InformationQueue.Dequeue());
+            //    }
+            //};
+            //timer.Start();
+        }
+
+        public void MediaEnded()
+        {
+            throw new NotImplementedException();
         }
     }
 }

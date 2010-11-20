@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Player.Views
 {
@@ -15,6 +16,11 @@ namespace IndoorWorx.Player.Views
     {
         IPlayerView View { get; set; }
 
+        Video Video { get; set; }
+
+        void MediaOpened();
+
+        void MediaEnded();
     }
 
 }

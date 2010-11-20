@@ -55,7 +55,7 @@ namespace IndoorWorx.Catalog.Views
         }
 
         private ICollection<Category> categories = new ObservableCollection<Category>();
-        public System.Collections.Generic.ICollection<Infrastructure.Models.Category> Categories
+        public ICollection<Category> Categories
         {
             get
             {
@@ -71,7 +71,7 @@ namespace IndoorWorx.Catalog.Views
         }
 
         private Category selectedCategory;
-        public Infrastructure.Models.Category SelectedCategory
+        public Category SelectedCategory
         {
             get
             {

@@ -126,7 +126,6 @@
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\ByteArrayToImageConverter.cs" />
     <Compile Include="Converters\UrlToImageConverter.cs" />
-    <Compile Include="Helpers\VisualTreeExtensions.cs" />
     <Compile Include="ICache.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="IShell.cs" />
