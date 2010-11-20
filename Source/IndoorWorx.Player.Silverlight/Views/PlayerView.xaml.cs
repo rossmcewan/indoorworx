@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Player.Views
 {
@@ -19,12 +20,17 @@ namespace IndoorWorx.Player.Views
             InitializeComponent();            
             this.DataContext = model;
             model.View = this;
-        }
-
+        }       
 
         public IPlayerPresentationModel Model
         {
             get { return this.DataContext as IPlayerPresentationModel; }
+        }
+
+        public void LoadVideo(Video video)
+        {
+            this.profileChart.LoadChart(video.Telemetry, true);
+            this.zoomedChart.LoadChart(video.Telemetry, false);
         }
     }
 }

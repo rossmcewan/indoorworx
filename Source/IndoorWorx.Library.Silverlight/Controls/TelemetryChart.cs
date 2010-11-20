@@ -10,12 +10,18 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Charting;
+using IndoorWorx.Infrastructure.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace IndoorWorx.Library.Controls
 {
     public class TelemetryChart : RadChart
     {
-        public TelemetryChart()
+        private bool isChartInitialized = false;
+        private bool isMarkerLoaded = false;
+
+        private void InitialiseChart()
         {
             AreaSeriesDefinition lineSeries = new AreaSeriesDefinition();
             lineSeries.ShowItemLabels = false;
@@ -46,14 +52,40 @@ namespace IndoorWorx.Library.Controls
             this.DefaultView.ChartArea.LabelFormatBehavior = LabelFormatBehavior.None;
             this.SamplingSettings.SamplingThreshold = 1000;
             this.DefaultView.ChartArea.EnableAnimations = false;
+        }
 
+
+        private void InitialiseMarker()
+        {
             CustomGridLine line = new CustomGridLine();
             line.XIntercept = 0;
             line.Visibility = System.Windows.Visibility.Visible;
             line.Stroke = new SolidColorBrush(Colors.Green);
             line.StrokeThickness = 2;
             this.DefaultView.ChartArea.AxisY.AutoRange = false;
-            this.DefaultView.ChartArea.Annotations.Add(line);            
+            this.DefaultView.ChartArea.Annotations.Add(line);    
         }
+
+        public void LoadChart(ICollection<Telemetry> telemetry, bool hasMarker)
+        {
+            if (!isChartInitialized)
+                InitialiseChart();
+            
+            if (hasMarker && ! isMarkerLoaded)
+                InitialiseMarker();
+
+            LoadTelemetry(telemetry);
+        }
+
+        public void LoadTelemetry(ICollection<Telemetry> telemetry)
+        {
+            var max = telemetry.Max(x => x.PercentageThreshold);
+            this.DefaultView.ChartArea.AxisY.AddRange(0, max, 0.2);
+            this.DefaultView.ChartArea.AxisX.MinValue = DateTime.Today.ToOADate();
+            this.DefaultView.ChartArea.AxisX.MaxValue = telemetry.Max(x => x.TimePositionAsDateTime).ToOADate();
+            this.ItemsSource = telemetry;
+        }
+
+
     }
 }

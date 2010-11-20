@@ -19,6 +19,11 @@ namespace IndoorWorx.Player.Controls
             InitializeComponent();
         }
 
+
+        public void SetManifest(string mainfestUri)
+        {
+           // this.videoPlayer
+        }
        
         private void videoPlayer_SmoothStreamingErrorOccurred(object sender, Microsoft.Web.Media.SmoothStreaming.SmoothStreamingErrorEventArgs e)
         {

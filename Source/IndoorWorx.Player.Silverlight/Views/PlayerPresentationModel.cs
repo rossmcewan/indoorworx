@@ -13,6 +13,9 @@ using IndoorWorx.Infrastructure.Models;
 using System.Windows.Browser;
 using System.IO;
 using System.Collections.Generic;
+using IndoorWorx.Infrastructure.Services;
+using System.Linq;
+using IndoorWorx.Infrastructure;
 
 namespace IndoorWorx.Player.Views
 {
@@ -22,60 +25,32 @@ namespace IndoorWorx.Player.Views
         public PlayerPresentationModel(IServiceLocator serviceLocator)
         {
             this.serviceLocator = serviceLocator;
-            LoadTelemetry();
-            //LoadInformation();
+            LoadData();
+           
         }
 
-        private void LoadTelemetry()
+
+        private Video video = null;
+
+        private void LoadData()
         {
-            //Uri dataURI = new Uri(HtmlPage.Document.DocumentUri, "DataSources/telemetry.csv");
-            //WebClient dataRetriever = new WebClient();
-            //dataRetriever.DownloadStringCompleted += new DownloadStringCompletedEventHandler(
-            //    (sender,e)=>
-            //    {
-            //        StringReader dataReader = new StringReader(e.Result);
-            //        this.BindChart(dataReader);
- 
-            //    });
-            //dataRetriever.DownloadStringAsync(dataURI);
+            var categoryService = serviceLocator.GetInstance<ICategoryService>();
+            categoryService.CategoriesRetrieved += (sender, e) =>
+            {
+                var categories = e.Value;
+                this.video = categories.FirstOrDefault().Catalogs.FirstOrDefault().Videos.FirstOrDefault().TrainingSets.FirstOrDefault();
+                this.video.TelemetryLoaded += (_sender, _e) =>
+                    {
+                        SmartDispatcher.BeginInvoke(() =>
+                        {
+                            View.LoadVideo(video);
+                        });
+                    };
+            };
+            categoryService.RetrieveCategories();
         }
 
 
-
-
-        //private Dictionary<double, ChartData> linked = new Dictionary<double, ChartData>();
-        private void BindChart(TextReader dataReader)
-        {
-        //    //string line;
-        //    //int count = 0;
-
-        //    //List<ChartData> chartData = new List<ChartData>();
-
-        //    //while ((line = dataReader.ReadLine()) != null)
-        //    //{
-        //    //    if (count == 0)
-        //    //    {
-        //    //        count++;
-        //    //        continue;
-        //    //    }
-        //    //    var elements = line.Split(',');
-        //    //    var minutes = TimeSpan.FromMinutes(Convert.ToDouble(elements[0]));
-        //    //    var chartDataElement = new ChartData(zeroTime.Add(minutes), double.Parse(elements[3]) / 300.0);
-        //    //    chartData.Add(chartDataElement);
-        //    //    linked.Add(minutes.TotalSeconds, chartDataElement);
-        //    //}
-
-        //    //RadChart1.ItemsSource = chartData;
-        //    //RadChart2.ItemsSource = chartData;
-
-        //    //var max = chartData.Max(x => x.YValue);
-        //    //RadChart1.DefaultView.ChartArea.AxisY.AddRange(0, max, 0.2);
-        //    //RadChart2.DefaultView.ChartArea.AxisY.AddRange(0, max, 0.2);
-        //    //radialScale.Min = 0;
-        //    //radialScale.MajorTickStep = 20;
-        //    //radialScale.Max = max * 100;
-        //    //radialScale.Label.Location = Telerik.Windows.Controls.Gauges.ScaleObjectLocation.Outside;
-        }
 
         private TimeSpan playerPosition = new TimeSpan();
         public TimeSpan PlayerPosition
