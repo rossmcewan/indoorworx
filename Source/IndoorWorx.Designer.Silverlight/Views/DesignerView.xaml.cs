@@ -21,31 +21,12 @@ namespace IndoorWorx.Designer.Views
 {
     public partial class DesignerView : UserControl, IDesignerView
     {
-        private Storyboard playStory, stopStory;
-        private DoubleAnimation playAnimation, stopAnimation;
-
         public DesignerView(IDesignerPresentationModel model)
         {
             InitializeComponent();
             this.DataContext = model;
             model.View = this;
             model.VideoSelected += new EventHandler<DataEventArgs<Video>>(model_VideoSelected);
-
-            playStory = new Storyboard();
-            playAnimation = new DoubleAnimation();
-            playAnimation.From = 0.7;
-            playAnimation.To = 1;
-            playAnimation.Duration = TimeSpan.FromSeconds(1);
-            Storyboard.SetTargetProperty(playAnimation, new PropertyPath("Opacity"));
-            playStory.Children.Add(playAnimation);
-
-            stopStory = new Storyboard();
-            stopAnimation = new DoubleAnimation();
-            stopAnimation.From = 1;
-            stopAnimation.To = 0.7;
-            stopAnimation.Duration = TimeSpan.FromSeconds(1);
-            Storyboard.SetTargetProperty(stopAnimation, new PropertyPath("Opacity"));
-            stopStory.Children.Add(stopAnimation);
         }
 
         void model_VideoSelected(object sender, DataEventArgs<Video> e)
@@ -86,35 +67,6 @@ namespace IndoorWorx.Designer.Views
             DocumentPaneGroup.AddItem(new RadDocumentPane() { Title = Designer.Resources.DesignerResources.NewDesignTitle }, DockPosition.Center);
         }
 
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
-        {
-            var player = GetPlayer();
-            playStory.Stop();
-            Storyboard.SetTarget(playAnimation, player);
-            Model.PlaySelectedPreview(() =>
-            {
-                playStory.Begin();
-                player.Play();
-            });
-        }
-
-        private void PauseButton_Click(object sender, RoutedEventArgs e)
-        {
-            var player = GetPlayer();
-            stopStory.Stop();
-            Storyboard.SetTarget(stopAnimation, player);
-            Model.StopSelectedPreview(() =>
-            {
-                stopStory.Begin();
-                player.Stop();
-            });
-        }
-
-        private SmoothStreamingMediaElement GetPlayer()
-        {
-            return mediaElement;
-        }
-
         private void profileChart_Loaded(object sender, RoutedEventArgs e)
         {
             var chart = sender as RadChart;
@@ -131,6 +83,7 @@ namespace IndoorWorx.Designer.Views
 
             chart.SeriesMappings.Add(dataMapping);
 
+            chart.DefaultView.ChartArea.Foreground = new SolidColorBrush(Colors.Green);
             chart.DefaultView.ChartArea.ZoomScrollSettingsX.ScrollMode = ScrollMode.None;
             chart.DefaultView.ChartArea.ZoomScrollSettingsY.ScrollMode = ScrollMode.None;
 
@@ -147,36 +100,6 @@ namespace IndoorWorx.Designer.Views
             chart.DefaultView.ChartArea.LabelFormatBehavior = LabelFormatBehavior.None;
             chart.SamplingSettings.SamplingThreshold = 1000;
             chart.DefaultView.ChartArea.EnableAnimations = false;            
-        }
-
-        private void mediaElement_MediaOpened(object sender, RoutedEventArgs e)
-        {
-            var fe = sender as FrameworkElement;
-            var video = fe.DataContext as Video;
-            if (video != null)
-            {
-                video.IsMediaLoading = false;
-            }
-        }
-
-        private void mediaElement_MediaFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-
-        }
-
-        private void mediaElement_SmoothStreamingErrorOccurred(object sender, SmoothStreamingErrorEventArgs e)
-        {
-
-        }
-
-        private void profileChart_DataBound(object sender, ChartDataBoundEventArgs e)
-        {
-
-        }
-
-        private void profileChart_DataBinding(object sender, ChartDataBindingEventArgs e)
-        {
-
         }
     }
 }

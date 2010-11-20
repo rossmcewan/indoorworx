@@ -15,6 +15,7 @@ using IndoorWorx.Library.Navigation;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.Infrastructure.Services;
 using IndoorWorx.Library.Services;
+using IndoorWorx.Library.Helpers;
 
 namespace IndoorWorx.Library
 {
@@ -31,6 +32,8 @@ namespace IndoorWorx.Library
 
         public void Initialize()
         {
+            Application.Current.Resources.Add("LibraryResources", new ResourceWrapper());
+            unityContainer.RegisterInstance<ICache>(unityContainer.Resolve<Cache>());
             unityContainer.RegisterInstance<INavigationService>(unityContainer.Resolve<NavigationService>());
             unityContainer.RegisterType<ICategoryService, CategoryService>();
         }

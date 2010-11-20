@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="IndoorWorx.Library.Controls.VideoMediaElement"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+    xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"  
+    xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:BooleanToOppositeVisibilityConverter x:Key="BooleanToOppositeVisibilityConverter"/>
+        <Storyboard x:Key="mediaOpenedStory">
+            <DoubleAnimation From="0" To="1" Duration="0:0:1" Storyboard.TargetName="playButton" Storyboard.TargetProperty="Opacity"/>
+            <DoubleAnimation From="0" To="1" Duration="0:0:1" Storyboard.TargetName="stopButton" Storyboard.TargetProperty="Opacity"/>
+        </Storyboard>
+        <Storyboard x:Key="playStory">
+            <DoubleAnimation From="0.7" To="1" Duration="0:0:1" Storyboard.TargetName="mediaElement" Storyboard.TargetProperty="Opacity"/>                
+        </Storyboard>
+        <Storyboard x:Key="stopStory">
+            <DoubleAnimation From="1" To="0.7" Duration="0:0:1" Storyboard.TargetName="mediaElement" Storyboard.TargetProperty="Opacity"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <telerik:RadBusyIndicator IsBusy="{Binding IsMediaLoading, Mode=OneWay}" BusyContent="{Binding LibraryResources.LoadingMediaProgressMessage, Source={StaticResource LibraryResources}}">
+        <Grid>
+            <smoothstreaming:SmoothStreamingMediaElement x:Name="mediaElement" Background="Transparent" SmoothStreamingPlaybackMode="VideoOnly" BufferingTime="00:00:05" SmoothStreamingSource="{Binding StreamUri.OriginalString, Mode=OneWay}" AutoPlay="False" Opacity="0.7" Margin="5" MediaOpened="mediaElement_MediaOpened" MediaFailed="mediaElement_MediaFailed" SmoothStreamingErrorOccurred="mediaElement_SmoothStreamingErrorOccurred"/>
+            <Button x:Name="playButton" Opacity="0" Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10" Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="{Binding IsPlaying, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"/>
+            <Button x:Name="stopButton" Opacity="0" Style="{StaticResource MainPlayerPauseButtonStyle}" Margin="10" Click="PauseButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="{Binding IsPlaying, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</UserControl>

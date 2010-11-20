@@ -6,6 +6,7 @@
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight" 
     xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"  
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"     
+    xmlns:libControls="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"             
     d:DesignHeight="500" d:DesignWidth="800"           
     mc:Ignorable="d" >    
     <UserControl.Resources>
@@ -102,13 +103,7 @@
                                         </Grid.RowDefinitions>
                                         <telerik:RadTileView telerik:StyleManager.Theme="Transparent" Grid.ColumnSpan="2" MaximizeMode="One" MinimizedItemsPosition="Left" MinimizedRowHeight="180" TileStateChangeTrigger="None">
                                             <telerik:RadTileViewItem Header="Preview" TileState="Maximized">
-                                                <telerik:RadBusyIndicator IsBusy="{Binding IsMediaLoading, Mode=TwoWay}" BusyContent="{Binding CatalogResources.LoadingMediaProgressMessage, Source={StaticResource CatalogResources}}">
-                                                    <Grid>
-                                                        <smoothstreaming:SmoothStreamingMediaElement x:Name="mediaElement" Background="Transparent" SmoothStreamingPlaybackMode="VideoOnly" BufferingTime="00:00:05" SmoothStreamingSource="{Binding StreamUri.OriginalString, Mode=OneWay}" AutoPlay="False" Opacity="0.7" Margin="5" MediaOpened="mediaElement_MediaOpened" MediaFailed="mediaElement_MediaFailed" SmoothStreamingErrorOccurred="mediaElement_SmoothStreamingErrorOccurred"/>
-                                                        <Button Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10" Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding CatalogResources.PlayButtonTooltip, Source={StaticResource CatalogResources}}" Visibility="{Binding IsPlaying, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"/>
-                                                        <Button Style="{StaticResource MainPlayerPauseButtonStyle}" Margin="10" Click="PauseButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding CatalogResources.PauseButtonTooltip, Source={StaticResource CatalogResources}}" Visibility="{Binding IsPlaying, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                                    </Grid>
-                                                </telerik:RadBusyIndicator>
+                                                <libControls:VideoMediaElement/>
                                             </telerik:RadTileViewItem>
                                             <telerik:RadTileViewItem x:Name="profilesTile" Header="{Binding CatalogResources.ProfilesTitle, Source={StaticResource CatalogResources}}" TileStateChanged="selectedVideoTile_TileStateChanged">
                                                 <telerik:RadFluidContentControl ContentChangeMode="Manual">

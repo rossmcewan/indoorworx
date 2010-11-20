@@ -19,30 +19,11 @@ namespace IndoorWorx.Catalog.Views
 {
     public partial class CatalogView : UserControl, ICatalogView
     {
-        private Storyboard playStory, stopStory;
-        private DoubleAnimation playAnimation, stopAnimation;
-
         public CatalogView(ICatalogPresentationModel model)
         {
             InitializeComponent();
             this.DataContext = model;
             model.View = this;
-
-            playStory = new Storyboard();
-            playAnimation = new DoubleAnimation();
-            playAnimation.From = 0.7;
-            playAnimation.To = 1;
-            playAnimation.Duration = TimeSpan.FromSeconds(1);
-            Storyboard.SetTargetProperty(playAnimation, new PropertyPath("Opacity"));
-            playStory.Children.Add(playAnimation);
-
-            stopStory = new Storyboard();
-            stopAnimation = new DoubleAnimation();
-            stopAnimation.From = 1;
-            stopAnimation.To = 0.7;
-            stopAnimation.Duration = TimeSpan.FromSeconds(1);
-            Storyboard.SetTargetProperty(stopAnimation, new PropertyPath("Opacity"));
-            stopStory.Children.Add(stopAnimation);
         }
 
         #region ICatalogView Members
@@ -53,39 +34,6 @@ namespace IndoorWorx.Catalog.Views
         }
 
         #endregion
-
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
-        {
-            var player = GetPlayer();
-            playStory.Stop();
-            Storyboard.SetTarget(playAnimation, player);
-            Model.PlaySelectedPreview(() =>
-                {
-                    playStory.Begin();
-                    player.Play();
-                });
-        }
-
-        private void PauseButton_Click(object sender, RoutedEventArgs e)
-        {            
-            var player = GetPlayer();
-            stopStory.Stop();
-            Storyboard.SetTarget(stopAnimation, player);
-            Model.StopSelectedPreview(() =>
-                {
-                    stopStory.Begin();
-                    player.Stop();
-                });
-        }
-
-        private SmoothStreamingMediaElement GetPlayer()
-        {
-            var item = radTileView.ItemContainerGenerator.ContainerFromItem(Model.SelectedCategory.SelectedCatalog.SelectedVideo ?? Model.SelectedCategory.SelectedCatalog.Videos.FirstOrDefault());
-
-            var player = FindVisualChild<SmoothStreamingMediaElement>(item);
-
-            return player;
-        }
 
         private TChildItem FindVisualChild<TChildItem>(DependencyObject obj) where TChildItem : DependencyObject
         {
@@ -107,24 +55,6 @@ namespace IndoorWorx.Catalog.Views
         private void radTileView_TileStateChanged(object sender, Telerik.Windows.RadRoutedEventArgs e)
         {
 
-        }
-
-        private void mediaElement_MediaOpened(object sender, RoutedEventArgs e)
-        {
-            var fe = sender as FrameworkElement;
-            var video = fe.DataContext as Video;
-            if (video != null)
-            {
-                video.IsMediaLoading = false;
-            }
-        }
-
-        private void mediaElement_MediaFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-        }
-
-        private void mediaElement_SmoothStreamingErrorOccurred(object sender, SmoothStreamingErrorEventArgs e)
-        {
         }
 
         private void selectedVideoTile_TileStateChanged(object sender, Telerik.Windows.RadRoutedEventArgs e) 
@@ -171,6 +101,7 @@ namespace IndoorWorx.Catalog.Views
 
             chart.SeriesMappings.Add(dataMapping);
 
+            chart.DefaultView.ChartArea.Foreground = new SolidColorBrush(Colors.Green);
             chart.DefaultView.ChartArea.ZoomScrollSettingsX.ScrollMode = ScrollMode.None;
             chart.DefaultView.ChartArea.ZoomScrollSettingsY.ScrollMode = ScrollMode.None;
 
