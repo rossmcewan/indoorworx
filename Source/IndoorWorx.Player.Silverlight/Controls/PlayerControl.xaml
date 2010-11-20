@@ -5,7 +5,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming">
 
-    <smoothstreaming:SmoothStreamingMediaElement Position="{Binding PlayerPosition, Mode=TwoWay}"  x:Name="videoPlayer" SmoothStreamingPlaybackMode="VideoOnly"  BufferingTime="00:00:05" 
-                                                     SmoothStreamingSource="http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest"  SmoothStreamingErrorOccurred="videoPlayer_SmoothStreamingErrorOccurred"  ManifestReady="videoPlayer_ManifestReady" MediaOpened="videoPlayer_MediaOpened" MediaEnded="videoPlayer_MediaEnded" 
-                                                     AutoPlay="False"/>
+    <smoothstreaming:SmoothStreamingMediaElement x:Name="videoPlayer" 
+                                                 Position="{Binding PlayerPosition, Mode=TwoWay}" 
+                                                 SmoothStreamingPlaybackMode="VideoOnly"  
+                                                 BufferingTime="00:00:05" 
+                                                 SmoothStreamingErrorOccurred="videoPlayer_SmoothStreamingErrorOccurred"  
+                                                 ManifestReady="videoPlayer_ManifestReady"
+                                                 MediaOpened="videoPlayer_MediaOpened" 
+                                                 MediaEnded="videoPlayer_MediaEnded" 
+                                                 AutoPlay="False"/>
 </UserControl>

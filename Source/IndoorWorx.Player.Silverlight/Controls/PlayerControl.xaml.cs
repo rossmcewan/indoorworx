@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Microsoft.Web.Media.SmoothStreaming;
 
 namespace IndoorWorx.Player.Controls
 {
@@ -20,12 +21,12 @@ namespace IndoorWorx.Player.Controls
         }
 
 
-        public void SetManifest(string mainfestUri)
+        public void SetManifest(Uri manifestUri)
         {
-           // this.videoPlayer
+            this.videoPlayer.SmoothStreamingSource = manifestUri;
         }
        
-        private void videoPlayer_SmoothStreamingErrorOccurred(object sender, Microsoft.Web.Media.SmoothStreaming.SmoothStreamingErrorEventArgs e)
+        private void videoPlayer_SmoothStreamingErrorOccurred(object sender, SmoothStreamingErrorEventArgs e)
         {
 
         }

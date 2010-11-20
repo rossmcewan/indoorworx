@@ -26,11 +26,23 @@ namespace IndoorWorx.Player.Views
         {
             this.serviceLocator = serviceLocator;
             LoadData();
-           
         }
 
 
         private Video video = null;
+        public Video Video
+        {
+            get
+            {
+                return video;
+            }
+            set
+            {
+                this.video = value;
+                FirePropertyChanged("Video");
+            }
+
+        }
 
         private void LoadData()
         {
@@ -38,14 +50,15 @@ namespace IndoorWorx.Player.Views
             categoryService.CategoriesRetrieved += (sender, e) =>
             {
                 var categories = e.Value;
-                this.video = categories.FirstOrDefault().Catalogs.FirstOrDefault().Videos.FirstOrDefault().TrainingSets.FirstOrDefault();
-                this.video.TelemetryLoaded += (_sender, _e) =>
+                this.Video = categories.FirstOrDefault().Catalogs.FirstOrDefault().Videos.FirstOrDefault().TrainingSets.FirstOrDefault();
+                this.Video.TelemetryLoaded += (_sender, _e) =>
                     {
                         SmartDispatcher.BeginInvoke(() =>
                         {
-                            View.LoadVideo(video);
+                            View.LoadVideo(Video);
                         });
                     };
+                this.Video.LoadTelemetry();
             };
             categoryService.RetrieveCategories();
         }

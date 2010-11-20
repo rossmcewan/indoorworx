@@ -25,8 +25,8 @@
     <telerik:RadBusyIndicator IsBusy="{Binding IsMediaLoading, Mode=OneWay}" BusyContent="{Binding LibraryResources.LoadingMediaProgressMessage, Source={StaticResource LibraryResources}}">
         <Grid>
             <smoothstreaming:SmoothStreamingMediaElement x:Name="mediaElement" Background="Transparent" SmoothStreamingPlaybackMode="VideoOnly" BufferingTime="00:00:05" SmoothStreamingSource="{Binding StreamUri.OriginalString, Mode=OneWay}" AutoPlay="False" Opacity="0.7" Margin="5" MediaOpened="mediaElement_MediaOpened" MediaFailed="mediaElement_MediaFailed" SmoothStreamingErrorOccurred="mediaElement_SmoothStreamingErrorOccurred"/>
-            <Button x:Name="playButton" Opacity="0" Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10" Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="{Binding IsPlaying, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"/>
-            <Button x:Name="stopButton" Opacity="0" Style="{StaticResource MainPlayerPauseButtonStyle}" Margin="10" Click="PauseButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="{Binding IsPlaying, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Button x:Name="playButton" Opacity="0" Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10" Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding IsPlaying, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"/>
+            <Button x:Name="stopButton" Opacity="0" Style="{StaticResource MainPlayerPauseButtonStyle}" Margin="10" Click="PauseButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding IsPlaying, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </Grid>
     </telerik:RadBusyIndicator>
 </UserControl>
