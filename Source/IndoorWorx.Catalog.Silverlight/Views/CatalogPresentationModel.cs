@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure.Services;
+using IndoorWorx.Infrastructure;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -110,7 +111,7 @@ namespace IndoorWorx.Catalog.Views
             var video = SelectedCategory.SelectedCatalog.SelectedVideo ?? SelectedCategory.SelectedCatalog.Videos.FirstOrDefault();
             if (video != null)
             {
-                Application.Current.RootVisual.Dispatcher.BeginInvoke(() => video.IsPlaying = true);
+                SmartDispatcher.BeginInvoke(() => video.IsPlaying = true);
             }
             play();
         }
@@ -119,7 +120,7 @@ namespace IndoorWorx.Catalog.Views
         {
             var video = SelectedCategory.SelectedCatalog.SelectedVideo ?? SelectedCategory.SelectedCatalog.Videos.FirstOrDefault();
             if (video != null)
-                Application.Current.RootVisual.Dispatcher.BeginInvoke(() => video.IsPlaying = false);
+                SmartDispatcher.BeginInvoke(() => video.IsPlaying = false);
             stop();
         }
 

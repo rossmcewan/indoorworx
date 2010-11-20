@@ -84,6 +84,24 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading media ....
+        /// </summary>
+        public static string LoadingMediaProgressMessage {
+            get {
+                return ResourceManager.GetString("LoadingMediaProgressMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading telemetry ....
+        /// </summary>
+        public static string LoadingTelemetryProgressMessage {
+            get {
+                return ResourceManager.GetString("LoadingTelemetryProgressMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Design New Training Set.
         /// </summary>
         public static string NewDesignTitle {

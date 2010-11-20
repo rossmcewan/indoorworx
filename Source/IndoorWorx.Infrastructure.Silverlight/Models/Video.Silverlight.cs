@@ -100,6 +100,8 @@ namespace IndoorWorx.Infrastructure.Models
 
         public void LoadTelemetry()
         {
+            if (TelemetryUri == null)
+                return;
             if (!IsTelemetryLoaded && !IsTelemetryLoading)
             {
                 var _telemetry = new List<Telemetry>();

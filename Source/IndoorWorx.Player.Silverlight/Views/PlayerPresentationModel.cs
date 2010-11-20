@@ -28,16 +28,16 @@ namespace IndoorWorx.Player.Views
 
         private void LoadTelemetry()
         {
-            Uri dataURI = new Uri(HtmlPage.Document.DocumentUri, "DataSources/telemetry.csv");
-            WebClient dataRetriever = new WebClient();
-            dataRetriever.DownloadStringCompleted += new DownloadStringCompletedEventHandler(
-                (sender,e)=>
-                {
-                    StringReader dataReader = new StringReader(e.Result);
-                    this.BindChart(dataReader);
+            //Uri dataURI = new Uri(HtmlPage.Document.DocumentUri, "DataSources/telemetry.csv");
+            //WebClient dataRetriever = new WebClient();
+            //dataRetriever.DownloadStringCompleted += new DownloadStringCompletedEventHandler(
+            //    (sender,e)=>
+            //    {
+            //        StringReader dataReader = new StringReader(e.Result);
+            //        this.BindChart(dataReader);
  
-                });
-            dataRetriever.DownloadStringAsync(dataURI);
+            //    });
+            //dataRetriever.DownloadStringAsync(dataURI);
         }
 
 

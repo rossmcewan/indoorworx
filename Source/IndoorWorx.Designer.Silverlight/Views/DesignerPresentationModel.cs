@@ -15,11 +15,15 @@ using Microsoft.Practices.Composite.Presentation.Commands;
 using IndoorWorx.Infrastructure.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using IndoorWorx.Infrastructure;
+using Microsoft.Practices.Composite.Events;
 
 namespace IndoorWorx.Designer.Views
 {
     public class DesignerPresentationModel : BaseModel, IDesignerPresentationModel
     {
+        public event EventHandler<DataEventArgs<Video>> VideoSelected;
+
         private IServiceLocator serviceLocator;
         public DesignerPresentationModel(IServiceLocator serviceLocator)
         {
@@ -72,6 +76,21 @@ namespace IndoorWorx.Designer.Views
             }
         }
 
+        private Video selectedVideo;
+        public Video SelectedVideo
+        {
+            get { return selectedVideo; }
+            set
+            {
+                selectedVideo = value;
+                FirePropertyChanged("SelectedVideo");
+                if (VideoSelected != null)
+                    VideoSelected(this, new DataEventArgs<Video>(value));
+                if (value != null)
+                    value.LoadTelemetry();                
+            }
+        }
+
         public void LoadCategories()
         {
             var categoryService = serviceLocator.GetInstance<ICategoryService>();
@@ -87,6 +106,24 @@ namespace IndoorWorx.Designer.Views
             };
             this.IsBusy = true;
             categoryService.RetrieveCategories();
+        }
+
+        public void PlaySelectedPreview(Action play)
+        {
+            var video = SelectedVideo;
+            if (video != null)
+            {
+                SmartDispatcher.BeginInvoke(() => video.IsPlaying = true);
+            }
+            play();
+        }
+
+        public void StopSelectedPreview(Action stop)
+        {
+            var video = SelectedVideo;
+            if (video != null)
+                SmartDispatcher.BeginInvoke(() => video.IsPlaying = false);
+            stop();
         }
     }
 }
