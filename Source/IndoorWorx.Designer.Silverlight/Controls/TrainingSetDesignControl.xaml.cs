@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Designer.Domain;
 using IndoorWorx.Library.Controls;
+using IndoorWorx.Infrastructure;
 
 namespace IndoorWorx.Designer.Controls
 {
@@ -29,7 +30,16 @@ namespace IndoorWorx.Designer.Controls
         private void TelemetryChart_Loaded(object sender, RoutedEventArgs e)
         {
             var chart = sender as TelemetryChart;
-            chart.LoadTelemetry(Model.FromTrainingSet.Telemetry);
+            if (Model.FromTrainingSet.IsTelemetryLoaded)
+                chart.LoadTelemetry(Model.FromTrainingSet.Telemetry);
+            else
+            {
+                Model.FromTrainingSet.TelemetryLoaded += (_sender, _e) =>
+                    {
+                        SmartDispatcher.BeginInvoke(() => chart.LoadTelemetry(Model.FromTrainingSet.Telemetry));
+                    };
+                Model.FromTrainingSet.LoadTelemetry();
+            }
         }
     }
 }
