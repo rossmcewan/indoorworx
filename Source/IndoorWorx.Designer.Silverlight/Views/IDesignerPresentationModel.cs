@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Designer.Domain;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -22,7 +23,11 @@ namespace IndoorWorx.Designer.Views
 
         ICommand AddDesignerCommand { get; set; }
 
+        void AddDesigner();
+
         ICollection<Category> Categories { get; set; }
+
+        ICollection<TrainingSetDesign> TrainingSetDesigns { get; set; }
 
         Video SelectedVideo { get; set; }
 

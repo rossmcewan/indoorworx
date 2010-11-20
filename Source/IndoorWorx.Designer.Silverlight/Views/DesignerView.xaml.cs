@@ -16,6 +16,8 @@ using Telerik.Windows.Controls.Charting;
 using IndoorWorx.Infrastructure.Models;
 using Microsoft.Web.Media.SmoothStreaming;
 using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Designer.Domain;
+using IndoorWorx.Designer.Controls;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -33,8 +35,6 @@ namespace IndoorWorx.Designer.Views
         {
             var video = e.Value;
 
-            //var container = treeView.ItemContainerGenerator.ContainerFromItem(e.Value) as RadTreeViewItem;
-            //container.IsExpanded = true;
             if (video.IsTelemetryLoaded)
             {
                 telemetryChart.LoadTelemetry(video.Telemetry);
@@ -56,9 +56,25 @@ namespace IndoorWorx.Designer.Views
             get { return this.DataContext as IDesignerPresentationModel; }
         }
 
-        public void AddDesigner()
+        public void AddDesigner(TrainingSetDesign design)
         {
-            DocumentPaneGroup.AddItem(new RadDocumentPane() { Title = Designer.Resources.DesignerResources.NewDesignTitle }, DockPosition.Center);
+            var documentPane = new RadDocumentPane()
+            {
+                Title = Designer.Resources.DesignerResources.NewDesignTitle,
+                Content = new TrainingSetDesignControl() { DataContext = design }
+            };
+            
+            DocumentPaneGroup.AddItem(documentPane, DockPosition.Center);                
+        }
+
+        private void RadDocking_PreviewClose(object sender, StateChangeEventArgs e)
+        {
+
+        }
+
+        private void RadDocking_Close(object sender, StateChangeEventArgs e)
+        {
+
         }
     }
 }

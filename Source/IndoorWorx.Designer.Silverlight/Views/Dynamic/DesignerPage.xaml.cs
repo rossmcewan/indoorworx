@@ -47,6 +47,7 @@ namespace IndoorWorx.Designer.Views.Dynamic
             if (this.NavigationContext.QueryString.TryGetValue("VideoId", out videoId))
             {
                 View.Model.SelectVideoWithId(new Guid(videoId));
+                View.Model.AddDesigner();
             }                   
         }
     }

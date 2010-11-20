@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using IndoorWorx.Infrastructure;
 using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Designer.Domain;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -44,9 +45,17 @@ namespace IndoorWorx.Designer.Views
             }
         }
 
+        public void AddDesigner()
+        {
+            AddDesigner(this);
+        }
+
         private void AddDesigner(IDesignerPresentationModel model)
         {
-            View.AddDesigner();
+            var design = new TrainingSetDesign();
+            design.FromTrainingSet = this.SelectedVideo;
+            TrainingSetDesigns.Add(design);
+            View.AddDesigner(design);
         }
 
         private bool busy;
@@ -73,6 +82,19 @@ namespace IndoorWorx.Designer.Views
                 foreach (var category in value)
                     this.categories.Add(category);
                 FirePropertyChanged("Categories");
+            }
+        }
+
+        private ICollection<TrainingSetDesign> trainingSetDesigns = new ObservableCollection<TrainingSetDesign>();
+        public ICollection<TrainingSetDesign> TrainingSetDesigns
+        {
+            get { return trainingSetDesigns; }
+            set
+            {
+                this.trainingSetDesigns.Clear();
+                foreach (var v in value)
+                    this.trainingSetDesigns.Add(v);
+                FirePropertyChanged("TrainingSetDesigns");
             }
         }
 

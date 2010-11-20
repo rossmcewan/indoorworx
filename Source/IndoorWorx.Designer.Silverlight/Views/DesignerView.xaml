@@ -49,10 +49,10 @@
             </telerik:RadButton>
             <telerik:RadToolBarSeparator/>
         </telerik:RadToolBar>
-        <telerik:RadDocking Grid.Row="1" Margin="5">
+        <telerik:RadDocking Grid.Row="1" Margin="5" PreviewClose="RadDocking_PreviewClose" Close="RadDocking_Close">
             <telerik:RadDocking.DocumentHost>
                 <telerik:RadSplitContainer>
-                    <telerik:RadPaneGroup x:Name="DocumentPaneGroup"/>                        
+                    <telerik:RadPaneGroup x:Name="DocumentPaneGroup"/>
                 </telerik:RadSplitContainer>
             </telerik:RadDocking.DocumentHost>
             <telerik:RadSplitContainer telerik:DockingPanel.InitialSize="300,300" MaxWidth="600"
