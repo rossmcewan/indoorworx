@@ -72,15 +72,8 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <libControls:VideoMediaElement/>
-                                    <!--<telerik:RadBusyIndicator IsBusy="{Binding IsMediaLoading, Mode=OneWay}" BusyContent="{Binding DesignerResources.LoadingMediaProgressMessage, Source={StaticResource DesignerResources}}">
-                                        <Grid>                                            
-                                            <smoothstreaming:SmoothStreamingMediaElement x:Name="mediaElement" Background="Transparent" SmoothStreamingPlaybackMode="VideoOnly" BufferingTime="00:00:05" SmoothStreamingSource="{Binding StreamUri.OriginalString, Mode=OneWay}" AutoPlay="False" Opacity="0.7" Margin="5" MediaOpened="mediaElement_MediaOpened" MediaFailed="mediaElement_MediaFailed" SmoothStreamingErrorOccurred="mediaElement_SmoothStreamingErrorOccurred"/>
-                                            <Button Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10" Click="PlayButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding CatalogResources.PlayButtonTooltip, Source={StaticResource CatalogResources}}" Visibility="{Binding IsPlaying, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"/>
-                                            <Button Style="{StaticResource MainPlayerPauseButtonStyle}" Margin="10" Click="PauseButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding CatalogResources.PauseButtonTooltip, Source={StaticResource CatalogResources}}" Visibility="{Binding IsPlaying, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                        </Grid>
-                                    </telerik:RadBusyIndicator>-->
                                     <telerik:RadBusyIndicator Grid.Row="1" IsBusy="{Binding IsTelemetryLoading, Mode=OneWay}" BusyContent="{Binding DesignerResources.LoadingTelemetryProgressMessage, Source={StaticResource DesignerResources}}">
-                                        <telerik:RadChart x:Name="profileChart" Background="Transparent" Loaded="profileChart_Loaded" Margin="5"/>
+                                        <libControls:TelemetryChart x:Name="telemetryChart" XAxisLabelVisibility="Collapsed" YAxisLabelVisibility="Collapsed"/>
                                     </telerik:RadBusyIndicator>
                                 </Grid>
                             </Grid>

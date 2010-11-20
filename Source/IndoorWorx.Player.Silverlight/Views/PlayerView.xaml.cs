@@ -29,8 +29,8 @@ namespace IndoorWorx.Player.Views
 
         public void LoadVideo(Video video)
         {
-            this.profileChart.LoadChart(video.Telemetry, true);
-            this.zoomedChart.LoadChart(video.Telemetry, false);
+            this.profileChart.LoadTelemetry(video.Telemetry);
+            this.zoomedChart.LoadTelemetry(video.Telemetry);
         }
     }
 }

@@ -18,19 +18,17 @@ namespace IndoorWorx.Library.Controls
 {
     public class TelemetryChart : RadChart
     {
-        private bool isChartInitialized = false;
-        private bool isMarkerLoaded = false;
-
-        private void InitialiseChart()
-        {
+        private CustomGridLine line;
+        public TelemetryChart():base()
+        {            
             AreaSeriesDefinition lineSeries = new AreaSeriesDefinition();
             lineSeries.ShowItemLabels = false;
             lineSeries.ShowPointMarks = false;
 
             SeriesMapping dataMapping = new SeriesMapping();
             dataMapping.SeriesDefinition = lineSeries;
-            dataMapping.ItemMappings.Add(new ItemMapping("XValue", DataPointMember.XValue));
-            dataMapping.ItemMappings.Add(new ItemMapping("YValue", DataPointMember.YValue));
+            dataMapping.ItemMappings.Add(new ItemMapping("TimePositionAsDateTime", DataPointMember.XValue));
+            dataMapping.ItemMappings.Add(new ItemMapping("PercentageThreshold", DataPointMember.YValue));
             dataMapping.ItemMappings[1].SamplingFunction = ChartSamplingFunction.KeepExtremes;
 
             this.SeriesMappings.Add(dataMapping);
@@ -52,29 +50,13 @@ namespace IndoorWorx.Library.Controls
             this.DefaultView.ChartArea.LabelFormatBehavior = LabelFormatBehavior.None;
             this.SamplingSettings.SamplingThreshold = 1000;
             this.DefaultView.ChartArea.EnableAnimations = false;
-        }
 
-
-        private void InitialiseMarker()
-        {
-            CustomGridLine line = new CustomGridLine();
+            line = new CustomGridLine();
             line.XIntercept = 0;
             line.Visibility = System.Windows.Visibility.Visible;
             line.Stroke = new SolidColorBrush(Colors.Green);
             line.StrokeThickness = 2;
             this.DefaultView.ChartArea.AxisY.AutoRange = false;
-            this.DefaultView.ChartArea.Annotations.Add(line);    
-        }
-
-        public void LoadChart(ICollection<Telemetry> telemetry, bool hasMarker)
-        {
-            if (!isChartInitialized)
-                InitialiseChart();
-            
-            if (hasMarker && ! isMarkerLoaded)
-                InitialiseMarker();
-
-            LoadTelemetry(telemetry);
         }
 
         public void LoadTelemetry(ICollection<Telemetry> telemetry)
@@ -86,6 +68,63 @@ namespace IndoorWorx.Library.Controls
             this.ItemsSource = telemetry;
         }
 
+        public Visibility XAxisLabelVisibility
+        {
+            get { return (Visibility)GetValue(XAxisLabelVisibilityProperty); }
+            set { SetValue(XAxisLabelVisibilityProperty, value); }
+        }
 
+        public static readonly DependencyProperty XAxisLabelVisibilityProperty =
+            DependencyProperty.Register("XAxisLabelVisibility", typeof(Visibility), typeof(TelemetryChart), new PropertyMetadata(Visibility.Visible, (sender, e) =>
+                {
+                    var chart = sender as TelemetryChart;
+                    chart.DefaultView.ChartArea.AxisX.AxisLabelsVisibility = chart.XAxisLabelVisibility;
+                }));
+
+        public Visibility YAxisLabelVisibility
+        {
+            get { return (Visibility)GetValue(YAxisLabelVisibilityProperty); }
+            set { SetValue(YAxisLabelVisibilityProperty, value); }
+        }
+
+        public static readonly DependencyProperty YAxisLabelVisibilityProperty =
+            DependencyProperty.Register("YAxisLabelVisibility", typeof(Visibility), typeof(TelemetryChart), new PropertyMetadata(Visibility.Visible, (sender, e) =>
+                {
+                    var chart = sender as TelemetryChart;
+                    chart.DefaultView.ChartArea.AxisY.AxisLabelsVisibility = chart.YAxisLabelVisibility;
+                }));
+
+        public double CurrentProgress
+        {
+            get { return (double)GetValue(CurrentProgressProperty); }
+            set { SetValue(CurrentProgressProperty, value); }
+        }
+
+        public static readonly DependencyProperty CurrentProgressProperty =
+            DependencyProperty.Register("CurrentProgress", typeof(double), typeof(TelemetryChart), new PropertyMetadata(0.0, CurrentProgressChanged));
+
+        private static void CurrentProgressChanged(DependencyObject src, DependencyPropertyChangedEventArgs args)
+        {
+            var telemetryChart = src as TelemetryChart;
+            telemetryChart.line.XIntercept = telemetryChart.CurrentProgress;
+        }
+
+        public bool ShowProgress
+        {
+            get { return (bool)GetValue(ShowProgressProperty); }
+            set { SetValue(ShowProgressProperty, value); }
+        }
+
+        public static readonly DependencyProperty ShowProgressProperty =
+            DependencyProperty.Register("ShowProgress", typeof(bool), typeof(TelemetryChart), new PropertyMetadata(false, ShowProgressChanged));
+
+        private static void ShowProgressChanged(DependencyObject src, DependencyPropertyChangedEventArgs args)
+        {                        
+            var telemetryChart = src as TelemetryChart;
+            if (telemetryChart.ShowProgress)
+                telemetryChart.DefaultView.ChartArea.Annotations.Add(telemetryChart.line);
+            else
+                telemetryChart.DefaultView.ChartArea.Annotations.Remove(telemetryChart.line);
+        }
     }
 }
