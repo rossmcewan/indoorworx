@@ -347,4 +347,162 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="MainPlayerFullScreenButtonStyle"
+               TargetType="Button" BasedOn="{StaticResource MainPlayerButtonControlStyle}">
+        <Setter Property="Cursor"
+                    Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Canvas x:Name="Layer_1"
+                    		Width="21"
+                    		Height="21"
+                    		Canvas.Left="0"
+                    		Canvas.Top="0">
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="MouseOver" GeneratedDuration="00:00:00.2000000"/>
+                                    <VisualTransition From="Pressed" GeneratedDuration="00:00:00.2000000"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path_Copy" Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
+                                            <EasingColorKeyFrame KeyTime="00:00:00" Value="#FF052BA0"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path_Copy" Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                            <EasingColorKeyFrame KeyTime="00:00:00" Value="#FF8CD6FC"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                        <PointAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path_Copy" Storyboard.TargetProperty="(Shape.Stroke).(LinearGradientBrush.StartPoint)">
+                                            <EasingPointKeyFrame KeyTime="00:00:00" Value="0.5,0.032"/>
+                                        </PointAnimationUsingKeyFrames>
+                                        <PointAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path_Copy" Storyboard.TargetProperty="(Shape.Stroke).(LinearGradientBrush.EndPoint)">
+                                            <EasingPointKeyFrame KeyTime="00:00:00" Value="0.5,1"/>
+                                        </PointAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path_Copy" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path" Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
+                                            <EasingColorKeyFrame KeyTime="00:00:00" Value="#FF052BA0"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path" Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                            <EasingColorKeyFrame KeyTime="00:00:00" Value="#FF8CD6FC"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path" Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.936"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.936"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-0.083"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-0.083"/>
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard/>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard/>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Path x:Name="path" Width="20.8813"
+                    			Height="20.7301"
+                    			Canvas.Left="0.0593352"
+                    			Canvas.Top="0.134969"
+                    			Stretch="Fill"
+                    			StrokeThickness="1.99975"
+                    			StrokeLineJoin="Round"
+                    			Data="F1 M 6.39184,1.13484L 14.6082,1.13484C 17.5533,1.13484 19.9408,3.52238 19.9408,6.46746L 19.9408,14.5325C 19.9408,17.4777 17.5533,19.8652 14.6082,19.8652L 6.39184,19.8652C 3.44673,19.8652 1.05921,17.4777 1.05921,14.5325L 1.05921,6.46746C 1.05921,3.52238 3.44673,1.13484 6.39184,1.13484 Z " Opacity="0" RenderTransformOrigin="0.5,0.5" >
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                            <Path.Stroke>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="Black" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Stroke>
+                            <Path.Fill>
+                                <LinearGradientBrush StartPoint="0.543065,0.0308619"
+                        				EndPoint="0.543065,0.969142">
+                                    <GradientStop Color="#E5217DC3"
+                        					Offset="0" />
+                                    <GradientStop Color="#00217DC3"
+                        					Offset="0.567416" />
+                                    <GradientStop Color="#00217DC3"
+                        					Offset="1" />
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <Path x:Name="path_Copy" Width="20.8813"
+                    			Height="20.7301"
+                    			Canvas.Left="0.059"
+                    			Canvas.Top="0.135"
+                    			Stretch="Fill"
+                    			StrokeThickness="1.99975"
+                    			StrokeLineJoin="Round"
+                    			Data="F1 M 6.39184,1.13484L 14.6082,1.13484C 17.5533,1.13484 19.9408,3.52238 19.9408,6.46746L 19.9408,14.5325C 19.9408,17.4777 17.5533,19.8652 14.6082,19.8652L 6.39184,19.8652C 3.44673,19.8652 1.05921,17.4777 1.05921,14.5325L 1.05921,6.46746C 1.05921,3.52238 3.44673,1.13484 6.39184,1.13484 Z " UseLayoutRounding="False" >
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF7D7F7F" Offset="0"/>
+                                    <GradientStop Color="#7F000000" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                            <Path.Stroke>
+                                <LinearGradientBrush EndPoint="0.5,-0.338" StartPoint="0.5,1">
+                                    <GradientStop Color="#FF7D7F7F" Offset="0"/>
+                                    <GradientStop Color="Black" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Stroke>
+                        </Path>
+                        <Path Width="7.33574"
+                    			Height="7.53673"
+                    			Canvas.Left="9.27309"
+                    			Canvas.Top="3.95447"
+                    			Stretch="Fill"
+                    			StrokeThickness="0.666583"
+                    			StrokeLineJoin="Round"
+                    			Stroke="{StaticResource playerIconBorder}"
+                    			Data="F1 M 11.9157,6.75273L 9.60638,4.37386L 16.2755,4.28776L 16.192,11.1579L 13.8827,8.77909L 12.3345,10.374L 10.3674,8.34768L 11.9157,6.75273 Z " Fill="{StaticResource playerIconFill}"/>
+                        <Path Width="7.33574"
+                    			Height="7.53673"
+                    			Canvas.Left="4.4784"
+                    			Canvas.Top="10.2827"
+                    			Stretch="Fill"
+                    			StrokeThickness="0.666583"
+                    			StrokeLineJoin="Round"
+                    			Stroke="{StaticResource playerIconBorder}"
+                    			Data="F1 M 9.17157,15.0212L 11.4808,17.4L 4.81169,17.4861L 4.89527,10.616L 7.20449,12.9948L 8.75275,11.3999L 10.7198,13.4262L 9.17157,15.0212 Z " Fill="{StaticResource playerIconFill}"/>
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
