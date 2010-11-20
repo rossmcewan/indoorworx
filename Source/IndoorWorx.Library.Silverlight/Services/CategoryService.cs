@@ -8,14 +8,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using IndoorWorx.Infrastructure.Services;
 using Microsoft.Practices.Composite.Events;
 using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Models;
-using System.Collections.ObjectModel;
 
-namespace IndoorWorx.Catalog.Services.Mocks
+namespace IndoorWorx.Library.Services
 {
-    public class MockCategoryService : ICategoryService
+    public class CategoryService : ICategoryService
     {
         #region ICategoryService Members
 

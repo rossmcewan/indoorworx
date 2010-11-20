@@ -111,8 +111,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CatalogResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\ICategoryService.cs" />
-    <Compile Include="Services\Mocks\MockCategoryService.cs" />
     <Compile Include="Views\CatalogPresentationModel.cs" />
     <Compile Include="Views\CatalogView.xaml.cs">
       <DependentUpon>CatalogView.xaml</DependentUpon>
@@ -122,9 +120,6 @@
     </Compile>
     <Compile Include="Views\ICatalogPresentationModel.cs" />
     <Compile Include="Views\ICatalogView.cs" />
-    <Compile Include="Views\PreviewWindow.xaml.cs">
-      <DependentUpon>PreviewWindow.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
@@ -162,10 +157,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Dynamic\CatalogPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PreviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -13,6 +13,8 @@ using Microsoft.Practices.Unity;
 using IndoorWorx.Infrastructure.Navigation;
 using IndoorWorx.Library.Navigation;
 using IndoorWorx.Infrastructure;
+using IndoorWorx.Infrastructure.Services;
+using IndoorWorx.Library.Services;
 
 namespace IndoorWorx.Library
 {
@@ -30,6 +32,7 @@ namespace IndoorWorx.Library
         public void Initialize()
         {
             unityContainer.RegisterInstance<INavigationService>(unityContainer.Resolve<NavigationService>());
+            unityContainer.RegisterType<ICategoryService, CategoryService>();
         }
 
         #endregion

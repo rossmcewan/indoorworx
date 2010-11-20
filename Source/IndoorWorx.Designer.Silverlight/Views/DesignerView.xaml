@@ -3,52 +3,58 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"     
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+    xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"
+    xmlns:resources="clr-namespace:IndoorWorx.Designer.Resources"  
+    xmlns:controls="clr-namespace:IndoorWorx.Designer.Controls"             
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"             
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
-    
+    <UserControl.Resources>
+        <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
+        <sys:Double x:Key="ToolBarImageWidth">24</sys:Double>
+        <telerik:HierarchicalDataTemplate x:Key="CategoryTemplate" ItemsSource="{Binding Catalogs}">
+            <TextBlock Text="{Binding Title, Mode=OneWay}" VerticalAlignment="Center"/>
+        </telerik:HierarchicalDataTemplate>
+        <telerik:HierarchicalDataTemplate x:Key="CatalogTemplate" ItemsSource="{Binding Videos}">
+            <TextBlock Text="{Binding Title, Mode=OneWay}" VerticalAlignment="Center"/>
+        </telerik:HierarchicalDataTemplate>
+        <telerik:HierarchicalDataTemplate x:Key="VideoTemplate" ItemsSource="{Binding TrainingSets}">
+            <TextBlock Text="{Binding Title, Mode=OneWay}" VerticalAlignment="Center"/>
+        </telerik:HierarchicalDataTemplate> 
+        <controls:CategoryTreeDataTemplateSelector 
+            x:Key="CategoryTreeDataTemplateSelector"
+            CatalogTemplate="{StaticResource CatalogTemplate}"
+            CategoryTemplate="{StaticResource CategoryTemplate}"
+            VideoTemplate="{StaticResource VideoTemplate}"/>
+    </UserControl.Resources>
     <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <telerik:RadToolBar>
-            <telerik:RadButton Content="New" CornerRadius="5"/>
+        <telerik:RadToolBar Margin="5">
+            <telerik:RadButton CornerRadius="5" Command="{Binding AddDesignerCommand, Mode=OneWay}" CommandParameter="{Binding}">
+                <StackPanel>
+                    <Image Width="{StaticResource ToolBarImageWidth}" Source="{Binding DesignerResources.Add, Source={StaticResource DesignerResources}, Converter={StaticResource ByteArrayToImageConverter}}"/>
+                    <TextBlock Text="{Binding DesignerResources.AddLabel, Source={StaticResource DesignerResources}}" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </telerik:RadButton>
+            <telerik:RadToolBarSeparator/>
         </telerik:RadToolBar>
-        <telerik:RadDocking Grid.Row="1">
+        <telerik:RadDocking Grid.Row="1" Margin="5">
             <telerik:RadDocking.DocumentHost>
                 <telerik:RadSplitContainer>
-                    <telerik:RadPaneGroup>
-                        <telerik:RadDocumentPane Header="Design - New Ride"/>
-                    </telerik:RadPaneGroup>
+                    <telerik:RadPaneGroup x:Name="DocumentPaneGroup"/>                        
                 </telerik:RadSplitContainer>
             </telerik:RadDocking.DocumentHost>
             <telerik:RadSplitContainer telerik:DockingPanel.InitialSize="300,300" MaxWidth="600"
                     Name="LeftContainer" InitialPosition="DockedLeft">
                 <telerik:RadPaneGroup x:Name="LeftGroup">
                     <telerik:RadPane x:Name="CatalogPane" Header="Catalog" CanUserClose="False">
-                        <telerik:RadTreeView>
-                            <telerik:RadTreeViewItem Header="Cycling" IsExpanded="True">
-                                <telerik:RadTreeViewItem Header="IndoorWorx">
-                                    <telerik:RadTreeViewItem Header="Rand Waterboard Road - 5s and 2s">
-                                        <telerik:RadTreeViewItem Header="Entire Ride"/>
-                                        <telerik:RadTreeViewItem Header="5 x 5"/>
-                                        <telerik:RadTreeViewItem Header="10 x 2"/>
-                                    </telerik:RadTreeViewItem>
-                                    <telerik:RadTreeViewItem Header="Suikerbosrand Nature Reserve">
-                                        <telerik:RadTreeViewItem Header="Entire Ride"/>
-                                    </telerik:RadTreeViewItem>
-                                </telerik:RadTreeViewItem>
-                                <telerik:RadTreeViewItem Header="MTN Energade">
-                                    <telerik:RadTreeViewItem Header="Pick n Pay 94.7">
-                                        <telerik:RadTreeViewItem Header="The Race"/>
-                                    </telerik:RadTreeViewItem>
-                                    <telerik:RadTreeViewItem Header="Pick n Pay Cape Argus">
-                                        <telerik:RadTreeViewItem Header="The Race"/>
-                                    </telerik:RadTreeViewItem>
-                                </telerik:RadTreeViewItem>
-                            </telerik:RadTreeViewItem>
-                        </telerik:RadTreeView>
+                        <telerik:RadTreeView ItemsSource="{Binding Categories, Mode=OneWay}"
+                                             ItemTemplateSelector="{StaticResource CategoryTreeDataTemplateSelector}"
+                                             Margin="5"/>                            
                     </telerik:RadPane>
                 </telerik:RadPaneGroup>
             </telerik:RadSplitContainer>

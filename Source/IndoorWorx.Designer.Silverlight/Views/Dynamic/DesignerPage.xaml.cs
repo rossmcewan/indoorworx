@@ -31,11 +31,16 @@ namespace IndoorWorx.Designer.Views.Dynamic
             this.Content = contentElement;
         }
 
+        private IDesignerView View
+        {
+            get { return this.Content as IDesignerView; }
+        }
+
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //if(reloadRequired)
-            //    View.Model.LoadCategories();
+            if (reloadRequired)
+                View.Model.LoadCategories();
         }
     }
 }

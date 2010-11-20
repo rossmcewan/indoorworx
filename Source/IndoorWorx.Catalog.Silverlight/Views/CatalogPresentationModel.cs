@@ -13,7 +13,7 @@ using IndoorWorx.Infrastructure.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Microsoft.Practices.ServiceLocation;
-using IndoorWorx.Catalog.Services;
+using IndoorWorx.Infrastructure.Services;
 
 namespace IndoorWorx.Catalog.Views
 {

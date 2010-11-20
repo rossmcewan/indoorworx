@@ -13,6 +13,8 @@ namespace IndoorWorx.Designer.Views
 {
     public interface IDesignerView
     {
+        IDesignerPresentationModel Model { get; }
 
+        void AddDesigner();
     }
 }

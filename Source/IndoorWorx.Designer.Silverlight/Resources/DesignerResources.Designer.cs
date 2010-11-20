@@ -59,5 +59,88 @@ namespace IndoorWorx.Designer.Resources {
                 resourceCulture = value;
             }
         }
+        
+        public static byte[] Add {
+            get {
+                object obj = ResourceManager.GetObject("Add", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AddLabel {
+            get {
+                return ResourceManager.GetString("AddLabel", resourceCulture);
+            }
+        }
+        
+        public static byte[] Design {
+            get {
+                object obj = ResourceManager.GetObject("Design", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Design New Training Set.
+        /// </summary>
+        public static string NewDesignTitle {
+            get {
+                return ResourceManager.GetString("NewDesignTitle", resourceCulture);
+            }
+        }
+        
+        public static byte[] Play {
+            get {
+                object obj = ResourceManager.GetObject("Play", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        public static byte[] Refresh {
+            get {
+                object obj = ResourceManager.GetObject("Refresh", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        public static byte[] Save {
+            get {
+                object obj = ResourceManager.GetObject("Save", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        public static byte[] Stop {
+            get {
+                object obj = ResourceManager.GetObject("Stop", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown item type {0}.
+        /// </summary>
+        public static string UnknownItemTypeErrorMessage {
+            get {
+                return ResourceManager.GetString("UnknownItemTypeErrorMessage", resourceCulture);
+            }
+        }
+        
+        public static byte[] ZoomIn {
+            get {
+                object obj = ResourceManager.GetObject("ZoomIn", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        public static byte[] ZoomOut {
+            get {
+                object obj = ResourceManager.GetObject("ZoomOut", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

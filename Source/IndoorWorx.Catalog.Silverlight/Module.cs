@@ -14,7 +14,6 @@ using Microsoft.Practices.Composite.Modularity;
 using IndoorWorx.Catalog.Helpers;
 using Microsoft.Practices.Unity;
 using IndoorWorx.Catalog.Views;
-using IndoorWorx.Catalog.Services;
 
 namespace IndoorWorx.Catalog
 {
@@ -39,9 +38,6 @@ namespace IndoorWorx.Catalog
         {
             Application.Current.Resources.Add("CatalogResources", new ResourceWrapper());
 
-            //unityContainer.RegisterType<ICatalogPresentationModel, CatalogPresentationModel>();
-            unityContainer.RegisterType<ICategoryService, Services.Mocks.MockCategoryService>();
-//            unityContainer.RegisterType<ICatalogView, CatalogView>();
             unityContainer.RegisterInstance<ICatalogPresentationModel>(unityContainer.Resolve<CatalogPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<ICatalogView>(unityContainer.Resolve<CatalogView>(), new ContainerControlledLifetimeManager());
             

@@ -9,6 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Telerik.Windows.Controls;
+using Telerik.Windows.Controls.Docking;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -19,6 +21,16 @@ namespace IndoorWorx.Designer.Views
             InitializeComponent();
             this.DataContext = model;
             model.View = this;
+        }
+
+        public IDesignerPresentationModel Model
+        {
+            get { return this.DataContext as IDesignerPresentationModel; }
+        }
+
+        public void AddDesigner()
+        {
+            DocumentPaneGroup.AddItem(new RadDocumentPane() { Title = Designer.Resources.DesignerResources.NewDesignTitle }, DockPosition.Center);
         }
     }
 }

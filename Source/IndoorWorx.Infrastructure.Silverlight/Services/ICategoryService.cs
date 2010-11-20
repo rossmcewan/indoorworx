@@ -12,7 +12,7 @@ using Microsoft.Practices.Composite.Events;
 using IndoorWorx.Infrastructure.Models;
 using System.Collections.Generic;
 
-namespace IndoorWorx.Catalog.Services
+namespace IndoorWorx.Infrastructure.Services
 {
     public interface ICategoryService
     {
