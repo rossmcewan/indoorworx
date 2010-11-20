@@ -39,8 +39,15 @@ namespace IndoorWorx.Designer.Views.Dynamic
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            
             if (reloadRequired)
                 View.Model.LoadCategories();
+
+            string videoId;
+            if (this.NavigationContext.QueryString.TryGetValue("VideoId", out videoId))
+            {
+                View.Model.SelectVideoWithId(new Guid(videoId));
+            }                   
         }
     }
 }

@@ -49,12 +49,21 @@ using IndoorWorx.Infrastructure.Models;
         /// </summary>
         private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
         {
+            UpdateSelectedLinks(e.Uri);
+        }
+
+        private void UpdateSelectedLinks(Uri uri)
+        {
             foreach (UIElement child in LinksStackPanel.Children)
             {
                 HyperlinkButton hb = child as HyperlinkButton;
                 if (hb != null && hb.NavigateUri != null)
                 {
-                    if (hb.NavigateUri.ToString().Equals(e.Uri.ToString()))
+                    var uriString = uri.ToString();
+                    var compareTo = uriString;
+                    if (uriString.Contains('?'))
+                        compareTo = uriString.Substring(0, uriString.IndexOf('?'));
+                    if (hb.NavigateUri.ToString().Equals(compareTo))
                     {
                         VisualStateManager.GoToState(hb, "ActiveLink", true);
                     }
@@ -79,7 +88,8 @@ using IndoorWorx.Infrastructure.Models;
 
         public IShell NavigateTo(System.Uri uri)
         {
-            this.ContentFrame.Navigate(uri);
+            App.Current.Host.NavigationState = uri.ToString();
+            //UpdateSelectedLinks(uri);
             return this;
         }
 

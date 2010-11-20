@@ -33,5 +33,7 @@ namespace IndoorWorx.Designer.Views
         void PlaySelectedPreview(Action play);
 
         void StopSelectedPreview(Action play);
+
+        void SelectVideoWithId(Guid guid);
     }
 }

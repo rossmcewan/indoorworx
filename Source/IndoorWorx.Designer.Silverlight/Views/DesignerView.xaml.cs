@@ -31,7 +31,10 @@ namespace IndoorWorx.Designer.Views
 
         void model_VideoSelected(object sender, DataEventArgs<Video> e)
         {
-            var video = e.Value;            
+            var video = e.Value;
+
+            //var container = treeView.ItemContainerGenerator.ContainerFromItem(e.Value) as RadTreeViewItem;
+            //container.IsExpanded = true;
             if (video.IsTelemetryLoaded)
             {
                 telemetryChart.LoadTelemetry(video.Telemetry);

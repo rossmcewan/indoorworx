@@ -31,6 +31,9 @@
             CatalogTemplate="{StaticResource CatalogTemplate}"
             CategoryTemplate="{StaticResource CategoryTemplate}"
             VideoTemplate="{StaticResource VideoTemplate}"/>
+        <Style x:Key="ItemContainerStyle" TargetType="telerik:RadTreeViewItem">
+            <Setter Property="IsExpanded" Value="True"/>
+        </Style>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>
@@ -62,10 +65,13 @@
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <telerik:RadTreeView ItemsSource="{Binding Categories, Mode=OneWay}"
-                                             ItemTemplateSelector="{StaticResource CategoryTreeDataTemplateSelector}"
-                                             SelectedItem="{Binding SelectedVideo, Mode=TwoWay}"
-                                             Margin="5"/>
+                                <telerik:RadTreeView 
+                                    x:Name="treeView"
+                                    ItemContainerStyle="{StaticResource ItemContainerStyle}"
+                                    ItemsSource="{Binding Categories, Mode=OneWay}" 
+                                    ItemTemplateSelector="{StaticResource CategoryTreeDataTemplateSelector}"
+                                    SelectedItem="{Binding SelectedVideo, Mode=TwoWay}"
+                                    Margin="5"/>
                                 <Grid Grid.Row="1" DataContext="{Binding SelectedVideo, Mode=OneWay}" >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="2*"/>

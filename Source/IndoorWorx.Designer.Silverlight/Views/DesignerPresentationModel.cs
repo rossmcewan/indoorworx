@@ -76,6 +76,28 @@ namespace IndoorWorx.Designer.Views
             }
         }
 
+        public void SelectVideoWithId(Guid id)
+        {
+            //find the video
+            foreach (var cat in View.Model.Categories)
+            {
+                foreach (var catalog in cat.Catalogs)
+                {
+                    foreach (var video in catalog.Videos)
+                    {
+                        foreach (var ts in video.TrainingSets)
+                        {
+                            if (id == ts.Id)
+                            {
+                                SelectedVideo = ts;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         private Video selectedVideo;
         public Video SelectedVideo
         {
@@ -101,7 +123,7 @@ namespace IndoorWorx.Designer.Views
             };
             categoryService.CategoriesRetrieved += (sender, e) =>
             {
-                Categories = e.Value;
+                Categories = e.Value;                
                 this.IsBusy = false;
             };
             this.IsBusy = true;

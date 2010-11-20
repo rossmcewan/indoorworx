@@ -15,6 +15,8 @@ using System.Collections.ObjectModel;
 using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure.Services;
 using IndoorWorx.Infrastructure;
+using Microsoft.Practices.Composite.Presentation.Commands;
+using IndoorWorx.Infrastructure.Navigation;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -24,6 +26,17 @@ namespace IndoorWorx.Catalog.Views
         public CatalogPresentationModel(IServiceLocator serviceLocator)
         {
             this.serviceLocator = serviceLocator;
+            this.DesignTrainingSetCommand = new DelegateCommand<Video>(DesignTrainingSet);
+        }
+
+        private IShell Shell
+        {
+            get { return this.serviceLocator.GetInstance<IShell>(); }
+        }
+
+        private void DesignTrainingSet(Video video)
+        {
+            Shell.NavigateTo(new Uri(string.Format("/IndoorWorx.Designer.Silverlight;component/Views/Dynamic/DesignerShim.xaml?VideoId={0}", video.Id), UriKind.RelativeOrAbsolute));
         }
 
         #region ICatalogPresentationModel Members
