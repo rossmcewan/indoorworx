@@ -68,6 +68,10 @@
                                                      Background="Transparent" 
                                                      SmoothStreamingPlaybackMode="VideoOnly"
                                                      BufferingTime="00:00:05"
+                                                     ManifestReady="videoPlayer_ManifestReady"
+                                                     MediaOpened="mediaElement_MediaOpened"
+                                                     MediaEnded="mediaElement_MediaEnded"
+                                                     Position="{Binding PlayerPosition,Mode=TwoWay}"
                                                      SmoothStreamingSource="{Binding Video.StreamUri, Mode=OneWay}" 
                                                      SmoothStreamingErrorOccurred="mediaElement_SmoothStreamingErrorOccurred"/>
 
@@ -80,7 +84,7 @@
             </StackPanel>
             <StackPanel Grid.Row="1">
                 <TextBlock Text="Power:" Style="{StaticResource DataHeaderStyle}"/>
-                <TextBlock Name="txtPower" Style="{StaticResource DataItemStyle}"/>
+                <TextBlock Name="powerValue" Text="{Binding CurrentIntensity,Mode=TwoWay}" Style="{StaticResource DataItemStyle}"/>
             </StackPanel>
             <Grid>
                 <Grid.ColumnDefinitions>

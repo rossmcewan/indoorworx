@@ -14,29 +14,42 @@ using Microsoft.Web.Media.SmoothStreaming;
 using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.Infrastructure.Helpers;
+using Microsoft.Practices.Composite.Events;
+using Microsoft.Practices.Composite.Presentation.Commands;
+using Telerik.Windows.Controls;
 
 namespace IndoorWorx.Player.Views
 {
     public partial class PlayerView : UserControl ,IPlayerView
     {
-        private readonly IServiceLocator serviceLocator;
+        private DateTime now = DateTime.Now;
+        private double zoomedLength;
+
         public PlayerView(IPlayerPresentationModel model, IServiceLocator serviceLocator)
         {
             InitializeComponent();            
             this.DataContext = model;
             model.View = this;
-            this.serviceLocator = serviceLocator;
         }
-
-        private IShell Shell
-        {
-            get { return serviceLocator.GetInstance<IShell>(); }
-        }
-
-
         public IPlayerPresentationModel Model
         {
             get { return this.DataContext as IPlayerPresentationModel; }
+        }
+
+        private TimeSpan LengthOfClip
+        {
+            get { return Model.LengthOfClip; }
+            set { Model.LengthOfClip = value; }
+        }
+
+        public SmoothStreamingMediaElementState CurrentPlayerState
+        {
+            get { return GetPlayer().CurrentState; }
+        }
+
+        public void Play()
+        {
+            GetPlayer().Play();
         }
 
         public void LoadVideo(Video video)
@@ -66,7 +79,7 @@ namespace IndoorWorx.Player.Views
                 });
         }
 
-        private SmoothStreamingMediaElement GetPlayer()
+        public SmoothStreamingMediaElement GetPlayer()
         {
             return mediaElement;
         }
@@ -102,16 +115,38 @@ namespace IndoorWorx.Player.Views
             {
                 video.IsMediaLoading = false;
             }
+            Model.MediaOpened();
         }
 
+
+        private bool ended = false;
         private void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
-            Model.MediaEnded();
+            this.ended = true;
         }
 
         private void fullScreenButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Host.Content.IsFullScreen = !Application.Current.Host.Content.IsFullScreen;
+        }
+
+        public void UpdateCurrentPosition(TimeSpan PlayerPosition)
+        {
+            var xpos = new DateTime(now.Year, now.Month, now.Day, PlayerPosition.Hours, PlayerPosition.Minutes, PlayerPosition.Seconds).ToOADate();
+            var rangeFrom = PlayerPosition.TotalSeconds / LengthOfClip.TotalSeconds;
+            var rangeTo = rangeFrom + zoomedLength;
+            this.profileChart.Progress(xpos);
+            this.zoomedChart.SetZoomScrollSettings(rangeFrom, rangeTo);
+        }
+
+       
+        private void videoPlayer_ManifestReady(object sender, EventArgs e)
+        {
+            LengthOfClip = GetPlayer().EndPosition;
+            zoomedLength = TimeSpan.FromMinutes(3).TotalSeconds / LengthOfClip.TotalSeconds;
+            this.profileChart.SetupAxisXRange(LengthOfClip);
+            this.zoomedChart.SetupAxisXRange(LengthOfClip);
+            this.zoomedChart.SetZoomScrollSettings(0, zoomedLength);
         }
 
         private void mediaElement_SmoothStreamingErrorOccurred(object sender, SmoothStreamingErrorEventArgs e)

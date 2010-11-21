@@ -17,12 +17,15 @@ using IndoorWorx.Infrastructure.Services;
 using System.Linq;
 using IndoorWorx.Infrastructure;
 using System.Windows.Threading;
+using Microsoft.Web.Media.SmoothStreaming;
 
 namespace IndoorWorx.Player.Views
 {
     public class PlayerPresentationModel : BaseModel, IPlayerPresentationModel
     {
+        private bool hasVideoEnded = false;
         private readonly IServiceLocator serviceLocator;
+
         public PlayerPresentationModel(IServiceLocator serviceLocator)
         {
             this.serviceLocator = serviceLocator;
@@ -46,6 +49,12 @@ namespace IndoorWorx.Player.Views
                 FirePropertyChanged("Video");
             }
 
+        }
+
+
+        private SmoothStreamingMediaElement Player
+        {
+            get { return View.GetPlayer(); }
         }
 
         private TimeSpan playerPosition = new TimeSpan();
@@ -84,55 +93,72 @@ namespace IndoorWorx.Player.Views
             }
         }
 
+        private TimeSpan lengthOfClip;
+        public TimeSpan LengthOfClip
+        {
+            get { return lengthOfClip; }
+            set
+            {
+                lengthOfClip = value;
+                FirePropertyChanged("LengthOfClip");
+            }
+        }
+
         private void EnsurePlaying()
         {
-            //if (player.CurrentState != SmoothStreamingMediaElementState.Playing && !ended)
-            //    videoPlayer.Play();
+            if (Player.CurrentState != SmoothStreamingMediaElementState.Playing && !hasVideoEnded)
+                Player.Play();
+        }
+
+        private double currentIntensity = 0;
+        public double CurrentIntensity
+        {
+            get { return currentIntensity; }
+            set
+            {
+                currentIntensity = value;
+                FirePropertyChanged("CurrentIntensity");
+            }
         }
 
 
         public void MediaOpened()
         {
-            //var timer = new DispatcherTimer();
-            //timer.Interval = TimeSpan.FromSeconds(2);
-            //timer.Tick += (_sender, _e) =>
-            //{
-            //    EnsurePlaying();
-            //    var roundedSeconds = Math.Round(PlayerPosition.TotalSeconds);
-            //    if (roundedSeconds % 2 == 0)
-            //    {
-            //        ChartData data = null;
-            //        if (linked.TryGetValue(roundedSeconds, out data))
-            //        {
-            //            var val = data.YValue * 100;
-            //            needle.Value = val;
-            //            txtPower.Text = Math.Round(val).ToString();
-            //        }
-            //    }
-            //    if (PlayerPosition >= lengthOfClip)
-            //    {
-            //        this.ended = true;
-            //    }
-            //    else
-            //    {
-            //        var xpos = new DateTime(now.Year, now.Month, now.Day, PlayerPosition.Hours, PlayerPosition.Minutes, PlayerPosition.Seconds).ToOADate();
-            //        var rangeFrom = PlayerPosition.TotalSeconds / lengthOfClip.TotalSeconds;
-            //        var rangeTo = rangeFrom + zoomedLength; //playerPosition.Add(TimeSpan.FromMinutes(3)).TotalSeconds / lengthOfClip.TotalSeconds;
-            //        RadChart2.DefaultView.ChartArea.ZoomScrollSettingsX.SetSelectionRange(rangeFrom, rangeTo);
-            //        line.XIntercept = xpos;
-            //    }
+            var timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(2);
+            timer.Tick += (_sender, _e) =>
+            {
+                EnsurePlaying();
+                var roundedSeconds = Math.Round(PlayerPosition.TotalSeconds);
+                //if (roundedSeconds % 3 == 0)
+                //{
+                 Telemetry data = Video.Telemetry.Where(t => Math.Round(t.TimePosition.TotalSeconds) == roundedSeconds).FirstOrDefault();
+                    if (data != null)
+                    {
+                        this.CurrentIntensity = Math.Round(data.PercentageThreshold*100);
+                    }
+               // }
+                if (PlayerPosition >= LengthOfClip)
+                {
+                    hasVideoEnded = true;
+                }
+                else
+                {
+                    View.UpdateCurrentPosition(PlayerPosition);
 
-            //    if (information.Count > 0 && (information.Peek().StartTime.TotalSeconds <= PlayerPosition.TotalSeconds))
-            //    {
-            //        ShowText(InformationQueue.Dequeue());
-            //    }
-            //};
-            //timer.Start();
+                }
+                //if (information.Count > 0 && (information.Peek().StartTime.TotalSeconds <= PlayerPosition.TotalSeconds))
+                //{
+                //    ShowText(InformationQueue.Dequeue());
+                //}
+            };
+            timer.Start();
         }
 
         public void MediaEnded()
         {
-            throw new NotImplementedException();
+            this.hasVideoEnded = true;
         }
+
     }
 }

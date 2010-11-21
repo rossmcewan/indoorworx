@@ -19,7 +19,7 @@
                         <telerik:MinorTickProperties Length="0.05" TickWidth="0.3" />
                     </telerik:RadialScale.MinorTick>
                     <telerik:IndicatorList>
-                        <telerik:Needle x:Name="needle" IsAnimated="True" Value="0"/>
+                    <telerik:Needle x:Name="needle" Value="{Binding CurrentIntensity,Mode=TwoWay}" IsAnimated="True"/>
                     </telerik:IndicatorList>
                 </telerik:RadialScale>
             </telerik:RadialGauge>

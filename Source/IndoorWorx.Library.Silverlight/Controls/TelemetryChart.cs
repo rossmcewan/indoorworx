@@ -13,6 +13,7 @@ using Telerik.Windows.Controls.Charting;
 using IndoorWorx.Infrastructure.Models;
 using System.Collections.Generic;
 using System.Linq;
+using IndoorWorx.Infrastructure.Helpers;
 
 namespace IndoorWorx.Library.Controls
 {
@@ -125,6 +126,23 @@ namespace IndoorWorx.Library.Controls
                 telemetryChart.DefaultView.ChartArea.Annotations.Add(telemetryChart.line);
             else
                 telemetryChart.DefaultView.ChartArea.Annotations.Remove(telemetryChart.line);
+        }
+
+        public void SetZoomScrollSettings(double rangeFrom,double rangeTo)
+        {
+            this.DefaultView.ChartArea.ZoomScrollSettingsX.SetSelectionRange(rangeFrom, rangeTo);    
+        }
+
+        public void Progress(double xInterceptPosition)
+        {
+            line.XIntercept = xInterceptPosition;
+        }
+
+        public void SetupAxisXRange(TimeSpan lengthOfClip)
+        {
+            this.DefaultView.ChartArea.AxisX.MinValue = DateTimeHelper.ZeroTime.ToOADate();
+            this.DefaultView.ChartArea.AxisX.MaxValue = DateTimeHelper.ZeroTime.Add(lengthOfClip).ToOADate();
+            this.DefaultView.ChartArea.AxisX.Step = 1.0 / 24.0 / 3600.0 / 2.0;
         }
     }
 }

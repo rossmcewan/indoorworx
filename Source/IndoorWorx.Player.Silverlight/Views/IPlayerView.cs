@@ -10,6 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
 using System.Collections.Generic;
+using Microsoft.Web.Media.SmoothStreaming;
 
 namespace IndoorWorx.Player.Views
 {
@@ -18,5 +19,9 @@ namespace IndoorWorx.Player.Views
         IPlayerPresentationModel Model { get; }
 
         void LoadVideo(Video video);
+
+        void UpdateCurrentPosition(TimeSpan PlayerPosition);
+
+        SmoothStreamingMediaElement GetPlayer();
     }
 }
