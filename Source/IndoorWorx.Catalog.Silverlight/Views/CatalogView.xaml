@@ -240,7 +240,7 @@
                                                 </ListBox>
                                                 <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
                                                     <telerik:RadButton Content="Design" Width="50" Margin="2" CornerRadius="10" Command="{Binding DataContext.DesignTrainingSetCommand, Mode=TwoWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=TwoWay}" ToolTipService.ToolTip="{Binding CatalogResources.DesignTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
-                                                    <telerik:RadButton Content="Play" Width="50" Margin="2" CornerRadius="10" Command="{Binding PlayTrainingSetCommand, Mode=TwoWay}" CommandParameter="{Binding SelectedTrainingSet, Mode=TwoWay}" ToolTipService.ToolTip="{Binding CatalogResources.PlayTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
+                                                    <telerik:RadButton Content="Play" Width="50" Margin="2" CornerRadius="10" Command="{Binding DataContext.PlayTrainingSetCommand, Mode=TwoWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=TwoWay}" ToolTipService.ToolTip="{Binding CatalogResources.PlayTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
                                                 </StackPanel>
                                             </Grid>
                                         </Border>

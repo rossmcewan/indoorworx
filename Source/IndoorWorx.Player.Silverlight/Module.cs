@@ -38,20 +38,20 @@ namespace IndoorWorx.Player
         {
             Application.Current.Resources.Add("PlayerResources", new ResourceWrapper());
 
-            //unityContainer.RegisterType<IPlayerPresentationModel, PlayerPresentationModel>();
-            //unityContainer.RegisterType<IPlayerView, PlayerView>();
-            unityContainer.RegisterInstance<IPlayerPresentationModel>(unityContainer.Resolve<PlayerPresentationModel>(), new ContainerControlledLifetimeManager());
-            unityContainer.RegisterInstance<IPlayerView>(unityContainer.Resolve<PlayerView>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterType<IPlayerPresentationModel, PlayerPresentationModel>();
+            unityContainer.RegisterType<IPlayerView, PlayerView>();
+            //unityContainer.RegisterInstance<IPlayerPresentationModel>(unityContainer.Resolve<PlayerPresentationModel>(), new ContainerControlledLifetimeManager());
+            //unityContainer.RegisterInstance<IPlayerView>(unityContainer.Resolve<PlayerView>(), new ContainerControlledLifetimeManager());
 
-            NavigationService.AddNavigationLink(new Infrastructure.Models.NavigationInfo()
-            {
-                Content = "Player",
-                IsAuthenticationRequired = true,
-                NavigationUri = "/IndoorWorx.Player.Silverlight;component/Views/Dynamic/PlayerShim.xaml",
-                PackageName = "IndoorWorx.Player.Silverlight.xap",
-                Allow = new string[] { "?" },
-                Deny = new string[] { "" }
-            });
+            //NavigationService.AddNavigationLink(new Infrastructure.Models.NavigationInfo()
+            //{
+            //    Content = "Player",
+            //    IsAuthenticationRequired = true,
+            //    NavigationUri = "/IndoorWorx.Player.Silverlight;component/Views/Dynamic/PlayerShim.xaml",
+            //    PackageName = "IndoorWorx.Player.Silverlight.xap",
+            //    Allow = new string[] { "?" },
+            //    Deny = new string[] { "" }
+            //});
         }
 
         #endregion

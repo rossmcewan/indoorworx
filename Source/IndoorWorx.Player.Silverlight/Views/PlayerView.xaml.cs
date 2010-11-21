@@ -11,17 +11,27 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
 using Microsoft.Web.Media.SmoothStreaming;
+using Microsoft.Practices.ServiceLocation;
+using IndoorWorx.Infrastructure;
+using IndoorWorx.Infrastructure.Helpers;
 
 namespace IndoorWorx.Player.Views
 {
     public partial class PlayerView : UserControl ,IPlayerView
     {
-        public PlayerView(IPlayerPresentationModel model)
+        private readonly IServiceLocator serviceLocator;
+        public PlayerView(IPlayerPresentationModel model, IServiceLocator serviceLocator)
         {
             InitializeComponent();            
             this.DataContext = model;
             model.View = this;
-        }       
+            this.serviceLocator = serviceLocator;
+        }
+
+        private IShell Shell
+        {
+            get { return serviceLocator.GetInstance<IShell>(); }
+        }
 
 
         public IPlayerPresentationModel Model
@@ -59,7 +69,6 @@ namespace IndoorWorx.Player.Views
             stopStory.Begin();
             player.Pause();
         }
-
      
         private void mediaElement_MediaOpened(object sender, RoutedEventArgs e)
         {
@@ -74,26 +83,19 @@ namespace IndoorWorx.Player.Views
             }
         }
 
-        private void mediaElement_MediaFailed(object sender, ExceptionRoutedEventArgs e)
+        private void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
-            
+            Model.MediaEnded();
+        }
+
+        private void fullScreenButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Host.Content.IsFullScreen = !Application.Current.Host.Content.IsFullScreen;
         }
 
         private void mediaElement_SmoothStreamingErrorOccurred(object sender, SmoothStreamingErrorEventArgs e)
         {
 
         }
-
-        private void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            Model.MediaEnded();
-        }
-
-
-        private void fullScreenButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Host.Content.IsFullScreen = !Application.Current.Host.Content.IsFullScreen; 
-        }
-    
     }
 }

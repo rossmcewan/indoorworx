@@ -4,6 +4,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
     xmlns:controls="clr-namespace:IndoorWorx.Player.Controls;assembly=IndoorWorx.Player.Silverlight"
+    xmlns:smf="http://schemas.microsoft.com/smf/2010/xaml/player"
+    xmlns:media="clr-namespace:Microsoft.SilverlightMediaFramework.Core.Media;assembly=Microsoft.SilverlightMediaFramework.Core"             
     xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"  
     xmlns:infcontrols="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight">
@@ -39,7 +41,7 @@
         </Style>
     </UserControl.Resources>
     
-    <Grid x:Name="playerGrid" Background="Transparent">
+    <Grid x:Name="playerGrid" Background="Gray">
         
         <Grid.RowDefinitions>
             <RowDefinition Height="160"/>
@@ -52,17 +54,21 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        
-       <smoothstreaming:SmoothStreamingMediaElement x:Name="mediaElement"
+        <!--<controls:CustomPlayer 
+            x:Name="mediaElement" 
+            Background="Transparent" 
+            Grid.ColumnSpan="3" 
+            Grid.RowSpan="3" 
+            AdaptiveStreamingPlaybackMode="VideoOnly" 
+            PlaybackPositionDatabinding="{Binding PlayerPosition, Mode=TwoWay}"
+            IsControlStripVisible="False"/>-->
+        <smoothstreaming:SmoothStreamingMediaElement x:Name="mediaElement"
                                                      Grid.ColumnSpan="3" Grid.RowSpan="3"
                                                      AutoPlay="False" Margin="5" 
                                                      Background="Transparent" 
                                                      SmoothStreamingPlaybackMode="VideoOnly"
                                                      BufferingTime="00:00:05"
-                                                     SmoothStreamingSource="{Binding Video.StreamUri.OriginalString, Mode=OneWay}" 
-                                                     MediaOpened="mediaElement_MediaOpened" 
-                                                     MediaEnded="mediaElement_MediaEnded"
-                                                     MediaFailed="mediaElement_MediaFailed"
+                                                     SmoothStreamingSource="{Binding Video.StreamUri, Mode=OneWay}" 
                                                      SmoothStreamingErrorOccurred="mediaElement_SmoothStreamingErrorOccurred"/>
 
         <infcontrols:TelemetryChart x:Name="profileChart" Grid.ColumnSpan="3" BorderThickness="0"  Margin="0,0,0,24" ShowProgress="True" CurrentProgress="{Binding CurrentPosition, Mode=OneWay}"/>

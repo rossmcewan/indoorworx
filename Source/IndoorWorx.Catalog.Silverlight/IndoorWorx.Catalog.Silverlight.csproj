@@ -133,6 +133,10 @@
       <Project>{D244AAA6-79A1-4879-9F49-B41059D1F6DA}</Project>
       <Name>IndoorWorx.Library.Silverlight</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IndoorWorx.Player.Silverlight\IndoorWorx.Player.Silverlight.csproj">
+      <Project>{2A773D39-8E6B-4952-9EFE-E3891F5C3987}</Project>
+      <Name>IndoorWorx.Player.Silverlight</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\CatalogResources.resx">

@@ -17,6 +17,7 @@ using IndoorWorx.Infrastructure.Services;
 using IndoorWorx.Infrastructure;
 using Microsoft.Practices.Composite.Presentation.Commands;
 using IndoorWorx.Infrastructure.Navigation;
+using Telerik.Windows.Controls;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -27,6 +28,7 @@ namespace IndoorWorx.Catalog.Views
         {
             this.serviceLocator = serviceLocator;
             this.DesignTrainingSetCommand = new DelegateCommand<Video>(DesignTrainingSet);
+            this.PlayTrainingSetCommand = new DelegateCommand<Video>(PlayTrainingSet);
         }
 
         private IShell Shell
@@ -37,6 +39,14 @@ namespace IndoorWorx.Catalog.Views
         private void DesignTrainingSet(Video video)
         {
             Shell.NavigateTo(new Uri(string.Format("/IndoorWorx.Designer.Silverlight;component/Views/Dynamic/DesignerShim.xaml?VideoId={0}", video.Id), UriKind.RelativeOrAbsolute));
+        }
+
+        private void PlayTrainingSet(Video video)
+        {
+            RadWindow window = new RadWindow();
+            window.WindowState = WindowState.Maximized;
+            window.Content = serviceLocator.GetInstance<IndoorWorx.Player.Views.IPlayerView>();
+            window.ShowDialog();
         }
 
         #region ICatalogPresentationModel Members
