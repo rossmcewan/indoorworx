@@ -23,6 +23,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.ImageUri).CustomType<UriType>();
             Map(x => x.StreamUri).CustomType<UriType>().Not.Nullable();
             Map(x => x.TelemetryUri).CustomType<UriType>();
+            Map(x => x.Duration);
             Component(x => x.TrainingMetrics, c =>
                 {
                     c.Map(y => y.IntensityFactor);

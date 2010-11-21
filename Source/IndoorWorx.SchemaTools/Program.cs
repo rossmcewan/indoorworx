@@ -58,7 +58,8 @@ namespace IndoorWorx.SchemaTools
                                                 NormalizedPower = 0.83,
                                                 IntensityFactor = 0.77,
                                                 VariabilityIndex = 1.03
-                                            }
+                                            },
+                                            Duration = new TimeSpan(1, 15, 0)
                                         },
                                         new Video()
                                         {
@@ -66,7 +67,8 @@ namespace IndoorWorx.SchemaTools
                                             Title = "5 x 5",
                                             Description = "The ride entails a quick warm up, followed by 5 by 5 minutes at 110% FTP with 5 minutes RI; this is followed by a quick cool down.",
                                             StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
+                                            Duration = new TimeSpan(1, 15, 0)
                                         },
                                         new Video()
                                         {
@@ -74,7 +76,8 @@ namespace IndoorWorx.SchemaTools
                                             Title = "10 x 2",
                                             Description = "The ride entails a quick warm up, followed by 10 by 2 minutes at 120% FTP with 2 minutes RI; this is followed by a quick cool down.",
                                             StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
+                                            Duration = new TimeSpan(1, 15, 0)
                                         }
                                     }
                                 },
@@ -94,7 +97,8 @@ namespace IndoorWorx.SchemaTools
                                             Title = "Entire Ride",
                                             Description = "This is a ride through the Suikerbosrand Nature Reserve. About two and a half hours with some good climbing. Go hard up the climbs, there's recovery on the other side. Keep your eyes peeled for eland and baboon!",
                                             StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
+                                            Duration = new TimeSpan(1, 15, 0)
                                         }
                                     }
                                 }
@@ -143,7 +147,8 @@ namespace IndoorWorx.SchemaTools
                                                     Comment = "Ride was great! Felt like I was one of the pros going for the win! Loved it!"
                                                 }
                                             },
-                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
+                                            Duration = new TimeSpan(1, 15, 0)
                                         }
                                     }
                                 },
@@ -163,7 +168,8 @@ namespace IndoorWorx.SchemaTools
                                             Title = "The Race",
                                             Description = "Ride with the men's elite champions of the MTN Energade cycling team racing the world's biggest race! Suffer up the climbs, hang with them on the descent, set yourself up for the win!",
                                             StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
+                                            Duration = new TimeSpan(1, 15, 0)
                                         }
                                     }
                                 }

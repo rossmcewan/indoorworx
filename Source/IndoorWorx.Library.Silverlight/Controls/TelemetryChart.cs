@@ -20,6 +20,7 @@ namespace IndoorWorx.Library.Controls
     public class TelemetryChart : RadChart
     {
         private CustomGridLine line;
+        private MarkedZone zone;
         public TelemetryChart():base()
         {            
             AreaSeriesDefinition lineSeries = new AreaSeriesDefinition();
@@ -47,7 +48,7 @@ namespace IndoorWorx.Library.Controls
             this.DefaultView.ChartArea.AxisY.MinorGridLinesVisibility = Visibility.Collapsed;
             this.DefaultView.ChartArea.AxisY.StripLinesVisibility = Visibility.Collapsed;
             this.DefaultView.ChartArea.AxisX.MajorGridLinesVisibility = Visibility.Collapsed;
-
+            
             this.DefaultView.ChartArea.LabelFormatBehavior = LabelFormatBehavior.None;
             this.SamplingSettings.SamplingThreshold = 1000;
             this.DefaultView.ChartArea.EnableAnimations = false;
@@ -58,6 +59,9 @@ namespace IndoorWorx.Library.Controls
             line.Stroke = new SolidColorBrush(Colors.Green);
             line.StrokeThickness = 2;
             this.DefaultView.ChartArea.AxisY.AutoRange = false;
+
+            zone = new MarkedZone();
+            this.DefaultView.ChartArea.Annotations.Add(zone);
         }
 
         public void LoadTelemetry(ICollection<Telemetry> telemetry)
@@ -126,6 +130,186 @@ namespace IndoorWorx.Library.Controls
                 telemetryChart.DefaultView.ChartArea.Annotations.Add(telemetryChart.line);
             else
                 telemetryChart.DefaultView.ChartArea.Annotations.Remove(telemetryChart.line);
+        }
+
+        public ScrollMode ScrollSettingsX
+        {
+            get { return (ScrollMode)GetValue(ScrollSettingsXProperty); }
+            set { SetValue(ScrollSettingsXProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ScrollSettingsX.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ScrollSettingsXProperty =
+            DependencyProperty.Register("ScrollSettingsX", typeof(ScrollMode), typeof(TelemetryChart), new PropertyMetadata(ScrollMode.None, ScrollSettingsXChanged));
+
+        private static void ScrollSettingsXChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.DefaultView.ChartArea.ZoomScrollSettingsX.ScrollMode = chart.ScrollSettingsX;
+        }
+
+        public ScrollMode ScrollSettingsY
+        {
+            get { return (ScrollMode)GetValue(ScrollSettingsYProperty); }
+            set { SetValue(ScrollSettingsYProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ScrollSettingsY.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ScrollSettingsYProperty =
+            DependencyProperty.Register("ScrollSettingsY", typeof(ScrollMode), typeof(TelemetryChart), new PropertyMetadata(ScrollMode.None, ScrollSettingsYChanged));
+
+        private static void ScrollSettingsYChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.DefaultView.ChartArea.ZoomScrollSettingsY.ScrollMode = chart.ScrollSettingsY;
+        }
+
+        public Visibility YAxisMajorTickVisibility
+        {
+            get { return (Visibility)GetValue(YAxisMajorTickVisibilityProperty); }
+            set { SetValue(YAxisMajorTickVisibilityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AxisYMajorTickVisibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty YAxisMajorTickVisibilityProperty =
+            DependencyProperty.Register("YAxisMajorTickVisibility", typeof(Visibility), typeof(TelemetryChart), new
+                PropertyMetadata(Visibility.Visible, YAxisMajorTickVisibilityChanged));
+
+        private static void YAxisMajorTickVisibilityChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.DefaultView.ChartArea.AxisY.MajorTicksVisibility = chart.YAxisMajorTickVisibility;
+        }
+
+        public Visibility YAxisMinorTickVisibility
+        {
+            get { return (Visibility)GetValue(YAxisMinorTickVisibilityProperty); }
+            set { SetValue(YAxisMinorTickVisibilityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AxisYMinorTickVisibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty YAxisMinorTickVisibilityProperty =
+            DependencyProperty.Register("YAxisMinorTickVisibility", typeof(Visibility), typeof(TelemetryChart), new
+                PropertyMetadata(Visibility.Visible, YAxisMinorTickVisibilityChanged));
+
+        private static void YAxisMinorTickVisibilityChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.DefaultView.ChartArea.AxisY.MinorTicksVisibility = chart.YAxisMinorTickVisibility;
+        }
+
+        public Visibility XAxisMajorTickVisibility
+        {
+            get { return (Visibility)GetValue(XAxisMajorTickVisibilityProperty); }
+            set { SetValue(XAxisMajorTickVisibilityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AxisXMajorTickVisibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty XAxisMajorTickVisibilityProperty =
+            DependencyProperty.Register("XAxisMajorTickVisibility", typeof(Visibility), typeof(TelemetryChart), new
+                PropertyMetadata(Visibility.Visible, XAxisMajorTickVisibilityChanged));
+
+        private static void XAxisMajorTickVisibilityChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.DefaultView.ChartArea.AxisX.MajorTicksVisibility = chart.XAxisMajorTickVisibility;
+        }
+
+        public Visibility XAxisMinorTickVisibility
+        {
+            get { return (Visibility)GetValue(XAxisMinorTickVisibilityProperty); }
+            set { SetValue(XAxisMinorTickVisibilityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AxisXMinorTickVisibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty XAxisMinorTickVisibilityProperty =
+            DependencyProperty.Register("XAxisMinorTickVisibility", typeof(Visibility), typeof(TelemetryChart), new
+                PropertyMetadata(Visibility.Visible, XAxisMinorTickVisibilityChanged));
+
+        private static void XAxisMinorTickVisibilityChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.DefaultView.ChartArea.AxisX.MinorTicksVisibility = chart.XAxisMinorTickVisibility;
+        }
+
+        public double ZoneStartX
+        {
+            get { return (double)GetValue(ZoneStartXProperty); }
+            set { SetValue(ZoneStartXProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ZoneStartX.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ZoneStartXProperty =
+            DependencyProperty.Register("ZoneStartX", typeof(double), typeof(TelemetryChart), new PropertyMetadata(0.0, ZoneStartXChanged));
+
+        private static void ZoneStartXChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.zone.StartX = chart.ZoneStartX;
+        }
+
+        public double ZoneStartY
+        {
+            get { return (double)GetValue(ZoneStartYProperty); }
+            set { SetValue(ZoneStartYProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ZoneStartY.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ZoneStartYProperty =
+            DependencyProperty.Register("ZoneStartY", typeof(double), typeof(TelemetryChart), new PropertyMetadata(0.0, ZoneStartYChanged));
+
+        private static void ZoneStartYChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.zone.StartY = chart.ZoneStartY;
+        }
+
+        public double ZoneEndX
+        {
+            get { return (double)GetValue(ZoneEndXProperty); }
+            set { SetValue(ZoneEndXProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ZoneEndX.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ZoneEndXProperty =
+            DependencyProperty.Register("ZoneEndX", typeof(double), typeof(TelemetryChart), new PropertyMetadata(0.0, ZoneEndXChanged));
+
+        private static void ZoneEndXChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.zone.EndX = chart.ZoneEndX;
+        }
+
+        public double ZoneEndY
+        {
+            get { return (double)GetValue(ZoneEndYProperty); }
+            set { SetValue(ZoneEndYProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ZoneEndY.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ZoneEndYProperty =
+            DependencyProperty.Register("ZoneEndY", typeof(double), typeof(TelemetryChart), new PropertyMetadata(0.0, ZoneEndYChanged));
+
+        private static void ZoneEndYChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.zone.EndY = chart.ZoneEndY;
+        }
+
+        public Brush ZoneBackground
+        {
+            get { return (Brush)GetValue(ZoneBackgroundProperty); }
+            set { SetValue(ZoneBackgroundProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ZoneBackground.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ZoneBackgroundProperty =
+            DependencyProperty.Register("ZoneBackground", typeof(Brush), typeof(TelemetryChart), new PropertyMetadata(null, ZoneBackgroundChanged));
+
+        private static void ZoneBackgroundChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.zone.Background = chart.ZoneBackground;
         }
 
         public void SetZoomScrollSettings(double rangeFrom,double rangeTo)

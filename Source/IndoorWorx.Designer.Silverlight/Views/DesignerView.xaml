@@ -77,9 +77,9 @@
                                         <RowDefinition Height="2*"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <libControls:VideoMediaElement/>
+                                    <!--<libControls:VideoMediaElement/>-->
                                     <telerik:RadBusyIndicator Grid.Row="1" IsBusy="{Binding IsTelemetryLoading, Mode=OneWay}" BusyContent="{Binding DesignerResources.LoadingTelemetryProgressMessage, Source={StaticResource DesignerResources}}">
-                                        <libControls:TelemetryChart x:Name="telemetryChart" XAxisLabelVisibility="Collapsed" YAxisLabelVisibility="Collapsed"/>
+                                        <libControls:TelemetryChart x:Name="telemetryChart" XAxisLabelVisibility="Collapsed" YAxisLabelVisibility="Collapsed" />
                                     </telerik:RadBusyIndicator>
                                 </Grid>
                             </Grid>

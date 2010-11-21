@@ -118,6 +118,18 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private TimeSpan duration;
+        [DataMember]
+        public virtual TimeSpan Duration
+        {
+            get { return duration; }
+            set
+            {
+                duration = value;
+                FirePropertyChanged("Duration");
+            }
+        }
+
         public virtual int AverageRating
         {
             get

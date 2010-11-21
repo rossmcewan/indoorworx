@@ -3,14 +3,34 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:libControls="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"             
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:libControls="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"  
+    xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"             
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="400">    
+    d:DesignHeight="300" d:DesignWidth="400">  
+    <UserControl.Resources>
+        <converters:SecondsToOADateConverter x:Key="SecondsToOADateConverter"/>
+    </UserControl.Resources>
     <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <libControls:TelemetryChart DataContext="{Binding FromTrainingSet, Mode=OneWay}" Loaded="TelemetryChart_Loaded"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <libControls:TelemetryChart 
+                DataContext="{Binding FromTrainingSet, Mode=OneWay}" 
+                Loaded="TelemetryChart_Loaded" 
+                YAxisLabelVisibility="Collapsed" 
+                YAxisMajorTickVisibility="Collapsed" 
+                YAxisMinorTickVisibility="Collapsed"
+                ZoneStartX="{Binding SelectionStart, Mode=TwoWay, ElementName=slider, Converter={StaticResource SecondsToOADateConverter}}"
+                ZoneEndX="{Binding SelectionEnd, Mode=TwoWay, ElementName=slider, Converter={StaticResource SecondsToOADateConverter}}"
+                ZoneBackground="Green"/>
+            <telerik:RadSlider x:Name="slider" Grid.Row="1" IsSelectionRangeEnabled="True" Orientation="Horizontal" Minimum="0" Maximum="{Binding FromTrainingSet.Duration.TotalSeconds, Mode=OneWay}"/>
+        </Grid>
     </Grid>
 </UserControl>
