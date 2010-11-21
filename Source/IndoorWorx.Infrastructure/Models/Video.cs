@@ -106,6 +106,18 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private TrainingMetrics trainingMetrics;
+        [DataMember]
+        public virtual TrainingMetrics TrainingMetrics
+        {
+            get { return trainingMetrics; }
+            set
+            {
+                trainingMetrics = value;
+                FirePropertyChanged("TrainingMetrics");
+            }
+        }
+
         public virtual int AverageRating
         {
             get

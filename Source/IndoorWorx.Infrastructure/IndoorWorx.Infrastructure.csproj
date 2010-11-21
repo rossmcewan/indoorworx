@@ -59,6 +59,7 @@
     <Compile Include="Models\NavigationInfo.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Telemetry.cs" />
+    <Compile Include="Models\TrainingMetrics.cs" />
     <Compile Include="Models\Video.cs" />
     <Compile Include="Models\VideoReview.cs" />
     <Compile Include="Models\VideoText.cs" />

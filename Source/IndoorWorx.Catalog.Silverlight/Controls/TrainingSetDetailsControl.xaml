@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="IndoorWorx.Catalog.Controls.TrainingSetDetailsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"     
+    xmlns:libControls="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"                   
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+
+    <telerik:RadBusyIndicator IsBusy="{Binding IsTelemetryLoading, Mode=OneWay}" BusyContent="{Binding CatalogResources.LoadingTelemetryProgressMessage, Source={StaticResource CatalogResources}}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <libControls:TelemetryChart x:Name="profileChart" Background="Transparent" XAxisLabelVisibility="Collapsed" YAxisLabelVisibility="Collapsed" Loaded="profileChart_Loaded"/>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock HorizontalAlignment="Left" Text="{Binding CatalogResources.TrainingMetricsTitle, Source={StaticResource CatalogResources}}" FontWeight="Bold"/>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" Margin="5" Text="{Binding CatalogResources.AveragePowerLabel, Source={StaticResource CatalogResources}}"/>
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" Margin="5" Grid.Row="1" Text="{Binding CatalogResources.NormalizedPowerLabel, Source={StaticResource CatalogResources}}"/>
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" Margin="5" Grid.Row="2" Text="{Binding CatalogResources.IntensityFactorLabel, Source={StaticResource CatalogResources}}"/>
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" Margin="5" Grid.Row="3" Text="{Binding CatalogResources.VariabilityIndexLabel, Source={StaticResource CatalogResources}}"/>
+
+                        <TextBlock VerticalAlignment="Center" Text="{Binding TrainingMetrics.AveragePower, StringFormat=p, Mode=OneWay}" Grid.Column="1"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding TrainingMetrics.NormalizedPower, StringFormat=p, Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding TrainingMetrics.IntensityFactor, Mode=OneWay}" Grid.Row="2" Grid.Column="1"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding TrainingMetrics.VariabilityIndex, Mode=OneWay}" Grid.Row="3" Grid.Column="1"/>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</UserControl>

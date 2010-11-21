@@ -116,6 +116,9 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Telemetry.cs">
       <Link>Models\Telemetry.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingMetrics.cs">
+      <Link>Models\TrainingMetrics.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Video.cs">
       <Link>Models\Video.cs</Link>
     </Compile>

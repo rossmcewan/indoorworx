@@ -51,7 +51,14 @@ namespace IndoorWorx.SchemaTools
                                             Title = "Entire Ride",
                                             Description = "The entire ride entails a quick warm up, followed by 2 by 2 minutes at 120 % FTP with 2 minutes RI; followed by 5 minutes at 110% FTP with 5 minutes RI. We repeat this 5 times before a quick cool down. This is a great set ... dig deep.",
                                             StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
+                                            TrainingMetrics = new TrainingMetrics()
+                                            {
+                                                AveragePower = 0.76,
+                                                NormalizedPower = 0.83,
+                                                IntensityFactor = 0.77,
+                                                VariabilityIndex = 1.03
+                                            }
                                         },
                                         new Video()
                                         {

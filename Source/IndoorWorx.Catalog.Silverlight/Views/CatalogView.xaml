@@ -1,4 +1,7 @@
-﻿<UserControl xmlns:controlsToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  xmlns:layoutToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"  x:Class="IndoorWorx.Catalog.Views.CatalogView"
+﻿<UserControl xmlns:controlsToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"  
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+             xmlns:layoutToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"  
+             x:Class="IndoorWorx.Catalog.Views.CatalogView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,6 +9,7 @@
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight" 
     xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"  
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"     
+    xmlns:catControls="clr-namespace:IndoorWorx.Catalog.Controls"             
     xmlns:libControls="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"                   
     d:DesignHeight="500" d:DesignWidth="800"           
     mc:Ignorable="d" >    
@@ -23,7 +27,6 @@
                 <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <telerik:RadOutlookBar 
@@ -61,7 +64,7 @@
             </telerik:RadOutlookBar>
 
             <telerik:RadTileView 
-                Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" 
+                Grid.Row="0" Grid.Column="1"
                 x:Name="radTileView" 
                 ItemsSource="{Binding SelectedCategory.SelectedCatalog.Videos, Mode=TwoWay}" 
                 MaximizedItem="{Binding SelectedCategory.SelectedCatalog.SelectedVideo, Mode=TwoWay}"
@@ -98,81 +101,18 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="2*"/>
                                             <RowDefinition Height="*"/>
+                                            <RowDefinition Height="2*"/>
                                         </Grid.RowDefinitions>
-                                        <telerik:RadTileView telerik:StyleManager.Theme="Transparent" Grid.ColumnSpan="2" MaximizeMode="Zero" MinimizedItemsPosition="Left" MinimizedRowHeight="180" TileStateChangeTrigger="None">
-                                            <!--<telerik:RadTileViewItem Header="Preview">
-                                                <libControls:VideoMediaElement/>
-                                            </telerik:RadTileViewItem>-->
+                                        <telerik:RadTileView telerik:StyleManager.Theme="Transparent" Grid.Row="1" Grid.ColumnSpan="2" MaximizeMode="Zero" MinimizedItemsPosition="Left" MinimizedRowHeight="180" TileStateChangeTrigger="None">
                                             <telerik:RadTileViewItem x:Name="profilesTile" Header="{Binding CatalogResources.ProfilesTitle, Source={StaticResource CatalogResources}}" TileStateChanged="selectedVideoTile_TileStateChanged">
-                                                <telerik:RadBusyIndicator IsBusy="{Binding SelectedTrainingSet.IsTelemetryLoading, Mode=OneWay}" BusyContent="{Binding CatalogResources.LoadingTelemetryProgressMessage, Source={StaticResource CatalogResources}}">
-                                                    <Grid>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="*"/>
-                                                            <RowDefinition Height="*"/>
-                                                        </Grid.RowDefinitions>
-                                                        <libControls:TelemetryChart x:Name="profileChart" Background="Transparent" XAxisLabelVisibility="Collapsed" YAxisLabelVisibility="Collapsed" Loaded="profileChart_Loaded"/>
-                                                        <Grid Grid.Row="1">
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="Auto"/>
-                                                                <RowDefinition Height="*"/>
-                                                            </Grid.RowDefinitions>
-                                                            <TextBlock HorizontalAlignment="Left" Text="{Binding CatalogResources.TrainingMetricsTitle, Source={StaticResource CatalogResources}}" FontWeight="Bold"/>
-                                                            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                                                                <Grid>
-                                                                    <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition Width="Auto"/>
-                                                                        <ColumnDefinition Width="*"/>
-                                                                    </Grid.ColumnDefinitions>
-                                                                    <Grid.RowDefinitions>
-                                                                        <RowDefinition Height="Auto"/>
-                                                                        <RowDefinition Height="Auto"/>
-                                                                        <RowDefinition Height="Auto"/>
-                                                                        <RowDefinition Height="Auto"/>
-                                                                    </Grid.RowDefinitions>
-                                                                    <sdk:Label Content="{Binding CatalogResources.AveragePowerLabel, Source={StaticResource CatalogResources}}"/>
-                                                                    <sdk:Label Grid.Row="1" Content="{Binding CatalogResources.NormalizedPowerLabel, Source={StaticResource CatalogResources}}"/>
-                                                                    <sdk:Label Grid.Row="2" Content="{Binding CatalogResources.IntensityFactorLabel, Source={StaticResource CatalogResources}}"/>
-                                                                    <sdk:Label Grid.Row="3" Content="{Binding CatalogResources.VariabilityIndexLabel, Source={StaticResource CatalogResources}}"/>
-                                                                </Grid>
-                                                            </ScrollViewer>
-                                                        </Grid>
-                                                    </Grid>
-                                                </telerik:RadBusyIndicator>
+                                                <catControls:TrainingSetDetailsControl DataContext="{Binding SelectedTrainingSet, Mode=OneWay}"/>
                                             </telerik:RadTileViewItem>
                                             <telerik:RadTileViewItem Header="{Binding CatalogResources.ReviewsTitle, Source={StaticResource CatalogResources}}" TileStateChanged="selectedVideoTile_TileStateChanged">
-                                                <Grid>
-                                                    <ItemsControl ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" ItemsSource="{Binding SelectedTrainingSet.Reviews, Mode=OneWay}">
-                                                        <ItemsControl.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <Border CornerRadius="10" Margin="5" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Stretch">
-                                                                    <Border.Background>
-                                                                        <SolidColorBrush Color="White" Opacity="0.5"/>
-                                                                    </Border.Background>
-                                                                    <Grid Margin="5">
-                                                                        <Grid.RowDefinitions>
-                                                                            <RowDefinition Height="Auto"/>
-                                                                            <RowDefinition Height="Auto"/>
-                                                                            <RowDefinition Height="Auto"/>
-                                                                        </Grid.RowDefinitions>
-                                                                        <Grid.ColumnDefinitions>
-                                                                            <ColumnDefinition Width="*"/>
-                                                                            <ColumnDefinition Width="*"/>
-                                                                        </Grid.ColumnDefinitions>
-                                                                        <telerik:RadRating NumberOfItemsToGenerate="5" Value="{Binding Rating, Mode=TwoWay}" IsReadOnly="True" telerik:StyleManager.Theme="Office_Black"/>
-                                                                        <TextBlock Text="{Binding Created, Mode=TwoWay, StringFormat='dd MMM yyyy HH:mm'}" Grid.Column="1" HorizontalAlignment="Right"/>
-                                                                        <TextBlock Text="{Binding Title, Mode=TwoWay}" FontWeight="Bold" Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
-                                                                        <TextBlock Text="{Binding Comment, Mode=TwoWay}" Grid.Row="2" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
-                                                                    </Grid>
-                                                                </Border>
-                                                            </DataTemplate>
-                                                        </ItemsControl.ItemTemplate>
-                                                    </ItemsControl>
-                                                </Grid>
+                                                <catControls:ReviewsControl DataContext="{Binding SelectedTrainingSet, Mode=OneWay}"/>
                                             </telerik:RadTileViewItem>
                                         </telerik:RadTileView>
-                                        <Border Grid.Column="0" Grid.Row="1" CornerRadius="10" Margin="10">
+                                        <Border Grid.Column="0" Grid.Row="0" CornerRadius="10" Margin="10">
                                             <Border.Background>
                                                 <SolidColorBrush Color="White" Opacity="0.5"/>
                                             </Border.Background>
@@ -222,7 +162,7 @@
                                                 </StackPanel>
                                             </Grid>
                                         </Border>
-                                        <Border Grid.Column="1" Grid.Row="1" CornerRadius="10" Margin="10">
+                                        <Border Grid.Column="1" Grid.Row="0" CornerRadius="10" Margin="10">
                                             <Border.Background>
                                                 <SolidColorBrush Color="White" Opacity="0.5"/>
                                             </Border.Background>

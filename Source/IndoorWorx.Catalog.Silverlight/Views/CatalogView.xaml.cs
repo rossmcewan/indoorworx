@@ -60,27 +60,6 @@ namespace IndoorWorx.Catalog.Views
                     }
                 }
             }
-        }
-
-        private void profileChart_Loaded(object sender, RoutedEventArgs e)
-        {
-            var chart = sender as TelemetryChart;
-            var video = chart.DataContext as Video;
-
-            if (video.SelectedTrainingSet.IsTelemetryLoaded)
-            {
-                chart.LoadTelemetry(video.SelectedTrainingSet.Telemetry);
-            }
-            else
-            {
-                video.SelectedTrainingSet.TelemetryLoaded += (_sender, _e) =>
-                    {
-                        SmartDispatcher.BeginInvoke(() =>
-                            {
-                                chart.LoadTelemetry(video.SelectedTrainingSet.Telemetry);
-                            });
-                    };
-            }
-        }
+        }        
     }
 }

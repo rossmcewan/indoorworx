@@ -64,7 +64,7 @@ namespace IndoorWorx.Player
             player.DataContext = video;
 
             window.Content = player;
-            window.Show();
+            window.ShowDialog();
         }
 
         private INavigationService NavigationService
@@ -80,18 +80,6 @@ namespace IndoorWorx.Player
 
             unityContainer.RegisterType<IPlayerPresentationModel, PlayerPresentationModel>();
             unityContainer.RegisterType<IPlayerView, PlayerView>();
-            //unityContainer.RegisterInstance<IPlayerPresentationModel>(unityContainer.Resolve<PlayerPresentationModel>(), new ContainerControlledLifetimeManager());
-            //unityContainer.RegisterInstance<IPlayerView>(unityContainer.Resolve<PlayerView>(), new ContainerControlledLifetimeManager());
-
-            //NavigationService.AddNavigationLink(new Infrastructure.Models.NavigationInfo()
-            //{
-            //    Content = "Player",
-            //    IsAuthenticationRequired = true,
-            //    NavigationUri = "/IndoorWorx.Player.Silverlight;component/Views/Dynamic/PlayerShim.xaml",
-            //    PackageName = "IndoorWorx.Player.Silverlight.xap",
-            //    Allow = new string[] { "?" },
-            //    Deny = new string[] { "" }
-            //});
         }
 
         #endregion

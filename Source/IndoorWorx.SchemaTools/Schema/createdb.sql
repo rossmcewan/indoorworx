@@ -67,6 +67,10 @@ alter table [Video]  drop constraint FK30300B576669A625
 
     create table [Video] (
         Id UNIQUEIDENTIFIER not null,
+       IntensityFactor DOUBLE PRECISION null,
+       NormalizedPower DOUBLE PRECISION null,
+       VariabilityIndex DOUBLE PRECISION null,
+       AveragePower DOUBLE PRECISION null,
        Title NVARCHAR(255) not null,
        Description NVARCHAR(255) null,
        Created DATETIME null,
