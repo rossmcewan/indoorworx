@@ -18,15 +18,19 @@ using IndoorWorx.Infrastructure;
 using Microsoft.Practices.Composite.Presentation.Commands;
 using IndoorWorx.Infrastructure.Navigation;
 using Telerik.Windows.Controls;
+using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Infrastructure.Events;
 
 namespace IndoorWorx.Catalog.Views
 {
     public class CatalogPresentationModel : BaseModel, ICatalogPresentationModel
     {
         private readonly IServiceLocator serviceLocator;
-        public CatalogPresentationModel(IServiceLocator serviceLocator)
+        private readonly IEventAggregator eventAggregator;
+        public CatalogPresentationModel(IServiceLocator serviceLocator, IEventAggregator eventAggregator)
         {
             this.serviceLocator = serviceLocator;
+            this.eventAggregator = eventAggregator;
             this.DesignTrainingSetCommand = new DelegateCommand<Video>(DesignTrainingSet);
             this.PlayTrainingSetCommand = new DelegateCommand<Video>(PlayTrainingSet);
         }
@@ -38,15 +42,12 @@ namespace IndoorWorx.Catalog.Views
 
         private void DesignTrainingSet(Video video)
         {
-            Shell.NavigateTo(new Uri(string.Format("/IndoorWorx.Designer.Silverlight;component/Views/Dynamic/DesignerShim.xaml?VideoId={0}", video.Id), UriKind.RelativeOrAbsolute));
+            eventAggregator.GetEvent<DesignVideoEvent>().Publish(video);            
         }
 
         private void PlayTrainingSet(Video video)
-        {
-            RadWindow window = new RadWindow();
-            window.WindowState = WindowState.Maximized;
-            window.Content = serviceLocator.GetInstance<IndoorWorx.Player.Views.IPlayerView>();
-            window.ShowDialog();
+        {            
+            eventAggregator.GetEvent<PlayVideoEvent>().Publish(video);            
         }
 
         #region ICatalogPresentationModel Members

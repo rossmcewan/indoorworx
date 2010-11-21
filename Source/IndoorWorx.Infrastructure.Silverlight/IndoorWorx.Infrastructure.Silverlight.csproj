@@ -49,6 +49,9 @@
     <Reference Include="Microsoft.Practices.Composite">
       <HintPath>..\..\Libraries\Silverlight\Prism\Microsoft.Practices.Composite.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Composite.Presentation">
+      <HintPath>..\..\Libraries\Silverlight\Prism\Microsoft.Practices.Composite.Presentation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Unity.Silverlight">
       <HintPath>..\..\Libraries\Silverlight\Unity\Microsoft.Practices.Unity.Silverlight.dll</HintPath>
     </Reference>
@@ -126,6 +129,8 @@
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\ByteArrayToImageConverter.cs" />
     <Compile Include="Converters\UrlToImageConverter.cs" />
+    <Compile Include="Events\DesignVideoEvent.cs" />
+    <Compile Include="Events\PlayVideoEvent.cs" />
     <Compile Include="Helpers\FullScreenExtensions.cs" />
     <Compile Include="Helpers\VisualTreeExtensions.cs" />
     <Compile Include="ICache.cs" />

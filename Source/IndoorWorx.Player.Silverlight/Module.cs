@@ -14,6 +14,11 @@ using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure.Navigation;
 using IndoorWorx.Player.Views;
 using IndoorWorx.Player.Helpers;
+using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Infrastructure.Events;
+using Telerik.Windows.Controls;
+using IndoorWorx.Infrastructure.Models;
+using Microsoft.Practices.Composite.Presentation.Events;
 
 namespace IndoorWorx.Player
 {
@@ -21,10 +26,26 @@ namespace IndoorWorx.Player
     {
         private readonly IUnityContainer unityContainer;
         private readonly IServiceLocator serviceLocator;
-        public Module(IUnityContainer unityContainer, IServiceLocator serviceLocator)
+        public Module(IUnityContainer unityContainer, IServiceLocator serviceLocator, IEventAggregator eventAggregator)
         {
             this.unityContainer = unityContainer;
             this.serviceLocator = serviceLocator;
+
+            eventAggregator.GetEvent<PlayVideoEvent>().Subscribe(PlayVideo, ThreadOption.UIThread, true);
+        }
+
+        public void PlayVideo(Video video)
+        {
+            RadWindow window = new RadWindow();
+            window.WindowState = WindowState.Maximized;
+            window.ResizeMode = ResizeMode.NoResize;
+            window.Header = video.Title;
+
+            var player = serviceLocator.GetInstance<IndoorWorx.Player.Views.IPlayerView>();
+            player.Model.Video = video;
+
+            window.Content = player;
+            window.ShowDialog();
         }
 
         private INavigationService NavigationService

@@ -26,7 +26,6 @@ namespace IndoorWorx.Player.Views
         public PlayerPresentationModel(IServiceLocator serviceLocator)
         {
             this.serviceLocator = serviceLocator;
-            LoadData();
         }
 
 
@@ -40,30 +39,14 @@ namespace IndoorWorx.Player.Views
             set
             {
                 this.video = value;
+                if (value != null)
+                {
+                    View.LoadVideo(value);
+                }
                 FirePropertyChanged("Video");
             }
 
         }
-
-        private void LoadData()
-        {
-            var categoryService = serviceLocator.GetInstance<ICategoryService>();
-            categoryService.CategoriesRetrieved += (sender, e) =>
-            {
-                var categories = e.Value;
-                this.Video = categories.FirstOrDefault().Catalogs.FirstOrDefault().Videos.FirstOrDefault().TrainingSets.FirstOrDefault();
-                this.Video.TelemetryLoaded += (_sender, _e) =>
-                    {
-                        SmartDispatcher.BeginInvoke(() =>
-                        {
-                            View.LoadVideo(Video);
-                        });
-                    };
-                this.Video.LoadTelemetry();
-            };
-            categoryService.RetrieveCategories();
-        }
-
 
         private TimeSpan playerPosition = new TimeSpan();
         public TimeSpan PlayerPosition

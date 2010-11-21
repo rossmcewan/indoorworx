@@ -16,6 +16,10 @@ using IndoorWorx.Designer.Resources;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.Designer.Helpers;
 using IndoorWorx.Designer.Views;
+using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Infrastructure.Events;
+using Microsoft.Practices.Composite.Presentation.Events;
+using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Designer
 {
@@ -23,10 +27,22 @@ namespace IndoorWorx.Designer
     {
         private readonly IUnityContainer unityContainer;
         private readonly IServiceLocator serviceLocator;
-        public Module(IUnityContainer unityContainer, IServiceLocator serviceLocator)
+        public Module(IUnityContainer unityContainer, IServiceLocator serviceLocator, IEventAggregator eventAggregator)
         {
             this.unityContainer = unityContainer;
             this.serviceLocator = serviceLocator;
+
+            eventAggregator.GetEvent<DesignVideoEvent>().Subscribe(DesignVideo, ThreadOption.UIThread, true);
+        }
+
+        private IShell Shell
+        {
+            get { return serviceLocator.GetInstance<IShell>(); }
+        }
+
+        public void DesignVideo(Video video)
+        {
+            Shell.NavigateTo(new Uri(string.Format("/IndoorWorx.Designer.Silverlight;component/Views/Dynamic/DesignerShim.xaml?VideoId={0}", video.Id), UriKind.RelativeOrAbsolute));
         }
 
         private INavigationService NavigationService

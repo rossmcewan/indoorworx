@@ -57,23 +57,6 @@
         {
         }
 
-        /// <summary>
-        /// Initializes the <see cref="Application.RootVisual"/> property. The
-        /// initial UI will be displayed before the LoadUser operation has completed
-        /// (The LoadUser operation will cause user to be logged automatically if
-        /// using windows authentication or if the user had selected the "keep
-        /// me signed in" option on a previous login).
-        /// </summary>
-        //protected virtual void InitializeRootVisual()
-        //{
-        //    this.busyIndicator = new BusyIndicator();
-        //    this.busyIndicator.Content = new Shell();
-        //    this.busyIndicator.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-        //    this.busyIndicator.VerticalContentAlignment = VerticalAlignment.Stretch;
-
-        //    this.RootVisual = this.busyIndicator;
-        //}
-
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
             // If the app is running outside of the debugger then report the exception using

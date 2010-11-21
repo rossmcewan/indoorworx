@@ -41,8 +41,29 @@ namespace IndoorWorx.Player.Views
 
         public void LoadVideo(Video video)
         {
-            this.profileChart.LoadTelemetry(video.Telemetry);
-            this.zoomedChart.LoadTelemetry(video.Telemetry);
+            if (video.IsTelemetryLoaded)
+                LoadTelemetry(video.Telemetry);
+            else
+            {
+                video.TelemetryLoaded -= video_TelemetryLoaded;
+                video.TelemetryLoaded += video_TelemetryLoaded;
+                video.LoadTelemetry();
+            }
+        }
+
+        void video_TelemetryLoaded(object sender, EventArgs e)
+        {
+            var video = sender as Video;
+            LoadTelemetry(video.Telemetry);
+        }
+
+        private void LoadTelemetry(ICollection<Telemetry> telemetry)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+                {
+                    this.profileChart.LoadTelemetry(telemetry);
+                    this.zoomedChart.LoadTelemetry(telemetry);
+                });
         }
 
         private SmoothStreamingMediaElement GetPlayer()
