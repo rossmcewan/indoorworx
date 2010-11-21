@@ -123,6 +123,9 @@
   <data name="DescriptionTitle" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="DesignButtonText" xml:space="preserve">
+    <value>Design</value>
+  </data>
   <data name="DesignTrainingSetToolTip" xml:space="preserve">
     <value>Design a new training set using this training set as the basis for it.</value>
   </data>
@@ -144,11 +147,23 @@
   <data name="PauseButtonTooltip" xml:space="preserve">
     <value>Stop the preview of this video</value>
   </data>
+  <data name="PlayButtonText" xml:space="preserve">
+    <value>Play</value>
+  </data>
   <data name="PlayButtonTooltip" xml:space="preserve">
     <value>Preview this video</value>
   </data>
   <data name="PlayTrainingSetToolTip" xml:space="preserve">
     <value>Play this training set.</value>
+  </data>
+  <data name="PreviewButtonText" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="PreviewTitle" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="PreviewTrainingSetToolTip" xml:space="preserve">
+    <value>Preview this training set.</value>
   </data>
   <data name="ProfilesDescription" xml:space="preserve">
     <value>View the profiles for the selected training set.</value>

@@ -101,98 +101,75 @@
                                             <RowDefinition Height="2*"/>
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
-                                        <telerik:RadTileView telerik:StyleManager.Theme="Transparent" Grid.ColumnSpan="2" MaximizeMode="One" MinimizedItemsPosition="Left" MinimizedRowHeight="180" TileStateChangeTrigger="None">
-                                            <telerik:RadTileViewItem Header="Preview" TileState="Maximized">
+                                        <telerik:RadTileView telerik:StyleManager.Theme="Transparent" Grid.ColumnSpan="2" MaximizeMode="Zero" MinimizedItemsPosition="Left" MinimizedRowHeight="180" TileStateChangeTrigger="None">
+                                            <!--<telerik:RadTileViewItem Header="Preview">
                                                 <libControls:VideoMediaElement/>
-                                            </telerik:RadTileViewItem>
+                                            </telerik:RadTileViewItem>-->
                                             <telerik:RadTileViewItem x:Name="profilesTile" Header="{Binding CatalogResources.ProfilesTitle, Source={StaticResource CatalogResources}}" TileStateChanged="selectedVideoTile_TileStateChanged">
-                                                <telerik:RadFluidContentControl ContentChangeMode="Manual">
-                                                    <telerik:RadFluidContentControl.SmallContent>
-                                                        <Grid>
-                                                            <TextBlock Margin="5" TextAlignment="Center" Text="{Binding CatalogResources.ProfilesDescription, Source={StaticResource CatalogResources}}" TextWrapping="Wrap"/>
-                                                        </Grid>
-                                                    </telerik:RadFluidContentControl.SmallContent>
-                                                    <telerik:RadFluidContentControl.LargeContent>
-                                                        <telerik:RadBusyIndicator IsBusy="{Binding SelectedTrainingSet.IsTelemetryLoading, Mode=OneWay}" BusyContent="{Binding CatalogResources.LoadingTelemetryProgressMessage, Source={StaticResource CatalogResources}}">
-                                                            <Grid>
-                                                                <Grid.RowDefinitions>
-                                                                    <RowDefinition Height="*"/>
-                                                                    <RowDefinition Height="*"/>
-                                                                </Grid.RowDefinitions>
-                                                                <libControls:TelemetryChart x:Name="profileChart" Background="Transparent" XAxisLabelVisibility="Collapsed" YAxisLabelVisibility="Collapsed" Loaded="profileChart_Loaded"/>
-                                                                <Grid Grid.Row="1">
+                                                <telerik:RadBusyIndicator IsBusy="{Binding SelectedTrainingSet.IsTelemetryLoading, Mode=OneWay}" BusyContent="{Binding CatalogResources.LoadingTelemetryProgressMessage, Source={StaticResource CatalogResources}}">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="*"/>
+                                                            <RowDefinition Height="*"/>
+                                                        </Grid.RowDefinitions>
+                                                        <libControls:TelemetryChart x:Name="profileChart" Background="Transparent" XAxisLabelVisibility="Collapsed" YAxisLabelVisibility="Collapsed" Loaded="profileChart_Loaded"/>
+                                                        <Grid Grid.Row="1">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <TextBlock HorizontalAlignment="Left" Text="{Binding CatalogResources.TrainingMetricsTitle, Source={StaticResource CatalogResources}}" FontWeight="Bold"/>
+                                                            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="Auto"/>
+                                                                        <ColumnDefinition Width="*"/>
+                                                                    </Grid.ColumnDefinitions>
                                                                     <Grid.RowDefinitions>
                                                                         <RowDefinition Height="Auto"/>
-                                                                        <RowDefinition Height="*"/>
+                                                                        <RowDefinition Height="Auto"/>
+                                                                        <RowDefinition Height="Auto"/>
+                                                                        <RowDefinition Height="Auto"/>
                                                                     </Grid.RowDefinitions>
-                                                                    <TextBlock Text="{Binding CatalogResources.TrainingMetricsTitle, Source={StaticResource CatalogResources}}" FontWeight="Bold"/>
-                                                                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                                                                        <Grid>
-                                                                            <Grid.ColumnDefinitions>
-                                                                                <ColumnDefinition Width="Auto"/>
-                                                                                <ColumnDefinition Width="*"/>
-                                                                            </Grid.ColumnDefinitions>
-                                                                            <Grid.RowDefinitions>
-                                                                                <RowDefinition Height="Auto"/>
-                                                                                <RowDefinition Height="Auto"/>
-                                                                                <RowDefinition Height="Auto"/>
-                                                                                <RowDefinition Height="Auto"/>
-                                                                            </Grid.RowDefinitions>
-                                                                            <sdk:Label Content="{Binding CatalogResources.AveragePowerLabel, Source={StaticResource CatalogResources}}"/>
-                                                                            <sdk:Label Grid.Row="1" Content="{Binding CatalogResources.NormalizedPowerLabel, Source={StaticResource CatalogResources}}"/>
-                                                                            <sdk:Label Grid.Row="2" Content="{Binding CatalogResources.IntensityFactorLabel, Source={StaticResource CatalogResources}}"/>
-                                                                            <sdk:Label Grid.Row="3" Content="{Binding CatalogResources.VariabilityIndexLabel, Source={StaticResource CatalogResources}}"/>                                                                            
-                                                                        </Grid>
-                                                                    </ScrollViewer>
+                                                                    <sdk:Label Content="{Binding CatalogResources.AveragePowerLabel, Source={StaticResource CatalogResources}}"/>
+                                                                    <sdk:Label Grid.Row="1" Content="{Binding CatalogResources.NormalizedPowerLabel, Source={StaticResource CatalogResources}}"/>
+                                                                    <sdk:Label Grid.Row="2" Content="{Binding CatalogResources.IntensityFactorLabel, Source={StaticResource CatalogResources}}"/>
+                                                                    <sdk:Label Grid.Row="3" Content="{Binding CatalogResources.VariabilityIndexLabel, Source={StaticResource CatalogResources}}"/>
                                                                 </Grid>
-                                                            </Grid>
-                                                        </telerik:RadBusyIndicator>
-                                                    </telerik:RadFluidContentControl.LargeContent>
-                                                </telerik:RadFluidContentControl>    
+                                                            </ScrollViewer>
+                                                        </Grid>
+                                                    </Grid>
+                                                </telerik:RadBusyIndicator>
                                             </telerik:RadTileViewItem>
                                             <telerik:RadTileViewItem Header="{Binding CatalogResources.ReviewsTitle, Source={StaticResource CatalogResources}}" TileStateChanged="selectedVideoTile_TileStateChanged">
-                                                <telerik:RadFluidContentControl ContentChangeMode="Manual">
-                                                    <telerik:RadFluidContentControl.SmallContent>
-                                                        <Grid>
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition/>
-                                                                <RowDefinition/>
-                                                            </Grid.RowDefinitions>                                                            
-                                                            <TextBlock Margin="5" TextAlignment="Center" Text="{Binding CatalogResources.ReviewsDescription, Source={StaticResource CatalogResources}}" TextWrapping="Wrap"/>
-                                                            <telerik:RadRating Grid.Row="1" NumberOfItemsToGenerate="5" Value="{Binding SelectedTrainingSet.AverageRating, Mode=TwoWay}" IsReadOnly="True" HorizontalAlignment="Center" telerik:StyleManager.Theme="Office_Black"/>
-                                                        </Grid>
-                                                    </telerik:RadFluidContentControl.SmallContent>
-                                                    <telerik:RadFluidContentControl.LargeContent>
-                                                        <Grid>
-                                                            <ItemsControl ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" ItemsSource="{Binding SelectedTrainingSet.Reviews, Mode=OneWay}">
-                                                                <ItemsControl.ItemTemplate>
-                                                                    <DataTemplate>
-                                                                        <Border CornerRadius="10" Margin="5" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Stretch">
-                                                                            <Border.Background>
-                                                                                <SolidColorBrush Color="White" Opacity="0.5"/>
-                                                                            </Border.Background>
-                                                                            <Grid Margin="5">
-                                                                                <Grid.RowDefinitions>
-                                                                                    <RowDefinition Height="Auto"/>
-                                                                                    <RowDefinition Height="Auto"/>
-                                                                                    <RowDefinition Height="Auto"/>
-                                                                                </Grid.RowDefinitions>
-                                                                                <Grid.ColumnDefinitions>
-                                                                                    <ColumnDefinition Width="*"/>
-                                                                                    <ColumnDefinition Width="*"/>
-                                                                                </Grid.ColumnDefinitions>
-                                                                                <telerik:RadRating NumberOfItemsToGenerate="5" Value="{Binding Rating, Mode=TwoWay}" IsReadOnly="True" telerik:StyleManager.Theme="Office_Black"/>
-                                                                                <TextBlock Text="{Binding Created, Mode=TwoWay, StringFormat='dd MMM yyyy HH:mm'}" Grid.Column="1" HorizontalAlignment="Right"/>
-                                                                                <TextBlock Text="{Binding Title, Mode=TwoWay}" FontWeight="Bold" Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
-                                                                                <TextBlock Text="{Binding Comment, Mode=TwoWay}" Grid.Row="2" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
-                                                                            </Grid>
-                                                                        </Border>
-                                                                    </DataTemplate>
-                                                                </ItemsControl.ItemTemplate>
-                                                            </ItemsControl>
-                                                        </Grid>
-                                                    </telerik:RadFluidContentControl.LargeContent>
-                                                </telerik:RadFluidContentControl>
+                                                <Grid>
+                                                    <ItemsControl ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" ItemsSource="{Binding SelectedTrainingSet.Reviews, Mode=OneWay}">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Border CornerRadius="10" Margin="5" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Stretch">
+                                                                    <Border.Background>
+                                                                        <SolidColorBrush Color="White" Opacity="0.5"/>
+                                                                    </Border.Background>
+                                                                    <Grid Margin="5">
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="Auto"/>
+                                                                            <RowDefinition Height="Auto"/>
+                                                                            <RowDefinition Height="Auto"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="*"/>
+                                                                            <ColumnDefinition Width="*"/>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <telerik:RadRating NumberOfItemsToGenerate="5" Value="{Binding Rating, Mode=TwoWay}" IsReadOnly="True" telerik:StyleManager.Theme="Office_Black"/>
+                                                                        <TextBlock Text="{Binding Created, Mode=TwoWay, StringFormat='dd MMM yyyy HH:mm'}" Grid.Column="1" HorizontalAlignment="Right"/>
+                                                                        <TextBlock Text="{Binding Title, Mode=TwoWay}" FontWeight="Bold" Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+                                                                        <TextBlock Text="{Binding Comment, Mode=TwoWay}" Grid.Row="2" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+                                                                    </Grid>
+                                                                </Border>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </Grid>
                                             </telerik:RadTileViewItem>
                                         </telerik:RadTileView>
                                         <Border Grid.Column="0" Grid.Row="1" CornerRadius="10" Margin="10">
@@ -239,8 +216,9 @@
                                                     </ListBox.ItemTemplate>
                                                 </ListBox>
                                                 <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
-                                                    <telerik:RadButton Content="Design" Width="50" Margin="2" CornerRadius="10" Command="{Binding DataContext.DesignTrainingSetCommand, Mode=TwoWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=TwoWay}" ToolTipService.ToolTip="{Binding CatalogResources.DesignTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
-                                                    <telerik:RadButton Content="Play" Width="50" Margin="2" CornerRadius="10" Command="{Binding DataContext.PlayTrainingSetCommand, Mode=TwoWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=TwoWay}" ToolTipService.ToolTip="{Binding CatalogResources.PlayTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
+                                                    <telerik:RadButton Content="{Binding CatalogResources.PreviewButtonText, Source={StaticResource CatalogResources}}" Width="50" Margin="2"  Command="{Binding DataContext.PreviewTrainingSetCommand, Mode=TwoWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=TwoWay}" CornerRadius="10" ToolTipService.ToolTip="{Binding CatalogResources.PreviewTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
+                                                    <telerik:RadButton Content="{Binding CatalogResources.DesignButtonText, Source={StaticResource CatalogResources}}" Width="50" Margin="2" CornerRadius="10" Command="{Binding DataContext.DesignTrainingSetCommand, Mode=TwoWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=TwoWay}" ToolTipService.ToolTip="{Binding CatalogResources.DesignTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
+                                                    <telerik:RadButton Content="{Binding CatalogResources.PlayButtonText, Source={StaticResource CatalogResources}}" Width="50" Margin="2" CornerRadius="10" Command="{Binding DataContext.PlayTrainingSetCommand, Mode=TwoWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=TwoWay}" ToolTipService.ToolTip="{Binding CatalogResources.PlayTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
                                                 </StackPanel>
                                             </Grid>
                                         </Border>

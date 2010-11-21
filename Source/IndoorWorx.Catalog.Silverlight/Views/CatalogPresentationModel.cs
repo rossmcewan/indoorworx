@@ -33,6 +33,7 @@ namespace IndoorWorx.Catalog.Views
             this.eventAggregator = eventAggregator;
             this.DesignTrainingSetCommand = new DelegateCommand<Video>(DesignTrainingSet);
             this.PlayTrainingSetCommand = new DelegateCommand<Video>(PlayTrainingSet);
+            this.PreviewTrainingSetCommand = new DelegateCommand<Video>(PreviewTrainingSet);
         }
 
         private IShell Shell
@@ -48,6 +49,11 @@ namespace IndoorWorx.Catalog.Views
         private void PlayTrainingSet(Video video)
         {            
             eventAggregator.GetEvent<PlayVideoEvent>().Publish(video);            
+        }
+
+        private void PreviewTrainingSet(Video video)
+        {
+            eventAggregator.GetEvent<PreviewVideoEvent>().Publish(video);
         }
 
         #region ICatalogPresentationModel Members
@@ -130,24 +136,6 @@ namespace IndoorWorx.Catalog.Views
             categoryService.RetrieveCategories();            
         }
 
-        public void PlaySelectedPreview(Action play)
-        {
-            var video = SelectedCategory.SelectedCatalog.SelectedVideo ?? SelectedCategory.SelectedCatalog.Videos.FirstOrDefault();
-            if (video != null)
-            {
-                SmartDispatcher.BeginInvoke(() => video.IsPlaying = true);
-            }
-            play();
-        }
-
-        public void StopSelectedPreview(Action stop)
-        {
-            var video = SelectedCategory.SelectedCatalog.SelectedVideo ?? SelectedCategory.SelectedCatalog.Videos.FirstOrDefault();
-            if (video != null)
-                SmartDispatcher.BeginInvoke(() => video.IsPlaying = false);
-            stop();
-        }
-
         private ICommand designTrainingSetCommand;
         public ICommand DesignTrainingSetCommand
         {
@@ -167,6 +155,17 @@ namespace IndoorWorx.Catalog.Views
             {
                 playTrainingSetCommand = value;
                 FirePropertyChanged("PlayTrainingSetCommand");
+            }
+        }
+
+        private ICommand previewTrainingSetCommand;
+        public ICommand PreviewTrainingSetCommand
+        {
+            get { return previewTrainingSetCommand; }
+            set
+            {
+                previewTrainingSetCommand = value;
+                FirePropertyChanged("PreviewTrainingSetCommand");
             }
         }
 

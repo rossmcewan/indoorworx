@@ -19,6 +19,8 @@ using IndoorWorx.Infrastructure.Events;
 using Telerik.Windows.Controls;
 using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.Composite.Presentation.Events;
+using IndoorWorx.Player.Controls;
+using IndoorWorx.Library.Controls;
 
 namespace IndoorWorx.Player
 {
@@ -32,6 +34,7 @@ namespace IndoorWorx.Player
             this.serviceLocator = serviceLocator;
 
             eventAggregator.GetEvent<PlayVideoEvent>().Subscribe(PlayVideo, ThreadOption.UIThread, true);
+            eventAggregator.GetEvent<PreviewVideoEvent>().Subscribe(PreviewVideo, ThreadOption.UIThread, true);
         }
 
         public void PlayVideo(Video video)
@@ -46,6 +49,22 @@ namespace IndoorWorx.Player
 
             window.Content = player;
             window.ShowDialog();
+        }
+
+        public void PreviewVideo(Video video)
+        {
+            RadWindow window = new RadWindow();
+            window.WindowStartupLocation = Telerik.Windows.Controls.WindowStartupLocation.CenterScreen;
+            window.WindowState = WindowState.Normal;
+            window.ResizeMode = ResizeMode.NoResize;
+            window.Header = string.Format(Resources.PlayerResources.PreviewVideoTitle, video.Title);
+            window.Width = 400;
+
+            var player = new VideoMediaElement();
+            player.DataContext = video;
+
+            window.Content = player;
+            window.Show();
         }
 
         private INavigationService NavigationService

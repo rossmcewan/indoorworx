@@ -191,7 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\PlayerResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PlayerResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

@@ -25,11 +25,9 @@ namespace IndoorWorx.Catalog.Views
 
         ICommand PlayTrainingSetCommand { get; set; }
 
+        ICommand PreviewTrainingSetCommand { get; set; }
+
         void LoadCategories();
-
-        void PlaySelectedPreview(Action play);
-
-        void StopSelectedPreview(Action stop);
 
         bool IsBusy { get; set; }
     }

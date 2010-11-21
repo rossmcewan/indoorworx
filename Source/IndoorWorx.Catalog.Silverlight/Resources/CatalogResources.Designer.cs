@@ -79,6 +79,15 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Design.
+        /// </summary>
+        public static string DesignButtonText {
+            get {
+                return ResourceManager.GetString("DesignButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Design a new training set using this training set as the basis for it..
         /// </summary>
         public static string DesignTrainingSetToolTip {
@@ -142,6 +151,15 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Play.
+        /// </summary>
+        public static string PlayButtonText {
+            get {
+                return ResourceManager.GetString("PlayButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preview this video.
         /// </summary>
         public static string PlayButtonTooltip {
@@ -156,6 +174,33 @@ namespace IndoorWorx.Catalog.Resources {
         public static string PlayTrainingSetToolTip {
             get {
                 return ResourceManager.GetString("PlayTrainingSetToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string PreviewButtonText {
+            get {
+                return ResourceManager.GetString("PreviewButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string PreviewTitle {
+            get {
+                return ResourceManager.GetString("PreviewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview this training set..
+        /// </summary>
+        public static string PreviewTrainingSetToolTip {
+            get {
+                return ResourceManager.GetString("PreviewTrainingSetToolTip", resourceCulture);
             }
         }
         
