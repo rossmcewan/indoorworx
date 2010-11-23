@@ -18,12 +18,16 @@ namespace IndoorWorx.Library.Controls
     {
         public VideoMediaElement()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
-        private Video Model
+        public Video Model
         {
             get { return this.DataContext as Video; }
+            set 
+            { 
+                this.DataContext = value;                
+            }
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)

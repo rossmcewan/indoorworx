@@ -10,6 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
 using System.Collections.Generic;
+using System.Windows.Navigation;
 
 namespace IndoorWorx.Infrastructure.Navigation
 {
@@ -22,5 +23,7 @@ namespace IndoorWorx.Infrastructure.Navigation
         IEnumerable<NavigationInfo> All();
 
         void Clear();
+
+        void MapUri(Uri from, Uri to);
     }
 }

@@ -4,8 +4,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
     xmlns:controls="clr-namespace:IndoorWorx.Player.Controls;assembly=IndoorWorx.Player.Silverlight"
-    xmlns:smf="http://schemas.microsoft.com/smf/2010/xaml/player"
-    xmlns:media="clr-namespace:Microsoft.SilverlightMediaFramework.Core.Media;assembly=Microsoft.SilverlightMediaFramework.Core"             
     xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"  
     xmlns:infcontrols="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight">

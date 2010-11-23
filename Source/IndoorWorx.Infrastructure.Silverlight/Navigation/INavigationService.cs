@@ -17,5 +17,7 @@ namespace IndoorWorx.Infrastructure.Navigation
         void AddNavigationLink(NavigationInfo info);
 
         bool RemoveNavigationLink(NavigationInfo info);
+
+        void NavigateTo(Uri uri);
     }
 }

@@ -14,6 +14,7 @@ using Microsoft.Practices.Composite.Modularity;
 using IndoorWorx.Catalog.Helpers;
 using Microsoft.Practices.Unity;
 using IndoorWorx.Catalog.Views;
+using System.Windows.Navigation;
 
 namespace IndoorWorx.Catalog
 {
@@ -27,9 +28,9 @@ namespace IndoorWorx.Catalog
             this.serviceLocator = serviceLocator;
         }
 
-        private INavigationService NavigationService
+        private INavigationLinks NavigationLinks
         {
-            get { return serviceLocator.GetInstance<INavigationService>(); }
+            get { return serviceLocator.GetInstance<INavigationLinks>(); }
         }
 
         #region IModule Members
@@ -40,13 +41,17 @@ namespace IndoorWorx.Catalog
 
             unityContainer.RegisterInstance<ICatalogPresentationModel>(unityContainer.Resolve<CatalogPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<ICatalogView>(unityContainer.Resolve<CatalogView>(), new ContainerControlledLifetimeManager());
-            
-            NavigationService.AddNavigationLink(new Infrastructure.Models.NavigationInfo()
+
+
+            NavigationLinks.MapUri(
+                new Uri("/Catalog", UriKind.Relative),
+                new Uri("/IndoorWorx.Catalog.Silverlight;component/Views/CatalogPage.xaml", UriKind.Relative));
+
+            NavigationLinks.Add(new Infrastructure.Models.NavigationInfo()
             {
                 Content = "Catalog",
                 IsAuthenticationRequired = true,
-                NavigationUri = "/IndoorWorx.Catalog.Silverlight;component/Views/Dynamic/CatalogShim.xaml",
-                PackageName = "IndoorWorx.Catalog.Silverlight.xap",
+                NavigationUri = "/Catalog",
                 Allow = new string[] { "?" },
                 Deny = new string[] { "" }
             });

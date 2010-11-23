@@ -60,12 +60,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamicNavigation">
-      <HintPath>..\..\Libraries\Silverlight\DavidPoll\DynamicNavigation.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamicNavigation.Utilities">
-      <HintPath>..\..\Libraries\Silverlight\DavidPoll\DynamicNavigation.Utilities.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.Composite">
       <HintPath>..\..\Libraries\Silverlight\Prism\Microsoft.Practices.Composite.dll</HintPath>
     </Reference>
@@ -112,12 +106,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DesignerResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\DesignerPage.xaml.cs">
+      <DependentUpon>DesignerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DesignerPresentationModel.cs" />
     <Compile Include="Views\DesignerView.xaml.cs">
       <DependentUpon>DesignerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Dynamic\DesignerPage.xaml.cs">
-      <DependentUpon>DesignerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IDesignerPresentationModel.cs" />
     <Compile Include="Views\IDesignerView.cs" />
@@ -146,18 +140,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DesignerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\DesignerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Dynamic\DesignerPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <ApplicationDefinition Include="Views\Dynamic\DesignerShim.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\DesignerResources.resx">

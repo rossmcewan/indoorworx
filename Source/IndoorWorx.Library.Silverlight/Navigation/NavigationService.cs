@@ -38,6 +38,11 @@ namespace IndoorWorx.Library.Navigation
             return Links.Remove(info);
         }
 
+        public void NavigateTo(Uri uri)
+        {
+            Application.Current.Host.NavigationState = uri.ToString();
+        }
+
         #endregion
     }
 }

@@ -35,19 +35,19 @@ namespace IndoorWorx.Designer
             eventAggregator.GetEvent<DesignVideoEvent>().Subscribe(DesignVideo, ThreadOption.UIThread, true);
         }
 
-        private IShell Shell
-        {
-            get { return serviceLocator.GetInstance<IShell>(); }
-        }
-
         public void DesignVideo(Video video)
         {
-            Shell.NavigateTo(new Uri(string.Format("/IndoorWorx.Designer.Silverlight;component/Views/Dynamic/DesignerShim.xaml?VideoId={0}", video.Id), UriKind.RelativeOrAbsolute));
+            NavigationService.NavigateTo(new Uri(string.Format("/Designer?VideoId={0}", video.Id), UriKind.Relative));
         }
 
         private INavigationService NavigationService
         {
             get { return serviceLocator.GetInstance<INavigationService>(); }
+        }
+
+        private INavigationLinks NavigationLinks
+        {
+            get { return serviceLocator.GetInstance<INavigationLinks>(); }
         }
 
         #region IModule Members
@@ -56,17 +56,18 @@ namespace IndoorWorx.Designer
         {
             Application.Current.Resources.Add("DesignerResources", new ResourceWrapper());
 
-            //unityContainer.RegisterType<IDesignerPresentationModel, DesignerPresentationModel>();
-            //unityContainer.RegisterType<IDesignerView, DesignerView>();
             unityContainer.RegisterInstance<IDesignerPresentationModel>(unityContainer.Resolve<DesignerPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<IDesignerView>(unityContainer.Resolve<DesignerView>(), new ContainerControlledLifetimeManager());
-            
-            NavigationService.AddNavigationLink(new Infrastructure.Models.NavigationInfo()
+
+            NavigationLinks.MapUri(
+                new Uri("/Designer", UriKind.Relative),
+                new Uri("/IndoorWorx.Designer.Silverlight;component/Views/DesignerPage.xaml", UriKind.Relative));
+
+            NavigationLinks.Add(new Infrastructure.Models.NavigationInfo()
             {
                 Content = "Designer",
                 IsAuthenticationRequired = true,
-                NavigationUri = "/IndoorWorx.Designer.Silverlight;component/Views/Dynamic/DesignerShim.xaml",
-                PackageName = "IndoorWorx.Designer.Silverlight.xap",
+                NavigationUri = "/Designer",
                 Allow = new string[] { "?" },
                 Deny = new string[] { "" }
             });

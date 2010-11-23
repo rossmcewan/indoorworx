@@ -60,8 +60,8 @@ namespace IndoorWorx.Player
             window.Header = string.Format(Resources.PlayerResources.PreviewVideoTitle, video.Title);
             window.Width = 400;
 
-            var player = new VideoMediaElement();
-            player.DataContext = video;
+            var player = new VideoMediaElement();            
+            player.Model = video;
 
             window.Content = player;
             window.ShowDialog();

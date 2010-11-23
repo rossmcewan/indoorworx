@@ -60,12 +60,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamicNavigation">
-      <HintPath>..\..\Libraries\Silverlight\DavidPoll\DynamicNavigation.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamicNavigation.Utilities">
-      <HintPath>..\..\Libraries\Silverlight\DavidPoll\DynamicNavigation.Utilities.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.Composite">
       <HintPath>..\..\Libraries\Silverlight\Prism\Microsoft.Practices.Composite.dll</HintPath>
     </Reference>
@@ -117,12 +111,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CatalogResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\CatalogPage.xaml.cs">
+      <DependentUpon>CatalogPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CatalogPresentationModel.cs" />
     <Compile Include="Views\CatalogView.xaml.cs">
       <DependentUpon>CatalogView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Dynamic\CatalogPage.xaml.cs">
-      <DependentUpon>CatalogPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ICatalogPresentationModel.cs" />
     <Compile Include="Views\ICatalogView.cs" />
@@ -152,12 +146,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ApplicationDefinition Include="Views\Dynamic\CatalogShim.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,11 +158,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CatalogView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\CatalogPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Dynamic\CatalogPage.xaml">
+    <Page Include="Views\CatalogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

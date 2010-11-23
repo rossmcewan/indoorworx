@@ -10,36 +10,44 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
-using DynamicNavigation;
 using IndoorWorx.Infrastructure;
+using IndoorWorx.Designer.Views;
 
-namespace IndoorWorx.Catalog.Views.Dynamic
+namespace IndoorWorx.Designer.Views
 {
-    public partial class CatalogPage : DynamicPage
+    public partial class DesignerPage : Page
     {
         bool reloadRequired = true;
-        public CatalogPage()
+        public DesignerPage()
         {
             InitializeComponent();
-            var contentElement = IoC.Resolve<ICatalogView>() as UserControl;
+            var contentElement = IoC.Resolve<IDesignerView>() as UserControl;
             if (contentElement.Parent != null)
             {
-                (contentElement.Parent as CatalogPage).Content = null;
+                (contentElement.Parent as DesignerPage).Content = null;
                 reloadRequired = false;
             }
             this.Content = contentElement;
         }
 
-        private ICatalogView View
+        private IDesignerView View
         {
-            get { return this.Content as ICatalogView; }
+            get { return this.Content as IDesignerView; }
         }
 
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if(reloadRequired)
+            
+            if (reloadRequired)
                 View.Model.LoadCategories();
+
+            string videoId;
+            if (this.NavigationContext.QueryString.TryGetValue("VideoId", out videoId))
+            {
+                View.Model.SelectVideoWithId(new Guid(videoId));
+                View.Model.AddDesigner();
+            }                   
         }
     }
 }

@@ -14,7 +14,5 @@ namespace IndoorWorx.Infrastructure
     public interface IShell
     {
         void Show();
-
-        IShell NavigateTo(Uri uri);
     }
 }

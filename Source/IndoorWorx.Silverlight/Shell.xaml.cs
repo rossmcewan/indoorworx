@@ -86,13 +86,6 @@ using IndoorWorx.Infrastructure.Models;
 
         #region IShell Members
 
-        public IShell NavigateTo(System.Uri uri)
-        {
-            App.Current.Host.NavigationState = uri.ToString();
-            //UpdateSelectedLinks(uri);
-            return this;
-        }
-
         public void Show()
         {
             var busyIndicator = new BusyIndicator();
@@ -106,6 +99,12 @@ using IndoorWorx.Infrastructure.Models;
         #endregion
 
         #region INavigationLinks Members
+
+        public void MapUri(Uri from, Uri to)
+        {
+            UriMapper mapper = this.ContentFrame.UriMapper as UriMapper;
+            mapper.UriMappings.Insert(0, new UriMapping() { Uri = from, MappedUri = to });
+        }
 
         private HyperlinkButton currentHyperlink = null;
 
