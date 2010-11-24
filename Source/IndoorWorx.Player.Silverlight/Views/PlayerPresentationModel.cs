@@ -18,6 +18,7 @@ using System.Linq;
 using IndoorWorx.Infrastructure;
 using System.Windows.Threading;
 using Microsoft.Web.Media.SmoothStreaming;
+using Microsoft.Practices.Composite.Presentation.Commands;
 
 namespace IndoorWorx.Player.Views
 {
@@ -31,8 +32,32 @@ namespace IndoorWorx.Player.Views
         public PlayerPresentationModel(IServiceLocator serviceLocator)
         {
             this.serviceLocator = serviceLocator;
+            PlayCommand = new DelegateCommand<object>(Play);
+            PauseCommand = new DelegateCommand<object>(Pause);
+            FullScreenCommand = new DelegateCommand<object>(FullScreen);
         }
 
+        private IShell Shell
+        {
+            get { return serviceLocator.GetInstance<IShell>(); }
+        }
+
+        private void Play(object arg)
+        {
+            View.Play();
+            Video.IsPlaying = true;            
+        }
+
+        private void Pause(object arg)
+        {
+            Video.IsPlaying = false;
+            View.Pause();
+        }
+
+        private void FullScreen(object arg)
+        {
+            Shell.IsFullScreen = true;
+        }
 
         private Video video = null;
         public Video Video
@@ -137,6 +162,28 @@ namespace IndoorWorx.Player.Views
             }
         }
 
+        private double zoomRangeFrom;
+        public double ZoomRangeFrom
+        {
+            get { return zoomRangeFrom; }
+            set
+            {
+                zoomRangeFrom = value;
+                FirePropertyChanged("ZoomRangeFrom");
+            }
+        }
+
+        private double zoomRangeTo;
+        public double ZoomRangeTo
+        {
+            get { return zoomRangeTo; }
+            set
+            {
+                zoomRangeTo = value;
+                FirePropertyChanged("ZoomRangeTo");
+            }
+        }
+
         private Telemetry currentTelemetry;
         public Telemetry CurrentTelemetry
         {
@@ -163,7 +210,9 @@ namespace IndoorWorx.Player.Views
                     }
                     else
                     {
-                        View.UpdateZoom(PlayerPosition);
+                        var xpos = new DateTime(now.Year, now.Month, now.Day, PlayerPosition.Hours, PlayerPosition.Minutes, PlayerPosition.Seconds).ToOADate();
+                        ZoomRangeFrom = PlayerPosition.TotalSeconds / Video.Duration.TotalSeconds;
+                        ZoomRangeTo = ZoomRangeFrom + zoomedLength;
                     }
                     //if (information.Count > 0 && (information.Peek().StartTime.TotalSeconds <= PlayerPosition.TotalSeconds))
                     //{
@@ -171,11 +220,66 @@ namespace IndoorWorx.Player.Views
                     //}
                 };
             timer2.Start();
+            Video.IsMediaLoading = false;
+        }
+
+        private bool manifestReady;
+        public bool IsManifestReady
+        {
+            get { return manifestReady; }
+            set
+            {
+                manifestReady = value;
+                FirePropertyChanged("IsManifestReady");
+            }
+        }
+
+        private DateTime now = DateTime.Now;
+        private double zoomedLength;
+        public void ManifestReady()
+        {
+            zoomedLength = TimeSpan.FromMinutes(3).TotalSeconds / Video.Duration.TotalSeconds;
+            ZoomRangeFrom = 0;
+            ZoomRangeTo = zoomedLength;
+            IsManifestReady = true;
         }
 
         public void MediaEnded()
         {
             this.hasVideoEnded = true;
+        }
+
+        private ICommand playCommand;
+        public ICommand PlayCommand
+        {
+            get { return playCommand; }
+            set
+            {
+                playCommand = value;
+                FirePropertyChanged("PlayCommand");
+            }
+        }
+
+        private ICommand pauseCommand;
+        public ICommand PauseCommand
+        {
+            get { return pauseCommand; }
+            set
+            {
+                pauseCommand = value;
+                FirePropertyChanged("PauseCommand");
+            }
+        }
+
+        private ICommand fullScreenCommand;
+        public ICommand FullScreenCommand
+        {
+            get { return fullScreenCommand; }
+            set
+            {
+                fullScreenCommand = value;
+                FirePropertyChanged("FullScreenCommand");
+            }
         }
     }
 }

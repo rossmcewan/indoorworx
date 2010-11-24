@@ -20,12 +20,12 @@ namespace IndoorWorx.Player.Views
 
         void LoadTelemetry(ICollection<Telemetry> telemetry);
 
-        void UpdateZoom(TimeSpan PlayerPosition);
-
-        SmoothStreamingMediaElement GetPlayer();
-
         void EnsurePlaying();
 
         void EndVideo();
+
+        void Play();
+
+        void Pause();
     }
 }

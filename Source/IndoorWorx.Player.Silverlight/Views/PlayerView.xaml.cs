@@ -31,6 +31,7 @@ namespace IndoorWorx.Player.Views
             this.DataContext = model;
             model.View = this;
         }
+
         public IPlayerPresentationModel Model
         {
             get { return this.DataContext as IPlayerPresentationModel; }
@@ -38,13 +39,26 @@ namespace IndoorWorx.Player.Views
 
         public SmoothStreamingMediaElementState CurrentPlayerState
         {
-            get { return GetPlayer().CurrentState; }
+            get { return mediaElement.CurrentState; }
         }
 
         public void Play()
         {
-            GetPlayer().Play();
-        }                
+            var playStory = this.Resources["playStory"] as Storyboard;
+            playStory.Stop();
+            playStory.Begin();
+            mediaElement.Play();
+            shouldBePlaying = true;
+        }
+
+        public void Pause()
+        {
+            shouldBePlaying = false;
+            var stopStory = this.Resources["stopStory"] as Storyboard;
+            stopStory.Stop();
+            stopStory.Begin();
+            mediaElement.Pause();
+        }
 
         public void LoadTelemetry(ICollection<Telemetry> telemetry)
         {
@@ -55,45 +69,14 @@ namespace IndoorWorx.Player.Views
                 });
         }
 
-        public SmoothStreamingMediaElement GetPlayer()
-        {
-            return mediaElement;
-        }
-
         bool shouldBePlaying = false;
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
-        {
-            var playStory = this.Resources["playStory"] as Storyboard;
-            var player = GetPlayer();
-            playStory.Stop();
-            Model.Video.IsPlaying = true;
-            playStory.Begin();
-            player.Play();
-            shouldBePlaying = true;
-        }
-
-        private void PauseButton_Click(object sender, RoutedEventArgs e)
-        {
-            shouldBePlaying = false;
-            var stopStory = this.Resources["stopStory"] as Storyboard;
-            var player = GetPlayer();
-            stopStory.Stop();
-            Model.Video.IsPlaying = false;
-            stopStory.Begin();
-            player.Pause();
-        }
-     
+        
         private void mediaElement_MediaOpened(object sender, RoutedEventArgs e)
         {
             var story = this.Resources["mediaOpenedStory"] as Storyboard;
             story.Stop();
             story.Begin();
             var fe = sender as FrameworkElement;
-            var video = fe.DataContext as Video;
-            if (video != null)
-            {
-                video.IsMediaLoading = false;
-            }
             Model.MediaOpened();
         }
 
@@ -104,8 +87,8 @@ namespace IndoorWorx.Player.Views
 
         public void EnsurePlaying()
         {
-            if (GetPlayer().CurrentState != SmoothStreamingMediaElementState.Playing && shouldBePlaying)
-                GetPlayer().Play();
+            if (mediaElement.CurrentState != SmoothStreamingMediaElementState.Playing && shouldBePlaying)
+                mediaElement.Play();
         }
 
         private bool ended = false;
@@ -119,19 +102,9 @@ namespace IndoorWorx.Player.Views
             Application.Current.Host.Content.IsFullScreen = !Application.Current.Host.Content.IsFullScreen;
         }
 
-        public void UpdateZoom(TimeSpan PlayerPosition)
-        {
-            var xpos = new DateTime(now.Year, now.Month, now.Day, PlayerPosition.Hours, PlayerPosition.Minutes, PlayerPosition.Seconds).ToOADate();
-            var rangeFrom = PlayerPosition.TotalSeconds / Model.Video.Duration.TotalSeconds;
-            var rangeTo = rangeFrom + zoomedLength;
-            this.zoomedChart.SetZoomScrollSettings(rangeFrom, rangeTo);
-        }
-
-       
         private void videoPlayer_ManifestReady(object sender, EventArgs e)
         {
-            zoomedLength = TimeSpan.FromMinutes(3).TotalSeconds / Model.Video.Duration.TotalSeconds;
-            this.zoomedChart.SetZoomScrollSettings(0, zoomedLength);
+            Model.ManifestReady();            
         }
 
         private void mediaElement_SmoothStreamingErrorOccurred(object sender, SmoothStreamingErrorEventArgs e)

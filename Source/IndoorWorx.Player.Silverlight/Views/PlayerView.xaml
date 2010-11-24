@@ -72,14 +72,22 @@
             BorderThickness="0"  
             Margin="0,0,0,24" 
             ShowProgress="True" 
-            CurrentProgress="{Binding PlayerPosition.TotalSeconds, Mode=OneWay, Converter={StaticResource SecondsToOADateConverter}}" 
+            ZoneStartX="0"
+            ZoneEndX="{Binding PlayerPosition.TotalSeconds, Mode=OneWay, Converter={StaticResource SecondsToOADateConverter}}" 
             XAxisMinValue="0" 
-            XAxisMaxValue="{Binding Video.Duration.TotalSeconds, Mode=OneWay, Converter={StaticResource SecondsToOADateConverter}}"/>
-       
+            XAxisMaxValue="{Binding Video.Duration.TotalSeconds, Mode=OneWay, Converter={StaticResource SecondsToOADateConverter}}">
+            <infcontrols:TelemetryChart.ZoneBackground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF9AFF00" Offset="0"/>
+                    <GradientStop Color="#FF4D811F" Offset="1"/>
+                </LinearGradientBrush>
+            </infcontrols:TelemetryChart.ZoneBackground>
+        </infcontrols:TelemetryChart>
+
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Top">
             <StackPanel Grid.Row="0" >
                 <TextBlock Text="Time:" Style="{StaticResource DataHeaderStyle}" />
-                <TextBlock Text="{Binding PlayerPosition, Mode=OneWay}" Style="{StaticResource DataItemStyle}"/>
+                <TextBlock Text="{Binding PlayerPosition, Mode=OneWay, StringFormat=HH:mm:ss}" Style="{StaticResource DataItemStyle}"/>
             </StackPanel>
             <StackPanel Grid.Row="1">
                 <TextBlock Text="Power:" Style="{StaticResource DataHeaderStyle}"/>
@@ -91,18 +99,21 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="playButton" Grid.Column="1" Style="{StaticResource MainPlayerPlayButtonStyle}" Click="PlayButton_Click" />
-                <Button x:Name="stopButton" Grid.Column="2" Style="{StaticResource MainPlayerPauseButtonStyle}"  Click="PauseButton_Click"/>
-                <Button x:Name="fullScreenButton" Grid.Column="0"  Style="{StaticResource MainPlayerFullScreenButtonStyle}"  Click="fullScreenButton_Click" />
+                <Button x:Name="playButton" Grid.Column="1" Style="{StaticResource MainPlayerPlayButtonStyle}" Command="{Binding PlayCommand, Mode=OneWay}" />
+                <Button x:Name="stopButton" Grid.Column="2" Style="{StaticResource MainPlayerPauseButtonStyle}"  Command="{Binding PauseCommand, Mode=OneWay}"/>
+                <Button x:Name="fullScreenButton" Grid.Column="0"  Style="{StaticResource MainPlayerFullScreenButtonStyle}"  Command="{Binding FullScreenCommand, Mode=OneWay}" />
             </Grid>
                 
        </StackPanel>
         <infcontrols:TelemetryChart 
+            Visibility="{Binding IsManifestReady, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
             x:Name="zoomedChart" 
             Grid.Column="1" 
             Margin="5" 
             Grid.Row="2"  
-            BorderThickness="0"             
+            BorderThickness="0"
+            XZoomRangeFrom="{Binding ZoomRangeFrom, Mode=OneWay}"
+            XZoomRangeTo="{Binding ZoomRangeTo, Mode=OneWay}"
             XAxisMinValue="0" 
             XAxisMaxValue="{Binding Video.Duration.TotalSeconds, Mode=OneWay, Converter={StaticResource SecondsToOADateConverter}}"/>
         <controls:CircularGauge x:Name="gauge" Grid.Column="2" Grid.Row="2"  BorderThickness="0" Margin="5"/>        

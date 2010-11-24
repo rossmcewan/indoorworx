@@ -313,9 +313,41 @@ namespace IndoorWorx.Library.Controls
             chart.zone.Background = chart.ZoneBackground;
         }
 
-        public void SetZoomScrollSettings(double rangeFrom,double rangeTo)
+        //public void SetZoomScrollSettings(double rangeFrom,double rangeTo)
+        //{
+        //    this.DefaultView.ChartArea.ZoomScrollSettingsX.SetSelectionRange(rangeFrom, rangeTo);
+        //}
+
+        public double XZoomRangeFrom
         {
-            this.DefaultView.ChartArea.ZoomScrollSettingsX.SetSelectionRange(rangeFrom, rangeTo);    
+            get { return (double)GetValue(XZoomRangeFromProperty); }
+            set { SetValue(XZoomRangeFromProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for XZoomRangeFrom.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty XZoomRangeFromProperty =
+            DependencyProperty.Register("XZoomRangeFrom", typeof(double), typeof(TelemetryChart), new PropertyMetadata(XZoomRangeFromChanged));
+
+        private static void XZoomRangeFromChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.DefaultView.ChartArea.ZoomScrollSettingsX.RangeStart = chart.XZoomRangeFrom;
+        }
+
+        public double XZoomRangeTo
+        {
+            get { return (double)GetValue(XZoomRangeToProperty); }
+            set { SetValue(XZoomRangeToProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for XZoomRangeTo.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty XZoomRangeToProperty =
+            DependencyProperty.Register("XZoomRangeTo", typeof(double), typeof(TelemetryChart), new PropertyMetadata(XZoomRangeToChanged));
+
+        private static void XZoomRangeToChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.DefaultView.ChartArea.ZoomScrollSettingsX.RangeEnd = chart.XZoomRangeTo;
         }
 
         public double XAxisMinValue
