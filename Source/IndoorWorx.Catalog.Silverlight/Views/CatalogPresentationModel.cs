@@ -123,13 +123,13 @@ namespace IndoorWorx.Catalog.Views
             categoryService.CategoriesRetrieved += (sender, e) =>
                 {
                     Categories = e.Value;
-                    SelectedCategory = Categories.FirstOrDefault();
-                    if (SelectedCategory != null)
-                    {
-                        SelectedCategory.SelectedCatalog = SelectedCategory.Catalogs.FirstOrDefault();
-                        if (SelectedCategory.SelectedCatalog != null)
-                            SelectedCategory.SelectedCatalog.SelectedVideo = SelectedCategory.SelectedCatalog.Videos.FirstOrDefault();
-                    }
+                    //SelectedCategory = Categories.FirstOrDefault();
+                    //if (SelectedCategory != null)
+                    //{
+                    //    SelectedCategory.SelectedCatalog = SelectedCategory.Catalogs.FirstOrDefault();
+                    //    if (SelectedCategory.SelectedCatalog != null)
+                    //        SelectedCategory.SelectedCatalog.SelectedVideo = SelectedCategory.SelectedCatalog.Videos.FirstOrDefault();
+                    //}
                     this.IsBusy = false;
                 };
             this.IsBusy = true;

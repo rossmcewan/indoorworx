@@ -122,6 +122,9 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingMetrics.cs">
       <Link>Models\TrainingMetrics.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingSet.cs">
+      <Link>Models\TrainingSet.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Video.cs">
       <Link>Models\Video.cs</Link>
     </Compile>
@@ -134,6 +137,7 @@
     <Compile Include="Converters\BooleanToOppositeVisibilityConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\ByteArrayToImageConverter.cs" />
+    <Compile Include="Converters\PercentageToDoubleConverter.cs" />
     <Compile Include="Converters\SecondsToOADateConverter.cs" />
     <Compile Include="Converters\UrlToImageConverter.cs" />
     <Compile Include="Events\DesignVideoEvent.cs" />
@@ -147,6 +151,7 @@
     <Compile Include="Models\Catalog.Silverlight.cs" />
     <Compile Include="Models\Category.Silverlight.cs" />
     <Compile Include="Models\Telemetry.Silverlight.cs" />
+    <Compile Include="Models\TrainingSet.Silverlight.cs" />
     <Compile Include="Models\Video.Silverlight.cs" />
     <Compile Include="Navigation\INavigationLinks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

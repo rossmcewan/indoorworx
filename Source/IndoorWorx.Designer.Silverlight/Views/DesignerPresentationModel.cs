@@ -23,7 +23,7 @@ namespace IndoorWorx.Designer.Views
 {
     public class DesignerPresentationModel : BaseModel, IDesignerPresentationModel
     {
-        public event EventHandler<DataEventArgs<Video>> VideoSelected;
+        public event EventHandler<DataEventArgs<TrainingSet>> VideoSelected;
 
         private IServiceLocator serviceLocator;
         public DesignerPresentationModel(IServiceLocator serviceLocator)
@@ -120,8 +120,8 @@ namespace IndoorWorx.Designer.Views
             }
         }
 
-        private Video selectedVideo;
-        public Video SelectedVideo
+        private TrainingSet selectedVideo;
+        public TrainingSet SelectedVideo
         {
             get { return selectedVideo; }
             set
@@ -129,7 +129,7 @@ namespace IndoorWorx.Designer.Views
                 selectedVideo = value;
                 FirePropertyChanged("SelectedVideo");
                 if (VideoSelected != null)
-                    VideoSelected(this, new DataEventArgs<Video>(value));
+                    VideoSelected(this, new DataEventArgs<TrainingSet>(value));
                 if (value != null)
                     value.LoadTelemetry();                
             }

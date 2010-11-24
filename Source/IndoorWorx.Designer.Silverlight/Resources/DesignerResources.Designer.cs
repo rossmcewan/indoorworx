@@ -76,6 +76,15 @@ namespace IndoorWorx.Designer.Resources {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Catalog.
+        /// </summary>
+        public static string CatalogPaneTitle {
+            get {
+                return ResourceManager.GetString("CatalogPaneTitle", resourceCulture);
+            }
+        }
+        
         public static byte[] Design {
             get {
                 object obj = ResourceManager.GetObject("Design", resourceCulture);
@@ -102,6 +111,15 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My Library.
+        /// </summary>
+        public static string MyLibraryPaneTitle {
+            get {
+                return ResourceManager.GetString("MyLibraryPaneTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Design New Training Set.
         /// </summary>
         public static string NewDesignTitle {
@@ -114,6 +132,15 @@ namespace IndoorWorx.Designer.Resources {
             get {
                 object obj = ResourceManager.GetObject("Play", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string PreviewPaneTitle {
+            get {
+                return ResourceManager.GetString("PreviewPaneTitle", resourceCulture);
             }
         }
         

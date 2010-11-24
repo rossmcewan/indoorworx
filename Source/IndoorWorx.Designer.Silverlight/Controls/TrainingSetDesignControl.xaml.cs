@@ -22,9 +22,22 @@ namespace IndoorWorx.Designer.Controls
             InitializeComponent();
         }
 
-        private TrainingSetDesign Model
+        public TrainingSetDesign Model
         {
+            set
+            {
+                this.DataContext = value;
+                if (value != null)
+                {
+                    value.EntriesChanged += Model_EntriesChanged;
+                }                
+            }
             get { return this.DataContext as TrainingSetDesign; }
+        }
+
+        private void Model_EntriesChanged(object sender, EventArgs e)
+        {
+            designedTelemetryChart.LoadTelemetry(Model.GetDesignedTelemetry());
         }
 
         private void TelemetryChart_Loaded(object sender, RoutedEventArgs e)

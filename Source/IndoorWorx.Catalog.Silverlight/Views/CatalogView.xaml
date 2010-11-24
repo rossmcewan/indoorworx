@@ -105,10 +105,10 @@
                                             <RowDefinition Height="2*"/>
                                         </Grid.RowDefinitions>
                                         <telerik:RadTileView telerik:StyleManager.Theme="Transparent" Grid.Row="1" Grid.ColumnSpan="2" MaximizeMode="Zero" MinimizedItemsPosition="Left" MinimizedRowHeight="180" TileStateChangeTrigger="None">
-                                            <telerik:RadTileViewItem x:Name="profilesTile" Header="{Binding CatalogResources.ProfilesTitle, Source={StaticResource CatalogResources}}" TileStateChanged="selectedVideoTile_TileStateChanged">
+                                            <telerik:RadTileViewItem x:Name="profilesTile" Header="{Binding CatalogResources.ProfilesTitle, Source={StaticResource CatalogResources}}" >
                                                 <catControls:TrainingSetDetailsControl DataContext="{Binding SelectedTrainingSet, Mode=OneWay}"/>
                                             </telerik:RadTileViewItem>
-                                            <telerik:RadTileViewItem Header="{Binding CatalogResources.ReviewsTitle, Source={StaticResource CatalogResources}}" TileStateChanged="selectedVideoTile_TileStateChanged">
+                                            <telerik:RadTileViewItem Header="{Binding CatalogResources.ReviewsTitle, Source={StaticResource CatalogResources}}" >
                                                 <catControls:ReviewsControl DataContext="{Binding SelectedTrainingSet, Mode=OneWay}"/>
                                             </telerik:RadTileViewItem>
                                         </telerik:RadTileView>

@@ -21,9 +21,5 @@ namespace IndoorWorx.Player.Views
         void MediaOpened();
 
         void MediaEnded();
-
-        TimeSpan LengthOfClip { get; set; }
-
     }
-
 }

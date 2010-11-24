@@ -25,6 +25,8 @@ namespace IndoorWorx.Player.Views
     {
         private bool hasVideoEnded = false;
         private readonly IServiceLocator serviceLocator;
+        private Dictionary<double, Telemetry> linked = new Dictionary<double, Telemetry>();
+        private Queue<Telemetry> queue = new Queue<Telemetry>();
 
         public PlayerPresentationModel(IServiceLocator serviceLocator)
         {
@@ -42,19 +44,46 @@ namespace IndoorWorx.Player.Views
             set
             {
                 this.video = value;
-                if (value != null)
+                if (value != null && value is TrainingSet)
                 {
-                    View.LoadVideo(value);
+                    LoadVideo((TrainingSet)value);
                 }
                 FirePropertyChanged("Video");
             }
-
         }
 
-
-        private SmoothStreamingMediaElement Player
+        private void LoadVideo(TrainingSet video)
         {
-            get { return View.GetPlayer(); }
+            if (video.IsTelemetryLoaded)
+            {
+                LoadLinkedDictionary();
+                View.LoadTelemetry(video.Telemetry);
+            }
+            else
+            {
+                video.TelemetryLoaded -= video_TelemetryLoaded;
+                video.TelemetryLoaded += video_TelemetryLoaded;
+                video.LoadTelemetry();
+            }
+        }
+
+        void LoadLinkedDictionary()
+        {
+            if (video is TrainingSet)
+            {
+                foreach (var t in (video as TrainingSet).Telemetry)
+                {
+                    linked.Add(t.TimePosition.TotalSeconds, t);
+                    queue.Enqueue(t);
+                }
+            }
+        }
+
+        void video_TelemetryLoaded(object sender, EventArgs e)
+        {
+            var video = sender as TrainingSet;
+            LoadLinkedDictionary();
+            View.LoadTelemetry(video.Telemetry);
         }
 
         private TimeSpan playerPosition = new TimeSpan();
@@ -66,7 +95,6 @@ namespace IndoorWorx.Player.Views
                 playerPosition = value;
                 FirePropertyChanged("PlayerPosition");
             }
-
         }
 
         private IPlayerView view;
@@ -93,21 +121,9 @@ namespace IndoorWorx.Player.Views
             }
         }
 
-        private TimeSpan lengthOfClip;
-        public TimeSpan LengthOfClip
-        {
-            get { return lengthOfClip; }
-            set
-            {
-                lengthOfClip = value;
-                FirePropertyChanged("LengthOfClip");
-            }
-        }
-
         private void EnsurePlaying()
         {
-            if (Player.CurrentState != SmoothStreamingMediaElementState.Playing && !hasVideoEnded)
-                Player.Play();
+            View.EnsurePlaying();            
         }
 
         private double currentIntensity = 0;
@@ -121,44 +137,45 @@ namespace IndoorWorx.Player.Views
             }
         }
 
+        private Telemetry currentTelemetry;
+        public Telemetry CurrentTelemetry
+        {
+            get { return currentTelemetry; }
+            set
+            {
+                currentTelemetry = value;
+                FirePropertyChanged("CurrentTelemetry");
+            }
+        }
 
         public void MediaOpened()
         {
-            var timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(2);
-            timer.Tick += (_sender, _e) =>
-            {
-                EnsurePlaying();
-                var roundedSeconds = Math.Round(PlayerPosition.TotalSeconds);
-                //if (roundedSeconds % 3 == 0)
-                //{
-                 Telemetry data = Video.Telemetry.Where(t => Math.Round(t.TimePosition.TotalSeconds) == roundedSeconds).FirstOrDefault();
-                    if (data != null)
+            var timer2 = new DispatcherTimer();
+            timer2.Interval = TimeSpan.FromSeconds(1);
+            timer2.Tick += (sender, e) =>
+                {
+                    if (queue.Peek().TimePosition <= PlayerPosition)
+                        CurrentTelemetry = queue.Dequeue();
+                    if (PlayerPosition >= Video.Duration)
                     {
-                        this.CurrentIntensity = Math.Round(data.PercentageThreshold*100);
+                        View.EndVideo();
+                        hasVideoEnded = true;
                     }
-               // }
-                if (PlayerPosition >= LengthOfClip)
-                {
-                    hasVideoEnded = true;
-                }
-                else
-                {
-                    View.UpdateCurrentPosition(PlayerPosition);
-
-                }
-                //if (information.Count > 0 && (information.Peek().StartTime.TotalSeconds <= PlayerPosition.TotalSeconds))
-                //{
-                //    ShowText(InformationQueue.Dequeue());
-                //}
-            };
-            timer.Start();
+                    else
+                    {
+                        View.UpdateZoom(PlayerPosition);
+                    }
+                    //if (information.Count > 0 && (information.Peek().StartTime.TotalSeconds <= PlayerPosition.TotalSeconds))
+                    //{
+                    //    ShowText(InformationQueue.Dequeue());
+                    //}
+                };
+            timer2.Start();
         }
 
         public void MediaEnded()
         {
             this.hasVideoEnded = true;
         }
-
     }
 }

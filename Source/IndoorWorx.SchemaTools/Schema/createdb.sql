@@ -15,8 +15,12 @@ alter table [VideoReview]  drop constraint FK218B12D2E9F4749E
 alter table [Video]  drop constraint FK30300B57A4ECB12B
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK30300B576669A625]') AND parent_object_id = OBJECT_ID('[Video]'))
-alter table [Video]  drop constraint FK30300B576669A625
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK9449533D1422C52E]') AND parent_object_id = OBJECT_ID('[TrainingSet]'))
+alter table [TrainingSet]  drop constraint FK9449533D1422C52E
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK9449533D6669A625]') AND parent_object_id = OBJECT_ID('[TrainingSet]'))
+alter table [TrainingSet]  drop constraint FK9449533D6669A625
 
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Catalog]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Catalog]
@@ -28,6 +32,8 @@ alter table [Video]  drop constraint FK30300B576669A625
     if exists (select * from dbo.sysobjects where id = object_id(N'[VideoReview]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VideoReview]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Video]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Video]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingSet]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingSet]
 
     create table [Catalog] (
         Id UNIQUEIDENTIFIER not null,
@@ -67,10 +73,6 @@ alter table [Video]  drop constraint FK30300B576669A625
 
     create table [Video] (
         Id UNIQUEIDENTIFIER not null,
-       IntensityFactor DOUBLE PRECISION null,
-       NormalizedPower DOUBLE PRECISION null,
-       VariabilityIndex DOUBLE PRECISION null,
-       AveragePower DOUBLE PRECISION null,
        Title NVARCHAR(255) not null,
        Description NVARCHAR(255) null,
        Created DATETIME null,
@@ -80,9 +82,19 @@ alter table [Video]  drop constraint FK30300B576669A625
        Sequence INT null,
        ImageUri NVARCHAR(255) null,
        StreamUri NVARCHAR(255) not null,
-       TelemetryUri NVARCHAR(255) null,
        Duration BIGINT null,
        Catalog UNIQUEIDENTIFIER null,
+       primary key (Id)
+    )
+
+    create table [TrainingSet] (
+        Id UNIQUEIDENTIFIER not null,
+       IntensityFactor DOUBLE PRECISION null,
+       NormalizedPower DOUBLE PRECISION null,
+       VariabilityIndex DOUBLE PRECISION null,
+       AveragePower DOUBLE PRECISION null,
+       TelemetryUri NVARCHAR(255) null,
+       RecordingInterval DOUBLE PRECISION null,
        Parent UNIQUEIDENTIFIER null,
        primary key (Id)
     )
@@ -107,7 +119,12 @@ alter table [Video]  drop constraint FK30300B576669A625
         foreign key (Catalog) 
         references [Catalog]
 
-    alter table [Video] 
-        add constraint FK30300B576669A625 
+    alter table [TrainingSet] 
+        add constraint FK9449533D1422C52E 
+        foreign key (Id) 
+        references [Video]
+
+    alter table [TrainingSet] 
+        add constraint FK9449533D6669A625 
         foreign key (Parent) 
         references [Video]

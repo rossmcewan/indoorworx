@@ -36,30 +36,6 @@ namespace IndoorWorx.Catalog.Views
 
         #endregion
 
-        private void selectedVideoTile_TileStateChanged(object sender, Telerik.Windows.RadRoutedEventArgs e) 
-        {
-            var item = sender as RadTileViewItem;
-            if (item != null)
-            {
-                var control = item.Content as RadFluidContentControl;
-                if (control != null)
-                {
-                    switch (item.TileState)
-                    {
-                        case TileViewItemState.Maximized:
-                            control.State = FluidContentControlState.Large;
-                            break;
-                        case TileViewItemState.Minimized:
-                            control.State = FluidContentControlState.Small;
-                            break;
-                        case TileViewItemState.Restored:
-                            control.State = FluidContentControlState.Normal;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-        }        
+                
     }
 }

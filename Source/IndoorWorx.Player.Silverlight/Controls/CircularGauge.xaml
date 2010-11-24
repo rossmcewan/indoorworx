@@ -4,8 +4,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"             
     mc:Ignorable="d">
-    
+    <UserControl.Resources>
+        <converters:PercentageToDoubleConverter x:Key="PercentageToDoubleConverter"/>
+    </UserControl.Resources>
         <telerik:RadGauge x:Name="radGauge">
             <telerik:RadialGauge x:Name="radialGauge" >
                 <telerik:RadialScale x:Name="radialScale" IsInteractive="True">
@@ -19,7 +22,7 @@
                         <telerik:MinorTickProperties Length="0.05" TickWidth="0.3" />
                     </telerik:RadialScale.MinorTick>
                     <telerik:IndicatorList>
-                    <telerik:Needle x:Name="needle" Value="{Binding CurrentIntensity,Mode=TwoWay}" IsAnimated="True"/>
+                    <telerik:Needle x:Name="needle" Value="{Binding CurrentTelemetry.PercentageThreshold, Mode=OneWay, Converter={StaticResource PercentageToDoubleConverter}}" IsAnimated="True"/>
                     </telerik:IndicatorList>
                 </telerik:RadialScale>
             </telerik:RadialGauge>

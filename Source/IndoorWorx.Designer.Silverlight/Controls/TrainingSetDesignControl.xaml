@@ -14,23 +14,39 @@
     <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <libControls:TelemetryChart 
-                DataContext="{Binding FromTrainingSet, Mode=OneWay}" 
-                Loaded="TelemetryChart_Loaded" 
-                YAxisLabelVisibility="Collapsed" 
-                YAxisMajorTickVisibility="Collapsed" 
-                YAxisMinorTickVisibility="Collapsed"
-                ZoneStartX="{Binding SelectionStart, Mode=TwoWay, ElementName=slider, Converter={StaticResource SecondsToOADateConverter}}"
-                ZoneEndX="{Binding SelectionEnd, Mode=TwoWay, ElementName=slider, Converter={StaticResource SecondsToOADateConverter}}"
-                ZoneBackground="Green"/>
-            <telerik:RadSlider x:Name="slider" Grid.Row="1" IsSelectionRangeEnabled="True" Orientation="Horizontal" Minimum="0" Maximum="{Binding FromTrainingSet.Duration.TotalSeconds, Mode=OneWay}"/>
-        </Grid>
+        <libControls:TelemetryChart
+            Margin="10"
+            DataContext="{Binding FromTrainingSet, Mode=OneWay}" 
+            Loaded="TelemetryChart_Loaded" 
+            XAxisLabelVisibility="Collapsed"
+            ZoneStartX="{Binding SelectionStart, Mode=TwoWay, ElementName=slider, Converter={StaticResource SecondsToOADateConverter}}"
+            ZoneEndX="{Binding SelectionEnd, Mode=TwoWay, ElementName=slider, Converter={StaticResource SecondsToOADateConverter}}">
+            <libControls:TelemetryChart.ZoneBackground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF9AFF00" Offset="0"/>
+                    <GradientStop Color="#FF4D811F" Offset="1"/>
+                </LinearGradientBrush>
+            </libControls:TelemetryChart.ZoneBackground>
+        </libControls:TelemetryChart>
+        <telerik:RadSlider 
+            x:Name="slider" 
+            Grid.Row="1" 
+            IsSelectionRangeEnabled="True" 
+            Orientation="Horizontal" 
+            Minimum="0" 
+            TickFrequency="300"          
+            SelectionStart="{Binding SelectionStart, Mode=TwoWay}"
+            SelectionEnd="{Binding SelectionEnd, Mode=TwoWay}"
+            Maximum="{Binding FromTrainingSet.Duration.TotalSeconds, Mode=OneWay}"/>
+        <telerik:RadButton Content="Add" Grid.Row="2" Command="{Binding AddToNewTrainingSetCommand, Mode=OneWay}"/>
+        <libControls:TelemetryChart
+            x:Name="designedTelemetryChart"
+            Grid.Row="3"
+            Margin="10"
+            YAxisAutoRange="True"/>                
     </Grid>
 </UserControl>

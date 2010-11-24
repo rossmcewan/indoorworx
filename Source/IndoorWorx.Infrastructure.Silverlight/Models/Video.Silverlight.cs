@@ -17,10 +17,7 @@ using System.Threading;
 namespace IndoorWorx.Infrastructure.Models
 {
     public partial class Video
-    {
-        public event EventHandler TelemetryLoaded;
-
-
+    {        
         private bool selected;
         public virtual bool IsSelected
         {
@@ -55,19 +52,8 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private bool telemetryLoading;
-        public virtual bool IsTelemetryLoading
-        {
-            get { return telemetryLoading; }
-            set
-            {
-                telemetryLoading = value;
-                FirePropertyChanged("IsTelemetryLoading");
-            }
-        }
-
-        private Video selectedTrainingSet;
-        public virtual Video SelectedTrainingSet
+        private TrainingSet selectedTrainingSet;
+        public virtual TrainingSet SelectedTrainingSet
         {
             get { return selectedTrainingSet; }
             set
@@ -77,82 +63,7 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("SelectedTrainingSet");
             }
         }
-
-        private bool telemetryActive;
-        public virtual bool IsTelemetryActive
-        {
-            get { return telemetryActive; }
-            set
-            {
-                telemetryActive = value;
-                FirePropertyChanged("IsTelemetryActive");
-            }
-        }
-
-        private bool telemetryLoaded;
-        public virtual bool IsTelemetryLoaded
-        {
-            get { return telemetryLoaded; }
-            set
-            {
-                this.telemetryLoaded = value;
-                FirePropertyChanged("IsTelemetryLoaded");
-            }
-        }
-
-        public void LoadTelemetry()
-        {
-            if (TelemetryUri == null)
-                return;
-            if (!IsTelemetryLoaded && !IsTelemetryLoading)
-            {
-                var _telemetry = new List<Telemetry>();
-                IsTelemetryLoading = true;
-                var dataRetriever = new System.Net.WebClient();                
-                dataRetriever.DownloadStringCompleted += (sender, e) =>
-                {
-                    ThreadPool.QueueUserWorkItem(new WaitCallback(obj =>
-                        {
-                            using (var reader = new StringReader(e.Result))
-                            {
-                                string line;
-                                while ((line = reader.ReadLine()) != null)
-                                {
-                                    try
-                                    {
-                                        _telemetry.Add(Models.Telemetry.Parse(line));
-                                    }
-                                    catch
-                                    {
-                                        continue;
-                                    }
-                                }
-                            }
-                            IsTelemetryLoading = false;
-                            Telemetry = _telemetry;
-                            IsTelemetryLoaded = true;
-                            if (TelemetryLoaded != null)
-                                TelemetryLoaded(this, EventArgs.Empty);
-                        }));
-                };
-                dataRetriever.DownloadStringAsync(TelemetryUri);
-            }
-        }
-
-        private ICollection<Telemetry> telemetry;
-        public virtual ICollection<Telemetry> Telemetry
-        {
-            get
-            {                                
-                return telemetry;
-            }
-            set
-            {
-                this.telemetry = value;
-                FirePropertyChanged("Telemetry");
-            }
-        }
-
+        
         [OnDeserialized]
         public void OnDeserialized(StreamingContext context)
         {

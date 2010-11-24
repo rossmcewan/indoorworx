@@ -43,9 +43,9 @@ namespace IndoorWorx.SchemaTools
                                     ImageUri = new Uri("http://localhost:3415/Mock/randwaterboard.jpg",UriKind.Absolute),                                    
                                     StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                     Title = "Rand Waterboard - 2s and 5s",
-                                    TrainingSets = new List<Video>()
+                                    TrainingSets = new List<TrainingSet>()
                                     {
-                                        new Video()
+                                        new TrainingSet()
                                         {
                                             Sequence = 1,
                                             Title = "Entire Ride",
@@ -59,25 +59,25 @@ namespace IndoorWorx.SchemaTools
                                                 IntensityFactor = 0.77,
                                                 VariabilityIndex = 1.03
                                             },
-                                            Duration = new TimeSpan(1, 15, 0)
+                                            Duration = new TimeSpan(1, 18, 0)
                                         },
-                                        new Video()
+                                        new TrainingSet()
                                         {
                                             Sequence = 2,
                                             Title = "5 x 5",
                                             Description = "The ride entails a quick warm up, followed by 5 by 5 minutes at 110% FTP with 5 minutes RI; this is followed by a quick cool down.",
                                             StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                             TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
-                                            Duration = new TimeSpan(1, 15, 0)
+                                            Duration = new TimeSpan(1, 18, 0)
                                         },
-                                        new Video()
+                                        new TrainingSet()
                                         {
                                             Sequence = 3,
                                             Title = "10 x 2",
                                             Description = "The ride entails a quick warm up, followed by 10 by 2 minutes at 120% FTP with 2 minutes RI; this is followed by a quick cool down.",
                                             StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                             TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
-                                            Duration = new TimeSpan(1, 15, 0)
+                                            Duration = new TimeSpan(1, 18, 0)
                                         }
                                     }
                                 },
@@ -89,16 +89,16 @@ namespace IndoorWorx.SchemaTools
                                     ImageUri = new Uri("http://localhost:3415/Mock/suikerbosrand.jpg",UriKind.Absolute),                                    
                                     StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                     Title = "Suikerbosrand Nature Reserve",
-                                    TrainingSets = new List<Video>()
+                                    TrainingSets = new List<TrainingSet>()
                                     {
-                                        new Video()
+                                        new TrainingSet()
                                         {
                                             Sequence = 1,
                                             Title = "Entire Ride",
                                             Description = "This is a ride through the Suikerbosrand Nature Reserve. About two and a half hours with some good climbing. Go hard up the climbs, there's recovery on the other side. Keep your eyes peeled for eland and baboon!",
                                             StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                             TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
-                                            Duration = new TimeSpan(1, 15, 0)
+                                            Duration = new TimeSpan(1, 18, 0)
                                         }
                                     }
                                 }
@@ -120,9 +120,9 @@ namespace IndoorWorx.SchemaTools
                                     ImageUri = new Uri("http://localhost:3415/Mock/cyclechallenge.jpg",UriKind.Absolute),                                    
                                     StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                     Title = "Pick n Pay 94.7",
-                                    TrainingSets = new List<Video>()
+                                    TrainingSets = new List<TrainingSet>()
                                     {
-                                        new Video()
+                                        new TrainingSet()
                                         {
                                             Sequence = 1,
                                             Title = "The Race",
@@ -148,7 +148,7 @@ namespace IndoorWorx.SchemaTools
                                                 }
                                             },
                                             TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
-                                            Duration = new TimeSpan(1, 15, 0)
+                                            Duration = new TimeSpan(1, 18, 0)
                                         }
                                     }
                                 },
@@ -160,16 +160,16 @@ namespace IndoorWorx.SchemaTools
                                     ImageUri = new Uri("http://localhost:3415/Mock/cape-argus.jpg",UriKind.Absolute),                                    
                                     StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                     Title = "Pick n Pay Cape Argus",
-                                    TrainingSets = new List<Video>()
+                                    TrainingSets = new List<TrainingSet>()
                                     {
-                                        new Video()
+                                        new TrainingSet()
                                         {
                                             Sequence = 1,
                                             Title = "The Race",
                                             Description = "Ride with the men's elite champions of the MTN Energade cycling team racing the world's biggest race! Suffer up the climbs, hang with them on the descent, set yourself up for the win!",
                                             StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                             TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
-                                            Duration = new TimeSpan(1, 15, 0)
+                                            Duration = new TimeSpan(1, 18, 0)
                                         }
                                     }
                                 }

@@ -157,8 +157,6 @@
     <Content Include="images\wide\panel_top.png" />
     <Content Include="images\wide\screen_chrome.png" />
     <Content Include="images\wide\soccer.jpg" />
-    <Content Include="IndoorWorx.SilverlightTestPage.aspx" />
-    <Content Include="IndoorWorx.SilverlightTestPage.html" />
     <Content Include="js\AgInstall.js" />
     <Content Include="Mock\cape-argus.jpg" />
     <Content Include="Mock\cyclechallenge.jpg" />

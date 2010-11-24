@@ -36,7 +36,6 @@ namespace IndoorWorx.NHibernate.Repositories
                         foreach (var video in catalog.Videos)
                         {
                             video.TrainingSets = video.TrainingSets.Distinct().OrderBy(x => x.Sequence).ToList();
-                            video.Reviews = video.Reviews.Distinct().OrderBy(x => x.Created).ToList();
                         }
                     }
                 }

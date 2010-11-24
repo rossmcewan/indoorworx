@@ -17,7 +17,7 @@ namespace IndoorWorx.Designer.Views
 {
     public interface IDesignerPresentationModel
     {
-        event EventHandler<DataEventArgs<Video>> VideoSelected;
+        event EventHandler<DataEventArgs<TrainingSet>> VideoSelected;
 
         IDesignerView View { get; set; }
 
@@ -29,7 +29,7 @@ namespace IndoorWorx.Designer.Views
 
         ICollection<TrainingSetDesign> TrainingSetDesigns { get; set; }
 
-        Video SelectedVideo { get; set; }
+        TrainingSet SelectedVideo { get; set; }
 
         void LoadCategories();
 

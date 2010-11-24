@@ -57,19 +57,7 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("ImageUri");
             }
         }
-
-        private Uri telemetryUri;
-        [DataMember]
-        public virtual Uri TelemetryUri
-        {
-            get { return telemetryUri; } 
-            set
-            {
-                telemetryUri = value;
-                FirePropertyChanged("TelemetryUri");
-            }
-        }
-
+       
         private int sequence;
         [DataMember]
         public virtual int Sequence
@@ -80,17 +68,29 @@ namespace IndoorWorx.Infrastructure.Models
                 sequence = value;
                 FirePropertyChanged("Sequence");
             }
-        }        
+        }
 
-        private ICollection<Video> trainingSets = new List<Video>();
+        private ICollection<TrainingSet> trainingSets = new List<TrainingSet>();
         [DataMember]
-        public virtual ICollection<Video> TrainingSets
+        public virtual ICollection<TrainingSet> TrainingSets
         {
             get { return trainingSets; }
             set
             {
                 trainingSets = value;
                 FirePropertyChanged("TrainingSets");
+            }
+        }
+       
+        private TimeSpan duration;
+        [DataMember]
+        public virtual TimeSpan Duration
+        {
+            get { return duration; }
+            set
+            {
+                duration = value;
+                FirePropertyChanged("Duration");
             }
         }
 
@@ -106,35 +106,11 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private TrainingMetrics trainingMetrics;
-        [DataMember]
-        public virtual TrainingMetrics TrainingMetrics
-        {
-            get { return trainingMetrics; }
-            set
-            {
-                trainingMetrics = value;
-                FirePropertyChanged("TrainingMetrics");
-            }
-        }
-
-        private TimeSpan duration;
-        [DataMember]
-        public virtual TimeSpan Duration
-        {
-            get { return duration; }
-            set
-            {
-                duration = value;
-                FirePropertyChanged("Duration");
-            }
-        }
-
         public virtual int AverageRating
         {
             get
             {
-                if(Reviews.Any())
+                if (Reviews.Any())
                     return Convert.ToInt32(Reviews.Average(x => x.Rating));
                 return 0;
             }

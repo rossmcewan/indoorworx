@@ -36,12 +36,6 @@ namespace IndoorWorx.Player.Views
             get { return this.DataContext as IPlayerPresentationModel; }
         }
 
-        private TimeSpan LengthOfClip
-        {
-            get { return Model.LengthOfClip; }
-            set { Model.LengthOfClip = value; }
-        }
-
         public SmoothStreamingMediaElementState CurrentPlayerState
         {
             get { return GetPlayer().CurrentState; }
@@ -50,27 +44,9 @@ namespace IndoorWorx.Player.Views
         public void Play()
         {
             GetPlayer().Play();
-        }
+        }                
 
-        public void LoadVideo(Video video)
-        {
-            if (video.IsTelemetryLoaded)
-                LoadTelemetry(video.Telemetry);
-            else
-            {
-                video.TelemetryLoaded -= video_TelemetryLoaded;
-                video.TelemetryLoaded += video_TelemetryLoaded;
-                video.LoadTelemetry();
-            }
-        }
-
-        void video_TelemetryLoaded(object sender, EventArgs e)
-        {
-            var video = sender as Video;
-            LoadTelemetry(video.Telemetry);
-        }
-
-        private void LoadTelemetry(ICollection<Telemetry> telemetry)
+        public void LoadTelemetry(ICollection<Telemetry> telemetry)
         {
             SmartDispatcher.BeginInvoke(() =>
                 {
@@ -84,6 +60,7 @@ namespace IndoorWorx.Player.Views
             return mediaElement;
         }
 
+        bool shouldBePlaying = false;
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             var playStory = this.Resources["playStory"] as Storyboard;
@@ -92,10 +69,12 @@ namespace IndoorWorx.Player.Views
             Model.Video.IsPlaying = true;
             playStory.Begin();
             player.Play();
+            shouldBePlaying = true;
         }
 
         private void PauseButton_Click(object sender, RoutedEventArgs e)
         {
+            shouldBePlaying = false;
             var stopStory = this.Resources["stopStory"] as Storyboard;
             var player = GetPlayer();
             stopStory.Stop();
@@ -118,6 +97,16 @@ namespace IndoorWorx.Player.Views
             Model.MediaOpened();
         }
 
+        public void EndVideo()
+        {
+            shouldBePlaying = false;
+        }
+
+        public void EnsurePlaying()
+        {
+            if (GetPlayer().CurrentState != SmoothStreamingMediaElementState.Playing && shouldBePlaying)
+                GetPlayer().Play();
+        }
 
         private bool ended = false;
         private void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
@@ -130,22 +119,18 @@ namespace IndoorWorx.Player.Views
             Application.Current.Host.Content.IsFullScreen = !Application.Current.Host.Content.IsFullScreen;
         }
 
-        public void UpdateCurrentPosition(TimeSpan PlayerPosition)
+        public void UpdateZoom(TimeSpan PlayerPosition)
         {
             var xpos = new DateTime(now.Year, now.Month, now.Day, PlayerPosition.Hours, PlayerPosition.Minutes, PlayerPosition.Seconds).ToOADate();
-            var rangeFrom = PlayerPosition.TotalSeconds / LengthOfClip.TotalSeconds;
+            var rangeFrom = PlayerPosition.TotalSeconds / Model.Video.Duration.TotalSeconds;
             var rangeTo = rangeFrom + zoomedLength;
-            this.profileChart.Progress(xpos);
             this.zoomedChart.SetZoomScrollSettings(rangeFrom, rangeTo);
         }
 
        
         private void videoPlayer_ManifestReady(object sender, EventArgs e)
         {
-            LengthOfClip = GetPlayer().EndPosition;
-            zoomedLength = TimeSpan.FromMinutes(3).TotalSeconds / LengthOfClip.TotalSeconds;
-            this.profileChart.SetupAxisXRange(LengthOfClip);
-            this.zoomedChart.SetupAxisXRange(LengthOfClip);
+            zoomedLength = TimeSpan.FromMinutes(3).TotalSeconds / Model.Video.Duration.TotalSeconds;
             this.zoomedChart.SetZoomScrollSettings(0, zoomedLength);
         }
 

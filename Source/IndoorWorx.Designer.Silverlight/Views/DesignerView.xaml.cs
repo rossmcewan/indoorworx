@@ -28,10 +28,10 @@ namespace IndoorWorx.Designer.Views
             InitializeComponent();
             this.DataContext = model;
             model.View = this;
-            model.VideoSelected += new EventHandler<DataEventArgs<Video>>(model_VideoSelected);
+            model.VideoSelected += new EventHandler<DataEventArgs<TrainingSet>>(model_VideoSelected);
         }
 
-        void model_VideoSelected(object sender, DataEventArgs<Video> e)
+        void model_VideoSelected(object sender, DataEventArgs<TrainingSet> e)
         {
             var video = e.Value;
 
@@ -61,7 +61,7 @@ namespace IndoorWorx.Designer.Views
             var documentPane = new RadDocumentPane()
             {
                 Title = Designer.Resources.DesignerResources.NewDesignTitle,
-                Content = new TrainingSetDesignControl() { DataContext = design }
+                Content = new TrainingSetDesignControl() { Model = design }
             };
             
             DocumentPaneGroup.AddItem(documentPane, DockPosition.Center);                

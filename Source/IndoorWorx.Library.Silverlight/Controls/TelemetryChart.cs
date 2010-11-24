@@ -48,6 +48,7 @@ namespace IndoorWorx.Library.Controls
             this.DefaultView.ChartArea.AxisY.MinorGridLinesVisibility = Visibility.Collapsed;
             this.DefaultView.ChartArea.AxisY.StripLinesVisibility = Visibility.Collapsed;
             this.DefaultView.ChartArea.AxisX.MajorGridLinesVisibility = Visibility.Collapsed;
+            this.DefaultView.ChartArea.AxisX.Step = 1.0 / 24.0 / 3600.0 / 2.0;
             
             this.DefaultView.ChartArea.LabelFormatBehavior = LabelFormatBehavior.None;
             this.SamplingSettings.SamplingThreshold = 1000;
@@ -317,16 +318,68 @@ namespace IndoorWorx.Library.Controls
             this.DefaultView.ChartArea.ZoomScrollSettingsX.SetSelectionRange(rangeFrom, rangeTo);    
         }
 
-        public void Progress(double xInterceptPosition)
+        public double XAxisMinValue
         {
-            line.XIntercept = xInterceptPosition;
+            get { return (double)GetValue(XAxisMinValueProperty); }
+            set { SetValue(XAxisMinValueProperty, value); }
         }
 
-        public void SetupAxisXRange(TimeSpan lengthOfClip)
+        // Using a DependencyProperty as the backing store for XAsixMinValue.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty XAxisMinValueProperty =
+            DependencyProperty.Register("XAxisMinValue", typeof(double), typeof(TelemetryChart), new PropertyMetadata(XAxisMinValueChanged));
+
+        private static void XAxisMinValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
-            this.DefaultView.ChartArea.AxisX.MinValue = DateTimeHelper.ZeroTime.ToOADate();
-            this.DefaultView.ChartArea.AxisX.MaxValue = DateTimeHelper.ZeroTime.Add(lengthOfClip).ToOADate();
-            this.DefaultView.ChartArea.AxisX.Step = 1.0 / 24.0 / 3600.0 / 2.0;
+            var chart = sender as TelemetryChart;
+            chart.DefaultView.ChartArea.AxisX.MinValue = chart.XAxisMinValue;
+        }
+
+        public double XAxisMaxValue
+        {
+            get { return (double)GetValue(XAxisMaxValueProperty); }
+            set { SetValue(XAxisMaxValueProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for XAsixMinValue.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty XAxisMaxValueProperty =
+            DependencyProperty.Register("XAxisMaxValue", typeof(double), typeof(TelemetryChart), new PropertyMetadata(XAxisMaxValueChanged));
+
+        private static void XAxisMaxValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.DefaultView.ChartArea.AxisX.MaxValue = chart.XAxisMaxValue;
+        }
+
+        public double XAxisStep
+        {
+            get { return (double)GetValue(XAxisStepProperty); }
+            set { SetValue(XAxisStepProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for XAxisStep.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty XAxisStepProperty =
+            DependencyProperty.Register("XAxisStep", typeof(double), typeof(TelemetryChart), new PropertyMetadata(XAxisStepChanged));
+
+        private static void XAxisStepChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.DefaultView.ChartArea.AxisX.Step = chart.XAxisStep;
+        }
+
+        public bool YAxisAutoRange
+        {
+            get { return (bool)GetValue(YAxisAutoRangeProperty); }
+            set { SetValue(YAxisAutoRangeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for YAxisAutoRange.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty YAxisAutoRangeProperty =
+            DependencyProperty.Register("YAxisAutoRange", typeof(bool), typeof(TelemetryChart), new PropertyMetadata(false, YAxisAutoRangeChanged));
+
+        private static void YAxisAutoRangeChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var chart = sender as TelemetryChart;
+            chart.DefaultView.ChartArea.AxisY.AutoRange = chart.YAxisAutoRange;
         }
     }
 }

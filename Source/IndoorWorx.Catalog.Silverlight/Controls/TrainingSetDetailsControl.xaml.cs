@@ -25,7 +25,9 @@ namespace IndoorWorx.Catalog.Controls
         private void profileChart_Loaded(object sender, RoutedEventArgs e)
         {
             var chart = sender as TelemetryChart;
-            var video = chart.DataContext as Video;
+            var video = chart.DataContext as TrainingSet;
+
+            if (video == null) return;
 
             if (video.IsTelemetryLoaded)
             {

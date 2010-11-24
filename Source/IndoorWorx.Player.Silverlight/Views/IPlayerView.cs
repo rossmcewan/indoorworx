@@ -18,10 +18,14 @@ namespace IndoorWorx.Player.Views
     {
         IPlayerPresentationModel Model { get; }
 
-        void LoadVideo(Video video);
+        void LoadTelemetry(ICollection<Telemetry> telemetry);
 
-        void UpdateCurrentPosition(TimeSpan PlayerPosition);
+        void UpdateZoom(TimeSpan PlayerPosition);
 
         SmoothStreamingMediaElement GetPlayer();
+
+        void EnsurePlaying();
+
+        void EndVideo();
     }
 }

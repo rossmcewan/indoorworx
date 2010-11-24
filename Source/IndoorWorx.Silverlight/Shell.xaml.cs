@@ -96,6 +96,12 @@ using IndoorWorx.Infrastructure.Models;
             Application.Current.RootVisual = busyIndicator;
         }
 
+        public virtual bool IsFullScreen
+        {
+            get { return Application.Current.Host.Content.IsFullScreen; }
+            set { Application.Current.Host.Content.IsFullScreen = !Application.Current.Host.Content.IsFullScreen; }
+        }
+
         #endregion
 
         #region INavigationLinks Members

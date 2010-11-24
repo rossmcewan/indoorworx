@@ -124,6 +124,9 @@
   <data name="AddLabel" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="CatalogPaneTitle" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
   <data name="Design" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\design.png1;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
@@ -133,11 +136,17 @@
   <data name="LoadingTelemetryProgressMessage" xml:space="preserve">
     <value>Loading telemetry ...</value>
   </data>
+  <data name="MyLibraryPaneTitle" xml:space="preserve">
+    <value>My Library</value>
+  </data>
   <data name="NewDesignTitle" xml:space="preserve">
     <value>Design New Training Set</value>
   </data>
   <data name="Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\play.png1;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
+  </data>
+  <data name="PreviewPaneTitle" xml:space="preserve">
+    <value>Preview</value>
   </data>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\refresh.png1;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>

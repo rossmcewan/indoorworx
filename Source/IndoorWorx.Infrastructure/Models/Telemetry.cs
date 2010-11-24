@@ -55,5 +55,10 @@ namespace IndoorWorx.Infrastructure.Models
                 PercentageThreshold = Convert.ToDouble(elements[3]) / 300//must get this from the user
             };
         }
+
+        public Telemetry Clone()
+        {
+            return this.MemberwiseClone() as Telemetry;
+        }
     }
 }

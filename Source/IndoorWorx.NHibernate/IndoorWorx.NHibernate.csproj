@@ -74,6 +74,7 @@
     <Compile Include="ClassMaps\CatalogClassMap.cs" />
     <Compile Include="ClassMaps\CategoryClassMap.cs" />
     <Compile Include="ClassMaps\ReviewClassMap.cs" />
+    <Compile Include="ClassMaps\TrainingSetClassMap.cs" />
     <Compile Include="ClassMaps\VideoClassMap.cs" />
     <Compile Include="ClassMaps\VideoReviewClassMap.cs" />
     <Compile Include="Constants\SessionFactoryNames.cs" />
