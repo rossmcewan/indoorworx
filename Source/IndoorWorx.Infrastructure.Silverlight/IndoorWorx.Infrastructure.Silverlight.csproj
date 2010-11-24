@@ -139,6 +139,7 @@
     <Compile Include="Converters\ByteArrayToImageConverter.cs" />
     <Compile Include="Converters\PercentageToDoubleConverter.cs" />
     <Compile Include="Converters\SecondsToOADateConverter.cs" />
+    <Compile Include="Converters\SecondsToTimeSpanConverter.cs" />
     <Compile Include="Converters\UrlToImageConverter.cs" />
     <Compile Include="Events\DesignVideoEvent.cs" />
     <Compile Include="Events\PlayVideoEvent.cs" />

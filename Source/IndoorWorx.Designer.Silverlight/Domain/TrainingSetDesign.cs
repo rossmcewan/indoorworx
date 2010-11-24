@@ -45,6 +45,8 @@ namespace IndoorWorx.Designer.Domain
             set
             {
                 fromTrainingSet = value;
+                if (value != null)
+                    SelectionEnd = value.Duration.TotalSeconds;
                 FirePropertyChanged("FromTrainingSet");
             }
         }
@@ -67,7 +69,10 @@ namespace IndoorWorx.Designer.Domain
             set
             {
                 selectionStart = value;
+                if (value >= (SelectionEnd - 10))
+                    selectionEnd = value + 10;
                 FirePropertyChanged("SelectionStart");
+                FirePropertyChanged("SelectionEnd");
             }
         }
 
@@ -78,7 +83,10 @@ namespace IndoorWorx.Designer.Domain
             set
             {
                 selectionEnd = value;
+                if (value <= (SelectionStart + 10))
+                    selectionStart = value + 10;
                 FirePropertyChanged("SelectionEnd");
+                FirePropertyChanged("SelectionStart");
             }
         }
 

@@ -87,7 +87,7 @@
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Top">
             <StackPanel Grid.Row="0" >
                 <TextBlock Text="Time:" Style="{StaticResource DataHeaderStyle}" />
-                <TextBlock Text="{Binding PlayerPosition, Mode=OneWay, StringFormat=HH:mm:ss}" Style="{StaticResource DataItemStyle}"/>
+                <TextBlock Text="{Binding PlayerPosition, Mode=OneWay}" Style="{StaticResource DataItemStyle}"/>
             </StackPanel>
             <StackPanel Grid.Row="1">
                 <TextBlock Text="Power:" Style="{StaticResource DataHeaderStyle}"/>
