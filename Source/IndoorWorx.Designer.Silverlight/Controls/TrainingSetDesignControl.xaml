@@ -21,19 +21,20 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="60"/>
         </Grid.ColumnDefinitions>
         <libControls:TelemetryChart
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="3"
             Margin="10"
             DataContext="{Binding FromTrainingSet, Mode=OneWay}" 
             Loaded="TelemetryChart_Loaded" 
             AxisForeground="Gray"
             AxisElementBrush="Gray"
             XAxisLabelVisibility="Collapsed"
-            ZoneStartX="{Binding Value, Mode=TwoWay, ElementName=sliderFrom, Converter={StaticResource SecondsToOADateConverter}}"
-            ZoneEndX="{Binding Value, Mode=TwoWay, ElementName=sliderTo, Converter={StaticResource SecondsToOADateConverter}}">
+            ZoneStartX="{Binding SelectionStart, Mode=TwoWay, ElementName=slider, Converter={StaticResource SecondsToOADateConverter}}"
+            ZoneEndX="{Binding SelectionEnd, Mode=TwoWay, ElementName=slider, Converter={StaticResource SecondsToOADateConverter}}">
             <libControls:TelemetryChart.ZoneBackground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF9AFF00" Offset="0"/>
@@ -41,41 +42,23 @@
                 </LinearGradientBrush>
             </libControls:TelemetryChart.ZoneBackground>
         </libControls:TelemetryChart>
-        <!--<telerik:RadSlider 
+        <telerik:RadSlider 
             x:Name="slider" 
             Grid.Row="1" 
+            Grid.Column="1"
             IsSelectionRangeEnabled="True" 
             Orientation="Horizontal" 
             Minimum="0" 
             TickFrequency="300"               
             SelectionStart="{Binding SelectionStart, Mode=TwoWay}"
             SelectionEnd="{Binding SelectionEnd, Mode=TwoWay}"
-            Maximum="{Binding FromTrainingSet.Duration.TotalSeconds, Mode=OneWay}"/>-->
-        <telerik:RadSlider   
-            Margin="60,0,0,0"
-            StepAction="ChangeRange"
-            x:Name="sliderFrom" 
-            Grid.Row="1" 
-            Orientation="Horizontal" 
-            Minimum="0" 
-            TickFrequency="300"               
-            Value="{Binding SelectionStart, Mode=TwoWay}"
             Maximum="{Binding FromTrainingSet.Duration.TotalSeconds, Mode=OneWay}"/>
-        <TextBlock TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Value, Mode=TwoWay, ElementName=sliderFrom, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}" Grid.Row="1" Grid.Column="1"/>
-        <telerik:RadSlider 
-            Margin="60,0,0,0"
-            StepAction="ChangeRange"           
-            x:Name="sliderTo" 
-            Grid.Row="2" 
-            Orientation="Horizontal" 
-            Minimum="0" 
-            TickFrequency="300"          
-            Value="{Binding SelectionEnd, Mode=TwoWay}"
-            Maximum="{Binding FromTrainingSet.Duration.TotalSeconds, Mode=OneWay}"/>
-        <TextBlock TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Value, Mode=TwoWay, ElementName=sliderTo, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}" Grid.Row="2" Grid.Column="1"/>
-        <telerik:RadButton Content="Add" Grid.Row="3" Command="{Binding AddToNewTrainingSetCommand, Mode=OneWay}" HorizontalAlignment="Left" Margin="5"/>
+        <TextBlock TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding SelectionStart, Mode=TwoWay, ElementName=slider, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}" Grid.Row="1" Grid.Column="0"/>
+        <TextBlock TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding SelectionEnd, Mode=TwoWay, ElementName=slider, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}" Grid.Row="1" Grid.Column="2"/>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding SelectionDuration, Mode=OneWay, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}" Grid.Row="2"/>
+        <telerik:RadButton Content="Add" Grid.Row="3" Command="{Binding AddEntryCommand, Mode=OneWay}" HorizontalAlignment="Left" Margin="5"/>
         <libControls:TelemetryChart
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="3"
             x:Name="designedTelemetryChart"
             Grid.Row="4"
             Margin="10"

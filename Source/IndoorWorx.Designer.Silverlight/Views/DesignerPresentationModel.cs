@@ -23,6 +23,8 @@ namespace IndoorWorx.Designer.Views
 {
     public class DesignerPresentationModel : BaseModel, IDesignerPresentationModel
     {
+        public event EventHandler CategoriesLoaded;
+
         public event EventHandler<DataEventArgs<TrainingSet>> VideoSelected;
 
         private IServiceLocator serviceLocator;
@@ -145,7 +147,9 @@ namespace IndoorWorx.Designer.Views
             };
             categoryService.CategoriesRetrieved += (sender, e) =>
             {
-                Categories = e.Value;                
+                Categories = e.Value;
+                if (CategoriesLoaded != null)
+                    CategoriesLoaded(this, EventArgs.Empty);
                 this.IsBusy = false;
             };
             this.IsBusy = true;

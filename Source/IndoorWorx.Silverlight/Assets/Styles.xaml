@@ -112,7 +112,7 @@
     
     <!-- Logo Icon Style -->
     <Style x:Key="LogoIcon" TargetType="ContentControl">
-        <Setter Property="FontFamily" Value="Segoe UI, Lucida Sans Unicode, Verdana"/>
+        <!--<Setter Property="FontFamily" Value="Segoe UI, Lucida Sans Unicode, Verdana"/>
         <Setter Property="Height" Value="Auto"/>
         <Setter Property="Width" Value="Auto"/>
         <Setter Property="Margin" Value="3,0,6,0"/>
@@ -133,12 +133,12 @@
                     <GradientStop Color="#FF3F3F3F" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
-        </Setter>
+        </Setter>-->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentControl">
                     <Grid>
-                        <TextBlock TextWrapping="Wrap" Text="{TemplateBinding Content}"/>
+                        <Image Margin="0,-10,0,0" Source="../Images/indoorworx grey back.png" Height="50"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -148,7 +148,8 @@
 
     <!-- ApplicationName Style -->
     <Style x:Key="ApplicationNameStyle" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Segoe UI, Lucida Sans Unicode, Verdana"/>
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <!--<Setter Property="FontFamily" Value="Segoe UI, Lucida Sans Unicode, Verdana"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="22"/>
         <Setter Property="FontWeight" Value="Normal"/>
@@ -167,7 +168,7 @@
                     <GradientStop Color="#FF4D811F" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
-        </Setter>
+        </Setter>-->
     </Style>
     
     <!-- Links Border Style -->

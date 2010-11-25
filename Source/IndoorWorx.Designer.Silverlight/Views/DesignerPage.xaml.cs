@@ -38,16 +38,29 @@ namespace IndoorWorx.Designer.Views
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            
-            if (reloadRequired)
-                View.Model.LoadCategories();
 
+            if (reloadRequired)
+            {
+                View.Model.LoadCategories();
+                View.Model.CategoriesLoaded += (sender, args) =>
+                    {
+                        SelectVideo();
+                    };
+            }
+            else
+            {
+                SelectVideo();
+            }
+        }
+
+        private void SelectVideo()
+        {
             string videoId;
             if (this.NavigationContext.QueryString.TryGetValue("VideoId", out videoId))
             {
                 View.Model.SelectVideoWithId(new Guid(videoId));
                 View.Model.AddDesigner();
-            }                   
+            }   
         }
     }
 }

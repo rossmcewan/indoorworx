@@ -21,7 +21,7 @@ namespace IndoorWorx.Designer.Domain
 
         public TrainingSetDesign()
         {
-            AddToNewTrainingSetCommand = new DelegateCommand<object>(AddToNewTrainingSet);
+            AddEntryCommand = new DelegateCommand<object>(AddToNewTrainingSet);
         }
 
         private void AddToNewTrainingSet(object arg)
@@ -36,7 +36,7 @@ namespace IndoorWorx.Designer.Domain
                 EntriesChanged(this, EventArgs.Empty);
         }
 
-        public ICommand AddToNewTrainingSetCommand { get; set; }
+        public ICommand AddEntryCommand { get; set; }
 
         private TrainingSet fromTrainingSet;
         public TrainingSet FromTrainingSet
@@ -73,7 +73,13 @@ namespace IndoorWorx.Designer.Domain
                     selectionEnd = value + 10;
                 FirePropertyChanged("SelectionStart");
                 FirePropertyChanged("SelectionEnd");
+                FirePropertyChanged("SelectionDuration");
             }
+        }
+
+        public double? SelectionDuration
+        {
+            get { return SelectionEnd - SelectionStart; }
         }
 
         private double? selectionEnd;
@@ -84,9 +90,10 @@ namespace IndoorWorx.Designer.Domain
             {
                 selectionEnd = value;
                 if (value <= (SelectionStart + 10))
-                    selectionStart = value + 10;
+                    selectionStart = value - 10;
                 FirePropertyChanged("SelectionEnd");
                 FirePropertyChanged("SelectionStart");
+                FirePropertyChanged("SelectionDuration");
             }
         }
 

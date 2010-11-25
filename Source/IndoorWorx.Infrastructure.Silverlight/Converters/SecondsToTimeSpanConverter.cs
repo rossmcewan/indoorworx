@@ -14,6 +14,7 @@ namespace IndoorWorx.Infrastructure.Converters
 {
     public class SecondsToTimeSpanConverter : IValueConverter
     {
+        private static DateTime today = DateTime.Today;
         #region IValueConverter Members
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -22,7 +23,10 @@ namespace IndoorWorx.Infrastructure.Converters
             var valueAsSeconds = System.Convert.ToDouble(value);
             var result = TimeSpan.FromSeconds(valueAsSeconds);
             if ("string".Equals(parameter))
-                return string.Format("{0:N2}:{1:N2}:{2:N2}", result.Hours, result.Minutes, result.Seconds);
+            {
+                var asDateTime = new DateTime(today.Year, today.Month, today.Day, result.Hours, result.Minutes, result.Seconds);
+                return asDateTime.ToString("HH:mm:ss");
+            }
             return result;
         }
 
