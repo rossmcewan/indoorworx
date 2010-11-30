@@ -93,15 +93,9 @@ namespace IndoorWorx.Player.Views
                 mediaElement.Play();
         }
 
-        private bool ended = false;
         private void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
-            this.ended = true;
-        }
-
-        private void fullScreenButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Host.Content.IsFullScreen = !Application.Current.Host.Content.IsFullScreen;
+            Model.MediaEnded();
         }
 
         private void videoPlayer_ManifestReady(object sender, EventArgs e)

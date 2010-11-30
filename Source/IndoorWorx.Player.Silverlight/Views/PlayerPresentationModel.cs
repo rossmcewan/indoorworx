@@ -47,14 +47,30 @@ namespace IndoorWorx.Player.Views
         {
             View.Play();
             Video.IsPlaying = true;
-            timer2.Start();
+            StartTimers();
+            //timer.Start();
+        }
+
+        private void StartTimers()
+        {
+            telemetryTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            zoomTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(2));
+            textTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
         }
 
         private void Pause(object arg)
         {
-            timer2.Stop();
+            StopTimers();
+            //timer.Stop();
             Video.IsPlaying = false;
             View.Pause();
+        }
+
+        private void StopTimers()
+        {
+            telemetryTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            zoomTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            textTimer.Change(Timeout.Infinite, Timeout.Infinite);
         }
 
         private void FullScreen(object arg)
@@ -191,30 +207,56 @@ namespace IndoorWorx.Player.Views
             }
         }
 
-        private DispatcherTimer timer2;
+        private Timer telemetryTimer;
+        private Timer zoomTimer;
+        private Timer textTimer;
+
         public void MediaOpened()
         {
-            timer2 = new DispatcherTimer();
-            timer2.Interval = TimeSpan.FromSeconds(1);
-            timer2.Tick += (sender, e) =>
+            telemetryTimer = new Timer(new TimerCallback(obj =>
                 {
                     if (queue.Peek().TimePosition <= PlayerPosition)
                         CurrentTelemetry = queue.Dequeue();
-                    if (PlayerPosition >= Video.Duration)
-                    {
-                        View.EndVideo();
-                        hasVideoEnded = true;
-                    }
-                    else
-                    {
-                        var xpos = new DateTime(now.Year, now.Month, now.Day, PlayerPosition.Hours, PlayerPosition.Minutes, PlayerPosition.Seconds).ToOADate();
-                        ZoomRangeFrom = PlayerPosition.TotalSeconds / Video.Duration.TotalSeconds;
-                        ZoomRangeTo = ZoomRangeFrom + zoomedLength;
-                    }
-                    var tempA = Math.Round(PlayerPosition.TotalSeconds);
-                    if (textQueue.Any() && textQueue.Peek().StartTime <= playerPosition)
-                        LoadVideoText(textQueue.Dequeue());
-                };
+                    System.GC.Collect();
+                }), null, Timeout.Infinite, Timeout.Infinite);
+
+            zoomTimer = new Timer(new TimerCallback(obj =>
+            {
+                if (PlayerPosition < Video.Duration)
+                {
+                    var xpos = new DateTime(now.Year, now.Month, now.Day, PlayerPosition.Hours, PlayerPosition.Minutes, PlayerPosition.Seconds).ToOADate();
+                    ZoomRangeFrom = PlayerPosition.TotalSeconds / Video.Duration.TotalSeconds;
+                    ZoomRangeTo = ZoomRangeFrom + zoomedLength;
+                }
+                System.GC.Collect();
+            }), null, Timeout.Infinite, Timeout.Infinite);
+
+            textTimer = new Timer(new TimerCallback(obj =>
+            {
+                if (textQueue.Any() && textQueue.Peek().StartTime <= playerPosition)
+                    SmartDispatcher.BeginInvoke(() => LoadVideoText(textQueue.Dequeue()));
+                System.GC.Collect();
+            }), null, Timeout.Infinite, Timeout.Infinite);
+            //timer.Interval = TimeSpan.FromSeconds(1);
+            //timer.Tick += (sender, e) =>
+            //    {
+            //        if (queue.Peek().TimePosition <= PlayerPosition)
+            //            CurrentTelemetry = queue.Dequeue();
+            //        if (PlayerPosition >= Video.Duration)
+            //        {
+            //            View.EndVideo();
+            //            hasVideoEnded = true;
+            //        }
+            //        else
+            //        {
+            //            var xpos = new DateTime(now.Year, now.Month, now.Day, PlayerPosition.Hours, PlayerPosition.Minutes, PlayerPosition.Seconds).ToOADate();
+            //            ZoomRangeFrom = PlayerPosition.TotalSeconds / Video.Duration.TotalSeconds;
+            //            ZoomRangeTo = ZoomRangeFrom + zoomedLength;
+            //        }
+            //        var tempA = Math.Round(PlayerPosition.TotalSeconds);
+            //        if (textQueue.Any() && textQueue.Peek().StartTime <= playerPosition)
+            //            LoadVideoText(textQueue.Dequeue());
+            //    };
             Video.IsMediaLoading = false;
         }
 

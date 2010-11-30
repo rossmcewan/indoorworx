@@ -86,11 +86,11 @@
 
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Top">
             <StackPanel Grid.Row="0" >
-                <TextBlock Text="Time:" Style="{StaticResource DataHeaderStyle}" />
+                <TextBlock Text="{Binding PlayerResources.TimeLabel, Source={StaticResource PlayerResources}}" Style="{StaticResource DataHeaderStyle}" />
                 <TextBlock Text="{Binding PlayerPosition, Mode=OneWay}" Style="{StaticResource DataItemStyle}"/>
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <TextBlock Text="Power:" Style="{StaticResource DataHeaderStyle}"/>
+                <TextBlock Text="{Binding PlayerResources.PowerLabel, Source={StaticResource PlayerResources}}" Style="{StaticResource DataHeaderStyle}"/>
                 <TextBlock Name="powerValue" Text="{Binding CurrentTelemetry.PercentageThreshold, Mode=OneWay, StringFormat=P0}" Style="{StaticResource DataItemStyle}"/>
             </StackPanel>
             <Grid>

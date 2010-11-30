@@ -3,15 +3,56 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming">
+    xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"             
+    mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <smoothstreaming:SmoothStreamingMediaElement Grid.ColumnSpan="3" Grid.RowSpan="3" 
+                                                     x:Name="videoPlayer" 
+                                                     SmoothStreamingPlaybackMode="VideoOnly"  
+                                                     BufferingTime="00:00:30" 
+                                                     SmoothStreamingSource="http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest" 
+                                                     ClipError="videoPlayer_ClipError"  
+                                                     SmoothStreamingErrorOccurred="videoPlayer_SmoothStreamingErrorOccurred" 
+                                                     ClipStateChanged="videoPlayer_ClipStateChanged" 
+                                                     CurrentStateChanged="videoPlayer_CurrentStateChanged" 
+                                                     ManifestReady="videoPlayer_ManifestReady" 
+                                                     MediaOpened="videoPlayer_MediaOpened" 
+                                                     MediaEnded="videoPlayer_MediaEnded" 
+                                                     AutoPlay="False"/>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Content="Play" Click="Button_Click" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+        <telerik:RadChart Grid.ColumnSpan="3" Grid.Row="0" x:Name="RadChart1" Background="Transparent"/>
+        <telerik:RadChart Grid.Column="1" Grid.Row="2" x:Name="RadChart2" Background="Transparent"/>
+        <telerik:RadGauge x:Name="radGauge" Grid.Column="2" Grid.Row="2" Margin="5">
+            <telerik:RadialGauge x:Name="radialGauge">
+                <telerik:RadialScale x:Name="radialScale"
+                                     IsInteractive="True">
 
-    <smoothstreaming:SmoothStreamingMediaElement x:Name="videoPlayer" 
-                                                 Position="{Binding PlayerPosition, Mode=TwoWay}" 
-                                                 SmoothStreamingPlaybackMode="VideoOnly"  
-                                                 BufferingTime="00:00:05" 
-                                                 SmoothStreamingErrorOccurred="videoPlayer_SmoothStreamingErrorOccurred"  
-                                                 ManifestReady="videoPlayer_ManifestReady"
-                                                 MediaOpened="videoPlayer_MediaOpened" 
-                                                 MediaEnded="videoPlayer_MediaEnded" 
-                                                 AutoPlay="False"/>
+                    <telerik:RadialScale.MajorTick>
+                        <telerik:MajorTickProperties Length="0.2" TickWidth="0.1"/>
+                    </telerik:RadialScale.MajorTick>
+                    <telerik:RadialScale.MiddleTick>
+                        <telerik:MiddleTickProperties Length="0.1" TickWidth="0.2"/>
+                    </telerik:RadialScale.MiddleTick>
+                    <telerik:RadialScale.MinorTick>
+                        <telerik:MinorTickProperties Length="0.05" TickWidth="0.3" />
+                    </telerik:RadialScale.MinorTick>
+                    <telerik:IndicatorList>
+                        <telerik:Needle x:Name="needle"
+                                            IsAnimated="True"
+                                            Value="0"/>
+                    </telerik:IndicatorList>
+                </telerik:RadialScale>
+            </telerik:RadialGauge>
+        </telerik:RadGauge>
+    </Grid>
 </UserControl>

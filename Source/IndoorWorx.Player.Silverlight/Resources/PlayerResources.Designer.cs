@@ -61,11 +61,29 @@ namespace IndoorWorx.Player.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Power:.
+        /// </summary>
+        public static string PowerLabel {
+            get {
+                return ResourceManager.GetString("PowerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preview - {0}.
         /// </summary>
         public static string PreviewVideoTitle {
             get {
                 return ResourceManager.GetString("PreviewVideoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time:.
+        /// </summary>
+        public static string TimeLabel {
+            get {
+                return ResourceManager.GetString("TimeLabel", resourceCulture);
             }
         }
     }
