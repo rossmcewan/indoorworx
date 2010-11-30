@@ -19,6 +19,7 @@ using IndoorWorx.Infrastructure;
 using System.Windows.Threading;
 using Microsoft.Web.Media.SmoothStreaming;
 using Microsoft.Practices.Composite.Presentation.Commands;
+using System.Threading;
 
 namespace IndoorWorx.Player.Views
 {
@@ -45,11 +46,13 @@ namespace IndoorWorx.Player.Views
         private void Play(object arg)
         {
             View.Play();
-            Video.IsPlaying = true;            
+            Video.IsPlaying = true;
+            timer2.Start();
         }
 
         private void Pause(object arg)
         {
+            timer2.Stop();
             Video.IsPlaying = false;
             View.Pause();
         }
@@ -77,8 +80,12 @@ namespace IndoorWorx.Player.Views
             }
         }
 
+        private Queue<VideoText> textQueue = new Queue<VideoText>();
+
         private void LoadVideo(TrainingSet video)
         {
+            foreach (var vt in video.VideoText.OrderBy(x => x.StartTime))
+                textQueue.Enqueue(vt);
             if (video.IsTelemetryLoaded)
             {
                 LoadLinkedDictionary();
@@ -134,18 +141,7 @@ namespace IndoorWorx.Player.Views
                 this.view = value;
             }
         }
-
-        private VideoText currentVideoText;
-        public VideoText CurrentVideoText
-        {
-            get { return currentVideoText; }
-            set
-            {
-                currentVideoText = value;
-                FirePropertyChanged("CurrentVideoText");
-            }
-        }
-
+             
         private void EnsurePlaying()
         {
             View.EnsurePlaying();            
@@ -195,9 +191,10 @@ namespace IndoorWorx.Player.Views
             }
         }
 
+        private DispatcherTimer timer2;
         public void MediaOpened()
         {
-            var timer2 = new DispatcherTimer();
+            timer2 = new DispatcherTimer();
             timer2.Interval = TimeSpan.FromSeconds(1);
             timer2.Tick += (sender, e) =>
                 {
@@ -214,13 +211,16 @@ namespace IndoorWorx.Player.Views
                         ZoomRangeFrom = PlayerPosition.TotalSeconds / Video.Duration.TotalSeconds;
                         ZoomRangeTo = ZoomRangeFrom + zoomedLength;
                     }
-                    //if (information.Count > 0 && (information.Peek().StartTime.TotalSeconds <= PlayerPosition.TotalSeconds))
-                    //{
-                    //    ShowText(InformationQueue.Dequeue());
-                    //}
+                    var tempA = Math.Round(PlayerPosition.TotalSeconds);
+                    if (textQueue.Any() && textQueue.Peek().StartTime <= playerPosition)
+                        LoadVideoText(textQueue.Dequeue());
                 };
-            timer2.Start();
             Video.IsMediaLoading = false;
+        }
+
+        private void LoadVideoText(VideoText videoText)
+        {
+            View.AddTextAnimation(videoText);
         }
 
         private bool manifestReady;

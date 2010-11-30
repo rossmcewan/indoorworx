@@ -99,9 +99,12 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="playButton" Grid.Column="1" Style="{StaticResource MainPlayerPlayButtonStyle}" Command="{Binding PlayCommand, Mode=OneWay}" />
-                <Button x:Name="stopButton" Grid.Column="2" Style="{StaticResource MainPlayerPauseButtonStyle}"  Command="{Binding PauseCommand, Mode=OneWay}"/>
-                <Button x:Name="fullScreenButton" Grid.Column="0"  Style="{StaticResource MainPlayerFullScreenButtonStyle}"  Command="{Binding FullScreenCommand, Mode=OneWay}" />
+                <Button x:Name="playButton" Grid.Column="1" Style="{StaticResource MainPlayerPlayButtonStyle}"
+                        Command="{Binding PlayCommand, Mode=OneWay}" />
+                <Button x:Name="stopButton" Grid.Column="2" Style="{StaticResource MainPlayerPauseButtonStyle}" 
+                        Command="{Binding PauseCommand, Mode=OneWay}"/>
+                <Button x:Name="fullScreenButton" Grid.Column="0"  Style="{StaticResource MainPlayerFullScreenButtonStyle}"
+                        Command="{Binding FullScreenCommand, Mode=OneWay}" />
             </Grid>
                 
        </StackPanel>

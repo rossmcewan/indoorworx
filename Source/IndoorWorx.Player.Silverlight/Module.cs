@@ -44,9 +44,11 @@ namespace IndoorWorx.Player
             window.ResizeMode = ResizeMode.NoResize;
             window.Header = video.Title;
 
-            var player = serviceLocator.GetInstance<IndoorWorx.Player.Views.IPlayerView>();
-            player.Model.Video = video;
-
+            //var player = serviceLocator.GetInstance<IndoorWorx.Player.Views.IPlayerView>();
+            //player.Model.Video = video;
+            var player = new VideoMediaElement();
+            player.Model = video;
+            
             window.Content = player;
             window.ShowDialog();
         }

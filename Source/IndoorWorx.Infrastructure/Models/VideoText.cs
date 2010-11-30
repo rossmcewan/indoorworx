@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using IndoorWorx.Infrastructure.Enums;
 
 namespace IndoorWorx.Infrastructure.Models
 {
@@ -15,6 +16,17 @@ namespace IndoorWorx.Infrastructure.Models
             {
                 mainText = value;
                 FirePropertyChanged("MainText");
+            }
+        }
+
+        private VideoTextAnimations animation = VideoTextAnimations.FadeCenter;
+        public VideoTextAnimations Animation
+        {
+            get { return animation; }
+            set
+            {
+                animation = value;
+                FirePropertyChanged("Animation");
             }
         }
 

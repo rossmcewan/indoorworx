@@ -27,5 +27,7 @@ namespace IndoorWorx.Player.Views
         void Play();
 
         void Pause();
+
+        void AddTextAnimation(VideoText videoText);
     }
 }

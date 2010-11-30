@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\VideoTextAnimations.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Models\AuditableModel.cs" />
     <Compile Include="Models\BaseModel.cs" />

@@ -17,6 +17,8 @@ using IndoorWorx.Infrastructure.Helpers;
 using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.Composite.Presentation.Commands;
 using Telerik.Windows.Controls;
+using IndoorWorx.Player.Animations;
+using System.Threading;
 
 namespace IndoorWorx.Player.Views
 {
@@ -110,6 +112,41 @@ namespace IndoorWorx.Player.Views
         private void mediaElement_SmoothStreamingErrorOccurred(object sender, SmoothStreamingErrorEventArgs e)
         {
 
+        }
+
+        public void AddTextAnimation(VideoText videoText)
+        {
+            switch (videoText.Animation)
+            {
+                case IndoorWorx.Infrastructure.Enums.VideoTextAnimations.FadeCenter:
+                    var animation = new FadeCenter() { DataContext = videoText };
+                    Grid.SetColumnSpan(animation, 3);
+                    Grid.SetRowSpan(animation, 3);
+                    animation.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+                    animation.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                    playerGrid.Children.Add(animation);
+                    var startAnimation = animation.Resources["InTransition"] as Storyboard;
+                    startAnimation.Begin();
+                    ThreadPool.QueueUserWorkItem((_animation) =>
+                        {
+                            Thread.Sleep(Convert.ToInt32(videoText.Duration.TotalMilliseconds));
+                            SmartDispatcher.BeginInvoke(() =>
+                                {
+                                    var stopAnimation = animation.Resources["OutTransition"] as Storyboard;
+                                    stopAnimation.Begin();
+                                    playerGrid.Children.Remove(animation);
+                                });
+                        }, animation);
+                    break;
+                case IndoorWorx.Infrastructure.Enums.VideoTextAnimations.ZoomCenter:
+                    break;
+                case IndoorWorx.Infrastructure.Enums.VideoTextAnimations.ScrollingCenter:
+                    break;
+                case IndoorWorx.Infrastructure.Enums.VideoTextAnimations.Spinner:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
