@@ -93,7 +93,8 @@
                 InitialPosition="DockedLeft">
                 <telerik:RadPaneGroup x:Name="LeftGroup">
                     <telerik:RadPane x:Name="CatalogPane" Header="{Binding DesignerResources.CatalogPaneTitle, Source={StaticResource DesignerResources}}" CanUserClose="False">
-                        <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
+                        <libControls:CatalogTreeControl/>
+                        <!--<telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
@@ -106,7 +107,7 @@
                                     SelectedItem="{Binding SelectedVideo, Mode=TwoWay}"
                                     Margin="5"/>                                
                             </Grid>
-                        </telerik:RadBusyIndicator>
+                        </telerik:RadBusyIndicator>-->
                     </telerik:RadPane>
                     <telerik:RadPane x:Name="MyLibraryPane" Header="{Binding DesignerResources.MyLibraryPaneTitle, Source={StaticResource DesignerResources}}" CanUserClose="False">
                         <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">

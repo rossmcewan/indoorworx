@@ -122,6 +122,18 @@ namespace IndoorWorx.Designer.Views
             }
         }
 
+        private object selectedItem;
+        public object SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                selectedItem = value;
+                if (value is TrainingSet)
+                    SelectedVideo = value as TrainingSet;
+            }
+        }
+
         private TrainingSet selectedVideo;
         public TrainingSet SelectedVideo
         {

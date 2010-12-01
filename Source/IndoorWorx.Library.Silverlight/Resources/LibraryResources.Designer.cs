@@ -61,11 +61,38 @@ namespace IndoorWorx.Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Catalog.
+        /// </summary>
+        public static string CatalogHeader {
+            get {
+                return ResourceManager.GetString("CatalogHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading media ....
         /// </summary>
         public static string LoadingMediaProgressMessage {
             get {
                 return ResourceManager.GetString("LoadingMediaProgressMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search....
+        /// </summary>
+        public static string SearchWatermark {
+            get {
+                return ResourceManager.GetString("SearchWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown item type {0}.
+        /// </summary>
+        public static string UnknownItemTypeErrorMessage {
+            get {
+                return ResourceManager.GetString("UnknownItemTypeErrorMessage", resourceCulture);
             }
         }
     }

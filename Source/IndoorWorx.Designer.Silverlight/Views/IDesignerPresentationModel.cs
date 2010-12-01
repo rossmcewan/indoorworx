@@ -21,6 +21,8 @@ namespace IndoorWorx.Designer.Views
 
         event EventHandler<DataEventArgs<TrainingSet>> VideoSelected;
 
+        object SelectedItem { get; set; }
+
         IDesignerView View { get; set; }
 
         ICommand AddDesignerCommand { get; set; }

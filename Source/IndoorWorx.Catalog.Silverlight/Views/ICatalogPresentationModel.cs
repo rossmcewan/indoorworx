@@ -15,6 +15,8 @@ namespace IndoorWorx.Catalog.Views
 {
     public interface ICatalogPresentationModel
     {
+        object SelectedItem { get; set; }
+
         ICatalogView View { get; set; }
 
         ICollection<Category> Categories { get; set; }

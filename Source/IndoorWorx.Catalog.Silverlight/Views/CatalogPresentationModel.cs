@@ -58,6 +58,54 @@ namespace IndoorWorx.Catalog.Views
 
         #region ICatalogPresentationModel Members
 
+        private object selectedItem;
+        public object SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                selectedItem = value;
+                if (selectedItem is Category)
+                    SelectedCategory = value as Category;
+                if (selectedItem is IndoorWorx.Infrastructure.Models.Catalog)
+                {
+                    var catalog = selectedItem as IndoorWorx.Infrastructure.Models.Catalog;
+                    foreach (var category in Categories)
+                    {
+                        foreach (var c in category.Catalogs)
+                        {
+                            if (c.Id == catalog.Id)
+                            {
+                                SelectedCategory = category;
+                                category.SelectedCatalog = c;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (selectedItem is Video)
+                {
+                    var video = selectedItem as Video;
+                    foreach (var category in Categories)
+                    {
+                        foreach (var c in category.Catalogs)
+                        {
+                            foreach (var v in c.Videos)
+                            {
+                                if (v.Id == video.Id)
+                                {
+                                    SelectedCategory = category;
+                                    category.SelectedCatalog = c;
+                                    c.SelectedVideo = v;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         private ICatalogView view;
         public ICatalogView View
         {
@@ -123,13 +171,6 @@ namespace IndoorWorx.Catalog.Views
             categoryService.CategoriesRetrieved += (sender, e) =>
                 {
                     Categories = e.Value;
-                    //SelectedCategory = Categories.FirstOrDefault();
-                    //if (SelectedCategory != null)
-                    //{
-                    //    SelectedCategory.SelectedCatalog = SelectedCategory.Catalogs.FirstOrDefault();
-                    //    if (SelectedCategory.SelectedCatalog != null)
-                    //        SelectedCategory.SelectedCatalog.SelectedVideo = SelectedCategory.SelectedCatalog.Videos.FirstOrDefault();
-                    //}
                     this.IsBusy = false;
                 };
             this.IsBusy = true;

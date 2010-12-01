@@ -74,6 +74,10 @@
   <ItemGroup>
     <Compile Include="Cache.cs" />
     <Compile Include="CacheItem.cs" />
+    <Compile Include="Controls\CatalogTreeControl.xaml.cs">
+      <DependentUpon>CatalogTreeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CategoryTreeDataTemplateSelector.cs" />
     <Compile Include="Controls\TelemetryChart.cs" />
     <Compile Include="Controls\VideoMediaElement.xaml.cs">
       <DependentUpon>VideoMediaElement.xaml</DependentUpon>
@@ -137,6 +141,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\CatalogTreeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\VideoMediaElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

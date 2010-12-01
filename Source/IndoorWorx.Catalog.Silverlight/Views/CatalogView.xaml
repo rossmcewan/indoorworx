@@ -29,7 +29,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <telerik:RadOutlookBar 
+            <libControls:CatalogTreeControl Grid.RowSpan="2" Margin="5"/>
+            <!--<telerik:RadOutlookBar 
                 IsMinimizable="False"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
@@ -61,7 +62,7 @@
                         </StackPanel>
                     </DataTemplate>
                 </telerik:RadOutlookBar.TitleTemplate>
-            </telerik:RadOutlookBar>
+            </telerik:RadOutlookBar>-->
 
             <telerik:RadTileView 
                 Grid.Row="0" Grid.Column="1"
