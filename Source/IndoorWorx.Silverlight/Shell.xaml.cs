@@ -16,6 +16,8 @@ using IndoorWorx.Infrastructure.Models;
     using SLaB.Navigation.ContentLoaders.Auth;
     using SLaB.Navigation.ContentLoaders.Error;
     using System.Windows.Shapes;
+    using System.Windows.Media.Animation;
+    using IndoorWorx.Infrastructure.Animations;
 
     /// <summary>
     /// <see cref="UserControl"/> class providing the main UI for the application.
@@ -26,7 +28,7 @@ using IndoorWorx.Infrastructure.Models;
         /// Creates a new <see cref="MainPage"/> instance.
         /// </summary>
         public Shell(IUnityContainer unityContainer)
-        {
+        {            
             InitializeComponent();
             WebContext.Current.Authentication.LoggedIn += new EventHandler<AuthenticationEventArgs>(Authentication_LoggedIn);
             WebContext.Current.Authentication.LoggedOut += new EventHandler<AuthenticationEventArgs>(Authentication_LoggedOut);
@@ -94,6 +96,16 @@ using IndoorWorx.Infrastructure.Models;
             busyIndicator.VerticalContentAlignment = VerticalAlignment.Stretch;
             
             Application.Current.RootVisual = busyIndicator;
+        }
+
+        public void AddToLayoutRoot(UIElement ui)
+        {
+            LayoutRoot.Children.Add(ui);
+        }
+
+        public void RemoveFromLayoutRoot(UIElement ui)
+        {
+            LayoutRoot.Children.Remove(ui);
         }
 
         public virtual bool IsFullScreen

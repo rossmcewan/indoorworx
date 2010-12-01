@@ -25,13 +25,19 @@ namespace IndoorWorx.Player.Views
     public partial class PlayerView : UserControl ,IPlayerView
     {
         private DateTime now = DateTime.Now;
-        private double zoomedLength;
+        private IServiceLocator serviceLocator;
 
         public PlayerView(IPlayerPresentationModel model, IServiceLocator serviceLocator)
         {
-            InitializeComponent();            
+            InitializeComponent();
+            this.serviceLocator = serviceLocator;
             this.DataContext = model;
             model.View = this;
+        }
+
+        private IShell Shell
+        {
+            get { return serviceLocator.GetInstance<IShell>(); }
         }
 
         public IPlayerPresentationModel Model
@@ -46,19 +52,19 @@ namespace IndoorWorx.Player.Views
 
         public void Play()
         {
-            var playStory = this.Resources["playStory"] as Storyboard;
-            playStory.Stop();
-            playStory.Begin();
             mediaElement.Play();
             shouldBePlaying = true;
+        }
+
+        public void Stop()
+        {
+            shouldBePlaying = false;
+            mediaElement.Stop();
         }
 
         public void Pause()
         {
             shouldBePlaying = false;
-            var stopStory = this.Resources["stopStory"] as Storyboard;
-            stopStory.Stop();
-            stopStory.Begin();
             mediaElement.Pause();
         }
 
@@ -75,10 +81,6 @@ namespace IndoorWorx.Player.Views
         
         private void mediaElement_MediaOpened(object sender, RoutedEventArgs e)
         {
-            var story = this.Resources["mediaOpenedStory"] as Storyboard;
-            story.Stop();
-            story.Begin();
-            var fe = sender as FrameworkElement;
             Model.MediaOpened();
         }
 
@@ -106,6 +108,16 @@ namespace IndoorWorx.Player.Views
         private void mediaElement_SmoothStreamingErrorOccurred(object sender, SmoothStreamingErrorEventArgs e)
         {
 
+        }
+
+        public void Show()
+        {
+            Shell.AddToLayoutRoot(this);
+        }
+
+        public void Hide()
+        {
+            Shell.RemoveFromLayoutRoot(this);
         }
 
         public void AddTextAnimation(VideoText videoText)

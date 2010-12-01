@@ -16,6 +16,8 @@ using IndoorWorx.Infrastructure;
 using IndoorWorx.Infrastructure.Services;
 using IndoorWorx.Library.Services;
 using IndoorWorx.Library.Helpers;
+using IndoorWorx.Infrastructure.Facades;
+using IndoorWorx.Library.Facades;
 
 namespace IndoorWorx.Library
 {
@@ -35,6 +37,7 @@ namespace IndoorWorx.Library
             Application.Current.Resources.Add("LibraryResources", new ResourceWrapper());
             unityContainer.RegisterInstance<ICache>(unityContainer.Resolve<Cache>());
             unityContainer.RegisterInstance<INavigationService>(unityContainer.Resolve<NavigationService>());
+            unityContainer.RegisterInstance<IDialogFacade>(unityContainer.Resolve<DialogFacade>());
             unityContainer.RegisterType<ICategoryService, CategoryService>();
         }
 

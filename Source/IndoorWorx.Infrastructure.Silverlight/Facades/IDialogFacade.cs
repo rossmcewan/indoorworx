@@ -9,16 +9,12 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace IndoorWorx.Infrastructure
+namespace IndoorWorx.Infrastructure.Facades
 {
-    public interface IShell
+    public interface IDialogFacade
     {
-        void Show();
+        void Alert(object content);
 
-        bool IsFullScreen { get; set; }
-
-        void AddToLayoutRoot(UIElement ui);
-
-        void RemoveFromLayoutRoot(UIElement ui);
+        void Confirm(object content, Action<bool> closed);        
     }
 }

@@ -10,8 +10,7 @@
   xmlns:SLaBA="clr-namespace:SLaB.Navigation.ContentLoaders.Auth;assembly=SLaB.Navigation.ContentLoaders.Auth"    
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
   mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
-
-    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
+     <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
 
         <Border x:Name="BackgroundBorder" Style="{StaticResource BackgroundBorderStyle}"/>
 
@@ -38,7 +37,7 @@
             </navigation:Frame>
         </Border>
 
-        <Grid Style="{StaticResource NavigationOuterGridStyle}">
+        <Grid x:Name="NavigationOuterGrid" Style="{StaticResource NavigationOuterGridStyle}">
             <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}">
 
                 <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}">
@@ -51,7 +50,7 @@
                     </StackPanel>
                 </Border>
 
-                <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
+                <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}" Margin="33,0,33,5" VerticalAlignment="Bottom">
                     <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
 
                         <HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 

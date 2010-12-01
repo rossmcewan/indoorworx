@@ -61,6 +61,15 @@ namespace IndoorWorx.Player.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you would like to stop the video playing?.
+        /// </summary>
+        public static string ConfirmStopVideo {
+            get {
+                return ResourceManager.GetString("ConfirmStopVideo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Power:.
         /// </summary>
         public static string PowerLabel {

@@ -24,7 +24,11 @@ namespace IndoorWorx.Player.Views
 
         void ManifestReady();
 
+        bool IsFullScreen { get; set; }
+
         ICommand PlayCommand { get;set;}
+
+        ICommand StopCommand { get; set; }
 
         ICommand PauseCommand { get; set; }
 

@@ -21,6 +21,7 @@ using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.Composite.Presentation.Events;
 using IndoorWorx.Player.Controls;
 using IndoorWorx.Library.Controls;
+using IndoorWorx.Infrastructure;
 
 namespace IndoorWorx.Player
 {
@@ -39,21 +40,9 @@ namespace IndoorWorx.Player
 
         public void PlayVideo(Video video)
         {
-            RadWindow window = new RadWindow();
-            window.WindowState = WindowState.Maximized;
-            window.ResizeMode = ResizeMode.NoResize;
-            window.Header = video.Title;
-
-            var player = new PlayerControl();
-            player.BindChart((video as TrainingSet).Telemetry);
-
-            //var player = serviceLocator.GetInstance<IndoorWorx.Player.Views.IPlayerView>();
-            //player.Model.Video = video;
-            //var player = new VideoMediaElement();
-            //player.Model = video;
-            
-            window.Content = player;
-            window.ShowDialog();
+            var view = unityContainer.Resolve<IPlayerView>();
+            view.Model.Video = video;
+            view.Show();
         }
 
         public void PreviewVideo(Video video)
@@ -72,9 +61,19 @@ namespace IndoorWorx.Player
             window.ShowDialog();
         }
 
+        private INavigationLinks NavigationLinks
+        {
+            get { return serviceLocator.GetInstance<INavigationLinks>(); }
+        }
+
         private INavigationService NavigationService
         {
             get { return serviceLocator.GetInstance<INavigationService>(); }
+        }
+
+        private IShell Shell
+        {
+            get { return serviceLocator.GetInstance<IShell>(); }
         }
 
         #region IModule Members
@@ -83,8 +82,14 @@ namespace IndoorWorx.Player
         {
             Application.Current.Resources.Add("PlayerResources", new ResourceWrapper());
 
+            //unityContainer.RegisterInstance<IPlayerPresentationModel>(unityContainer.Resolve<PlayerPresentationModel>());
+            //unityContainer.RegisterInstance<IPlayerView>(unityContainer.Resolve<PlayerView>());
             unityContainer.RegisterType<IPlayerPresentationModel, PlayerPresentationModel>();
             unityContainer.RegisterType<IPlayerView, PlayerView>();
+
+            NavigationLinks.MapUri(
+                new Uri("/Player", UriKind.Relative),
+                new Uri("/IndoorWorx.Player.Silverlight;component/Views/PlayerPage.xaml", UriKind.Relative));
         }
 
         #endregion

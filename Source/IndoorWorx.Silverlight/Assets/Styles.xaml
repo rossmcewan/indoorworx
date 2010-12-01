@@ -6,14 +6,13 @@
   xmlns:dataControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.DataForm.Toolkit" 
   xmlns:appControls="clr-namespace:IndoorWorx.Silverlight.Controls"
   xmlns:loginWindow="clr-namespace:IndoorWorx.Silverlight.LoginUI"
-  xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input">
-
+  xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input">    
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Controls/BusyIndicator.xaml" />
         <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/Brushes.xaml" />
         <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/Fonts.xaml" />
         <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/CoreStyles.xaml" />
-    </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary.MergedDictionaries>    
 
     <!-- ******MAIN PAGE STYLES****** -->
     <!-- **************************** -->

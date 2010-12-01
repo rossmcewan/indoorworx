@@ -20,6 +20,8 @@ using System.Windows.Threading;
 using Microsoft.Web.Media.SmoothStreaming;
 using Microsoft.Practices.Composite.Presentation.Commands;
 using System.Threading;
+using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Infrastructure.Facades;
 
 namespace IndoorWorx.Player.Views
 {
@@ -29,11 +31,14 @@ namespace IndoorWorx.Player.Views
         private readonly IServiceLocator serviceLocator;
         private Dictionary<double, Telemetry> linked = new Dictionary<double, Telemetry>();
         private Queue<Telemetry> queue = new Queue<Telemetry>();
+        private IEventAggregator eventAggregator;
 
-        public PlayerPresentationModel(IServiceLocator serviceLocator)
+        public PlayerPresentationModel(IServiceLocator serviceLocator, IEventAggregator eventAggregator)
         {
             this.serviceLocator = serviceLocator;
+            this.eventAggregator = eventAggregator;
             PlayCommand = new DelegateCommand<object>(Play);
+            StopCommand = new DelegateCommand<object>(Stop);
             PauseCommand = new DelegateCommand<object>(Pause);
             FullScreenCommand = new DelegateCommand<object>(FullScreen);
         }
@@ -43,25 +48,43 @@ namespace IndoorWorx.Player.Views
             get { return serviceLocator.GetInstance<IShell>(); }
         }
 
+        private IDialogFacade DialogFacade
+        {
+            get { return serviceLocator.GetInstance<IDialogFacade>(); }
+        }
+
         private void Play(object arg)
         {
             View.Play();
             Video.IsPlaying = true;
             StartTimers();
-            //timer.Start();
+        }
+
+        private void Stop(object arg)
+        {
+            DialogFacade.Confirm(Resources.PlayerResources.ConfirmStopVideo,
+                (result) =>
+                {
+                    if (result)
+                    {
+                        StopTimers();
+                        Video.IsPlaying = false;
+                        View.Stop();
+                        View.Hide();
+                    }
+                });
         }
 
         private void StartTimers()
         {
-            telemetryTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(5));
-            zoomTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(2));
+            telemetryTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            zoomTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
             textTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
         }
 
         private void Pause(object arg)
         {
             StopTimers();
-            //timer.Stop();
             Video.IsPlaying = false;
             View.Pause();
         }
@@ -75,7 +98,25 @@ namespace IndoorWorx.Player.Views
 
         private void FullScreen(object arg)
         {
-            Shell.IsFullScreen = true;
+            IsFullScreen = !IsFullScreen;
+            //if (IsFullScreen)
+            //{
+            //    IsFullScreen = false;
+            //}
+            //else
+            //{
+            //    IsFullScreen = true;
+            //}
+        }
+
+        public bool IsFullScreen
+        {
+            get { return Shell.IsFullScreen; }
+            set
+            {
+                Shell.IsFullScreen = value;
+                FirePropertyChanged("IsFullScreen");
+            }
         }
 
         private Video video = null;
@@ -117,6 +158,7 @@ namespace IndoorWorx.Player.Views
 
         void LoadLinkedDictionary()
         {
+            linked.Clear();
             if (video is TrainingSet)
             {
                 foreach (var t in (video as TrainingSet).Telemetry)
@@ -299,6 +341,17 @@ namespace IndoorWorx.Player.Views
             {
                 playCommand = value;
                 FirePropertyChanged("PlayCommand");
+            }
+        }
+
+        private ICommand stopCommand;
+        public ICommand StopCommand
+        {
+            get { return stopCommand; }
+            set
+            {
+                stopCommand = value;
+                FirePropertyChanged("StopCommand");
             }
         }
 

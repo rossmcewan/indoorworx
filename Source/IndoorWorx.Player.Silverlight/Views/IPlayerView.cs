@@ -28,6 +28,12 @@ namespace IndoorWorx.Player.Views
 
         void Pause();
 
+        void Stop();
+
         void AddTextAnimation(VideoText videoText);
+
+        void Show();
+
+        void Hide();
     }
 }

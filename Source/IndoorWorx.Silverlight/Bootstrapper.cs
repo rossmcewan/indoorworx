@@ -27,7 +27,8 @@ namespace IndoorWorx.Silverlight
 
         protected override void ConfigureContainer()
         {
-            Container.RegisterType<IShell, Shell>();            
+            //Container.RegisterType<IShell, Shell>();  
+            Container.RegisterInstance<IShell>(Container.Resolve<Shell>());
             base.ConfigureContainer();
         }
 
