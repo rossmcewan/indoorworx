@@ -8,15 +8,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using IndoorWorx.Infrastructure.Models;
+using Microsoft.Practices.Composite.Presentation.Events;
 using IndoorWorx.Designer.Domain;
 
-namespace IndoorWorx.Designer.Views
+namespace IndoorWorx.Designer.Events
 {
-    public interface IDesignerView
+    public class AddDesignEntryEvent : CompositePresentationEvent<TrainingSetDesign>
     {
-        IDesignerPresentationModel Model { get; }
 
-        void AddDesigner(TrainingSet forVideo);
     }
 }

@@ -120,6 +120,9 @@
   <data name="AveragePowerLabel" xml:space="preserve">
     <value>Average Power:</value>
   </data>
+  <data name="CatalogPaneTitle" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
   <data name="DescriptionTitle" xml:space="preserve">
     <value>Description</value>
   </data>

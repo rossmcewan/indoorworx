@@ -37,55 +37,38 @@
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <telerik:RadToolBar Margin="5">
-            <telerik:RadButton CornerRadius="5" Command="{Binding AddDesignerCommand, Mode=OneWay}" CommandParameter="{Binding}">
-                <StackPanel>
-                    <Image Width="{StaticResource ToolBarImageWidth}" Source="{Binding DesignerResources.Add, Source={StaticResource DesignerResources}, Converter={StaticResource ByteArrayToImageConverter}}"/>
-                    <TextBlock Text="{Binding DesignerResources.AddLabel, Source={StaticResource DesignerResources}}" HorizontalAlignment="Center"/>
-                </StackPanel>
-            </telerik:RadButton>
-            <telerik:RadToolBarSeparator/>
-        </telerik:RadToolBar>
-        <telerik:RadDocking Grid.Row="1" Margin="5" PreviewClose="RadDocking_PreviewClose" Close="RadDocking_Close">
+        </Grid.RowDefinitions>        
+        <telerik:RadDocking Margin="5" PreviewClose="RadDocking_PreviewClose" Close="RadDocking_Close">
             <telerik:RadDocking.DocumentHost>
-                <telerik:RadSplitContainer>
+                <telerik:RadSplitContainer Orientation="Vertical">
                     <telerik:RadPaneGroup x:Name="DocumentPaneGroup"/>
+                    <telerik:RadSplitContainer
+                            Name="BottomContainer"
+                            VerticalAlignment="Bottom"
+                            InitialPosition="DockedBottom">
+                        <telerik:RadPaneGroup x:Name="BottomGroup">
+                            <telerik:RadPane                         
+                                    x:Name="PreviewPane" 
+                                    Header="{Binding DesignerResources.PreviewPaneTitle, Source={StaticResource DesignerResources}}"                         
+                                    CanUserClose="False">
+                                <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
+                                    <Grid>                                        
+                                        <telerik:RadBusyIndicator IsBusy="{Binding SelectedVideo.IsTelemetryLoading, Mode=OneWay}" BusyContent="{Binding DesignerResources.LoadingTelemetryProgressMessage, Source={StaticResource DesignerResources}}">
+                                            <libControls:TelemetryChart
+                                                x:Name="designedTelemetryChart"
+                                                Margin="10"
+                                                AxisForeground="Gray"
+                                                AxisElementBrush="Gray"
+                                                YAxisAutoRange="True"/>
+                                        </telerik:RadBusyIndicator>
+                                    </Grid>
+                                </telerik:RadBusyIndicator>
+                            </telerik:RadPane>
+                        </telerik:RadPaneGroup>
+                    </telerik:RadSplitContainer>
                 </telerik:RadSplitContainer>
             </telerik:RadDocking.DocumentHost>
-            <telerik:RadSplitContainer
-                telerik:DockingPanel.InitialSize="300,300"
-                MaxHeight="200"
-                Name="BottomContainer"
-                InitialPosition="DockedBottom">
-                <telerik:RadPaneGroup x:Name="BottomGroup">
-                    <telerik:RadPane 
-                        x:Name="PreviewPane" 
-                        Header="{Binding DesignerResources.PreviewPaneTitle, Source={StaticResource DesignerResources}}"                         
-                        CanUserClose="False">
-                        <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <telerik:RadBusyIndicator IsBusy="{Binding SelectedVideo.IsTelemetryLoading, Mode=OneWay}" BusyContent="{Binding DesignerResources.LoadingTelemetryProgressMessage, Source={StaticResource DesignerResources}}">
-                                    <libControls:TelemetryChart 
-                                        x:Name="telemetryChart" 
-                                        XAxisLabelVisibility="Collapsed" 
-                                        YAxisLabelVisibility="Collapsed" />
-                                </telerik:RadBusyIndicator>
-                                <libControls:VideoMediaElement DataContext="{Binding SelectedVideo, Mode=OneWay}" Grid.Column="1"/>
-                            </Grid>
-                        </telerik:RadBusyIndicator>
-                    </telerik:RadPane>
-                </telerik:RadPaneGroup>
-            </telerik:RadSplitContainer>
             <telerik:RadSplitContainer 
                 telerik:DockingPanel.InitialSize="300,300" 
                 MaxWidth="600"                    
@@ -94,37 +77,7 @@
                 <telerik:RadPaneGroup x:Name="LeftGroup">
                     <telerik:RadPane x:Name="CatalogPane" Header="{Binding DesignerResources.CatalogPaneTitle, Source={StaticResource DesignerResources}}" CanUserClose="False">
                         <libControls:CatalogTreeControl/>
-                        <!--<telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <telerik:RadTreeView 
-                                    x:Name="catalogTreeView"
-                                    ItemContainerStyle="{StaticResource ItemContainerStyle}"
-                                    ItemsSource="{Binding Categories, Mode=OneWay}" 
-                                    ItemTemplateSelector="{StaticResource CategoryTreeDataTemplateSelector}"
-                                    SelectedItem="{Binding SelectedVideo, Mode=TwoWay}"
-                                    Margin="5"/>                                
-                            </Grid>
-                        </telerik:RadBusyIndicator>-->
-                    </telerik:RadPane>
-                    <telerik:RadPane x:Name="MyLibraryPane" Header="{Binding DesignerResources.MyLibraryPaneTitle, Source={StaticResource DesignerResources}}" CanUserClose="False">
-                        <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <telerik:RadTreeView 
-                                    x:Name="libraryTreeView"
-                                    ItemContainerStyle="{StaticResource ItemContainerStyle}"
-                                    ItemsSource="{Binding Categories, Mode=OneWay}" 
-                                    ItemTemplateSelector="{StaticResource CategoryTreeDataTemplateSelector}"
-                                    SelectedItem="{Binding SelectedVideo, Mode=TwoWay}"
-                                    Margin="5"/>
-                            </Grid>
-                        </telerik:RadBusyIndicator>
-                    </telerik:RadPane>
+                    </telerik:RadPane>                    
                 </telerik:RadPaneGroup>
             </telerik:RadSplitContainer>
         </telerik:RadDocking>        

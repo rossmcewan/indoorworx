@@ -9,14 +9,18 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
-using IndoorWorx.Designer.Domain;
+using System.Collections.Generic;
 
-namespace IndoorWorx.Designer.Views
+namespace IndoorWorx.Library.Controls
 {
-    public interface IDesignerView
+    public interface ICategoryTreeControlModel
     {
-        IDesignerPresentationModel Model { get; }
+        ICollection<Category> Categories { get; set; }
 
-        void AddDesigner(TrainingSet forVideo);
+        object SelectedItem { get; set; }
+
+        bool IsBusy { get; set; }
+
+        string SearchText { get; set; }
     }
 }

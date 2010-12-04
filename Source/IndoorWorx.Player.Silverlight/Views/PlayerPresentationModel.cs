@@ -99,14 +99,6 @@ namespace IndoorWorx.Player.Views
         private void FullScreen(object arg)
         {
             IsFullScreen = !IsFullScreen;
-            //if (IsFullScreen)
-            //{
-            //    IsFullScreen = false;
-            //}
-            //else
-            //{
-            //    IsFullScreen = true;
-            //}
         }
 
         public bool IsFullScreen
@@ -279,26 +271,6 @@ namespace IndoorWorx.Player.Views
                     SmartDispatcher.BeginInvoke(() => LoadVideoText(textQueue.Dequeue()));
                 System.GC.Collect();
             }), null, Timeout.Infinite, Timeout.Infinite);
-            //timer.Interval = TimeSpan.FromSeconds(1);
-            //timer.Tick += (sender, e) =>
-            //    {
-            //        if (queue.Peek().TimePosition <= PlayerPosition)
-            //            CurrentTelemetry = queue.Dequeue();
-            //        if (PlayerPosition >= Video.Duration)
-            //        {
-            //            View.EndVideo();
-            //            hasVideoEnded = true;
-            //        }
-            //        else
-            //        {
-            //            var xpos = new DateTime(now.Year, now.Month, now.Day, PlayerPosition.Hours, PlayerPosition.Minutes, PlayerPosition.Seconds).ToOADate();
-            //            ZoomRangeFrom = PlayerPosition.TotalSeconds / Video.Duration.TotalSeconds;
-            //            ZoomRangeTo = ZoomRangeFrom + zoomedLength;
-            //        }
-            //        var tempA = Math.Round(PlayerPosition.TotalSeconds);
-            //        if (textQueue.Any() && textQueue.Peek().StartTime <= playerPosition)
-            //            LoadVideoText(textQueue.Dequeue());
-            //    };
             Video.IsMediaLoading = false;
         }
 

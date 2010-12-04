@@ -145,6 +145,7 @@
     <Compile Include="Converters\SecondsToOADateConverter.cs" />
     <Compile Include="Converters\SecondsToTimeSpanConverter.cs" />
     <Compile Include="Converters\UrlToImageConverter.cs" />
+    <Compile Include="Events\CatalogSearchTextChangedEvent.cs" />
     <Compile Include="Events\DesignVideoEvent.cs" />
     <Compile Include="Events\PlayVideoEvent.cs" />
     <Compile Include="Events\PreviewVideoEvent.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="ICache.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="IShell.cs" />
+    <Compile Include="Models\BaseModel.Silverlight.cs" />
     <Compile Include="Models\Catalog.Silverlight.cs" />
     <Compile Include="Models\Category.Silverlight.cs" />
     <Compile Include="Models\Telemetry.Silverlight.cs" />

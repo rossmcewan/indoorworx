@@ -8,15 +8,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using IndoorWorx.Infrastructure.Models;
-using IndoorWorx.Designer.Domain;
+using Microsoft.Practices.Composite.Presentation.Events;
 
-namespace IndoorWorx.Designer.Views
+namespace IndoorWorx.Infrastructure.Events
 {
-    public interface IDesignerView
+    public class CatalogSearchTextChangedEvent : CompositePresentationEvent<string>
     {
-        IDesignerPresentationModel Model { get; }
 
-        void AddDesigner(TrainingSet forVideo);
     }
 }

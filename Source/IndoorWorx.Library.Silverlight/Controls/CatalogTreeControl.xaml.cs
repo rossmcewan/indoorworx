@@ -18,5 +18,10 @@ namespace IndoorWorx.Library.Controls
         {
             InitializeComponent();
         }
+
+        private ICategoryTreeControlModel Model
+        {
+            get { return this.DataContext as ICategoryTreeControlModel; }
+        }
     }
 }

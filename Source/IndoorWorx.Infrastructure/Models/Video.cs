@@ -10,15 +10,15 @@ namespace IndoorWorx.Infrastructure.Models
     [DataContract(IsReference = true)]
     public partial class Video : AuditableModel
     {
-        public Video()
-        {
-            this.VideoText.Add(
-                new VideoText() 
-                {   MainText = "Welcome to your new indoor training experience!",
-                    SubText = "Hope that you enjoy",
-                    Duration = new TimeSpan(0,0,16),
-                    StartTime = new TimeSpan(0,0,16) });
-        }
+        //public Video()
+        //{
+        //    this.VideoText.Add(
+        //        new VideoText() 
+        //        {   MainText = "Welcome to your new indoor training experience!",
+        //            SubText = "Hope that you enjoy",
+        //            Duration = new TimeSpan(0,0,16),
+        //            StartTime = new TimeSpan(0,0,16) });
+        //}
 
         private string title;
         [DataMember]

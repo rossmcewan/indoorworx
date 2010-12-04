@@ -17,6 +17,8 @@ namespace IndoorWorx.Designer.Views
 {
     public interface IDesignerPresentationModel
     {
+        event EventHandler EntriesChanged;
+
         event EventHandler CategoriesLoaded;
 
         event EventHandler<DataEventArgs<TrainingSet>> VideoSelected;
@@ -25,15 +27,11 @@ namespace IndoorWorx.Designer.Views
 
         IDesignerView View { get; set; }
 
-        ICommand AddDesignerCommand { get; set; }
-
-        void AddDesigner();
-
         ICollection<Category> Categories { get; set; }
 
-        ICollection<TrainingSetDesign> TrainingSetDesigns { get; set; }
-
         TrainingSet SelectedVideo { get; set; }
+
+        TrainingSetDesign Design { get; set; }
 
         void LoadCategories();
 
@@ -44,5 +42,9 @@ namespace IndoorWorx.Designer.Views
         void StopSelectedPreview(Action play);
 
         void SelectVideoWithId(Guid guid);
+
+        ICollection<Telemetry> GetDesignedTelemetry();
+
+        void AddDesignerForSelectedTrainingSet();
     }
 }

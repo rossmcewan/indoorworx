@@ -59,7 +59,7 @@ namespace IndoorWorx.Designer.Views
             if (this.NavigationContext.QueryString.TryGetValue("VideoId", out videoId))
             {
                 View.Model.SelectVideoWithId(new Guid(videoId));
-                View.Model.AddDesigner();
+                View.Model.AddDesignerForSelectedTrainingSet();
             }   
         }
     }

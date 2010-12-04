@@ -99,6 +99,7 @@
     </Compile>
     <Compile Include="Domain\TrainingSetDesign.cs" />
     <Compile Include="Domain\TrainingSetDesignEntry.cs" />
+    <Compile Include="Events\AddDesignEntryEvent.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

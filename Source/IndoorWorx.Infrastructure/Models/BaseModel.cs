@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace IndoorWorx.Infrastructure.Models
 {
     [DataContract(IsReference = true)]
-    public abstract class BaseModel : INotifyPropertyChanged
+    public abstract partial class BaseModel : INotifyPropertyChanged
     {
         private Guid id;
         [DataMember]

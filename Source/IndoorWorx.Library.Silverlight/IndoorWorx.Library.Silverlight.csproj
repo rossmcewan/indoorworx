@@ -78,6 +78,7 @@
       <DependentUpon>CatalogTreeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CategoryTreeDataTemplateSelector.cs" />
+    <Compile Include="Controls\ICategoryTreeControlModel.cs" />
     <Compile Include="Controls\TelemetryChart.cs" />
     <Compile Include="Controls\VideoMediaElement.xaml.cs">
       <DependentUpon>VideoMediaElement.xaml</DependentUpon>

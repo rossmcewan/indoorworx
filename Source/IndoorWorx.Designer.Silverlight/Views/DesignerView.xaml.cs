@@ -28,40 +28,25 @@ namespace IndoorWorx.Designer.Views
             InitializeComponent();
             this.DataContext = model;
             model.View = this;
-            model.VideoSelected += new EventHandler<DataEventArgs<TrainingSet>>(model_VideoSelected);
+            model.EntriesChanged += new EventHandler(model_EntriesChanged);
         }
 
-        void model_VideoSelected(object sender, DataEventArgs<TrainingSet> e)
+        void model_EntriesChanged(object sender, EventArgs e)
         {
-            var video = e.Value;
-
-            if (video.IsTelemetryLoaded)
-            {
-                telemetryChart.LoadTelemetry(video.Telemetry);
-            }
-            else
-            {
-                video.TelemetryLoaded += (_sender, _e) =>
-                {
-                    SmartDispatcher.BeginInvoke(() =>
-                    {
-                        telemetryChart.LoadTelemetry(video.Telemetry);
-                    });
-                };
-            }
-        }
+            designedTelemetryChart.LoadTelemetry(Model.GetDesignedTelemetry());
+        }        
 
         public IDesignerPresentationModel Model
         {
             get { return this.DataContext as IDesignerPresentationModel; }
         }
 
-        public void AddDesigner(TrainingSetDesign design)
+        public void AddDesigner(TrainingSet forVideo)
         {
             var documentPane = new RadDocumentPane()
             {
                 Title = Designer.Resources.DesignerResources.NewDesignTitle,
-                Content = new TrainingSetDesignControl() { Model = design }
+                Content = new TrainingSetDesignControl() { Model = new TrainingSetDesign() { FromTrainingSet = forVideo } }
             };
             
             DocumentPaneGroup.AddItem(documentPane, DockPosition.Center);                

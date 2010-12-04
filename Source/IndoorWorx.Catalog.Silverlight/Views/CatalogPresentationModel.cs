@@ -20,10 +20,11 @@ using IndoorWorx.Infrastructure.Navigation;
 using Telerik.Windows.Controls;
 using Microsoft.Practices.Composite.Events;
 using IndoorWorx.Infrastructure.Events;
+using IndoorWorx.Library.Controls;
 
 namespace IndoorWorx.Catalog.Views
 {
-    public class CatalogPresentationModel : BaseModel, ICatalogPresentationModel
+    public class CatalogPresentationModel : BaseModel, ICatalogPresentationModel, ICategoryTreeControlModel
     {
         private readonly IServiceLocator serviceLocator;
         private readonly IEventAggregator eventAggregator;
@@ -57,6 +58,109 @@ namespace IndoorWorx.Catalog.Views
         }
 
         #region ICatalogPresentationModel Members
+
+        private ICatalogView view;
+        public ICatalogView View
+        {
+            get
+            {
+                return this.view;
+            }
+            set
+            {
+                this.view = value;
+            }
+        }
+
+        private ICollection<Category> allCategories;
+        public ICollection<Category> AllCategories
+        {
+            get { return allCategories; }
+            set
+            {
+                allCategories = value;
+            }
+        }
+
+        private Category selectedCategory;
+        public Category SelectedCategory
+        {
+            get
+            {
+                return this.selectedCategory;
+            }
+            set
+            {
+                this.selectedCategory = value;
+                FirePropertyChanged("SelectedCategory");
+            }
+        }
+
+        public void LoadCategories()
+        {
+            var categoryService = serviceLocator.GetInstance<ICategoryService>();
+            categoryService.CategoryRetrievalError += (sender, e) =>
+                {
+                    this.IsBusy = false;
+                    throw e.Value;
+                };
+            categoryService.CategoriesRetrieved += (sender, e) =>
+                {
+                    AllCategories = new List<Category>(e.Value);
+                    Categories = e.Value;
+                    this.IsBusy = false;
+                };
+            this.IsBusy = true;
+            categoryService.RetrieveCategories();            
+        }
+
+        private ICommand designTrainingSetCommand;
+        public ICommand DesignTrainingSetCommand
+        {
+            get { return designTrainingSetCommand; }
+            set
+            {
+                designTrainingSetCommand = value;
+                FirePropertyChanged("DesignTrainingSetCommand");
+            }
+        }
+
+        private ICommand playTrainingSetCommand;
+        public ICommand PlayTrainingSetCommand
+        {
+            get { return playTrainingSetCommand; }
+            set
+            {
+                playTrainingSetCommand = value;
+                FirePropertyChanged("PlayTrainingSetCommand");
+            }
+        }
+
+        private ICommand previewTrainingSetCommand;
+        public ICommand PreviewTrainingSetCommand
+        {
+            get { return previewTrainingSetCommand; }
+            set
+            {
+                previewTrainingSetCommand = value;
+                FirePropertyChanged("PreviewTrainingSetCommand");
+            }
+        }
+
+        #endregion
+
+        #region ICategoryTreeControlModel Members
+
+        private bool busy;
+        public bool IsBusy
+        {
+            get { return busy; }
+            set
+            {
+                busy = value;
+                FirePropertyChanged("IsBusy");
+            }
+        }
 
         private object selectedItem;
         public object SelectedItem
@@ -103,19 +207,7 @@ namespace IndoorWorx.Catalog.Views
                         }
                     }
                 }
-            }
-        }
-
-        private ICatalogView view;
-        public ICatalogView View
-        {
-            get
-            {
-                return this.view;
-            }
-            set
-            {
-                this.view = value;
+                FirePropertyChanged("SelectedItem");
             }
         }
 
@@ -135,79 +227,51 @@ namespace IndoorWorx.Catalog.Views
             }
         }
 
-        private Category selectedCategory;
-        public Category SelectedCategory
+        private string searchText;
+        public string SearchText
         {
-            get
-            {
-                return this.selectedCategory;
-            }
+            get { return searchText; }
             set
             {
-                this.selectedCategory = value;
-                FirePropertyChanged("SelectedCategory");
-            }
-        }
-
-        private bool busy;
-        public bool IsBusy
-        {
-            get { return busy; }
-            set
-            {
-                busy = value;
-                FirePropertyChanged("IsBusy");
-            }
-        }
-
-        public void LoadCategories()
-        {
-            var categoryService = serviceLocator.GetInstance<ICategoryService>();
-            categoryService.CategoryRetrievalError += (sender, e) =>
+                //need to build a new collection - only adding the ones that meet the search criteria
+                if (string.IsNullOrWhiteSpace(value))
+                    Categories = AllCategories.ToList();
+                else
                 {
-                    this.IsBusy = false;
-                    throw e.Value;
-                };
-            categoryService.CategoriesRetrieved += (sender, e) =>
+                    if (value != searchText)
+                    {
+                        eventAggregator.GetEvent<CatalogSearchTextChangedEvent>().Publish(value);
+                        FilterValidSearchResults(value);
+                    }
+                }
+                searchText = value;
+                FirePropertyChanged("SearchText");
+            }
+        }
+
+        private void FilterValidSearchResults(string searchText)
+        {
+            var validSearchResults = new List<Category>();
+            foreach (var category in AllCategories)
+            {
+                var newCategory = new Category() { Title = category.Title };
+                foreach (var catalog in category.Catalogs)
                 {
-                    Categories = e.Value;
-                    this.IsBusy = false;
-                };
-            this.IsBusy = true;
-            categoryService.RetrieveCategories();            
-        }
-
-        private ICommand designTrainingSetCommand;
-        public ICommand DesignTrainingSetCommand
-        {
-            get { return designTrainingSetCommand; }
-            set
-            {
-                designTrainingSetCommand = value;
-                FirePropertyChanged("DesignTrainingSetCommand");
+                    var newCatalog = new IndoorWorx.Infrastructure.Models.Catalog() { Title = catalog.Title, Sequence = catalog.Sequence };
+                    foreach (var video in catalog.Videos)
+                    {
+                        if (video.Title.IndexOf(searchText.ToLower(), StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            newCatalog.Videos.Add(video);
+                        }
+                    }
+                    if (newCatalog.Videos.Any())
+                        newCategory.Catalogs.Add(newCatalog);
+                }
+                if (newCategory.Catalogs.Any())
+                    validSearchResults.Add(newCategory);
             }
-        }
-
-        private ICommand playTrainingSetCommand;
-        public ICommand PlayTrainingSetCommand
-        {
-            get { return playTrainingSetCommand; }
-            set
-            {
-                playTrainingSetCommand = value;
-                FirePropertyChanged("PlayTrainingSetCommand");
-            }
-        }
-
-        private ICommand previewTrainingSetCommand;
-        public ICommand PreviewTrainingSetCommand
-        {
-            get { return previewTrainingSetCommand; }
-            set
-            {
-                previewTrainingSetCommand = value;
-                FirePropertyChanged("PreviewTrainingSetCommand");
-            }
+            Categories = validSearchResults;
         }
 
         #endregion

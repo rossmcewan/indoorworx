@@ -12,28 +12,22 @@ using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.Composite.Presentation.Commands;
 using System.Collections.Generic;
+using IndoorWorx.Infrastructure;
+using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Designer.Events;
 
 namespace IndoorWorx.Designer.Domain
 {
     public class TrainingSetDesign : BaseModel
-    {
-        public event EventHandler EntriesChanged;
-
+    {        
         public TrainingSetDesign()
         {
-            AddEntryCommand = new DelegateCommand<object>(AddToNewTrainingSet);
+            AddEntryCommand = new DelegateCommand<object>(AddEntry);
         }
 
-        private void AddToNewTrainingSet(object arg)
+        private void AddEntry(object arg)
         {
-            Entries.Add(new TrainingSetDesignEntry()
-            {
-                Source = FromTrainingSet,
-                TimeStart = TimeSpan.FromSeconds(SelectionStart.GetValueOrDefault()),
-                TimeEnd = TimeSpan.FromSeconds(SelectionEnd.GetValueOrDefault())
-            });
-            if (EntriesChanged != null)
-                EntriesChanged(this, EventArgs.Empty);
+            IoC.Resolve<IEventAggregator>().GetEvent<AddDesignEntryEvent>().Publish(this);
         }
 
         public ICommand AddEntryCommand { get; set; }
@@ -95,25 +89,6 @@ namespace IndoorWorx.Designer.Domain
                 FirePropertyChanged("SelectionStart");
                 FirePropertyChanged("SelectionDuration");
             }
-        }
-
-        internal ICollection<Telemetry> GetDesignedTelemetry()
-        {
-            List<Telemetry> result = new List<Telemetry>();
-            double seconds = 0;
-            foreach (var entry in Entries)
-            {
-                var entriesToAdd = entry.Source.Telemetry.Where(x =>
-                        x.TimePosition.TotalSeconds >= entry.TimeStart.TotalSeconds &&
-                        x.TimePosition.TotalSeconds <= entry.TimeEnd.TotalSeconds).Select(x => x.Clone()).ToList();
-                foreach(var eta in entriesToAdd)
-                {
-                    eta.TimePosition = TimeSpan.FromSeconds(seconds);
-                    seconds += entry.Source.RecordingInterval;
-                }
-                result.AddRange(entriesToAdd);
-            }
-            return result;
-        }
+        }        
     }
 }

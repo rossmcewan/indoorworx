@@ -36,6 +36,16 @@ namespace IndoorWorx.Catalog.Views
 
         #endregion
 
+        private void RadDocking_PreviewClose(object sender, Telerik.Windows.Controls.Docking.StateChangeEventArgs e)
+        {
+
+        }
+
+        private void RadDocking_Close(object sender, Telerik.Windows.Controls.Docking.StateChangeEventArgs e)
+        {
+
+        }
+
                 
     }
 }

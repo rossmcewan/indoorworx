@@ -17,7 +17,12 @@ using System.Threading;
 namespace IndoorWorx.Infrastructure.Models
 {
     public partial class Video
-    {        
+    {
+        public Video()
+        {
+            Initialize();
+        }
+
         private bool selected;
         public virtual bool IsSelected
         {
@@ -66,6 +71,11 @@ namespace IndoorWorx.Infrastructure.Models
         
         [OnDeserialized]
         public void OnDeserialized(StreamingContext context)
+        {
+            Initialize();
+        }
+
+        private void Initialize()
         {
             this.IsMediaLoading = true;
         }
