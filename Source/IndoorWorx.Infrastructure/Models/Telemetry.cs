@@ -58,7 +58,8 @@ namespace IndoorWorx.Infrastructure.Models
 
         public Telemetry Clone()
         {
-            return this.MemberwiseClone() as Telemetry;
+            var result = this.MemberwiseClone() as Telemetry;
+            return result;
         }
     }
 }

@@ -97,11 +97,13 @@
     <Compile Include="Controls\TrainingSetDesignControl.xaml.cs">
       <DependentUpon>TrainingSetDesignControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Domain\TrainingSetDesign.cs" />
-    <Compile Include="Domain\TrainingSetDesignEntry.cs" />
+    <Compile Include="Events\UseSelectedVideoEvent.cs" />
+    <Compile Include="Models\TrainingSetDesign.cs" />
+    <Compile Include="Models\TrainingSetDesignEntry.cs" />
     <Compile Include="Events\AddDesignEntryEvent.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />
+    <Compile Include="Navigation\UseSelectedVideoMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\DesignerResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -168,6 +170,7 @@
     <None Include="Resources\Images\zoom_in.png1" />
     <None Include="Resources\Images\zoom_out.png1" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

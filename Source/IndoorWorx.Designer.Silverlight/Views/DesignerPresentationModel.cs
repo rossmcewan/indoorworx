@@ -17,10 +17,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using IndoorWorx.Infrastructure;
 using Microsoft.Practices.Composite.Events;
-using IndoorWorx.Designer.Domain;
+using IndoorWorx.Designer.Models;
 using IndoorWorx.Library.Controls;
 using IndoorWorx.Designer.Events;
 using IndoorWorx.Infrastructure.Events;
+using IndoorWorx.Infrastructure.Navigation;
+using IndoorWorx.Designer.Navigation;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -30,7 +32,9 @@ namespace IndoorWorx.Designer.Views
 
         public event EventHandler CategoriesLoaded;
 
-        public event EventHandler<DataEventArgs<TrainingSet>> VideoSelected;
+        public event EventHandler<DataEventArgs<Video>> VideoSelected;
+
+        public event EventHandler<DataEventArgs<TrainingSet>> TrainingSetSelected;
 
         private readonly IServiceLocator serviceLocator;
         private readonly IEventAggregator eventAggregator;
@@ -39,7 +43,8 @@ namespace IndoorWorx.Designer.Views
             this.serviceLocator = serviceLocator;
             this.eventAggregator = eventAggregator;
             eventAggregator.GetEvent<AddDesignEntryEvent>().Subscribe(AddEntry);
-            //AddEntryCommand = new DelegateCommand<object>(AddEntry);
+            eventAggregator.GetEvent<UseSelectedVideoEvent>().Subscribe(UseSelectedVideo);
+            this.CatalogContextMenuItems.Add(serviceLocator.GetInstance<UseSelectedVideoMenuItem>());
         }
 
         private ICollection<Category> allCategories;
@@ -52,16 +57,21 @@ namespace IndoorWorx.Designer.Views
             }
         }
 
-        public void AddDesignerForSelectedTrainingSet() 
+        public void AddDesignerForSelectedVideo() 
         {
             View.AddDesigner(this.SelectedVideo);
         }
 
+        public void UseSelectedVideo(Video video)
+        {
+            View.AddDesigner(video);
+        }
+
         public void AddEntry(TrainingSetDesign trainingSetDesign)
         {
-            Design.Entries.Add(new TrainingSetDesignEntry()
+            Entries.Add(new TrainingSetDesignEntry()
             {
-                Source = trainingSetDesign.FromTrainingSet,
+                Source = trainingSetDesign.Source.SelectedTrainingSet,
                 TimeStart = TimeSpan.FromSeconds(trainingSetDesign.SelectionStart.GetValueOrDefault()),
                 TimeEnd = TimeSpan.FromSeconds(trainingSetDesign.SelectionEnd.GetValueOrDefault())
             });
@@ -71,18 +81,7 @@ namespace IndoorWorx.Designer.Views
 
         public IDesignerView View { get; set; }              
 
-        private TrainingSetDesign design = new TrainingSetDesign();
-        public TrainingSetDesign Design
-        {
-            get { return design; }
-            set
-            {
-                design = value;
-                FirePropertyChanged("Design");
-            }
-        }
-
-        public void SelectVideoWithId(Guid id)
+        public void SelectVideoWithId(Guid id) 
         {
             //find the video
             foreach (var cat in View.Model.Categories)
@@ -95,17 +94,17 @@ namespace IndoorWorx.Designer.Views
                         {
                             if (id == ts.Id)
                             {
-                                SelectedVideo = ts;
+                                SelectedVideo = video;
                                 break;
                             }
                         }
                     }
                 }
             }
-        }        
+        }
 
-        private TrainingSet selectedVideo;
-        public TrainingSet SelectedVideo
+        private Video selectedVideo;
+        public Video SelectedVideo
         {
             get { return selectedVideo; }
             set
@@ -113,7 +112,20 @@ namespace IndoorWorx.Designer.Views
                 selectedVideo = value;
                 FirePropertyChanged("SelectedVideo");
                 if (VideoSelected != null)
-                    VideoSelected(this, new DataEventArgs<TrainingSet>(value));
+                    VideoSelected(this, new DataEventArgs<Video>(value));                
+            }
+        }
+
+        private TrainingSet selectedTrainingSet;
+        public TrainingSet SelectedTrainingSet
+        {
+            get { return selectedTrainingSet; }
+            set
+            {
+                selectedTrainingSet = value;
+                FirePropertyChanged("SelectedTrainingSet");
+                if (VideoSelected != null)
+                    TrainingSetSelected(this, new DataEventArgs<TrainingSet>(value));
                 if (value != null)
                     value.LoadTelemetry();                
             }
@@ -161,19 +173,45 @@ namespace IndoorWorx.Designer.Views
         {
             List<Telemetry> result = new List<Telemetry>();
             double seconds = 0;
-            foreach (var entry in Design.Entries)
+            foreach (var entry in Entries)
             {
                 var entriesToAdd = entry.Source.Telemetry.Where(x =>
                         x.TimePosition.TotalSeconds >= entry.TimeStart.TotalSeconds &&
                         x.TimePosition.TotalSeconds <= entry.TimeEnd.TotalSeconds).Select(x => x.Clone()).ToList();
                 foreach (var eta in entriesToAdd)
                 {
-                    eta.TimePosition = TimeSpan.FromSeconds(seconds);
                     seconds += entry.Source.RecordingInterval;
+                    eta.TimePosition = TimeSpan.FromSeconds(seconds);
                 }
                 result.AddRange(entriesToAdd);
             }
             return result;
+        }
+
+        private ICollection<TrainingSetDesignEntry> entries = new List<TrainingSetDesignEntry>();
+        public ICollection<TrainingSetDesignEntry> Entries
+        {
+            get { return entries; }
+            set
+            {
+                entries = value;
+                FirePropertyChanged("Entries");
+            }
+        }
+
+        private ICollection<IMenuItem> contextMenuItems = new ObservableCollection<IMenuItem>();
+        public ICollection<Infrastructure.Navigation.IMenuItem> CatalogContextMenuItems
+        {
+            get
+            {
+                return this.contextMenuItems;
+            }
+            set
+            {
+                this.contextMenuItems.Clear();
+                foreach (var item in value)
+                    this.contextMenuItems.Add(item);
+            }
         }
 
         #region ICategoryTreeControlModel Members
@@ -301,6 +339,6 @@ namespace IndoorWorx.Designer.Views
             Categories = validSearchResults;
         }
 
-        #endregion
+        #endregion        
     }
 }

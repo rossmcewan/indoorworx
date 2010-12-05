@@ -9,11 +9,11 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Practices.Composite.Presentation.Events;
-using IndoorWorx.Designer.Models;
+using IndoorWorx.Infrastructure.Models;
 
-namespace IndoorWorx.Designer.Events
+namespace IndoorWorx.Catalog.Events
 {
-    public class AddDesignEntryEvent : CompositePresentationEvent<TrainingSetDesign>
+    public class TrainingSetSelectionChangedEvent : CompositePresentationEvent<TrainingSet>
     {
 
     }

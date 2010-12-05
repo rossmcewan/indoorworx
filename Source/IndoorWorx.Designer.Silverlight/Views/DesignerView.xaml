@@ -49,8 +49,8 @@
                             InitialPosition="DockedBottom">
                         <telerik:RadPaneGroup x:Name="BottomGroup">
                             <telerik:RadPane                         
-                                    x:Name="PreviewPane" 
-                                    Header="{Binding DesignerResources.PreviewPaneTitle, Source={StaticResource DesignerResources}}"                         
+                                    x:Name="DesignPane" 
+                                    Header="{Binding DesignerResources.DesignPaneTitle, Source={StaticResource DesignerResources}}"                         
                                     CanUserClose="False">
                                 <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
                                     <Grid>                                        
@@ -76,7 +76,7 @@
                 InitialPosition="DockedLeft">
                 <telerik:RadPaneGroup x:Name="LeftGroup">
                     <telerik:RadPane x:Name="CatalogPane" Header="{Binding DesignerResources.CatalogPaneTitle, Source={StaticResource DesignerResources}}" CanUserClose="False">
-                        <libControls:CatalogTreeControl/>
+                        <libControls:CatalogTreeControl ContextMenuItemsSource="{Binding CatalogContextMenuItems, Mode=OneWay}"/>
                     </telerik:RadPane>                    
                 </telerik:RadPaneGroup>
             </telerik:RadSplitContainer>

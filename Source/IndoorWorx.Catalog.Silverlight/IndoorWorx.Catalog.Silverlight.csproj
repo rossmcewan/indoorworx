@@ -104,6 +104,7 @@
     <Compile Include="Controls\TrainingSetDetailsControl.xaml.cs">
       <DependentUpon>TrainingSetDetailsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Events\TrainingSetSelectionChangedEvent.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

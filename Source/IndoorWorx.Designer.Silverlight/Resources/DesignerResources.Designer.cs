@@ -93,6 +93,15 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Design.
+        /// </summary>
+        public static string DesignPaneTitle {
+            get {
+                return ResourceManager.GetString("DesignPaneTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading media ....
         /// </summary>
         public static string LoadingMediaProgressMessage {
@@ -171,6 +180,15 @@ namespace IndoorWorx.Designer.Resources {
         public static string UnknownItemTypeErrorMessage {
             get {
                 return ResourceManager.GetString("UnknownItemTypeErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use in designer ....
+        /// </summary>
+        public static string UseSelectedTrainingSetMenuItem {
+            get {
+                return ResourceManager.GetString("UseSelectedTrainingSetMenuItem", resourceCulture);
             }
         }
         

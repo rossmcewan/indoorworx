@@ -47,8 +47,8 @@
                                             <Grid>
                                                 <Image Source="{Binding ImageUri.OriginalString, Mode=OneWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
                                                 <telerik:RadFluidContentControl SmallToNormalThreshold="190, 140" Background="Transparent"
-								            NormalToSmallThreshold="190, 140" NormalToLargeThreshold="320, 320"
-								            LargeToNormalThreshold="320, 320">
+								                        NormalToSmallThreshold="190, 140" NormalToLargeThreshold="320, 320"
+								                        LargeToNormalThreshold="320, 320">
                                                     <telerik:RadFluidContentControl.SmallContent>
                                                         <Grid Background="Transparent">
                                                             <Image Source="{Binding ImageUri.OriginalString, Mode=OneWay}" Margin="5"/>
@@ -71,7 +71,7 @@
                                                             </Grid.RowDefinitions>
                                                             <telerik:RadTileView telerik:StyleManager.Theme="Transparent" Grid.Row="1" Grid.ColumnSpan="2" MaximizeMode="Zero" MinimizedItemsPosition="Left" MinimizedRowHeight="180" TileStateChangeTrigger="None">
                                                                 <telerik:RadTileViewItem x:Name="profilesTile" Header="{Binding CatalogResources.ProfilesTitle, Source={StaticResource CatalogResources}}" >
-                                                                    <catControls:TrainingSetDetailsControl DataContext="{Binding SelectedTrainingSet, Mode=OneWay}"/>
+                                                                    <catControls:TrainingSetDetailsControl x:Name="trainingSetDetails" DataContext="{Binding SelectedTrainingSet, Mode=OneWay}"/>
                                                                 </telerik:RadTileViewItem>
                                                                 <telerik:RadTileViewItem Header="{Binding CatalogResources.ReviewsTitle, Source={StaticResource CatalogResources}}" >
                                                                     <catControls:ReviewsControl DataContext="{Binding SelectedTrainingSet, Mode=OneWay}"/>
@@ -92,15 +92,17 @@
                                                                     </Grid.ColumnDefinitions>
                                                                     <TextBlock Text="{Binding CatalogResources.TrainingSetsTitle, Source={StaticResource CatalogResources}}" Margin="5" FontWeight="Bold"/>
                                                                     <ListBox 
-                                                                    Grid.Row="1"
-                                                                    ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                                                                    ScrollViewer.HorizontalScrollBarVisibility="Auto" 
-                                                                    VerticalAlignment="Stretch" 
-                                                                    HorizontalAlignment="Stretch" 
-                                                                    HorizontalContentAlignment="Stretch"
-                                                                    Margin="10" 
-                                                                    ItemsSource="{Binding TrainingSets, Mode=OneWay}" 
-                                                                    SelectedItem="{Binding SelectedTrainingSet, Mode=TwoWay}">
+                                                                            x:Name="trainingSetsList"
+                                                                            Grid.Row="1"
+                                                                            ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                                                            ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                                                                            VerticalAlignment="Stretch" 
+                                                                            HorizontalAlignment="Stretch" 
+                                                                            HorizontalContentAlignment="Stretch"
+                                                                            Margin="10" 
+                                                                            SelectionChanged="trainingSetsList_SelectionChanged"
+                                                                            ItemsSource="{Binding TrainingSets, Mode=OneWay}" 
+                                                                            SelectedItem="{Binding SelectedTrainingSet, Mode=TwoWay}">
                                                                         <ListBox.ItemContainerStyle>
                                                                             <Style TargetType="ListBoxItem">
                                                                                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -122,7 +124,7 @@
                                                                     </ListBox>
                                                                     <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
                                                                         <telerik:RadButton Content="{Binding CatalogResources.PreviewButtonText, Source={StaticResource CatalogResources}}" Width="50" Margin="2"  Command="{Binding DataContext.PreviewTrainingSetCommand, Mode=OneWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=OneWay}" CornerRadius="10" ToolTipService.ToolTip="{Binding CatalogResources.PreviewTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
-                                                                        <telerik:RadButton Content="{Binding CatalogResources.DesignButtonText, Source={StaticResource CatalogResources}}" Width="50" Margin="2" CornerRadius="10" Command="{Binding DataContext.DesignTrainingSetCommand, Mode=OneWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=OneWay}" ToolTipService.ToolTip="{Binding CatalogResources.DesignTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
+                                                                        <telerik:RadButton Content="{Binding CatalogResources.DesignButtonText, Source={StaticResource CatalogResources}}" Width="50" Margin="2" CornerRadius="10" Command="{Binding DataContext.DesignTrainingSetCommand, Mode=OneWay, ElementName=LayoutRoot}" CommandParameter="{Binding Mode=OneWay}" ToolTipService.ToolTip="{Binding CatalogResources.DesignTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
                                                                         <telerik:RadButton Content="{Binding CatalogResources.PlayButtonText, Source={StaticResource CatalogResources}}" Width="50" Margin="2" CornerRadius="10" Command="{Binding DataContext.PlayTrainingSetCommand, Mode=OneWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=OneWay}" ToolTipService.ToolTip="{Binding CatalogResources.PlayTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
                                                                     </StackPanel>
                                                                 </Grid>
@@ -154,18 +156,18 @@
                     </telerik:RadSplitContainer>
                 </telerik:RadDocking.DocumentHost>
                 <telerik:RadSplitContainer
-                telerik:DockingPanel.InitialSize="300,300"
-                MaxHeight="200"
-                Name="BottomContainer"
-                InitialPosition="DockedBottom">
+                        telerik:DockingPanel.InitialSize="300,300"
+                        MaxHeight="200"
+                        Name="BottomContainer"
+                        InitialPosition="DockedBottom">
                     <telerik:RadPaneGroup x:Name="BottomGroup">
                     </telerik:RadPaneGroup>
                 </telerik:RadSplitContainer>
                 <telerik:RadSplitContainer 
-                telerik:DockingPanel.InitialSize="300,300" 
-                MaxWidth="600"                    
-                Name="LeftContainer" 
-                InitialPosition="DockedLeft">
+                        telerik:DockingPanel.InitialSize="300,300" 
+                        MaxWidth="600"                    
+                        Name="LeftContainer" 
+                        InitialPosition="DockedLeft">
                     <telerik:RadPaneGroup x:Name="LeftGroup">
                         <telerik:RadPane x:Name="CatalogPane" Header="{Binding CatalogResources.CatalogPaneTitle, Source={StaticResource CatalogResources}}" CanUserClose="False">
                             <libControls:CatalogTreeControl />

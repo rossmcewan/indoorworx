@@ -153,6 +153,7 @@
     <Compile Include="Helpers\FullScreenExtensions.cs" />
     <Compile Include="Helpers\VisualTreeExtensions.cs" />
     <Compile Include="ICache.cs" />
+    <Compile Include="Navigation\IMenuItem.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="Models\BaseModel.Silverlight.cs" />

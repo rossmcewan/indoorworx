@@ -160,13 +160,27 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <telerik:RadTreeView  
+                <telerik:RadTreeView                      
                     x:Name="catalogTreeView"
+                    IsExpandOnSingleClickEnabled="True"
                     ItemContainerStyle="{StaticResource ItemContainerStyle}"
                     ItemsSource="{Binding Categories, Mode=OneWay}" 
                     ItemTemplateSelector="{StaticResource CategoryTreeDataTemplateSelector}"                
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                    Margin="5"/>
+                    Margin="5">          
+                    <telerik:RadContextMenu.ContextMenu>
+                        <telerik:RadContextMenu 
+                            x:Name="catalogTreeContextMenu" 
+                            Opened="catalogTreeContextMenu_Opened" 
+                            ItemClick="catalogTreeContextMenu_ItemClick">
+                            <telerik:RadContextMenu.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock VerticalAlignment="Center" Text="{Binding Title, Mode=OneWay}"/>
+                                </DataTemplate>
+                            </telerik:RadContextMenu.ItemTemplate>
+                        </telerik:RadContextMenu>
+                    </telerik:RadContextMenu.ContextMenu>
+                </telerik:RadTreeView>
             </Grid>
         </telerik:RadBusyIndicator>
     </Grid>

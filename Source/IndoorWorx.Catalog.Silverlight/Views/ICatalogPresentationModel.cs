@@ -32,5 +32,7 @@ namespace IndoorWorx.Catalog.Views
         void LoadCategories();
 
         bool IsBusy { get; set; }
+
+        void OnTrainingSetSelectionChanged();
     }
 }

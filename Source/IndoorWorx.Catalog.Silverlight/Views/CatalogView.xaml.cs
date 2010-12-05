@@ -46,6 +46,9 @@ namespace IndoorWorx.Catalog.Views
 
         }
 
-                
+        private void trainingSetsList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            Model.OnTrainingSetSelectionChanged();
+        }                
     }
 }

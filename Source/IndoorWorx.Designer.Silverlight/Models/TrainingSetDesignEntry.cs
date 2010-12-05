@@ -10,7 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
 
-namespace IndoorWorx.Designer.Domain
+namespace IndoorWorx.Designer.Models
 {
     public class TrainingSetDesignEntry : BaseModel
     {

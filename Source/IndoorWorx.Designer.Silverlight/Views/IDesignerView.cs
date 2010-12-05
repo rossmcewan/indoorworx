@@ -9,7 +9,6 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
-using IndoorWorx.Designer.Domain;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -17,6 +16,6 @@ namespace IndoorWorx.Designer.Views
     {
         IDesignerPresentationModel Model { get; }
 
-        void AddDesigner(TrainingSet forVideo);
+        void AddDesigner(Video forVideo);
     }
 }

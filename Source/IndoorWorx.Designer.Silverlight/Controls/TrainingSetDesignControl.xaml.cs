@@ -9,7 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using IndoorWorx.Designer.Domain;
+using IndoorWorx.Designer.Models;
 using IndoorWorx.Library.Controls;
 using IndoorWorx.Infrastructure;
 
@@ -28,22 +28,38 @@ namespace IndoorWorx.Designer.Controls
             {
                 this.DataContext = value;
             }
-            get { return this.DataContext as TrainingSetDesign; }
+            get 
+            { 
+                return this.DataContext as TrainingSetDesign; 
+            }
         }
 
         private void TelemetryChart_Loaded(object sender, RoutedEventArgs e)
         {
-            var chart = sender as TelemetryChart;
-            if (Model.FromTrainingSet.IsTelemetryLoaded)
-                chart.LoadTelemetry(Model.FromTrainingSet.Telemetry);
-            else
+            LoadTelemetryOnChart();
+        }
+
+        private void LoadTelemetryOnChart()
+        {
+            if (Model.Source.SelectedTrainingSet != null)
             {
-                Model.FromTrainingSet.TelemetryLoaded += (_sender, _e) =>
-                    {
-                        SmartDispatcher.BeginInvoke(() => chart.LoadTelemetry(Model.FromTrainingSet.Telemetry));
-                    };
-                Model.FromTrainingSet.LoadTelemetry();
+                if (Model.Source.SelectedTrainingSet.IsTelemetryLoaded)
+                    telemetryChart.LoadTelemetry(Model.Source.SelectedTrainingSet.Telemetry);
+                else
+                {
+                    Model.Source.SelectedTrainingSet.TelemetryLoaded += (_sender, _e) =>
+                        {
+                            SmartDispatcher.BeginInvoke(() => telemetryChart.LoadTelemetry(Model.Source.SelectedTrainingSet.Telemetry));
+                        };
+                    Model.Source.SelectedTrainingSet.LoadTelemetry();
+                }
             }
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Model.OnTrainingSetSelectionChanged();
+            LoadTelemetryOnChart();
         }
     }
 }

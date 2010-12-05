@@ -21,6 +21,7 @@ using Telerik.Windows.Controls;
 using Microsoft.Practices.Composite.Events;
 using IndoorWorx.Infrastructure.Events;
 using IndoorWorx.Library.Controls;
+using IndoorWorx.Catalog.Events;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -145,6 +146,11 @@ namespace IndoorWorx.Catalog.Views
                 previewTrainingSetCommand = value;
                 FirePropertyChanged("PreviewTrainingSetCommand");
             }
+        }
+
+        public void OnTrainingSetSelectionChanged()
+        {
+            eventAggregator.GetEvent<TrainingSetSelectionChangedEvent>().Publish(SelectedCategory.SelectedCatalog.SelectedVideo.SelectedTrainingSet);
         }
 
         #endregion

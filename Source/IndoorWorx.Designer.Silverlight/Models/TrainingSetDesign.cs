@@ -16,7 +16,7 @@ using IndoorWorx.Infrastructure;
 using Microsoft.Practices.Composite.Events;
 using IndoorWorx.Designer.Events;
 
-namespace IndoorWorx.Designer.Domain
+namespace IndoorWorx.Designer.Models
 {
     public class TrainingSetDesign : BaseModel
     {        
@@ -32,27 +32,16 @@ namespace IndoorWorx.Designer.Domain
 
         public ICommand AddEntryCommand { get; set; }
 
-        private TrainingSet fromTrainingSet;
-        public TrainingSet FromTrainingSet
+        private Video source;
+        public Video Source
         {
-            get { return fromTrainingSet; }
+            get { return source; }
             set
             {
-                fromTrainingSet = value;
+                source = value;
                 if (value != null)
                     SelectionEnd = value.Duration.TotalSeconds;
-                FirePropertyChanged("FromTrainingSet");
-            }
-        }
-
-        private ICollection<TrainingSetDesignEntry> entries = new List<TrainingSetDesignEntry>();
-        public ICollection<TrainingSetDesignEntry> Entries
-        {
-            get { return entries; }
-            set
-            {
-                entries = value;
-                FirePropertyChanged("Entries");
+                FirePropertyChanged("Source");
             }
         }
 
@@ -89,6 +78,12 @@ namespace IndoorWorx.Designer.Domain
                 FirePropertyChanged("SelectionStart");
                 FirePropertyChanged("SelectionDuration");
             }
-        }        
+        }
+
+        internal void OnTrainingSetSelectionChanged()
+        {
+            SelectionStart = 0;
+            SelectionEnd = 10;
+        }
     }
 }

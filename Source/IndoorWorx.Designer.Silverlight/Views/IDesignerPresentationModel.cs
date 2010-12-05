@@ -11,7 +11,8 @@ using System.Windows.Shapes;
 using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.Composite.Events;
-using IndoorWorx.Designer.Domain;
+using IndoorWorx.Designer.Models;
+using IndoorWorx.Infrastructure.Navigation;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -21,7 +22,9 @@ namespace IndoorWorx.Designer.Views
 
         event EventHandler CategoriesLoaded;
 
-        event EventHandler<DataEventArgs<TrainingSet>> VideoSelected;
+        event EventHandler<DataEventArgs<Video>> VideoSelected;
+
+        event EventHandler<DataEventArgs<TrainingSet>> TrainingSetSelected;
 
         object SelectedItem { get; set; }
 
@@ -29,9 +32,9 @@ namespace IndoorWorx.Designer.Views
 
         ICollection<Category> Categories { get; set; }
 
-        TrainingSet SelectedVideo { get; set; }
+        Video SelectedVideo { get; set; }
 
-        TrainingSetDesign Design { get; set; }
+        TrainingSet SelectedTrainingSet { get; set; }
 
         void LoadCategories();
 
@@ -45,6 +48,10 @@ namespace IndoorWorx.Designer.Views
 
         ICollection<Telemetry> GetDesignedTelemetry();
 
-        void AddDesignerForSelectedTrainingSet();
+        void AddDesignerForSelectedVideo();
+
+        ICollection<IMenuItem> CatalogContextMenuItems { get; set; }
+
+        ICollection<TrainingSetDesignEntry> Entries { get; set; }
     }
 }

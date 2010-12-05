@@ -13,6 +13,7 @@ using System.IO;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using System.Threading;
+using Microsoft.Practices.Composite.Events;
 
 namespace IndoorWorx.Infrastructure.Models
 {
@@ -64,7 +65,8 @@ namespace IndoorWorx.Infrastructure.Models
             set
             {
                 selectedTrainingSet = value;
-                selectedTrainingSet.LoadTelemetry();
+                if(selectedTrainingSet != null)
+                    selectedTrainingSet.LoadTelemetry();
                 FirePropertyChanged("SelectedTrainingSet");
             }
         }

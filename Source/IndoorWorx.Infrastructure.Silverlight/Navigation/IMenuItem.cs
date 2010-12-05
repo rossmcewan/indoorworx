@@ -8,13 +8,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using Microsoft.Practices.Composite.Presentation.Events;
-using IndoorWorx.Designer.Models;
 
-namespace IndoorWorx.Designer.Events
+namespace IndoorWorx.Infrastructure.Navigation
 {
-    public class AddDesignEntryEvent : CompositePresentationEvent<TrainingSetDesign>
+    public interface IMenuItem
     {
+        string Title { get; }
 
+        ICommand Command { get; }
     }
 }

@@ -16,8 +16,9 @@ using Telerik.Windows.Controls.Charting;
 using IndoorWorx.Infrastructure.Models;
 using Microsoft.Web.Media.SmoothStreaming;
 using Microsoft.Practices.Composite.Events;
-using IndoorWorx.Designer.Domain;
+using IndoorWorx.Designer.Models;
 using IndoorWorx.Designer.Controls;
+using IndoorWorx.Infrastructure.Helpers;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -31,25 +32,64 @@ namespace IndoorWorx.Designer.Views
             model.EntriesChanged += new EventHandler(model_EntriesChanged);
         }
 
+        Random random = new Random();
         void model_EntriesChanged(object sender, EventArgs e)
         {
             designedTelemetryChart.LoadTelemetry(Model.GetDesignedTelemetry());
-        }        
+            designedTelemetryChart.DefaultView.ChartArea.Annotations.Clear();
+            double seconds = 0;
+            foreach (var entry in Model.Entries)
+            {
+                var fromDate = DateTimeHelper.ZeroTime.Add(TimeSpan.FromSeconds(seconds));
+                var from = fromDate.ToOADate();
+                var length = entry.TimeEnd - entry.TimeStart;
+                var to = fromDate.Add(length).ToOADate();
+                seconds += length.TotalSeconds;
+
+                //var from = DateTimeHelper.ZeroTime.Add(entry.TimeStart).Add(TimeSpan.FromSeconds(seconds)).ToOADate();
+                //var to = DateTimeHelper.ZeroTime.Add(entry.TimeEnd).Add(TimeSpan.FromSeconds(seconds)).ToOADate();
+                var zone = new MarkedZone(from, to, 0, designedTelemetryChart.DefaultView.ChartArea.AxisY.MaxValue);
+                Color newColor = Color.FromArgb(255, (byte)random.Next(0, 255), (byte)random.Next(0, 255), (byte)random.Next(0, 255));
+                zone.Background = new SolidColorBrush(newColor);
+                designedTelemetryChart.DefaultView.ChartArea.Annotations.Add(zone);
+
+                zone.MouseRightButtonDown += new MouseButtonEventHandler(zone_MouseRightButtonDown);
+                zone.MouseRightButtonUp += new MouseButtonEventHandler(zone_MouseRightButtonUp);
+                RadContextMenu.SetContextMenu(zone, new RadContextMenu() { ItemsSource = new List<RadMenuItem>() { new RadMenuItem() { Header = "Test" } } });
+            }
+        }
+
+        void zone_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+        }
+
+        void zone_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+        }                
 
         public IDesignerPresentationModel Model
         {
             get { return this.DataContext as IDesignerPresentationModel; }
         }
 
-        public void AddDesigner(TrainingSet forVideo)
+        public void AddDesigner(Video forVideo)
         {
-            var documentPane = new RadDocumentPane()
+            var existingPane = DocumentPaneGroup.Items.OfType<RadDocumentPane>().FirstOrDefault(x => x.Tag == forVideo);
+            if (existingPane == null)
             {
-                Title = Designer.Resources.DesignerResources.NewDesignTitle,
-                Content = new TrainingSetDesignControl() { Model = new TrainingSetDesign() { FromTrainingSet = forVideo } }
-            };
-            
-            DocumentPaneGroup.AddItem(documentPane, DockPosition.Center);                
+                var documentPane = new RadDocumentPane()
+                {
+                    Tag = forVideo,
+                    Title = forVideo.Title,
+                    Content = new TrainingSetDesignControl() { Model = new TrainingSetDesign() { Source = forVideo } }
+                };
+
+                DocumentPaneGroup.AddItem(documentPane, DockPosition.Center);
+            }
+            else
+            {
+                existingPane.IsSelected = true;
+            }
         }
 
         private void RadDocking_PreviewClose(object sender, StateChangeEventArgs e)

@@ -12,6 +12,8 @@ using System.Windows.Shapes;
 using IndoorWorx.Library.Controls;
 using IndoorWorx.Infrastructure.Models;
 using IndoorWorx.Infrastructure;
+using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Catalog.Events;
 
 namespace IndoorWorx.Catalog.Controls
 {
@@ -20,18 +22,28 @@ namespace IndoorWorx.Catalog.Controls
         public TrainingSetDetailsControl()
         {
             InitializeComponent();
+            IoC.Resolve<IEventAggregator>().GetEvent<TrainingSetSelectionChangedEvent>().Subscribe(TrainingSetSelectionChanged);
+        }
+
+        public void TrainingSetSelectionChanged(TrainingSet trainingSet)
+        {
+            LoadTelemetryOnChart(trainingSet);
         }
 
         private void profileChart_Loaded(object sender, RoutedEventArgs e)
         {
-            var chart = sender as TelemetryChart;
-            var video = chart.DataContext as TrainingSet;
+            var video = this.DataContext as TrainingSet;
+            LoadTelemetryOnChart(video);
+        }
 
+        private void LoadTelemetryOnChart(TrainingSet video)
+        {           
             if (video == null) return;
+            this.DataContext = video;
 
             if (video.IsTelemetryLoaded)
             {
-                chart.LoadTelemetry(video.Telemetry);
+                profileChart.LoadTelemetry(video.Telemetry);
             }
             else
             {
@@ -39,10 +51,10 @@ namespace IndoorWorx.Catalog.Controls
                 {
                     SmartDispatcher.BeginInvoke(() =>
                     {
-                        chart.LoadTelemetry(video.Telemetry);
+                        profileChart.LoadTelemetry(video.Telemetry);
                     });
                 };
             }
-        }
+        }        
     }
 }
