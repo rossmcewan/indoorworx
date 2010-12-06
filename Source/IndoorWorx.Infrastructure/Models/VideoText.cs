@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using IndoorWorx.Infrastructure.Enums;
+using System.Runtime.Serialization;
 
 namespace IndoorWorx.Infrastructure.Models
 {
+    [DataContract]
     public class VideoText : BaseModel
     {
         private string mainText = string.Empty;
-        public string MainText
+        [DataMember]
+        public virtual string MainText
         {
             get { return mainText; }
             set
@@ -20,7 +23,8 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private VideoTextAnimations animation = VideoTextAnimations.FadeCenter;
-        public VideoTextAnimations Animation
+        [DataMember]
+        public virtual VideoTextAnimations Animation
         {
             get { return animation; }
             set
@@ -31,7 +35,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private string subText = string.Empty;
-        public string SubText
+        public virtual string SubText
         {
             get { return subText; }
             set
@@ -41,20 +45,44 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        public TimeSpan StartTime
+        private TimeSpan startTime;
+        [DataMember]
+        public virtual TimeSpan StartTime
         {
-            get;
-            set;
+            get { return startTime; }
+            set
+            {
+                startTime = value;
+                FirePropertyChanged("StartTime");
+            }
         }
 
-        public TimeSpan Duration
+        private TrainingSet trainingSet;
+        [DataMember]
+        public virtual TrainingSet TrainingSet
         {
-            get;
-            set;
+            get { return trainingSet; }
+            set
+            {
+                trainingSet = value;
+                FirePropertyChanged("TrainingSet");
+            }
         }
 
+        private TimeSpan duration;
+        [DataMember]
+        public virtual TimeSpan Duration
+        {
+            get { return duration; }
+            set
+            {
+                duration = value;
+                FirePropertyChanged("Duration");
+            }
+        }
 
-        internal void Clear()
+      
+        public virtual void Clear()
         {
             this.MainText = string.Empty;
             this.SubText = string.Empty;

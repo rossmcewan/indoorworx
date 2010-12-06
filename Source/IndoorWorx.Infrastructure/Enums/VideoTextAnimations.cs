@@ -5,6 +5,9 @@ namespace IndoorWorx.Infrastructure.Enums
 {
     public enum VideoTextAnimations
     {
-        FadeCenter,ZoomCenter,ScrollingCenter,Spinner 
+        FadeCenter,
+        ZoomCenter,
+        ScrollingCenter,
+        Spinner 
     }
 }

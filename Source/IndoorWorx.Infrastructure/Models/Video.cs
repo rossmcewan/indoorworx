@@ -10,16 +10,6 @@ namespace IndoorWorx.Infrastructure.Models
     [DataContract(IsReference = true)]
     public partial class Video : AuditableModel
     {
-        //public Video()
-        //{
-        //    this.VideoText.Add(
-        //        new VideoText() 
-        //        {   MainText = "Welcome to your new indoor training experience!",
-        //            SubText = "Hope that you enjoy",
-        //            Duration = new TimeSpan(0,0,16),
-        //            StartTime = new TimeSpan(0,0,16) });
-        //}
-
         private string title;
         [DataMember]
         public virtual string Title
@@ -116,18 +106,6 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-
-        private ICollection<VideoText> videoText = new List<VideoText>();
-        [DataMember]
-        public virtual ICollection<VideoText> VideoText
-        {
-            get { return videoText; }
-            set
-            {
-                videoText = value;
-                FirePropertyChanged("VideoText");
-            }
-        }
 
 
         public virtual int AverageRating
