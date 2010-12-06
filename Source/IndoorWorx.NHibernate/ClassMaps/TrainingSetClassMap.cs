@@ -22,6 +22,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
                 c.Map(y => y.VariabilityIndex);
                 c.Map(y => y.AveragePower);
             });
+            HasMany(x => x.VideoText).KeyColumn("TrainingSet").Cascade.SaveUpdate().Fetch.Subselect();
         }
     }
 }
