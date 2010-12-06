@@ -7,6 +7,7 @@ using FluentNHibernate.Cfg;
 using IndoorWorx.NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using IndoorWorx.Infrastructure.Models;
+using IndoorWorx.Infrastructure.Enums;
 
 namespace IndoorWorx.SchemaTools
 {
@@ -17,7 +18,7 @@ namespace IndoorWorx.SchemaTools
             var sessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(x => x.FromConnectionStringWithKey("IndoorWorx")))
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<Module>())
-                .ExposeConfiguration(x => new SchemaExport(x).SetOutputFile("../../Schema/createdb.sql").Create(true, true))
+                .ExposeConfiguration(x => new SchemaExport(x).SetOutputFile("../../Schema/createdb.sql").Create(true,true))
                 .BuildSessionFactory();
 
             using (var session = sessionFactory.OpenSession())
@@ -98,7 +99,27 @@ namespace IndoorWorx.SchemaTools
                                             Description = "This is a ride through the Suikerbosrand Nature Reserve. About two and a half hours with some good climbing. Go hard up the climbs, there's recovery on the other side. Keep your eyes peeled for eland and baboon!",
                                             StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                             TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
-                                            Duration = new TimeSpan(1, 18, 0)
+                                            Duration = new TimeSpan(1, 18, 0),
+                                            VideoText = new List<VideoText>() 
+                                            {
+                                                new VideoText() 
+                                                {
+                                                    Animation = VideoTextAnimations.FadeCenter, 
+                                                    Duration = new TimeSpan(0,0,10), 
+                                                    MainText = "Let's Get Ready to Rumble!",
+                                                    SubText = "your video is about to begin",
+                                                    StartTime = new TimeSpan(0,0,10)
+                                                },
+                                                new VideoText() 
+                                                {
+                                                    Animation = VideoTextAnimations.FadeCenter, 
+                                                    Duration = new TimeSpan(0,0,25), 
+                                                    MainText = "It's Go Time!",
+                                                    SubText = "allez allez allez hop hop hop",
+                                                    StartTime = new TimeSpan(0,0,10)
+                                                },
+
+                                            }
                                         }
                                     }
                                 }
