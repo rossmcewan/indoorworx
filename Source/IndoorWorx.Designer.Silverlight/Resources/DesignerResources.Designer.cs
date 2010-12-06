@@ -175,6 +175,24 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Telemetry.
+        /// </summary>
+        public static string TelemetryTitle {
+            get {
+                return ResourceManager.GetString("TelemetryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Training Metrics.
+        /// </summary>
+        public static string TrainingMetricsTitle {
+            get {
+                return ResourceManager.GetString("TrainingMetricsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Training Sets.
         /// </summary>
         public static string TrainingSetsTitle {

@@ -160,6 +160,12 @@
   <data name="Stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\stop.png1;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
+  <data name="TelemetryTitle" xml:space="preserve">
+    <value>Telemetry</value>
+  </data>
+  <data name="TrainingMetricsTitle" xml:space="preserve">
+    <value>Training Metrics</value>
+  </data>
   <data name="TrainingSetsTitle" xml:space="preserve">
     <value>Training Sets</value>
   </data>
