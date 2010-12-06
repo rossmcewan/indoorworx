@@ -45,6 +45,8 @@ namespace IndoorWorx.Designer.Views
             eventAggregator.GetEvent<AddDesignEntryEvent>().Subscribe(AddEntry);
             eventAggregator.GetEvent<UseSelectedVideoEvent>().Subscribe(UseSelectedVideo);
             this.CatalogContextMenuItems.Add(serviceLocator.GetInstance<UseSelectedVideoMenuItem>());
+
+            RemoveEntryCommand = new DelegateCommand<TrainingSetDesignEntry>(RemoveEntry);
         }
 
         private ICollection<Category> allCategories;
@@ -67,7 +69,7 @@ namespace IndoorWorx.Designer.Views
             View.AddDesigner(video);
         }
 
-        public void AddEntry(TrainingSetDesign trainingSetDesign)
+        public void AddEntry(IDesignerSelectorPresentationModel trainingSetDesign)
         {
             Entries.Add(new TrainingSetDesignEntry()
             {
@@ -197,6 +199,35 @@ namespace IndoorWorx.Designer.Views
                 entries = value;
                 FirePropertyChanged("Entries");
             }
+        }
+
+        private TrainingSetDesignEntry selectedEntry;
+        public TrainingSetDesignEntry SelectedEntry
+        {
+            get { return selectedEntry; }
+            set
+            {
+                selectedEntry = value;
+                FirePropertyChanged("SelectedEntry");
+            }
+        }
+
+        private ICommand removeEntryCommand;
+        public ICommand RemoveEntryCommand
+        {
+            get { return removeEntryCommand; }
+            set
+            {
+                removeEntryCommand = value;
+                FirePropertyChanged("RemoveEntryCommand");
+            }
+        }
+
+        public void RemoveEntry(TrainingSetDesignEntry entry)
+        {
+            Entries.Remove(entry);
+            if (EntriesChanged != null)
+                EntriesChanged(this, EventArgs.Empty);
         }
 
         private ICollection<IMenuItem> contextMenuItems = new ObservableCollection<IMenuItem>();

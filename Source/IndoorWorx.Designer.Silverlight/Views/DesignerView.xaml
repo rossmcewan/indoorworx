@@ -33,7 +33,7 @@
             VideoTemplate="{StaticResource VideoTemplate}"/>
         <Style x:Key="ItemContainerStyle" TargetType="telerik:RadTreeViewItem">
             <Setter Property="IsExpanded" Value="True"/>
-        </Style>
+        </Style>        
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>
@@ -52,18 +52,27 @@
                                     x:Name="DesignPane" 
                                     Header="{Binding DesignerResources.DesignPaneTitle, Source={StaticResource DesignerResources}}"                         
                                     CanUserClose="False">
-                                <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
-                                    <Grid>                                        
-                                        <telerik:RadBusyIndicator IsBusy="{Binding SelectedVideo.IsTelemetryLoading, Mode=OneWay}" BusyContent="{Binding DesignerResources.LoadingTelemetryProgressMessage, Source={StaticResource DesignerResources}}">
-                                            <libControls:TelemetryChart
-                                                x:Name="designedTelemetryChart"
-                                                Margin="10"
-                                                AxisForeground="Gray"
-                                                AxisElementBrush="Gray"
-                                                YAxisAutoRange="True"/>
-                                        </telerik:RadBusyIndicator>
-                                    </Grid>
-                                </telerik:RadBusyIndicator>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <telerik:RadButton Content="Delete" Command="{Binding RemoveEntryCommand, Mode=OneWay}" CommandParameter="{Binding SelectedEntry, Mode=OneWay}"/>
+                                    </StackPanel>
+                                    <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}" Grid.Column="1">
+                                        <Grid>
+                                            <telerik:RadBusyIndicator IsBusy="{Binding SelectedTrainingSet.IsTelemetryLoading, Mode=OneWay}" BusyContent="{Binding DesignerResources.LoadingTelemetryProgressMessage, Source={StaticResource DesignerResources}}">
+                                                <libControls:TelemetryChart
+                                                    x:Name="designedTelemetryChart"
+                                                    Margin="10"
+                                                    AxisForeground="Gray"
+                                                    AxisElementBrush="Gray"
+                                                    YAxisAutoRange="True"/>
+                                            </telerik:RadBusyIndicator>
+                                        </Grid>
+                                    </telerik:RadBusyIndicator>
+                                </Grid>
                             </telerik:RadPane>
                         </telerik:RadPaneGroup>
                     </telerik:RadSplitContainer>

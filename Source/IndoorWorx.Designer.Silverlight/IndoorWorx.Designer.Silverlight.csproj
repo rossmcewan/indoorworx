@@ -94,11 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\CategoryTreeDataTemplateSelector.cs" />
-    <Compile Include="Controls\TrainingSetDesignControl.xaml.cs">
-      <DependentUpon>TrainingSetDesignControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Events\UseSelectedVideoEvent.cs" />
-    <Compile Include="Models\TrainingSetDesign.cs" />
     <Compile Include="Models\TrainingSetDesignEntry.cs" />
     <Compile Include="Events\AddDesignEntryEvent.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
@@ -114,10 +110,16 @@
       <DependentUpon>DesignerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DesignerPresentationModel.cs" />
+    <Compile Include="Views\DesignerSelectorPresentationModel.cs" />
+    <Compile Include="Views\DesignerSelectorView.xaml.cs">
+      <DependentUpon>DesignerSelectorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DesignerView.xaml.cs">
       <DependentUpon>DesignerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IDesignerPresentationModel.cs" />
+    <Compile Include="Views\IDesignerSelectorPresentationModel.cs" />
+    <Compile Include="Views\IDesignerSelectorView.cs" />
     <Compile Include="Views\IDesignerView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -140,13 +142,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\TrainingSetDesignControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\DesignerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DesignerSelectorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DesignerView.xaml">
       <SubType>Designer</SubType>

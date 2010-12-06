@@ -19,25 +19,30 @@ using Microsoft.Practices.Composite.Events;
 using IndoorWorx.Designer.Models;
 using IndoorWorx.Designer.Controls;
 using IndoorWorx.Infrastructure.Helpers;
+using Microsoft.Practices.ServiceLocation;
 
 namespace IndoorWorx.Designer.Views
 {
     public partial class DesignerView : UserControl, IDesignerView
     {
-        public DesignerView(IDesignerPresentationModel model)
+        private readonly IServiceLocator serviceLocator;
+        public DesignerView(IServiceLocator serviceLocator, IDesignerPresentationModel model)
         {
+            this.serviceLocator = serviceLocator;
             InitializeComponent();
             this.DataContext = model;
             model.View = this;
             model.EntriesChanged += new EventHandler(model_EntriesChanged);
         }
 
+        Color[] colors = new Color[] { Colors.Gray, Colors.LightGray };
         Random random = new Random();
         void model_EntriesChanged(object sender, EventArgs e)
         {
             designedTelemetryChart.LoadTelemetry(Model.GetDesignedTelemetry());
             designedTelemetryChart.DefaultView.ChartArea.Annotations.Clear();
             double seconds = 0;
+            int counter = 0;
             foreach (var entry in Model.Entries)
             {
                 var fromDate = DateTimeHelper.ZeroTime.Add(TimeSpan.FromSeconds(seconds));
@@ -49,23 +54,27 @@ namespace IndoorWorx.Designer.Views
                 //var from = DateTimeHelper.ZeroTime.Add(entry.TimeStart).Add(TimeSpan.FromSeconds(seconds)).ToOADate();
                 //var to = DateTimeHelper.ZeroTime.Add(entry.TimeEnd).Add(TimeSpan.FromSeconds(seconds)).ToOADate();
                 var zone = new MarkedZone(from, to, 0, designedTelemetryChart.DefaultView.ChartArea.AxisY.MaxValue);
-                Color newColor = Color.FromArgb(255, (byte)random.Next(0, 255), (byte)random.Next(0, 255), (byte)random.Next(0, 255));
-                zone.Background = new SolidColorBrush(newColor);
-                designedTelemetryChart.DefaultView.ChartArea.Annotations.Add(zone);
-
-                zone.MouseRightButtonDown += new MouseButtonEventHandler(zone_MouseRightButtonDown);
-                zone.MouseRightButtonUp += new MouseButtonEventHandler(zone_MouseRightButtonUp);
-                RadContextMenu.SetContextMenu(zone, new RadContextMenu() { ItemsSource = new List<RadMenuItem>() { new RadMenuItem() { Header = "Test" } } });
+                zone.Tag = entry;
+                //Color newColor = Color.FromArgb(255, (byte)random.Next(0, 255), (byte)random.Next(0, 255), (byte)random.Next(0, 255));
+                //zone.Background = new SolidColorBrush(newColor);
+                zone.Background = new SolidColorBrush(colors[Math.Min(1, counter++ % 2)]);
+                designedTelemetryChart.DefaultView.ChartArea.Annotations.Add(zone);                
             }
+            designedTelemetryChart.DefaultView.ChartArea.ItemClick += new EventHandler<ChartItemClickEventArgs>(ChartArea_ItemClick);
         }
 
-        void zone_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        MarkedZone lastSelected;
+        Brush lastBackground;
+        void ChartArea_ItemClick(object sender, ChartItemClickEventArgs e)
         {
+            if (lastSelected != null)
+                lastSelected.Background = lastBackground;
+            lastSelected = designedTelemetryChart.DefaultView.ChartArea.Annotations.OfType<MarkedZone>().FirstOrDefault(
+                x => x.StartX <= e.DataPoint.XValue && x.EndX >= e.DataPoint.XValue);
+            lastBackground = lastSelected.Background;
+            lastSelected.Background = new SolidColorBrush(Colors.Green);
+            Model.SelectedEntry = lastSelected.Tag as TrainingSetDesignEntry;            
         }
-
-        void zone_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-        }                
 
         public IDesignerPresentationModel Model
         {
@@ -77,11 +86,14 @@ namespace IndoorWorx.Designer.Views
             var existingPane = DocumentPaneGroup.Items.OfType<RadDocumentPane>().FirstOrDefault(x => x.Tag == forVideo);
             if (existingPane == null)
             {
+                var view = serviceLocator.GetInstance<IDesignerSelectorView>();
+                view.Model.Source = forVideo;
+                
                 var documentPane = new RadDocumentPane()
                 {
                     Tag = forVideo,
                     Title = forVideo.Title,
-                    Content = new TrainingSetDesignControl() { Model = new TrainingSetDesign() { Source = forVideo } }
+                    Content = view
                 };
 
                 DocumentPaneGroup.AddItem(documentPane, DockPosition.Center);

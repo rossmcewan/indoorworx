@@ -58,6 +58,8 @@ namespace IndoorWorx.Designer
 
             unityContainer.RegisterInstance<IDesignerPresentationModel>(unityContainer.Resolve<DesignerPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<IDesignerView>(unityContainer.Resolve<DesignerView>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterType<IDesignerSelectorPresentationModel, DesignerSelectorPresentationModel>();
+            unityContainer.RegisterType<IDesignerSelectorView, DesignerSelectorView>();
 
             NavigationLinks.MapUri(
                 new Uri("/Designer", UriKind.Relative),

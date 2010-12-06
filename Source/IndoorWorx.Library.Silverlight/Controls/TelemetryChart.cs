@@ -67,10 +67,13 @@ namespace IndoorWorx.Library.Controls
 
         public void LoadTelemetry(ICollection<Telemetry> telemetry)
         {
-            var max = telemetry.Max(x => x.PercentageThreshold);
-            this.DefaultView.ChartArea.AxisY.AddRange(0, max, 0.2);
-            this.DefaultView.ChartArea.AxisX.MinValue = DateTime.Today.ToOADate();
-            this.DefaultView.ChartArea.AxisX.MaxValue = telemetry.Max(x => x.TimePositionAsDateTime).ToOADate();
+            if (telemetry.Any())
+            {
+                var max = telemetry.Max(x => x.PercentageThreshold);
+                this.DefaultView.ChartArea.AxisY.AddRange(0, max, 0.2);
+                this.DefaultView.ChartArea.AxisX.MinValue = DateTime.Today.ToOADate();
+                this.DefaultView.ChartArea.AxisX.MaxValue = telemetry.Max(x => x.TimePositionAsDateTime).ToOADate();
+            }
             this.ItemsSource = telemetry;
         }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,24 +9,27 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
-using Microsoft.Practices.Composite.Presentation.Commands;
-using System.Collections.Generic;
-using IndoorWorx.Infrastructure;
 using Microsoft.Practices.Composite.Events;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.Composite.Presentation.Commands;
 using IndoorWorx.Designer.Events;
 
-namespace IndoorWorx.Designer.Models
+namespace IndoorWorx.Designer.Views
 {
-    public class TrainingSetDesign : BaseModel
-    {        
-        public TrainingSetDesign()
+    public class DesignerSelectorPresentationModel : BaseModel, IDesignerSelectorPresentationModel
+    {
+        private readonly IServiceLocator serviceLocator;
+        private readonly IEventAggregator eventAggregator;
+        public DesignerSelectorPresentationModel(IServiceLocator serviceLocator, IEventAggregator eventAggregator)
         {
+            this.serviceLocator = serviceLocator;
+            this.eventAggregator = eventAggregator;
             AddEntryCommand = new DelegateCommand<object>(AddEntry);
         }
 
         private void AddEntry(object arg)
         {
-            IoC.Resolve<IEventAggregator>().GetEvent<AddDesignEntryEvent>().Publish(this);
+            eventAggregator.GetEvent<AddDesignEntryEvent>().Publish(this);
         }
 
         public ICommand AddEntryCommand { get; set; }
@@ -38,9 +40,7 @@ namespace IndoorWorx.Designer.Models
             get { return source; }
             set
             {
-                source = value;
-                if (value != null)
-                    SelectionEnd = value.Duration.TotalSeconds;
+                source = value;                
                 FirePropertyChanged("Source");
             }
         }
@@ -80,7 +80,7 @@ namespace IndoorWorx.Designer.Models
             }
         }
 
-        internal void OnTrainingSetSelectionChanged()
+        public void OnTrainingSetSelectionChanged()
         {
             SelectionStart = 0;
             SelectionEnd = 10;

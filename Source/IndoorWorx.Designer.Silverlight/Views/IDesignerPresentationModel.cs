@@ -53,5 +53,9 @@ namespace IndoorWorx.Designer.Views
         ICollection<IMenuItem> CatalogContextMenuItems { get; set; }
 
         ICollection<TrainingSetDesignEntry> Entries { get; set; }
+
+        TrainingSetDesignEntry SelectedEntry { get; set; }
+
+        ICommand RemoveEntryCommand { get; set; }
     }
 }

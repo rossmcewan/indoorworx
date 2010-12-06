@@ -117,7 +117,7 @@ namespace IndoorWorx.SchemaTools
                                                     MainText = "It's Go Time!",
                                                     SubText = "allez allez allez hop hop hop",
                                                     StartTime = new TimeSpan(0,0,10)
-                                                },
+                                                }
 
                                             }
                                         }

@@ -9,29 +9,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using IndoorWorx.Designer.Models;
-using IndoorWorx.Library.Controls;
 using IndoorWorx.Infrastructure;
 
-namespace IndoorWorx.Designer.Controls
+namespace IndoorWorx.Designer.Views
 {
-    public partial class TrainingSetDesignControl : UserControl
+    public partial class DesignerSelectorView : UserControl, IDesignerSelectorView
     {
-        public TrainingSetDesignControl()
+        public DesignerSelectorView(IDesignerSelectorPresentationModel presentationModel)
         {
             InitializeComponent();
+            this.DataContext = presentationModel;
         }
 
-        public TrainingSetDesign Model
+        public IDesignerSelectorPresentationModel Model
         {
-            set
-            {
-                this.DataContext = value;
-            }
-            get 
-            { 
-                return this.DataContext as TrainingSetDesign; 
-            }
+            get { return this.DataContext as IDesignerSelectorPresentationModel; }
         }
 
         private void TelemetryChart_Loaded(object sender, RoutedEventArgs e)
@@ -48,9 +40,9 @@ namespace IndoorWorx.Designer.Controls
                 else
                 {
                     Model.Source.SelectedTrainingSet.TelemetryLoaded += (_sender, _e) =>
-                        {
-                            SmartDispatcher.BeginInvoke(() => telemetryChart.LoadTelemetry(Model.Source.SelectedTrainingSet.Telemetry));
-                        };
+                    {
+                        SmartDispatcher.BeginInvoke(() => telemetryChart.LoadTelemetry(Model.Source.SelectedTrainingSet.Telemetry));
+                    };
                     Model.Source.SelectedTrainingSet.LoadTelemetry();
                 }
             }

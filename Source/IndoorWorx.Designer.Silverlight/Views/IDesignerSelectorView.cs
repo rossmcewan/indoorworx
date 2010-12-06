@@ -8,14 +8,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using Microsoft.Practices.Composite.Presentation.Events;
-using IndoorWorx.Designer.Models;
-using IndoorWorx.Designer.Views;
 
-namespace IndoorWorx.Designer.Events
+namespace IndoorWorx.Designer.Views
 {
-    public class AddDesignEntryEvent : CompositePresentationEvent<IDesignerSelectorPresentationModel>
+    public interface IDesignerSelectorView
     {
-
+        IDesignerSelectorPresentationModel Model { get; }
     }
 }
