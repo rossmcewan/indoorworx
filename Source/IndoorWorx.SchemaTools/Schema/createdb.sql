@@ -23,6 +23,10 @@ alter table [TrainingSet]  drop constraint FK9449533D1422C52E
 alter table [TrainingSet]  drop constraint FK9449533D6669A625
 
 
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE82DEBED74BBB917]') AND parent_object_id = OBJECT_ID('[VideoText]'))
+alter table [VideoText]  drop constraint FKE82DEBED74BBB917
+
+
     if exists (select * from dbo.sysobjects where id = object_id(N'[Catalog]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Catalog]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Category]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Category]
@@ -34,6 +38,8 @@ alter table [TrainingSet]  drop constraint FK9449533D6669A625
     if exists (select * from dbo.sysobjects where id = object_id(N'[Video]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Video]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingSet]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingSet]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[VideoText]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VideoText]
 
     create table [Catalog] (
         Id UNIQUEIDENTIFIER not null,
@@ -98,3 +104,49 @@ alter table [TrainingSet]  drop constraint FK9449533D6669A625
        Parent UNIQUEIDENTIFIER null,
        primary key (Id)
     )
+
+    create table [VideoText] (
+        Id UNIQUEIDENTIFIER not null,
+       Animation NVARCHAR(255) null,
+       Duration BIGINT null,
+       MainText NVARCHAR(255) null,
+       StartTime BIGINT null,
+       SubText NVARCHAR(255) null,
+       TrainingSet UNIQUEIDENTIFIER null,
+       primary key (Id)
+    )
+
+    alter table [Catalog] 
+        add constraint FK7FDA1AFC888C8F93 
+        foreign key (Category) 
+        references [Category]
+
+    alter table [VideoReview] 
+        add constraint FK218B12D2D7098544 
+        foreign key (Id) 
+        references [Review]
+
+    alter table [VideoReview] 
+        add constraint FK218B12D2E9F4749E 
+        foreign key (Video) 
+        references [Video]
+
+    alter table [Video] 
+        add constraint FK30300B57A4ECB12B 
+        foreign key (Catalog) 
+        references [Catalog]
+
+    alter table [TrainingSet] 
+        add constraint FK9449533D1422C52E 
+        foreign key (Id) 
+        references [Video]
+
+    alter table [TrainingSet] 
+        add constraint FK9449533D6669A625 
+        foreign key (Parent) 
+        references [Video]
+
+    alter table [VideoText] 
+        add constraint FKE82DEBED74BBB917 
+        foreign key (TrainingSet) 
+        references [TrainingSet]
