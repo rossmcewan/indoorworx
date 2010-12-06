@@ -18,36 +18,48 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid>
-            <ListBox 
-                    Grid.Row="1"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                    ScrollViewer.HorizontalScrollBarVisibility="Auto" 
-                    VerticalAlignment="Stretch" 
-                    HorizontalAlignment="Stretch" 
-                    HorizontalContentAlignment="Stretch"
-                    Margin="10" 
-                    SelectionChanged="ListBox_SelectionChanged"
-                    ItemsSource="{Binding Source.TrainingSets, Mode=OneWay}" 
-                    SelectedItem="{Binding Source.SelectedTrainingSet, Mode=TwoWay}">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Title, Mode=TwoWay}"/>
-                            <telerik:RadRating NumberOfItemsToGenerate="5" Value="{Binding AverageRating, Mode=TwoWay}" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Right" telerik:StyleManager.Theme="Office_Black"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <Border Grid.Row="1" CornerRadius="10" Margin="10">
+                <Border.Background>
+                    <SolidColorBrush Color="White" Opacity="0.5"/>
+                </Border.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding DesignerResources.TrainingSetsTitle, Source={StaticResource DesignerResources}}" Margin="5" FontWeight="Bold"/>
+                    <ListBox 
+                            Grid.Row="1"
+                            ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                            ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                            VerticalAlignment="Stretch" 
+                            HorizontalAlignment="Stretch" 
+                            HorizontalContentAlignment="Stretch"
+                            Margin="10" 
+                            SelectionChanged="ListBox_SelectionChanged"
+                            ItemsSource="{Binding Source.TrainingSets, Mode=OneWay}" 
+                            SelectedItem="{Binding Source.SelectedTrainingSet, Mode=TwoWay}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Title, Mode=TwoWay}"/>
+                                    <telerik:RadRating NumberOfItemsToGenerate="5" Value="{Binding AverageRating, Mode=TwoWay}" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Right" telerik:StyleManager.Theme="Office_Black"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Border>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>

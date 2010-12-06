@@ -175,6 +175,15 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Training Sets.
+        /// </summary>
+        public static string TrainingSetsTitle {
+            get {
+                return ResourceManager.GetString("TrainingSetsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown item type {0}.
         /// </summary>
         public static string UnknownItemTypeErrorMessage {
