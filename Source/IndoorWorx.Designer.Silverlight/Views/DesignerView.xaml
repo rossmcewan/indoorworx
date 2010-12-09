@@ -56,6 +56,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <StackPanel>
                                         <telerik:RadButton Content="Delete" Command="{Binding RemoveEntryCommand, Mode=OneWay}" CommandParameter="{Binding SelectedEntry, Mode=OneWay}"/>
@@ -72,6 +73,7 @@
                                             </telerik:RadBusyIndicator>
                                         </Grid>
                                     </telerik:RadBusyIndicator>
+                                    <telerik:RadSlider Orientation="Vertical" Minimum="0" Maximum="200" Value="100" Grid.Column="2" VerticalAlignment="Stretch"/>
                                 </Grid>
                             </telerik:RadPane>
                         </telerik:RadPaneGroup>

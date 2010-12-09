@@ -78,7 +78,7 @@ namespace IndoorWorx.Player.Views
         private void StartTimers()
         {
             telemetryTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
-            zoomTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            //zoomTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
             textTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
         }
 
@@ -92,7 +92,7 @@ namespace IndoorWorx.Player.Views
         private void StopTimers()
         {
             telemetryTimer.Change(Timeout.Infinite, Timeout.Infinite);
-            zoomTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            //zoomTimer.Change(Timeout.Infinite, Timeout.Infinite);
             textTimer.Change(Timeout.Infinite, Timeout.Infinite);
         }
 

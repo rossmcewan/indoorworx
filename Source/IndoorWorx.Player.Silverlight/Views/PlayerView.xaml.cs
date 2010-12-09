@@ -73,7 +73,7 @@ namespace IndoorWorx.Player.Views
             SmartDispatcher.BeginInvoke(() =>
                 {
                     this.profileChart.LoadTelemetry(telemetry);
-                    this.zoomedChart.LoadTelemetry(telemetry);
+                    //this.zoomedChart.LoadTelemetry(telemetry);
                 });
         }
 

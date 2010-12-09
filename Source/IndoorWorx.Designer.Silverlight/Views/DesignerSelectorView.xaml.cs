@@ -50,8 +50,8 @@ namespace IndoorWorx.Designer.Views
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Model.OnTrainingSetSelectionChanged();
             LoadTelemetryOnChart();
+            Model.OnTrainingSetSelectionChanged();
         }
     }
 }

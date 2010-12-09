@@ -103,7 +103,8 @@
             </Grid>
                 
        </StackPanel>
-        <infcontrols:TelemetryChart 
+        <!--<controls:CarDashboardControl Grid.Column="1" Grid.Row="2" />-->
+        <!--<infcontrols:TelemetryChart 
             Visibility="{Binding IsManifestReady, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
             x:Name="zoomedChart" 
             Grid.Column="1" 
@@ -113,8 +114,8 @@
             XZoomRangeFrom="{Binding ZoomRangeFrom, Mode=OneWay}"
             XZoomRangeTo="{Binding ZoomRangeTo, Mode=OneWay}"
             XAxisMinValue="0" 
-            XAxisMaxValue="{Binding Video.Duration.TotalSeconds, Mode=OneWay, Converter={StaticResource SecondsToOADateConverter}}"/>
-        <controls:CircularGauge x:Name="gauge" Grid.Column="2" Grid.Row="2"  BorderThickness="0" Margin="5"/>        
+            XAxisMaxValue="{Binding Video.Duration.TotalSeconds, Mode=OneWay, Converter={StaticResource SecondsToOADateConverter}}"/>-->
+        <controls:CircularGauge x:Name="gauge" Grid.Column="1" Grid.Row="2"  BorderThickness="0" Margin="5"/>        
     </Grid>
 
 </UserControl>
