@@ -98,8 +98,14 @@
     <Compile Include="Animations\FadeCenter.xaml.cs">
       <DependentUpon>FadeCenter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CarDashboardControl.xaml.cs">
-      <DependentUpon>CarDashboardControl.xaml</DependentUpon>
+    <Compile Include="Animations\ScrollingCenter.xaml.cs">
+      <DependentUpon>ScrollingCenter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Animations\Spinner.xaml.cs">
+      <DependentUpon>Spinner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Animations\ZoomCenter.xaml.cs">
+      <DependentUpon>ZoomCenter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CircularGauge.xaml.cs">
       <DependentUpon>CircularGauge.xaml</DependentUpon>
@@ -158,10 +164,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Animations\ZoomCenter.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\CarDashboardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

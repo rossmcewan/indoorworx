@@ -1,8 +1,8 @@
-﻿<Canvas xmlns="http://schemas.microsoft.com/client/2007"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="220" Height="180" mc:Ignorable="d">
+﻿<Canvas  x:Class="IndoorWorx.Player.Animations.Spinner"
+    xmlns="http://schemas.microsoft.com/client/2007"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Canvas.Resources>
+
         <Storyboard x:Name="InTransition" Duration="00:00:01">
             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Spinner" Storyboard.TargetProperty="(UIElement.Opacity)">
                 <SplineDoubleKeyFrame KeyTime="00:00:01" Value="1" KeySpline="0.5,0,0.5,1"/>
@@ -17,6 +17,7 @@
                 <SplineDoubleKeyFrame KeyTime="00:00:01" Value="1" KeySpline="0.5,0,0.5,1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+
         <Storyboard x:Name="OutTransition" Duration="00:00:01">
             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Spinner" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
                 <SplineDoubleKeyFrame KeySpline="0,0,0.5,1" KeyTime="00:00:00" Value="0"/>
@@ -35,9 +36,11 @@
                 <SplineDoubleKeyFrame KeyTime="00:00:01" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+
     </Canvas.Resources>
+
     <Canvas x:Name="Content" Width="220" Height="180" Canvas.Left="0" Canvas.Top="0">
-        <Grid x:Name="Spinner" Width="220" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,77,0,0" Opacity="0" RenderTransformOrigin="0.5,0.5">
+        <Grid x:Name="SpinnerGrid" Width="220" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,77,0,0" Opacity="0" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.1" ScaleY="0.1"/>
@@ -50,8 +53,8 @@
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="MainTextField" TextAlignment="Center" Width="220" d:LayoutOverrides="Height" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" Grid.RowSpan="1" FontWeight="Bold" FontStyle="Italic" FontSize="12.6731" Text="{Binding CurrentVideoText.MainText}" Foreground="#FFFFFFFF"/>
-            <TextBlock x:Name="SubTextField" TextAlignment="Center" Width="220" d:LayoutOverrides="Height" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" FontFamily="Segoe UI" FontWeight="Bold" FontStyle="Italic" FontSize="10.4597" Text="{Binding CurrentVideoText.SubText}" Foreground="#FFFFFFFF" Grid.Row="1"/>
+            <TextBlock x:Name="MainTextField" TextAlignment="Center" Width="220" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" Grid.RowSpan="1" FontWeight="Bold" FontStyle="Italic" FontSize="12.6731" Text="{Binding CurrentVideoText.MainText}" Foreground="#FFFFFFFF"/>
+            <TextBlock x:Name="SubTextField" TextAlignment="Center" Width="220"  RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" FontFamily="Segoe UI" FontWeight="Bold" FontStyle="Italic" FontSize="10.4597" Text="{Binding CurrentVideoText.SubText}" Foreground="#FFFFFFFF" Grid.Row="1"/>
         </Grid>
     </Canvas>
 </Canvas>

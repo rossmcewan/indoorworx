@@ -21,6 +21,7 @@ namespace IndoorWorx.Library.Controls
     {
         private CustomGridLine line;
         private MarkedZone zone;
+
         public TelemetryChart():base()
         {            
             AreaSeriesDefinition lineSeries = new AreaSeriesDefinition();

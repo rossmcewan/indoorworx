@@ -122,36 +122,53 @@ namespace IndoorWorx.Player.Views
 
         public void AddTextAnimation(VideoText videoText)
         {
+            FrameworkElement animation = null;
             switch (videoText.Animation)
             {
                 case IndoorWorx.Infrastructure.Enums.VideoTextAnimations.FadeCenter:
-                    var animation = new FadeCenter() { DataContext = videoText };
-                    Grid.SetColumnSpan(animation, 3);
-                    Grid.SetRowSpan(animation, 3);
-                    animation.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-                    animation.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-                    playerGrid.Children.Add(animation);
-                    var startAnimation = animation.Resources["InTransition"] as Storyboard;
-                    startAnimation.Begin();
-                    ThreadPool.QueueUserWorkItem((_animation) =>
-                        {
-                            Thread.Sleep(Convert.ToInt32(videoText.Duration.TotalMilliseconds));
-                            SmartDispatcher.BeginInvoke(() =>
-                                {
-                                    var stopAnimation = animation.Resources["OutTransition"] as Storyboard;
-                                    stopAnimation.Begin();
-                                    playerGrid.Children.Remove(animation);
-                                });
-                        }, animation);
+                     animation = new FadeCenter() { DataContext = videoText };
                     break;
                 case IndoorWorx.Infrastructure.Enums.VideoTextAnimations.ZoomCenter:
+                     animation = new ZoomCenter() { DataContext = videoText };
                     break;
                 case IndoorWorx.Infrastructure.Enums.VideoTextAnimations.ScrollingCenter:
+                     animation = new ScrollingCenter() { DataContext = videoText };
                     break;
                 case IndoorWorx.Infrastructure.Enums.VideoTextAnimations.Spinner:
+                     animation = new Spinner() { DataContext = videoText };
                     break;
                 default:
                     break;
+            }
+            if (animation != null)
+            {
+                LoadTextAnimation(animation, videoText.Duration);
+            }
+        }
+
+
+        private void LoadTextAnimation(FrameworkElement animation,TimeSpan duration)
+        {
+            Grid.SetColumnSpan(animation, 3);
+            Grid.SetRowSpan(animation, 3);
+            animation.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            animation.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            playerGrid.Children.Add(animation);
+            //FadeCenter temp = animation as FadeCenter;
+            var startAnimation = animation.Resources["InTransition"] as Storyboard;
+            if (startAnimation != null)
+            {
+                startAnimation.Begin();
+                ThreadPool.QueueUserWorkItem((_animation) =>
+                {
+                    Thread.Sleep(Convert.ToInt32(duration.TotalMilliseconds));
+                    SmartDispatcher.BeginInvoke(() =>
+                    {
+                        var stopAnimation = animation.Resources["OutTransition"] as Storyboard;
+                        stopAnimation.Begin();
+                        playerGrid.Children.Remove(animation);
+                    });
+                }, animation);
             }
         }
     }

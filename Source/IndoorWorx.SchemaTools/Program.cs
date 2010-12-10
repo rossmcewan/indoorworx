@@ -13,12 +13,35 @@ namespace IndoorWorx.SchemaTools
 {
     class Program
     {
+        static ICollection<VideoText> GetVideoText()
+        {
+            return new List<VideoText>() 
+            {
+                new VideoText() 
+                {
+                    Animation = VideoTextAnimations.FadeCenter, 
+                    Duration = new TimeSpan(0,0,10), 
+                    MainText = "Let's Get Ready to Rumble!",
+                    SubText = "your video is about to begin",
+                    StartTime = new TimeSpan(0,0,10)
+                },
+                new VideoText() 
+                {
+                    Animation = VideoTextAnimations.FadeCenter, 
+                    Duration = new TimeSpan(0,0,25), 
+                    MainText = "It's Go Time!",
+                    SubText = "allez allez allez hop hop hop",
+                    StartTime = new TimeSpan(0,0,10)
+                }
+            };
+        }
+
         static void Main(string[] args)
         {
             var sessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(x => x.FromConnectionStringWithKey("IndoorWorx")))
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<Module>())
-                .ExposeConfiguration(x => new SchemaExport(x).SetOutputFile("../../Schema/createdb.sql").Create(true,true))
+                .ExposeConfiguration(x => new SchemaExport(x).SetOutputFile("../../Schema/createdb.sql").Create(true, true))
                 .BuildSessionFactory();
 
             using (var session = sessionFactory.OpenSession())
@@ -58,9 +81,11 @@ namespace IndoorWorx.SchemaTools
                                                 AveragePower = 0.76,
                                                 NormalizedPower = 0.83,
                                                 IntensityFactor = 0.77,
-                                                VariabilityIndex = 1.03
+                                                VariabilityIndex = 1.03,
+
                                             },
-                                            Duration = new TimeSpan(1, 18, 0)
+                                            Duration = new TimeSpan(1, 18, 0),
+                                            VideoText = GetVideoText()
                                         },
                                         new TrainingSet()
                                         {
@@ -78,7 +103,8 @@ namespace IndoorWorx.SchemaTools
                                             Description = "The ride entails a quick warm up, followed by 10 by 2 minutes at 120% FTP with 2 minutes RI; this is followed by a quick cool down.",
                                             StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                             TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
-                                            Duration = new TimeSpan(1, 18, 0)
+                                            Duration = new TimeSpan(1, 18, 0),
+                                            VideoText = GetVideoText()
                                         }
                                     }
                                 },
@@ -100,26 +126,7 @@ namespace IndoorWorx.SchemaTools
                                             StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                             TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
                                             Duration = new TimeSpan(1, 18, 0),
-                                            VideoText = new List<VideoText>() 
-                                            {
-                                                new VideoText() 
-                                                {
-                                                    Animation = VideoTextAnimations.FadeCenter, 
-                                                    Duration = new TimeSpan(0,0,10), 
-                                                    MainText = "Let's Get Ready to Rumble!",
-                                                    SubText = "your video is about to begin",
-                                                    StartTime = new TimeSpan(0,0,10)
-                                                },
-                                                new VideoText() 
-                                                {
-                                                    Animation = VideoTextAnimations.FadeCenter, 
-                                                    Duration = new TimeSpan(0,0,25), 
-                                                    MainText = "It's Go Time!",
-                                                    SubText = "allez allez allez hop hop hop",
-                                                    StartTime = new TimeSpan(0,0,10)
-                                                }
-
-                                            }
+                                            VideoText = GetVideoText()
                                         }
                                     }
                                 }

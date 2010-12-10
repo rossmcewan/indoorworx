@@ -82,8 +82,6 @@ namespace IndoorWorx.Player
         {
             Application.Current.Resources.Add("PlayerResources", new ResourceWrapper());
 
-            //unityContainer.RegisterInstance<IPlayerPresentationModel>(unityContainer.Resolve<PlayerPresentationModel>());
-            //unityContainer.RegisterInstance<IPlayerView>(unityContainer.Resolve<PlayerView>());
             unityContainer.RegisterType<IPlayerPresentationModel, PlayerPresentationModel>();
             unityContainer.RegisterType<IPlayerView, PlayerView>();
 
