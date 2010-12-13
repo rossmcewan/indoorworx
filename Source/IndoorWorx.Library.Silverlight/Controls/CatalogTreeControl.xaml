@@ -167,6 +167,7 @@
                     ItemsSource="{Binding Categories, Mode=OneWay}" 
                     ItemTemplateSelector="{StaticResource CategoryTreeDataTemplateSelector}"                
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                    SelectionChanged="catalogTreeView_SelectionChanged"
                     Margin="5">          
                     <telerik:RadContextMenu.ContextMenu>
                         <telerik:RadContextMenu 

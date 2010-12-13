@@ -156,6 +156,7 @@ namespace IndoorWorx.Catalog.Views
         public void OnVideoSelectionChanged()
         {
             eventAggregator.GetEvent<VideoSelectionChangedEvent>().Publish(SelectedCategory.SelectedCatalog.SelectedVideo);
+            FirePropertyChanged("IsVideoSelected");
         }
 
         #endregion
@@ -283,6 +284,17 @@ namespace IndoorWorx.Catalog.Views
                     validSearchResults.Add(newCategory);
             }
             Categories = validSearchResults;
+        }
+
+        public bool IsVideoSelected
+        {
+            get
+            {
+                var result = SelectedCategory != null &&
+                    SelectedCategory.SelectedCatalog != null &&
+                    SelectedCategory.SelectedCatalog.SelectedVideo != null;
+                return result;
+            }
         }
 
         #endregion

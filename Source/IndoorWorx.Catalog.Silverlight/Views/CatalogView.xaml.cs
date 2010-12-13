@@ -57,6 +57,11 @@ namespace IndoorWorx.Catalog.Views
             {
                 Model.OnVideoSelectionChanged();
             }
+        }
+
+        private void CatalogTreeControl_SelectionChanged(object sender, EventArgs e)
+        {
+            Model.OnVideoSelectionChanged();
         }                
     }
 }

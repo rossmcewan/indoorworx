@@ -9,7 +9,7 @@ namespace IndoorWorx.Infrastructure.Models
     [DataContract(IsReference = true)]
     public partial class TrainingSet : Video
     {
-        public static readonly double DefaultRecordingInterval = 3;
+        public static readonly double DefaultRecordingInterval = 2;
 
         private double recordingInterval = DefaultRecordingInterval;
         [DataMember]

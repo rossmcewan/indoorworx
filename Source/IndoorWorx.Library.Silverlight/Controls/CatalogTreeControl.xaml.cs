@@ -18,6 +18,8 @@ namespace IndoorWorx.Library.Controls
 {
     public partial class CatalogTreeControl : UserControl
     {
+        public event EventHandler SelectionChanged;
+
         public CatalogTreeControl()
         {
             InitializeComponent();
@@ -75,6 +77,12 @@ namespace IndoorWorx.Library.Controls
             {
                 catalogTreeContextMenu.IsEnabled = true;
             }
+        }
+
+        private void catalogTreeView_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (SelectionChanged != null)
+                SelectionChanged(this, EventArgs.Empty);
         }
     }
 }

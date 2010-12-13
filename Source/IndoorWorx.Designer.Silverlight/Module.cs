@@ -67,7 +67,7 @@ namespace IndoorWorx.Designer
 
             NavigationLinks.Add(new Infrastructure.Models.NavigationInfo()
             {
-                Content = "Designer",
+                Content = "designer",
                 IsAuthenticationRequired = true,
                 NavigationUri = "/Designer",
                 Allow = new string[] { "?" },

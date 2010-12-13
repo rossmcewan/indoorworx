@@ -61,7 +61,7 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
+        ///   Looks up a localized string similar to about.
         /// </summary>
         public static string AboutPageTitle {
             get {
@@ -133,7 +133,7 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Home.
+        ///   Looks up a localized string similar to home.
         /// </summary>
         public static string HomePageTitle {
             get {
@@ -142,7 +142,7 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login.
+        ///   Looks up a localized string similar to login.
         /// </summary>
         public static string LoginButton {
             get {
@@ -160,7 +160,7 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logout.
+        ///   Looks up a localized string similar to logout.
         /// </summary>
         public static string LogOffButton {
             get {

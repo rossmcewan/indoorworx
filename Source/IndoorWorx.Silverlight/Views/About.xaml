@@ -4,11 +4,28 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-  mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"  
+  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"    
+  mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"      
   Style="{StaticResource PageStyle}">
 
   <Grid x:Name="LayoutRoot">
-    <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
+        <telerik:RadBook RightPageIndex="0" Margin="5" PageFlipMode="DoubleClick" FirstPagePosition="Right">            
+            <telerik:RadBookItem IsHardPaper="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="The Story of IndoorWorx ..." FontFamily="Ravie" FontWeight="ExtraBold" FontSize="20" Margin="5"/>
+                </Grid>
+            </telerik:RadBookItem>
+            <telerik:RadBookItem/>
+            <telerik:RadBookItem/>
+            <telerik:RadBookItem/>
+            <telerik:RadBookItem/>
+            <telerik:RadBookItem/>
+            <telerik:RadBookItem IsHardPaper="True"/>
+        </telerik:RadBook>
+            <!--<ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
 
       <StackPanel x:Name="ContentStackPanel">
 
@@ -19,7 +36,7 @@
 
       </StackPanel>
 
-    </ScrollViewer>
+    </ScrollViewer>-->
   </Grid>
 
 </navigation:Page>

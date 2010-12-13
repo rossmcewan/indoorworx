@@ -26,7 +26,7 @@ namespace IndoorWorx.Infrastructure.Models
                 if (selectedVideo != null)
                 {
                     selectedVideo.IsSelected = true;
-                    selectedVideo.SelectedTrainingSet = selectedVideo.TrainingSets.FirstOrDefault();
+                    //selectedVideo.SelectedTrainingSet = selectedVideo.TrainingSets.FirstOrDefault();
                 }
                 FirePropertyChanged("SelectedVideo");
             }
