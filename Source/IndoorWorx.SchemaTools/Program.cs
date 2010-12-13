@@ -59,6 +59,7 @@ namespace IndoorWorx.SchemaTools
                             Description = "Training videos filmed by us on our favourite training routes with our favourite training buddies.",
                             Videos = new List<Video>()
                             {
+#region Rand Waterboard
                                 new Video()
                                 {
                                     Sequence = 1,
@@ -108,6 +109,8 @@ namespace IndoorWorx.SchemaTools
                                         }
                                     }
                                 },
+#endregion
+#region Suikerbosrand
                                 new Video()
                                 {
                                     Sequence = 2,
@@ -129,7 +132,31 @@ namespace IndoorWorx.SchemaTools
                                             VideoText = GetVideoText()
                                         }
                                     }
+                                },
+#endregion
+#region Sun City
+                                new Video()
+                                {
+                                    Sequence = 3,
+                                    Created = DateTime.Now,
+                                    CreatedBy = typeof(Program).Assembly.FullName,
+                                    ImageUri = new Uri("http://localhost:3415/Mock/suncity.jpg", UriKind.Absolute),
+                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/sun_city/FILE001.ism/Manifest", UriKind.Absolute),
+                                    Title = "11 Global - Sun City",
+                                    TrainingSets = new List<TrainingSet>()
+                                    {
+                                        new TrainingSet()
+                                        {
+                                            Sequence = 1,
+                                            Title = "The Race",
+                                            Description = "Ride the 11 Global Sun City triathlon bike leg. A near threshold effort for just over an hour. 2 significant climbs. Hang tough!",
+                                            StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/sun_city/FILE0001.ism/Manifest", UriKind.Absolute),
+                                            TelemetryUri = new Uri("http://localhost:3415/Mock/suncity.csv", UriKind.Absolute),
+                                            Duration = TimeSpan.FromMinutes(72.23332611)
+                                        }
+                                    }
                                 }
+#endregion
                             }
                         },
                         new Catalog()
