@@ -37,8 +37,7 @@ namespace IndoorWorx.Catalog.Views
         #endregion
 
         private void RadDocking_PreviewClose(object sender, Telerik.Windows.Controls.Docking.StateChangeEventArgs e)
-        {
-
+        {            
         }
 
         private void RadDocking_Close(object sender, Telerik.Windows.Controls.Docking.StateChangeEventArgs e)
@@ -49,6 +48,15 @@ namespace IndoorWorx.Catalog.Views
         private void trainingSetsList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             Model.OnTrainingSetSelectionChanged();
+        }
+
+        private void radTileView_TileStateChanged(object sender, Telerik.Windows.RadRoutedEventArgs e)
+        {
+            var tileViewItem = e.Source as RadTileViewItem;
+            if (tileViewItem != null && tileViewItem.TileState == TileViewItemState.Maximized)
+            {
+                Model.OnVideoSelectionChanged();
+            }
         }                
     }
 }

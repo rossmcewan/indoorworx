@@ -34,5 +34,7 @@ namespace IndoorWorx.Catalog.Views
         bool IsBusy { get; set; }
 
         void OnTrainingSetSelectionChanged();
+
+        void OnVideoSelectionChanged();
     }
 }

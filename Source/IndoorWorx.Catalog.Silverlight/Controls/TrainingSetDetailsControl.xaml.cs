@@ -23,11 +23,18 @@ namespace IndoorWorx.Catalog.Controls
         {
             InitializeComponent();
             IoC.Resolve<IEventAggregator>().GetEvent<TrainingSetSelectionChangedEvent>().Subscribe(TrainingSetSelectionChanged);
+            IoC.Resolve<IEventAggregator>().GetEvent<VideoSelectionChangedEvent>().Subscribe(VideoSelectionChanged);
         }
 
         public void TrainingSetSelectionChanged(TrainingSet trainingSet)
         {
             LoadTelemetryOnChart(trainingSet);
+        }
+
+        public void VideoSelectionChanged(Video video)
+        {
+            if (video.SelectedTrainingSet != null)
+                LoadTelemetryOnChart(video.SelectedTrainingSet);
         }
 
         private void profileChart_Loaded(object sender, RoutedEventArgs e)

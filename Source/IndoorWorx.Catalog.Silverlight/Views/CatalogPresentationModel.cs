@@ -153,6 +153,11 @@ namespace IndoorWorx.Catalog.Views
             eventAggregator.GetEvent<TrainingSetSelectionChangedEvent>().Publish(SelectedCategory.SelectedCatalog.SelectedVideo.SelectedTrainingSet);
         }
 
+        public void OnVideoSelectionChanged()
+        {
+            eventAggregator.GetEvent<VideoSelectionChangedEvent>().Publish(SelectedCategory.SelectedCatalog.SelectedVideo);
+        }
+
         #endregion
 
         #region ICategoryTreeControlModel Members

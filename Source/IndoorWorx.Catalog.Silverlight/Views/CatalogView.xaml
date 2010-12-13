@@ -28,7 +28,7 @@
                     <telerik:RadSplitContainer>
                         <telerik:RadPaneGroup x:Name="DocumentPaneGroup">
                             <telerik:RadPane CanUserClose="False" Title="{Binding SelectedCategory.SelectedCatalog.SelectedVideo.Title, Mode=TwoWay}">
-                                <telerik:RadTileView 
+                                <telerik:RadTileView                                    
                                     Grid.Row="0" Grid.Column="1"
                                     x:Name="radTileView" 
                                     ItemsSource="{Binding SelectedCategory.SelectedCatalog.Videos, Mode=TwoWay}" 
@@ -36,6 +36,7 @@
                                     MaximizeMode="One" 
                                     ItemContainerStyle="{StaticResource RadTileViewItemStyle}"
                                     TileStateChangeTrigger="SingleClick" 
+                                    TileStateChanged="radTileView_TileStateChanged"
                                     MinimizedColumnWidth="180">
                                     <telerik:RadTileView.ItemTemplate>
                                         <DataTemplate>
