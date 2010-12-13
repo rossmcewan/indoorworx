@@ -272,6 +272,7 @@ namespace IndoorWorx.Player.Views
                 System.GC.Collect();
             }), null, Timeout.Infinite, Timeout.Infinite);
             Video.IsMediaLoading = false;
+            IsMediaOpened = true;
         }
 
         private void LoadVideoText(VideoText videoText)
@@ -290,6 +291,17 @@ namespace IndoorWorx.Player.Views
             }
         }
 
+        private bool mediaOpened;
+        public bool IsMediaOpened
+        {
+            get { return mediaOpened; }
+            set
+            {
+                mediaOpened = value;
+                FirePropertyChanged("IsMediaOpened");
+            }
+        }
+
         private DateTime now = DateTime.Now;
         private double zoomedLength;
         public void ManifestReady()
@@ -303,6 +315,7 @@ namespace IndoorWorx.Player.Views
         public void MediaEnded()
         {
             this.hasVideoEnded = true;
+            IsMediaOpened = false;
         }
 
         private ICommand playCommand;

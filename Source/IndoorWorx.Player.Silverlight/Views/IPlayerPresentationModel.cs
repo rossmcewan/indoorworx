@@ -26,6 +26,10 @@ namespace IndoorWorx.Player.Views
 
         bool IsFullScreen { get; set; }
 
+        bool IsManifestReady { get; set; }
+
+        bool IsMediaOpened { get; set; }
+
         ICommand PlayCommand { get;set;}
 
         ICommand StopCommand { get; set; }

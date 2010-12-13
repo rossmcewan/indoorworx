@@ -20,5 +20,20 @@
                 <sys:String>Catalog</sys:String>
             </Modularity:ModuleInfo.DependsOn>
         </Modularity:ModuleInfo>
+        <Modularity:ModuleInfo ModuleName="4me" ModuleType="IndoorWorx.ForMe.Module, IndoorWorx.4me.Silverlight, Version=1.0.0.0" >
+            <Modularity:ModuleInfo.DependsOn>
+                <sys:String>Designer</sys:String>
+            </Modularity:ModuleInfo.DependsOn>
+        </Modularity:ModuleInfo>
+        <Modularity:ModuleInfo ModuleName="4coaches" ModuleType="IndoorWorx.ForCoaches.Module, IndoorWorx.4coaches.Silverlight, Version=1.0.0.0" >
+            <Modularity:ModuleInfo.DependsOn>
+                <sys:String>4me</sys:String>
+            </Modularity:ModuleInfo.DependsOn>
+        </Modularity:ModuleInfo>
+        <Modularity:ModuleInfo ModuleName="4studios" ModuleType="IndoorWorx.ForStudios.Module, IndoorWorx.4studios.Silverlight, Version=1.0.0.0" >
+            <Modularity:ModuleInfo.DependsOn>
+                <sys:String>4coaches</sys:String>
+            </Modularity:ModuleInfo.DependsOn>
+        </Modularity:ModuleInfo>
     </Modularity:ModuleInfoGroup>
 </Modularity:ModuleCatalog>

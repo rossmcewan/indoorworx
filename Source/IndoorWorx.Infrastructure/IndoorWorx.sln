@@ -58,6 +58,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.Designer.Silverl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.Player.Silverlight", "..\IndoorWorx.Player.Silverlight\IndoorWorx.Player.Silverlight.csproj", "{2A773D39-8E6B-4952-9EFE-E3891F5C3987}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.4me.Silverlight", "..\IndoorWorx.4me.Silverlight\IndoorWorx.4me.Silverlight.csproj", "{99FF852F-7293-434E-85C5-170FEE16443D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.4studios.Silverlight", "..\IndoorWorx.4studios.Silverlight\IndoorWorx.4studios.Silverlight.csproj", "{90D53DE7-AB66-46D5-9BE9-1E4A629203F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.4coaches.Silverlight", "..\IndoorWorx.4coaches.Silverlight\IndoorWorx.4coaches.Silverlight.csproj", "{EABF5770-AE15-4D71-ABC7-37DE6778A016}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = IndoorWorx.vsmdi
@@ -211,6 +217,36 @@ Global
 		{2A773D39-8E6B-4952-9EFE-E3891F5C3987}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2A773D39-8E6B-4952-9EFE-E3891F5C3987}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2A773D39-8E6B-4952-9EFE-E3891F5C3987}.Release|x86.ActiveCfg = Release|Any CPU
+		{99FF852F-7293-434E-85C5-170FEE16443D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99FF852F-7293-434E-85C5-170FEE16443D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99FF852F-7293-434E-85C5-170FEE16443D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{99FF852F-7293-434E-85C5-170FEE16443D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{99FF852F-7293-434E-85C5-170FEE16443D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{99FF852F-7293-434E-85C5-170FEE16443D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99FF852F-7293-434E-85C5-170FEE16443D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99FF852F-7293-434E-85C5-170FEE16443D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{99FF852F-7293-434E-85C5-170FEE16443D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{99FF852F-7293-434E-85C5-170FEE16443D}.Release|x86.ActiveCfg = Release|Any CPU
+		{90D53DE7-AB66-46D5-9BE9-1E4A629203F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90D53DE7-AB66-46D5-9BE9-1E4A629203F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90D53DE7-AB66-46D5-9BE9-1E4A629203F0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{90D53DE7-AB66-46D5-9BE9-1E4A629203F0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{90D53DE7-AB66-46D5-9BE9-1E4A629203F0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{90D53DE7-AB66-46D5-9BE9-1E4A629203F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90D53DE7-AB66-46D5-9BE9-1E4A629203F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90D53DE7-AB66-46D5-9BE9-1E4A629203F0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{90D53DE7-AB66-46D5-9BE9-1E4A629203F0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{90D53DE7-AB66-46D5-9BE9-1E4A629203F0}.Release|x86.ActiveCfg = Release|Any CPU
+		{EABF5770-AE15-4D71-ABC7-37DE6778A016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EABF5770-AE15-4D71-ABC7-37DE6778A016}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EABF5770-AE15-4D71-ABC7-37DE6778A016}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{EABF5770-AE15-4D71-ABC7-37DE6778A016}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EABF5770-AE15-4D71-ABC7-37DE6778A016}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EABF5770-AE15-4D71-ABC7-37DE6778A016}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EABF5770-AE15-4D71-ABC7-37DE6778A016}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EABF5770-AE15-4D71-ABC7-37DE6778A016}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{EABF5770-AE15-4D71-ABC7-37DE6778A016}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{EABF5770-AE15-4D71-ABC7-37DE6778A016}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -234,6 +270,9 @@ Global
 		{5FC95272-5312-45A6-B2B4-DCE46FB87829} = {DC0AEFB6-1D17-4A26-BAD7-59E49BBEED34}
 		{D2C72190-3E51-48F0-9FC5-B103A2AA11BA} = {DC0AEFB6-1D17-4A26-BAD7-59E49BBEED34}
 		{2A773D39-8E6B-4952-9EFE-E3891F5C3987} = {DC0AEFB6-1D17-4A26-BAD7-59E49BBEED34}
+		{99FF852F-7293-434E-85C5-170FEE16443D} = {DC0AEFB6-1D17-4A26-BAD7-59E49BBEED34}
+		{90D53DE7-AB66-46D5-9BE9-1E4A629203F0} = {DC0AEFB6-1D17-4A26-BAD7-59E49BBEED34}
+		{EABF5770-AE15-4D71-ABC7-37DE6778A016} = {DC0AEFB6-1D17-4A26-BAD7-59E49BBEED34}
 		{FDA01ECD-B9D6-424F-A1A9-831F02841632} = {B08B6718-300B-4E33-8121-649832787697}
 		{EFB2B27B-411E-4382-83FF-12A84F5AC021} = {EBE68532-335D-40BE-BBA5-A86E3F3E2D7D}
 	EndGlobalSection
