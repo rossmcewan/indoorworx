@@ -23,6 +23,7 @@ using IndoorWorx.Designer.Events;
 using IndoorWorx.Infrastructure.Events;
 using IndoorWorx.Infrastructure.Navigation;
 using IndoorWorx.Designer.Navigation;
+using System.Threading;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -71,14 +72,36 @@ namespace IndoorWorx.Designer.Views
 
         public void AddEntry(IDesignerSelectorPresentationModel trainingSetDesign)
         {
-            Entries.Add(new TrainingSetDesignEntry()
-            {
-                Source = trainingSetDesign.Source.SelectedTrainingSet,
-                TimeStart = TimeSpan.FromSeconds(trainingSetDesign.SelectionStart.GetValueOrDefault()),
-                TimeEnd = TimeSpan.FromSeconds(trainingSetDesign.SelectionEnd.GetValueOrDefault())
-            });
-            if (EntriesChanged != null)
-                EntriesChanged(this, EventArgs.Empty);
+            ThreadPool.QueueUserWorkItem((obj) =>
+                {
+                    IsBusy = true;
+                    Entries.Add(new TrainingSetDesignEntry()
+                    {
+                        Source = trainingSetDesign.Source.SelectedTrainingSet,
+                        TimeStart = TimeSpan.FromSeconds(trainingSetDesign.SelectionStart.GetValueOrDefault()),
+                        TimeEnd = TimeSpan.FromSeconds(trainingSetDesign.SelectionEnd.GetValueOrDefault())
+                    });
+                    if (EntriesChanged != null)
+                        SmartDispatcher.BeginInvoke(() =>
+                            {
+                                View.EntriesChangedOnView += View_EntriesChangedOnView;
+                                try
+                                {
+                                    EntriesChanged(this, EventArgs.Empty);
+                                }
+                                catch
+                                {
+                                    IsBusy = false;
+                                    throw;
+                                }
+                            });
+                });
+        }
+
+        void View_EntriesChangedOnView(object sender, EventArgs e)
+        {
+            IsBusy = false;
+            View.EntriesChangedOnView -= View_EntriesChangedOnView;
         }
 
         public IDesignerView View { get; set; }              
@@ -92,14 +115,19 @@ namespace IndoorWorx.Designer.Views
                 {
                     foreach (var video in catalog.Videos)
                     {
-                        foreach (var ts in video.TrainingSets)
+                        if (id == video.Id)
                         {
-                            if (id == ts.Id)
-                            {
-                                SelectedVideo = video;
-                                break;
-                            }
+                            SelectedVideo = video;
+                            break;
                         }
+                        //foreach (var ts in video.TrainingSets)
+                        //{
+                        //    if (id == ts.Id)
+                        //    {
+                        //        SelectedVideo = video;
+                        //        break;
+                        //    }
+                        //}
                     }
                 }
             }

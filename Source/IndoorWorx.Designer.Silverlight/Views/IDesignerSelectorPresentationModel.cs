@@ -22,6 +22,10 @@ namespace IndoorWorx.Designer.Views
 
         double? SelectionEnd { get; set; }
 
+        double? SelectionDuration { get; }
+
+        bool IsSelectionValid { get; }
+
         void OnTrainingSetSelectionChanged();
     }
 }

@@ -70,6 +70,18 @@ namespace IndoorWorx.Player.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A smooth streaming media error has occurred.
+        ///Error code : {0}
+        ///Error message : {1}
+        ///Technical support has been notified. We will try to resolve this as soon as possible..
+        /// </summary>
+        public static string MediaError {
+            get {
+                return ResourceManager.GetString("MediaError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Power:.
         /// </summary>
         public static string PowerLabel {

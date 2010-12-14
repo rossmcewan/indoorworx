@@ -13,6 +13,7 @@ using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Composite.Presentation.Commands;
 using IndoorWorx.Designer.Events;
+using IndoorWorx.Infrastructure.Events;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -25,6 +26,7 @@ namespace IndoorWorx.Designer.Views
             this.serviceLocator = serviceLocator;
             this.eventAggregator = eventAggregator;
             AddEntryCommand = new DelegateCommand<object>(AddEntry);
+            PreviewTrainingSetCommand = new DelegateCommand<object>(PreviewTrainingSet);
         }
 
         private void AddEntry(object arg)
@@ -33,6 +35,14 @@ namespace IndoorWorx.Designer.Views
         }
 
         public ICommand AddEntryCommand { get; set; }
+
+        private void PreviewTrainingSet(object arg)
+        {
+            if(this.Source != null && this.Source.SelectedTrainingSet != null)
+                eventAggregator.GetEvent<PreviewVideoEvent>().Publish(this.Source.SelectedTrainingSet);
+        }
+
+        public ICommand PreviewTrainingSetCommand { get; set; }
 
         private Video source;
         public Video Source
@@ -57,6 +67,7 @@ namespace IndoorWorx.Designer.Views
                 FirePropertyChanged("SelectionStart");
                 FirePropertyChanged("SelectionEnd");
                 FirePropertyChanged("SelectionDuration");
+                FirePropertyChanged("IsSelectionValid");
             }
         }
 
@@ -77,6 +88,7 @@ namespace IndoorWorx.Designer.Views
                 FirePropertyChanged("SelectionEnd");
                 FirePropertyChanged("SelectionStart");
                 FirePropertyChanged("SelectionDuration");
+                FirePropertyChanged("IsSelectionValid");
             }
         }
 
@@ -84,6 +96,15 @@ namespace IndoorWorx.Designer.Views
         {
             SelectionStart = 0;
             SelectionEnd = 10;
+            FirePropertyChanged("IsSelectionValid");
+        }
+
+        public bool IsSelectionValid
+        {
+            get
+            {
+                return Source != null && Source.SelectedTrainingSet != null && SelectionDuration > 0;
+            }
         }
     }
 }

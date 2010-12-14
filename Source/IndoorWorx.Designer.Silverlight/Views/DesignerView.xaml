@@ -16,6 +16,7 @@
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <converters:BooleanToOppositeVisibilityConverter x:Key="BooleanToOppositeVisibilityConverter"/>
         <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
+        <converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
         <sys:Double x:Key="ToolBarImageWidth">24</sys:Double>
         <telerik:HierarchicalDataTemplate x:Key="CategoryTemplate" ItemsSource="{Binding Catalogs}">
             <TextBlock Text="{Binding Title, Mode=OneWay}" VerticalAlignment="Center"/>
@@ -59,19 +60,15 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <StackPanel>
-                                        <telerik:RadButton Content="Delete" Command="{Binding RemoveEntryCommand, Mode=OneWay}" CommandParameter="{Binding SelectedEntry, Mode=OneWay}"/>
+                                        <telerik:RadButton Content="Delete" Command="{Binding RemoveEntryCommand, Mode=OneWay}" CommandParameter="{Binding SelectedEntry, Mode=OneWay}" CornerRadius="5" />
                                     </StackPanel>
                                     <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}" Grid.Column="1">
-                                        <Grid>
-                                            <telerik:RadBusyIndicator IsBusy="{Binding SelectedTrainingSet.IsTelemetryLoading, Mode=OneWay}" BusyContent="{Binding DesignerResources.LoadingTelemetryProgressMessage, Source={StaticResource DesignerResources}}">
-                                                <libControls:TelemetryChart
-                                                    x:Name="designedTelemetryChart"
-                                                    Margin="10"
-                                                    AxisForeground="Gray"
-                                                    AxisElementBrush="Gray"
-                                                    YAxisAutoRange="True"/>
-                                            </telerik:RadBusyIndicator>
-                                        </Grid>
+                                        <libControls:TelemetryChart
+                                            x:Name="designedTelemetryChart"
+                                            Margin="10"
+                                            AxisForeground="Gray"
+                                            AxisElementBrush="Gray"
+                                            YAxisAutoRange="True"/>
                                     </telerik:RadBusyIndicator>
                                     <telerik:RadSlider Orientation="Vertical" Minimum="0" Maximum="200" Value="100" Grid.Column="2" VerticalAlignment="Stretch"/>
                                 </Grid>

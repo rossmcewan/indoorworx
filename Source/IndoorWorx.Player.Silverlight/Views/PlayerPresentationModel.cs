@@ -62,17 +62,28 @@ namespace IndoorWorx.Player.Views
 
         private void Stop(object arg)
         {
+            View.Pause();
             DialogFacade.Confirm(Resources.PlayerResources.ConfirmStopVideo,
                 (result) =>
                 {
                     if (result)
                     {
-                        StopTimers();
-                        Video.IsPlaying = false;
-                        View.Stop();
-                        View.Hide();
+                        Stop();
+                    }
+                    else
+                    {
+                        View.Play();
                     }
                 });
+        }
+
+        private void Stop()
+        {
+            StopTimers();
+            Video.IsPlaying = false;
+            View.Stop();
+            View.Hide();
+            IsMediaOpened = false;
         }
 
         private void StartTimers()
@@ -321,6 +332,12 @@ namespace IndoorWorx.Player.Views
         {
             this.hasVideoEnded = true;
             IsMediaOpened = false;
+        }
+
+        public void MediaError(SmoothStreamingErrorEventArgs e)
+        {
+            DialogFacade.Alert(string.Format(Resources.PlayerResources.MediaError, e.ErrorCode, e.ErrorMessage));
+            Stop();
         }
 
         private ICommand playCommand;

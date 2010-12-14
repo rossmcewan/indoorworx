@@ -22,6 +22,7 @@ using Microsoft.Practices.Composite.Presentation.Events;
 using IndoorWorx.Player.Controls;
 using IndoorWorx.Library.Controls;
 using IndoorWorx.Infrastructure;
+using IndoorWorx.Infrastructure.Facades;
 
 namespace IndoorWorx.Player
 {
@@ -38,10 +39,16 @@ namespace IndoorWorx.Player
             eventAggregator.GetEvent<PreviewVideoEvent>().Subscribe(PreviewVideo, ThreadOption.UIThread, true);
         }
 
+        private IDialogFacade DialogFacade
+        {
+            get { return serviceLocator.GetInstance<IDialogFacade>(); }
+        }
+
         public void PlayVideo(Video video)
         {
             var view = unityContainer.Resolve<IPlayerView>();
             view.Model.Video = video;
+            
             view.Show();
         }
 

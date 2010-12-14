@@ -18,7 +18,7 @@ namespace IndoorWorx.Library.Controls
     {
         public VideoMediaElement()
         {
-            InitializeComponent();            
+            InitializeComponent();   
         }
 
         public Video Model

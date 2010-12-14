@@ -107,7 +107,7 @@ namespace IndoorWorx.Player.Views
 
         private void mediaElement_SmoothStreamingErrorOccurred(object sender, SmoothStreamingErrorEventArgs e)
         {
-
+            Model.MediaError(e);
         }
 
         public void Show()

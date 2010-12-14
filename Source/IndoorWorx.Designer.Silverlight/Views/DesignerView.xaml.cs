@@ -25,6 +25,8 @@ namespace IndoorWorx.Designer.Views
 {
     public partial class DesignerView : UserControl, IDesignerView
     {
+        public event EventHandler EntriesChangedOnView;
+
         private readonly IServiceLocator serviceLocator;
         public DesignerView(IServiceLocator serviceLocator, IDesignerPresentationModel model)
         {
@@ -51,16 +53,14 @@ namespace IndoorWorx.Designer.Views
                 var to = fromDate.Add(length).ToOADate();
                 seconds += length.TotalSeconds;
 
-                //var from = DateTimeHelper.ZeroTime.Add(entry.TimeStart).Add(TimeSpan.FromSeconds(seconds)).ToOADate();
-                //var to = DateTimeHelper.ZeroTime.Add(entry.TimeEnd).Add(TimeSpan.FromSeconds(seconds)).ToOADate();
                 var zone = new MarkedZone(from, to, 0, designedTelemetryChart.DefaultView.ChartArea.AxisY.MaxValue);
                 zone.Tag = entry;
-                //Color newColor = Color.FromArgb(255, (byte)random.Next(0, 255), (byte)random.Next(0, 255), (byte)random.Next(0, 255));
-                //zone.Background = new SolidColorBrush(newColor);
                 zone.Background = new SolidColorBrush(colors[Math.Min(1, counter++ % 2)]);
                 designedTelemetryChart.DefaultView.ChartArea.Annotations.Add(zone);                
             }
             designedTelemetryChart.DefaultView.ChartArea.ItemClick += new EventHandler<ChartItemClickEventArgs>(ChartArea_ItemClick);
+            if (EntriesChangedOnView != null)
+                EntriesChangedOnView(this, EventArgs.Empty);
         }
 
         MarkedZone lastSelected;

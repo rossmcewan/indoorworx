@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
+using Microsoft.Web.Media.SmoothStreaming;
 
 namespace IndoorWorx.Player.Views
 {
@@ -37,5 +38,7 @@ namespace IndoorWorx.Player.Views
         ICommand PauseCommand { get; set; }
 
         ICommand FullScreenCommand { get; set; }
+
+        void MediaError(SmoothStreamingErrorEventArgs e);
     }
 }

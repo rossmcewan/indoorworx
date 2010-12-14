@@ -48,7 +48,7 @@ namespace IndoorWorx.Designer.Views
             }
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void RadComboBox_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangedEventArgs e)
         {
             LoadTelemetryOnChart();
             Model.OnTrainingSetSelectionChanged();

@@ -153,6 +153,15 @@ namespace IndoorWorx.Designer.Resources {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string PreviewTrainingSetButtonText {
+            get {
+                return ResourceManager.GetString("PreviewTrainingSetButtonText", resourceCulture);
+            }
+        }
+        
         public static byte[] Refresh {
             get {
                 object obj = ResourceManager.GetObject("Refresh", resourceCulture);

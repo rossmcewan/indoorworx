@@ -14,6 +14,8 @@ namespace IndoorWorx.Designer.Views
 {
     public interface IDesignerView
     {
+        event EventHandler EntriesChangedOnView;
+
         IDesignerPresentationModel Model { get; }
 
         void AddDesigner(Video forVideo);
