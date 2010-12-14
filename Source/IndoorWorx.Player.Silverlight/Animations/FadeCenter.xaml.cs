@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 
 namespace IndoorWorx.Player.Animations
 {
-    public partial class FadeCenter : Canvas
+    public partial class FadeCenter : UserControl
     {
         public FadeCenter()
         {

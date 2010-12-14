@@ -138,13 +138,28 @@
       <Link>Models\VideoText.cs</Link>
     </Compile>
     <Compile Include="Animations\ThicknessAnimation.cs" />
-    <Compile Include="Converters\BooleanToOppositeVisibilityConverter.cs" />
-    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Converters\ByteArrayToImageConverter.cs" />
-    <Compile Include="Converters\PercentageToDoubleConverter.cs" />
-    <Compile Include="Converters\SecondsToOADateConverter.cs" />
-    <Compile Include="Converters\SecondsToTimeSpanConverter.cs" />
-    <Compile Include="Converters\UrlToImageConverter.cs" />
+    <Compile Include="Converters\BooleanToOppositeVisibilityConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\ByteArrayToImageConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\IntensityColorConverter.cs" />
+    <Compile Include="Converters\PercentageToDoubleConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\SecondsToOADateConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\SecondsToTimeSpanConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\UrlToImageConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Events\CatalogSearchTextChangedEvent.cs" />
     <Compile Include="Events\DesignVideoEvent.cs" />
     <Compile Include="Events\PlayVideoEvent.cs" />

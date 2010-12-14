@@ -6,25 +6,29 @@
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"             
     mc:Ignorable="d">
+
     <UserControl.Resources>
         <converters:PercentageToDoubleConverter x:Key="PercentageToDoubleConverter"/>
+        <converters:IntensityColorConverter x:Key="IntensityColorConverter"/>
     </UserControl.Resources>
-        <telerik:RadGauge x:Name="radGauge">
-            <telerik:RadialGauge x:Name="radialGauge" >
-                <telerik:RadialScale x:Name="radialScale" IsInteractive="True">
-                    <telerik:RadialScale.MajorTick>
-                        <telerik:MajorTickProperties Length="0.2" TickWidth="0.1"/>
-                    </telerik:RadialScale.MajorTick>
-                    <telerik:RadialScale.MiddleTick>
-                        <telerik:MiddleTickProperties Length="0.1" TickWidth="0.2"/>
-                    </telerik:RadialScale.MiddleTick>
-                    <telerik:RadialScale.MinorTick>
-                        <telerik:MinorTickProperties Length="0.05" TickWidth="0.3" />
-                    </telerik:RadialScale.MinorTick>
-                    <telerik:IndicatorList>
+
+
+    <telerik:RadGauge x:Name="radGauge">
+        <telerik:RadialGauge x:Name="radialGauge" Foreground="Black" Background="{Binding CurrentTelemetry.PercentageThreshold, Mode=OneWay,  Converter={StaticResource IntensityColorConverter}}">
+            <telerik:RadialScale x:Name="radialScale" IsInteractive="True" Min="0" Max="150">
+                <telerik:RadialScale.MajorTick>
+                    <telerik:MajorTickProperties Length="0.2" TickWidth="0.1"/>
+                </telerik:RadialScale.MajorTick>
+                <telerik:RadialScale.MiddleTick>
+                    <telerik:MiddleTickProperties Length="0.1" TickWidth="0.2"/>
+                </telerik:RadialScale.MiddleTick>
+                <telerik:RadialScale.MinorTick>
+                    <telerik:MinorTickProperties Length="0.05" TickWidth="0.3" />
+                </telerik:RadialScale.MinorTick>
+                <telerik:IndicatorList>
                     <telerik:Needle x:Name="needle" Value="{Binding CurrentTelemetry.PercentageThreshold, Mode=OneWay, Converter={StaticResource PercentageToDoubleConverter}}" IsAnimated="True"/>
-                    </telerik:IndicatorList>
-                </telerik:RadialScale>
-            </telerik:RadialGauge>
-        </telerik:RadGauge>
+                </telerik:IndicatorList>
+            </telerik:RadialScale>
+        </telerik:RadialGauge>
+    </telerik:RadGauge>
 </UserControl>

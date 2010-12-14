@@ -1,51 +1,26 @@
-﻿<Canvas x:Class="IndoorWorx.Player.Animations.FadeCenter"
+﻿<UserControl x:Class="IndoorWorx.Player.Animations.FadeCenter"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
 
-    <Canvas.Resources>
-        <Storyboard x:Name="InTransition" Duration="00:00:01">
-            <DoubleAnimation x:Name="MainIn" Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.Opacity)" From="0" To="1" Duration="00:00:01" />
-            <DoubleAnimation x:Name="SubIn" Storyboard.TargetName="SubTextField" Storyboard.TargetProperty="(UIElement.Opacity)" From="0" To="1" Duration="00:00:01" />
+    <UserControl.Resources>
+        <Storyboard x:Name="InTransition" Duration="00:00:02">
+            <DoubleAnimation x:Name="MainIn" Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.Opacity)" From="0" To="1" Duration="00:00:02" />
+            <DoubleAnimation x:Name="SubIn" Storyboard.TargetName="SubTextField" Storyboard.TargetProperty="(UIElement.Opacity)" From="0" To="1" Duration="00:00:02" />
         </Storyboard>
-        <Storyboard x:Name="OutTransition" Duration="00:00:01">
-            <DoubleAnimation x:Name="MainOut" Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.Opacity)" From="1" To="0" Duration="00:00:01" />
-            <DoubleAnimation x:Name="SubOut" Storyboard.TargetName="SubTextField" Storyboard.TargetProperty="(UIElement.Opacity)" From="1" To="0" Duration="00:00:01" />
+        <Storyboard x:Name="OutTransition" Duration="00:00:02">
+            <DoubleAnimation x:Name="MainOut" Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.Opacity)" From="1" To="0" Duration="00:00:02" />
+            <DoubleAnimation x:Name="SubOut" Storyboard.TargetName="SubTextField" Storyboard.TargetProperty="(UIElement.Opacity)" From="1" To="0" Duration="00:00:02" />
         </Storyboard>
-    </Canvas.Resources>
-    <!--<Canvas x:Name="Content" Width="220" Height="180" Canvas.Left="0" Canvas.Top="0">
-        <TextBlock x:Name="MainTextField" Canvas.Left="-40" Canvas.Top="0" TextAlignment="Center" Width="220" Opacity="0" FontWeight="Bold" FontStyle="Italic" FontSize="12.6731" Text="{Binding MainText}" Foreground="#FFFFFFFF">
-      <TextBlock.RenderTransform>
-        <TransformGroup>
-          <MatrixTransform Matrix="1.33333,0,0,1.33333,0,65.7744"/>
-        </TransformGroup>
-      </TextBlock.RenderTransform>
-        </TextBlock>
-        <TextBlock x:Name="SubTextField" Canvas.Left="-40" Canvas.Top="0" TextAlignment="Center" Width="220" Opacity="0" FontFamily="Segoe UI" FontWeight="Bold" FontStyle="Italic" FontSize="10.4597" Text="{Binding SubText}" Foreground="#FFFFFFFF">
-      <TextBlock.RenderTransform>
-        <TransformGroup>
-          <MatrixTransform Matrix="1.33333,0,0,1.33333,0,88.6763"/>
-        </TransformGroup>
-      </TextBlock.RenderTransform>
-        </TextBlock>
-    </Canvas>-->
+    </UserControl.Resources>
 
-    <Canvas x:Name="Content">
-        <TextBlock x:Name="MainTextField"  TextAlignment="Center" Width="220" Opacity="0" FontWeight="Bold" FontStyle="Italic" FontSize="12.6731" Text="{Binding MainText}" Foreground="#FFFFFFFF">
-      <TextBlock.RenderTransform>
-        <TransformGroup>
-          <MatrixTransform Matrix="1.33333,0,0,1.33333,0,65.7744"/>
-        </TransformGroup>
-      </TextBlock.RenderTransform>
-        </TextBlock>
-        <TextBlock x:Name="SubTextField"  TextAlignment="Center" Width="220" Opacity="0" FontFamily="Segoe UI" FontWeight="Bold" FontStyle="Italic" FontSize="10.4597" Text="{Binding SubText}" Foreground="#FFFFFFFF">
-      <TextBlock.RenderTransform>
-        <TransformGroup>
-          <MatrixTransform Matrix="1.33333,0,0,1.33333,0,88.6763"/>
-        </TransformGroup>
-      </TextBlock.RenderTransform>
-        </TextBlock>
-    </Canvas>
+    <Grid x:Name="Content"> 
+        <StackPanel Orientation="Vertical">
+            <TextBlock x:Name="MainTextField" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="Auto" Opacity="0" FontWeight="Bold" FontSize="48" Text="{Binding MainText}" Foreground="#FFFFFFFF"/>
+            <TextBlock x:Name="SubTextField" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="Auto" Opacity="0" FontFamily="Segoe UI" FontStyle="Italic" FontWeight="Bold"  FontSize="36" Text="{Binding SubText}" Foreground="#FFFFFFFF"/>
+        </StackPanel>
 
-</Canvas>
+    </Grid>
+
+</UserControl>

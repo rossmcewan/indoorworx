@@ -267,8 +267,13 @@ namespace IndoorWorx.Player.Views
 
             textTimer = new Timer(new TimerCallback(obj =>
             {
-                if (textQueue.Any() && textQueue.Peek().StartTime <= playerPosition)
-                    SmartDispatcher.BeginInvoke(() => LoadVideoText(textQueue.Dequeue()));
+                if (textQueue.Count > 0 && textQueue.Peek().StartTime <= playerPosition)
+                {
+                    SmartDispatcher.BeginInvoke
+                    (
+                        () => LoadVideoText(textQueue.Dequeue()
+                    ));
+                }
                 System.GC.Collect();
             }), null, Timeout.Infinite, Timeout.Infinite);
             Video.IsMediaLoading = false;

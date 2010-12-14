@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 
 namespace IndoorWorx.Player.Animations
 {
-    public partial class ZoomCenter : Canvas
+    public partial class ZoomCenter : UserControl
     {
         public ZoomCenter()
         {

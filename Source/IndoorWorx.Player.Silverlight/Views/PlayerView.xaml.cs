@@ -151,10 +151,9 @@ namespace IndoorWorx.Player.Views
         {
             Grid.SetColumnSpan(animation, 3);
             Grid.SetRowSpan(animation, 3);
-            animation.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            animation.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            animation.HorizontalAlignment = HorizontalAlignment.Center;
+            animation.VerticalAlignment = VerticalAlignment.Center;
             playerGrid.Children.Add(animation);
-            //FadeCenter temp = animation as FadeCenter;
             var startAnimation = animation.Resources["InTransition"] as Storyboard;
             if (startAnimation != null)
             {

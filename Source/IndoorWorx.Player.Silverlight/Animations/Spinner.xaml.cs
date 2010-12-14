@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 
 namespace IndoorWorx.Player.Animations
 {
-    public partial class Spinner : Canvas
+    public partial class Spinner : UserControl
     {
         public Spinner()
         {

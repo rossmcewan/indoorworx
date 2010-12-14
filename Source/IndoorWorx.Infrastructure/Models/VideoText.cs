@@ -35,6 +35,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private string subText = string.Empty;
+        [DataMember]
         public virtual string SubText
         {
             get { return subText; }

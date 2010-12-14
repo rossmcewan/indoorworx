@@ -1,8 +1,8 @@
-﻿<Canvas 
+﻿<UserControl 
     x:Class="IndoorWorx.Player.Animations.ZoomCenter"
     xmlns="http://schemas.microsoft.com/client/2007"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Canvas.Resources>
+    <UserControl.Resources>
         <Storyboard x:Name="InTransition" Duration="00:00:01">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.Opacity)" BeginTime="00:00:00">
                 <SplineDoubleKeyFrame KeyTime="00:00:01" Value="1"/>
@@ -55,9 +55,9 @@
                 <SplineDoubleKeyFrame KeyTime="00:00:01" Value="69"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-    </Canvas.Resources>
-    <Canvas x:Name="Content" Width="220" Height="180" Canvas.Left="0" Canvas.Top="0">
-        <TextBlock x:Name="MainTextField" Text="{Binding CurrentVideoText.MainText}" FontFamily="Segoe UI" FontSize="12.673100471496582" FontStretch="Normal" FontStyle="Italic" FontWeight="Bold" Foreground="#FFFFFFFF" Canvas.Left="-5.181" Canvas.Top="12.5" HorizontalAlignment="Left" VerticalAlignment="Center" Width="135.698" RenderTransformOrigin="0.495000004768372,0.490000009536743" TextAlignment="Center" Opacity="0">
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical">
+        <TextBlock x:Name="MainTextField" Text="{Binding CurrentVideoText.MainText}" FontFamily="Segoe UI" FontSize="48" FontStretch="Normal" FontStyle="Italic" FontWeight="Bold" Foreground="#FFFFFFFF" Canvas.Left="-5.181" Canvas.Top="12.5" HorizontalAlignment="Left" VerticalAlignment="Center"  RenderTransformOrigin="0.495000004768372,0.490000009536743" TextAlignment="Center" Opacity="0">
       <TextBlock.RenderTransform>
         <TransformGroup>
           <ScaleTransform x:Name="MainTextScale" ScaleX="0.1" ScaleY="0.1"/>
@@ -67,7 +67,7 @@
         </TransformGroup>
       </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBlock x:Name="SubTextField" FontFamily="Segoe UI" FontWeight="Bold" FontStyle="Italic" FontSize="10.4597" Text="{Binding CurrentVideoText.SubText}" Foreground="#FFFFFFFF" Canvas.Left="-5.694" Canvas.Top="0" Width="102.938" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" Opacity="0">
+        <TextBlock x:Name="SubTextField" FontFamily="Segoe UI" FontWeight="Bold" FontStyle="Italic" FontSize="36" Text="{Binding CurrentVideoText.SubText}" Foreground="#FFFFFFFF" Canvas.Left="-5.694" Canvas.Top="0" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" Opacity="0">
       <TextBlock.RenderTransform>
         <TransformGroup>
           <ScaleTransform x:Name="SubTextScale" ScaleX="0.1" ScaleY="0.1"/>
@@ -77,5 +77,5 @@
         </TransformGroup>
       </TextBlock.RenderTransform>
         </TextBlock>
-    </Canvas>
-</Canvas>
+    </StackPanel>
+</UserControl>

@@ -31,7 +31,7 @@ namespace IndoorWorx.SchemaTools
                     Duration = new TimeSpan(0,0,25), 
                     MainText = "It's Go Time!",
                     SubText = "allez allez allez hop hop hop",
-                    StartTime = new TimeSpan(0,0,10)
+                    StartTime = new TimeSpan(0,0,30)
                 }
             };
         }
@@ -110,6 +110,7 @@ namespace IndoorWorx.SchemaTools
                                     }
                                 },
 #endregion
+
 #region Suikerbosrand
                                 new Video()
                                 {
@@ -134,6 +135,7 @@ namespace IndoorWorx.SchemaTools
                                     }
                                 },
 #endregion
+
 #region Sun City
                                 new Video()
                                 {
