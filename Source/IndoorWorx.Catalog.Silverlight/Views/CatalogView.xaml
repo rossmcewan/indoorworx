@@ -17,6 +17,7 @@
     <UserControl.Resources>
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <converters:BooleanToOppositeVisibilityConverter x:Key="BooleanToOppositeVisibilityConverter"/>
+        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
         <Style x:Key="RadTileViewItemStyle" TargetType="telerik:RadTileViewItem">
             <Setter Property="MinimizedHeight" Value="155" />
         </Style>        
@@ -127,9 +128,9 @@
                                                                             </ListBox.ItemTemplate>
                                                                         </ListBox>
                                                                         <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
-                                                                            <telerik:RadButton Content="{Binding CatalogResources.PreviewButtonText, Source={StaticResource CatalogResources}}" Width="50" Margin="2"  Command="{Binding DataContext.PreviewTrainingSetCommand, Mode=OneWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=OneWay}" CornerRadius="10" ToolTipService.ToolTip="{Binding CatalogResources.PreviewTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
+                                                                            <telerik:RadButton Content="{Binding CatalogResources.PreviewButtonText, Source={StaticResource CatalogResources}}" Width="50" Margin="2"  Command="{Binding DataContext.PreviewTrainingSetCommand, Mode=OneWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=OneWay}" CornerRadius="10" ToolTipService.ToolTip="{Binding CatalogResources.PreviewTrainingSetToolTip, Source={StaticResource CatalogResources}}" Visibility="{Binding SelectedTrainingSet, Mode=TwoWay, Converter={StaticResource NullToVisibilityConverter}}"/>
                                                                             <telerik:RadButton Content="{Binding CatalogResources.DesignButtonText, Source={StaticResource CatalogResources}}" Width="50" Margin="2" CornerRadius="10" Command="{Binding DataContext.DesignTrainingSetCommand, Mode=OneWay, ElementName=LayoutRoot}" CommandParameter="{Binding Mode=OneWay}" ToolTipService.ToolTip="{Binding CatalogResources.DesignTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
-                                                                            <telerik:RadButton Content="{Binding CatalogResources.PlayButtonText, Source={StaticResource CatalogResources}}" Width="50" Margin="2" CornerRadius="10" Command="{Binding DataContext.PlayTrainingSetCommand, Mode=OneWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=OneWay}" ToolTipService.ToolTip="{Binding CatalogResources.PlayTrainingSetToolTip, Source={StaticResource CatalogResources}}"/>
+                                                                            <telerik:RadButton Content="{Binding CatalogResources.PlayButtonText, Source={StaticResource CatalogResources}}" Width="50" Margin="2" CornerRadius="10" Command="{Binding DataContext.PlayTrainingSetCommand, Mode=OneWay, ElementName=LayoutRoot}" CommandParameter="{Binding SelectedTrainingSet, Mode=OneWay}" ToolTipService.ToolTip="{Binding CatalogResources.PlayTrainingSetToolTip, Source={StaticResource CatalogResources}}" Visibility="{Binding SelectedTrainingSet, Mode=TwoWay, Converter={StaticResource NullToVisibilityConverter}}" />
                                                                         </StackPanel>
                                                                     </Grid>
                                                                 </Border>

@@ -1,8 +1,9 @@
-﻿<Canvas 
-    x:Class="IndoorWorx.Player.Animations.ScrollingCenter"
+﻿<UserControl 
+    x:Class="IndoorWorx.Player.Animations.Scrolling"
     xmlns="http://schemas.microsoft.com/client/2007"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Canvas.Resources>
+
+    <UserControl.Resources>
         <Storyboard x:Name="InTransition" Duration="00:00:01">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MainTextField" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" BeginTime="00:00:00">
                 <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0">
@@ -35,27 +36,29 @@
                 </SplineDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-    </Canvas.Resources>
-    <Canvas x:Name="Content" Width="220" Height="180" Canvas.Left="0" Canvas.Top="0">
-        <TextBlock x:Name="MainTextField" Canvas.Left="0" Canvas.Top="0" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" Width="220" FontWeight="Bold" FontStyle="Italic" FontSize="12.6731" Text="{Binding CurrentVideoText.MainText}" Foreground="#FFFFFFFF">
-      <TextBlock.RenderTransform>
-        <TransformGroup>
-          <ScaleTransform ScaleX="1.3333300352096558" ScaleY="1.3333300352096558"/>
-          <SkewTransform/>
-          <RotateTransform/>
-          <TranslateTransform x:Name="MainTextTranslate" X="-200" Y="69"/>
-        </TransformGroup>
-      </TextBlock.RenderTransform>
+    </UserControl.Resources>
+
+    <Grid x:Name="Content" >
+        <TextBlock x:Name="MainTextField" RenderTransformOrigin="0.5,0.5" TextAlignment="Center"  FontWeight="Bold" FontSize="48" Text="{Binding MainText}" Foreground="White">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.3333300352096558" ScaleY="1.3333300352096558"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform x:Name="MainTextTranslate" X="-200" Y="69"/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBlock x:Name="SubTextField" Canvas.Left="0" Canvas.Top="0" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" Width="220" FontFamily="Segoe UI" FontWeight="Bold" FontStyle="Italic" FontSize="10.4597" Text="{Binding CurrentVideoText.SubText}" Foreground="#FFFFFFFF">
-      <TextBlock.RenderTransform>
-        <TransformGroup>
-          <ScaleTransform ScaleX="1.3333300352096558" ScaleY="1.3333300352096558"/>
-          <SkewTransform/>
-          <RotateTransform/>
-          <TranslateTransform x:Name="SubTextTranslate" X="-200" Y="91"/>
-        </TransformGroup>
-      </TextBlock.RenderTransform>
+        <TextBlock x:Name="SubTextField" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" Width="220" FontFamily="Segoe UI" FontWeight="Bold" FontStyle="Italic" FontSize="36" Text="{Binding SubText}" Foreground="White">
+          <TextBlock.RenderTransform>
+            <TransformGroup>
+              <ScaleTransform ScaleX="1.3333300352096558" ScaleY="1.3333300352096558"/>
+              <SkewTransform/>
+              <RotateTransform/>
+              <TranslateTransform x:Name="SubTextTranslate" X="-200" Y="91"/>
+            </TransformGroup>
+          </TextBlock.RenderTransform>
         </TextBlock>
-    </Canvas>
-</Canvas>
+    </Grid>
+    
+</UserControl>

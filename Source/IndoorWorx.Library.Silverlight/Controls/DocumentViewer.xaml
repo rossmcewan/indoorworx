@@ -1,0 +1,18 @@
+﻿<UserControl xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  x:Class="IndoorWorx.Library.Controls.DocumentViewer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+
+    <UserControl.Resources>
+        <telerik:DocumentViewManager x:Name="ViewManager"></telerik:DocumentViewManager>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot">
+            <telerik:RadRichTextPageView x:Name="PageViewer" HorizontalAlignment="Center" VerticalAlignment="Center" ViewManager="{Binding ElementName=viewManager}" PageIndex="{Binding Path=PageIndex}" >
+                <telerik:RadRichTextPageView.RenderTransform>
+                    <ScaleTransform ScaleX="0.7" ScaleY="0.7"></ScaleTransform>
+                </telerik:RadRichTextPageView.RenderTransform>
+            </telerik:RadRichTextPageView>
+    </Grid>
+</UserControl>

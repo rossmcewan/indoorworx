@@ -19,20 +19,60 @@ namespace IndoorWorx.SchemaTools
             {
                 new VideoText() 
                 {
-                    Animation = VideoTextAnimations.FadeCenter, 
-                    Duration = new TimeSpan(0,0,10), 
+                    Animation = VideoTextAnimations.Spinner, 
+                    Duration = new TimeSpan(0,0,9), 
                     MainText = "Let's Get Ready to Rumble!",
                     SubText = "your video is about to begin",
-                    StartTime = new TimeSpan(0,0,10)
+                    StartTime = new TimeSpan(0,0,0)
                 },
                 new VideoText() 
                 {
-                    Animation = VideoTextAnimations.FadeCenter, 
-                    Duration = new TimeSpan(0,0,25), 
-                    MainText = "It's Go Time!",
+                    Animation = VideoTextAnimations.Spinner, 
+                    Duration = new TimeSpan(0,0,1), 
+                    MainText = "5",
+                    SubText = "five",
+                    StartTime = new TimeSpan(0,0,10)
+                },
+                 new VideoText() 
+                {
+                    Animation = VideoTextAnimations.Spinner, 
+                    Duration = new TimeSpan(0,0,1), 
+                    MainText = "4",
+                    SubText = "four",
+                    StartTime = new TimeSpan(0,0,11)
+                },
+                 new VideoText() 
+                {
+                    Animation = VideoTextAnimations.Spinner, 
+                    Duration = new TimeSpan(0,0,1), 
+                    MainText = "3",
+                    SubText = "three",
+                    StartTime = new TimeSpan(0,0,12)
+                },
+                 new VideoText() 
+                {
+                    Animation = VideoTextAnimations.Spinner, 
+                    Duration = new TimeSpan(0,0,1), 
+                    MainText = "2",
+                    SubText = "two",
+                    StartTime = new TimeSpan(0,0,13)
+                },
+                 new VideoText() 
+                {
+                    Animation = VideoTextAnimations.Spinner, 
+                    Duration = new TimeSpan(0,0,1), 
+                    MainText = "1",
+                    SubText = "one",
+                    StartTime = new TimeSpan(0,0,14)
+                },
+                new VideoText() 
+                {
+                    Animation = VideoTextAnimations.ZoomCenter, 
+                    Duration = new TimeSpan(0,0,10), 
+                    MainText = "It's Go time",
                     SubText = "allez allez allez hop hop hop",
-                    StartTime = new TimeSpan(0,0,30)
-                }
+                    StartTime = new TimeSpan(0,0,15)
+                },
             };
         }
 

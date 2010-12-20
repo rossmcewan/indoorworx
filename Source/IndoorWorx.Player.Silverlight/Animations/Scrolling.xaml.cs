@@ -12,9 +12,9 @@ using System.Windows.Shapes;
 
 namespace IndoorWorx.Player.Animations
 {
-    public partial class FadeCenter : UserControl
+    public partial class Scrolling : UserControl
     {
-        public FadeCenter()
+        public Scrolling()
         {
             InitializeComponent();
         }

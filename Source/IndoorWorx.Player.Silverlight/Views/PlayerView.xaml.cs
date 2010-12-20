@@ -73,7 +73,6 @@ namespace IndoorWorx.Player.Views
             SmartDispatcher.BeginInvoke(() =>
                 {
                     this.profileChart.LoadTelemetry(telemetry);
-                    //this.zoomedChart.LoadTelemetry(telemetry);
                 });
         }
 
@@ -126,13 +125,13 @@ namespace IndoorWorx.Player.Views
             switch (videoText.Animation)
             {
                 case IndoorWorx.Infrastructure.Enums.VideoTextAnimations.FadeCenter:
-                     animation = new FadeCenter() { DataContext = videoText };
+                     animation = new Fade() { DataContext = videoText };
                     break;
                 case IndoorWorx.Infrastructure.Enums.VideoTextAnimations.ZoomCenter:
-                     animation = new ZoomCenter() { DataContext = videoText };
+                     animation = new Zoom() { DataContext = videoText };
                     break;
                 case IndoorWorx.Infrastructure.Enums.VideoTextAnimations.ScrollingCenter:
-                     animation = new ScrollingCenter() { DataContext = videoText };
+                     animation = new Scrolling() { DataContext = videoText };
                     break;
                 case IndoorWorx.Infrastructure.Enums.VideoTextAnimations.Spinner:
                      animation = new Spinner() { DataContext = videoText };
@@ -153,6 +152,7 @@ namespace IndoorWorx.Player.Views
             Grid.SetRowSpan(animation, 3);
             animation.HorizontalAlignment = HorizontalAlignment.Center;
             animation.VerticalAlignment = VerticalAlignment.Center;
+            animation.Visibility = Visibility.Visible;
             playerGrid.Children.Add(animation);
             var startAnimation = animation.Resources["InTransition"] as Storyboard;
             if (startAnimation != null)

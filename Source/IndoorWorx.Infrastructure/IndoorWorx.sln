@@ -64,6 +64,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.4studios.Silverl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.4coaches.Silverlight", "..\IndoorWorx.4coaches.Silverlight\IndoorWorx.4coaches.Silverlight.csproj", "{EABF5770-AE15-4D71-ABC7-37DE6778A016}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{767053F1-1899-487E-A7B9-79F0D5CA8F04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoorWorx.Silverlight.Tests", "..\IndoorWorx.Silverlight.Tests\IndoorWorx.Silverlight.Tests.csproj", "{4F723095-72A5-41FA-99E2-7CA6B4B7D414}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = IndoorWorx.vsmdi
@@ -247,6 +251,16 @@ Global
 		{EABF5770-AE15-4D71-ABC7-37DE6778A016}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{EABF5770-AE15-4D71-ABC7-37DE6778A016}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{EABF5770-AE15-4D71-ABC7-37DE6778A016}.Release|x86.ActiveCfg = Release|Any CPU
+		{4F723095-72A5-41FA-99E2-7CA6B4B7D414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F723095-72A5-41FA-99E2-7CA6B4B7D414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F723095-72A5-41FA-99E2-7CA6B4B7D414}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4F723095-72A5-41FA-99E2-7CA6B4B7D414}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4F723095-72A5-41FA-99E2-7CA6B4B7D414}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4F723095-72A5-41FA-99E2-7CA6B4B7D414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F723095-72A5-41FA-99E2-7CA6B4B7D414}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F723095-72A5-41FA-99E2-7CA6B4B7D414}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4F723095-72A5-41FA-99E2-7CA6B4B7D414}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4F723095-72A5-41FA-99E2-7CA6B4B7D414}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -275,5 +289,6 @@ Global
 		{EABF5770-AE15-4D71-ABC7-37DE6778A016} = {DC0AEFB6-1D17-4A26-BAD7-59E49BBEED34}
 		{FDA01ECD-B9D6-424F-A1A9-831F02841632} = {B08B6718-300B-4E33-8121-649832787697}
 		{EFB2B27B-411E-4382-83FF-12A84F5AC021} = {EBE68532-335D-40BE-BBA5-A86E3F3E2D7D}
+		{4F723095-72A5-41FA-99E2-7CA6B4B7D414} = {767053F1-1899-487E-A7B9-79F0D5CA8F04}
 	EndGlobalSection
 EndGlobal

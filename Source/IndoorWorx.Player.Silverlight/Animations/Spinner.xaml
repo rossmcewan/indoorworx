@@ -53,8 +53,8 @@
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="MainTextField" TextAlignment="Center" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" Grid.RowSpan="1" FontWeight="Bold" FontSize="48" Text="{Binding CurrentVideoText.MainText}" Foreground="#FFFFFFFF"/>
-            <TextBlock x:Name="SubTextField" TextAlignment="Center" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" FontFamily="Segoe UI" FontWeight="Bold" FontStyle="Italic" FontSize="36" Text="{Binding CurrentVideoText.SubText}" Foreground="#FFFFFFFF" Grid.Row="1"/>
+            <TextBlock x:Name="MainTextField" TextAlignment="Center" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" Grid.RowSpan="1" FontWeight="Bold" FontSize="48" Text="{Binding MainText}" Foreground="#FFFFFFFF"/>
+            <TextBlock x:Name="SubTextField" TextAlignment="Center" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" FontFamily="Segoe UI" FontWeight="Bold" FontStyle="Italic" FontSize="36" Text="{Binding SubText}" Foreground="#FFFFFFFF" Grid.Row="1"/>
         </Grid>
 
 </UserControl>

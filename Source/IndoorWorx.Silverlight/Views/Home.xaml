@@ -2,14 +2,22 @@
   x:Class="IndoorWorx.Silverlight.Home" 
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-  mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"  
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
+  xmlns:controls="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"
   Style="{StaticResource PageStyle}">
-        <Grid x:Name="LayoutRoot">
-            <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}" >
 
-                <StackPanel x:Name="ContentStackPanel">
+    <UserControl.Resources>
+        <telerik:DocumentViewManager x:Name="ViewManager"></telerik:DocumentViewManager>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot">
+            <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}" >
+            <!--<controls:DocumentViewer ResourceDocument="Resources/Documents/Home.docx" />-->
+          
+            <StackPanel x:Name="ContentStackPanel">
 
                     <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}" 
                            Text="{Binding Path=ApplicationStrings.HomePageTitle, Source={StaticResource ResourceWrapper}}"/>
@@ -17,7 +25,6 @@
                            Text="Home page content"/>
 
                 </StackPanel>
-
             </ScrollViewer>
         </Grid>
     

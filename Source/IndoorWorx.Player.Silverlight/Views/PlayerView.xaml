@@ -77,7 +77,7 @@
         </infcontrols:TelemetryChart>
 
 
-        <Border Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" CornerRadius="10" Visibility="{Binding IsMediaOpened, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Border Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" CornerRadius="10" Visibility="{Binding IsMediaOpened, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Border.Background>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Border.Background>

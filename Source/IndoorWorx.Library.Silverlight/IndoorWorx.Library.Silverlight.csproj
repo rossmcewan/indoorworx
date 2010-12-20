@@ -57,6 +57,8 @@
     </Reference>
     <Reference Include="Microsoft.Web.Media.SmoothStreaming, Version=1.0.837.34, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
+    <Reference Include="System.ComponentModel.Composition, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.ComponentModel.Composition.Initialization, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows" />
@@ -70,6 +72,7 @@
     <Reference Include="Telerik.Windows.Controls.Data, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Navigation, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Data, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache.cs" />
@@ -78,6 +81,9 @@
       <DependentUpon>CatalogTreeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CategoryTreeDataTemplateSelector.cs" />
+    <Compile Include="Controls\DocumentViewer.xaml.cs">
+      <DependentUpon>DocumentViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ICategoryTreeControlModel.cs" />
     <Compile Include="Controls\TelemetryChart.cs" />
     <Compile Include="Controls\VideoMediaElement.xaml.cs">
@@ -143,6 +149,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\CatalogTreeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DocumentViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

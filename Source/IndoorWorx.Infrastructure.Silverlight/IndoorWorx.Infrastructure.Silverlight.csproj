@@ -149,6 +149,7 @@
     </Compile>
     <Compile Include="Converters\IntensityColorConverter.cs" />
     <Compile Include="Converters\NullToBooleanConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\PercentageToDoubleConverter.cs">
       <SubType>Code</SubType>
     </Compile>

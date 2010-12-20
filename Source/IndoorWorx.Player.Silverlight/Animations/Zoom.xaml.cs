@@ -12,9 +12,9 @@ using System.Windows.Shapes;
 
 namespace IndoorWorx.Player.Animations
 {
-    public partial class ScrollingCenter : Canvas
+    public partial class Zoom : UserControl
     {
-        public ScrollingCenter()
+        public Zoom()
         {
             InitializeComponent();
         }

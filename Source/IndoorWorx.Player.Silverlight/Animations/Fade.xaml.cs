@@ -12,9 +12,9 @@ using System.Windows.Shapes;
 
 namespace IndoorWorx.Player.Animations
 {
-    public partial class ZoomCenter : UserControl
+    public partial class Fade : UserControl
     {
-        public ZoomCenter()
+        public Fade()
         {
             InitializeComponent();
         }

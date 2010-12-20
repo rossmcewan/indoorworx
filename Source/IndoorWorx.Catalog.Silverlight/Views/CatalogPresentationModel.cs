@@ -155,7 +155,8 @@ namespace IndoorWorx.Catalog.Views
 
         public void OnVideoSelectionChanged()
         {
-            eventAggregator.GetEvent<VideoSelectionChangedEvent>().Publish(SelectedCategory.SelectedCatalog.SelectedVideo);
+            if(SelectedCategory != null && SelectedCategory.SelectedCatalog != null)
+                eventAggregator.GetEvent<VideoSelectionChangedEvent>().Publish(SelectedCategory.SelectedCatalog.SelectedVideo);
             FirePropertyChanged("IsVideoSelected");
         }
 
