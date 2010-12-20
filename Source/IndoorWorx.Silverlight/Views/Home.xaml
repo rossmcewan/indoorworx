@@ -3,20 +3,73 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"    
   xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
   xmlns:controls="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"
   Style="{StaticResource PageStyle}">
-
-    <UserControl.Resources>
-        <telerik:DocumentViewManager x:Name="ViewManager"></telerik:DocumentViewManager>
-    </UserControl.Resources>
-
     <Grid x:Name="LayoutRoot">
-            <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}" >
-            <!--<controls:DocumentViewer ResourceDocument="Resources/Documents/Home.docx" />-->
-          
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Image Source="../Images/IndoorWorxDarkBackground.png"/>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="../Images/facebook_large.png" Margin="2"/>
+            <Image Source="../Images/twitter_large.png" Margin="2" Grid.Column="1"/>
+            <Image Source="../Images/youtube_large.png" Margin="2" Grid.Column="2"/>
+        </Grid>
+        <telerik:RadCoverFlow x:Name="coverFlow" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" OffsetY="60">
+            <telerik:RadCoverFlowItem>
+                <Image Source="../Images/suncity.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="200"/>
+            </telerik:RadCoverFlowItem>
+            <telerik:RadCoverFlowItem>
+                <Image Source="../Images/suncity.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="200"/> 
+            </telerik:RadCoverFlowItem>
+            <telerik:RadCoverFlowItem>
+                <Image Source="../Images/suncity.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="200"/>
+            </telerik:RadCoverFlowItem>
+            <telerik:RadCoverFlowItem>
+                <Image Source="../Images/suncity.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="200"/>
+            </telerik:RadCoverFlowItem>
+            <telerik:RadCoverFlowItem>
+                <Image Source="../Images/suncity.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="200"/>
+            </telerik:RadCoverFlowItem>            
+        </telerik:RadCoverFlow>
+        
+        <!--<Border CornerRadius="10" Margin="5" Grid.Column="0">
+            <Border.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Border.Background>
+            <Image Source="../Images/IndoorWorxDarkBackground.png"/>
+        </Border>
+        <Border CornerRadius="10" Margin="5" Grid.Column="1">
+            <Border.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="../Images/facebook_large.png" Margin="2"/>
+                <Image Source="../Images/twitter_large.png" Margin="2" Grid.Column="1"/>
+                <Image Source="../Images/youtube_large.png" Margin="2" Grid.Column="2"/>
+            </Grid>
+        </Border>-->
+        
+        <!--<ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}" >
             <StackPanel x:Name="ContentStackPanel">
 
                     <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}" 
@@ -25,7 +78,7 @@
                            Text="Home page content"/>
 
                 </StackPanel>
-            </ScrollViewer>
+            </ScrollViewer>-->
         </Grid>
     
 </navigation:Page>

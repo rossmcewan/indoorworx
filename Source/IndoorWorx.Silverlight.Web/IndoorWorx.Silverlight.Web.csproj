@@ -163,6 +163,7 @@
     <Content Include="Mock\mtn_energade.jpg" />
     <Content Include="Mock\randwaterboard.JPG" />
     <Content Include="Mock\suikerbosrand.JPG" />
+    <Content Include="Mock\suncity.jpg" />
     <Content Include="Mock\tri1.jpg" />
     <Content Include="Mock\tri2.jpg" />
     <Content Include="Mock\tri3.jpg" />
@@ -234,6 +235,7 @@
     <None Include="images\narrow\Thumbs.db" />
     <None Include="images\small\Thumbs.db" />
     <None Include="images\wide\Thumbs.db" />
+    <None Include="Mock\suncity.csv" />
     <None Include="Mock\telemetry.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

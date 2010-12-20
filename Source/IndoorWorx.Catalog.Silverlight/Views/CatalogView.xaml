@@ -23,14 +23,14 @@
         </Style>        
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot">
-        <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=TwoWay}">
+        <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=TwoWay}" >
             <telerik:RadDocking Margin="5" PreviewClose="RadDocking_PreviewClose" Close="RadDocking_Close">                
                 <telerik:RadDocking.DocumentHost>
                     <telerik:RadSplitContainer>
                         <telerik:RadPaneGroup x:Name="DocumentPaneGroup">
                             <telerik:RadPane CanUserClose="False" Title="{Binding SelectedCategory.SelectedCatalog.SelectedVideo.Title, Mode=TwoWay}">
                                 <Grid>
-                                    <Image Source="../Images/IndoorWorxDarkBackground.png" Visibility="{Binding IsVideoSelected, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"/>
+                                    <Image Source="../Images/IndoorWorxLightBackground.png" Visibility="{Binding IsVideoSelected, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"/>
                                     <telerik:RadTileView     
                                             Visibility="{Binding IsVideoSelected, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                                             Grid.Row="0" Grid.Column="1"
@@ -74,14 +74,32 @@
                                                                     <RowDefinition Height="*"/>
                                                                     <RowDefinition Height="2*"/>
                                                                 </Grid.RowDefinitions>
-                                                                <telerik:RadTileView telerik:StyleManager.Theme="Transparent" Grid.Row="1" Grid.ColumnSpan="2" MaximizeMode="Zero" MinimizedItemsPosition="Left" MinimizedRowHeight="180" TileStateChangeTrigger="None">
-                                                                    <telerik:RadTileViewItem x:Name="profilesTile" Header="{Binding CatalogResources.ProfilesTitle, Source={StaticResource CatalogResources}}" >
-                                                                        <catControls:TrainingSetDetailsControl x:Name="trainingSetDetails" DataContext="{Binding SelectedTrainingSet, Mode=OneWay}"/>
-                                                                    </telerik:RadTileViewItem>
-                                                                    <telerik:RadTileViewItem Header="{Binding CatalogResources.ReviewsTitle, Source={StaticResource CatalogResources}}" >
-                                                                        <catControls:ReviewsControl DataContext="{Binding SelectedTrainingSet, Mode=OneWay}"/>
-                                                                    </telerik:RadTileViewItem>
-                                                                </telerik:RadTileView>
+                                                                <Border Grid.Column="0" Grid.Row="1" CornerRadius="10" Margin="10">
+                                                                    <Border.Background>
+                                                                        <SolidColorBrush Color="White" Opacity="0.5"/>
+                                                                    </Border.Background>
+                                                                    <Grid>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="Auto"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <TextBlock Text="{Binding CatalogResources.ProfilesTitle, Source={StaticResource CatalogResources}}" Margin="5" FontWeight="Bold"/>
+                                                                        <catControls:TrainingSetDetailsControl x:Name="trainingSetDetails" DataContext="{Binding SelectedTrainingSet, Mode=OneWay}" Grid.Row="1" Margin="2"/>
+                                                                    </Grid>
+                                                                </Border>
+                                                                <Border Grid.Column="1" Grid.Row="1" CornerRadius="10" Margin="10">
+                                                                    <Border.Background>
+                                                                        <SolidColorBrush Color="White" Opacity="0.5"/>
+                                                                    </Border.Background>
+                                                                    <Grid>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="Auto"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <TextBlock Text="{Binding CatalogResources.ReviewsTitle, Source={StaticResource CatalogResources}}" Margin="5" FontWeight="Bold"/>
+                                                                        <catControls:ReviewsControl DataContext="{Binding SelectedTrainingSet, Mode=OneWay}" Grid.Row="1" Margin="2"/>
+                                                                    </Grid>
+                                                                </Border>
                                                                 <Border Grid.Column="0" Grid.Row="0" CornerRadius="10" Margin="10">
                                                                     <Border.Background>
                                                                         <SolidColorBrush Color="White" Opacity="0.5"/>

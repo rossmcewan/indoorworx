@@ -19,9 +19,23 @@ namespace IndoorWorx.Catalog.Controls
 {
     public partial class TrainingSetDetailsControl : UserControl
     {
+        private static readonly List<Telemetry> EmptyTelemetry = new List<Telemetry>();
+
         public TrainingSetDetailsControl()
         {
             InitializeComponent();
+            this.Loaded += new RoutedEventHandler(TrainingSetDetailsControl_Loaded);
+            this.Unloaded += new RoutedEventHandler(TrainingSetDetailsControl_Unloaded);            
+        }
+
+        void TrainingSetDetailsControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            IoC.Resolve<IEventAggregator>().GetEvent<TrainingSetSelectionChangedEvent>().Unsubscribe(TrainingSetSelectionChanged);
+            IoC.Resolve<IEventAggregator>().GetEvent<VideoSelectionChangedEvent>().Unsubscribe(VideoSelectionChanged);
+        }
+
+        void TrainingSetDetailsControl_Loaded(object sender, RoutedEventArgs e)
+        {
             IoC.Resolve<IEventAggregator>().GetEvent<TrainingSetSelectionChangedEvent>().Subscribe(TrainingSetSelectionChanged);
             IoC.Resolve<IEventAggregator>().GetEvent<VideoSelectionChangedEvent>().Subscribe(VideoSelectionChanged);
         }
@@ -34,13 +48,24 @@ namespace IndoorWorx.Catalog.Controls
         public void VideoSelectionChanged(Video video)
         {
             if (video.SelectedTrainingSet != null)
+            {
                 LoadTelemetryOnChart(video.SelectedTrainingSet);
+            }
+            else
+            {
+                ClearTelemetryChart();
+            }
         }
 
         private void profileChart_Loaded(object sender, RoutedEventArgs e)
         {
             var video = this.DataContext as TrainingSet;
             LoadTelemetryOnChart(video);
+        }
+
+        private void ClearTelemetryChart()
+        {
+            profileChart.LoadTelemetry(EmptyTelemetry);
         }
 
         private void LoadTelemetryOnChart(TrainingSet video)

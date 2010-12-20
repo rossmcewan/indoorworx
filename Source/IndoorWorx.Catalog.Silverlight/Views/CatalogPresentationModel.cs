@@ -155,8 +155,10 @@ namespace IndoorWorx.Catalog.Views
 
         public void OnVideoSelectionChanged()
         {
-            if(SelectedCategory != null && SelectedCategory.SelectedCatalog != null)
+            if (SelectedCategory != null && SelectedCategory.SelectedCatalog != null)
+            {
                 eventAggregator.GetEvent<VideoSelectionChangedEvent>().Publish(SelectedCategory.SelectedCatalog.SelectedVideo);
+            }
             FirePropertyChanged("IsVideoSelected");
         }
 
