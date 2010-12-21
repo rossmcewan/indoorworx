@@ -27,14 +27,14 @@ using System.Windows.Threading;
             InitializeComponent();
             this.Title = ApplicationStrings.HomePageTitle;
             this.timer = new DispatcherTimer();
-            this.timer.Interval = TimeSpan.FromSeconds(1);
+            this.timer.Interval = TimeSpan.FromSeconds(10);
             this.timer.Tick += new EventHandler(timer_Tick);
             this.timer.Start();
         }
 
         void timer_Tick(object sender, EventArgs e)
         {
-            this.coverFlow.SelectedIndex = (this.coverFlow.SelectedIndex + 1) % (this.coverFlow.Items.Count);
+            //this.coverFlow.SelectedIndex = (this.coverFlow.SelectedIndex + 1) % (this.coverFlow.Items.Count);
         }
        
         /// <summary>

@@ -162,6 +162,7 @@
     <Compile Include="Converters\UrlToImageConverter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Effects\WetFloorEffect.cs" />
     <Compile Include="Events\CatalogSearchTextChangedEvent.cs" />
     <Compile Include="Events\DesignVideoEvent.cs" />
     <Compile Include="Events\PlayVideoEvent.cs" />

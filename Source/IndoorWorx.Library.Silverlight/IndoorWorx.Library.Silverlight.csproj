@@ -85,7 +85,12 @@
       <DependentUpon>DocumentViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ICategoryTreeControlModel.cs" />
+    <Compile Include="Controls\PagerViewModel.cs" />
+    <Compile Include="Controls\PageViewModel.cs" />
     <Compile Include="Controls\TelemetryChart.cs" />
+    <Compile Include="Controls\TransitionControl.xaml.cs">
+      <DependentUpon>TransitionControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\VideoMediaElement.xaml.cs">
       <DependentUpon>VideoMediaElement.xaml</DependentUpon>
     </Compile>
@@ -153,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\DocumentViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TransitionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

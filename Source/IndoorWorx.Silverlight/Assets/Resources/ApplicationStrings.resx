@@ -144,6 +144,18 @@
   <data name="CancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="HomePageContent" xml:space="preserve">
+    <value>We all know how boring indoor training can be, yet it is a necessary part of most people training regimes.  Be it because of the weather, the traffic or just the necessity to get a quality session done in a controlled environment. 
+Indoor training works, but how do we make it more enjoyable, and overcome the boredom to push ourselves to new limits.
+IndoorWorx. That’s how.
+IndoorWorx is an online video streaming application that streams training videos from the internet, to be used whilst training indoors. Sessions can range from group training sets, intervals sessions, time trials, triathlons, track sessions, the list is endless.  Power and/or HR profiles will show the levels that you should be working in. 
+If a computrainer is your tool of choice, we can provide a means to automatically adjust the tension of your trainer, so all that is required from you is to turns the pedals. Easier said than done!
+Experience Indoor Training like never before.
+How it works:
+Simply sign up, look through our catalogue, select a ride, select a session within the ride and off you go.
+It’s time to make your training count.
+Did you say indoor training is boring!? Think again.</value>
+  </data>
   <data name="HomePageTitle" xml:space="preserve">
     <value>home</value>
   </data>
@@ -173,6 +185,9 @@
   </data>
   <data name="RememberMeLabel" xml:space="preserve">
     <value>Keep me signed in</value>
+  </data>
+  <data name="SignUpNow" xml:space="preserve">
+    <value>sign up now</value>
   </data>
   <data name="WelcomeMessage" xml:space="preserve">
     <value>Welcome {0}</value>

@@ -133,6 +133,18 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We all know how boring indoor training can be, yet it is a necessary part of most people training regimes.  Be it because of the weather, the traffic or just the necessity to get a quality session done in a controlled environment. 
+        ///Indoor training works, but how do we make it more enjoyable, and overcome the boredom to push ourselves to new limits.
+        ///IndoorWorx. That’s how.
+        ///IndoorWorx is an online video streaming application that streams training videos from the internet, to be used whilst training indoors [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string HomePageContent {
+            get {
+                return ResourceManager.GetString("HomePageContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to home.
         /// </summary>
         public static string HomePageTitle {
@@ -219,6 +231,15 @@ namespace IndoorWorx.Silverlight {
         public static string RememberMeLabel {
             get {
                 return ResourceManager.GetString("RememberMeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sign up now.
+        /// </summary>
+        public static string SignUpNow {
+            get {
+                return ResourceManager.GetString("SignUpNow", resourceCulture);
             }
         }
         

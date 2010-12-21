@@ -324,6 +324,10 @@
     <Resource Include="Images\youtube_large.png" />
     <Resource Include="Images\youtube_small.png" />
     <Resource Include="Images\suncity.jpg" />
+    <Resource Include="Images\suikerbosrand.JPG" />
+    <Resource Include="Images\tri1.jpg" />
+    <Resource Include="Images\tri2.jpg" />
+    <Resource Include="Images\tri3.jpg" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
