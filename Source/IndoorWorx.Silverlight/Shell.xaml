@@ -26,7 +26,8 @@
                 </navigation:Frame.UriMapper>
                 <navigation:Frame.ContentLoader>
                     <SLaBE:ErrorPageLoader>
-                        <SLaBE:ErrorPage ExceptionType="UnauthorizedAccessException" ErrorPageUri="/Views/AuthorizationError.xaml"/>
+                        <SLaBE:ErrorPage ExceptionType="Exception" ErrorPageUri="/AuthorizationError"/>
+                        <SLaBE:ErrorPage ExceptionType="UnauthorizedAccessException" ErrorPageUri="/AuthorizationError"/>
                         <SLaBE:ErrorPageLoader.ContentLoader>
                             <SLaBA:AuthContentLoader Principal="{Binding User, Source={StaticResource WebContext}}">
                                 <SLaBA:NavigationAuthorizer/>

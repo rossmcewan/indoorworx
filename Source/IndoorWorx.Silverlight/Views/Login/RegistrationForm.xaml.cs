@@ -23,7 +23,7 @@
 
         public string Header
         {
-            get { return "Registration"; }
+            get { return ApplicationStrings.RegistrationWindowTitle; }
         }
 
         /// <summary>

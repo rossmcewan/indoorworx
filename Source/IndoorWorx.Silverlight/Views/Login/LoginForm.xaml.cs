@@ -20,7 +20,7 @@
         {
             get
             {
-                return "Login";
+                return ApplicationStrings.LoginWindowTitle;
             }
         }
 

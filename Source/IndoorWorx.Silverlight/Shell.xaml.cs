@@ -135,10 +135,10 @@ using IndoorWorx.Infrastructure.Models;
                 NavigationAuthRule authRule = new NavigationAuthRule()
                 {
                     UriPattern = string.Concat("^", navigation.NavigationUri, "$")
-                };
+                };                
                 authRule.Parts.Add(new Deny() { Users = navigation.GetDeniedRolesAsString() });
                 authRule.Parts.Add(new Allow() { Users = navigation.GetAllowedRolesAsString() });
-                NavigationAuthorizer _authorizer = GetAuthorizer();
+                NavigationAuthorizer _authorizer = GetAuthorizer();                
                 _authorizer.Rules.Add(authRule);
                 LinksStackPanel.Children.Add(GetDivider());
                 LinksStackPanel.Children.Add(hb);
@@ -152,24 +152,10 @@ using IndoorWorx.Infrastructure.Models;
         private NavigationAuthorizer GetAuthorizer()
         {
             var errorPageLoader = this.ContentFrame.ContentLoader as ErrorPageLoader;
-            var authContentLoader = errorPageLoader.ContentLoader as AuthContentLoader;
+            var authContentLoader = errorPageLoader.ContentLoader as AuthContentLoader;            
             return authContentLoader.Authorizer as NavigationAuthorizer;
         }
-
-        private void hb_Click(object sender, RoutedEventArgs e)
-        {
-            var hb = sender as HyperlinkButton;
-            if (hb != null)
-            {
-                currentHyperlink = hb;
-                if (hb.NavigateUri.ToString().Contains(ApplicationUris.AuthorizationError))
-                {
-                    new LoginRegistrationWindow().Show();
-                    return;
-                }
-            }
-        }
-
+        
         private UIElement GetDivider()
         {
             var rectangle = new Rectangle();

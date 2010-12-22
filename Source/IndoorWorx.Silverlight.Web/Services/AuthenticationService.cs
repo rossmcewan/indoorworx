@@ -14,5 +14,7 @@
     /// AuthenticationBase
     /// </summary>
     [EnableClientAccess]
-    public class AuthenticationService : AuthenticationBase<User> { }
+    public class AuthenticationService : AuthenticationBase<User> 
+    {
+    }
 }

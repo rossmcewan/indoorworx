@@ -70,8 +70,8 @@ namespace IndoorWorx.Designer
                 Content = "designer",
                 IsAuthenticationRequired = true,
                 NavigationUri = "/Designer",
-                Allow = new string[] { "?" },
-                Deny = new string[] { "" }
+                Allow = new string[] { "" },
+                Deny = new string[] { "*" }
             });
         }
 
