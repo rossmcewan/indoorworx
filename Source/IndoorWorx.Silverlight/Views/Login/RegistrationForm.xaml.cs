@@ -21,6 +21,11 @@
         private RegistrationData registrationData = new RegistrationData();
         private UserRegistrationContext userRegistrationContext = new UserRegistrationContext();
 
+        public string Header
+        {
+            get { return "Registration"; }
+        }
+
         /// <summary>
         /// Creates a new <see cref="RegistrationForm"/> instance.
         /// </summary>

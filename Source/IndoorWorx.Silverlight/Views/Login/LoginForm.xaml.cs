@@ -6,6 +6,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
+    using Telerik.Windows.Controls;
 
     /// <summary>
     /// Form that presents the login fields and handles the login process.
@@ -14,6 +15,14 @@
     {
         private LoginRegistrationWindow parentWindow;
         private LoginInfo loginInfo = new LoginInfo();
+        
+        public string Header
+        {
+            get
+            {
+                return "Login";
+            }
+        }
 
         /// <summary>
         /// Creates a new <see cref="LoginForm"/> instance.
@@ -21,10 +30,10 @@
         public LoginForm()
         {
             InitializeComponent();
-
             // Set the DataContext of this control to the
             // LoginInfo instance to allow for easy binding
             this.DataContext = this.loginInfo;
+
         }
 
         /// <summary>

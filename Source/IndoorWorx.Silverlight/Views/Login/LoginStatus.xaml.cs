@@ -28,7 +28,7 @@
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             LoginRegistrationWindow loginWindow = new LoginRegistrationWindow();
-            loginWindow.Show();
+            loginWindow.ShowDialog();
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)

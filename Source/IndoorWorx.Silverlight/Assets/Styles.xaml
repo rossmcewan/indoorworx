@@ -5,14 +5,15 @@
   xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
   xmlns:dataControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.DataForm.Toolkit" 
   xmlns:appControls="clr-namespace:IndoorWorx.Silverlight.Controls"
+  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
   xmlns:loginWindow="clr-namespace:IndoorWorx.Silverlight.LoginUI"
-  xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input">    
+  xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Controls/BusyIndicator.xaml" />
         <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/Brushes.xaml" />
         <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/Fonts.xaml" />
         <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/CoreStyles.xaml" />
-    </ResourceDictionary.MergedDictionaries>    
+    </ResourceDictionary.MergedDictionaries>
 
     <!-- ******MAIN PAGE STYLES****** -->
     <!-- **************************** -->
@@ -108,7 +109,7 @@
         <Setter Property="Orientation" Value="Horizontal"/>
         <Setter Property="Margin" Value="0,15,0,0"/>
     </Style>
-    
+
     <!-- Logo Icon Style -->
     <Style x:Key="LogoIcon" TargetType="ContentControl">
         <!--<Setter Property="FontFamily" Value="Segoe UI, Lucida Sans Unicode, Verdana"/>
@@ -169,7 +170,7 @@
             </Setter.Value>
         </Setter>-->
     </Style>
-    
+
     <!-- Links Border Style -->
     <Style x:Key="LinksBorderStyle" TargetType="Border">
         <Setter Property="Height" Value="38"/>
@@ -200,7 +201,7 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Orientation" Value="Horizontal"/>
     </Style>
-    
+
     <!-- Link Style -->
     <Style x:Key="LinkStyle" TargetType="HyperlinkButton">
         <Setter Property="FontFamily" Value="Segoe UI, Lucida Sans Unicode, Verdana"/>
@@ -663,7 +664,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <!-- Content Panel Style -->
     <Style x:Key="ContentStackPanelStyle" TargetType="StackPanel"/>
 
@@ -1004,7 +1005,7 @@
                             <Rectangle x:Name="FocusInnerVisual" Margin="2" Stroke="Black" StrokeThickness="1" StrokeDashArray="1 2" Opacity="0"/>
                         </Grid>
                         <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                      </Grid>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -1354,7 +1355,7 @@
 
 
     <!-- LoginRegistration Window Style -->
-    <Style x:Key="LogRegWindowStyle" TargetType="loginWindow:LoginRegistrationWindow">
+    <Style x:Key="LogRegWindowStyle" TargetType="telerik:RadWindow">
         <Setter Property="IsTabStop" Value="false"/>
         <Setter Property="TabNavigation" Value="Cycle"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -1363,8 +1364,8 @@
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="BorderBrush" Value="{StaticResource NormalBorderBrush}" />
-        <Setter Property="OverlayBrush" Value="#7F000000"/>
-        <Setter Property="OverlayOpacity" Value="1"/>
+        <Setter Property="ModalBackground" Value="#7F000000"/>
+        <Setter Property="Opacity" Value="0.5"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="loginWindow:LoginRegistrationWindow">
@@ -1714,7 +1715,7 @@
                                 </VisualStateGroup.Transitions>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid x:Name="Overlay" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0" Background="{TemplateBinding OverlayBrush}" Opacity="{TemplateBinding OverlayOpacity}"/>
+                        <Grid x:Name="Overlay" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0" Background="{TemplateBinding ModalBackground}" Opacity="{TemplateBinding Opacity}"/>
                         <Grid x:Name="ContentRoot" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" RenderTransformOrigin="0.5,0.5" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
                             <Grid.Projection>
                                 <PlaneProjection/>
@@ -1746,16 +1747,12 @@
                                                     <ColumnDefinition/>
                                                     <ColumnDefinition Width="60"/>
                                                 </Grid.ColumnDefinitions>
-                                                <ContentControl x:Name="contentControl" Content="{TemplateBinding Title}" 
-                          IsTabStop="False" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="8,4,6,4"/>
+                                                <ContentControl x:Name="contentControl" Content="{TemplateBinding Header}" IsTabStop="False" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="8,4,6,4"/>
                                                 <Button x:Name="CloseButton" Grid.Column="1" IsTabStop="False" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" Margin="-5,0,0,0"/>
                                             </Grid>
                                         </Border>
                                         <Border x:Name="border" Background="{TemplateBinding Background}" Margin="7" Grid.Row="1">
-                                            <ContentPresenter x:Name="WindowContentPresenter" Content="{TemplateBinding Content}" 
-                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                            <ContentPresenter x:Name="WindowContentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                         </Border>
                                     </Grid>
                                 </Border>
