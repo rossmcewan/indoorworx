@@ -31,7 +31,11 @@ namespace IndoorWorx.Library.Controls
         {
             return new List<PageViewModel>()
             {
-                new PageViewModel() { Name = "1", Image = new BitmapImage(new Uri("/IndoorWorx.Silverlight;component/Images/suncity.jpg", UriKind.Relative)), Text = "We all know how boring indoor training can be, yet it is a necessary part of most people training regimes.  Be it because of the weather, the traffic or just the necessity to get a quality session done in a controlled environment."},
+                new PageViewModel() { Name = "1", Image = new BitmapImage(
+                    new Uri("/IndoorWorx.Silverlight;component/Images/suncity.jpg", UriKind.Relative))
+                    , Text = "<p>We all know how boring indoor training can be, yet it is a necessary part of most people training regimes.  Be it because of the weather, the traffic or just the necessity to get a quality session done in a controlled environment. </p><p> Indoor training works, but how do we make it more enjoyable, and overcome the boredom to push ourselves to new limits. </p> </p>< b> IndoorWorx.</b> That’s how. </p></p> < b> IndoorWorx .</b>  is an online indoor training platform that streams training videos with the related telemetry and session details. </p><p><i><b>Experience indoor training like never before! <i><b> </p>"
+                },
+
                 new PageViewModel() { Name = "2", Image = new BitmapImage(new Uri("/IndoorWorx.Silverlight;component/Images/tri1.jpg", UriKind.Relative)), Text="Indoor training works, but how do we make it more enjoyable, and overcome the boredom to push ourselves to new limits. IndoorWorx. That’s how."},
                 new PageViewModel() { Name = "3", Image = new BitmapImage(new Uri("/IndoorWorx.Silverlight;component/Images/tri2.jpg", UriKind.Relative)), Text="IndoorWorx is an online video streaming application that streams training videos from the internet, to be used whilst training indoors. Sessions can range from group training sets, intervals sessions, time trials, triathlons, track sessions, the list is endless.  Power and/or HR profiles will show the levels that you should be working in."},
                 new PageViewModel() { Name = "4", Image = new BitmapImage(new Uri("/IndoorWorx.Silverlight;component/Images/tri3.jpg", UriKind.Relative)), Text="If a computrainer is your tool of choice, we can provide a means to automatically adjust the tension of your trainer, so all that is required from you is to turns the pedals. Easier said than done!"},

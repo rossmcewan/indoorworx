@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace IndoorWorx.Infrastructure.Models
 {
     [DataContract(IsReference = true)]
-    public class TrainingMetrics : BaseModel
+    public partial class TrainingMetrics : BaseModel
     {
         private double averagePower;
         [DataMember]

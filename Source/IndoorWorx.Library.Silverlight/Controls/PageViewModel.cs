@@ -8,6 +8,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Telerik.Windows.Documents.FormatProviders.Html;
+using Telerik.Windows.Documents.Model;
 
 namespace IndoorWorx.Library.Controls
 {

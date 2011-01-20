@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace IndoorWorx.Infrastructure.Models
 {
     [DataContract]
-    public class VideoText : BaseModel
+    public partial class VideoText : BaseModel
     {
         private string mainText = string.Empty;
         [DataMember]

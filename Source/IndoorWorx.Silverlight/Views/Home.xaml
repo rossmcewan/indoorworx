@@ -39,9 +39,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Image Source="../Images/facebook_large.png" Margin="2"/>
-            <Image Source="../Images/twitter_large.png" Margin="2" Grid.Column="1"/>
-            <Image Source="../Images/youtube_large.png" Margin="2" Grid.Column="2"/>
+            <Image Source="../Images/facebook_small.png" Margin="2"/>
+            <Image Source="../Images/twitter_small.png" Margin="2" Grid.Column="1"/>
+            <Image Source="../Images/youtube_small.png" Margin="2" Grid.Column="2"/>
         </Grid>
         <!--<HyperlinkButton Grid.Column="0" Grid.Row="1" Content="{Binding Path=ApplicationStrings.SignUpNow, Source={StaticResource ResourceWrapper}}" HorizontalAlignment="Right"/>-->
         <controls:TransitionControl Grid.Column="0" Grid.RowSpan="2" Margin="5"/>

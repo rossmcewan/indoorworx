@@ -39,6 +39,7 @@ namespace IndoorWorx.Library
             unityContainer.RegisterInstance<INavigationService>(unityContainer.Resolve<NavigationService>());
             unityContainer.RegisterInstance<IDialogFacade>(unityContainer.Resolve<DialogFacade>());
             unityContainer.RegisterType<ICategoryService, CategoryService>();
+            unityContainer.RegisterType<IApplicationUserService, ApplicationUserService>();
         }
 
         #endregion

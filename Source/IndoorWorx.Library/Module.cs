@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Unity;
+using IndoorWorx.Infrastructure.Services;
+using IndoorWorx.Library.Services;
 
 namespace IndoorWorx.Library
 {
@@ -16,6 +18,7 @@ namespace IndoorWorx.Library
 
         public void Initialize()
         {
+            Container.RegisterInstance<IApplicationUserService>(new ApplicationUserService());
         }
 
         #endregion

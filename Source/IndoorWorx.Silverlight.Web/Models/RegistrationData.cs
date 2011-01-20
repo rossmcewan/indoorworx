@@ -2,6 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
     using IndoorWorx.Silverlight.Web.Resources;
+    using System;
+    using IndoorWorx.Infrastructure.Models;
 
     /// <summary>
     /// Class containing the values and validation rules for user registration.
@@ -19,16 +21,6 @@
         public string UserName { get; set; }
 
         /// <summary>
-        /// Gets and sets the email address.
-        /// </summary>
-        [Key]
-        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        [Display(Order = 2, Name = "EmailLabel", ResourceType = typeof(RegistrationDataResources))]
-        [RegularExpression(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
-                           ErrorMessageResourceName = "ValidationErrorInvalidEmail", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        public string Email { get; set; }
-
-        /// <summary>
         /// Gets and sets the friendly name of the user.
         /// </summary>
         [Display(Order = 1, Name = "FriendlyNameLabel", Description = "FriendlyNameDescription", ResourceType = typeof(RegistrationDataResources))]
@@ -36,17 +28,64 @@
         public string FriendlyName { get; set; }
 
         /// <summary>
-        /// Gets and sets the security question.
+        /// Gets and sets the first name.
         /// </summary>
+        [Key]
         [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        [Display(Order = 5, Name = "SecurityQuestionLabel", ResourceType = typeof(RegistrationDataResources))]
-        public string Question { get; set; }
+        [Display(Order = 3, Name = "FirstNameLabel", ResourceType = typeof(RegistrationDataResources))]
+        public string FirstName { get; set; }
 
         /// <summary>
-        /// Gets and sets the answer to the security question.
+        /// Gets and sets the last name.
         /// </summary>
+        [Key]
         [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        [Display(Order = 6, Name = "SecurityAnswerLabel", ResourceType = typeof(RegistrationDataResources))]
-        public string Answer { get; set; }
+        [Display(Order = 4, Name = "LastNameLabel", ResourceType = typeof(RegistrationDataResources))]
+        public string LastName { get; set; }
+
+        [Key]
+        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
+        [Display(Order = 5, Name = "GenderLabel", ResourceType = typeof(RegistrationDataResources))]
+        public Gender Gender { get; set; }
+
+
+        /// <summary>
+        /// Gets and sets the last name.
+        /// </summary>
+        [Key]
+        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
+        [Display(Order = 6, Name = "DateOfBirthLabel", ResourceType = typeof(RegistrationDataResources))]
+        public DateTime DateOfBirth { get; set; }
+
+
+        /// <summary>
+        /// Gets and sets the last name.
+        /// </summary>
+        [Key]
+        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
+        [Display(Order = 7, Name = "CountryLabel", ResourceType = typeof(RegistrationDataResources))]
+        public Country Country { get; set; }
+
+
+        [Key]
+        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
+        [Display(Order = 8, Name = "EmailLabel", ResourceType = typeof(RegistrationDataResources))]
+        [RegularExpression(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
+                           ErrorMessageResourceName = "ValidationErrorInvalidEmail", ErrorMessageResourceType = typeof(ValidationErrorResources))]
+        public string Email { get; set; }
+
+        ///// <summary>
+        ///// Gets and sets the security question.
+        ///// </summary>
+        //[Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
+        //[Display(Order = 5, Name = "SecurityQuestionLabel", ResourceType = typeof(RegistrationDataResources))]
+        //public string Question { get; set; }
+
+        ///// <summary>
+        ///// Gets and sets the answer to the security question.
+        ///// </summary>
+        //[Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
+        //[Display(Order = 6, Name = "SecurityAnswerLabel", ResourceType = typeof(RegistrationDataResources))]
+        //public string Answer { get; set; }
     }
 }

@@ -11,6 +11,9 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using IndoorWorx.Silverlight.Web;
+using IndoorWorx.Infrastructure.Services;
+using IndoorWorx.Infrastructure;
+    using IndoorWorx.Infrastructure.Models;
 
     /// <summary>
     /// Form that presents the <see cref="RegistrationData"/> and performs the registration process.
@@ -25,6 +28,22 @@
         {
             get { return ApplicationStrings.RegistrationWindowTitle; }
         }
+
+        public IApplicationUserService ApplicationUserService
+        {
+            get
+            {
+                return IoC.Resolve<IApplicationUserService>();
+            }
+        }
+
+        //public RegistrationData RegistrationData
+        //{
+        //    get
+        //    {
+        //        return this.DataContext as Res;
+        //    }
+        //}
 
         /// <summary>
         /// Creates a new <see cref="RegistrationForm"/> instance.
@@ -146,6 +165,7 @@
                 }
                 else if (operation.Value == CreateUserStatus.Success)
                 {
+                    ApplicationUserService.SaveApplicationUser(new ApplicationUser() {  });
                     this.registrationData.CurrentOperation = WebContext.Current.Authentication.Login(this.registrationData.ToLoginParameters(), this.LoginOperation_Completed, null);
                     this.parentWindow.AddPendingOperation(this.registrationData.CurrentOperation);
                 }

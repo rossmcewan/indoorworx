@@ -8,6 +8,8 @@
     using System.Web.Profile;
     using System.Web.Security;
     using IndoorWorx.Silverlight.Web.Resources;
+    using IndoorWorx.Infrastructure.Services;
+    using IndoorWorx.Infrastructure.ServiceModel;
 
     /// <summary>
     ///   RIA Services Domain Service that exposes methods for performing user
@@ -16,6 +18,7 @@
     [EnableClientAccess]
     public class UserRegistrationService : DomainService
     {
+
         /// <summary>
         /// Role to which users will be added by default.
         /// </summary>
@@ -56,7 +59,9 @@
             // NOTE: ASP.NET by default uses SQL Server Express to create the user database. 
             // CreateUser will fail if you do not have SQL Server Express installed.
             MembershipCreateStatus createStatus;
-            Membership.CreateUser(user.UserName, password, user.Email, user.Question, user.Answer, true, null, out createStatus);
+            //Membership.CreateUser(user.UserName, password, user.Email, user.Question, user.Answer, true, null, out createStatus);
+
+            Membership.CreateUser(user.UserName, password, user.Email,"Question","Answer", true, null, out createStatus);
 
             if (createStatus != MembershipCreateStatus.Success)
             {

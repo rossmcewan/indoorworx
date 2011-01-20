@@ -90,6 +90,7 @@ namespace IndoorWorx.Silverlight.Web
     using System.ServiceModel.DomainServices.Client;
     using System.ServiceModel.DomainServices.Client.ApplicationServices;
     using System.ServiceModel.Web;
+    using IndoorWorx.Infrastructure.Models;
     using IndoorWorx.Silverlight.Web.Resources;
     
     
@@ -317,13 +318,19 @@ namespace IndoorWorx.Silverlight.Web
     public sealed partial class RegistrationData : Entity
     {
         
-        private string _answer;
+        private Country _country;
+        
+        private DateTime _dateOfBirth;
         
         private string _email;
         
+        private string _firstName;
+        
         private string _friendlyName;
         
-        private string _question;
+        private Gender _gender;
+        
+        private string _lastName;
         
         private string _userName;
         
@@ -334,14 +341,20 @@ namespace IndoorWorx.Silverlight.Web
         /// can be used for further object setup.
         /// </summary>
         partial void OnCreated();
-        partial void OnAnswerChanging(string value);
-        partial void OnAnswerChanged();
+        partial void OnCountryChanging(Country value);
+        partial void OnCountryChanged();
+        partial void OnDateOfBirthChanging(DateTime value);
+        partial void OnDateOfBirthChanged();
         partial void OnEmailChanging(string value);
         partial void OnEmailChanged();
+        partial void OnFirstNameChanging(string value);
+        partial void OnFirstNameChanged();
         partial void OnFriendlyNameChanging(string value);
         partial void OnFriendlyNameChanged();
-        partial void OnQuestionChanging(string value);
-        partial void OnQuestionChanged();
+        partial void OnGenderChanging(Gender value);
+        partial void OnGenderChanged();
+        partial void OnLastNameChanging(string value);
+        partial void OnLastNameChanged();
         partial void OnUserNameChanging(string value);
         partial void OnUserNameChanged();
 
@@ -357,27 +370,57 @@ namespace IndoorWorx.Silverlight.Web
         }
         
         /// <summary>
-        /// Gets or sets the 'Answer' value.
+        /// Gets or sets the 'Country' value.
         /// </summary>
         [DataMember()]
-        [Display(Name="SecurityAnswerLabel", Order=6, ResourceType=typeof(RegistrationDataResources))]
+        [Display(Name="CountryLabel", Order=7, ResourceType=typeof(RegistrationDataResources))]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
         [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
-        public string Answer
+        [RoundtripOriginal()]
+        public Country Country
         {
             get
             {
-                return this._answer;
+                return this._country;
             }
             set
             {
-                if ((this._answer != value))
+                if ((this._country != value))
                 {
-                    this.OnAnswerChanging(value);
-                    this.RaiseDataMemberChanging("Answer");
-                    this.ValidateProperty("Answer", value);
-                    this._answer = value;
-                    this.RaiseDataMemberChanged("Answer");
-                    this.OnAnswerChanged();
+                    this.OnCountryChanging(value);
+                    this.ValidateProperty("Country", value);
+                    this._country = value;
+                    this.RaisePropertyChanged("Country");
+                    this.OnCountryChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'DateOfBirth' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="DateOfBirthLabel", Order=6, ResourceType=typeof(RegistrationDataResources))]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [RoundtripOriginal()]
+        public DateTime DateOfBirth
+        {
+            get
+            {
+                return this._dateOfBirth;
+            }
+            set
+            {
+                if ((this._dateOfBirth != value))
+                {
+                    this.OnDateOfBirthChanging(value);
+                    this.ValidateProperty("DateOfBirth", value);
+                    this._dateOfBirth = value;
+                    this.RaisePropertyChanged("DateOfBirth");
+                    this.OnDateOfBirthChanged();
                 }
             }
         }
@@ -386,7 +429,7 @@ namespace IndoorWorx.Silverlight.Web
         /// Gets or sets the 'Email' value.
         /// </summary>
         [DataMember()]
-        [Display(Name="EmailLabel", Order=2, ResourceType=typeof(RegistrationDataResources))]
+        [Display(Name="EmailLabel", Order=8, ResourceType=typeof(RegistrationDataResources))]
         [Editable(false, AllowInitialValue=true)]
         [Key()]
         [RegularExpression("^([\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4" +
@@ -408,6 +451,34 @@ namespace IndoorWorx.Silverlight.Web
                     this._email = value;
                     this.RaisePropertyChanged("Email");
                     this.OnEmailChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'FirstName' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="FirstNameLabel", Order=3, ResourceType=typeof(RegistrationDataResources))]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [RoundtripOriginal()]
+        public string FirstName
+        {
+            get
+            {
+                return this._firstName;
+            }
+            set
+            {
+                if ((this._firstName != value))
+                {
+                    this.OnFirstNameChanging(value);
+                    this.ValidateProperty("FirstName", value);
+                    this._firstName = value;
+                    this.RaisePropertyChanged("FirstName");
+                    this.OnFirstNameChanged();
                 }
             }
         }
@@ -439,27 +510,60 @@ namespace IndoorWorx.Silverlight.Web
         }
         
         /// <summary>
-        /// Gets or sets the 'Question' value.
+        /// Gets or sets the 'Gender' value.
         /// </summary>
+        // Unable to generate the following attribute(s) due to the following error(s):
+        // 
+        // - An exception occurred generating the 'Name' property on attribute of type 'System.ComponentModel.DataAnnotations.DisplayAttribute'.
+        // 
         [DataMember()]
-        [Display(Name="SecurityQuestionLabel", Order=5, ResourceType=typeof(RegistrationDataResources))]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
         [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
-        public string Question
+        [RoundtripOriginal()]
+        public Gender Gender
         {
             get
             {
-                return this._question;
+                return this._gender;
             }
             set
             {
-                if ((this._question != value))
+                if ((this._gender != value))
                 {
-                    this.OnQuestionChanging(value);
-                    this.RaiseDataMemberChanging("Question");
-                    this.ValidateProperty("Question", value);
-                    this._question = value;
-                    this.RaiseDataMemberChanged("Question");
-                    this.OnQuestionChanged();
+                    this.OnGenderChanging(value);
+                    this.ValidateProperty("Gender", value);
+                    this._gender = value;
+                    this.RaisePropertyChanged("Gender");
+                    this.OnGenderChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'LastName' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="LastNameLabel", Order=4, ResourceType=typeof(RegistrationDataResources))]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [RoundtripOriginal()]
+        public string LastName
+        {
+            get
+            {
+                return this._lastName;
+            }
+            set
+            {
+                if ((this._lastName != value))
+                {
+                    this.OnLastNameChanging(value);
+                    this.ValidateProperty("LastName", value);
+                    this._lastName = value;
+                    this.RaisePropertyChanged("LastName");
+                    this.OnLastNameChanged();
                 }
             }
         }
@@ -500,12 +604,14 @@ namespace IndoorWorx.Silverlight.Web
         /// <returns>An object instance that uniquely identifies this entity instance.</returns>
         public override object GetIdentity()
         {
-            if (((this._email == null) 
+            if (((((this._email == null) 
+                        || (this._firstName == null)) 
+                        || (this._lastName == null)) 
                         || (this._userName == null)))
             {
                 return null;
             }
-            return EntityKey.Create(this._email, this._userName);
+            return EntityKey.Create(this._country, this._dateOfBirth, this._email, this._firstName, this._gender, this._lastName, this._userName);
         }
     }
     

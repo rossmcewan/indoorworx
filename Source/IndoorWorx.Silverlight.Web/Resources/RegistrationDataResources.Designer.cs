@@ -61,11 +61,38 @@ namespace IndoorWorx.Silverlight.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CountryOfResidence.
+        /// </summary>
+        public static string CountryLabel {
+            get {
+                return ResourceManager.GetString("CountryLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of Birth.
+        /// </summary>
+        public static string DateOfBirthLabel {
+            get {
+                return ResourceManager.GetString("DateOfBirthLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string EmailLabel {
             get {
                 return ResourceManager.GetString("EmailLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name.
+        /// </summary>
+        public static string FirstNameLabel {
+            get {
+                return ResourceManager.GetString("FirstNameLabel", resourceCulture);
             }
         }
         
@@ -84,6 +111,15 @@ namespace IndoorWorx.Silverlight.Web.Resources {
         public static string FriendlyNameLabel {
             get {
                 return ResourceManager.GetString("FriendlyNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name.
+        /// </summary>
+        public static string LastNameLabel {
+            get {
+                return ResourceManager.GetString("LastNameLabel", resourceCulture);
             }
         }
         
