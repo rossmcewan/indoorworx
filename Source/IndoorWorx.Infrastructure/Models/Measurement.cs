@@ -33,15 +33,26 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private string unitOfMeasure = string.Empty;
+        private UnitOfMeasure unitOfMeasure = new UnitOfMeasure();
         [DataMember]
-        public virtual string UnitOfMeasure
+        public virtual UnitOfMeasure UnitOfMeasure
         {
             get { return unitOfMeasure; }
             set
             {
                 unitOfMeasure = value;
                 FirePropertyChanged("UnitOfMeasure");
+            }
+        }
+
+        private ICollection<TrainingZone> trainingZones = new List<TrainingZone>();
+        public virtual ICollection<TrainingZone> TrainingZones
+        {
+            get { return trainingZones; }
+            set
+            {
+                trainingZones = value;
+                FirePropertyChanged("TrainingZones");
             }
         }
     }

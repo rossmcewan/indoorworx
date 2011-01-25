@@ -9,15 +9,15 @@ namespace IndoorWorx.Infrastructure.Models
     [DataContract(IsReference = true)]
     public partial class SocialMediaProfile : BaseModel
     {
-        private SocialMediaTypes socialMediaType;
+        private SocialMediaType socialMediaType = new SocialMediaType();
         [DataMember]
-        public virtual SocialMediaTypes SocialMediaType
+        public virtual SocialMediaType SocialMediaType
         {
             get { return socialMediaType; }
             set
             {
                 socialMediaType = value;
-                FirePropertyChanged(" SocialMediaType");
+                FirePropertyChanged("SocialMediaType");
             }
         }
 
@@ -45,9 +45,9 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private ICollection<SocialMediaNotificationOptions> notificationOptions = new List<SocialMediaNotificationOptions>();
+        private ICollection<SocialMediaNotification> notificationOptions = new List<SocialMediaNotification>();
         [DataMember]
-        public virtual ICollection<SocialMediaNotificationOptions> NotificationOptions
+        public virtual ICollection<SocialMediaNotification> NotificationOptions
         {
             get { return notificationOptions; }
             set

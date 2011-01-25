@@ -104,8 +104,8 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Activity.cs">
       <Link>Models\Activity.cs</Link>
     </Compile>
-    <Compile Include="..\IndoorWorx.Infrastructure\Models\ActivityTypes.cs">
-      <Link>Models\ActivityTypes.cs</Link>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\ActivityType.cs">
+      <Link>Models\ActivityType.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\ApplicationOptions.cs">
       <Link>Models\ApplicationOptions.cs</Link>
@@ -125,11 +125,23 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Category.cs">
       <Link>Models\Category.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\Colour.cs">
+      <Link>Models\Colour.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Country.cs">
       <Link>Models\Country.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\Equipment.cs">
+      <Link>Models\Equipment.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\EquipmentFeatures.cs">
+      <Link>Models\EquipmentFeatures.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Gender.cs">
       <Link>Models\Gender.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\Manufacturer.cs">
+      <Link>Models\Manufacturer.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Measurement.cs">
       <Link>Models\Measurement.cs</Link>
@@ -137,14 +149,20 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\NavigationInfo.cs">
       <Link>Models\NavigationInfo.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\Range.cs">
+      <Link>Models\Range.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Review.cs">
       <Link>Models\Review.cs</Link>
     </Compile>
-    <Compile Include="..\IndoorWorx.Infrastructure\Models\SocialMediaNotificationOptions.cs">
-      <Link>Models\SocialMediaNotificationOptions.cs</Link>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\SocialMediaNotification.cs">
+      <Link>Models\SocialMediaNotification.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\SocialMediaProfile.cs">
       <Link>Models\SocialMediaProfile.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\SocialMediaType.cs">
+      <Link>Models\SocialMediaType.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\SocialMediaTypes.cs">
       <Link>Models\SocialMediaTypes.cs</Link>
@@ -160,6 +178,9 @@
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingSet.cs">
       <Link>Models\TrainingSet.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingZone.cs">
+      <Link>Models\TrainingZone.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Video.cs">
       <Link>Models\Video.cs</Link>
@@ -198,7 +219,6 @@
     <Compile Include="Converters\UrlToImageConverter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Effects\WetFloorEffect.cs" />
     <Compile Include="Events\CatalogSearchTextChangedEvent.cs" />
     <Compile Include="Events\DesignVideoEvent.cs" />
     <Compile Include="Events\PlayVideoEvent.cs" />
@@ -207,6 +227,8 @@
     <Compile Include="Helpers\FullScreenExtensions.cs" />
     <Compile Include="Helpers\VisualTreeExtensions.cs" />
     <Compile Include="ICache.cs" />
+    <Compile Include="Models\Colour.Silverlight.cs" />
+    <Compile Include="Models\UnitOfMeasure.cs" />
     <Compile Include="Navigation\IMenuItem.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="IShell.cs" />
@@ -277,7 +299,9 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Effects\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

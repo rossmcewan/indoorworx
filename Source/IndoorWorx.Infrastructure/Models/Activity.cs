@@ -9,15 +9,27 @@ namespace IndoorWorx.Infrastructure.Models
     [DataContract(IsReference = true)]
     public partial class Activity : BaseModel
     {
-        private ActivityTypes activityType;
+        private ActivityType activityType = new ActivityType();
         [DataMember]
-        public virtual ActivityTypes ActivityType
+        public virtual ActivityType ActivityType
         {
             get { return activityType; }
             set
             {
                 activityType = value;
                 FirePropertyChanged("ActivityType");
+            }
+        }
+
+        private Equipment equipment = new Equipment();
+        [DataMember]
+        public virtual Equipment Equipment
+        {
+            get { return equipment; }
+            set
+            {
+                equipment = value;
+                FirePropertyChanged("Equipment");
             }
         }
 

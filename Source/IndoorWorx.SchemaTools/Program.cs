@@ -76,21 +76,13 @@ namespace IndoorWorx.SchemaTools
             };
         }
 
-        static void Main(string[] args)
+        static Category GetCategory()
         {
-            var sessionFactory = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(x => x.FromConnectionStringWithKey("IndoorWorx")))
-                .Mappings(x => x.FluentMappings.AddFromAssemblyOf<Module>())
-                .ExposeConfiguration(x => new SchemaExport(x).SetOutputFile("../../Schema/createdb.sql").Create(true, true))
-                .BuildSessionFactory();
-
-            using (var session = sessionFactory.OpenSession())
+            var category = new Category()
             {
-                var category = new Category()
-                {
-                    Title = "Cycling",
-                    Description = "Indoor cycling training videos.",
-                    Catalogs = new List<Catalog>()
+                Title = "Cycling",
+                Description = "Indoor cycling training videos.",
+                Catalogs = new List<Catalog>()
                     {
                         new Catalog()
                         {
@@ -273,10 +265,45 @@ namespace IndoorWorx.SchemaTools
                             }
                         }
                     }
-                };
+            };
+            return category;
+        }
+
+        //static GetActivities()
+        //{
+        //    var eq = new List<Equipment>()
+        //    {
+        //        new Equipment()
+        //        {
+        //            Name = "Computrainer",
+        //            Manufacturer = new Manufacturer() { Name = "RacerMate" }
+        //        };
+        //    };
+        //    ActivityType at = new ActivityType()
+        //    {
+        //        Name = "Cycling",
+        //        Equipment
+        //    }
+        //    var cycling = new Activity()
+        //    {
+        //        ActivityType = new ActivityType() 
+        //    };
+        //}
+
+        static void Main(string[] args)
+        {
+            var sessionFactory = Fluently.Configure()
+                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(x => x.FromConnectionStringWithKey("IndoorWorx")))
+                .Mappings(x => x.FluentMappings.AddFromAssemblyOf<Module>())
+                .ExposeConfiguration(x => new SchemaExport(x).SetOutputFile("../../Schema/createdb.sql").Create(true, true))
+                .BuildSessionFactory();
+
+            using (var session = sessionFactory.OpenSession())
+            {
+                
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.Save(category);
+                    session.Save(GetCategory());
                     transaction.Commit();
                 }
             }

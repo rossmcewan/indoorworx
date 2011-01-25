@@ -62,6 +62,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
@@ -71,10 +72,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassMaps\ActivityClassMap.cs" />
+    <Compile Include="ClassMaps\ActivityTypeClassMap.cs" />
+    <Compile Include="ClassMaps\ApplicationUserClassMap.cs" />
     <Compile Include="ClassMaps\CatalogClassMap.cs" />
     <Compile Include="ClassMaps\CategoryClassMap.cs" />
+    <Compile Include="ClassMaps\ColourClassMap.cs" />
+    <Compile Include="ClassMaps\EquipmentClassMap.cs" />
+    <Compile Include="ClassMaps\EquipmentFeaturesClassMap.cs" />
+    <Compile Include="ClassMaps\ManufacturerClassMap.cs" />
+    <Compile Include="ClassMaps\MeasurementClassMap.cs" />
     <Compile Include="ClassMaps\ReviewClassMap.cs" />
+    <Compile Include="ClassMaps\SocialMediaNotificationClassMap.cs" />
+    <Compile Include="ClassMaps\SocialMediaProfileClassMap.cs" />
+    <Compile Include="ClassMaps\SocialMediaTypeClassMap.cs" />
     <Compile Include="ClassMaps\TrainingSetClassMap.cs" />
+    <Compile Include="ClassMaps\TrainingZoneClassMap.cs" />
+    <Compile Include="ClassMaps\UnitOfMeasureClassMap.cs" />
     <Compile Include="ClassMaps\VideoClassMap.cs" />
     <Compile Include="ClassMaps\VideoReviewClassMap.cs" />
     <Compile Include="ClassMaps\VideoTextClassMap.cs" />
@@ -87,6 +101,7 @@
     <Compile Include="Repositories\VideoRepository.cs" />
     <Compile Include="Serialization\DataContractSurrogate.cs" />
     <Compile Include="ServiceModel\DataContractSurrogateExtensionElement.cs" />
+    <Compile Include="UserTypes\ColorUserType.cs" />
     <Compile Include="UserTypes\UriType.cs" />
   </ItemGroup>
   <ItemGroup>
