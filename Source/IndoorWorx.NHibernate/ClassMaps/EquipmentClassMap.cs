@@ -13,9 +13,12 @@ namespace IndoorWorx.NHibernate.ClassMaps
         {
             Id(x => x.Id).GeneratedBy.Guid();
             Map(x => x.Name).Not.Nullable();
-            References(x => x.Manufacturer);
-            HasManyToMany(x => x.ActivityTypes).Cascade.All();
-            HasManyToMany(x => x.EquipmentFeatures).Cascade.All();
+            References(x => x.Manufacturer).Column("Manufacturer");
+            HasManyToMany(x => x.EquipmentFeatures)
+                .Table("Equipment_EquipmentFeatures")
+                .ParentKeyColumn("Equipment")
+                .ChildKeyColumn("EquipmentFeatures")
+                .Cascade.All();
         }
     }
 }

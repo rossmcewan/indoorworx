@@ -12,9 +12,9 @@ namespace IndoorWorx.NHibernate.ClassMaps
         public ActivityClassMap()
         {
             Id(x => x.Id).GeneratedBy.Guid();
-            References(x => x.ActivityType).Not.Nullable();
-            References(x => x.Equipment);
-            HasMany(x => x.Measurements).Cascade.SaveUpdate();
+            References(x => x.ActivityType).Column("ActivityType").Not.Nullable();
+            References(x => x.Equipment).Column("Equipment");
+            HasMany(x => x.Measurements).KeyColumn("Measurement").Cascade.SaveUpdate();
         }
     }
 }

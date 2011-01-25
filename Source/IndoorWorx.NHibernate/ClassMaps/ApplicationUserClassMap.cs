@@ -17,8 +17,8 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.Gender).Not.Nullable();
             Map(x => x.Email).Not.Nullable();
             Map(x => x.Country).Not.Nullable();
-            HasMany(x => x.Activities).Cascade.SaveUpdate().Fetch.Subselect();
-            HasMany(x => x.SocialProfile).Cascade.SaveUpdate().Fetch.Subselect();
+            HasMany(x => x.Activities).KeyColumn("Activity").Cascade.SaveUpdate().Fetch.Subselect();
+            HasMany(x => x.SocialProfile).KeyColumn("SocialProfile").Cascade.SaveUpdate().Fetch.Subselect();
         }
     }
 }

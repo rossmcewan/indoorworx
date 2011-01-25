@@ -14,7 +14,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
         {
             Id(x => x.Id).GeneratedBy.Guid();
             Map(x => x.Name);
-            References(x => x.ColorRepresentation);
+            References(x => x.ColorRepresentation).Column("Color");
             Component(x => x.Range, c =>
             {
                 c.Map(y => y.UpperValue);

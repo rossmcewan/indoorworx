@@ -13,9 +13,13 @@ namespace IndoorWorx.NHibernate.ClassMaps
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
             Map(x => x.Username);
-            References(x => x.SocialMediaType).Not.Nullable();
+            References(x => x.SocialMediaType).Column("SocialMediaType").Not.Nullable();
             Map(x => x.Password);
-            HasMany(x => x.NotificationOptions).Cascade.SaveUpdate().Fetch.Subselect();
+            HasManyToMany(x => x.NotificationOptions)
+                .Table("SocialMediaProfile_SocialMediaNotifications")
+                .ParentKeyColumn("SocialMediaProfile")
+                .ChildKeyColumn("SocialMediaNotifications")
+                .Cascade.SaveUpdate().Fetch.Subselect();
         }
     }
 }

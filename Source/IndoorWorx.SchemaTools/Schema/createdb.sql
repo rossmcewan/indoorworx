@@ -1,46 +1,46 @@
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAA25469B8F0EA360]') AND parent_object_id = OBJECT_ID('[Activity]'))
-alter table [Activity]  drop constraint FKAA25469B8F0EA360
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAA25469B1EFA0600]') AND parent_object_id = OBJECT_ID('[Activity]'))
+alter table [Activity]  drop constraint FKAA25469B1EFA0600
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAA25469B7680667F]') AND parent_object_id = OBJECT_ID('[Activity]'))
-alter table [Activity]  drop constraint FKAA25469B7680667F
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAA25469B32B0BDDD]') AND parent_object_id = OBJECT_ID('[Activity]'))
+alter table [Activity]  drop constraint FKAA25469B32B0BDDD
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAA25469B946CA9AD]') AND parent_object_id = OBJECT_ID('[Activity]'))
-alter table [Activity]  drop constraint FKAA25469B946CA9AD
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAA25469B52BE496C]') AND parent_object_id = OBJECT_ID('[Activity]'))
+alter table [Activity]  drop constraint FKAA25469B52BE496C
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC29188BE7680667F]') AND parent_object_id = OBJECT_ID('ActivityTypesToEquipment'))
-alter table ActivityTypesToEquipment  drop constraint FKC29188BE7680667F
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE824B6D532B0BDDD]') AND parent_object_id = OBJECT_ID('ActivityType_Equipment'))
+alter table ActivityType_Equipment  drop constraint FKE824B6D532B0BDDD
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC29188BE8F0EA360]') AND parent_object_id = OBJECT_ID('ActivityTypesToEquipment'))
-alter table ActivityTypesToEquipment  drop constraint FKC29188BE8F0EA360
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE824B6D51EFA0600]') AND parent_object_id = OBJECT_ID('ActivityType_Equipment'))
+alter table ActivityType_Equipment  drop constraint FKE824B6D51EFA0600
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK7FDA1AFC888C8F93]') AND parent_object_id = OBJECT_ID('[Catalog]'))
 alter table [Catalog]  drop constraint FK7FDA1AFC888C8F93
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK58954903C74A7030]') AND parent_object_id = OBJECT_ID('[Equipment]'))
-alter table [Equipment]  drop constraint FK58954903C74A7030
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK58954903EE4EEE93]') AND parent_object_id = OBJECT_ID('[Equipment]'))
+alter table [Equipment]  drop constraint FK58954903EE4EEE93
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKDA8429D43925FF00]') AND parent_object_id = OBJECT_ID('EquipmentToEquipmentFeatures'))
-alter table EquipmentToEquipmentFeatures  drop constraint FKDA8429D43925FF00
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK76FBBBA858C3A259]') AND parent_object_id = OBJECT_ID('Equipment_EquipmentFeatures'))
+alter table Equipment_EquipmentFeatures  drop constraint FK76FBBBA858C3A259
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKDA8429D47680667F]') AND parent_object_id = OBJECT_ID('EquipmentToEquipmentFeatures'))
-alter table EquipmentToEquipmentFeatures  drop constraint FKDA8429D47680667F
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK76FBBBA832B0BDDD]') AND parent_object_id = OBJECT_ID('Equipment_EquipmentFeatures'))
+alter table Equipment_EquipmentFeatures  drop constraint FK76FBBBA832B0BDDD
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK66ADF8866462D24C]') AND parent_object_id = OBJECT_ID('[Measurement]'))
-alter table [Measurement]  drop constraint FK66ADF8866462D24C
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK66ADF886BFB37A41]') AND parent_object_id = OBJECT_ID('[Measurement]'))
+alter table [Measurement]  drop constraint FK66ADF886BFB37A41
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK66ADF8865428AC01]') AND parent_object_id = OBJECT_ID('[Measurement]'))
-alter table [Measurement]  drop constraint FK66ADF8865428AC01
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK66ADF88611C9D409]') AND parent_object_id = OBJECT_ID('[Measurement]'))
+alter table [Measurement]  drop constraint FK66ADF88611C9D409
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK218B12D2D7098544]') AND parent_object_id = OBJECT_ID('[VideoReview]'))
@@ -51,24 +51,28 @@ alter table [VideoReview]  drop constraint FK218B12D2D7098544
 alter table [VideoReview]  drop constraint FK218B12D2E9F4749E
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK644A96ED670AA5CD]') AND parent_object_id = OBJECT_ID('[SocialMediaNotification]'))
-alter table [SocialMediaNotification]  drop constraint FK644A96ED670AA5CD
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKF4EDF6D218E054F6]') AND parent_object_id = OBJECT_ID('[SocialMediaProfile]'))
+alter table [SocialMediaProfile]  drop constraint FKF4EDF6D218E054F6
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKF4EDF6D2F3F41700]') AND parent_object_id = OBJECT_ID('[SocialMediaProfile]'))
-alter table [SocialMediaProfile]  drop constraint FKF4EDF6D2F3F41700
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKF4EDF6D2912B3D27]') AND parent_object_id = OBJECT_ID('[SocialMediaProfile]'))
+alter table [SocialMediaProfile]  drop constraint FKF4EDF6D2912B3D27
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKF4EDF6D2946CA9AD]') AND parent_object_id = OBJECT_ID('[SocialMediaProfile]'))
-alter table [SocialMediaProfile]  drop constraint FKF4EDF6D2946CA9AD
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK1C5DD9686EDD5235]') AND parent_object_id = OBJECT_ID('SocialMediaProfile_SocialMediaNotifications'))
+alter table SocialMediaProfile_SocialMediaNotifications  drop constraint FK1C5DD9686EDD5235
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC33B97A41906BB0A]') AND parent_object_id = OBJECT_ID('[TrainingZone]'))
-alter table [TrainingZone]  drop constraint FKC33B97A41906BB0A
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK1C5DD9688F98D97D]') AND parent_object_id = OBJECT_ID('SocialMediaProfile_SocialMediaNotifications'))
+alter table SocialMediaProfile_SocialMediaNotifications  drop constraint FK1C5DD9688F98D97D
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC33B97A44584847D]') AND parent_object_id = OBJECT_ID('[TrainingZone]'))
-alter table [TrainingZone]  drop constraint FKC33B97A44584847D
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC33B97A4263AB471]') AND parent_object_id = OBJECT_ID('[TrainingZone]'))
+alter table [TrainingZone]  drop constraint FKC33B97A4263AB471
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC33B97A49B4FD2BF]') AND parent_object_id = OBJECT_ID('[TrainingZone]'))
+alter table [TrainingZone]  drop constraint FKC33B97A49B4FD2BF
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK30300B57A4ECB12B]') AND parent_object_id = OBJECT_ID('[Video]'))
@@ -91,7 +95,7 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[ActivityType]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [ActivityType]
 
-    if exists (select * from dbo.sysobjects where id = object_id(N'ActivityTypesToEquipment') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table ActivityTypesToEquipment
+    if exists (select * from dbo.sysobjects where id = object_id(N'ActivityType_Equipment') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table ActivityType_Equipment
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[ApplicationUser]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [ApplicationUser]
 
@@ -103,7 +107,7 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Equipment]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Equipment]
 
-    if exists (select * from dbo.sysobjects where id = object_id(N'EquipmentToEquipmentFeatures') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table EquipmentToEquipmentFeatures
+    if exists (select * from dbo.sysobjects where id = object_id(N'Equipment_EquipmentFeatures') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table Equipment_EquipmentFeatures
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[EquipmentFeatures]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EquipmentFeatures]
 
@@ -119,6 +123,8 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[SocialMediaProfile]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [SocialMediaProfile]
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'SocialMediaProfile_SocialMediaNotifications') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table SocialMediaProfile_SocialMediaNotifications
+
     if exists (select * from dbo.sysobjects where id = object_id(N'[SocialMediaType]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [SocialMediaType]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingZone]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingZone]
@@ -133,9 +139,9 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
 
     create table [Activity] (
         Id UNIQUEIDENTIFIER not null,
-       ActivityType_id UNIQUEIDENTIFIER not null,
-       Equipment_id UNIQUEIDENTIFIER null,
-       ApplicationUser_id NVARCHAR(255) null,
+       ActivityType UNIQUEIDENTIFIER not null,
+       Equipment UNIQUEIDENTIFIER null,
+       Activity NVARCHAR(255) null,
        primary key (Id)
     )
 
@@ -145,9 +151,9 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
        primary key (Id)
     )
 
-    create table ActivityTypesToEquipment (
-        ActivityType_id UNIQUEIDENTIFIER not null,
-       Equipment_id UNIQUEIDENTIFIER not null
+    create table ActivityType_Equipment (
+        ActivityType UNIQUEIDENTIFIER not null,
+       Equipment UNIQUEIDENTIFIER not null
     )
 
     create table [ApplicationUser] (
@@ -190,13 +196,13 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
     create table [Equipment] (
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null,
-       Manufacturer_id UNIQUEIDENTIFIER null,
+       Manufacturer UNIQUEIDENTIFIER null,
        primary key (Id)
     )
 
-    create table EquipmentToEquipmentFeatures (
-        Equipment_id UNIQUEIDENTIFIER not null,
-       EquipmentFeatures_id UNIQUEIDENTIFIER not null
+    create table Equipment_EquipmentFeatures (
+        Equipment UNIQUEIDENTIFIER not null,
+       EquipmentFeatures UNIQUEIDENTIFIER not null
     )
 
     create table [EquipmentFeatures] (
@@ -215,8 +221,8 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null unique,
        Value DOUBLE PRECISION not null unique,
-       UnitOfMeasure_id UNIQUEIDENTIFIER not null,
-       Activity_id UNIQUEIDENTIFIER null,
+       UnitOfMeasure UNIQUEIDENTIFIER not null,
+       Measurement UNIQUEIDENTIFIER null,
        primary key (Id)
     )
 
@@ -241,7 +247,6 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
     create table [SocialMediaNotification] (
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null unique,
-       SocialMediaProfile_id UNIQUEIDENTIFIER null,
        primary key (Id)
     )
 
@@ -249,9 +254,14 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
         Id UNIQUEIDENTIFIER not null,
        Username NVARCHAR(255) null,
        Password NVARCHAR(255) null,
-       SocialMediaType_id UNIQUEIDENTIFIER not null,
-       ApplicationUser_id NVARCHAR(255) null,
+       SocialMediaType UNIQUEIDENTIFIER not null,
+       SocialProfile NVARCHAR(255) null,
        primary key (Id)
+    )
+
+    create table SocialMediaProfile_SocialMediaNotifications (
+        SocialMediaProfile UNIQUEIDENTIFIER not null,
+       SocialMediaNotifications UNIQUEIDENTIFIER not null
     )
 
     create table [SocialMediaType] (
@@ -265,8 +275,8 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
        UpperValue DOUBLE PRECISION null,
        LowerValue DOUBLE PRECISION null,
        Name NVARCHAR(255) null,
-       ColorRepresentation_id UNIQUEIDENTIFIER null,
-       Measurement_id UNIQUEIDENTIFIER null,
+       Color UNIQUEIDENTIFIER null,
+       TrainingZone UNIQUEIDENTIFIER null,
        primary key (Id)
     )
 
@@ -316,28 +326,28 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
     )
 
     alter table [Activity] 
-        add constraint FKAA25469B8F0EA360 
-        foreign key (ActivityType_id) 
+        add constraint FKAA25469B1EFA0600 
+        foreign key (ActivityType) 
         references [ActivityType]
 
     alter table [Activity] 
-        add constraint FKAA25469B7680667F 
-        foreign key (Equipment_id) 
+        add constraint FKAA25469B32B0BDDD 
+        foreign key (Equipment) 
         references [Equipment]
 
     alter table [Activity] 
-        add constraint FKAA25469B946CA9AD 
-        foreign key (ApplicationUser_id) 
+        add constraint FKAA25469B52BE496C 
+        foreign key (Activity) 
         references [ApplicationUser]
 
-    alter table ActivityTypesToEquipment 
-        add constraint FKC29188BE7680667F 
-        foreign key (Equipment_id) 
+    alter table ActivityType_Equipment 
+        add constraint FKE824B6D532B0BDDD 
+        foreign key (Equipment) 
         references [Equipment]
 
-    alter table ActivityTypesToEquipment 
-        add constraint FKC29188BE8F0EA360 
-        foreign key (ActivityType_id) 
+    alter table ActivityType_Equipment 
+        add constraint FKE824B6D51EFA0600 
+        foreign key (ActivityType) 
         references [ActivityType]
 
     alter table [Catalog] 
@@ -346,28 +356,28 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
         references [Category]
 
     alter table [Equipment] 
-        add constraint FK58954903C74A7030 
-        foreign key (Manufacturer_id) 
+        add constraint FK58954903EE4EEE93 
+        foreign key (Manufacturer) 
         references [Manufacturer]
 
-    alter table EquipmentToEquipmentFeatures 
-        add constraint FKDA8429D43925FF00 
-        foreign key (EquipmentFeatures_id) 
+    alter table Equipment_EquipmentFeatures 
+        add constraint FK76FBBBA858C3A259 
+        foreign key (EquipmentFeatures) 
         references [EquipmentFeatures]
 
-    alter table EquipmentToEquipmentFeatures 
-        add constraint FKDA8429D47680667F 
-        foreign key (Equipment_id) 
+    alter table Equipment_EquipmentFeatures 
+        add constraint FK76FBBBA832B0BDDD 
+        foreign key (Equipment) 
         references [Equipment]
 
     alter table [Measurement] 
-        add constraint FK66ADF8866462D24C 
-        foreign key (UnitOfMeasure_id) 
+        add constraint FK66ADF886BFB37A41 
+        foreign key (UnitOfMeasure) 
         references [UnitOfMeasure]
 
     alter table [Measurement] 
-        add constraint FK66ADF8865428AC01 
-        foreign key (Activity_id) 
+        add constraint FK66ADF88611C9D409 
+        foreign key (Measurement) 
         references [Activity]
 
     alter table [VideoReview] 
@@ -380,29 +390,34 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
         foreign key (Video) 
         references [Video]
 
-    alter table [SocialMediaNotification] 
-        add constraint FK644A96ED670AA5CD 
-        foreign key (SocialMediaProfile_id) 
-        references [SocialMediaProfile]
-
     alter table [SocialMediaProfile] 
-        add constraint FKF4EDF6D2F3F41700 
-        foreign key (SocialMediaType_id) 
+        add constraint FKF4EDF6D218E054F6 
+        foreign key (SocialMediaType) 
         references [SocialMediaType]
 
     alter table [SocialMediaProfile] 
-        add constraint FKF4EDF6D2946CA9AD 
-        foreign key (ApplicationUser_id) 
+        add constraint FKF4EDF6D2912B3D27 
+        foreign key (SocialProfile) 
         references [ApplicationUser]
 
+    alter table SocialMediaProfile_SocialMediaNotifications 
+        add constraint FK1C5DD9686EDD5235 
+        foreign key (SocialMediaNotifications) 
+        references [SocialMediaNotification]
+
+    alter table SocialMediaProfile_SocialMediaNotifications 
+        add constraint FK1C5DD9688F98D97D 
+        foreign key (SocialMediaProfile) 
+        references [SocialMediaProfile]
+
     alter table [TrainingZone] 
-        add constraint FKC33B97A41906BB0A 
-        foreign key (ColorRepresentation_id) 
+        add constraint FKC33B97A4263AB471 
+        foreign key (Color) 
         references [Colour]
 
     alter table [TrainingZone] 
-        add constraint FKC33B97A44584847D 
-        foreign key (Measurement_id) 
+        add constraint FKC33B97A49B4FD2BF 
+        foreign key (TrainingZone) 
         references [Measurement]
 
     alter table [Video] 

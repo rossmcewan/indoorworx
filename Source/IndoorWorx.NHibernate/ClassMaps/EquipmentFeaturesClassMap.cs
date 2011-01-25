@@ -13,7 +13,6 @@ namespace IndoorWorx.NHibernate.ClassMaps
         {
             Id(x => x.Id).GeneratedBy.Guid();
             Map(x => x.Name).Not.Nullable().Unique();
-            HasManyToMany(x => x.Equipment).Cascade.All();
         }
     }
 }
