@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Telerik.Windows.Controls;
 
 namespace IndoorWorx.Library.Views
 {
@@ -26,19 +27,5 @@ namespace IndoorWorx.Library.Views
             get { return this.DataContext as ITabbedNavigationPresentationModel; }
         }
 
-        private void RadDocking_PreviewClose(object sender, Telerik.Windows.Controls.Docking.StateChangeEventArgs e)
-        {
-
-        }
-
-        private void RadDocking_Close(object sender, Telerik.Windows.Controls.Docking.StateChangeEventArgs e)
-        {
-
-        }
-
-        private void navigationTreeView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-           // Model.NavigationItemSelectionChanged(e.OriginalSource);
-        }
     }
 }

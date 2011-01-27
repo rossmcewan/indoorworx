@@ -14,7 +14,7 @@
     
         <Grid x:Name="LayoutRoot">
             <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=TwoWay}" >
-                <telerik:RadDocking Margin="5" PreviewClose="RadDocking_PreviewClose" Close="RadDocking_Close">
+                <telerik:RadDocking Margin="5">
 
                 <telerik:RadDocking.DocumentHost>
                     <telerik:RadSplitContainer Name="MainContainer" InitialPosition="DockedRight">

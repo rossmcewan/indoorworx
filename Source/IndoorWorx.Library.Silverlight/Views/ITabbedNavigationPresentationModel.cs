@@ -25,6 +25,5 @@ namespace IndoorWorx.Library.Views
 
         void AddMainRegionView(IMainRegionView view);
 
-        void NavigationItemSelectionChanged();
     }
 }
