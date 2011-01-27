@@ -11,8 +11,8 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using IndoorWorx.Silverlight.Web;
-using IndoorWorx.Infrastructure.Services;
-using IndoorWorx.Infrastructure;
+    using IndoorWorx.Infrastructure.Services;
+    using IndoorWorx.Infrastructure;
     using IndoorWorx.Infrastructure.Models;
 
     /// <summary>
@@ -29,21 +29,6 @@ using IndoorWorx.Infrastructure;
             get { return ApplicationStrings.RegistrationWindowTitle; }
         }
 
-        public IApplicationUserService ApplicationUserService
-        {
-            get
-            {
-                return IoC.Resolve<IApplicationUserService>();
-            }
-        }
-
-        //public RegistrationData RegistrationData
-        //{
-        //    get
-        //    {
-        //        return this.DataContext as Res;
-        //    }
-        //}
 
         /// <summary>
         /// Creates a new <see cref="RegistrationForm"/> instance.
@@ -164,25 +149,39 @@ using IndoorWorx.Infrastructure;
                     operation.MarkErrorAsHandled();
                 }
                 else if (operation.Value == CreateUserStatus.Success)
-                {
-                    ApplicationUserService.SaveApplicationUser(new ApplicationUser() {  });
-                    this.registrationData.CurrentOperation = WebContext.Current.Authentication.Login(this.registrationData.ToLoginParameters(), this.LoginOperation_Completed, null);
-                    this.parentWindow.AddPendingOperation(this.registrationData.CurrentOperation);
-                }
+                    {
+                        var userService = IoC.Resolve<IApplicationUserService>();
+                        userService.ApplicationUserRetrieved += (sender, e) =>
+                        {
+                            if (e.Value is ApplicationUser)
+                                ApplicationUser.CurrentUser = e.Value as ApplicationUser;
+                        };
+
+                        userService.ApplicationUserRetrievalError += (sender, e) =>
+                        {
+                            ErrorWindow.CreateNew("Error occured retrieving the application user");
+                        };
+                        userService.RetrieveApplicationUser(registrationData.UserName);
+
+                        this.registrationData.CurrentOperation = WebContext.Current.Authentication.Login(this.registrationData.ToLoginParameters(), this.LoginOperation_Completed, null);
+                        this.parentWindow.AddPendingOperation(this.registrationData.CurrentOperation);
+                    }
                 else if (operation.Value == CreateUserStatus.DuplicateUserName)
-                {
-                    this.registrationData.ValidationErrors.Add(new ValidationResult(ErrorResources.CreateUserStatusDuplicateUserName, new string[] { "UserName" }));
-                }
+                    {
+                        this.registrationData.ValidationErrors.Add(new ValidationResult(ErrorResources.CreateUserStatusDuplicateUserName, new string[] { "UserName" }));
+                    }
                 else if (operation.Value == CreateUserStatus.DuplicateEmail)
-                {
-                    this.registrationData.ValidationErrors.Add(new ValidationResult(ErrorResources.CreateUserStatusDuplicateEmail, new string[] { "Email" }));
-                }
+                    {
+                        this.registrationData.ValidationErrors.Add(new ValidationResult(ErrorResources.CreateUserStatusDuplicateEmail, new string[] { "Email" }));
+                    }
                 else
                 {
                     ErrorWindow.CreateNew(ErrorResources.ErrorWindowGenericError);
                 }
             }
         }
+
+      
 
         /// <summary>
         /// Completion handler for the login operation that occurs after a successful
@@ -208,6 +207,8 @@ using IndoorWorx.Infrastructure;
                     // The operation was successful, but the actual login was not
                     ErrorWindow.CreateNew(string.Format(System.Globalization.CultureInfo.CurrentUICulture, ErrorResources.ErrorLoginAfterRegistrationFailed, ErrorResources.ErrorBadUserNameOrPassword));
                 }
+
+                
             }
         }
 

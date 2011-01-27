@@ -70,6 +70,15 @@ namespace IndoorWorx.Silverlight.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Country Of Residence.
+        /// </summary>
+        public static string CountryOfResidenceLabel {
+            get {
+                return ResourceManager.GetString("CountryOfResidenceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date of Birth.
         /// </summary>
         public static string DateOfBirthLabel {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using IndoorWorx.Infrastructure.Models;
+using IndoorWorx.Infrastructure.Criteria;
 
 namespace IndoorWorx.Infrastructure.Services
 {
@@ -12,5 +13,8 @@ namespace IndoorWorx.Infrastructure.Services
     {
         [OperationContract]
         ApplicationUser SaveApplicationUser(ApplicationUser user);
+
+        [OperationContract]
+        ApplicationUser RetrieveApplicationUser(ApplicationUserFindCriteria criteria);
     }
 }

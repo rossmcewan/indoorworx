@@ -120,6 +120,9 @@
   <data name="CountryLabel" xml:space="preserve">
     <value>CountryOfResidence</value>
   </data>
+  <data name="CountryOfResidenceLabel" xml:space="preserve">
+    <value>Country Of Residence</value>
+  </data>
   <data name="DateOfBirthLabel" xml:space="preserve">
     <value>Date of Birth</value>
   </data>

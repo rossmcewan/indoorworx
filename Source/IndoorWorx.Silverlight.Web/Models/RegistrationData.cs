@@ -32,7 +32,7 @@
         /// </summary>
         [Key]
         [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        [Display(Order = 3, Name = "FirstNameLabel", ResourceType = typeof(RegistrationDataResources))]
+        [Display(Order = 2, Name = "FirstNameLabel", ResourceType = typeof(RegistrationDataResources))]
         public string FirstName { get; set; }
 
         /// <summary>
@@ -40,12 +40,12 @@
         /// </summary>
         [Key]
         [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        [Display(Order = 4, Name = "LastNameLabel", ResourceType = typeof(RegistrationDataResources))]
+        [Display(Order = 3, Name = "LastNameLabel", ResourceType = typeof(RegistrationDataResources))]
         public string LastName { get; set; }
 
         [Key]
         [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        [Display(Order = 5, Name = "GenderLabel", ResourceType = typeof(RegistrationDataResources))]
+        [Display(Order = 4, Name = "GenderLabel", ResourceType = typeof(RegistrationDataResources))]
         public Gender Gender { get; set; }
 
 
@@ -54,7 +54,7 @@
         /// </summary>
         [Key]
         [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        [Display(Order = 6, Name = "DateOfBirthLabel", ResourceType = typeof(RegistrationDataResources))]
+        [Display(Order = 5, Name = "DateOfBirthLabel", ResourceType = typeof(RegistrationDataResources))]
         public DateTime DateOfBirth { get; set; }
 
 
@@ -63,13 +63,13 @@
         /// </summary>
         [Key]
         [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        [Display(Order = 7, Name = "CountryLabel", ResourceType = typeof(RegistrationDataResources))]
+        [Display(Order = 6, Name = "CountryLabel", ResourceType = typeof(RegistrationDataResources))]
         public Country Country { get; set; }
 
 
         [Key]
         [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        [Display(Order = 8, Name = "EmailLabel", ResourceType = typeof(RegistrationDataResources))]
+        [Display(Order = 7, Name = "EmailLabel", ResourceType = typeof(RegistrationDataResources))]
         [RegularExpression(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
                            ErrorMessageResourceName = "ValidationErrorInvalidEmail", ErrorMessageResourceType = typeof(ValidationErrorResources))]
         public string Email { get; set; }

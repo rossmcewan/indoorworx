@@ -17,9 +17,9 @@ namespace IndoorWorx.Library.Controls
     {
         public DataTemplate VideoTemplate { get; set; }
 
-        public HierarchicalDataTemplate CategoryTemplate { get; set; }
+        public Telerik.Windows.Controls.HierarchicalDataTemplate CategoryTemplate { get; set; }
 
-        public HierarchicalDataTemplate CatalogTemplate { get; set; }
+        public Telerik.Windows.Controls.HierarchicalDataTemplate CatalogTemplate { get; set; }
 
         public CategoryTreeDataTemplateSelector() { }
 

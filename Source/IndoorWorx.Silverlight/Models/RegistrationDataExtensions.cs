@@ -22,7 +22,7 @@
         /// Gets and sets the password.
         /// </summary>
         [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        [Display(Order = 6, Name = "PasswordLabel", Description = "PasswordDescription", ResourceType = typeof(RegistrationDataResources))]
+        [Display(Order = 8, Name = "PasswordLabel", Description = "PasswordDescription", ResourceType = typeof(RegistrationDataResources))]
         [RegularExpression("^.*[^a-zA-Z0-9].*$", ErrorMessageResourceName = "ValidationErrorBadPasswordStrength", ErrorMessageResourceType = typeof(ValidationErrorResources))]
         [StringLength(50, MinimumLength = 9, ErrorMessageResourceName = "ValidationErrorBadPasswordLength", ErrorMessageResourceType = typeof(ValidationErrorResources))]
         public string Password
@@ -54,7 +54,7 @@
         /// Gets and sets the password confirmation string.
         /// </summary>
         [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        [Display(Order =10, Name = "PasswordConfirmationLabel", ResourceType = typeof(RegistrationDataResources))]
+        [Display(Order =9, Name = "PasswordConfirmationLabel", ResourceType = typeof(RegistrationDataResources))]
         public string PasswordConfirmation
         {
             get

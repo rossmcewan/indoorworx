@@ -64,12 +64,16 @@
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Toolkit, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Browser" />
     <Reference Include="Telerik.Windows.Controls, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Charting, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Data, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Navigation, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.RichTextBoxUI, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Data, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
@@ -106,6 +110,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LibraryResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ApplicationUserServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\CategoryServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -113,6 +122,13 @@
     </Compile>
     <Compile Include="Services\ApplicationUserService.cs" />
     <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\IApplicationUserRepository.cs" />
+    <Compile Include="Views\TabbedNavigationPresentationModel.cs" />
+    <Compile Include="Views\TabbedNavigationView.xaml.cs">
+      <DependentUpon>TabbedNavigationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ITabbedNavigationPresentationModel.cs" />
+    <Compile Include="Views\ITabbedNavigationView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IndoorWorx.Infrastructure.Silverlight\IndoorWorx.Infrastructure.Silverlight.csproj">
@@ -124,7 +140,21 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.ApplicationUser.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.Category.datasource" />
+    <None Include="Service References\ApplicationUserServiceReference\ApplicationUserService.wsdl" />
+    <None Include="Service References\ApplicationUserServiceReference\ApplicationUserService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApplicationUserServiceReference\ApplicationUserService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApplicationUserServiceReference\ApplicationUserService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApplicationUserServiceReference\ApplicationUserService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\CategoryServiceReference\CategoryService.wsdl" />
     <None Include="Service References\CategoryServiceReference\CategoryService.xsd">
       <SubType>Designer</SubType>
@@ -135,15 +165,26 @@
     <None Include="Service References\CategoryServiceReference\CategoryService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ApplicationUserServiceReference\ApplicationUserService.disco" />
+    <None Include="Service References\ApplicationUserServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\ApplicationUserServiceReference\configuration.svcinfo" />
+    <None Include="Service References\ApplicationUserServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ApplicationUserServiceReference\" />
     <WCFMetadataStorage Include="Service References\CategoryServiceReference\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\CategoryServiceReference\CategoryService.disco" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\CategoryServiceReference\CategoryService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\CategoryServiceReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +212,10 @@
     <Page Include="Controls\VideoMediaElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabbedNavigationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

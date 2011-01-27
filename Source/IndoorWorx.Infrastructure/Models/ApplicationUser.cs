@@ -116,5 +116,12 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("SocialProfile");
             }
         }
+
+        private static ApplicationUser currentUser = null;
+        public static ApplicationUser CurrentUser
+        {
+            get { return currentUser; }
+            set { currentUser = value; }
+        }
     }
 }

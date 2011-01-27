@@ -227,6 +227,7 @@
     <Compile Include="Helpers\FullScreenExtensions.cs" />
     <Compile Include="Helpers\VisualTreeExtensions.cs" />
     <Compile Include="ICache.cs" />
+    <Compile Include="IMainRegionView.cs" />
     <Compile Include="Models\Colour.Silverlight.cs" />
     <Compile Include="Models\UnitOfMeasure.cs" />
     <Compile Include="Navigation\IMenuItem.cs" />

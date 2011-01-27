@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace IndoorWorx.Infrastructure.Models
 {
-    [DataContract]
+    [DataContract(IsReference = true)]
     public class TrainingZone : BaseModel
     {
         private string name = string.Empty;

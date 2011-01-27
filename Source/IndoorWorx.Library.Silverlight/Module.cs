@@ -18,15 +18,19 @@ using IndoorWorx.Library.Services;
 using IndoorWorx.Library.Helpers;
 using IndoorWorx.Infrastructure.Facades;
 using IndoorWorx.Library.Facades;
+using Microsoft.Practices.ServiceLocation;
 
 namespace IndoorWorx.Library
 {
     public class Module : IModule
-    {        
+    {
+
         private readonly IUnityContainer unityContainer;
-        public Module(IUnityContainer unityContainer)
+        private readonly IServiceLocator serviceLocator;
+        public Module(IUnityContainer unityContainer, IServiceLocator serviceLocator)
         {
             this.unityContainer = unityContainer;
+            this.serviceLocator = serviceLocator;
             IoC.Initialize(this.unityContainer);
         }
 
@@ -43,5 +47,7 @@ namespace IndoorWorx.Library
         }
 
         #endregion
+
+
     }
 }

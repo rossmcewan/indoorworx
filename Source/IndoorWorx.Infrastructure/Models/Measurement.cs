@@ -7,6 +7,7 @@ using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Infrastructure.Models
 {
+    [DataContract(IsReference = true)]
     public class Measurement : BaseModel
     {
         private string name = string.Empty;
@@ -46,6 +47,7 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         private ICollection<TrainingZone> trainingZones = new List<TrainingZone>();
+        [DataMember]
         public virtual ICollection<TrainingZone> TrainingZones
         {
             get { return trainingZones; }

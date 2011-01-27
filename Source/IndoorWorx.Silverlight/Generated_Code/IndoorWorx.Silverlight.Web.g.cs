@@ -373,7 +373,7 @@ namespace IndoorWorx.Silverlight.Web
         /// Gets or sets the 'Country' value.
         /// </summary>
         [DataMember()]
-        [Display(Name="CountryLabel", Order=7, ResourceType=typeof(RegistrationDataResources))]
+        [Display(Name="CountryLabel", Order=6, ResourceType=typeof(RegistrationDataResources))]
         [Editable(false, AllowInitialValue=true)]
         [Key()]
         [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
@@ -401,7 +401,7 @@ namespace IndoorWorx.Silverlight.Web
         /// Gets or sets the 'DateOfBirth' value.
         /// </summary>
         [DataMember()]
-        [Display(Name="DateOfBirthLabel", Order=6, ResourceType=typeof(RegistrationDataResources))]
+        [Display(Name="DateOfBirthLabel", Order=5, ResourceType=typeof(RegistrationDataResources))]
         [Editable(false, AllowInitialValue=true)]
         [Key()]
         [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
@@ -429,7 +429,7 @@ namespace IndoorWorx.Silverlight.Web
         /// Gets or sets the 'Email' value.
         /// </summary>
         [DataMember()]
-        [Display(Name="EmailLabel", Order=8, ResourceType=typeof(RegistrationDataResources))]
+        [Display(Name="EmailLabel", Order=7, ResourceType=typeof(RegistrationDataResources))]
         [Editable(false, AllowInitialValue=true)]
         [Key()]
         [RegularExpression("^([\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4" +
@@ -459,7 +459,7 @@ namespace IndoorWorx.Silverlight.Web
         /// Gets or sets the 'FirstName' value.
         /// </summary>
         [DataMember()]
-        [Display(Name="FirstNameLabel", Order=3, ResourceType=typeof(RegistrationDataResources))]
+        [Display(Name="FirstNameLabel", Order=2, ResourceType=typeof(RegistrationDataResources))]
         [Editable(false, AllowInitialValue=true)]
         [Key()]
         [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
@@ -544,7 +544,7 @@ namespace IndoorWorx.Silverlight.Web
         /// Gets or sets the 'LastName' value.
         /// </summary>
         [DataMember()]
-        [Display(Name="LastNameLabel", Order=4, ResourceType=typeof(RegistrationDataResources))]
+        [Display(Name="LastNameLabel", Order=3, ResourceType=typeof(RegistrationDataResources))]
         [Editable(false, AllowInitialValue=true)]
         [Key()]
         [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]

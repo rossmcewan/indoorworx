@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IndoorWorx.Library.Services
 {
-    class ApplicationSettingsService
+    public interface IApplicationUserRepository
     {
     }
 }

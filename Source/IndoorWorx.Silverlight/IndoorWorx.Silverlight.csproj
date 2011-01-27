@@ -157,6 +157,9 @@
     <Reference Include="Telerik.Windows.Themes.Windows7, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\IndoorWorx.Silverlight.Web\Models\CreateUserResponse.cs">
+      <Link>Models\CreateUserResponse.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Silverlight.Web\Resources\RegistrationDataResources.Designer.cs">
       <Link>Web\Resources\RegistrationDataResources.Designer.cs</Link>
       <AutoGen>True</AutoGen>

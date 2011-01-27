@@ -10,7 +10,9 @@
     using IndoorWorx.Silverlight.Web.Resources;
     using IndoorWorx.Infrastructure.Services;
     using IndoorWorx.Infrastructure.ServiceModel;
-
+    using Microsoft.Practices.Unity;
+    using IndoorWorx.Infrastructure.Models;
+    using System.Transactions;
     /// <summary>
     ///   RIA Services Domain Service that exposes methods for performing user
     ///   registrations.
@@ -46,41 +48,67 @@
                 throw new ArgumentNullException("user");
             }
 
-            // Run this BEFORE creating the user to make sure roles are enabled and the default role
-            // will be available
-            //
-            // If there are a problem with the role manager it is better to fail now than to have it
-            // happening after the user is created
-            if (!Roles.RoleExists(UserRegistrationService.DefaultRole))
+            using (var transaction = new TransactionScope())
             {
-                Roles.CreateRole(UserRegistrationService.DefaultRole);
+                // Run this BEFORE creating the user to make sure roles are enabled and the default role
+                // will be available
+                //
+                // If there are a problem with the role manager it is better to fail now than to have it
+                // happening after the user is created
+                if (!Roles.RoleExists(UserRegistrationService.DefaultRole))
+                {
+                    Roles.CreateRole(UserRegistrationService.DefaultRole);
+                }
+
+                // NOTE: ASP.NET by default uses SQL Server Express to create the user database. 
+                // CreateUser will fail if you do not have SQL Server Express installed.
+                MembershipCreateStatus createStatus;
+                //Membership.CreateUser(user.UserName, password, user.Email, user.Question, user.Answer, true, null, out createStatus);
+
+                Membership.CreateUser(user.UserName, password, user.Email, "Question", "Answer", true, null, out createStatus);
+
+                if (createStatus != MembershipCreateStatus.Success)
+                {
+                    return UserRegistrationService.ConvertStatus(createStatus);
+                }
+
+                // Assign it to the default role
+                // This *can* fail but only if role management is disabled
+                Roles.AddUserToRole(user.UserName, UserRegistrationService.DefaultRole);
+
+                // Set its friendly name (profile setting)
+                // This *can* fail but only if Web.config is configured incorrectly 
+                ProfileBase profile = ProfileBase.Create(user.UserName, true);
+                profile.SetPropertyValue("FriendlyName", user.FriendlyName);
+                profile.Save();
+
+                var appUser = RegisterApplicationUser(user);
+                if (appUser != null)
+                {
+                    transaction.Complete();
+                    return CreateUserStatus.Success;
+                }
+                
+                return CreateUserStatus.Failure;
             }
-
-            // NOTE: ASP.NET by default uses SQL Server Express to create the user database. 
-            // CreateUser will fail if you do not have SQL Server Express installed.
-            MembershipCreateStatus createStatus;
-            //Membership.CreateUser(user.UserName, password, user.Email, user.Question, user.Answer, true, null, out createStatus);
-
-            Membership.CreateUser(user.UserName, password, user.Email,"Question","Answer", true, null, out createStatus);
-
-            if (createStatus != MembershipCreateStatus.Success)
-            {
-                return UserRegistrationService.ConvertStatus(createStatus);
-            }
-
-            // Assign it to the default role
-            // This *can* fail but only if role management is disabled
-            Roles.AddUserToRole(user.UserName, UserRegistrationService.DefaultRole);
-
-            // Set its friendly name (profile setting)
-            // This *can* fail but only if Web.config is configured incorrectly 
-            ProfileBase profile = ProfileBase.Create(user.UserName, true);
-            profile.SetPropertyValue("FriendlyName", user.FriendlyName);
-            profile.Save();
-
-            return CreateUserStatus.Success;
+          
         }
 
+        private ApplicationUser RegisterApplicationUser(RegistrationData registrationData)
+        {
+            var userService = IoC.Resolve<IApplicationUserService>();
+            var user = userService.SaveApplicationUser(new ApplicationUser()
+                {
+                    Username = registrationData.UserName,
+                    Firstname = registrationData.FirstName,
+                    Lastname = registrationData.LastName,
+                    DateOfBirth = registrationData.DateOfBirth,
+                    Email = registrationData.Email,
+                    Country = registrationData.Country,
+                    Gender = registrationData.Gender
+                });
+               return user;
+        }
 
         /// <summary>
         /// Query method that exposes the <see cref="RegistrationData"/> class to Silverlight client code.

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f4e8ca09-3526-4a6f-a3a4-6b5487a68d8a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3415/ApplicationUserService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ApplicationUserService.xsd" MetadataType="Schema" ID="30e75d41-38be-4a54-ac2c-38797cc110b0" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ApplicationUserService1.xsd" MetadataType="Schema" ID="dafd7a45-60c8-458f-b92c-91e25ca6ad0d" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ApplicationUserService.wsdl" MetadataType="Wsdl" ID="bb0cb253-c6f0-4719-9a0f-c02310df7e55" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?wsdl" />
+    <MetadataFile FileName="ApplicationUserService.disco" MetadataType="Disco" ID="6c41fb48-8dc5-45f3-9e5c-8d7a1dad760d" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?disco" />
+    <MetadataFile FileName="ApplicationUserService2.xsd" MetadataType="Schema" ID="eed9df4a-a28f-4c59-a99a-fde24500519d" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ApplicationUserService3.xsd" MetadataType="Schema" ID="b4966b73-9c9d-4965-a81f-491c6357c988" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

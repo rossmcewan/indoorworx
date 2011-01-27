@@ -7,6 +7,9 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using Telerik.Windows.Controls;
+    using IndoorWorx.Infrastructure.Services;
+    using IndoorWorx.Infrastructure;
+    using IndoorWorx.Infrastructure.Models;
 
     /// <summary>
     /// Form that presents the login fields and handles the login process.
@@ -84,6 +87,7 @@
             if (loginOperation.LoginSuccess)
             {
                 this.parentWindow.Close();
+               
             }
             else if (loginOperation.HasError)
             {
@@ -94,7 +98,23 @@
             {
                 this.loginInfo.ValidationErrors.Add(new ValidationResult(ErrorResources.ErrorBadUserNameOrPassword, new string[] { "UserName", "Password" }));
             }
+
+            var userService = IoC.Resolve<IApplicationUserService>();
+            userService.ApplicationUserRetrieved += (sender, e) =>
+            {
+                if (e.Value is ApplicationUser)
+                    ApplicationUser.CurrentUser = e.Value as ApplicationUser;
+            };
+
+            userService.ApplicationUserRetrievalError += (sender, e) =>
+            {
+                WebContext.Current.Authentication.Logout(true);
+                ErrorWindow.CreateNew("Error occured creating the application user");
+            };
+            userService.RetrieveApplicationUser(loginInfo.UserName);
         }
+
+       
 
         /// <summary>
         /// Switches to the registration form.

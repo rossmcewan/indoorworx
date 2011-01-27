@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criteria\ApplicationUserFindCriteria.cs" />
     <Compile Include="Enums\VideoTextAnimations.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Models\VideoOptions.cs" />
     <Compile Include="Models\VideoText.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IApplicationUserRepository.cs" />
     <Compile Include="Repositories\ICatalogRepository.cs" />
     <Compile Include="Repositories\ICategoryRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
@@ -97,7 +99,6 @@
     <Compile Include="ServiceModel\UnityBehaviorExtensionElement.cs" />
     <Compile Include="ServiceModel\UnityInstanceProvider.cs" />
     <Compile Include="ServiceModel\UnityServiceBehavior.cs" />
-    <Compile Include="Services\IApplicationSettingsService.cs" />
     <Compile Include="Services\IApplicationUserService.cs" />
     <Compile Include="Services\ICategoryService.cs" />
     <Compile Include="SmartDispatcher.cs" />
