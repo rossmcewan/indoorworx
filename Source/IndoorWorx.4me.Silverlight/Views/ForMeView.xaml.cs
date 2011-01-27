@@ -9,10 +9,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using IndoorWorx.Library.Views;
 
 namespace IndoorWorx.ForMe.Views
 {
-    public partial class ForMeView : UserControl, IForMeView
+    public partial class ForMeView : TabbedNavigationView, IForMeView
     {
         public ForMeView(IForMePresentationModel model)
         {

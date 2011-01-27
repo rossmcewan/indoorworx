@@ -10,21 +10,12 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Telerik.Windows.Controls;
 using IndoorWorx.Infrastructure;
+using IndoorWorx.Library.Views;
 
 namespace IndoorWorx.ForMe.Views
 {
-    public interface IForMePresentationModel
+    public interface IForMePresentationModel : ITabbedNavigationPresentationModel<IForMeView>
     {
-        object SelectedItem { get; set; }
-
-        IForMeView View { get; set; }
-
-        bool IsBusy { get; set; }
-
-        void AddNavigationItem(RadTreeViewItem navigationItem);
-
-        void AddMainRegionView(IMainRegionView view);
-
-        void NavigationItemSelectionChanged();
+       
     }
 }

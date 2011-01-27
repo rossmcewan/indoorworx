@@ -13,11 +13,11 @@ using IndoorWorx.Infrastructure;
 
 namespace IndoorWorx.Library.Views
 {
-    public interface ITabbedNavigationPresentationModel
+    public interface ITabbedNavigationPresentationModel<Tview> where Tview : ITabbedNavigationView
     {
         object SelectedItem { get; set; }
 
-        ITabbedNavigationView View { get; set; }
+        Tview View { get; set; }
 
         bool IsBusy { get; set; }
 

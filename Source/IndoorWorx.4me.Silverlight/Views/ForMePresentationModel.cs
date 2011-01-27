@@ -16,19 +16,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
 using IndoorWorx.Infrastructure;
+using IndoorWorx.Library.Views;
 
 namespace IndoorWorx.ForMe.Views
 {
-    public class ForMePresentationModel : BaseModel, IForMePresentationModel
+    public class ForMePresentationModel : TabbedNavigationPresentationModel<IForMeView>, IForMePresentationModel
     {
-        private readonly IServiceLocator serviceLocator;
-        private readonly IEventAggregator eventAggregator;
-
-        public ForMePresentationModel(IServiceLocator serviceLocator, IEventAggregator eventAggregator)
-        {
-            this.serviceLocator = serviceLocator;
-            this.eventAggregator = eventAggregator;
-        }
+       
+        public ForMePresentationModel(IServiceLocator serviceLocator, IEventAggregator eventAggregator) 
+            : base(serviceLocator,eventAggregator)
+        { }
 
         private bool busy;
         public bool IsBusy
@@ -129,12 +126,6 @@ namespace IndoorWorx.ForMe.Views
                         
                     });
             }
-        }
-
-
-        public void NavigationItemSelectionChanged()
-        {
-            throw new NotImplementedException();
         }
     }
 }

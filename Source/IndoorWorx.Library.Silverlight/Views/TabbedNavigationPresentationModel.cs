@@ -19,10 +19,10 @@ using IndoorWorx.Infrastructure;
 
 namespace IndoorWorx.Library.Views
 {
-    public class TabbedNavigationPresentationModel : BaseModel, ITabbedNavigationPresentationModel
+    public class TabbedNavigationPresentationModel<Tview> : BaseModel, ITabbedNavigationPresentationModel<Tview> where Tview : ITabbedNavigationView
     {
-        private readonly IServiceLocator serviceLocator;
-        private readonly IEventAggregator eventAggregator;
+        protected readonly IServiceLocator serviceLocator;
+        protected readonly IEventAggregator eventAggregator;
 
         public TabbedNavigationPresentationModel(IServiceLocator serviceLocator, IEventAggregator eventAggregator)
         {
@@ -73,8 +73,8 @@ namespace IndoorWorx.Library.Views
             }
         }
 
-        private ITabbedNavigationView view;
-        public ITabbedNavigationView View
+        private Tview view;
+        public Tview View
         {
             get
             {

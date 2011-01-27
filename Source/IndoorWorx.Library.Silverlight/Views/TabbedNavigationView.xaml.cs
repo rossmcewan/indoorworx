@@ -15,16 +15,9 @@ namespace IndoorWorx.Library.Views
 {
     public partial class TabbedNavigationView : UserControl, ITabbedNavigationView
     {
-        public TabbedNavigationView(ITabbedNavigationPresentationModel model)
+        public TabbedNavigationView()
         {
             InitializeComponent();
-            this.DataContext = model;
-            model.View = this;
-        }
-
-        public ITabbedNavigationPresentationModel Model
-        {
-            get { return this.DataContext as ITabbedNavigationPresentationModel; }
         }
 
     }

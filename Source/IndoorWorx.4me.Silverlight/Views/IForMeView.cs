@@ -8,10 +8,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using IndoorWorx.Library.Views;
 
 namespace IndoorWorx.ForMe.Views
 {
-    public interface IForMeView
+    public interface IForMeView : ITabbedNavigationView
     {
         IForMePresentationModel Model { get; }
     }

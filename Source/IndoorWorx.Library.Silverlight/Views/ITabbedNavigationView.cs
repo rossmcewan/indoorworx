@@ -13,6 +13,6 @@ namespace IndoorWorx.Library.Views
 {
     public interface ITabbedNavigationView
     {
-        ITabbedNavigationPresentationModel Model { get; }
+        
     }
 }

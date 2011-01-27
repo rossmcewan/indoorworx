@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:controlsToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"  
+﻿<lib:TabbedNavigationView xmlns:controlsToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"  
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:layoutToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"  
     x:Class="IndoorWorx.ForMe.Views.ForMeView"
@@ -7,7 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight" 
-    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"        
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:lib="clr-namespace:IndoorWorx.Library.Views;assembly=IndoorWorx.Library.Silverlight"                  
     xmlns:libControls="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"                   
     d:DesignHeight="500" d:DesignWidth="800"           
     mc:Ignorable="d" >
@@ -37,4 +38,4 @@
                 </telerik:RadDocking>
             </telerik:RadBusyIndicator>
         </Grid>
-</UserControl>
+</lib:TabbedNavigationView>
