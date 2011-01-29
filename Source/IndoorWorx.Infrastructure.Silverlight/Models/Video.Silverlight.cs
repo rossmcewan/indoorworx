@@ -19,6 +19,9 @@ namespace IndoorWorx.Infrastructure.Models
 {
     public partial class Video
     {
+        public event EventHandler SelectedTrainingSetChanging;
+        public event EventHandler SelectedTrainingSetChanged;
+
         public Video()
         {
             Initialize();
@@ -64,9 +67,13 @@ namespace IndoorWorx.Infrastructure.Models
             get { return selectedTrainingSet; }
             set
             {
+                OnSelectedTrainingSetChanging();
+                bool changed = value != selectedTrainingSet;
                 selectedTrainingSet = value;
                 if(selectedTrainingSet != null)
                     selectedTrainingSet.LoadTelemetry();
+                if(changed)
+                    OnSelectedTrainingSetChanged();
                 FirePropertyChanged("SelectedTrainingSet");
             }
         }
@@ -80,6 +87,18 @@ namespace IndoorWorx.Infrastructure.Models
         private void Initialize()
         {
             this.IsMediaLoading = true;
+        }
+
+        protected virtual void OnSelectedTrainingSetChanging()
+        {
+            if (SelectedTrainingSetChanging != null)
+                SelectedTrainingSetChanging(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnSelectedTrainingSetChanged()
+        {
+            if (SelectedTrainingSetChanged != null)
+                SelectedTrainingSetChanged(this, EventArgs.Empty);
         }
     }
 }

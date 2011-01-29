@@ -237,9 +237,59 @@ namespace IndoorWorx.Catalog.Views
             {
                 this.categories.Clear();
                 foreach (var category in value)
+                {
+                    category.SelectedCatalogChanging -= SelectedCatalogChanging;
+                    category.SelectedCatalogChanging += SelectedCatalogChanging;
+                    category.SelectedCatalogChanged -= SelectedCatalogChanged;
+                    category.SelectedCatalogChanged += SelectedCatalogChanged;
+                    foreach (var catalog in category.Catalogs)
+                    {
+                        catalog.SelectedVideoChanging -= SelectedVideoChanging;
+                        catalog.SelectedVideoChanging += SelectedVideoChanging;
+                        catalog.SelectedVideoChanged -= SelectedVideoChanged;
+                        catalog.SelectedVideoChanged += SelectedVideoChanged;
+                        foreach (var video in catalog.Videos)
+                        {
+                            video.SelectedTrainingSetChanged -= SelectedTrainingSetChanged;
+                            video.SelectedTrainingSetChanged += SelectedTrainingSetChanged;
+                        }
+                    }
                     this.categories.Add(category);
+                }
                 FirePropertyChanged("Categories");
             }
+        }
+
+        private void SelectedCatalogChanging(object sender, EventArgs args)
+        {
+            var catalog = SelectedCategory.SelectedCatalog;
+            if (catalog != null)
+            {
+                var video = catalog.SelectedVideo;
+                if (video != null)
+                    video.SelectedTrainingSet = null;
+            }
+        }
+
+        private void SelectedCatalogChanged(object sender, EventArgs args)
+        {
+        }
+
+        private void SelectedVideoChanging(object sender, EventArgs args)
+        {
+            var video = SelectedCategory.SelectedCatalog.SelectedVideo;
+            if(video != null)
+                video.SelectedTrainingSet = null;
+        }
+
+        private void SelectedVideoChanged(object sender, EventArgs args)
+        {
+            OnVideoSelectionChanged();
+        }
+
+        private void SelectedTrainingSetChanged(object sender, EventArgs args)
+        {
+            OnTrainingSetSelectionChanged();
         }
 
         private string searchText;

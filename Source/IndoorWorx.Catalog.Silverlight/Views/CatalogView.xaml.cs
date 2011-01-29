@@ -47,21 +47,21 @@ namespace IndoorWorx.Catalog.Views
 
         private void trainingSetsList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            Model.OnTrainingSetSelectionChanged();
+            //Model.OnTrainingSetSelectionChanged();
         }
 
         private void radTileView_TileStateChanged(object sender, Telerik.Windows.RadRoutedEventArgs e)
         {
-            var tileViewItem = e.Source as RadTileViewItem;
-            if (tileViewItem != null && tileViewItem.TileState == TileViewItemState.Maximized)
-            {
-                Model.OnVideoSelectionChanged();
-            }
+            //var tileViewItem = e.Source as RadTileViewItem;
+            //if (tileViewItem != null && tileViewItem.TileState == TileViewItemState.Maximized)
+            //{
+            //    Model.OnVideoSelectionChanged();
+            //}
         }
 
         private void CatalogTreeControl_SelectionChanged(object sender, EventArgs e)
         {
-            Model.OnVideoSelectionChanged();
+            //Model.OnVideoSelectionChanged();
         }                
     }
 }

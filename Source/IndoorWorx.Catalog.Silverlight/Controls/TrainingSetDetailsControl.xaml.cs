@@ -65,7 +65,7 @@ namespace IndoorWorx.Catalog.Controls
 
         private void ClearTelemetryChart()
         {
-            profileChart.LoadTelemetry(EmptyTelemetry);
+            SmartDispatcher.BeginInvoke(() => profileChart.LoadTelemetry(EmptyTelemetry));
         }
 
         private void LoadTelemetryOnChart(TrainingSet video)
@@ -75,7 +75,7 @@ namespace IndoorWorx.Catalog.Controls
 
             if (video.IsTelemetryLoaded)
             {
-                profileChart.LoadTelemetry(video.Telemetry);
+                SmartDispatcher.BeginInvoke(() => profileChart.LoadTelemetry(video.Telemetry));
             }
             else
             {

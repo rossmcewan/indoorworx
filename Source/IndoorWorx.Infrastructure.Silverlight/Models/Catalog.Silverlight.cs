@@ -9,27 +9,47 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Microsoft.Practices.Composite.Events;
 
 namespace IndoorWorx.Infrastructure.Models
 {
     public partial class Catalog
     {
+        public event EventHandler SelectedVideoChanging;
+
+        public event EventHandler SelectedVideoChanged;
+
         private Video selectedVideo;
         public virtual Video SelectedVideo
         {
             get { return selectedVideo; }
             set
             {
+                OnSelectedVideoChanging();
+                bool changed = value != selectedVideo;
                 if (selectedVideo != null)
                     selectedVideo.IsSelected = false;
                 selectedVideo = value;
                 if (selectedVideo != null)
                 {
                     selectedVideo.IsSelected = true;
-                    //selectedVideo.SelectedTrainingSet = selectedVideo.TrainingSets.FirstOrDefault();
                 }
+                if(changed)
+                    OnSelectedVideoChanged();
                 FirePropertyChanged("SelectedVideo");
             }
+        }
+
+        protected virtual void OnSelectedVideoChanged()
+        {
+            if (SelectedVideoChanged != null)
+                SelectedVideoChanged(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnSelectedVideoChanging()
+        {
+            if (SelectedVideoChanging != null)
+                SelectedVideoChanging(this, EventArgs.Empty);
         }
     }
 }
