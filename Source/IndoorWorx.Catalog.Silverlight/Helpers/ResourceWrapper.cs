@@ -8,17 +8,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using IndoorWorx.ForMe.Resources;
+using IndoorWorx.Catalog.Resources;
 
-namespace IndoorWorx.ForMe.Helpers
+namespace IndoorWorx.Catalog.Helpers
 {
     public sealed class ResourceWrapper
     {
-        private readonly ForMeResources forMeResources = new ForMeResources();
+        private readonly CatalogResources catalogResources = new CatalogResources();
 
-        public ForMeResources ForMeResources
+        public CatalogResources CatalogResources
         {
-            get { return forMeResources; }
+            get { return catalogResources; }
         }
     }
 }
