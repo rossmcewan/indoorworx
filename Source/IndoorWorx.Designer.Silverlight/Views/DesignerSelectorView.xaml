@@ -51,6 +51,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding Title, Mode=TwoWay}"/>
+                                <!--<telerik:RadLinearSparkline Width="150" Height="30" ItemsSource="{Binding Telemetry}" ShowAxis="False" YValuePath="PercentageThreshold" XValuePath="OATimePosition"/>-->
                                 <telerik:RadRating NumberOfItemsToGenerate="5" Value="{Binding AverageRating, Mode=TwoWay}" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Right" telerik:StyleManager.Theme="Office_Black"/>
                             </Grid>
                         </DataTemplate>

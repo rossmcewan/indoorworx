@@ -262,13 +262,13 @@ namespace IndoorWorx.Catalog.Views
 
         private void SelectedCatalogChanging(object sender, EventArgs args)
         {
-            var catalog = SelectedCategory.SelectedCatalog;
-            if (catalog != null)
-            {
-                var video = catalog.SelectedVideo;
-                if (video != null)
-                    video.SelectedTrainingSet = null;
-            }
+            //var catalog = SelectedCategory.SelectedCatalog;
+            //if (catalog != null)
+            //{
+            //    var video = catalog.SelectedVideo;
+            //    if (video != null)
+            //        video.SelectedTrainingSet = null;
+            //}
         }
 
         private void SelectedCatalogChanged(object sender, EventArgs args)
@@ -277,9 +277,9 @@ namespace IndoorWorx.Catalog.Views
 
         private void SelectedVideoChanging(object sender, EventArgs args)
         {
-            var video = SelectedCategory.SelectedCatalog.SelectedVideo;
-            if(video != null)
-                video.SelectedTrainingSet = null;
+            //var video = SelectedCategory.SelectedCatalog.SelectedVideo;
+            //if(video != null)
+            //    video.SelectedTrainingSet = null;
         }
 
         private void SelectedVideoChanged(object sender, EventArgs args)

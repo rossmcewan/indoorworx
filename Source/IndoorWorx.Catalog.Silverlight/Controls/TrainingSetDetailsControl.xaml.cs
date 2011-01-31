@@ -59,34 +59,34 @@ namespace IndoorWorx.Catalog.Controls
 
         private void profileChart_Loaded(object sender, RoutedEventArgs e)
         {
-            var video = this.DataContext as TrainingSet;
-            LoadTelemetryOnChart(video);
+            //var video = this.DataContext as TrainingSet;
+            //LoadTelemetryOnChart(video);
         }
 
         private void ClearTelemetryChart()
         {
-            SmartDispatcher.BeginInvoke(() => profileChart.LoadTelemetry(EmptyTelemetry));
+            //SmartDispatcher.BeginInvoke(() => profileChart.LoadTelemetry(EmptyTelemetry));
         }
 
         private void LoadTelemetryOnChart(TrainingSet video)
         {           
-            if (video == null) return;
-            this.DataContext = video;
+            //if (video == null) return;
+            //this.DataContext = video;
 
-            if (video.IsTelemetryLoaded)
-            {
-                SmartDispatcher.BeginInvoke(() => profileChart.LoadTelemetry(video.Telemetry));
-            }
-            else
-            {
-                video.TelemetryLoaded += (_sender, _e) =>
-                {
-                    SmartDispatcher.BeginInvoke(() =>
-                    {
-                        profileChart.LoadTelemetry(video.Telemetry);
-                    });
-                };
-            }
+            //if (video.IsTelemetryLoaded)
+            //{
+            //    SmartDispatcher.BeginInvoke(() => profileChart.LoadTelemetry(video.Telemetry));
+            //}
+            //else
+            //{
+            //    video.TelemetryLoaded += (_sender, _e) =>
+            //    {
+            //        SmartDispatcher.BeginInvoke(() =>
+            //        {
+            //            profileChart.LoadTelemetry(video.Telemetry);
+            //        });
+            //    };
+            //}
         }        
     }
 }

@@ -55,22 +55,31 @@
                                     CanUserClose="False">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <StackPanel>
+                                    <ListBox ItemsSource="{Binding Entries, Mode=TwoWay}" SelectedItem="{Binding SelectedEntry, Mode=TwoWay}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay}"/>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                    <StackPanel Grid.Column="1">
                                         <telerik:RadButton Content="Delete" Command="{Binding RemoveEntryCommand, Mode=OneWay}" CommandParameter="{Binding SelectedEntry, Mode=OneWay}" CornerRadius="5" />
                                     </StackPanel>
-                                    <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}" Grid.Column="1">
+                                    <telerik:RadLinearSparkline Height="200" Width="600" ItemsSource="{Binding Telemetry}" ShowAxis="False" YValuePath="PercentageThreshold" XValuePath="OATimePosition" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                                    <!--<telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}" Grid.Column="2">
                                         <libControls:TelemetryChart
                                             x:Name="designedTelemetryChart"
                                             Margin="10"
                                             AxisForeground="Gray"
                                             AxisElementBrush="Gray"
                                             YAxisAutoRange="True"/>
-                                    </telerik:RadBusyIndicator>
-                                    <telerik:RadSlider Orientation="Vertical" Minimum="0" Maximum="200" Value="100" Grid.Column="2" VerticalAlignment="Stretch"/>
+                                    </telerik:RadBusyIndicator>-->
+                                    <telerik:RadSlider Orientation="Vertical" Minimum="0" Maximum="2" Value="{Binding SelectedEntry.IntensityFactor, Mode=TwoWay}" Grid.Column="3" VerticalAlignment="Stretch" DragCompleted="RadSlider_DragCompleted"/>
                                 </Grid>
                             </telerik:RadPane>
                         </telerik:RadPaneGroup>

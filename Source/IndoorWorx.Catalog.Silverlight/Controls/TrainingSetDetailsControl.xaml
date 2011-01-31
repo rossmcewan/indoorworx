@@ -15,7 +15,8 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <libControls:TelemetryChart x:Name="profileChart" Background="Transparent" XAxisLabelVisibility="Collapsed" YAxisLabelVisibility="Collapsed" Loaded="profileChart_Loaded"/>
+            <telerik:RadLinearSparkline VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding Telemetry}" ShowAxis="True" AutoRange="True" YValuePath="PercentageThreshold" XValuePath="OATimePosition"/>
+            <!--<libControls:TelemetryChart x:Name="profileChart" Background="Transparent" XAxisLabelVisibility="Collapsed" YAxisLabelVisibility="Collapsed" Loaded="profileChart_Loaded"/>-->
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

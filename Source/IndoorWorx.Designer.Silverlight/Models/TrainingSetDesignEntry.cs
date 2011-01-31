@@ -22,6 +22,7 @@ namespace IndoorWorx.Designer.Models
             {
                 source = value;
                 FirePropertyChanged("Source");
+                FirePropertyChanged("Name");
             }
         }
 
@@ -33,6 +34,7 @@ namespace IndoorWorx.Designer.Models
             {
                 timeStart = value;
                 FirePropertyChanged("TimeStart");
+                FirePropertyChanged("Name");
             }
         }
 
@@ -44,6 +46,32 @@ namespace IndoorWorx.Designer.Models
             {
                 timeEnd = value;
                 FirePropertyChanged("TimeEnd");
+                FirePropertyChanged("Name");
+            }
+        }
+
+        private double intensityFactor = 1;
+        public double IntensityFactor
+        {
+            get { return intensityFactor; }
+            set
+            {
+                intensityFactor = value;
+                FirePropertyChanged("IntensityFactor");
+                FirePropertyChanged("Name");
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return string.Format(
+                    "{0} from {1} to {2} at {3:P}", 
+                    Source.Description, 
+                    TimeStart.ToString("hh:mm:ss"), 
+                    TimeEnd.ToString("hh:mm:ss"), 
+                    IntensityFactor);
             }
         }
     }

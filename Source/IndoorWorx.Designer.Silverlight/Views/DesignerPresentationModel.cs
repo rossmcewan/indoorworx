@@ -72,30 +72,40 @@ namespace IndoorWorx.Designer.Views
 
         public void AddEntry(IDesignerSelectorPresentationModel trainingSetDesign)
         {
-            ThreadPool.QueueUserWorkItem((obj) =>
-                {
-                    IsBusy = true;
-                    Entries.Add(new TrainingSetDesignEntry()
-                    {
-                        Source = trainingSetDesign.Source.SelectedTrainingSet,
-                        TimeStart = TimeSpan.FromSeconds(trainingSetDesign.SelectionStart.GetValueOrDefault()),
-                        TimeEnd = TimeSpan.FromSeconds(trainingSetDesign.SelectionEnd.GetValueOrDefault())
-                    });
-                    if (EntriesChanged != null)
-                        SmartDispatcher.BeginInvoke(() =>
-                            {
-                                View.EntriesChangedOnView += View_EntriesChangedOnView;
-                                try
-                                {
-                                    EntriesChanged(this, EventArgs.Empty);
-                                }
-                                catch
-                                {
-                                    IsBusy = false;
-                                    throw;
-                                }
-                            });
-                });
+            Entries.Add(new TrainingSetDesignEntry()
+            {
+                Source = trainingSetDesign.Source.SelectedTrainingSet,
+                TimeStart = TimeSpan.FromSeconds(trainingSetDesign.SelectionStart.GetValueOrDefault()),
+                TimeEnd = TimeSpan.FromSeconds(trainingSetDesign.SelectionEnd.GetValueOrDefault())
+            });
+            this.Telemetry = GetDesignedTelemetry();
+            FirePropertyChanged("Entries");
+            //ThreadPool.QueueUserWorkItem((obj) =>
+            //    {
+            //        IsBusy = true;
+            //        Entries.Add(new TrainingSetDesignEntry()
+            //        {
+            //            Source = trainingSetDesign.Source.SelectedTrainingSet,
+            //            TimeStart = TimeSpan.FromSeconds(trainingSetDesign.SelectionStart.GetValueOrDefault()),
+            //            TimeEnd = TimeSpan.FromSeconds(trainingSetDesign.SelectionEnd.GetValueOrDefault())
+            //        });
+            //        this.Telemetry = GetDesignedTelemetry();
+            //        //if (EntriesChanged != null)
+            //        //    SmartDispatcher.BeginInvoke(() =>
+            //        //        {
+            //        //            View.EntriesChangedOnView += View_EntriesChangedOnView;
+            //        //            try
+            //        //            {
+            //        //                EntriesChanged(this, EventArgs.Empty);
+            //        //            }
+            //        //            catch
+            //        //            {
+            //        //                IsBusy = false;
+            //        //                throw;
+            //        //            }
+            //        //        });
+            //        FirePropertyChanged("Entries");
+            //    });
         }
 
         void View_EntriesChangedOnView(object sender, EventArgs e)
@@ -120,14 +130,6 @@ namespace IndoorWorx.Designer.Views
                             SelectedVideo = video;
                             break;
                         }
-                        //foreach (var ts in video.TrainingSets)
-                        //{
-                        //    if (id == ts.Id)
-                        //    {
-                        //        SelectedVideo = video;
-                        //        break;
-                        //    }
-                        //}
                     }
                 }
             }
@@ -199,6 +201,17 @@ namespace IndoorWorx.Designer.Views
             stop();
         }
 
+        private ICollection<Telemetry> telemetry;
+        public ICollection<Telemetry> Telemetry
+        {
+            get { return telemetry; }
+            set
+            {
+                telemetry = value;
+                FirePropertyChanged("Telemetry");
+            }
+        }
+
         public ICollection<Telemetry> GetDesignedTelemetry()
         {
             List<Telemetry> result = new List<Telemetry>();
@@ -207,7 +220,12 @@ namespace IndoorWorx.Designer.Views
             {
                 var entriesToAdd = entry.Source.Telemetry.Where(x =>
                         x.TimePosition.TotalSeconds >= entry.TimeStart.TotalSeconds &&
-                        x.TimePosition.TotalSeconds <= entry.TimeEnd.TotalSeconds).Select(x => x.Clone()).ToList();
+                        x.TimePosition.TotalSeconds <= entry.TimeEnd.TotalSeconds).Select(x =>
+                            {
+                                var t = x.Clone();
+                                t.PercentageThreshold *= entry.IntensityFactor;
+                                return t;
+                            }).ToList();
                 foreach (var eta in entriesToAdd)
                 {
                     seconds += entry.Source.RecordingInterval;
