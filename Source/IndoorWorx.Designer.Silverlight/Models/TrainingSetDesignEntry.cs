@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,11 +10,15 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace IndoorWorx.Designer.Models
 {
     public class TrainingSetDesignEntry : BaseModel
     {
+        public event EventHandler IntensityFactorChanged;
+
         private TrainingSet source;
         public TrainingSet Source
         {
@@ -57,10 +62,46 @@ namespace IndoorWorx.Designer.Models
             set
             {
                 intensityFactor = value;
+                OnIntensityFactorChanged();
                 FirePropertyChanged("IntensityFactor");
                 FirePropertyChanged("Name");
             }
         }
+
+        private void OnIntensityFactorChanged()
+        {
+            if (IntensityFactorChanged != null)
+                IntensityFactorChanged(this, EventArgs.Empty);
+        }
+
+        //private ICollection<Telemetry> telemetry = new ObservableCollection<Telemetry>();
+        //public ICollection<Telemetry> Telemetry
+        //{
+        //    get
+        //    {
+        //        return this.telemetry;
+        //    }
+        //}
+
+        //public void GenerateTelemetry()
+        //{
+        //    telemetry.Clear();
+        //    double seconds = 0;
+        //    var entriesToAdd = Source.Telemetry.Where(x =>
+        //    x.TimePosition.TotalSeconds >= TimeStart.TotalSeconds &&
+        //    x.TimePosition.TotalSeconds <= TimeEnd.TotalSeconds).Select(x =>
+        //    {
+        //        var t = x.Clone();
+        //        t.PercentageThreshold *= IntensityFactor;
+        //        return t;
+        //    }).ToList();
+        //    foreach (var eta in entriesToAdd)
+        //    {
+        //        seconds += this.Source.RecordingInterval;
+        //        eta.TimePosition = TimeSpan.FromSeconds(seconds);
+        //        this.telemetry.Add(eta);
+        //    }
+        //}
 
         public string Name
         {
@@ -68,9 +109,9 @@ namespace IndoorWorx.Designer.Models
             {
                 return string.Format(
                     "{0} from {1} to {2} at {3:P}", 
-                    Source.Description, 
-                    TimeStart.ToString("hh:mm:ss"), 
-                    TimeEnd.ToString("hh:mm:ss"), 
+                    Source.Title, 
+                    string.Format("{0}:{1}:{2}", TimeStart.Hours, TimeStart.Minutes, TimeStart.Seconds), 
+                    string.Format("{0}:{1}:{2}", TimeEnd.Hours, TimeEnd.Minutes, TimeEnd.Seconds),
                     IntensityFactor);
             }
         }

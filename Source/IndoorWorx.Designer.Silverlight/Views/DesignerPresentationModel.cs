@@ -72,40 +72,19 @@ namespace IndoorWorx.Designer.Views
 
         public void AddEntry(IDesignerSelectorPresentationModel trainingSetDesign)
         {
-            Entries.Add(new TrainingSetDesignEntry()
+            var entry = new TrainingSetDesignEntry()
             {
                 Source = trainingSetDesign.Source.SelectedTrainingSet,
                 TimeStart = TimeSpan.FromSeconds(trainingSetDesign.SelectionStart.GetValueOrDefault()),
                 TimeEnd = TimeSpan.FromSeconds(trainingSetDesign.SelectionEnd.GetValueOrDefault())
-            });
+            };
+            entry.IntensityFactorChanged += (sender, e) =>
+                {
+                    this.Telemetry = GetDesignedTelemetry();
+                };
+            Entries.Add(entry);
             this.Telemetry = GetDesignedTelemetry();
             FirePropertyChanged("Entries");
-            //ThreadPool.QueueUserWorkItem((obj) =>
-            //    {
-            //        IsBusy = true;
-            //        Entries.Add(new TrainingSetDesignEntry()
-            //        {
-            //            Source = trainingSetDesign.Source.SelectedTrainingSet,
-            //            TimeStart = TimeSpan.FromSeconds(trainingSetDesign.SelectionStart.GetValueOrDefault()),
-            //            TimeEnd = TimeSpan.FromSeconds(trainingSetDesign.SelectionEnd.GetValueOrDefault())
-            //        });
-            //        this.Telemetry = GetDesignedTelemetry();
-            //        //if (EntriesChanged != null)
-            //        //    SmartDispatcher.BeginInvoke(() =>
-            //        //        {
-            //        //            View.EntriesChangedOnView += View_EntriesChangedOnView;
-            //        //            try
-            //        //            {
-            //        //                EntriesChanged(this, EventArgs.Empty);
-            //        //            }
-            //        //            catch
-            //        //            {
-            //        //                IsBusy = false;
-            //        //                throw;
-            //        //            }
-            //        //        });
-            //        FirePropertyChanged("Entries");
-            //    });
         }
 
         void View_EntriesChangedOnView(object sender, EventArgs e)
@@ -236,7 +215,7 @@ namespace IndoorWorx.Designer.Views
             return result;
         }
 
-        private ICollection<TrainingSetDesignEntry> entries = new List<TrainingSetDesignEntry>();
+        private ICollection<TrainingSetDesignEntry> entries = new ObservableCollection<TrainingSetDesignEntry>();
         public ICollection<TrainingSetDesignEntry> Entries
         {
             get { return entries; }
@@ -272,6 +251,8 @@ namespace IndoorWorx.Designer.Views
         public void RemoveEntry(TrainingSetDesignEntry entry)
         {
             Entries.Remove(entry);
+            this.Telemetry = GetDesignedTelemetry();
+            FirePropertyChanged("Entries");
             if (EntriesChanged != null)
                 EntriesChanged(this, EventArgs.Empty);
         }
