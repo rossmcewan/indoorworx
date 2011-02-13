@@ -92,15 +92,16 @@ namespace IndoorWorx.Designer.Views
             if (existingPane == null)
             {
                 var view = serviceLocator.GetInstance<IDesignerSelectorView>();
+                forVideo.SelectedTrainingSet = forVideo.TrainingSets.FirstOrDefault();
                 view.Model.Source = forVideo;
                 
                 var documentPane = new RadDocumentPane()
                 {
                     Tag = forVideo,
                     Title = forVideo.Title,
-                    Content = view
+                    Content = view                    
                 };
-
+                DocumentPaneGroup.Items.Clear();
                 DocumentPaneGroup.AddItem(documentPane, DockPosition.Center);
             }
             else

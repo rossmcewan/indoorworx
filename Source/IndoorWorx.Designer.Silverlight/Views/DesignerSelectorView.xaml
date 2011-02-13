@@ -5,7 +5,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     xmlns:libControls="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"  
-    xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"             
+    xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"
+    xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"               
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.Resources>
@@ -19,7 +20,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Border CornerRadius="10" Margin="2">
@@ -70,13 +71,14 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="{Binding DesignerResources.TrainingMetricsTitle, Source={StaticResource DesignerResources}}" Margin="5" FontWeight="Bold"/>
+                
             </Grid>
         </Border>        
         <Border Grid.Column="1" Grid.RowSpan="2" CornerRadius="10" Margin="2">
             <Border.Background>
                 <SolidColorBrush Color="White" Opacity="0.5"/>
             </Border.Background>
-            <Grid >
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -92,10 +94,22 @@
                 <TextBlock Grid.ColumnSpan="3" Text="{Binding DesignerResources.TelemetryTitle, Source={StaticResource DesignerResources}}" Margin="5" FontWeight="Bold"/>
                 <telerik:RadBusyIndicator 
                         Grid.Row="1"
+                        Grid.Column="1"
                         IsBusy="{Binding Source.SelectedTrainingSet.IsTelemetryLoading, Mode=OneWay}" 
                         BusyContent="{Binding DesignerResources.LoadingTelemetryProgressMessage, Source={StaticResource DesignerResources}}"
                         Grid.ColumnSpan="3">
-                    <libControls:TelemetryChart
+                    <ScrollViewer x:Name="telemetryScroller" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <telerik:RadLinearSparkline 
+                            Height="200" 
+                            Width="500"                                                    
+                            ItemsSource="{Binding Source.SelectedTrainingSet.Telemetry, Mode=TwoWay}" 
+                            ShowAxis="False"                            
+                            YValuePath="PercentageThreshold" 
+                            XValuePath="OATimePosition" 
+                            VerticalAlignment="Bottom" 
+                            HorizontalAlignment="Left"/>
+                    </ScrollViewer>
+                    <!--<libControls:TelemetryChart
                             x:Name="telemetryChart"
                             Margin="10"
                             DataContext="{Binding Source.SelectedTrainingSet, Mode=OneWay}" 
@@ -111,19 +125,41 @@
                                 <GradientStop Color="#FF4D811F" Offset="1"/>
                             </LinearGradientBrush>
                         </libControls:TelemetryChart.ZoneBackground>
-                    </libControls:TelemetryChart>
+                    </libControls:TelemetryChart>-->
                 </telerik:RadBusyIndicator>
                 <telerik:RadSlider 
                     x:Name="slider" 
+                    Width="500"
+                    Margin="10,0,0,0"
                     Grid.Row="2" 
                     Grid.Column="1"
                     IsSelectionRangeEnabled="True" 
                     Orientation="Horizontal" 
+                    HorizontalAlignment="Left"
                     Minimum="0" 
                     TickFrequency="300"               
                     SelectionStart="{Binding SelectionStart, Mode=TwoWay}"
                     SelectionEnd="{Binding SelectionEnd, Mode=TwoWay}"
+                    SelectionStartChanged="slider_SelectionStartChanged"
+                    SelectionEndChanged="slider_SelectionEndChanged"
                     Maximum="{Binding Source.SelectedTrainingSet.Duration.TotalSeconds, Mode=OneWay}"/>
+                <smoothstreaming:SmoothStreamingMediaElement
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    Grid.Row="1"
+                    SmoothStreamingSource="{Binding Source.SelectedTrainingSet.StreamUri, Mode=TwoWay}"
+                    SmoothStreamingPlaybackMode="VideoOnly"
+                    AutoPlay="False"                    
+                    x:Name="fromMediaElement"/>
+                <smoothstreaming:SmoothStreamingMediaElement
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    SmoothStreamingSource="{Binding Source.SelectedTrainingSet.StreamUri, Mode=TwoWay}"
+                    SmoothStreamingPlaybackMode="VideoOnly"
+                    AutoPlay="False"                    
+                    x:Name="toMediaElement"/>
                 <TextBlock TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding SelectionStart, Mode=TwoWay, ElementName=slider, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}" Grid.Row="2" Grid.Column="0"/>
                 <TextBlock TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding SelectionEnd, Mode=TwoWay, ElementName=slider, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}" Grid.Row="2" Grid.Column="2"/>
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding SelectionDuration, Mode=OneWay, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}" Grid.Row="3" Grid.Column="1"/>

@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"
+    xmlns:dconverters="clr-namespace:IndoorWorx.Designer.Converters"             
     xmlns:resources="clr-namespace:IndoorWorx.Designer.Resources"  
     xmlns:controls="clr-namespace:IndoorWorx.Designer.Controls"             
     xmlns:sys="clr-namespace:System;assembly=mscorlib"             
@@ -17,6 +18,9 @@
         <converters:BooleanToOppositeVisibilityConverter x:Key="BooleanToOppositeVisibilityConverter"/>
         <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
         <converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+        <dconverters:TelemetryToHeightConverter x:Key="TelemetryToHeightConverter"/>
+        <dconverters:TrainingSetDesignEntryToWidthConverter x:Key="TrainingSetDesignEntryToWidthConverter"/>
+        <dconverters:IsSelectedToBackgroundConverter x:Key="IsSelectedToBackgroundConverter"/>
         <sys:Double x:Key="ToolBarImageWidth">24</sys:Double>
         <telerik:HierarchicalDataTemplate x:Key="CategoryTemplate" ItemsSource="{Binding Catalogs}">
             <TextBlock Text="{Binding Title, Mode=OneWay}" VerticalAlignment="Center"/>
@@ -70,29 +74,31 @@
                                     <StackPanel Grid.Column="1">
                                         <telerik:RadButton Content="Delete" Command="{Binding RemoveEntryCommand, Mode=OneWay}" CommandParameter="{Binding SelectedEntry, Mode=OneWay}" CornerRadius="5" />
                                     </StackPanel>
-                                    <!--<ItemsControl ItemsSource="{Binding Entries, Mode=TwoWay}" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Horizontal"/>
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <telerik:RadLinearSparkline 
-                                                    Height="200" 
-                                                    Width="200"                                                    
-                                                    MaxYValue="200"                                                    
-                                                    ItemsSource="{Binding Telemetry}" 
-                                                    ShowAxis="False" 
-                                                    YValuePath="PercentageThreshold" 
-                                                    XValuePath="OATimePosition" 
-                                                    VerticalAlignment="Stretch" 
-                                                    HorizontalAlignment="Left">
-                                                </telerik:RadLinearSparkline>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>-->
-                                    <telerik:RadLinearSparkline Height="200" Width="600" ItemsSource="{Binding Telemetry}" ShowAxis="False" YValuePath="PercentageThreshold" XValuePath="OATimePosition" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Left" HorizontalContentAlignment="Left"/>
+                                    <ScrollViewer Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                        <ItemsControl ItemsSource="{Binding Entries, Mode=TwoWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <telerik:RadLinearSparkline 
+                                                        Background="{Binding IsSelected, Mode=OneWay, Converter={StaticResource IsSelectedToBackgroundConverter}}"
+                                                        Height="{Binding Telemetry, Converter={StaticResource TelemetryToHeightConverter}}" 
+                                                        Width="{Binding Converter={StaticResource TrainingSetDesignEntryToWidthConverter}}"                                                    
+                                                        ItemsSource="{Binding Telemetry}" 
+                                                        ShowAxis="True" 
+                                                        YValuePath="PercentageThreshold" 
+                                                        XValuePath="OATimePosition" 
+                                                        VerticalAlignment="Bottom" 
+                                                        HorizontalAlignment="Left">
+                                                    </telerik:RadLinearSparkline>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+                                    <!--<telerik:RadLinearSparkline Height="200" Width="600" ItemsSource="{Binding Telemetry}" ShowAxis="False" YValuePath="PercentageThreshold" XValuePath="OATimePosition" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Left" HorizontalContentAlignment="Left"/>-->
                                     <!--<telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}" Grid.Column="2">
                                         <libControls:TelemetryChart
                                             x:Name="designedTelemetryChart"

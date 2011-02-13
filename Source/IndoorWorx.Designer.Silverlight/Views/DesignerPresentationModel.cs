@@ -78,12 +78,12 @@ namespace IndoorWorx.Designer.Views
                 TimeStart = TimeSpan.FromSeconds(trainingSetDesign.SelectionStart.GetValueOrDefault()),
                 TimeEnd = TimeSpan.FromSeconds(trainingSetDesign.SelectionEnd.GetValueOrDefault())
             };
-            entry.IntensityFactorChanged += (sender, e) =>
-                {
-                    this.Telemetry = GetDesignedTelemetry();
-                };
+            //entry.IntensityFactorChanged += (sender, e) =>
+            //    {
+            //        this.Telemetry = GetDesignedTelemetry();
+            //    };
             Entries.Add(entry);
-            this.Telemetry = GetDesignedTelemetry();
+            //this.Telemetry = GetDesignedTelemetry();
             FirePropertyChanged("Entries");
         }
 
@@ -232,7 +232,11 @@ namespace IndoorWorx.Designer.Views
             get { return selectedEntry; }
             set
             {
+                if (selectedEntry != null)
+                    selectedEntry.IsSelected = false;
                 selectedEntry = value;
+                if (selectedEntry != null)
+                    selectedEntry.IsSelected = true;
                 FirePropertyChanged("SelectedEntry");
             }
         }

@@ -95,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\CategoryTreeDataTemplateSelector.cs" />
+    <Compile Include="Converters\IsSelectedToBackgroundConverter.cs" />
+    <Compile Include="Converters\TelemetryToHeightConverter.cs" />
+    <Compile Include="Converters\TrainingSetDesignEntryToWidthConverter.cs" />
     <Compile Include="Events\UseSelectedVideoEvent.cs" />
     <Compile Include="Models\TrainingSetDesignEntry.cs" />
     <Compile Include="Events\AddDesignEntryEvent.cs" />

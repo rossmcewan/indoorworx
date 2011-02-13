@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using IndoorWorx.Infrastructure;
 
 namespace IndoorWorx.Designer.Models
 {
@@ -70,38 +71,43 @@ namespace IndoorWorx.Designer.Models
 
         private void OnIntensityFactorChanged()
         {
+            foreach (var tentry in telemetry)
+            {
+                tentry.PercentageThreshold *= IntensityFactor;
+            }
             if (IntensityFactorChanged != null)
                 IntensityFactorChanged(this, EventArgs.Empty);
         }
 
-        //private ICollection<Telemetry> telemetry = new ObservableCollection<Telemetry>();
-        //public ICollection<Telemetry> Telemetry
-        //{
-        //    get
-        //    {
-        //        return this.telemetry;
-        //    }
-        //}
+        private ICollection<Telemetry> telemetry = new ObservableCollection<Telemetry>();
+        public ICollection<Telemetry> Telemetry
+        {
+            get
+            {
+                GenerateTelemetry();
+                return this.telemetry;
+            }
+        }
 
-        //public void GenerateTelemetry()
-        //{
-        //    telemetry.Clear();
-        //    double seconds = 0;
-        //    var entriesToAdd = Source.Telemetry.Where(x =>
-        //    x.TimePosition.TotalSeconds >= TimeStart.TotalSeconds &&
-        //    x.TimePosition.TotalSeconds <= TimeEnd.TotalSeconds).Select(x =>
-        //    {
-        //        var t = x.Clone();
-        //        t.PercentageThreshold *= IntensityFactor;
-        //        return t;
-        //    }).ToList();
-        //    foreach (var eta in entriesToAdd)
-        //    {
-        //        seconds += this.Source.RecordingInterval;
-        //        eta.TimePosition = TimeSpan.FromSeconds(seconds);
-        //        this.telemetry.Add(eta);
-        //    }
-        //}
+        private void GenerateTelemetry()
+        {
+            telemetry.Clear();
+            double seconds = 0;
+            var entriesToAdd = Source.Telemetry.Where(x =>
+            x.TimePosition.TotalSeconds >= TimeStart.TotalSeconds &&
+            x.TimePosition.TotalSeconds <= TimeEnd.TotalSeconds).Select(x =>
+            {
+                var t = x.Clone();
+                t.PercentageThreshold *= IntensityFactor;
+                return t;
+            }).ToList();
+            foreach (var eta in entriesToAdd)
+            {
+                seconds += this.Source.RecordingInterval;
+                eta.TimePosition = TimeSpan.FromSeconds(seconds);
+                this.telemetry.Add(eta);
+            }
+        }
 
         public string Name
         {
@@ -109,10 +115,21 @@ namespace IndoorWorx.Designer.Models
             {
                 return string.Format(
                     "{0} from {1} to {2} at {3:P}", 
-                    Source.Title, 
-                    string.Format("{0}:{1}:{2}", TimeStart.Hours, TimeStart.Minutes, TimeStart.Seconds), 
-                    string.Format("{0}:{1}:{2}", TimeEnd.Hours, TimeEnd.Minutes, TimeEnd.Seconds),
+                    Source.Title,
+                    string.Format("{0:N2}:{1:N2}:{2:N2}", TimeStart.Hours, TimeStart.Minutes, TimeStart.Seconds),
+                    string.Format("{0:N2}:{1:N2}:{2:N2}", TimeEnd.Hours, TimeEnd.Minutes, TimeEnd.Seconds),
                     IntensityFactor);
+            }
+        }
+
+        private bool selected;
+        public bool IsSelected
+        {
+            get { return selected; }
+            set
+            {
+                selected = value;
+                FirePropertyChanged("IsSelected");
             }
         }
     }
