@@ -28,6 +28,9 @@ namespace IndoorWorx.Library
         public void Initialize()
         {
             unityContainer.RegisterType<IApplicationUserService, ApplicationUserService>();
+            unityContainer.RegisterType<ISportingHabitsService, SportingHabitsService>();
+            unityContainer.RegisterType<IActivityService, ActivityService>();
+
         }
 
         #endregion

@@ -33,6 +33,11 @@ namespace IndoorWorx.NHibernate
             Container.RegisterInstance<ICategoryRepository>(Container.Resolve<CategoryRepository>());
             Container.RegisterInstance<IVideoRepository>(Container.Resolve<VideoRepository>());
             Container.RegisterInstance<IApplicationUserRepository>(Container.Resolve<ApplicationUserRepository>());
+            Container.RegisterInstance<IOccupationRepository>(Container.Resolve<OccupationRepository>());
+            Container.RegisterInstance<ITrainingVolumeRepository>(Container.Resolve<TrainingVolumeRepository>());
+            Container.RegisterInstance<IIndoorTrainingFrequencyRepository>(Container.Resolve<IndoorTrainingFrequencyRepository>());
+            Container.RegisterInstance<IReferralSourcesRepository>(Container.Resolve<ReferralSourcesRepository>());
+            Container.RegisterInstance<ICompetitiveLevelRepository>(Container.Resolve<CompetitiveLevelRepository>());
         }
 
         #endregion

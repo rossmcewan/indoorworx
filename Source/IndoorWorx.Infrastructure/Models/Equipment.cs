@@ -21,7 +21,6 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-
         private string name = string.Empty;
         [DataMember]
         public virtual string Name
@@ -31,6 +30,18 @@ namespace IndoorWorx.Infrastructure.Models
             {
                 name = value;
                 FirePropertyChanged("Name");
+            }
+        }
+
+        private bool isActive = true;
+        [DataMember]
+        public virtual bool IsActive
+        {
+            get { return isActive; }
+            set
+            {
+                isActive = value;
+                FirePropertyChanged("IsActive");
             }
         }
 

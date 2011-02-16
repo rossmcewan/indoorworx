@@ -58,6 +58,16 @@ namespace IndoorWorx.Library.ApplicationUserServiceReference {
         System.IAsyncResult BeginRetrieveApplicationUser(IndoorWorx.Library.ApplicationUserServiceReference.ApplicationUserFindCriteria criteria, System.AsyncCallback callback, object asyncState);
         
         IndoorWorx.Infrastructure.Models.ApplicationUser EndRetrieveApplicationUser(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IApplicationUserService/RetrieveAllOccupations", ReplyAction="http://tempuri.org/IApplicationUserService/RetrieveAllOccupationsResponse")]
+        System.IAsyncResult BeginRetrieveAllOccupations(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.Occupation> EndRetrieveAllOccupations(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IApplicationUserService/RetrieveAllReferralSources", ReplyAction="http://tempuri.org/IApplicationUserService/RetrieveAllReferralSourcesResponse")]
+        System.IAsyncResult BeginRetrieveAllReferralSources(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.ReferralSource> EndRetrieveAllReferralSources(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -104,6 +114,44 @@ namespace IndoorWorx.Library.ApplicationUserServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class RetrieveAllOccupationsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public RetrieveAllOccupationsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.Occupation> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.Occupation>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class RetrieveAllReferralSourcesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public RetrieveAllReferralSourcesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.ReferralSource> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.ReferralSource>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ApplicationUserServiceClient : System.ServiceModel.ClientBase<IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService>, IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService {
         
         private BeginOperationDelegate onBeginSaveApplicationUserDelegate;
@@ -117,6 +165,18 @@ namespace IndoorWorx.Library.ApplicationUserServiceReference {
         private EndOperationDelegate onEndRetrieveApplicationUserDelegate;
         
         private System.Threading.SendOrPostCallback onRetrieveApplicationUserCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginRetrieveAllOccupationsDelegate;
+        
+        private EndOperationDelegate onEndRetrieveAllOccupationsDelegate;
+        
+        private System.Threading.SendOrPostCallback onRetrieveAllOccupationsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginRetrieveAllReferralSourcesDelegate;
+        
+        private EndOperationDelegate onEndRetrieveAllReferralSourcesDelegate;
+        
+        private System.Threading.SendOrPostCallback onRetrieveAllReferralSourcesCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -174,6 +234,10 @@ namespace IndoorWorx.Library.ApplicationUserServiceReference {
         public event System.EventHandler<SaveApplicationUserCompletedEventArgs> SaveApplicationUserCompleted;
         
         public event System.EventHandler<RetrieveApplicationUserCompletedEventArgs> RetrieveApplicationUserCompleted;
+        
+        public event System.EventHandler<RetrieveAllOccupationsCompletedEventArgs> RetrieveAllOccupationsCompleted;
+        
+        public event System.EventHandler<RetrieveAllReferralSourcesCompletedEventArgs> RetrieveAllReferralSourcesCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -269,6 +333,94 @@ namespace IndoorWorx.Library.ApplicationUserServiceReference {
             }
             base.InvokeAsync(this.onBeginRetrieveApplicationUserDelegate, new object[] {
                         criteria}, this.onEndRetrieveApplicationUserDelegate, this.onRetrieveApplicationUserCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService.BeginRetrieveAllOccupations(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRetrieveAllOccupations(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.Occupation> IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService.EndRetrieveAllOccupations(System.IAsyncResult result) {
+            return base.Channel.EndRetrieveAllOccupations(result);
+        }
+        
+        private System.IAsyncResult OnBeginRetrieveAllOccupations(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService)(this)).BeginRetrieveAllOccupations(callback, asyncState);
+        }
+        
+        private object[] OnEndRetrieveAllOccupations(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.Occupation> retVal = ((IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService)(this)).EndRetrieveAllOccupations(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnRetrieveAllOccupationsCompleted(object state) {
+            if ((this.RetrieveAllOccupationsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.RetrieveAllOccupationsCompleted(this, new RetrieveAllOccupationsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void RetrieveAllOccupationsAsync() {
+            this.RetrieveAllOccupationsAsync(null);
+        }
+        
+        public void RetrieveAllOccupationsAsync(object userState) {
+            if ((this.onBeginRetrieveAllOccupationsDelegate == null)) {
+                this.onBeginRetrieveAllOccupationsDelegate = new BeginOperationDelegate(this.OnBeginRetrieveAllOccupations);
+            }
+            if ((this.onEndRetrieveAllOccupationsDelegate == null)) {
+                this.onEndRetrieveAllOccupationsDelegate = new EndOperationDelegate(this.OnEndRetrieveAllOccupations);
+            }
+            if ((this.onRetrieveAllOccupationsCompletedDelegate == null)) {
+                this.onRetrieveAllOccupationsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnRetrieveAllOccupationsCompleted);
+            }
+            base.InvokeAsync(this.onBeginRetrieveAllOccupationsDelegate, null, this.onEndRetrieveAllOccupationsDelegate, this.onRetrieveAllOccupationsCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService.BeginRetrieveAllReferralSources(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRetrieveAllReferralSources(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.ReferralSource> IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService.EndRetrieveAllReferralSources(System.IAsyncResult result) {
+            return base.Channel.EndRetrieveAllReferralSources(result);
+        }
+        
+        private System.IAsyncResult OnBeginRetrieveAllReferralSources(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService)(this)).BeginRetrieveAllReferralSources(callback, asyncState);
+        }
+        
+        private object[] OnEndRetrieveAllReferralSources(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.ReferralSource> retVal = ((IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService)(this)).EndRetrieveAllReferralSources(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnRetrieveAllReferralSourcesCompleted(object state) {
+            if ((this.RetrieveAllReferralSourcesCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.RetrieveAllReferralSourcesCompleted(this, new RetrieveAllReferralSourcesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void RetrieveAllReferralSourcesAsync() {
+            this.RetrieveAllReferralSourcesAsync(null);
+        }
+        
+        public void RetrieveAllReferralSourcesAsync(object userState) {
+            if ((this.onBeginRetrieveAllReferralSourcesDelegate == null)) {
+                this.onBeginRetrieveAllReferralSourcesDelegate = new BeginOperationDelegate(this.OnBeginRetrieveAllReferralSources);
+            }
+            if ((this.onEndRetrieveAllReferralSourcesDelegate == null)) {
+                this.onEndRetrieveAllReferralSourcesDelegate = new EndOperationDelegate(this.OnEndRetrieveAllReferralSources);
+            }
+            if ((this.onRetrieveAllReferralSourcesCompletedDelegate == null)) {
+                this.onRetrieveAllReferralSourcesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnRetrieveAllReferralSourcesCompleted);
+            }
+            base.InvokeAsync(this.onBeginRetrieveAllReferralSourcesDelegate, null, this.onEndRetrieveAllReferralSourcesDelegate, this.onRetrieveAllReferralSourcesCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -370,6 +522,30 @@ namespace IndoorWorx.Library.ApplicationUserServiceReference {
             public IndoorWorx.Infrastructure.Models.ApplicationUser EndRetrieveApplicationUser(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 IndoorWorx.Infrastructure.Models.ApplicationUser _result = ((IndoorWorx.Infrastructure.Models.ApplicationUser)(base.EndInvoke("RetrieveApplicationUser", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginRetrieveAllOccupations(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("RetrieveAllOccupations", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.Occupation> EndRetrieveAllOccupations(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.Occupation> _result = ((System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.Occupation>)(base.EndInvoke("RetrieveAllOccupations", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginRetrieveAllReferralSources(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("RetrieveAllReferralSources", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.ReferralSource> EndRetrieveAllReferralSources(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.ReferralSource> _result = ((System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.ReferralSource>)(base.EndInvoke("RetrieveAllReferralSources", _args, result)));
                 return _result;
             }
         }

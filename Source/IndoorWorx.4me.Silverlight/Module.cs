@@ -19,6 +19,7 @@ using Microsoft.Practices.Composite.Events;
 using IndoorWorx.ForMe.Events;
 using Microsoft.Practices.Composite.Presentation.Events;
 using IndoorWorx.Infrastructure;
+using IndoorWorx.ForMe.Controls;
 
 namespace IndoorWorx.ForMe
 {
@@ -54,6 +55,8 @@ namespace IndoorWorx.ForMe
 
             unityContainer.RegisterInstance<IForMePresentationModel>(unityContainer.Resolve<ForMePresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<IForMeView>(unityContainer.Resolve<ForMeView>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IProfilePresentationModel>(unityContainer.Resolve<ProfilePresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IProfileView>(unityContainer.Resolve<ProfileView>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<IActivitiesViewPresentationModel>(unityContainer.Resolve<ActivitiesViewPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<IActivitiesView>(unityContainer.Resolve<ActivitiesView>(), new ContainerControlledLifetimeManager());
 
@@ -92,6 +95,7 @@ namespace IndoorWorx.ForMe
             var profile = new RadTreeViewItem()
             {
                 Header = Resources.ForMeResources.ProfileNavigationHeader,
+                Tag  = unityContainer.Resolve<IProfileView>(),
                 IsExpanded = true
             };
 

@@ -16,5 +16,13 @@ namespace IndoorWorx.Infrastructure.Services
 
         [OperationContract]
         ApplicationUser RetrieveApplicationUser(ApplicationUserFindCriteria criteria);
+
+        [OperationContract]
+        ICollection<Occupation> RetrieveAllOccupations();
+
+        [OperationContract]
+        ICollection<ReferralSource> RetrieveAllReferralSources();
+
+
     }
 }

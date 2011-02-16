@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="431eab09-5e49-41ec-ac33-e1d4fd7f8afd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3415/ActivityService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ActivityService.wsdl" MetadataType="Wsdl" ID="c633f3aa-bb2a-45bc-98d3-a196d1293a20" SourceId="1" SourceUrl="http://localhost:3415/ActivityService.svc?wsdl" />
+    <MetadataFile FileName="ActivityService.disco" MetadataType="Disco" ID="b9590360-8c47-4fbf-8bff-b637a3ae1a7c" SourceId="1" SourceUrl="http://localhost:3415/ActivityService.svc?disco" />
+    <MetadataFile FileName="ActivityService.xsd" MetadataType="Schema" ID="ecc49152-8eaf-40e1-be3a-a114606c858c" SourceId="1" SourceUrl="http://localhost:3415/ActivityService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ActivityService1.xsd" MetadataType="Schema" ID="e0a67b3f-9979-4e66-8872-c00ddebd1d24" SourceId="1" SourceUrl="http://localhost:3415/ActivityService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ActivityService2.xsd" MetadataType="Schema" ID="0a6f7ef6-b243-4c9e-abab-2b56d2e58ac6" SourceId="1" SourceUrl="http://localhost:3415/ActivityService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

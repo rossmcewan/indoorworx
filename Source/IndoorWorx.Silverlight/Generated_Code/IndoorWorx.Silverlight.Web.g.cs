@@ -90,7 +90,7 @@ namespace IndoorWorx.Silverlight.Web
     using System.ServiceModel.DomainServices.Client;
     using System.ServiceModel.DomainServices.Client.ApplicationServices;
     using System.ServiceModel.Web;
-    using IndoorWorx.Infrastructure.Models;
+    using IndoorWorx.Infrastructure.Enums;
     using IndoorWorx.Silverlight.Web.Resources;
     
     
@@ -318,7 +318,7 @@ namespace IndoorWorx.Silverlight.Web
     public sealed partial class RegistrationData : Entity
     {
         
-        private Country _country;
+        private Countries _country;
         
         private DateTime _dateOfBirth;
         
@@ -328,7 +328,7 @@ namespace IndoorWorx.Silverlight.Web
         
         private string _friendlyName;
         
-        private Gender _gender;
+        private Genders _gender;
         
         private string _lastName;
         
@@ -341,7 +341,7 @@ namespace IndoorWorx.Silverlight.Web
         /// can be used for further object setup.
         /// </summary>
         partial void OnCreated();
-        partial void OnCountryChanging(Country value);
+        partial void OnCountryChanging(Countries value);
         partial void OnCountryChanged();
         partial void OnDateOfBirthChanging(DateTime value);
         partial void OnDateOfBirthChanged();
@@ -351,7 +351,7 @@ namespace IndoorWorx.Silverlight.Web
         partial void OnFirstNameChanged();
         partial void OnFriendlyNameChanging(string value);
         partial void OnFriendlyNameChanged();
-        partial void OnGenderChanging(Gender value);
+        partial void OnGenderChanging(Genders value);
         partial void OnGenderChanged();
         partial void OnLastNameChanging(string value);
         partial void OnLastNameChanged();
@@ -378,7 +378,7 @@ namespace IndoorWorx.Silverlight.Web
         [Key()]
         [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
         [RoundtripOriginal()]
-        public Country Country
+        public Countries Country
         {
             get
             {
@@ -521,7 +521,7 @@ namespace IndoorWorx.Silverlight.Web
         [Key()]
         [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
         [RoundtripOriginal()]
-        public Gender Gender
+        public Genders Gender
         {
             get
             {

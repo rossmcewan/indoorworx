@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9f86a06b-e16d-4ec2-8a29-c6fbcac4850c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3415/SportingHabitsService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SportingHabitsService.xsd" MetadataType="Schema" ID="6600fc8d-0f0f-4418-9233-e4c8a4f65a5d" SourceId="1" SourceUrl="http://localhost:3415/SportingHabitsService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SportingHabitsService1.xsd" MetadataType="Schema" ID="abf61a8e-aa3f-46f4-8e26-e34d8f32b378" SourceId="1" SourceUrl="http://localhost:3415/SportingHabitsService.svc?xsd=xsd2" />
+    <MetadataFile FileName="SportingHabitsService2.xsd" MetadataType="Schema" ID="d7098c59-5d5c-4097-97f9-21b1d5da3bc2" SourceId="1" SourceUrl="http://localhost:3415/SportingHabitsService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SportingHabitsService.wsdl" MetadataType="Wsdl" ID="1282ca27-7164-4cc0-8bc1-617253b106c8" SourceId="1" SourceUrl="http://localhost:3415/SportingHabitsService.svc?wsdl" />
+    <MetadataFile FileName="SportingHabitsService.disco" MetadataType="Disco" ID="1e54cb3a-5e20-4760-b7ca-16c94d115207" SourceId="1" SourceUrl="http://localhost:3415/SportingHabitsService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="51227116-65aa-4626-94a3-cca2b3b4e928" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3415/SocialMediaService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SocialMediaService.xsd" MetadataType="Schema" ID="5f03d330-fe94-4ee4-a006-978c7d6a448e" SourceId="1" SourceUrl="http://localhost:3415/SocialMediaService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SocialMediaService1.xsd" MetadataType="Schema" ID="fffb9c52-d1e2-484e-949d-aeb7655b86cb" SourceId="1" SourceUrl="http://localhost:3415/SocialMediaService.svc?xsd=xsd2" />
+    <MetadataFile FileName="SocialMediaService.disco" MetadataType="Disco" ID="f3c7a7cd-bf0b-48eb-8954-b8af92686592" SourceId="1" SourceUrl="http://localhost:3415/SocialMediaService.svc?disco" />
+    <MetadataFile FileName="SocialMediaService2.xsd" MetadataType="Schema" ID="72176bd8-8118-4f52-99ef-6bae30daf685" SourceId="1" SourceUrl="http://localhost:3415/SocialMediaService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SocialMediaService.wsdl" MetadataType="Wsdl" ID="615ce674-f397-4346-9d1c-d71122db41ee" SourceId="1" SourceUrl="http://localhost:3415/SocialMediaService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

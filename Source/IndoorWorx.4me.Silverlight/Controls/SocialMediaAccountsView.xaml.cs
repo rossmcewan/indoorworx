@@ -12,17 +12,11 @@ using System.Windows.Shapes;
 
 namespace IndoorWorx.ForMe.Controls
 {
-    public partial class ForMeTreeControl : UserControl
+    public partial class SocialMediaAccountsView : UserControl
     {
-        public ForMeTreeControl()
+        public SocialMediaAccountsView()
         {
             InitializeComponent();
         }
-
-        private IForMeTreeControlModel Model
-        {
-            get { return this.DataContext as IForMeTreeControlModel; }
-        }
-
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
+using IndoorWorx.Infrastructure.Enums;
 
 namespace IndoorWorx.Infrastructure.Models
 {
@@ -45,15 +46,63 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private Gender gender;
+        private Genders gender;
         [DataMember]
-        public virtual Gender Gender
+        public virtual Genders Gender
         {
             get { return gender; }
             set
             {
                 gender = value;
                 FirePropertyChanged("Gender");
+            }
+        }
+
+        private Occupation occupation = new Occupation();
+        [DataMember]
+        public virtual Occupation Occupation
+        {
+            get { return occupation; }
+            set
+            {
+                occupation = value;
+                FirePropertyChanged("Occupation");
+            }
+        }
+
+        private SportingHabits sportingHabits = new SportingHabits();
+        [DataMember]
+        public virtual SportingHabits SportingHabits
+        {
+            get { return sportingHabits; }
+            set
+            {
+                sportingHabits = value;
+                FirePropertyChanged("SportingHabits");
+            }
+        }
+
+        private ReferralSource referralSource = new ReferralSource();
+        [DataMember]
+        public virtual ReferralSource ReferralSource
+        {
+            get { return referralSource; }
+            set
+            {
+                referralSource = value;
+                FirePropertyChanged("ReferralSource");
+            }
+        }
+
+        private string about = string.Empty;
+        [DataMember]
+        public virtual string About
+        {
+            get { return about; }
+            set
+            {
+                about = value;
+                FirePropertyChanged("About");
             }
         }
 
@@ -81,9 +130,9 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private Country country;
+        private Countries country;
         [DataMember]
-        public virtual Country Country
+        public virtual Countries Country
         {
             get { return country; }
             set
@@ -117,7 +166,7 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private static ApplicationUser currentUser = null;
+        private static ApplicationUser currentUser = new ApplicationUser();
         public static ApplicationUser CurrentUser
         {
             get { return currentUser; }

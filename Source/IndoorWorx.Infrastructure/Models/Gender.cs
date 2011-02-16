@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
-namespace IndoorWorx.Infrastructure.Models
+namespace IndoorWorx.Infrastructure.Enums
 {
-    public enum Gender
+    public enum Genders
     {
-        Male, Female
+        [Description("Male")]
+        Male,
+        [Description("Female")]
+        Female
     }
 }

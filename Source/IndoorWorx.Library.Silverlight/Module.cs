@@ -44,6 +44,7 @@ namespace IndoorWorx.Library
             unityContainer.RegisterInstance<IDialogFacade>(unityContainer.Resolve<DialogFacade>());
             unityContainer.RegisterType<ICategoryService, CategoryService>();
             unityContainer.RegisterType<IApplicationUserService, ApplicationUserService>();
+            unityContainer.RegisterType<ISportingHabitsService, SportingHabitsService>();
         }
 
         #endregion

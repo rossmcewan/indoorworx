@@ -21,5 +21,17 @@ namespace IndoorWorx.Infrastructure.Services
         event EventHandler<DataEventArgs<Exception>> ApplicationUserRetrievalError;
 
         void RetrieveApplicationUser(string username);
+
+        event EventHandler<DataEventArgs<ICollection<Occupation>>> OccupationsRetrieved;
+
+        event EventHandler<DataEventArgs<Exception>> OccupationsRetrievalError;
+
+        void RetrievOccupations();
+
+        event EventHandler<DataEventArgs<ICollection<ReferralSource>>> ReferralSourcesRetrieved;
+
+        event EventHandler<DataEventArgs<Exception>> ReferralSourcesRetrievalError;
+
+        void RetrievReferralSources();
     }
 }

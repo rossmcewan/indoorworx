@@ -13,7 +13,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
         {
             Id(x => x.Id).GeneratedBy.Guid();
             References(x => x.ActivityType).Column("ActivityType").Not.Nullable();
-            References(x => x.Equipment).Column("Equipment");
+            HasMany(x => x.Equipment).KeyColumn("Equipment").Cascade.SaveUpdate();
             HasMany(x => x.Measurements).KeyColumn("Measurement").Cascade.SaveUpdate();
         }
     }

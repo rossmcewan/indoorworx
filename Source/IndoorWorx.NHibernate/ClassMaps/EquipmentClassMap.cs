@@ -19,6 +19,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
                 .ParentKeyColumn("Equipment")
                 .ChildKeyColumn("EquipmentFeatures")
                 .Cascade.All();
+            Map(x => x.IsActive);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
         {
             Id(x => x.Id).GeneratedBy.Guid();
             Map(x => x.Name).Not.Nullable().Unique();
+            Map(x => x.IsActive);
         }
     }
 }

@@ -4,6 +4,7 @@
     using IndoorWorx.Silverlight.Web.Resources;
     using System;
     using IndoorWorx.Infrastructure.Models;
+    using IndoorWorx.Infrastructure.Enums;
 
     /// <summary>
     /// Class containing the values and validation rules for user registration.
@@ -46,7 +47,7 @@
         [Key]
         [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
         [Display(Order = 4, Name = "GenderLabel", ResourceType = typeof(RegistrationDataResources))]
-        public Gender Gender { get; set; }
+        public Genders Gender { get; set; }
 
 
         /// <summary>
@@ -64,7 +65,7 @@
         [Key]
         [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
         [Display(Order = 6, Name = "CountryLabel", ResourceType = typeof(RegistrationDataResources))]
-        public Country Country { get; set; }
+        public Countries Country { get; set; }
 
 
         [Key]

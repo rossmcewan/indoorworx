@@ -21,5 +21,17 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private bool isActive = true;
+        [DataMember]
+        public virtual bool IsActive
+        {
+            get { return isActive; }
+            set
+            {
+                isActive = value;
+                FirePropertyChanged("IsActive");
+            }
+        }
+
     }
 }

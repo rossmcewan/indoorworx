@@ -16,6 +16,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
             References(x => x.UnitOfMeasure).Column("UnitOfMeasure").Not.Nullable();
             Map(x => x.Value).Unique().Not.Nullable();
             HasMany(x => x.TrainingZones).KeyColumn("TrainingZone").Cascade.SaveUpdate();
+            Map(x => x.IsActive);
         }
     }
 }

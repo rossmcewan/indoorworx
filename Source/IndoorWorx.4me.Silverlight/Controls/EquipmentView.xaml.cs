@@ -10,11 +10,11 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace IndoorWorx.ForMe.Views
+namespace IndoorWorx.ForMe.Controls
 {
-    public partial class SocialMediaAccountsView : UserControl
+    public partial class EquipmentView : UserControl
     {
-        public SocialMediaAccountsView()
+        public EquipmentView()
         {
             InitializeComponent();
         }

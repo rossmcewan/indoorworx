@@ -318,6 +318,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
+    <Content Include="ServiceReferences.ClientConfig" />
     <Resource Include="Images\IndoorWorxDarkBackground.png" />
     <Resource Include="Images\IndoorWorxLightBackground.png" />
     <Resource Include="Images\facebook_large.png" />
@@ -331,7 +332,6 @@
     <Resource Include="Images\tri1.jpg" />
     <Resource Include="Images\tri2.jpg" />
     <Resource Include="Images\tri3.jpg" />
-    <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Libs\System.Windows.Controls.Data.DataForm.Toolkit.dll" />

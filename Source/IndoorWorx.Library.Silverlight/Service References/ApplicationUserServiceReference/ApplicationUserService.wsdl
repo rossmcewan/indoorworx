@@ -5,7 +5,8 @@
       <xsd:import schemaLocation="http://localhost:3415/ApplicationUserService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:3415/ApplicationUserService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:3415/ApplicationUserService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" />
-      <xsd:import schemaLocation="http://localhost:3415/ApplicationUserService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Criteria" />
+      <xsd:import schemaLocation="http://localhost:3415/ApplicationUserService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Enums" />
+      <xsd:import schemaLocation="http://localhost:3415/ApplicationUserService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Criteria" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IApplicationUserService_SaveApplicationUser_InputMessage">
@@ -20,6 +21,18 @@
   <wsdl:message name="IApplicationUserService_RetrieveApplicationUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:RetrieveApplicationUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IApplicationUserService_RetrieveAllOccupations_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveAllOccupations" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationUserService_RetrieveAllOccupations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveAllOccupationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationUserService_RetrieveAllReferralSources_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveAllReferralSources" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationUserService_RetrieveAllReferralSources_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveAllReferralSourcesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IApplicationUserService">
     <wsdl:operation name="SaveApplicationUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IApplicationUserService/SaveApplicationUser" message="tns:IApplicationUserService_SaveApplicationUser_InputMessage" />
@@ -28,6 +41,14 @@
     <wsdl:operation name="RetrieveApplicationUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IApplicationUserService/RetrieveApplicationUser" message="tns:IApplicationUserService_RetrieveApplicationUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IApplicationUserService/RetrieveApplicationUserResponse" message="tns:IApplicationUserService_RetrieveApplicationUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAllOccupations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationUserService/RetrieveAllOccupations" message="tns:IApplicationUserService_RetrieveAllOccupations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationUserService/RetrieveAllOccupationsResponse" message="tns:IApplicationUserService_RetrieveAllOccupations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAllReferralSources">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationUserService/RetrieveAllReferralSources" message="tns:IApplicationUserService_RetrieveAllReferralSources_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationUserService/RetrieveAllReferralSourcesResponse" message="tns:IApplicationUserService_RetrieveAllReferralSources_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IApplicationUserService" type="tns:IApplicationUserService">
@@ -43,6 +64,24 @@
     </wsdl:operation>
     <wsdl:operation name="RetrieveApplicationUser">
       <soap:operation soapAction="http://tempuri.org/IApplicationUserService/RetrieveApplicationUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAllOccupations">
+      <soap:operation soapAction="http://tempuri.org/IApplicationUserService/RetrieveAllOccupations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAllReferralSources">
+      <soap:operation soapAction="http://tempuri.org/IApplicationUserService/RetrieveAllReferralSources" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

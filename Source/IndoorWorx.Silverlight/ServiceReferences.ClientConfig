@@ -2,7 +2,7 @@
   <system.serviceModel>
     <bindings>
       <basicHttpBinding>
-        <binding name="BasicHttpBinding_ICategoryService" maxBufferSize="2147483647"
+        <binding name="BasicHttpBinding_IActivityService" maxBufferSize="2147483647"
             maxReceivedMessageSize="2147483647">
           <security mode="None" />
         </binding>
@@ -10,16 +10,39 @@
             maxReceivedMessageSize="2147483647">
           <security mode="None" />
         </binding>
+        <binding name="BasicHttpBinding_ICategoryService" maxBufferSize="2147483647"
+            maxReceivedMessageSize="2147483647">
+          <security mode="None" />
+        </binding>
+        <binding name="BasicHttpBinding_ISocialMediaService" maxBufferSize="2147483647"
+            maxReceivedMessageSize="2147483647">
+          <security mode="None" />
+        </binding>
+        <binding name="BasicHttpBinding_ISportingHabitsService" maxBufferSize="2147483647"
+            maxReceivedMessageSize="2147483647">
+          <security mode="None" />
+        </binding>
       </basicHttpBinding>
     </bindings>
     <client>
-      <endpoint address="http://localhost:3415/CategoryService.svc"
-          binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ICategoryService"
-          contract="CategoryServiceReference.ICategoryService" name="BasicHttpBinding_ICategoryService" />
+      <endpoint address="http://localhost:3415/ActivityService.svc"
+          binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IActivityService"
+          contract="ActivityServiceReference.IActivityService" name="BasicHttpBinding_IActivityService" />
       <endpoint address="http://localhost:3415/ApplicationUserService.svc"
           binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IApplicationUserService"
           contract="ApplicationUserServiceReference.IApplicationUserService"
           name="BasicHttpBinding_IApplicationUserService" />
+      <endpoint address="http://localhost:3415/CategoryService.svc"
+          binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ICategoryService"
+          contract="CategoryServiceReference.ICategoryService" name="BasicHttpBinding_ICategoryService" />
+      <endpoint address="http://localhost:3415/SocialMediaService.svc"
+          binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISocialMediaService"
+          contract="SocialMediaServiceReference.ISocialMediaService"
+          name="BasicHttpBinding_ISocialMediaService" />
+      <endpoint address="http://localhost:3415/SportingHabitsService.svc"
+          binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISportingHabitsService"
+          contract="SportingHabitsServiceReference.ISportingHabitsService"
+          name="BasicHttpBinding_ISportingHabitsService" />
     </client>
   </system.serviceModel>
 </configuration>

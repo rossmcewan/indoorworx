@@ -3,10 +3,6 @@
 alter table [Activity]  drop constraint FKAA25469B1EFA0600
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAA25469B32B0BDDD]') AND parent_object_id = OBJECT_ID('[Activity]'))
-alter table [Activity]  drop constraint FKAA25469B32B0BDDD
-
-
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAA25469B52BE496C]') AND parent_object_id = OBJECT_ID('[Activity]'))
 alter table [Activity]  drop constraint FKAA25469B52BE496C
 
@@ -19,12 +15,28 @@ alter table ActivityType_Equipment  drop constraint FKE824B6D532B0BDDD
 alter table ActivityType_Equipment  drop constraint FKE824B6D51EFA0600
 
 
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK4376B14876FFFECB]') AND parent_object_id = OBJECT_ID('[ApplicationUser]'))
+alter table [ApplicationUser]  drop constraint FK4376B14876FFFECB
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK4376B1485124BE25]') AND parent_object_id = OBJECT_ID('[ApplicationUser]'))
+alter table [ApplicationUser]  drop constraint FK4376B1485124BE25
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK4376B14820A42DDD]') AND parent_object_id = OBJECT_ID('[ApplicationUser]'))
+alter table [ApplicationUser]  drop constraint FK4376B14820A42DDD
+
+
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK7FDA1AFC888C8F93]') AND parent_object_id = OBJECT_ID('[Catalog]'))
 alter table [Catalog]  drop constraint FK7FDA1AFC888C8F93
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK58954903EE4EEE93]') AND parent_object_id = OBJECT_ID('[Equipment]'))
 alter table [Equipment]  drop constraint FK58954903EE4EEE93
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK589549032FF0048C]') AND parent_object_id = OBJECT_ID('[Equipment]'))
+alter table [Equipment]  drop constraint FK589549032FF0048C
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK76FBBBA858C3A259]') AND parent_object_id = OBJECT_ID('Equipment_EquipmentFeatures'))
@@ -67,6 +79,26 @@ alter table SocialMediaProfile_SocialMediaNotifications  drop constraint FK1C5DD
 alter table SocialMediaProfile_SocialMediaNotifications  drop constraint FK1C5DD9688F98D97D
 
 
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE20BB28CD299260D]') AND parent_object_id = OBJECT_ID('[SportingHabits]'))
+alter table [SportingHabits]  drop constraint FKE20BB28CD299260D
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE20BB28C25951F24]') AND parent_object_id = OBJECT_ID('[SportingHabits]'))
+alter table [SportingHabits]  drop constraint FKE20BB28C25951F24
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE20BB28CAE3CB57]') AND parent_object_id = OBJECT_ID('[SportingHabits]'))
+alter table [SportingHabits]  drop constraint FKE20BB28CAE3CB57
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK7141095EFA202CA7]') AND parent_object_id = OBJECT_ID('SportingHabits_Sport'))
+alter table SportingHabits_Sport  drop constraint FK7141095EFA202CA7
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK7141095E9EFA6CD7]') AND parent_object_id = OBJECT_ID('SportingHabits_Sport'))
+alter table SportingHabits_Sport  drop constraint FK7141095E9EFA6CD7
+
+
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC33B97A4263AB471]') AND parent_object_id = OBJECT_ID('[TrainingZone]'))
 alter table [TrainingZone]  drop constraint FKC33B97A4263AB471
 
@@ -105,15 +137,23 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Colour]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Colour]
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'[CompetitiveLevel]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [CompetitiveLevel]
+
     if exists (select * from dbo.sysobjects where id = object_id(N'[Equipment]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Equipment]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'Equipment_EquipmentFeatures') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table Equipment_EquipmentFeatures
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[EquipmentFeatures]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EquipmentFeatures]
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'[IndoorTrainingFrequency]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [IndoorTrainingFrequency]
+
     if exists (select * from dbo.sysobjects where id = object_id(N'[Manufacturer]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Manufacturer]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Measurement]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Measurement]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[Occupation]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Occupation]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[ReferralSource]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [ReferralSource]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Review]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Review]
 
@@ -126,6 +166,14 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
     if exists (select * from dbo.sysobjects where id = object_id(N'SocialMediaProfile_SocialMediaNotifications') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table SocialMediaProfile_SocialMediaNotifications
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[SocialMediaType]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [SocialMediaType]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[Sport]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Sport]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[SportingHabits]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [SportingHabits]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'SportingHabits_Sport') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table SportingHabits_Sport
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingVolume]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingVolume]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingZone]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingZone]
 
@@ -140,7 +188,6 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
     create table [Activity] (
         Id UNIQUEIDENTIFIER not null,
        ActivityType UNIQUEIDENTIFIER not null,
-       Equipment UNIQUEIDENTIFIER null,
        Activity NVARCHAR(255) null,
        primary key (Id)
     )
@@ -148,6 +195,7 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
     create table [ActivityType] (
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null unique,
+       IsActive BIT null,
        primary key (Id)
     )
 
@@ -161,8 +209,12 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
        Firstname NVARCHAR(255) not null,
        Lastname NVARCHAR(255) not null,
        Gender NVARCHAR(255) not null,
+       About NVARCHAR(255) null,
        Email NVARCHAR(255) not null,
        Country NVARCHAR(255) not null,
+       Occupation_id UNIQUEIDENTIFIER not null,
+       ReferralSource_id UNIQUEIDENTIFIER not null,
+       SportingHabits_id UNIQUEIDENTIFIER null,
        primary key (Username)
     )
 
@@ -193,10 +245,19 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
        primary key (Id)
     )
 
+    create table [CompetitiveLevel] (
+        Id UNIQUEIDENTIFIER not null,
+       Name NVARCHAR(255) not null,
+       IsActive BIT not null,
+       primary key (Id)
+    )
+
     create table [Equipment] (
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null,
+       IsActive BIT null,
        Manufacturer UNIQUEIDENTIFIER null,
+       Equipment UNIQUEIDENTIFIER null,
        primary key (Id)
     )
 
@@ -208,12 +269,21 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
     create table [EquipmentFeatures] (
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null unique,
+       IsActive BIT null,
+       primary key (Id)
+    )
+
+    create table [IndoorTrainingFrequency] (
+        Id UNIQUEIDENTIFIER not null,
+       Description NVARCHAR(255) not null,
+       IsActive BIT not null,
        primary key (Id)
     )
 
     create table [Manufacturer] (
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null unique,
+       IsActive BIT null,
        primary key (Id)
     )
 
@@ -221,8 +291,24 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null unique,
        Value DOUBLE PRECISION not null unique,
+       IsActive BIT null,
        UnitOfMeasure UNIQUEIDENTIFIER not null,
        Measurement UNIQUEIDENTIFIER null,
+       primary key (Id)
+    )
+
+    create table [Occupation] (
+        Id UNIQUEIDENTIFIER not null,
+       Name NVARCHAR(255) not null,
+       IsActive BIT not null,
+       primary key (Id)
+    )
+
+    create table [ReferralSource] (
+        Id UNIQUEIDENTIFIER not null,
+       Name NVARCHAR(255) not null,
+       Description NVARCHAR(255) not null,
+       IsActive BIT not null,
        primary key (Id)
     )
 
@@ -247,6 +333,7 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
     create table [SocialMediaNotification] (
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null unique,
+       IsActive BIT null,
        primary key (Id)
     )
 
@@ -267,6 +354,34 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
     create table [SocialMediaType] (
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null unique,
+       IsActive BIT null,
+       primary key (Id)
+    )
+
+    create table [Sport] (
+        Id UNIQUEIDENTIFIER not null,
+       Name NVARCHAR(255) not null,
+       IsActive BIT not null,
+       primary key (Id)
+    )
+
+    create table [SportingHabits] (
+        Id UNIQUEIDENTIFIER not null,
+       CompetitiveLevel_id UNIQUEIDENTIFIER null,
+       TrainingVolume_id UNIQUEIDENTIFIER null,
+       IndoorTrainingFrequency_id UNIQUEIDENTIFIER null,
+       primary key (Id)
+    )
+
+    create table SportingHabits_Sport (
+        SportingHabits UNIQUEIDENTIFIER not null,
+       Sport UNIQUEIDENTIFIER not null
+    )
+
+    create table [TrainingVolume] (
+        Id UNIQUEIDENTIFIER not null,
+       Description NVARCHAR(255) not null,
+       IsActive BIT not null,
        primary key (Id)
     )
 
@@ -283,6 +398,7 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
     create table [UnitOfMeasure] (
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null unique,
+       IsActive BIT null,
        primary key (Id)
     )
 
@@ -331,11 +447,6 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
         references [ActivityType]
 
     alter table [Activity] 
-        add constraint FKAA25469B32B0BDDD 
-        foreign key (Equipment) 
-        references [Equipment]
-
-    alter table [Activity] 
         add constraint FKAA25469B52BE496C 
         foreign key (Activity) 
         references [ApplicationUser]
@@ -350,6 +461,21 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
         foreign key (ActivityType) 
         references [ActivityType]
 
+    alter table [ApplicationUser] 
+        add constraint FK4376B14876FFFECB 
+        foreign key (Occupation_id) 
+        references [Occupation]
+
+    alter table [ApplicationUser] 
+        add constraint FK4376B1485124BE25 
+        foreign key (ReferralSource_id) 
+        references [ReferralSource]
+
+    alter table [ApplicationUser] 
+        add constraint FK4376B14820A42DDD 
+        foreign key (SportingHabits_id) 
+        references [SportingHabits]
+
     alter table [Catalog] 
         add constraint FK7FDA1AFC888C8F93 
         foreign key (Category) 
@@ -359,6 +485,11 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
         add constraint FK58954903EE4EEE93 
         foreign key (Manufacturer) 
         references [Manufacturer]
+
+    alter table [Equipment] 
+        add constraint FK589549032FF0048C 
+        foreign key (Equipment) 
+        references [Activity]
 
     alter table Equipment_EquipmentFeatures 
         add constraint FK76FBBBA858C3A259 
@@ -409,6 +540,31 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
         add constraint FK1C5DD9688F98D97D 
         foreign key (SocialMediaProfile) 
         references [SocialMediaProfile]
+
+    alter table [SportingHabits] 
+        add constraint FKE20BB28CD299260D 
+        foreign key (CompetitiveLevel_id) 
+        references [CompetitiveLevel]
+
+    alter table [SportingHabits] 
+        add constraint FKE20BB28C25951F24 
+        foreign key (TrainingVolume_id) 
+        references [TrainingVolume]
+
+    alter table [SportingHabits] 
+        add constraint FKE20BB28CAE3CB57 
+        foreign key (IndoorTrainingFrequency_id) 
+        references [IndoorTrainingFrequency]
+
+    alter table SportingHabits_Sport 
+        add constraint FK7141095EFA202CA7 
+        foreign key (Sport) 
+        references [Sport]
+
+    alter table SportingHabits_Sport 
+        add constraint FK7141095E9EFA6CD7 
+        foreign key (SportingHabits) 
+        references [SportingHabits]
 
     alter table [TrainingZone] 
         add constraint FKC33B97A4263AB471 

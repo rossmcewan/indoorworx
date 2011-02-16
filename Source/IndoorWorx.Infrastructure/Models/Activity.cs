@@ -21,9 +21,9 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private Equipment equipment = new Equipment();
+        private ICollection<Equipment> equipment = new List<Equipment>();
         [DataMember]
-        public virtual Equipment Equipment
+        public virtual ICollection<Equipment> Equipment
         {
             get { return equipment; }
             set

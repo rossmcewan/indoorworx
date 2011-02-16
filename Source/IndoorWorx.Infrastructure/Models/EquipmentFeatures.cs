@@ -21,6 +21,18 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private bool isActive = true;
+        [DataMember]
+        public virtual bool IsActive
+        {
+            get { return isActive; }
+            set
+            {
+                isActive = value;
+                FirePropertyChanged("IsActive");
+            }
+        }
+
         private ICollection<Equipment> equipment = new List<Equipment>();
         [DataMember]
         public virtual ICollection<Equipment> Equipment

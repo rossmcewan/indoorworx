@@ -20,10 +20,26 @@ namespace IndoorWorx.Library.Services
             this.serviceLocator = serviceLocator;
         }
 
+        #region Repositories
+
         private IApplicationUserRepository ApplicationUserRepository
         {
             get { return serviceLocator.GetInstance<IApplicationUserRepository>(); }
         }
+
+        private IReferralSourcesRepository ReferralSourcesRepository
+        {
+            get { return serviceLocator.GetInstance<IReferralSourcesRepository>(); }
+        }
+
+        private IOccupationRepository OccupationRepository
+        {
+            get { return serviceLocator.GetInstance<IOccupationRepository>(); }
+        }
+
+        #endregion
+
+        #region Methods
 
         public ApplicationUser SaveApplicationUser(ApplicationUser user)
         {
@@ -36,5 +52,18 @@ namespace IndoorWorx.Library.Services
             var result = ApplicationUserRepository.FindOne(u=> u.Username == criteria.Username);
             return result;
         }
+
+        public ICollection<Occupation> RetrieveAllOccupations()
+        {
+            var result = OccupationRepository.FindAll(a => a.IsActive == true).ToList();
+            return result;
+        }
+
+        public ICollection<ReferralSource> RetrieveAllReferralSources()
+        {
+            var result = ReferralSourcesRepository.FindAll(a => a.IsActive == true);
+            return result;
+        }
+        #endregion
     }
 }

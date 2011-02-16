@@ -136,6 +136,9 @@
     <Content Include="clientaccesspolicy.xml" />
     <Content Include="ClientBin\IndoorWorx.Silverlight.xap" />
     <Content Include="ApplicationUserService.svc" />
+    <Content Include="ActivityService.svc" />
+    <Content Include="SportingHabitsService.svc" />
+    <Content Include="SocialMediaService.svc" />
     <Content Include="css\blank.gif" />
     <Content Include="css\ie6.css" />
     <Content Include="css\iepngfix.htc" />

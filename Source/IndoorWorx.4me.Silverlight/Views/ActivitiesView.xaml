@@ -2,6 +2,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"         
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
@@ -11,6 +12,44 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Actiities"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="My Activities" Margin="3" Grid.Row="0"/>
+            <telerik:RadGridView 
+                x:Name="activitiesGrid" 
+                ItemsSource="{Binding Activities, Mode=TwoWay}"
+                Margin="3" Grid.Row="1"
+                ShowColumnHeaders="False" 
+                ShowGroupPanel="False"
+                SelectedItem="{Binding SelectedActivity,Mode=TwoWay}">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding ActivityType.Name, Mode=TwoWay}" />
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="3,0,3,0">
+                <telerik:RadButton Content="Add" Width="50"/>
+                <telerik:RadButton Content="Delete" Width="50"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Name:"  />
+            <telerik:RadComboBox Grid.Column="1" ItemsSource="{Binding ActivityTypes, Mode=TwoWay}" DisplayMemberPath="Name" SelectedItem="{Binding ActivityType,Mode=TwoWay}" />
+            
+        </Grid>
+        
+        
     </Grid>
 </UserControl>

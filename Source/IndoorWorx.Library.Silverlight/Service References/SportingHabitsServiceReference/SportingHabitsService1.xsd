@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3415/SportingHabitsService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfTrainingVolume">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrainingVolume" nillable="true" type="tns:TrainingVolume" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrainingVolume" nillable="true" type="tns:ArrayOfTrainingVolume" />
+  <xs:complexType name="TrainingVolume">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TrainingVolume" nillable="true" type="tns:TrainingVolume" />
+  <xs:complexType name="BaseModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="BaseModel" nillable="true" type="tns:BaseModel" />
+  <xs:complexType name="ArrayOfIndoorTrainingFrequency">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IndoorTrainingFrequency" nillable="true" type="tns:IndoorTrainingFrequency" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIndoorTrainingFrequency" nillable="true" type="tns:ArrayOfIndoorTrainingFrequency" />
+  <xs:complexType name="IndoorTrainingFrequency">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IndoorTrainingFrequency" nillable="true" type="tns:IndoorTrainingFrequency" />
+  <xs:complexType name="ArrayOfCompetitiveLevel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CompetitiveLevel" nillable="true" type="tns:CompetitiveLevel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCompetitiveLevel" nillable="true" type="tns:ArrayOfCompetitiveLevel" />
+  <xs:complexType name="CompetitiveLevel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CompetitiveLevel" nillable="true" type="tns:CompetitiveLevel" />
+</xs:schema>

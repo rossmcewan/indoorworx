@@ -22,7 +22,6 @@ namespace IndoorWorx.ForMe.Views
 {
     public class ForMePresentationModel : TabbedNavigationPresentationModel<IForMeView>, IForMePresentationModel
     {
-       
         public ForMePresentationModel(IServiceLocator serviceLocator, IEventAggregator eventAggregator) 
             : base(serviceLocator,eventAggregator)
         { }

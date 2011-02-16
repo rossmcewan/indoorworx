@@ -79,10 +79,21 @@
     <Reference Include="Telerik.Windows.Data, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\ForMeTreeControl.xaml.cs">
-      <DependentUpon>ForMeTreeControl.xaml</DependentUpon>
+    <Compile Include="Controls\AboutControl.xaml.cs">
+      <DependentUpon>AboutControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\IForMeTreeControlModel.cs" />
+    <Compile Include="Controls\ApplicationUserControl.xaml.cs">
+      <DependentUpon>ApplicationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EquipmentView.xaml.cs">
+      <DependentUpon>EquipmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MeasurementView.xaml.cs">
+      <DependentUpon>MeasurementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SportingHabitsControl.xaml.cs">
+      <DependentUpon>SportingHabitsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Events\ShowActivitiesEvent.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />
@@ -107,8 +118,14 @@
     <Compile Include="Views\IActivitiesViewPresentationModel.cs" />
     <Compile Include="Views\IForMePresentationModel.cs" />
     <Compile Include="Views\IForMeView.cs" />
-    <Compile Include="Views\SocialMediaAccountsView.xaml.cs">
+    <Compile Include="Controls\SocialMediaAccountsView.xaml.cs">
       <DependentUpon>SocialMediaAccountsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IProfilePresentationModel.cs" />
+    <Compile Include="Views\IProfileView.cs" />
+    <Compile Include="Views\ProfilePresentationModel.cs" />
+    <Compile Include="Views\ProfileView.xaml.cs">
+      <DependentUpon>ProfileView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -128,7 +145,23 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\ForMeTreeControl.xaml">
+    <Page Include="Controls\AboutControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ApplicationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EquipmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MeasurementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SportingHabitsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,9 +177,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SocialMediaAccountsView.xaml">
+    <Page Include="Controls\SocialMediaAccountsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

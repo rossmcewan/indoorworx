@@ -109,6 +109,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LibraryResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ActivityServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ApplicationUserServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -119,9 +124,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\SocialMediaServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SportingHabitsServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Services\ApplicationUserService.cs" />
     <Compile Include="Services\CategoryService.cs" />
-    <Compile Include="Services\IApplicationUserRepository.cs" />
+    <Compile Include="Services\ActivityService.cs" />
+    <Compile Include="Services\SportingHabitsService.cs" />
     <Compile Include="Views\TabbedNavigationPresentationModel.cs" />
     <Compile Include="Views\TabbedNavigationView.xaml.cs">
       <DependentUpon>TabbedNavigationView.xaml</DependentUpon>
@@ -139,8 +155,29 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.ActivityType.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.ApplicationUser.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.Category.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.CompetitiveLevel.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.Equipment.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.EquipmentFeatures.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.IndoorTrainingFrequency.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.Manufacturer.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.Occupation.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.ReferralSource.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.SocialMediaNotification.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.SocialMediaType.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.TrainingVolume.datasource" />
+    <None Include="Service References\ActivityServiceReference\ActivityService.wsdl" />
+    <None Include="Service References\ActivityServiceReference\ActivityService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ActivityServiceReference\ActivityService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ActivityServiceReference\ActivityService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ApplicationUserServiceReference\ApplicationUserService.wsdl" />
     <None Include="Service References\ApplicationUserServiceReference\ApplicationUserService.xsd">
       <SubType>Designer</SubType>
@@ -152,6 +189,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ApplicationUserServiceReference\ApplicationUserService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApplicationUserServiceReference\ApplicationUserService4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\CategoryServiceReference\CategoryService.wsdl" />
@@ -171,11 +211,55 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\SocialMediaServiceReference\SocialMediaService.disco" />
+    <None Include="Service References\SocialMediaServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\SocialMediaServiceReference\configuration.svcinfo" />
+    <None Include="Service References\SocialMediaServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ActivityServiceReference\ActivityService.disco" />
+    <None Include="Service References\ActivityServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\ActivityServiceReference\configuration.svcinfo" />
+    <None Include="Service References\ActivityServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SportingHabitsServiceReference\SportingHabitsService.disco" />
+    <None Include="Service References\SportingHabitsServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\SportingHabitsServiceReference\configuration.svcinfo" />
+    <None Include="Service References\SportingHabitsServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Service References\SocialMediaServiceReference\SocialMediaService.wsdl" />
+    <None Include="Service References\SocialMediaServiceReference\SocialMediaService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SocialMediaServiceReference\SocialMediaService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SocialMediaServiceReference\SocialMediaService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SportingHabitsServiceReference\SportingHabitsService.wsdl" />
+    <None Include="Service References\SportingHabitsServiceReference\SportingHabitsService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SportingHabitsServiceReference\SportingHabitsService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SportingHabitsServiceReference\SportingHabitsService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ActivityServiceReference\" />
     <WCFMetadataStorage Include="Service References\ApplicationUserServiceReference\" />
     <WCFMetadataStorage Include="Service References\CategoryServiceReference\" />
+    <WCFMetadataStorage Include="Service References\SocialMediaServiceReference\" />
+    <WCFMetadataStorage Include="Service References\SportingHabitsServiceReference\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\CategoryServiceReference\CategoryService.disco" />
@@ -192,7 +276,7 @@
   <ItemGroup>
     <None Include="Service References\CategoryServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
+      <LastGenOutput>Reference1.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
