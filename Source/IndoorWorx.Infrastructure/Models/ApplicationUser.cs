@@ -166,6 +166,18 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private ICollection<Widget> availableWidgets;
+        [DataMember]
+        public virtual ICollection<Widget> AvailableWidgets
+        {
+            get { return availableWidgets; }
+            set
+            {
+                availableWidgets = value;
+                FirePropertyChanged("AvailableWidgets");
+            }
+        }
+
         private static ApplicationUser currentUser = new ApplicationUser();
         public static ApplicationUser CurrentUser
         {

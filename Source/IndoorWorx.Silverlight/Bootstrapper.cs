@@ -13,6 +13,8 @@ using IndoorWorx.Infrastructure;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Composite.Modularity;
 using IndoorWorx.Silverlight.Assets.Resources;
+using IndoorWorx.Infrastructure.Services;
+using IndoorWorx.Silverlight.Services;
 
 namespace IndoorWorx.Silverlight
 {
@@ -27,8 +29,8 @@ namespace IndoorWorx.Silverlight
 
         protected override void ConfigureContainer()
         {
-            //Container.RegisterType<IShell, Shell>();  
-            Container.RegisterInstance<IShell>(Container.Resolve<Shell>());
+            Container.RegisterInstance<IAuthenticationOperations>(Container.Resolve<AuthenticationOperations>());
+            Container.RegisterInstance<IShell>(Container.Resolve<Shell>());          
             base.ConfigureContainer();
         }
 

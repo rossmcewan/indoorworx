@@ -89,6 +89,7 @@
     <Compile Include="Controls\DocumentViewer.xaml.cs">
       <DependentUpon>DocumentViewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FishEyePanel.cs" />
     <Compile Include="Controls\ICategoryTreeControlModel.cs" />
     <Compile Include="Controls\PagerViewModel.cs" />
     <Compile Include="Controls\PageViewModel.cs" />

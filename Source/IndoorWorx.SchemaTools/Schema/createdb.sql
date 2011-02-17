@@ -27,6 +27,14 @@ alter table [ApplicationUser]  drop constraint FK4376B1485124BE25
 alter table [ApplicationUser]  drop constraint FK4376B14820A42DDD
 
 
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAD938CC889F7ABF4]') AND parent_object_id = OBJECT_ID('WidgetToApplicationUser'))
+alter table WidgetToApplicationUser  drop constraint FKAD938CC889F7ABF4
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAD938CC8BCD0E4BF]') AND parent_object_id = OBJECT_ID('WidgetToApplicationUser'))
+alter table WidgetToApplicationUser  drop constraint FKAD938CC8BCD0E4BF
+
+
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK7FDA1AFC888C8F93]') AND parent_object_id = OBJECT_ID('[Catalog]'))
 alter table [Catalog]  drop constraint FK7FDA1AFC888C8F93
 
@@ -131,6 +139,8 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[ApplicationUser]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [ApplicationUser]
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'WidgetToApplicationUser') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table WidgetToApplicationUser
+
     if exists (select * from dbo.sysobjects where id = object_id(N'[Catalog]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Catalog]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Category]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Category]
@@ -185,6 +195,8 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[VideoText]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VideoText]
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'[Widget]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Widget]
+
     create table [Activity] (
         Id UNIQUEIDENTIFIER not null,
        ActivityType UNIQUEIDENTIFIER not null,
@@ -212,10 +224,15 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
        About NVARCHAR(255) null,
        Email NVARCHAR(255) not null,
        Country NVARCHAR(255) not null,
-       Occupation_id UNIQUEIDENTIFIER not null,
-       ReferralSource_id UNIQUEIDENTIFIER not null,
+       Occupation_id UNIQUEIDENTIFIER null,
+       ReferralSource_id UNIQUEIDENTIFIER null,
        SportingHabits_id UNIQUEIDENTIFIER null,
        primary key (Username)
+    )
+
+    create table WidgetToApplicationUser (
+        ApplicationUser NVARCHAR(255) not null,
+       Widget UNIQUEIDENTIFIER not null
     )
 
     create table [Catalog] (
@@ -441,6 +458,14 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
        primary key (Id)
     )
 
+    create table [Widget] (
+        Id UNIQUEIDENTIFIER not null,
+       Image NVARCHAR(255) null,
+       Title NVARCHAR(255) null,
+       ContentRenderer NVARCHAR(255) null,
+       primary key (Id)
+    )
+
     alter table [Activity] 
         add constraint FKAA25469B1EFA0600 
         foreign key (ActivityType) 
@@ -475,6 +500,16 @@ alter table [VideoText]  drop constraint FKE82DEBED74BBB917
         add constraint FK4376B14820A42DDD 
         foreign key (SportingHabits_id) 
         references [SportingHabits]
+
+    alter table WidgetToApplicationUser 
+        add constraint FKAD938CC889F7ABF4 
+        foreign key (Widget) 
+        references [Widget]
+
+    alter table WidgetToApplicationUser 
+        add constraint FKAD938CC8BCD0E4BF 
+        foreign key (ApplicationUser) 
+        references [ApplicationUser]
 
     alter table [Catalog] 
         add constraint FK7FDA1AFC888C8F93 

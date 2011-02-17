@@ -215,6 +215,9 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\VideoText.cs">
       <Link>Models\VideoText.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\Widget.cs">
+      <Link>Models\Widget.cs</Link>
+    </Compile>
     <Compile Include="Animations\ThicknessAnimation.cs" />
     <Compile Include="Converters\BooleanToOppositeVisibilityConverter.cs">
       <SubType>Code</SubType>
@@ -238,6 +241,7 @@
     <Compile Include="Converters\SecondsToTimeSpanConverter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\StringToUriConverter.cs" />
     <Compile Include="Converters\UrlToImageConverter.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -270,9 +274,11 @@
     <Compile Include="Navigation\INavigationService.cs" />
     <Compile Include="Services\IActivityService.cs" />
     <Compile Include="Services\IApplicationUserService.cs" />
+    <Compile Include="Services\IAuthenticationOperations.cs" />
     <Compile Include="Services\ICategoryService.cs" />
     <Compile Include="Services\ISportingHabitsService.cs" />
     <Compile Include="SmartDispatcher.cs" />
+    <Compile Include="Widgets\IWidgetContentRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\Brushes.xaml">
@@ -328,9 +334,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Effects\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

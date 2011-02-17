@@ -9,6 +9,8 @@
     using Telerik.Windows.Controls;
     using System.Windows.Controls.Theming;
     using IndoorWorx.Infrastructure;
+    using IndoorWorx.Infrastructure.Services;
+    using IndoorWorx.Infrastructure.Models;
 
     /// <summary>
     /// Main <see cref="Application"/> class.
@@ -55,6 +57,22 @@
         /// </summary>
         private void Application_UserLoaded(LoadUserOperation operation)
         {
+            if (operation.User != null && operation.User.Identity != null && operation.User.Identity.IsAuthenticated)
+            {
+                var userService = IoC.Resolve<IApplicationUserService>();
+                if (userService != null)
+                {
+                    userService.ApplicationUserRetrieved += (sender, e) =>
+                        {
+                            ApplicationUser.CurrentUser = e.Value;
+                        };
+                    userService.ApplicationUserRetrievalError += (sender, e) =>
+                        {
+                            ErrorWindow.CreateNew(e.Value);
+                        };
+                    userService.RetrieveApplicationUser(operation.User.Identity.Name);
+                }
+            }
         }
 
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)

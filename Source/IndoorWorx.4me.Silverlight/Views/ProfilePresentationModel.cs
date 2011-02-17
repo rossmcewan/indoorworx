@@ -107,11 +107,11 @@ namespace IndoorWorx.ForMe.Views
             {
                 return ApplicationUser.CurrentUser;
             }
-            set 
-            {
-                ApplicationUser.CurrentUser = value;
-                FirePropertyChanged("User");
-            }
+            //set 
+            //{
+            //    ApplicationUser.CurrentUser = value;
+            //    FirePropertyChanged("User");
+            //}
         }
 
         private IProfileView view = null;

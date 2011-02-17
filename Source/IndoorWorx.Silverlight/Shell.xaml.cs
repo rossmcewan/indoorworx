@@ -138,7 +138,7 @@ using IndoorWorx.Infrastructure.Models;
                 };                
                 authRule.Parts.Add(new Deny() { Users = navigation.GetDeniedRolesAsString() });
                 authRule.Parts.Add(new Allow() { Users = navigation.GetAllowedRolesAsString() });
-                NavigationAuthorizer _authorizer = GetAuthorizer();                
+                NavigationAuthorizer _authorizer = GetAuthorizer();                  
                 _authorizer.Rules.Add(authRule);
                 LinksStackPanel.Children.Add(GetDivider());
                 LinksStackPanel.Children.Add(hb);

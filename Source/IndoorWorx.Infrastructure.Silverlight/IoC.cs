@@ -55,5 +55,15 @@ namespace IndoorWorx.Infrastructure
         {
             return unityContainer.Resolve<T>(name);
         }
+
+        public static object Resolve(Type type)
+        {
+            return unityContainer.Resolve(type);
+        }
+
+        public static object Resolve(Type type, string name)
+        {
+            return unityContainer.Resolve(type, name);
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace IndoorWorx.ForMe.Views
     {
         IProfileView View { get; set; }
 
-        ApplicationUser User { get; set; }
+        ApplicationUser User { get; }
        
         bool IsBusy { get; set; }
 

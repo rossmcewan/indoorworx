@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="IndoorWorx.Dashboard.Views.DashboardView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:libcontrols="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"   
+    xmlns:converters="clr-namespace:IndoorWorx.Dashboard.Converters"            
+    xmlns:iconverters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"             
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400" >
+    <UserControl.Resources>
+        <iconverters:StringToUriConverter x:Key="StringToUriConverter"/>
+        <converters:WidgetToContentConverter x:Key="WidgetToContentConverter"/>        
+        <Style x:Key="RadTileViewItemStyle" TargetType="telerik:RadTileViewItem">
+            <Setter Property="MinimizedHeight" Value="150" />
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <telerik:RadTileView 
+            MinimizedColumnWidth="150" 
+            Name="dashboard" 
+            VerticalAlignment="Stretch" 
+            HorizontalAlignment="Stretch" 
+            MaximizeMode="ZeroOrOne"
+            ItemContainerStyle="{StaticResource RadTileViewItemStyle}"
+            ItemsSource="{Binding AddedWidgets, Mode=OneWay}">
+            <telerik:RadTileView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}" />
+                </DataTemplate>
+            </telerik:RadTileView.ItemTemplate>
+            <telerik:RadTileView.ContentTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding Converter={StaticResource WidgetToContentConverter}}"/>
+                </DataTemplate>
+            </telerik:RadTileView.ContentTemplate>
+        </telerik:RadTileView>
+        <ItemsControl ItemsSource="{Binding AvailableWidgets, Mode=OneWay}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <libcontrols:FishEyePanel Magnification="3" ScaleToFit="False" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Style="{StaticResource FishEyeButton}" Click="Button_Click" >
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="{Binding Image}" Stretch="Fill"/>
+                            <TextBlock TextAlignment="Center" Text="{Binding Title}"/>
+                        </StackPanel>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</UserControl>

@@ -4,6 +4,7 @@
     using System.ServiceModel.DomainServices.Client.ApplicationServices;
     using System.Windows;
     using System.Windows.Controls;
+    using IndoorWorx.Infrastructure.Models;
 
     /// <summary>
     /// <see cref="UserControl"/> class that shows the current login status and allows login and logout.
@@ -51,6 +52,7 @@
         private void Authentication_LoggedOut(object sender, AuthenticationEventArgs e)
         {
             this.UpdateLoginState();
+            ApplicationUser.CurrentUser = null;
         }
 
         private void UpdateLoginState()
