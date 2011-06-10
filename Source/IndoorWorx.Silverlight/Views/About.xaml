@@ -2,41 +2,69 @@
   x:Class="IndoorWorx.Silverlight.About" 
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"    
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
   mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"      
   Style="{StaticResource PageStyle}">
 
-  <Grid x:Name="LayoutRoot">
-        <telerik:RadBook RightPageIndex="0" Margin="5" PageFlipMode="DoubleClick" FirstPagePosition="Right">            
-            <telerik:RadBookItem IsHardPaper="True">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="The Story of IndoorWorx ..." FontFamily="Ravie" FontWeight="ExtraBold" FontSize="20" Margin="5"/>
-                </Grid>
-            </telerik:RadBookItem>
-            <telerik:RadBookItem/>
-            <telerik:RadBookItem/>
-            <telerik:RadBookItem/>
-            <telerik:RadBookItem/>
-            <telerik:RadBookItem/>
-            <telerik:RadBookItem IsHardPaper="True"/>
-        </telerik:RadBook>
-            <!--<ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
 
-      <StackPanel x:Name="ContentStackPanel">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Rectangle Fill="{StaticResource Highlight}" Height="39" VerticalAlignment="Top"/>
 
-        <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}" 
-                           Text="{Binding Path=ApplicationStrings.AboutPageTitle, Source={StaticResource ResourceWrapper}}"/>
-        <TextBlock x:Name="ContentText" Style="{StaticResource ContentTextStyle}" 
-                           Text="About page content"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-      </StackPanel>
+            <Button Style="{StaticResource TileIcon_Btn}" Tag="Standard Tile" Margin="10"/>
+            <Button Style="{StaticResource TileIcon_Btn}" Tag="Extended Tile" Margin="10" Grid.Row="1" Grid.RowSpan="2"/>
+            <Button Style="{StaticResource TileIcon_Btn}" Tag="Standard Tile" Margin="10" Grid.Column="1"/>
+            <Button Style="{StaticResource TileIcon_Btn}" Tag="Standard Tile" Margin="10" Grid.Column="1" Grid.Row="1"/>
+            <Button Style="{StaticResource TileIcon_Btn}" Tag="Standard Tile" Margin="10" Grid.Column="1" Grid.Row="2"/>
+        </Grid>
+        
+        <Grid Grid.Column="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-    </ScrollViewer>-->
+            <TextBlock x:Name="HeaderText" Height="119" TextWrapping="Wrap" Text="indoorworx " VerticalAlignment="Top" FontFamily="/IndoorWorx.Silverlight;component/Assets/Fonts/SegoeWP" FontSize="96" Foreground="#FF545454" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5">
+			    <TextBlock.RenderTransform>
+				    <CompositeTransform/>
+			    </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="HeaderSubText" Height="32" Margin="0,140,0,0" TextWrapping="Wrap" Text="training online" VerticalAlignment="Top" FontSize="16" FontFamily="/IndoorWorx.Silverlight;component/Assets/Fonts/SegoeWP" Foreground="{StaticResource DarkGray}" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5">
+			    <TextBlock.RenderTransform>
+				    <CompositeTransform/>
+			    </TextBlock.RenderTransform>
+            </TextBlock>
+
+            <sdk:TabControl Grid.Row="1">
+                <sdk:TabItem Header="tab1" Style="{StaticResource TabItemStyle1}"></sdk:TabItem>
+                <sdk:TabItem Header="tab2" Style="{StaticResource TabItemStyle1}"></sdk:TabItem>
+            </sdk:TabControl>
+        </Grid>
   </Grid>
-
 </navigation:Page>

@@ -75,9 +75,7 @@
             </Grid.Projection>
             <Rectangle Fill="{StaticResource Highlight}" Height="39" VerticalAlignment="Top"/>
             <Button x:Name="Tile1" Height="110" Margin="20,60,127,0" Style="{StaticResource TileIcon_Btn}" VerticalAlignment="Top" Tag="Standard Tile">
-
                 <Image  Source="media/baseIcon.png" Stretch="Fill" Width="70" Height="70"/>
-
             </Button>
             <Button x:Name="ImgTile2" Margin="0,60,0,0" Style="{StaticResource ImageTile_Btn}" Tag="ImageTileStyle" HorizontalAlignment="Right" Width="110" Height="110" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment">
                 <Image Source="media/imagetile.png" Stretch="Fill"/>
@@ -97,12 +95,12 @@
                 <Image  Source="media/questionmarkIcon.png" Stretch="Fill" Width="70" Height="70"/>
             </Button>
         </Grid>
-        <TextBlock x:Name="HeaderText" Height="119" Margin="0,29,-408,0" TextWrapping="Wrap" Text="7metro " VerticalAlignment="Top" FontFamily="/7Metro;component/Fonts/Fonts.zip#Segoe WP" FontSize="96" Foreground="#FF545454" HorizontalAlignment="Right" Width="309" RenderTransformOrigin="0.5,0.5">
+        <TextBlock x:Name="HeaderText" Height="119" Margin="0,29,-408,0" TextWrapping="Wrap" Text="indoorworx " VerticalAlignment="Top" FontFamily="/IndoorWorx.Silverlight;component/Assets/Fonts/SegoeWP" FontSize="96" Foreground="#FF545454" HorizontalAlignment="Right" Width="309" RenderTransformOrigin="0.5,0.5">
 			<TextBlock.RenderTransform>
 				<CompositeTransform/>
 			</TextBlock.RenderTransform>
         </TextBlock>
-        <TextBlock x:Name="HeaderSubText" Height="32" Margin="0,140,-402,0" TextWrapping="Wrap" Text="Silverlight theme" VerticalAlignment="Top" FontSize="16" FontFamily="/7Metro;component/Fonts/Fonts.zip#Segoe WP" Foreground="{StaticResource DarkGray}" HorizontalAlignment="Right" Width="122" RenderTransformOrigin="0.5,0.5">
+        <TextBlock x:Name="HeaderSubText" Height="32" Margin="0,140,-402,0" TextWrapping="Wrap" Text="training online" VerticalAlignment="Top" FontSize="16" FontFamily="/IndoorWorx.Silverlight;component/Assets/Fonts/SegoeWP" Foreground="{StaticResource DarkGray}" HorizontalAlignment="Right" Width="122" RenderTransformOrigin="0.5,0.5">
 			<TextBlock.RenderTransform>
 				<CompositeTransform/>
 			</TextBlock.RenderTransform>
@@ -117,12 +115,12 @@
             <sdk:TabControl x:Name="TabControl" Margin="0,185,261,125" BorderBrush="{x:Null}">
                 <sdk:TabItem x:Name="TabItem1" Header="First Tab" Style="{StaticResource TabItemStyle1}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="40">
                     <Grid>
-                        <TextBlock TextWrapping="Wrap" Foreground="{StaticResource DarkGray}" FontFamily="/7Metro;component/Fonts/Fonts.zip#Segoe WP" FontSize="16"><Run Text="Tab content area one"/><LineBreak/><Run Text="Morbi tincidunt aliquet ante sit amet aliquam. Integer tincidunt massa in ligula pharetra ut luctus magna facilisis."/></TextBlock>
+                        <TextBlock TextWrapping="Wrap" Foreground="{StaticResource DarkGray}" FontFamily="/IndoorWorx.Silverlight;component/Assets/Fonts/SegoeWP" FontSize="16"><Run Text="Tab content area one"/><LineBreak/><Run Text="Morbi tincidunt aliquet ante sit amet aliquam. Integer tincidunt massa in ligula pharetra ut luctus magna facilisis."/></TextBlock>
                     </Grid>
                 </sdk:TabItem>
                 <sdk:TabItem x:Name="TabItem2" Header="Second Tab" Style="{StaticResource TabItemStyle1}" Margin="0,0,-91,0">
                     <Grid>
-                        <TextBlock TextWrapping="Wrap" Foreground="{StaticResource DarkGray}" FontFamily="/7Metro;component/Fonts/Fonts.zip#Segoe WP" FontSize="16"><Run Text="This is the second tab content area"/><LineBreak/><Run/><LineBreak/><Run Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt aliquet ante"/><Run Text="."/></TextBlock>
+                        <TextBlock TextWrapping="Wrap" Foreground="{StaticResource DarkGray}" FontFamily="/IndoorWorx.Silverlight;component/Assets/Fonts/SegoeWP" FontSize="16"><Run Text="This is the second tab content area"/><LineBreak/><Run/><LineBreak/><Run Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt aliquet ante"/><Run Text="."/></TextBlock>
                     </Grid>
                 </sdk:TabItem>
             </sdk:TabControl>
@@ -134,11 +132,11 @@
         </Grid>
         <Grid x:Name="Footer" Height="51" VerticalAlignment="Bottom">
             <Rectangle x:Name="BackgroundRectangle" Fill="{StaticResource DarkGray}"/>
-            <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="This theme was created by Alex Knight" Margin="0,16,16,13" Foreground="White" FontFamily="/7Metro;component/Fonts/Fonts.zip#Segoe WP" FontSize="16" d:LayoutOverrides="Height"/>
+            <!--<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="This theme was created by Alex Knight" Margin="0,16,16,13" Foreground="White" FontFamily="/IndoorWorx.Silverlight;component/Assets/Fonts/Segoe WP" FontSize="16" d:LayoutOverrides="Height"/>
             <StackPanel x:Name="FooterLinksStack" HorizontalAlignment="Left" Orientation="Horizontal" Width="283" VerticalAlignment="Center" Margin="10,0,0,0">
                 <HyperlinkButton Content="Silverzine" VerticalAlignment="Center" Margin="20,0,0,0" Style="{StaticResource HyperlinkButtonStyle1}" NavigateUri="http://www.Silverzine.com"/>
                 <HyperlinkButton Content="xamling.net" VerticalAlignment="Center" Margin="20,0,0,0" Style="{StaticResource HyperlinkButtonStyle1}" NavigateUri="http://www.xamling.net"/>
-            </StackPanel>
+            </StackPanel>-->
         </Grid>
         <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Height="87" Margin="-9,-103,0,0" Opacity="0.995" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.5,0.5" Style="{StaticResource backbtn}">
             <i:Interaction.Triggers>
@@ -154,8 +152,8 @@
             <Grid.RenderTransform>
                 <CompositeTransform/>
             </Grid.RenderTransform>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Margin="333,35,0,0" Width="524" FontFamily="/7Metro;component/Fonts/Fonts.zip#Segoe WP" FontSize="16" Foreground="{StaticResource DarkGray}"><Run Text="7Metro is a theme that anyone can download and pull apart for their own use. It's based around Windows Phone 7's Metro Style. "/><LineBreak/><Run/><LineBreak/><Run Text="The source files contains a resource dictionary with all the templates and styles. "/><LineBreak/><Run/><LineBreak/><Run Text="I had heaps of fun building this one, and if you have any feedback, send me some comments on Silverzine.com."/><LineBreak/><Run/><LineBreak/><Run Text="Oh and one last thing, if you need something a little more fitted to your needs, give me a yell "/><Run Text="at Xamling "/><Run Text="and I can help you design something."/><LineBreak/><Run/><LineBreak/><Run Text="Thanks"/><LineBreak/><Run/><LineBreak/><Run Text="Alex"/></TextBlock>
-            <TextBlock Height="119" TextWrapping="Wrap" Text="About" VerticalAlignment="Top" FontFamily="/7Metro;component/Fonts/Fonts.zip#Segoe WP" FontSize="96" Foreground="#FF545454" HorizontalAlignment="Left" Width="309"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Margin="333,35,0,0" Width="524" FontFamily="/IndoorWorx.Silverlight;component/Assets/Fonts/Segoe WP" FontSize="16" Foreground="{StaticResource DarkGray}"><Run Text="7Metro is a theme that anyone can download and pull apart for their own use. It's based around Windows Phone 7's Metro Style. "/><LineBreak/><Run/><LineBreak/><Run Text="The source files contains a resource dictionary with all the templates and styles. "/><LineBreak/><Run/><LineBreak/><Run Text="I had heaps of fun building this one, and if you have any feedback, send me some comments on Silverzine.com."/><LineBreak/><Run/><LineBreak/><Run Text="Oh and one last thing, if you need something a little more fitted to your needs, give me a yell "/><Run Text="at Xamling "/><Run Text="and I can help you design something."/><LineBreak/><Run/><LineBreak/><Run Text="Thanks"/><LineBreak/><Run/><LineBreak/><Run Text="Alex"/></TextBlock>
+            <TextBlock Height="119" TextWrapping="Wrap" Text="About" VerticalAlignment="Top" FontFamily="/IndoorWorx.Silverlight;component/Assets/Fonts/Segoe WP" FontSize="96" Foreground="#FF545454" HorizontalAlignment="Left" Width="309"/>
             <StackPanel x:Name="LinksStack" HorizontalAlignment="Left" Margin="0,138,0,158" Orientation="Vertical" Width="210">
                 <Button x:Name="SilverzineLink" Content="Silverzine.com" Style="{StaticResource TextArrow_Btn}" Height="30" Margin="0,0,0,10">
                     <i:Interaction.Triggers>

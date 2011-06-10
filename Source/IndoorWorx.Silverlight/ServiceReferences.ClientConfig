@@ -25,21 +25,21 @@
       </basicHttpBinding>
     </bindings>
     <client>
-      <endpoint address="http://localhost:3415/ActivityService.svc"
+      <endpoint address="http://www.indoorworx.com/indoorworx/ActivityService.svc"
           binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IActivityService"
           contract="ActivityServiceReference.IActivityService" name="BasicHttpBinding_IActivityService" />
-      <endpoint address="http://localhost:3415/ApplicationUserService.svc"
+      <endpoint address="http://www.indoorworx.com/indoorworx/ApplicationUserService.svc"
           binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IApplicationUserService"
           contract="ApplicationUserServiceReference.IApplicationUserService"
           name="BasicHttpBinding_IApplicationUserService" />
-      <endpoint address="http://localhost:3415/CategoryService.svc"
+      <endpoint address="http://www.indoorworx.com/indoorworx/CategoryService.svc"
           binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ICategoryService"
           contract="CategoryServiceReference.ICategoryService" name="BasicHttpBinding_ICategoryService" />
-      <endpoint address="http://localhost:3415/SocialMediaService.svc"
+      <endpoint address="http://www.indoorworx.com/indoorworx/SocialMediaService.svc"
           binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISocialMediaService"
           contract="SocialMediaServiceReference.ISocialMediaService"
           name="BasicHttpBinding_ISocialMediaService" />
-      <endpoint address="http://localhost:3415/SportingHabitsService.svc"
+      <endpoint address="http://www.indoorworx.com/indoorworx/SportingHabitsService.svc"
           binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISportingHabitsService"
           contract="SportingHabitsServiceReference.ISportingHabitsService"
           name="BasicHttpBinding_ISportingHabitsService" />
