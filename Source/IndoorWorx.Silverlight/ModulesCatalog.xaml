@@ -15,12 +15,12 @@
                 <sys:String>Library</sys:String>
             </Modularity:ModuleInfo.DependsOn>
         </Modularity:ModuleInfo>
-        <!--<Modularity:ModuleInfo ModuleName="Designer" ModuleType="IndoorWorx.Designer.Module, IndoorWorx.Designer.Silverlight, Version=1.0.0.0" >
+        <Modularity:ModuleInfo ModuleName="Designer" ModuleType="IndoorWorx.Designer.Module, IndoorWorx.Designer.Silverlight, Version=1.0.0.0" >
             <Modularity:ModuleInfo.DependsOn>
                 <sys:String>Catalog</sys:String>
             </Modularity:ModuleInfo.DependsOn>
         </Modularity:ModuleInfo>
-        <Modularity:ModuleInfo ModuleName="4me" ModuleType="IndoorWorx.ForMe.Module, IndoorWorx.4me.Silverlight, Version=1.0.0.0" >
+        <!--<Modularity:ModuleInfo ModuleName="4me" ModuleType="IndoorWorx.ForMe.Module, IndoorWorx.4me.Silverlight, Version=1.0.0.0" >
             <Modularity:ModuleInfo.DependsOn>
                 <sys:String>Designer</sys:String>
             </Modularity:ModuleInfo.DependsOn>

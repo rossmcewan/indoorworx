@@ -44,7 +44,7 @@ namespace IndoorWorx.Dashboard
 
             NavigationLinks.Add(new Infrastructure.Models.NavigationInfo()
             {
-                Content = "dashboard",
+                Content = "DASHBOARD",
                 IsAuthenticationRequired = true,
                 NavigationUri = "/Dashboard",
                 Allow = new string[] { "?" },

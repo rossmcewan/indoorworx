@@ -7,11 +7,13 @@
   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"    
   xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
   xmlns:controls="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"
+  xmlns:local="clr-namespace:IndoorWorx.Silverlight.Views"
   mc:Ignorable="d"
   d:DesignHeight="300" d:DesignWidth="400"
   Style="{StaticResource PageStyle}">
     <Grid x:Name="LayoutRoot">
-        <Grid.RowDefinitions>
+        <local:TileView />
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
@@ -20,19 +22,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!--<ScrollViewer Grid.Column="0" x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}" Margin="0" HorizontalScrollBarVisibility="Disabled">
-
-            <StackPanel x:Name="ContentStackPanel">
-
-                <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}" 
-                           Text="{Binding Path=ApplicationStrings.HomePageTitle, Source={StaticResource ResourceWrapper}}"/>
-                <TextBlock x:Name="ContentText" Style="{StaticResource ContentTextStyle}" TextWrapping="Wrap"
-                           Text="{Binding Path=ApplicationStrings.HomePageContent, Source={StaticResource ResourceWrapper}}"/>
-
-            </StackPanel>
-
-        </ScrollViewer>-->
-        <!--<Image Source="../Images/IndoorWorxDarkBackground.png"/>-->
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -49,10 +38,9 @@
                 <Image Source="../Images/youtube_large.png" Margin="2"/>
             </HyperlinkButton>
         </Grid>
-        <!--<HyperlinkButton Grid.Column="0" Grid.Row="1" Content="{Binding Path=ApplicationStrings.SignUpNow, Source={StaticResource ResourceWrapper}}" HorizontalAlignment="Right"/>-->
-        <controls:TransitionControl Grid.Column="0" Grid.RowSpan="2" Margin="5"/>
-        <!--<telerik:RadMediaPlayer Margin="5" telerik:StyleManager.Theme="Transparent" SelectedIndex="0">
-            <telerik:RadMediaItem Source="http://www.youtube.com/get_video?video_id=8yuIw_0ejLs&amp;t=vjVQa1PpcFPrX3tFoahhu4DbniDIqTLkwybdm8xuCt8%3D&amp;fmt=22"/>
-        </telerik:RadMediaPlayer>-->
+        <ScrollViewer Grid.Column="0" Grid.RowSpan="2" Margin="5">
+            <local:TileView />
+        </ScrollViewer>-->
+        <!--<controls:TransitionControl Grid.Column="0" Grid.RowSpan="2" Margin="5"/>-->
     </Grid>
 </navigation:Page>

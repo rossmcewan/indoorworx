@@ -12,11 +12,9 @@
     /// <summary>
     /// <see cref="ChildWindow"/> class that controls the registration process.
     /// </summary>
-    public partial class LoginRegistrationWindow : RadWindow
+    public partial class LoginRegistrationWindow : ChildWindow
     {
         private IList<OperationBase> possiblyPendingOperations = new List<OperationBase>();
-        private LoginForm loginForm = new LoginForm();
-        private RegistrationForm registrationForm = new RegistrationForm();
 
         /// <summary>
         /// Creates a new <see cref="LoginRegistrationWindow"/> instance.
@@ -24,9 +22,33 @@
         public LoginRegistrationWindow()
         {
             InitializeComponent();
+
             this.registrationForm.SetParentWindow(this);
             this.loginForm.SetParentWindow(this);
-            NavigateToLogin();
+
+            this.LayoutUpdated += this.GoToInitialState;
+            this.LayoutUpdated += this.UpdateTitle;
+        }
+
+        /// <summary>
+        /// Initializes the <see cref="VisualStateManager"/> for this component
+        /// by putting it into the "AtLogin" state
+        /// </summary>
+        private void GoToInitialState(object sender, EventArgs eventArgs)
+        {
+            VisualStateManager.GoToState(this, "AtLogin", false);
+            this.LayoutUpdated -= this.GoToInitialState;
+        }
+
+        /// <summary>
+        /// Updates the window title according to which panel
+        /// (registration / login) is currently being displayed
+        /// </summary>
+        private void UpdateTitle(object sender, EventArgs eventArgs)
+        {
+            this.Title = (this.registrationForm.Visibility == Visibility.Visible) ?
+                ApplicationStrings.RegistrationWindowTitle :
+                ApplicationStrings.LoginWindowTitle;
         }
 
         /// <summary>
@@ -39,18 +61,20 @@
             this.possiblyPendingOperations.Add(operation);
         }
 
-
+        /// <summary>
+        /// Causes the <see cref="VisualStateManager"/> to change to the "AtLogin" state.
+        /// </summary>
         public virtual void NavigateToLogin()
         {
-            this.radTransitionControl.Content = loginForm;
-            this.Header = loginForm.Header;
+            VisualStateManager.GoToState(this, "AtLogin", true);
         }
 
-
+        /// <summary>
+        /// Causes the <see cref="VisualStateManager"/> to change to the "AtRegistration" state.
+        /// </summary>
         public virtual void NavigateToRegistration()
         {
-            this.radTransitionControl.Content = registrationForm;
-            this.Header = registrationForm.Header;
+            VisualStateManager.GoToState(this, "AtRegistration", true);
         }
 
         /// <summary>
@@ -72,6 +96,6 @@
                     }
                 }
             }
-        }
+        }    
     }
 }

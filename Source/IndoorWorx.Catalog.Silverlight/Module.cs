@@ -49,7 +49,7 @@ namespace IndoorWorx.Catalog
 
             NavigationLinks.Add(new Infrastructure.Models.NavigationInfo()
             {
-                Content = "catalog",
+                Content = "CATALOG",
                 IsAuthenticationRequired = true,
                 NavigationUri = "/Catalog",
                 Allow = new string[] { "?" },

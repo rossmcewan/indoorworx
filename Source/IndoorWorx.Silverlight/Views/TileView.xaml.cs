@@ -9,23 +9,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using System.Windows.Navigation;
-using IndoorWorx.Silverlight.LoginUI;
 
 namespace IndoorWorx.Silverlight.Views
 {
-    public partial class AuthorizationError : Page
+    public partial class TileView : UserControl
     {
-        public AuthorizationError()
+        public TileView()
         {
             InitializeComponent();
         }
-
-        // Executes when the user navigates to this page.
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            new LoginRegistrationWindow().Show();
-        }
-
     }
 }

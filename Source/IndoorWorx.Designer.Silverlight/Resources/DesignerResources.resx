@@ -125,13 +125,13 @@
     <value>Add</value>
   </data>
   <data name="CatalogPaneTitle" xml:space="preserve">
-    <value>Catalog</value>
+    <value>CATALOG</value>
   </data>
   <data name="Design" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\design.png1;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
   <data name="DesignPaneTitle" xml:space="preserve">
-    <value>Design</value>
+    <value>DESIGN</value>
   </data>
   <data name="LoadingMediaProgressMessage" xml:space="preserve">
     <value>Loading media ...</value>

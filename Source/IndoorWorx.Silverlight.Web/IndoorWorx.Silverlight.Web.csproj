@@ -191,6 +191,11 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\CreateUserResponse.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Resources\ValidationErrorResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,6 +236,10 @@
       <Project>{C8468E7F-C6B0-40A9-BE81-F2EC34DC7772}</Project>
       <Name>IndoorWorx.Library</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IndoorWorx.MockRepositories\IndoorWorx.MockRepositories.csproj">
+      <Project>{2A1D2600-E3DB-4096-B043-276895CCA3F1}</Project>
+      <Name>IndoorWorx.MockRepositories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IndoorWorx.NHibernate\IndoorWorx.NHibernate.csproj">
       <Project>{11B702BE-C0C0-4F83-9ECB-928235ED0C0F}</Project>
       <Name>IndoorWorx.NHibernate</Name>
@@ -242,6 +251,10 @@
     <None Include="images\wide\Thumbs.db" />
     <None Include="Mock\suncity.csv" />
     <None Include="Mock\telemetry.csv" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

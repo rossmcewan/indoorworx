@@ -29,7 +29,7 @@
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             LoginRegistrationWindow loginWindow = new LoginRegistrationWindow();
-            loginWindow.ShowDialog();
+            loginWindow.Show();
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
