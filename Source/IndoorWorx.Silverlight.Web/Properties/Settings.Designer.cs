@@ -26,6 +26,8 @@ namespace IndoorWorx.Silverlight.Web.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=IndoorWorx;Persist Security Info=True;User ID=indoo" +
+            "rworx;Password=p@ssw0rd")]
         public string Setting {
             get {
                 return ((string)(this["Setting"]));

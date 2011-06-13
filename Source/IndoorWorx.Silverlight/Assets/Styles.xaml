@@ -15,59 +15,24 @@
         <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/CoreStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
-    <!-- FISH EYE BUTTON -->
-    <Style x:Key="FishEyeButton" TargetType="Button">
-        <Setter Property="Background" Value="#FF1F3B53"/>
-        <Setter Property="Foreground" Value="#FF000000"/>
-        <Setter Property="Padding" Value="3"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="BorderBrush">
-            <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
-                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
-                    <GradientStop Color="#FF718597" Offset="0.375"/>
-                    <GradientStop Color="#FF617584" Offset="1"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+    <Style x:Key="LayoutRootGridStyle" TargetType="Grid">
+    </Style>
+
+    <Style x:Key="FrameStyle" TargetType="navigation:Frame">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="00:00:00.15" To="MouseOver"/>
-                                    <VisualTransition GeneratedDuration="00:00:00.15" To="Pressed"/>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Normal"/>
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard/>
-                                </VisualState>
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard/>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard/>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="FocusStates">
-                                <VisualState x:Name="Focused">
-                                    <Storyboard/>
-                                </VisualState>
-                                <VisualState x:Name="Unfocused"/>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" x:Name="contentPresenter" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                <ControlTemplate TargetType="navigation:Frame">
+                    <Grid Background="{TemplateBinding Background}">
+                        <telerik:RadTransitionControl x:Name="PART_FrameCP" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}">
+                            <telerik:RadTransitionControl.Transition>
+                                <telerik:SlideAndZoomTransition />
+                            </telerik:RadTransitionControl.Transition>
+                        </telerik:RadTransitionControl>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
-
-    <Style x:Key="LayoutRootGridStyle" TargetType="Grid">
     </Style>
 
     <!-- Content Border Style -->
@@ -90,9 +55,23 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Margin" Value="0,75,0,0"/>
-        <Setter Property="Padding" Value="30,15,58,15"/>
+        <Setter Property="Padding" Value="30,0,58,15"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="navigation:Frame">
+                    <Grid Background="{TemplateBinding Background}">
+                        <telerik:RadTransitionControl x:Name="PART_FrameCP" Padding="{TemplateBinding Padding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}">
+                            <telerik:RadTransitionControl.Transition>
+                                <telerik:SlideAndZoomTransition />
+                            </telerik:RadTransitionControl.Transition>
+                        </telerik:RadTransitionControl>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 
@@ -163,6 +142,13 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
 
+    <!-- Search Border Style -->
+    <Style x:Key="SearchPanelStyle" TargetType="StackPanel">
+        <Setter Property="Margin" Value="0,50,75,0"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+
     <!-- Links Border Style -->
     <Style x:Key="LinksBorderStyle" TargetType="Border">
         <Setter Property="Height" Value="40"/>
@@ -179,6 +165,155 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Orientation" Value="Horizontal"/>
         <Setter Property="Margin" Value="10,0,0,-7"/>
+    </Style>
+
+    <!-- Sub Menu Links Border Style -->
+    <Style x:Key="SubMenuLinksBorderStyle" TargetType="Border">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+    <!-- Sub Menu Links StackPanel Style -->
+    <Style x:Key="SubMenuLinksStackPanelStyle" TargetType="StackPanel">
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+
+    <!-- SubMenuHyperlinkButton Style -->
+    <Style x:Key="SubMenuHyperlinkButtonStyle" TargetType="HyperlinkButton">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{StaticResource NavigationBorderBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource NavigationForegroundBrush}"/>
+        <Setter Property="FontFamily" Value="{StaticResource HeaderFontFamily}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextOptions.TextHintingMode" Value="Animated" />
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="MinHeight" Value="28"/>
+        <Setter Property="MinWidth" Value="78"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="HyperlinkButton">
+                    <Grid x:Name="ButtonGrid" Cursor="{TemplateBinding Cursor}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="InteractiveElementBorder" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="InteractiveElementBorder" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.95"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="InteractiveBorder" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="InteractiveElementBorder" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="InteractiveElementBorder" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.8"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.5"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="InteractiveBorder" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="DisabledOverlay" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <HorizontalAlignment>Center</HorizontalAlignment>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <VerticalAlignment>Center</VerticalAlignment>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="DisabledOverlay" Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <HorizontalAlignment>Center</HorizontalAlignment>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="DisabledOverlay" Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <VerticalAlignment>Center</VerticalAlignment>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="DisabledOverlay" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.5"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="LinkStates">
+                                <VisualState x:Name="ActiveLink">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ContentBorder" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="InactiveLink"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="ContentBorder" MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" Opacity="0.4" Padding="0">
+                            <ContentPresenter x:Name="ContentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                        </Border>
+                        <Border x:Name="InteractiveBorder" MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" Background="Transparent" BorderThickness="1,1,1,1" Opacity="0" BorderBrush="Transparent" CornerRadius="0"/>
+                        <!--<Border x:Name="InteractiveBorder" MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" Background="{StaticResource HoverHyperlinkBackgroundBrush}" BorderThickness="1,1,1,1" Opacity="0" BorderBrush="{StaticResource HoverHyperlinkBackgroundBrush}" CornerRadius="0"/>-->
+                        <Border x:Name="InteractiveElementBorder" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="Collapsed">
+                            <TextBlock x:Name="InteractiveElement" Foreground="{StaticResource HoverHyperlinkForegroundBrush}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" Text="{TemplateBinding Content}"/>
+                        </Border>
+                        <TextBlock x:Name="DisabledOverlay" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" Text="{TemplateBinding Content}" Foreground="#FFAAAAAA" Visibility="Collapsed"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- PageHyperlinkButton Style -->
@@ -370,13 +505,154 @@
     </Style>
 
 
+    <Style x:Key="MenuContainerStyle" TargetType="Border">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Margin" Value="0,0,350,0"/>
+        <Setter Property="Height" Value="45"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="#FFFFFFFF"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <!--<Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Margin" Value="0,0,450,0"/>
+        <Setter Property="Height" Value="45"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="#FFFFFFFF"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>-->
+    </Style>
+
+    <Style x:Key="MenuStackPanelStyle" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+    </Style>
+
+    <Style x:Key="MenuLinkStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Margin" Value="0,0,30,2"/>
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontFamily" Value="Segoe UI "/>
+        <Setter Property="TextOptions.TextHintingMode" Value="Animated"/>
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Cursor="{TemplateBinding Cursor}" Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="Mouseover_Pressed" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="Mouseover_Pressed" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="DisabledOverlay" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="DisabledOverlay" Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <HorizontalAlignment>Center</HorizontalAlignment>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <!--<VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Mouseover_Pressed" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Mouseover_Pressed" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>-->
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter x:Name="contentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <TextBlock HorizontalAlignment="Stretch" x:Name="Mouseover_Pressed" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="Collapsed" Canvas.ZIndex="1" Foreground="{StaticResource HighlightBrush}" Text="{TemplateBinding Content}"/>
+                        <TextBlock HorizontalAlignment="Stretch" x:Name="DisabledOverlay" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="Collapsed" Canvas.ZIndex="1" Foreground="#FFAAAAAA" Text="{TemplateBinding Content}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <!-- **********LOGIN STYLES********* -->
     <!-- ******************************* -->
     <!-- Login Container Style -->
     <Style x:Key="LoginContainerStyle" TargetType="Border">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Margin" Value="0,0,390,0"/>
+        <Setter Property="Margin" Value="0,0,200,0"/>
         <Setter Property="Height" Value="45"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="#FFFFFFFF"/>

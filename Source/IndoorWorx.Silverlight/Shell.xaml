@@ -6,9 +6,11 @@
   xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
   xmlns:dataControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.DataForm.Toolkit" 
   xmlns:controls="clr-namespace:IndoorWorx.Silverlight.Controls" 
+  xmlns:ibehaviors="clr-namespace:IndoorWorx.Infrastructure.Behaviors;assembly=IndoorWorx.Infrastructure.Silverlight"
   xmlns:SLaBE="clr-namespace:SLaB.Navigation.ContentLoaders.Error;assembly=SLaB.Navigation.ContentLoaders.Error"
   xmlns:SLaBA="clr-namespace:SLaB.Navigation.ContentLoaders.Auth;assembly=SLaB.Navigation.ContentLoaders.Auth"    
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
   mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
      <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
 
@@ -16,10 +18,12 @@
 
         <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">            
             <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
-                              Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
+                              Source="/Dashboard" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
                 <navigation:Frame.UriMapper>
                     <uriMapper:UriMapper>
-                        <uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml"/>
+                        <uriMapper:UriMapping Uri="" MappedUri="/IndoorWorx.Dashboard.Silverlight;component/Views/DashboardPage.xaml"/>
+                        <uriMapper:UriMapping Uri="/Dashboard" MappedUri="/IndoorWorx.Dashboard.Silverlight;component/Views/DashboardPage.xaml"/>
+                        <!--<uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml"/>-->
                         <uriMapper:UriMapping Uri="/{assemblyName};component/{path}" MappedUri="/{assemblyName};component/{path}" />
                         <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
                     </uriMapper:UriMapper>
@@ -52,24 +56,27 @@
                 </Border>
 
                 <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
-                    <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
-
-                        <HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/Home" TargetName="ContentFrame" Content="{Binding Path=ApplicationStrings.HomePageTitle, Source={StaticResource ResourceWrapper}}"/>
-
-                        <Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
-
-                        <HyperlinkButton x:Name="Link2" Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/About" TargetName="ContentFrame" Content="{Binding Path=ApplicationStrings.AboutPageTitle, Source={StaticResource ResourceWrapper}}"/>
-
-                    </StackPanel>
+                    <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}"/>
                 </Border>
 
+                <StackPanel Orientation="Horizontal" Style="{StaticResource SearchPanelStyle}">
+                    <TextBox Width="200">
+                        <i:Interaction.Behaviors>
+                            <ibehaviors:Watermark Text="{Binding ApplicationStrings.Search, Source={StaticResource ResourceWrapper}}" Foreground="DarkGray" />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
+                </StackPanel>                
             </Grid>
 
-            <Border x:Name="loginContainer" Style="{StaticResource LoginContainerStyle}">
-                <!-- LoginStatus will be added here in code behind. This is required for the designer view to work -->
+            <Border x:Name="MenuBorder" Style="{StaticResource MenuContainerStyle}">
+                <StackPanel x:Name="MenuStackPanel" Style="{StaticResource MenuStackPanelStyle}">
+                    <Button Style="{StaticResource MenuLinkStyle}" Content="SETTINGS"/>
+                    <TextBlock Text="|" Style="{StaticResource SpacerStyle}"/>
+                    <Button Style="{StaticResource MenuLinkStyle}" Content="HELP"/>
+                </StackPanel>
             </Border>
+
+            <Border x:Name="loginContainer" Style="{StaticResource LoginContainerStyle}"/>
         </Grid>
 
     </Grid>

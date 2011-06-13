@@ -1,7 +1,10 @@
-﻿<OutOfBrowserSettings ShortName="IndoorWorx.Silverlight Application" EnableGPUAcceleration="False" ShowInstallMenuItem="True">
-  <OutOfBrowserSettings.Blurb>IndoorWorx.Silverlight Application on your desktop; at home, at work or on the go.</OutOfBrowserSettings.Blurb>
+<OutOfBrowserSettings ShortName="IndoorWorx" EnableGPUAcceleration="False" ShowInstallMenuItem="True">
+  <OutOfBrowserSettings.Blurb>IndoorWorx</OutOfBrowserSettings.Blurb>
   <OutOfBrowserSettings.WindowSettings>
-    <WindowSettings Title="IndoorWorx.Silverlight Application" />
+    <WindowSettings Title="IndoorWorx" WindowStyle="None" />
   </OutOfBrowserSettings.WindowSettings>
+  <OutOfBrowserSettings.SecuritySettings>
+    <SecuritySettings ElevatedPermissions="Required" />
+  </OutOfBrowserSettings.SecuritySettings>
   <OutOfBrowserSettings.Icons />
 </OutOfBrowserSettings>

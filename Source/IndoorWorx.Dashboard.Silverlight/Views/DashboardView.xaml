@@ -6,10 +6,17 @@
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     xmlns:libcontrols="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"   
     xmlns:converters="clr-namespace:IndoorWorx.Dashboard.Converters"            
-    xmlns:iconverters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"             
+    xmlns:iconverters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"  
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"             
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400" >
-    <UserControl.Resources>
+    <Grid>
+        <sdk:TabControl Grid.Row="1">
+            <sdk:TabItem Header="tab1" Style="{StaticResource TabItemStyle1}"></sdk:TabItem>
+            <sdk:TabItem Header="tab2" Style="{StaticResource TabItemStyle1}"></sdk:TabItem>
+        </sdk:TabControl>
+    </Grid>
+    <!--<UserControl.Resources>
         <iconverters:StringToUriConverter x:Key="StringToUriConverter"/>
         <converters:WidgetToContentConverter x:Key="WidgetToContentConverter"/>        
         <Style x:Key="RadTileViewItemStyle" TargetType="telerik:RadTileViewItem">
@@ -57,5 +64,5 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-    </Grid>
+    </Grid>-->
 </UserControl>

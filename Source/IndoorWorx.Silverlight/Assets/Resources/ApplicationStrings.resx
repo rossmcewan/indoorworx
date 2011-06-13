@@ -193,4 +193,7 @@ Did you say indoor training is boring!? Think again.</value>
     <value>welcome {0}</value>
     <comment>{0} = User.DisplayName property</comment>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>SEARCH</value>
+  </data>
 </root>

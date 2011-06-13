@@ -62,6 +62,34 @@ namespace IndoorWorx.Catalog.Views
         private void CatalogTreeControl_SelectionChanged(object sender, EventArgs e)
         {
             //Model.OnVideoSelectionChanged();
+        }
+
+        private void CatalogContentFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            UpdateSelectedLinks(e.Uri);
+        }
+
+        private void UpdateSelectedLinks(Uri uri)
+        {
+            foreach (UIElement child in LinksStackPanel.Children)
+            {
+                HyperlinkButton hb = child as HyperlinkButton;
+                if (hb != null && hb.NavigateUri != null)
+                {
+                    var uriString = uri.ToString();
+                    var compareTo = uriString;
+                    if (uriString.Contains('?'))
+                        compareTo = uriString.Substring(0, uriString.IndexOf('?'));
+                    if (hb.NavigateUri.ToString().Equals(compareTo))
+                    {
+                        VisualStateManager.GoToState(hb, "ActiveLink", true);
+                    }
+                    else
+                    {
+                        VisualStateManager.GoToState(hb, "InactiveLink", true);
+                    }
+                }
+            }  
         }                
     }
 }

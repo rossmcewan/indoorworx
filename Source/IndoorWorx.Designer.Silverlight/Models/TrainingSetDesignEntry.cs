@@ -71,10 +71,10 @@ namespace IndoorWorx.Designer.Models
 
         private void OnIntensityFactorChanged()
         {
-            foreach (var tentry in telemetry)
-            {
-                tentry.PercentageThreshold *= IntensityFactor;
-            }
+            //foreach (var tentry in telemetry)
+            //{
+            //    tentry.PercentageThreshold *= IntensityFactor;
+            //}
             if (IntensityFactorChanged != null)
                 IntensityFactorChanged(this, EventArgs.Empty);
         }

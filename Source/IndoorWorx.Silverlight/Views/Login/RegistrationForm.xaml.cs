@@ -22,7 +22,7 @@
     {
         private LoginRegistrationWindow parentWindow;
         private RegistrationData registrationData = new RegistrationData();
-        private UserRegistrationContext userRegistrationContext = new UserRegistrationContext();
+        private UserRegistrationContext userRegistrationContext = new UserRegistrationContext(new Uri("http://www.indoorworx.com/indoorworx/IndoorWorx-Silverlight-Web-UserRegistrationService.svc", UriKind.Absolute));
 
         public string Header
         {

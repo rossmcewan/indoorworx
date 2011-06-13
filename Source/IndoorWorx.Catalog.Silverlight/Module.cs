@@ -42,6 +42,15 @@ namespace IndoorWorx.Catalog
             unityContainer.RegisterInstance<ICatalogPresentationModel>(unityContainer.Resolve<CatalogPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<ICatalogView>(unityContainer.Resolve<CatalogView>(), new ContainerControlledLifetimeManager());
 
+            unityContainer.RegisterInstance<IVideosPresentationModel>(unityContainer.Resolve<VideosPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IVideosView>(unityContainer.Resolve<VideosView>(), new ContainerControlledLifetimeManager());
+
+            unityContainer.RegisterInstance<IVideoDetailsPresentationModel>(unityContainer.Resolve<VideoDetailsPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IVideoDetailsView>(unityContainer.Resolve<VideoDetailsView>(), new ContainerControlledLifetimeManager());
+
+            unityContainer.RegisterInstance<IVideoCatalogPresentationModel>(unityContainer.Resolve<VideoCatalogPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IVideoCatalogView>(unityContainer.Resolve<VideoCatalogView>(), new ContainerControlledLifetimeManager());
+
 
             NavigationLinks.MapUri(
                 new Uri("/Catalog", UriKind.Relative),
@@ -49,7 +58,7 @@ namespace IndoorWorx.Catalog
 
             NavigationLinks.Add(new Infrastructure.Models.NavigationInfo()
             {
-                Content = "CATALOG",
+                Content = "catalog",
                 IsAuthenticationRequired = true,
                 NavigationUri = "/Catalog",
                 Allow = new string[] { "?" },

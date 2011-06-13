@@ -31,12 +31,12 @@ namespace IndoorWorx.Dashboard.Views
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var content = serviceLocator.GetInstance<IDashboardView>();
-            content.Model.Refresh();
-            if (this.Content == null)
-            {
-                this.Content = content as UIElement;
-            }
+            //var content = serviceLocator.GetInstance<IDashboardView>();
+            //content.Model.Refresh();
+            //if (this.Content == null)
+            //{
+            //    this.Content = content as UIElement;
+            //}
             //if (authOps.IsAuthenticated)
             //{
             //    //set the content to the users page

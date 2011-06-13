@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="IndoorWorx.Catalog.Views.VideosView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"   
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"      
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+    xmlns:lconverters="clr-namespace:IndoorWorx.Catalog.Converters"             
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+    <UserControl.Resources>
+        <lconverters:CategoryTitleNavigationUriConverter x:Key="CategoryTitleNavigationUriConverter"/>
+    </UserControl.Resources>
+    <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=TwoWay}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ItemsControl ItemsSource="{Binding Categories, Mode=TwoWay}" x:Name="CategoriesItemsControl">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <HyperlinkButton Content="{Binding Title}" Style="{StaticResource LinkStyle}" TargetName="VideosContentFrame" NavigateUri="{Binding Title, Converter={StaticResource CategoryTitleNavigationUriConverter}}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <navigation:Frame Source="{Binding SelectedCategory.Title, Converter={StaticResource CategoryTitleNavigationUriConverter}, Mode=OneWay}" x:Name="VideosContentFrame" Style="{StaticResource FrameStyle}" Grid.Row="1" Navigated="VideosContentFrame_Navigated"/>
+            <!--<Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ScrollViewer Grid.Row="1" BorderBrush="Transparent" VerticalScrollBarVisibility="Auto">
+
+                    </ScrollViewer>
+                </Grid>
+                
+                <ScrollViewer Grid.Column="1" BorderBrush="Transparent" VerticalScrollBarVisibility="Auto">
+
+                </ScrollViewer>
+            </Grid>-->
+        </Grid>
+    </telerik:RadBusyIndicator>
+</UserControl>

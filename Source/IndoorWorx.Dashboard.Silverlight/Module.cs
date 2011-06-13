@@ -41,10 +41,10 @@ namespace IndoorWorx.Dashboard
             NavigationLinks.MapUri(
                 new Uri("/Dashboard", UriKind.Relative),
                 new Uri("/IndoorWorx.Dashboard.Silverlight;component/Views/DashboardPage.xaml", UriKind.Relative));
-
+            
             NavigationLinks.Add(new Infrastructure.Models.NavigationInfo()
             {
-                Content = "DASHBOARD",
+                Content = "dashboard",
                 IsAuthenticationRequired = true,
                 NavigationUri = "/Dashboard",
                 Allow = new string[] { "?" },

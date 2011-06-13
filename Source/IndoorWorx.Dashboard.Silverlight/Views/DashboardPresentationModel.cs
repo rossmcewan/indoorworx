@@ -61,13 +61,13 @@ namespace IndoorWorx.Dashboard.Views
 
         public void Refresh()
         {
-            var currentUser = ApplicationUser.CurrentUser;
-            if (currentUser != null)
-            {
-                availableWidgets.Clear();
-                foreach (var widget in currentUser.AvailableWidgets)
-                    availableWidgets.Add(widget);
-            }
+            //var currentUser = ApplicationUser.CurrentUser;
+            //if (currentUser != null)
+            //{
+            //    availableWidgets.Clear();
+            //    foreach (var widget in currentUser.AvailableWidgets)
+            //        availableWidgets.Add(widget);
+            //}
         }
 
         #endregion

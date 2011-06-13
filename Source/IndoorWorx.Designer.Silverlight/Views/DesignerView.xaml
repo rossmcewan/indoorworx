@@ -47,59 +47,62 @@
         <telerik:RadDocking Margin="5" PreviewClose="RadDocking_PreviewClose" Close="RadDocking_Close">
             <telerik:RadDocking.DocumentHost>
                 <telerik:RadSplitContainer Orientation="Vertical">
-                    <telerik:RadPaneGroup x:Name="DocumentPaneGroup"/>
-                    <telerik:RadSplitContainer
+                    <telerik:RadPaneGroup x:Name="DocumentPaneGroup"/>                    
+                </telerik:RadSplitContainer>
+            </telerik:RadDocking.DocumentHost>
+            <telerik:RadSplitContainer
+                telerik:DockingPanel.InitialSize="300,300" 
                             Name="BottomContainer"
                             VerticalAlignment="Bottom"
                             InitialPosition="DockedBottom">
-                        <telerik:RadPaneGroup x:Name="BottomGroup">
-                            <telerik:RadPane                         
+                <telerik:RadPaneGroup x:Name="BottomGroup">
+                    <telerik:RadPane                         
                                     x:Name="DesignPane" 
                                     Header="{Binding DesignerResources.DesignPaneTitle, Source={StaticResource DesignerResources}}"                         
                                     CanUserClose="False">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <ListBox ItemsSource="{Binding Entries, Mode=TwoWay}" SelectedItem="{Binding SelectedEntry, Mode=TwoWay}" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay}"/>
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                    </ListBox>
-                                    <StackPanel Grid.Column="1">
-                                        <telerik:RadButton Content="Delete" Command="{Binding RemoveEntryCommand, Mode=OneWay}" CommandParameter="{Binding SelectedEntry, Mode=OneWay}" CornerRadius="5" />
-                                    </StackPanel>
-                                    <ScrollViewer Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                                        <ItemsControl ItemsSource="{Binding Entries, Mode=TwoWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <StackPanel Orientation="Horizontal"/>
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <telerik:RadLinearSparkline 
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <ListBox ItemsSource="{Binding Entries, Mode=TwoWay}" SelectedItem="{Binding SelectedEntry, Mode=TwoWay}" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                            <StackPanel Grid.Column="1">
+                                <telerik:RadButton Content="Delete" Command="{Binding RemoveEntryCommand, Mode=OneWay}" CommandParameter="{Binding SelectedEntry, Mode=OneWay}" CornerRadius="5" />
+                            </StackPanel>
+                            <ScrollViewer Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                <ItemsControl ItemsSource="{Binding Entries, Mode=TwoWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <telerik:RadLinearSparkline 
                                                         Background="{Binding IsSelected, Mode=OneWay, Converter={StaticResource IsSelectedToBackgroundConverter}}"
                                                         Height="{Binding Telemetry, Converter={StaticResource TelemetryToHeightConverter}}" 
                                                         Width="{Binding Converter={StaticResource TrainingSetDesignEntryToWidthConverter}}"                                                    
-                                                        ItemsSource="{Binding Telemetry}" 
+                                                        ItemsSource="{Binding Telemetry, Mode=TwoWay}" 
                                                         ShowAxis="True" 
                                                         YValuePath="PercentageThreshold" 
                                                         XValuePath="OATimePosition" 
                                                         VerticalAlignment="Bottom" 
                                                         HorizontalAlignment="Left">
-                                                    </telerik:RadLinearSparkline>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </ScrollViewer>
-                                    <!--<telerik:RadLinearSparkline Height="200" Width="600" ItemsSource="{Binding Telemetry}" ShowAxis="False" YValuePath="PercentageThreshold" XValuePath="OATimePosition" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Left" HorizontalContentAlignment="Left"/>-->
-                                    <!--<telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}" Grid.Column="2">
+                                            </telerik:RadLinearSparkline>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                            <!--<telerik:RadLinearSparkline Height="200" Width="600" ItemsSource="{Binding Telemetry}" ShowAxis="False" YValuePath="PercentageThreshold" XValuePath="OATimePosition" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Left" HorizontalContentAlignment="Left"/>-->
+                            <!--<telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}" Grid.Column="2">
                                         <libControls:TelemetryChart
                                             x:Name="designedTelemetryChart"
                                             Margin="10"
@@ -107,13 +110,11 @@
                                             AxisElementBrush="Gray"
                                             YAxisAutoRange="True"/>
                                     </telerik:RadBusyIndicator>-->
-                                    <telerik:RadSlider Orientation="Vertical" Minimum="0" Maximum="2" Value="{Binding SelectedEntry.IntensityFactor, Mode=TwoWay}" Grid.Column="3" VerticalAlignment="Stretch" DragCompleted="RadSlider_DragCompleted"/>
-                                </Grid>
-                            </telerik:RadPane>
-                        </telerik:RadPaneGroup>
-                    </telerik:RadSplitContainer>
-                </telerik:RadSplitContainer>
-            </telerik:RadDocking.DocumentHost>
+                            <telerik:RadSlider Orientation="Vertical" Minimum="0" Maximum="2" Value="{Binding SelectedEntry.IntensityFactor, Mode=TwoWay}" Grid.Column="3" VerticalAlignment="Stretch" DragCompleted="RadSlider_DragCompleted"/>
+                        </Grid>
+                    </telerik:RadPane>
+                </telerik:RadPaneGroup>
+            </telerik:RadSplitContainer>
             <telerik:RadSplitContainer 
                 telerik:DockingPanel.InitialSize="300,300" 
                 MaxWidth="600"                    
@@ -124,7 +125,7 @@
                         <libControls:CatalogTreeControl ContextMenuItemsSource="{Binding CatalogContextMenuItems, Mode=OneWay}"/>
                     </telerik:RadPane>                    
                 </telerik:RadPaneGroup>
-            </telerik:RadSplitContainer>
+            </telerik:RadSplitContainer>            
         </telerik:RadDocking>        
     </Grid>
 </UserControl>

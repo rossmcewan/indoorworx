@@ -183,10 +183,16 @@
   <data name="TrainingMetricsTitle" xml:space="preserve">
     <value>Training Metrics</value>
   </data>
+  <data name="TrainingProgramsTitle" xml:space="preserve">
+    <value>TRAINING PROGRAMS</value>
+  </data>
   <data name="TrainingSetsTitle" xml:space="preserve">
     <value>Training Sets</value>
   </data>
   <data name="VariabilityIndexLabel" xml:space="preserve">
     <value>Variability Index (VI):</value>
+  </data>
+  <data name="VideosTitle" xml:space="preserve">
+    <value>VIDEOS</value>
   </data>
 </root>

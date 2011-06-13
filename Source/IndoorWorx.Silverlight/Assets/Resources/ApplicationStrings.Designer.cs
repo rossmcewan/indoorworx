@@ -235,6 +235,15 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SEARCH.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SIGN UP NOW.
         /// </summary>
         public static string SignUpNow {

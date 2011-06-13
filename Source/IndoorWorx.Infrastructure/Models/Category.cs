@@ -42,6 +42,29 @@ namespace IndoorWorx.Infrastructure.Models
             {
                 catalogs = value;
                 FirePropertyChanged("Catalogs");
+                FirePropertyChanged("Videos");
+                FirePropertyChanged("HasVideos");
+            }
+        }
+
+        public virtual ICollection<Video> Videos
+        {
+            get
+            {
+                var result = new List<Video>();
+                foreach (var catalog in Catalogs)
+                {
+                    result.AddRange(catalog.Videos);
+                }
+                return result;
+            }
+        }
+
+        public virtual bool HasVideos
+        {
+            get
+            {
+                return Catalogs.Any(x => x.Videos != null && x.Videos.Count > 0);
             }
         }
 
