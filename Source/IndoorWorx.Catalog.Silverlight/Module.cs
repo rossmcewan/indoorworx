@@ -54,7 +54,7 @@ namespace IndoorWorx.Catalog
 
             NavigationLinks.MapUri(
                 new Uri("/Catalog", UriKind.Relative),
-                new Uri("/IndoorWorx.Catalog.Silverlight;component/Views/CatalogPage.xaml", UriKind.Relative));
+                new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/CatalogPage.xaml", UriKind.Relative));
 
             NavigationLinks.Add(new Infrastructure.Models.NavigationInfo()
             {

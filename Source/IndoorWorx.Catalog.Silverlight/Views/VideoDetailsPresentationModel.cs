@@ -51,6 +51,7 @@ namespace IndoorWorx.Catalog.Views
                         if (video != null)
                         {
                             Video = video;
+                            Video.LoadTelemetry();
                             break;
                         }
                     }

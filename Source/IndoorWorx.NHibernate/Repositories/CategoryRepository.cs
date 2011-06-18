@@ -24,7 +24,6 @@ namespace IndoorWorx.NHibernate.Repositories
                     .Where(where == null ? x => true : where)
                     .FetchMany(x => x.Catalogs)
                     .ThenFetchMany(x => x.Videos)
-                    .ThenFetchMany(x => x.TrainingSets)
                     .ThenFetchMany(x=>x.Reviews);
                 var categories = result.ToList();
                 foreach (var category in categories)
@@ -32,11 +31,7 @@ namespace IndoorWorx.NHibernate.Repositories
                     category.Catalogs = category.Catalogs.Distinct().OrderBy(x=>x.Sequence).ToList();
                     foreach (var catalog in category.Catalogs)
                     {
-                        catalog.Videos = catalog.Videos.Distinct().OrderBy(x => x.Sequence).ToList();
-                        foreach (var video in catalog.Videos)
-                        {
-                            video.TrainingSets = video.TrainingSets.Distinct().OrderBy(x => x.Sequence).ToList();
-                        }
+                        catalog.Videos = catalog.Videos.Distinct().OrderBy(x => x.Sequence).ToList();                        
                     }
                 }
                 return categories;

@@ -122,18 +122,23 @@
       <DependentUpon>TrainingSetDetailsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\CategoryTitleNavigationUriConverter.cs" />
+    <Compile Include="Converters\OrderByVisibilityConverter.cs" />
     <Compile Include="Converters\VideoNavigationUriConverter.cs" />
     <Compile Include="Events\TrainingSetSelectionChangedEvent.cs" />
     <Compile Include="Events\VideoSelectionChangedEvent.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />
+    <Compile Include="Pages\TemplatesPage.xaml.cs">
+      <DependentUpon>TemplatesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\CatalogResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CatalogResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Views\CatalogPage.xaml.cs">
+    <Compile Include="TemplateSelectors\VideoCatalogTemplateSelector.cs" />
+    <Compile Include="Pages\CatalogPage.xaml.cs">
       <DependentUpon>CatalogPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CatalogPresentationModel.cs" />
@@ -148,24 +153,24 @@
     <Compile Include="Views\IVideoDetailsView.cs" />
     <Compile Include="Views\IVideosPresentationModel.cs" />
     <Compile Include="Views\IVideosView.cs" />
-    <Compile Include="Views\TrainingProgramsPage.xaml.cs">
+    <Compile Include="Pages\TrainingProgramsPage.xaml.cs">
       <DependentUpon>TrainingProgramsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\VideoCatalogPage.xaml.cs">
+    <Compile Include="Pages\VideoCatalogPage.xaml.cs">
       <DependentUpon>VideoCatalogPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VideoCatalogPresentationModel.cs" />
     <Compile Include="Views\VideoCatalogView.xaml.cs">
       <DependentUpon>VideoCatalogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\VideoDetailsPage.xaml.cs">
+    <Compile Include="Pages\VideoDetailsPage.xaml.cs">
       <DependentUpon>VideoDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VideoDetailsPresentationModel.cs" />
     <Compile Include="Views\VideoDetailsView.xaml.cs">
       <DependentUpon>VideoDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\VideosPage.xaml.cs">
+    <Compile Include="Pages\VideosPage.xaml.cs">
       <DependentUpon>VideosPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VideosPresentationModel.cs" />
@@ -210,19 +215,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CatalogPage.xaml">
+    <Page Include="Pages\CatalogPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\TemplatesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CatalogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TrainingProgramsPage.xaml">
+    <Page Include="Pages\TrainingProgramsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\VideoCatalogPage.xaml">
+    <Page Include="Pages\VideoCatalogPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,7 +239,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\VideoDetailsPage.xaml">
+    <Page Include="Pages\VideoDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,7 +247,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\VideosPage.xaml">
+    <Page Include="Pages\VideosPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

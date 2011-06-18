@@ -56,7 +56,7 @@ namespace IndoorWorx.NHibernate.UserTypes
             //is valid for use with the System.Uri class, but i will leave that to you
             if (string.IsNullOrWhiteSpace(uriString))
                 return null;
-            Uri result = new Uri(uriString, UriKind.Absolute);
+            Uri result = new Uri(uriString, UriKind.RelativeOrAbsolute);
             return result;
         }
 
@@ -76,7 +76,7 @@ namespace IndoorWorx.NHibernate.UserTypes
         {
             //We deep copy the uri by creating a new instance with the same contents
             if (value == null) return null;
-            return new Uri(value.ToString(), UriKind.Absolute);
+            return new Uri(value.ToString(), UriKind.RelativeOrAbsolute);
         }
 
         public bool IsMutable

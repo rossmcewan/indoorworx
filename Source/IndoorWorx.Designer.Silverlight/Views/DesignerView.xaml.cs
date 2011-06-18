@@ -88,26 +88,26 @@ namespace IndoorWorx.Designer.Views
 
         public void AddDesigner(Video forVideo)
         {
-            var existingPane = DocumentPaneGroup.Items.OfType<RadDocumentPane>().FirstOrDefault(x => x.Tag == forVideo);
-            if (existingPane == null)
-            {
-                var view = serviceLocator.GetInstance<IDesignerSelectorView>();
-                forVideo.SelectedTrainingSet = forVideo.TrainingSets.FirstOrDefault();
-                view.Model.Source = forVideo;
+            //var existingPane = DocumentPaneGroup.Items.OfType<RadDocumentPane>().FirstOrDefault(x => x.Tag == forVideo);
+            //if (existingPane == null)
+            //{
+            //    var view = serviceLocator.GetInstance<IDesignerSelectorView>();
+            //    forVideo.SelectedTrainingSet = forVideo.TrainingSets.FirstOrDefault();
+            //    view.Model.Source = forVideo;
                 
-                var documentPane = new RadDocumentPane()
-                {
-                    Tag = forVideo,
-                    Title = forVideo.Title,
-                    Content = view                    
-                };
-                DocumentPaneGroup.Items.Clear();
-                DocumentPaneGroup.AddItem(documentPane, DockPosition.Center);
-            }
-            else
-            {
-                existingPane.IsSelected = true;
-            }
+            //    var documentPane = new RadDocumentPane()
+            //    {
+            //        Tag = forVideo,
+            //        Title = forVideo.Title,
+            //        Content = view                    
+            //    };
+            //    DocumentPaneGroup.Items.Clear();
+            //    DocumentPaneGroup.AddItem(documentPane, DockPosition.Center);
+            //}
+            //else
+            //{
+            //    existingPane.IsSelected = true;
+            //}
         }
 
         private void RadDocking_PreviewClose(object sender, StateChangeEventArgs e)

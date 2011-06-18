@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 
-namespace IndoorWorx.Catalog.Views
+namespace IndoorWorx.Catalog.Pages
 {
     public partial class TrainingProgramsPage : Page
     {

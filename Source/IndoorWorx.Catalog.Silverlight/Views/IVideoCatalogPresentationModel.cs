@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -9,7 +10,17 @@ namespace IndoorWorx.Catalog.Views
     {
         IVideoCatalogView View { get; set; }
 
-        void FilterVideosBy(string filter);
+        string NumberOfVideosLabel { get; }
+
+        ICollection<Category> FilteredCategories { get; }
+
+        ICollection<Video> AllFilteredVideos { get; }
+
+        string OrderBy { get; }
+
+        IVideoCatalogPresentationModel FilterVideosBy(string filter);
+
+        IVideoCatalogPresentationModel OrderVideosBy(string orderBy);
 
         void Refresh();
     }

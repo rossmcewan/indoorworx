@@ -120,6 +120,15 @@
   <data name="AveragePowerLabel" xml:space="preserve">
     <value>Average Power:</value>
   </data>
+  <data name="ByCatalog" xml:space="preserve">
+    <value>BY CATALOG</value>
+  </data>
+  <data name="ByCategory" xml:space="preserve">
+    <value>BY CATEGORY</value>
+  </data>
+  <data name="ByGenre" xml:space="preserve">
+    <value>BY GENRE</value>
+  </data>
   <data name="CatalogPaneTitle" xml:space="preserve">
     <value>CATALOG</value>
   </data>
@@ -143,6 +152,9 @@
   </data>
   <data name="NormalizedPowerLabel" xml:space="preserve">
     <value>Normalized Power (NP):</value>
+  </data>
+  <data name="NumberOfVideosLabel" xml:space="preserve">
+    <value>{0} VIDEOS</value>
   </data>
   <data name="PageTitle" xml:space="preserve">
     <value>Catalog</value>
@@ -179,6 +191,9 @@
   </data>
   <data name="ReviewsTitle" xml:space="preserve">
     <value>Reviews</value>
+  </data>
+  <data name="TemplatesTitle" xml:space="preserve">
+    <value>TEMPLATES</value>
   </data>
   <data name="TrainingMetricsTitle" xml:space="preserve">
     <value>Training Metrics</value>

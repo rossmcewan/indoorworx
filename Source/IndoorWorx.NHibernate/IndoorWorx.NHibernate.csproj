@@ -82,6 +82,8 @@
     <Compile Include="ClassMaps\EquipmentClassMap.cs" />
     <Compile Include="ClassMaps\EquipmentFeaturesClassMap.cs" />
     <Compile Include="ClassMaps\IndoorTrainingFrequencyClassMap.cs" />
+    <Compile Include="ClassMaps\IntervalClassMap.cs" />
+    <Compile Include="ClassMaps\IntervalTypeClassMap.cs" />
     <Compile Include="ClassMaps\ManufacturerClassMap.cs" />
     <Compile Include="ClassMaps\MeasurementClassMap.cs" />
     <Compile Include="ClassMaps\OccupationClassMap.cs" />
@@ -92,10 +94,13 @@
     <Compile Include="ClassMaps\SocialMediaTypeClassMap.cs" />
     <Compile Include="ClassMaps\SportClassMap.cs" />
     <Compile Include="ClassMaps\SportingHabitsClassMap.cs" />
-    <Compile Include="ClassMaps\TrainingSetClassMap.cs" />
+    <Compile Include="ClassMaps\TelemetryInfoClassMap.cs" />
+    <Compile Include="ClassMaps\TrainingMetricClassMap.cs" />
+    <Compile Include="ClassMaps\TrainingMetricTypeClassMap.cs" />
     <Compile Include="ClassMaps\TrainingZoneClassMap.cs" />
     <Compile Include="ClassMaps\UnitOfMeasureClassMap.cs" />
     <Compile Include="ClassMaps\VideoClassMap.cs" />
+    <Compile Include="ClassMaps\VideoMetadataClassMap.cs" />
     <Compile Include="ClassMaps\VideoReviewClassMap.cs" />
     <Compile Include="ClassMaps\VideoTextClassMap.cs" />
     <Compile Include="ClassMaps\TrainingVolumeClassMap.cs" />

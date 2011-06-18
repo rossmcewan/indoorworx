@@ -18,7 +18,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.MainText);
             Map(x => x.StartTime);
             Map(x => x.SubText);
-            References(x => x.TrainingSet).Column("TrainingSet");
+            //References(x => x.TrainingSet).Column("TrainingSet");
         }
     }
 }

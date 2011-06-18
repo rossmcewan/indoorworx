@@ -54,6 +54,7 @@ namespace IndoorWorx.Infrastructure.Models
             {
                 videos = value;
                 FirePropertyChanged("Videos");
+                FirePropertyChanged("HasVideos");
             }
         }
 
@@ -66,6 +67,14 @@ namespace IndoorWorx.Infrastructure.Models
             {
                 sequence = value;
                 FirePropertyChanged("Sequence");
+            }
+        }
+
+        public virtual bool HasVideos
+        {
+            get
+            {
+                return Videos.Count > 0;
             }
         }
     }

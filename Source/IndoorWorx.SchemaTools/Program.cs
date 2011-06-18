@@ -80,10 +80,12 @@ namespace IndoorWorx.SchemaTools
         {
             var category = new Category()
             {
-                Title = "Cycling",
+                Title = "CYCLING",
                 Description = "Indoor cycling training videos.",
+                Sequence = 1,
+                CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=CYCLING&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
                 Catalogs = new List<Catalog>()
-                    {
+                    {                        
                         new Catalog()
                         {
                             Title = "IndoorWorx",
@@ -100,46 +102,19 @@ namespace IndoorWorx.SchemaTools
                                     ImageUri = new Uri("http://localhost:3415/Mock/randwaterboard.jpg",UriKind.Absolute),                                    
                                     StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                     Title = "Rand Waterboard - 2s and 5s",
-                                    TrainingSets = new List<TrainingSet>()
+                                    Description = "The entire ride entails a quick warm up, followed by 2 by 2 minutes at 120 % FTP with 2 minutes RI; followed by 5 minutes at 110% FTP with 5 minutes RI. We repeat this 5 times before a quick cool down. This is a great set ... dig deep.",
+                                    TelemetryInfo = new TelemetryInfo()
                                     {
-                                        new TrainingSet()
-                                        {
-                                            Sequence = 1,
-                                            Title = "Entire Ride",
-                                            Description = "The entire ride entails a quick warm up, followed by 2 by 2 minutes at 120 % FTP with 2 minutes RI; followed by 5 minutes at 110% FTP with 5 minutes RI. We repeat this 5 times before a quick cool down. This is a great set ... dig deep.",
-                                            StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
-                                            TrainingMetrics = new TrainingMetrics()
-                                            {
-                                                AveragePower = 0.76,
-                                                NormalizedPower = 0.83,
-                                                IntensityFactor = 0.77,
-                                                VariabilityIndex = 1.03,
-
-                                            },
-                                            Duration = new TimeSpan(1, 18, 0),
-                                            VideoText = GetVideoText()
-                                        },
-                                        new TrainingSet()
-                                        {
-                                            Sequence = 2,
-                                            Title = "5 x 5",
-                                            Description = "The ride entails a quick warm up, followed by 5 by 5 minutes at 110% FTP with 5 minutes RI; this is followed by a quick cool down.",
-                                            StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
-                                            Duration = new TimeSpan(1, 18, 0)
-                                        },
-                                        new TrainingSet()
-                                        {
-                                            Sequence = 3,
-                                            Title = "10 x 2",
-                                            Description = "The ride entails a quick warm up, followed by 10 by 2 minutes at 120% FTP with 2 minutes RI; this is followed by a quick cool down.",
-                                            StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
-                                            Duration = new TimeSpan(1, 18, 0),
-                                            VideoText = GetVideoText()
-                                        }
-                                    }
+                                        RecordingInterval = 2,
+                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                    },
+                                    Duration = new TimeSpan(1, 18, 0),
+                                    VideoMetadata = new VideoMetadata()
+                                    {
+                                        WhenFilmed = DateTime.Now.AddYears(-1),
+                                        FilmedWith = "Contour HD 1080p",
+                                        FilmedBy = "Ross McEwan"
+                                    }                                    
                                 },
 #endregion
 
@@ -152,19 +127,19 @@ namespace IndoorWorx.SchemaTools
                                     ImageUri = new Uri("http://localhost:3415/Mock/suikerbosrand.jpg",UriKind.Absolute),                                    
                                     StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                     Title = "Suikerbosrand Nature Reserve",
-                                    TrainingSets = new List<TrainingSet>()
+                                    Description = "This is a ride through the Suikerbosrand Nature Reserve. About two and a half hours with some good climbing. Go hard up the climbs, there's recovery on the other side. Keep your eyes peeled for eland and baboon!",
+                                    TelemetryInfo = new TelemetryInfo()
                                     {
-                                        new TrainingSet()
-                                        {
-                                            Sequence = 1,
-                                            Title = "Entire Ride",
-                                            Description = "This is a ride through the Suikerbosrand Nature Reserve. About two and a half hours with some good climbing. Go hard up the climbs, there's recovery on the other side. Keep your eyes peeled for eland and baboon!",
-                                            StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
-                                            Duration = new TimeSpan(1, 18, 0),
-                                            VideoText = GetVideoText()
-                                        }
-                                    }
+                                        RecordingInterval = 2,
+                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                    },
+                                    Duration = new TimeSpan(1, 18, 0),
+                                    VideoMetadata = new VideoMetadata()
+                                    {
+                                        WhenFilmed = DateTime.Now.AddYears(-1),
+                                        FilmedWith = "Contour HD 1080p",
+                                        FilmedBy = "Ross McEwan"
+                                    }                                    
                                 },
 #endregion
 
@@ -177,18 +152,19 @@ namespace IndoorWorx.SchemaTools
                                     ImageUri = new Uri("http://localhost:3415/Mock/suncity.jpg", UriKind.Absolute),
                                     StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/sun_city/FILE001.ism/Manifest", UriKind.Absolute),
                                     Title = "11 Global - Sun City",
-                                    TrainingSets = new List<TrainingSet>()
+                                    Description = "Ride the 11 Global Sun City triathlon bike leg. A near threshold effort for just over an hour. 2 significant climbs. Hang tough!",
+                                    TelemetryInfo = new TelemetryInfo()
                                     {
-                                        new TrainingSet()
-                                        {
-                                            Sequence = 1,
-                                            Title = "The Race",
-                                            Description = "Ride the 11 Global Sun City triathlon bike leg. A near threshold effort for just over an hour. 2 significant climbs. Hang tough!",
-                                            StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/sun_city/FILE0001.ism/Manifest", UriKind.Absolute),
-                                            TelemetryUri = new Uri("http://localhost:3415/Mock/suncity.csv", UriKind.Absolute),
-                                            Duration = TimeSpan.FromMinutes(72.23332611)
-                                        }
-                                    }
+                                        RecordingInterval = 2,
+                                        TelemetryUri = new Uri("http://localhost:3415/Mock/suncity.csv", UriKind.Absolute)
+                                    },
+                                    Duration = new TimeSpan(1, 18, 0),
+                                    VideoMetadata = new VideoMetadata()
+                                    {
+                                        WhenFilmed = DateTime.Now.AddYears(-1),
+                                        FilmedWith = "Contour HD 1080p",
+                                        FilmedBy = "Ross McEwan"
+                                    }                                    
                                 }
 #endregion
                             }
@@ -209,37 +185,19 @@ namespace IndoorWorx.SchemaTools
                                     ImageUri = new Uri("http://localhost:3415/Mock/cyclechallenge.jpg",UriKind.Absolute),                                    
                                     StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                     Title = "Pick n Pay 94.7",
-                                    TrainingSets = new List<TrainingSet>()
+                                    Description = "Ride with the men's elite champions of the MTN Energade cycling team racing the world's biggest race! Suffer up the climbs, hang with them on the descent, set yourself up for the win!",
+                                    TelemetryInfo = new TelemetryInfo()
                                     {
-                                        new TrainingSet()
-                                        {
-                                            Sequence = 1,
-                                            Title = "The Race",
-                                            Description = "Ride with the men's elite champions of the MTN Energade cycling team doing Jo'burg's toughest race! Suffer with them on the break, close down the attacks, get yourself in a position to win the sprint! Suffer like the pros!",
-                                            StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                            Reviews = new List<VideoReview>()
-                                            {
-                                                new VideoReview()
-                                                {
-                                                    Created = DateTime.Now,
-                                                    CreatedBy = "ross.mcewan",
-                                                    Rating = 4,
-                                                    Title = "What a great ride!",
-                                                    Comment = "I loved this ride! It really felt like I was in the middle of the action!"
-                                                },
-                                                new VideoReview()
-                                                {
-                                                    Created = DateTime.Now,
-                                                    CreatedBy = "dianne.emery",
-                                                    Rating = 5,
-                                                    Title = "Awesome!",
-                                                    Comment = "Ride was great! Felt like I was one of the pros going for the win! Loved it!"
-                                                }
-                                            },
-                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
-                                            Duration = new TimeSpan(1, 18, 0)
-                                        }
-                                    }
+                                        RecordingInterval = 2,
+                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                    },
+                                    Duration = new TimeSpan(1, 18, 0),
+                                    VideoMetadata = new VideoMetadata()
+                                    {
+                                        WhenFilmed = DateTime.Now.AddYears(-1),
+                                        FilmedWith = "Contour HD 1080p",
+                                        FilmedBy = "Ross McEwan"
+                                    }                                    
                                 },
                                 new Video()
                                 {
@@ -249,17 +207,18 @@ namespace IndoorWorx.SchemaTools
                                     ImageUri = new Uri("http://localhost:3415/Mock/cape-argus.jpg",UriKind.Absolute),                                    
                                     StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
                                     Title = "Pick n Pay Cape Argus",
-                                    TrainingSets = new List<TrainingSet>()
+                                    Description = "Ride with the men's elite champions of the MTN Energade cycling team racing the world's biggest race! Suffer up the climbs, hang with them on the descent, set yourself up for the win!",
+                                    TelemetryInfo = new TelemetryInfo()
                                     {
-                                        new TrainingSet()
-                                        {
-                                            Sequence = 1,
-                                            Title = "The Race",
-                                            Description = "Ride with the men's elite champions of the MTN Energade cycling team racing the world's biggest race! Suffer up the climbs, hang with them on the descent, set yourself up for the win!",
-                                            StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                            TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute),
-                                            Duration = new TimeSpan(1, 18, 0)
-                                        }
+                                        RecordingInterval = 2,
+                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                    },
+                                    Duration = new TimeSpan(1, 18, 0),
+                                    VideoMetadata = new VideoMetadata()
+                                    {
+                                        WhenFilmed = DateTime.Now.AddYears(-1),
+                                        FilmedWith = "Contour HD 1080p",
+                                        FilmedBy = "Ross McEwan"
                                     }
                                 }
                             }
@@ -303,6 +262,7 @@ namespace IndoorWorx.SchemaTools
                 
                 using (var transaction = session.BeginTransaction())
                 {
+                    session.Save(new Category() { Title = "ALL", Sequence = 0, CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=ALL&orderBy=CATEGORY", UriKind.RelativeOrAbsolute) });
                     session.Save(GetCategory());
                     transaction.Commit();
                 }

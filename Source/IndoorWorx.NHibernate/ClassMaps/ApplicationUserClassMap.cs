@@ -15,11 +15,11 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.Firstname).Not.Nullable();
             Map(x => x.Lastname).Not.Nullable();
             Map(x => x.Gender).Not.Nullable();
-            Map(x => x.About).Nullable();
+            Map(x => x.About);
             Map(x => x.Email).Not.Nullable();
             References(x => x.Occupation).Cascade.SaveUpdate();
             References(x => x.ReferralSource).Cascade.SaveUpdate();
-            Map(x => x.Country).Not.Nullable();
+            Map(x => x.Country);
             References(x => x.SportingHabits).Cascade.SaveUpdate();
             HasMany(x => x.Activities).KeyColumn("Activity").Cascade.SaveUpdate().Fetch.Subselect();
             HasMany(x => x.SocialProfile).KeyColumn("SocialProfile").Cascade.SaveUpdate().Fetch.Subselect();

@@ -29,11 +29,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <navigation:Frame Source="/IndoorWorx.Catalog.Silverlight;component/Views/VideosPage.xaml" x:Name="CatalogContentFrame" Style="{StaticResource FrameStyle}" Grid.Row="1" Navigated="CatalogContentFrame_Navigated"/>            
+        <navigation:Frame Source="/IndoorWorx.Catalog.Silverlight;component/Pages/VideosPage.xaml" x:Name="CatalogContentFrame" Style="{StaticResource FrameStyle}" Grid.Row="1" Navigated="CatalogContentFrame_Navigated"/>            
         <Border x:Name="LinksBorder" Style="{StaticResource SubMenuLinksBorderStyle}" Grid.Row="0">
             <StackPanel x:Name="LinksStackPanel" Style="{StaticResource SubMenuLinksStackPanelStyle}">
-                <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.Catalog.Silverlight;component/Views/VideosPage.xaml" TargetName="CatalogContentFrame" Content="{Binding CatalogResources.VideosTitle, Source={StaticResource CatalogResources}}"/>
-                <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.Catalog.Silverlight;component/Views/TrainingProgramsPage.xaml" TargetName="CatalogContentFrame" Content="{Binding CatalogResources.TrainingProgramsTitle, Source={StaticResource CatalogResources}}"/>
+                <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.Catalog.Silverlight;component/Pages/VideosPage.xaml" TargetName="CatalogContentFrame" Content="{Binding CatalogResources.VideosTitle, Source={StaticResource CatalogResources}}"/>
+                <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.Catalog.Silverlight;component/Pages/TemplatesPage.xaml" TargetName="CatalogContentFrame" Content="{Binding CatalogResources.TemplatesTitle, Source={StaticResource CatalogResources}}"/>
+                <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.Catalog.Silverlight;component/Pages/TrainingProgramsPage.xaml" TargetName="CatalogContentFrame" Content="{Binding CatalogResources.TrainingProgramsTitle, Source={StaticResource CatalogResources}}"/>
             </StackPanel>
         </Border>
         <!--<sdk:TabControl Grid.Row="1">

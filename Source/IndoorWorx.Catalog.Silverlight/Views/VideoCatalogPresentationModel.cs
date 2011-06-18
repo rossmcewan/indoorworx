@@ -43,6 +43,7 @@ namespace IndoorWorx.Catalog.Views
                 categories = value;
                 FirePropertyChanged("Categories");
                 FirePropertyChanged("FilteredCategories");
+                FirePropertyChanged("FilteredCatalogs");
             }
         }
 
@@ -67,6 +68,32 @@ namespace IndoorWorx.Catalog.Views
             {
                 this.selectedCategory = value;
                 FirePropertyChanged("SelectedCategory");
+            }
+        }
+
+        public ICollection<IndoorWorx.Infrastructure.Models.Catalog> FilteredCatalogs
+        {
+            get
+            {
+                var catalogs = new List<IndoorWorx.Infrastructure.Models.Catalog>();
+                foreach (var cat in FilteredCategories)
+                {
+                    catalogs.AddRange(cat.Catalogs);
+                }
+                return catalogs;
+            }
+        }
+
+        public ICollection<Video> AllFilteredVideos
+        {
+            get
+            {
+                var result = new List<Video>();
+                foreach (var cat in FilteredCategories)
+                {
+                    result.AddRange(cat.Videos);
+                }
+                return result;
             }
         }
 
@@ -100,10 +127,32 @@ namespace IndoorWorx.Catalog.Views
         }
 
         private string filter;
-        public void FilterVideosBy(string filter)
+        public IVideoCatalogPresentationModel FilterVideosBy(string filter)
         {
             this.filter = filter;
             FirePropertyChanged("FilteredCategories");
+            FirePropertyChanged("FilteredCatalogs");
+            return this;
         }
+
+        private string orderBy;
+        public IVideoCatalogPresentationModel OrderVideosBy(string orderBy)
+        {
+            this.orderBy = orderBy;
+            FirePropertyChanged("OrderBy");
+            FirePropertyChanged("FilteredCategories");
+            FirePropertyChanged("FilteredCatalogs");
+            return this;
+        }
+
+        public string OrderBy
+        {
+            get { return this.orderBy; }
+        }
+
+        public string NumberOfVideosLabel
+        {
+            get { return string.Format(Resources.CatalogResources.NumberOfVideosLabel, AllFilteredVideos.Count); }
+        }        
     }
 }

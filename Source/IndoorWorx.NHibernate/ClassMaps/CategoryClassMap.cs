@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using IndoorWorx.Infrastructure.Models;
 using FluentNHibernate.Mapping;
+using IndoorWorx.NHibernate.UserTypes;
 
 namespace IndoorWorx.NHibernate.ClassMaps
 {
@@ -15,6 +16,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.Description);
             Map(x => x.Title).Not.Nullable();
             Map(x => x.Sequence);
+            Map(x => x.CatalogUri).CustomType<UriType>();
             HasMany(x => x.Catalogs).KeyColumn("Category").Cascade.SaveUpdate().Fetch.Subselect();
         }
     }

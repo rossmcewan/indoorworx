@@ -58,7 +58,7 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private Occupation occupation = new Occupation();
+        private Occupation occupation;
         [DataMember]
         public virtual Occupation Occupation
         {
@@ -70,7 +70,7 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private SportingHabits sportingHabits = new SportingHabits();
+        private SportingHabits sportingHabits;
         [DataMember]
         public virtual SportingHabits SportingHabits
         {
@@ -82,7 +82,7 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private ReferralSource referralSource = new ReferralSource();
+        private ReferralSource referralSource;
         [DataMember]
         public virtual ReferralSource ReferralSource
         {

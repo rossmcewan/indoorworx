@@ -11,8 +11,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 using IndoorWorx.Infrastructure;
+using IndoorWorx.Catalog.Views;
 
-namespace IndoorWorx.Catalog.Views
+namespace IndoorWorx.Catalog.Pages
 {
     public partial class CatalogPage : Page
     {

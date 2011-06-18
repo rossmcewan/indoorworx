@@ -15,7 +15,7 @@ namespace IndoorWorx.Catalog.Converters
 {
     public class VideoNavigationUriConverter : IValueConverter
     {
-        private string VideoDetailsUriTemplate = "/IndoorWorx.Catalog.Silverlight;component/Views/VideoDetailsPage.xaml?id={0}";
+        private string VideoDetailsUriTemplate = "/IndoorWorx.Catalog.Silverlight;component/Pages/VideoDetailsPage.xaml?id={0}";
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

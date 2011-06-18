@@ -26,11 +26,11 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <HyperlinkButton Content="{Binding Title}" Style="{StaticResource LinkStyle}" TargetName="VideosContentFrame" NavigateUri="{Binding Title, Converter={StaticResource CategoryTitleNavigationUriConverter}}" />
+                        <HyperlinkButton Content="{Binding Title}" Style="{StaticResource LinkStyle}" TargetName="VideosContentFrame" NavigateUri="{Binding CatalogUri}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <navigation:Frame Source="{Binding SelectedCategory.Title, Converter={StaticResource CategoryTitleNavigationUriConverter}, Mode=OneWay}" x:Name="VideosContentFrame" Style="{StaticResource FrameStyle}" Grid.Row="1" Navigated="VideosContentFrame_Navigated"/>
+            <navigation:Frame Source="{Binding SelectedCategory.CatalogUri, Mode=OneWay}" x:Name="VideosContentFrame" Style="{StaticResource FrameStyle}" Grid.Row="1" Navigated="VideosContentFrame_Navigated"/>
             <!--<Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

@@ -70,14 +70,91 @@ namespace IndoorWorx.Infrastructure.Models
                 OnSelectedTrainingSetChanging();
                 bool changed = value != selectedTrainingSet;
                 selectedTrainingSet = value;
-                if(selectedTrainingSet != null)
+                if (selectedTrainingSet != null)
                     selectedTrainingSet.LoadTelemetry();
-                if(changed)
+                if (changed)
                     OnSelectedTrainingSetChanged();
                 FirePropertyChanged("SelectedTrainingSet");
             }
         }
-        
+
+        public event EventHandler TelemetryLoaded;
+
+        private bool telemetryLoading;
+        public virtual bool IsTelemetryLoading
+        {
+            get { return telemetryLoading; }
+            set
+            {
+                telemetryLoading = value;
+                FirePropertyChanged("IsTelemetryLoading");
+            }
+        }
+
+        private bool telemetryLoaded;
+        public virtual bool IsTelemetryLoaded
+        {
+            get { return telemetryLoaded; }
+            set
+            {
+                this.telemetryLoaded = value;
+                FirePropertyChanged("IsTelemetryLoaded");
+            }
+        }
+
+        public void LoadTelemetry()
+        {
+            if (TelemetryInfo.TelemetryUri == null)
+                return;
+            if (!IsTelemetryLoaded && !IsTelemetryLoading)
+            {
+                var _telemetry = new List<Telemetry>();
+                IsTelemetryLoading = true;
+                var dataRetriever = new System.Net.WebClient();
+                dataRetriever.DownloadStringCompleted += (sender, e) =>
+                {
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(obj =>
+                    {
+                        using (var reader = new StringReader(e.Result))
+                        {
+                            string line;
+                            while ((line = reader.ReadLine()) != null)
+                            {
+                                try
+                                {
+                                    _telemetry.Add(Models.Telemetry.Parse(line));
+                                }
+                                catch
+                                {
+                                    continue;
+                                }
+                            }
+                        }
+                        IsTelemetryLoading = false;
+                        Telemetry = _telemetry;
+                        IsTelemetryLoaded = true;
+                        if (TelemetryLoaded != null)
+                            TelemetryLoaded(this, EventArgs.Empty);
+                    }));
+                };
+                dataRetriever.DownloadStringAsync(TelemetryInfo.TelemetryUri);
+            }
+        }
+
+        private ICollection<Telemetry> telemetry = new ObservableCollection<Telemetry>();
+        public virtual ICollection<Telemetry> Telemetry
+        {
+            get
+            {
+                return telemetry;
+            }
+            set
+            {
+                this.telemetry = value;
+                FirePropertyChanged("Telemetry");
+            }
+        }
+
         [OnDeserialized]
         public void OnDeserialized(StreamingContext context)
         {
@@ -87,6 +164,7 @@ namespace IndoorWorx.Infrastructure.Models
         private void Initialize()
         {
             this.IsMediaLoading = true;
+            this.telemetry = new ObservableCollection<Telemetry>();
         }
 
         protected virtual void OnSelectedTrainingSetChanging()

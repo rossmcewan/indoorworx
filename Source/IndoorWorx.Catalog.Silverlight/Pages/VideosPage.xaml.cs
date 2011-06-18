@@ -11,30 +11,28 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 using IndoorWorx.Infrastructure;
+using IndoorWorx.Catalog.Views;
 
-namespace IndoorWorx.Catalog.Views
+namespace IndoorWorx.Catalog.Pages
 {
-    public partial class VideoCatalogPage : Page
+    public partial class VideosPage : Page
     {
-        private bool reloadRequired = true;
-        public VideoCatalogPage()
+        bool reloadRequired = true;
+        public VideosPage()
         {
             InitializeComponent();
-            var contentElement = IoC.Resolve<IVideoCatalogView>() as UserControl;
+            var contentElement = IoC.Resolve<IVideosView>() as UserControl;
             if (contentElement.Parent != null)
             {
-                (contentElement.Parent as VideoCatalogPage).Content = null;
+                (contentElement.Parent as VideosPage).Content = null;
                 reloadRequired = false;
             }
             this.Content = contentElement;
         }
 
-        private IVideoCatalogView View
+        private IVideosView View
         {
-            get
-            {
-                return this.Content as IVideoCatalogView;
-            }
+            get { return this.Content as IVideosView; }
         }
 
         // Executes when the user navigates to this page.
@@ -42,11 +40,6 @@ namespace IndoorWorx.Catalog.Views
         {
             if (reloadRequired)
                 View.Model.Refresh();
-            string filter;
-            if (this.NavigationContext.QueryString.TryGetValue("filter", out filter))
-            {
-                View.Model.FilterVideosBy(filter);
-            }
         }
     }
 }

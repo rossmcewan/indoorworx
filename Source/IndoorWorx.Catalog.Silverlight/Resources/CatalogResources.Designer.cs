@@ -70,6 +70,33 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BY CATALOG.
+        /// </summary>
+        public static string ByCatalog {
+            get {
+                return ResourceManager.GetString("ByCatalog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BY CATEGORY.
+        /// </summary>
+        public static string ByCategory {
+            get {
+                return ResourceManager.GetString("ByCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BY GENRE.
+        /// </summary>
+        public static string ByGenre {
+            get {
+                return ResourceManager.GetString("ByGenre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CATALOG.
         /// </summary>
         public static string CatalogPaneTitle {
@@ -138,6 +165,15 @@ namespace IndoorWorx.Catalog.Resources {
         public static string NormalizedPowerLabel {
             get {
                 return ResourceManager.GetString("NormalizedPowerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} VIDEOS.
+        /// </summary>
+        public static string NumberOfVideosLabel {
+            get {
+                return ResourceManager.GetString("NumberOfVideosLabel", resourceCulture);
             }
         }
         
@@ -246,6 +282,15 @@ namespace IndoorWorx.Catalog.Resources {
         public static string ReviewsTitle {
             get {
                 return ResourceManager.GetString("ReviewsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEMPLATES.
+        /// </summary>
+        public static string TemplatesTitle {
+            get {
+                return ResourceManager.GetString("TemplatesTitle", resourceCulture);
             }
         }
         

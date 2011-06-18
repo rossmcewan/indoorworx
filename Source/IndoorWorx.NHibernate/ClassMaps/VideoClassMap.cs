@@ -23,8 +23,11 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.ImageUri).CustomType<UriType>();
             Map(x => x.StreamUri).CustomType<UriType>().Not.Nullable();
             Map(x => x.Duration);
-            HasMany(x => x.Reviews).KeyColumn("Video").Cascade.SaveUpdate().Fetch.Subselect();
-            HasMany(x => x.TrainingSets).KeyColumn("Parent").Cascade.SaveUpdate().Fetch.Subselect();
+            References(x => x.VideoMetadata).Cascade.SaveUpdate().Not.LazyLoad();
+            References(x => x.TelemetryInfo).Cascade.SaveUpdate().Not.LazyLoad();
+            HasMany(x => x.TrainingMetrics).KeyColumn("Video").Cascade.SaveUpdate().Fetch.Subselect();
+            HasMany(x => x.Intervals).KeyColumn("Video").Cascade.SaveUpdate().Fetch.Subselect();
+            HasMany(x => x.Reviews).KeyColumn("Video").Cascade.SaveUpdate().Fetch.Subselect().LazyLoad();
         }
     }
 }

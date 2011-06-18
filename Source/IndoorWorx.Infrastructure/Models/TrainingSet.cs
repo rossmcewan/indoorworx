@@ -35,9 +35,9 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private TrainingMetrics trainingMetrics;
+        private TrainingMetricType trainingMetrics;
         [DataMember]
-        public virtual TrainingMetrics TrainingMetrics
+        public virtual TrainingMetricType TrainingMetrics
         {
             get { return trainingMetrics; }
             set
