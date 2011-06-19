@@ -493,6 +493,7 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        ImageUri NVARCHAR(255) null,
        StreamUri NVARCHAR(255) not null,
        Duration BIGINT null,
+       Credits INT null,
        VideoMetadata_id UNIQUEIDENTIFIER null,
        TelemetryInfo_id UNIQUEIDENTIFIER null,
        Catalog UNIQUEIDENTIFIER null,

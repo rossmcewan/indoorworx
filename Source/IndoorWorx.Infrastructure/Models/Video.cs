@@ -142,6 +142,18 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private int credits;
+        [DataMember]
+        public virtual int Credits
+        {
+            get { return credits; }
+            set
+            {
+                credits = value;
+                FirePropertyChanged("Credits");
+            }
+        }
+
         public virtual int AverageRating
         {
             get

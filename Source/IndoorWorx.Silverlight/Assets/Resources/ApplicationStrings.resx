@@ -130,7 +130,7 @@
     <value>BACK TO LOGIN</value>
   </data>
   <data name="BusyIndicatorLoadingUser" xml:space="preserve">
-    <value>Initializing Application....</value>
+    <value>initializing application...</value>
     <comment>Displayed while LoadUser() is taking progress during application initialization</comment>
   </data>
   <data name="BusyIndicatorLoggingIn" xml:space="preserve">
@@ -138,11 +138,11 @@
     <comment>Displayed while a LoginOperation is taking progress</comment>
   </data>
   <data name="BusyIndicatorRegisteringUser" xml:space="preserve">
-    <value>Submitting Registration...</value>
+    <value>submitting registration...</value>
     <comment>Displayed while registration is being processed by the server</comment>
   </data>
   <data name="CancelButton" xml:space="preserve">
-    <value>Cancel</value>
+    <value>cancel</value>
   </data>
   <data name="HomePageContent" xml:space="preserve">
     <value>We all know how boring indoor training can be, yet it is a necessary part of most people training regimes.  Be it because of the weather, the traffic or just the necessity to get a quality session done in a controlled environment. 
@@ -169,7 +169,7 @@ Did you say indoor training is boring!? Think again.</value>
     <value>LOGOUT</value>
   </data>
   <data name="NotRegisteredYetLabel" xml:space="preserve">
-    <value>Not registered yet?</value>
+    <value>not registered yet?</value>
   </data>
   <data name="OKButton" xml:space="preserve">
     <value>OK</value>
@@ -178,19 +178,19 @@ Did you say indoor training is boring!? Think again.</value>
     <value>REGISTER NOW</value>
   </data>
   <data name="RegistrationFormHeader" xml:space="preserve">
-    <value>Please complete all required fields to create your account</value>
+    <value>please complete all required fields to create your account</value>
   </data>
   <data name="RegistrationWindowTitle" xml:space="preserve">
     <value>register</value>
   </data>
   <data name="RememberMeLabel" xml:space="preserve">
-    <value>Keep me signed in</value>
+    <value>keep me signed in</value>
   </data>
   <data name="SignUpNow" xml:space="preserve">
     <value>SIGN UP NOW</value>
   </data>
   <data name="WelcomeMessage" xml:space="preserve">
-    <value>welcome {0}</value>
+    <value>WELCOME {0}</value>
     <comment>{0} = User.DisplayName property</comment>
   </data>
   <data name="Search" xml:space="preserve">

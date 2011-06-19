@@ -50,12 +50,13 @@
             </StackPanel>
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Grid.Row="1" >
                 <Grid>
-                    <telerik:ItemsControl ItemsSource="{Binding FilteredCategories, Mode=OneWay}" Visibility="{Binding OrderBy, Mode=OneWay, Converter={StaticResource OrderByVisibilityConverter}, ConverterParameter=CATEGORY}">
+                    <telerik:ItemsControl telerik:RadDragAndDropManager.AllowDrag="True" telerik:RadDragAndDropManager.AllowDrop="True" ItemsSource="{Binding FilteredCategories, Mode=OneWay}" Visibility="{Binding OrderBy, Mode=OneWay, Converter={StaticResource OrderByVisibilityConverter}, ConverterParameter=CATEGORY}">
                         <telerik:ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel/>
                             </ItemsPanelTemplate>
-                        </telerik:ItemsControl.ItemsPanel>
+                        </telerik:ItemsControl.ItemsPanel>  
+                        
                         <telerik:ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid Visibility="{Binding HasVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -64,23 +65,32 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
-                                    <ItemsControl ItemsSource="{Binding Videos, Mode=OneWay}" Grid.Row="1">
-                                        <ItemsControl.ItemsPanel>
+                                    <telerik:ItemsControl ItemsSource="{Binding Videos, Mode=OneWay}" Grid.Row="1" telerik:RadDragAndDropManager.AllowDrag="True" telerik:RadDragAndDropManager.AllowDrop="True">
+                                        <telerik:ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
-                                                <toolkit:WrapPanel Orientation="Horizontal"/>
+                                                <telerik:RadWrapPanel Orientation="Horizontal" IsAnimated="True" />
                                             </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
+                                        </telerik:ItemsControl.ItemsPanel>
+                                        <telerik:ItemsControl.ItemContainerStyle>
+                                            <Style TargetType="ContentPresenter">
+                                                <Setter Property="telerik:RadDragAndDropManager.AllowDrag" Value="True" />
+                                                <Setter Property="telerik:RadDragAndDropManager.AllowDrop" Value="True" />
+                                                <Setter Property="telerik:RadDragAndDropManager.AutoDrag" Value="True" />
+                                            </Style>
+                                        </telerik:ItemsControl.ItemContainerStyle>
+                                        <telerik:ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <HyperlinkButton Width="138" Height="138" Margin="2" TargetName="VideoDetailsFrame" NavigateUri="{Binding Converter={StaticResource VideoNavigationUriConverter}}">
-                                                    <StackPanel>
-                                                        <Image Source="{Binding ImageUri}" Width="128" Margin="5"/>
-                                                        <TextBlock Text="{Binding Title}" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
-                                                    </StackPanel>
-                                                </HyperlinkButton>
+                                                <Border BorderThickness="0">                                                    
+                                                    <HyperlinkButton Width="138" Height="138" Margin="2" TargetName="VideoDetailsFrame" NavigateUri="{Binding Converter={StaticResource VideoNavigationUriConverter}}">
+                                                        <StackPanel>
+                                                            <Image Source="{Binding ImageUri}" Width="128" Margin="5"/>
+                                                            <TextBlock Text="{Binding Title}" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
+                                                        </StackPanel>
+                                                    </HyperlinkButton>
+                                                </Border>
                                             </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
+                                        </telerik:ItemsControl.ItemTemplate>
+                                    </telerik:ItemsControl>
                                 </Grid>
                             </DataTemplate>
                         </telerik:ItemsControl.ItemTemplate>

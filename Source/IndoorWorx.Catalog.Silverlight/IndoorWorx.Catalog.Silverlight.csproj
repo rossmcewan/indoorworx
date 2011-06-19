@@ -124,6 +124,7 @@
     <Compile Include="Converters\CategoryTitleNavigationUriConverter.cs" />
     <Compile Include="Converters\OrderByVisibilityConverter.cs" />
     <Compile Include="Converters\VideoNavigationUriConverter.cs" />
+    <Compile Include="DragDrop\VideoCatalogDragDropTarget.cs" />
     <Compile Include="Events\TrainingSetSelectionChangedEvent.cs" />
     <Compile Include="Events\VideoSelectionChangedEvent.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />

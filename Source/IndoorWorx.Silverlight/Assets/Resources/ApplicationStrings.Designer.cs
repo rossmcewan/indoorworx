@@ -97,7 +97,7 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Initializing Application.....
+        ///   Looks up a localized string similar to initializing application....
         /// </summary>
         public static string BusyIndicatorLoadingUser {
             get {
@@ -115,7 +115,7 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Submitting Registration....
+        ///   Looks up a localized string similar to submitting registration....
         /// </summary>
         public static string BusyIndicatorRegisteringUser {
             get {
@@ -124,7 +124,7 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to cancel.
         /// </summary>
         public static string CancelButton {
             get {
@@ -181,7 +181,7 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not registered yet?.
+        ///   Looks up a localized string similar to not registered yet?.
         /// </summary>
         public static string NotRegisteredYetLabel {
             get {
@@ -208,7 +208,7 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please complete all required fields to create your account.
+        ///   Looks up a localized string similar to please complete all required fields to create your account.
         /// </summary>
         public static string RegistrationFormHeader {
             get {
@@ -226,7 +226,7 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keep me signed in.
+        ///   Looks up a localized string similar to keep me signed in.
         /// </summary>
         public static string RememberMeLabel {
             get {
@@ -253,7 +253,7 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to welcome {0}.
+        ///   Looks up a localized string similar to WELCOME {0}.
         /// </summary>
         public static string WelcomeMessage {
             get {
