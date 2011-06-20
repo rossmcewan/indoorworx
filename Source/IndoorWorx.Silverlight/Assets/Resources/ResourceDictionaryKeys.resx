@@ -120,6 +120,9 @@
   <data name="DividerStyle" xml:space="preserve">
     <value>DividerStyle</value>
   </data>
+  <data name="DropTargetStyle" xml:space="preserve">
+    <value>DropTargetStyle</value>
+  </data>
   <data name="LinkStyle" xml:space="preserve">
     <value>LinkStyle</value>
   </data>

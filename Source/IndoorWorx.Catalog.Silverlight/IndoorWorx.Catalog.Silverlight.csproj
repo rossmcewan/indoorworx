@@ -84,6 +84,8 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Windows.Controls.Data.Input, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Controls.Input, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Microsoft SDKs\Silverlight\v3.0\Toolkit\Nov09\Bin\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
@@ -124,7 +126,6 @@
     <Compile Include="Converters\CategoryTitleNavigationUriConverter.cs" />
     <Compile Include="Converters\OrderByVisibilityConverter.cs" />
     <Compile Include="Converters\VideoNavigationUriConverter.cs" />
-    <Compile Include="DragDrop\VideoCatalogDragDropTarget.cs" />
     <Compile Include="Events\TrainingSetSelectionChangedEvent.cs" />
     <Compile Include="Events\VideoSelectionChangedEvent.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
@@ -202,7 +203,9 @@
       <LastGenOutput>CatalogResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\list.png" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="App.xaml">
       <SubType>Designer</SubType>
@@ -256,6 +259,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\library.png" />
+    <Resource Include="Images\templates.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

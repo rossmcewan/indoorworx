@@ -30,7 +30,7 @@ namespace IndoorWorx.Dashboard
         {
             get { return serviceLocator.GetInstance<INavigationLinks>(); }
         }
-
+       
         #region IModule Members
 
         public void Initialize()
@@ -49,7 +49,7 @@ namespace IndoorWorx.Dashboard
                 NavigationUri = "/Dashboard",
                 Allow = new string[] { "?" },
                 Deny = new string[] { "" }
-            });
+            });            
         }
 
         #endregion

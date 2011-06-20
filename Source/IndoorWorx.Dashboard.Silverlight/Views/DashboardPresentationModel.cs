@@ -26,48 +26,10 @@ namespace IndoorWorx.Dashboard.Views
 
         #region IDashboardPresentationModel Members
 
-        public IDashboardView View { get; set; }
-
-        private ICollection<Widget> availableWidgets = new ObservableCollection<Widget>();
-        public ICollection<Widget> AvailableWidgets
-        {
-            get { return availableWidgets; }
-            set
-            {
-                availableWidgets = value;
-                FirePropertyChanged("AvailableWidgets");
-            }
-        }
-
-        private ICollection<Widget> addedWidgets = new ObservableCollection<Widget>();
-        public ICollection<Widget> AddedWidgets
-        {
-            get { return addedWidgets; }
-            set
-            {
-                addedWidgets = value;
-                FirePropertyChanged("AddedWidgets");
-            }
-        }
-
-        public void AddWidget(Widget widget)
-        {
-            AddedWidgets.Add(widget);
-            //if (!AddedWidgets.Any(x => x.Id == widget.Id))
-            //{
-            //    AddedWidgets.Add(widget);
-            //}
-        }
+        public IDashboardView View { get; set; }        
 
         public void Refresh()
-        {
-            //var currentUser = ApplicationUser.CurrentUser;
-            //if (currentUser != null)
-            //{
-            //    availableWidgets.Clear();
-            //    foreach (var widget in currentUser.AvailableWidgets)
-            //        availableWidgets.Add(widget);
-            //}
+        {            
         }
 
         #endregion

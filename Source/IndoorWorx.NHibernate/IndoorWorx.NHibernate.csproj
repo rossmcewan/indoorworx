@@ -104,7 +104,6 @@
     <Compile Include="ClassMaps\VideoReviewClassMap.cs" />
     <Compile Include="ClassMaps\VideoTextClassMap.cs" />
     <Compile Include="ClassMaps\TrainingVolumeClassMap.cs" />
-    <Compile Include="ClassMaps\WidgetClassMap.cs" />
     <Compile Include="Constants\SessionFactoryNames.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

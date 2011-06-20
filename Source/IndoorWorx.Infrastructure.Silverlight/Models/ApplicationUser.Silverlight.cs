@@ -12,12 +12,12 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using IndoorWorx.Infrastructure.Helpers;
 using IndoorWorx.Infrastructure.Enums;
+using System.Collections.ObjectModel;
 
 namespace IndoorWorx.Infrastructure.Models
 {
     public partial class ApplicationUser
     {
-
         private ICollection<Occupation> occupations = new List<Occupation>();
         [DataMember]
         public ICollection<Occupation> Occupations
@@ -75,5 +75,11 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        [OnDeserialized]
+        public void OnDeserialized(StreamingContext streamingContext)
+        {
+            if (this.Videos == null)
+                this.Videos = new ObservableCollection<Video>();
+        }
     }
 }

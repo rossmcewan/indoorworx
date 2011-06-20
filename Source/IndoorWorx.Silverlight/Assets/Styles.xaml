@@ -646,6 +646,40 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <!-- UTILITIES STYLES -->
+    <Style x:Key="DropTargetsContainerStyle" TargetType="Border">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Margin" Value="15,0,0,15"/>
+    </Style>
+
+    <Style x:Key="DropTargetsStackPanelStyle" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <Style x:Key="DropTargetsToolTipTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource NavigationForegroundBrush}"/>
+        <Setter Property="FontFamily" Value="{StaticResource HeaderFontFamily}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Height" Value="15"/>
+        <Setter Property="TextOptions.TextHintingMode" Value="Animated" />
+    </Style>
+    
+    <Style x:Key="DropTargetStyle" TargetType="ListBox">
+        <Setter Property="Opacity" Value="0.5"/>
+        <Setter Property="telerik:RadDragAndDropManager.AllowDrop" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Image Source="{Binding Image}" Width="32" Margin="10,2"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <!-- **********LOGIN STYLES********* -->
     <!-- ******************************* -->
@@ -678,12 +712,12 @@
 
     <!-- Welcome Text Style -->
     <Style x:Key="WelcomeTextStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontSize" Value="13"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Margin" Value="0,2,0,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,0,0"/>
     </Style>
 
     <!-- LoginRegister Link Style -->

@@ -18,11 +18,13 @@ using IndoorWorx.Infrastructure.Models;
     using System.Windows.Shapes;
     using System.Windows.Media.Animation;
     using IndoorWorx.Infrastructure.Animations;
+    using IndoorWorx.Infrastructure.DragDrop;
+    using Telerik.Windows.Controls.DragDrop;
 
     /// <summary>
     /// <see cref="UserControl"/> class providing the main UI for the application.
     /// </summary>
-    public partial class Shell : UserControl, IShell, INavigationLinks
+    public partial class Shell : UserControl, IShell, INavigationLinks, IDropTargetHost
     {
         /// <summary>
         /// Creates a new <see cref="MainPage"/> instance.
@@ -30,10 +32,15 @@ using IndoorWorx.Infrastructure.Models;
         public Shell(IUnityContainer unityContainer)
         {            
             InitializeComponent();
+
+            //Telerik.Windows.Controls.DragDrop.RadDragAndDropManager.AddDropQueryHandler(dropHere, dropHere_DropQuery);
+            //Telerik.Windows.Controls.DragDrop.RadDragAndDropManager.AddDropInfoHandler(dropHere, dropHere_DropInfo);
+
             WebContext.Current.Authentication.LoggedIn += new EventHandler<AuthenticationEventArgs>(Authentication_LoggedIn);
             WebContext.Current.Authentication.LoggedOut += new EventHandler<AuthenticationEventArgs>(Authentication_LoggedOut);
             this.loginContainer.Child = new LoginStatus();
             unityContainer.RegisterInstance<INavigationLinks>(this);
+            unityContainer.RegisterInstance<IDropTargetHost>(this);
         }
 
         void Authentication_LoggedOut(object sender, AuthenticationEventArgs e)
@@ -188,6 +195,71 @@ using IndoorWorx.Infrastructure.Models;
             LinksStackPanel.Children.Clear();
         }
 
-        #endregion
+        #endregion                
+
+        private void listBox_DropQuery(object sender, Telerik.Windows.Controls.DragDrop.DragDropQueryEventArgs e)
+        {
+            var destination = e.Options.Destination as ListBox;
+            if (e.Options.Status == DragStatus.DropDestinationQuery &&
+                destination != null)
+            {
+                OnEntering(destination);
+                var dropTarget = destination.DataContext as IDropTarget;
+                e.QueryResult = dropTarget.CanDrop(e.Options.Payload);
+                e.Handled = true;
+            }            
+        }
+
+        private void listBox_DropInfo(object sender, Telerik.Windows.Controls.DragDrop.DragDropEventArgs e)
+        {
+            // if we are dropping on the appropriate listbox, then add the dragged item to it.
+            var destination = e.Options.Destination as ListBox;
+            if (e.Options.Status == Telerik.Windows.Controls.DragDrop.DragStatus.DropComplete &&
+                 destination != null)
+            {
+                var dropTarget = destination.DataContext as IDropTarget;
+                dropTarget.OnDropped(e.Options.Payload);
+            }
+        }
+
+        public void AddDropTarget(IDropTarget dropTarget)
+        {
+            var listBox = new ListBox();
+            listBox.Style = Application.Current.Resources[ResourceDictionaryKeys.DropTargetStyle] as Style;
+            listBox.DataContext = dropTarget;
+            listBox.MouseEnter += (sender, e) =>
+                {
+                    OnEntering(listBox);                    
+                };
+            listBox.MouseLeave += (sender, e) =>
+                {
+                    OnLeaving(listBox);                    
+                };
+            RadDragAndDropManager.AddDropQueryHandler(listBox, listBox_DropQuery);
+            RadDragAndDropManager.AddDropInfoHandler(listBox, listBox_DropInfo);
+            DropTargetsStackPanel.Children.Add(listBox);
+        }
+
+        private void OnLeaving(ListBox listBox)
+        {
+            DropTargetsToolTip.Text = string.Empty;
+            listBox.Opacity = 0.5;
+        }
+
+        private void OnEntering(ListBox listBox)
+        {
+            foreach (var child in DropTargetsStackPanel.Children)
+            {
+                OnLeaving(child as ListBox);
+            }
+            var dropTarget = listBox.DataContext as IDropTarget;
+            DropTargetsToolTip.Text = dropTarget.Title;
+            listBox.Opacity = 1;
+        }
+
+        public void RemoveDropTarget(IDropTarget dropTarget)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

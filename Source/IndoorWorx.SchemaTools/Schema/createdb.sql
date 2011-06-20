@@ -27,12 +27,12 @@ alter table [ApplicationUser]  drop constraint FK4376B1485124BE25
 alter table [ApplicationUser]  drop constraint FK4376B14820A42DDD
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAD938CC889F7ABF4]') AND parent_object_id = OBJECT_ID('WidgetToApplicationUser'))
-alter table WidgetToApplicationUser  drop constraint FKAD938CC889F7ABF4
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK8FEB02F3E9F4749E]') AND parent_object_id = OBJECT_ID('VideoToApplicationUser'))
+alter table VideoToApplicationUser  drop constraint FK8FEB02F3E9F4749E
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAD938CC8BCD0E4BF]') AND parent_object_id = OBJECT_ID('WidgetToApplicationUser'))
-alter table WidgetToApplicationUser  drop constraint FKAD938CC8BCD0E4BF
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK8FEB02F3BCD0E4BF]') AND parent_object_id = OBJECT_ID('VideoToApplicationUser'))
+alter table VideoToApplicationUser  drop constraint FK8FEB02F3BCD0E4BF
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK7FDA1AFC888C8F93]') AND parent_object_id = OBJECT_ID('[Catalog]'))
@@ -151,7 +151,7 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[ApplicationUser]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [ApplicationUser]
 
-    if exists (select * from dbo.sysobjects where id = object_id(N'WidgetToApplicationUser') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table WidgetToApplicationUser
+    if exists (select * from dbo.sysobjects where id = object_id(N'VideoToApplicationUser') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table VideoToApplicationUser
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Catalog]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Catalog]
 
@@ -217,8 +217,6 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[VideoText]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VideoText]
 
-    if exists (select * from dbo.sysobjects where id = object_id(N'[Widget]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Widget]
-
     create table [Activity] (
         Id UNIQUEIDENTIFIER not null,
        ActivityType UNIQUEIDENTIFIER not null,
@@ -252,9 +250,9 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        primary key (Username)
     )
 
-    create table WidgetToApplicationUser (
+    create table VideoToApplicationUser (
         ApplicationUser NVARCHAR(255) not null,
-       Widget UNIQUEIDENTIFIER not null
+       Video UNIQUEIDENTIFIER not null
     )
 
     create table [Catalog] (
@@ -518,14 +516,6 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        primary key (Id)
     )
 
-    create table [Widget] (
-        Id UNIQUEIDENTIFIER not null,
-       Image NVARCHAR(255) null,
-       Title NVARCHAR(255) null,
-       ContentRenderer NVARCHAR(255) null,
-       primary key (Id)
-    )
-
     alter table [Activity] 
         add constraint FKAA25469B1EFA0600 
         foreign key (ActivityType) 
@@ -561,13 +551,13 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
         foreign key (SportingHabits_id) 
         references [SportingHabits]
 
-    alter table WidgetToApplicationUser 
-        add constraint FKAD938CC889F7ABF4 
-        foreign key (Widget) 
-        references [Widget]
+    alter table VideoToApplicationUser 
+        add constraint FK8FEB02F3E9F4749E 
+        foreign key (Video) 
+        references [Video]
 
-    alter table WidgetToApplicationUser 
-        add constraint FKAD938CC8BCD0E4BF 
+    alter table VideoToApplicationUser 
+        add constraint FK8FEB02F3BCD0E4BF 
         foreign key (ApplicationUser) 
         references [ApplicationUser]
 

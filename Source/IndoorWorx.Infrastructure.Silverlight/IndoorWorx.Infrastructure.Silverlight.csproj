@@ -245,9 +245,6 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\VideoText.cs">
       <Link>Models\VideoText.cs</Link>
     </Compile>
-    <Compile Include="..\IndoorWorx.Infrastructure\Models\Widget.cs">
-      <Link>Models\Widget.cs</Link>
-    </Compile>
     <Compile Include="Animations\ThicknessAnimation.cs" />
     <Compile Include="Behaviors\WatermarkBehavior.cs" />
     <Compile Include="Converters\BooleanToOppositeVisibilityConverter.cs">
@@ -276,6 +273,8 @@
     <Compile Include="Converters\UrlToImageConverter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DragDrop\IDropTarget.cs" />
+    <Compile Include="DragDrop\IDropTargetHost.cs" />
     <Compile Include="Events\CatalogSearchTextChangedEvent.cs" />
     <Compile Include="Events\DesignVideoEvent.cs" />
     <Compile Include="Events\PlayVideoEvent.cs" />
@@ -383,6 +382,10 @@
     <Page Include="Assets\ToolkitStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Zune.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

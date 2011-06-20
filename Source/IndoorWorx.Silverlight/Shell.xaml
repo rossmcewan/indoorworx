@@ -6,12 +6,18 @@
   xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
   xmlns:dataControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.DataForm.Toolkit" 
   xmlns:controls="clr-namespace:IndoorWorx.Silverlight.Controls" 
+    xmlns:iconverters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"
   xmlns:ibehaviors="clr-namespace:IndoorWorx.Infrastructure.Behaviors;assembly=IndoorWorx.Infrastructure.Silverlight"
   xmlns:SLaBE="clr-namespace:SLaB.Navigation.ContentLoaders.Error;assembly=SLaB.Navigation.ContentLoaders.Error"
   xmlns:SLaBA="clr-namespace:SLaB.Navigation.ContentLoaders.Auth;assembly=SLaB.Navigation.ContentLoaders.Auth"    
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
   mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
+    <UserControl.Resources>
+        <iconverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
      <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
 
         <Border x:Name="BackgroundBorder" Style="{StaticResource BackgroundBorderStyle}"/>
@@ -77,7 +83,13 @@
             </Border>
 
             <Border x:Name="loginContainer" Style="{StaticResource LoginContainerStyle}"/>
-        </Grid>
 
+            <Border x:Name="DropTargetsContainer" Style="{StaticResource DropTargetsContainerStyle}" Visibility="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+                <StackPanel>
+                    <StackPanel x:Name="DropTargetsStackPanel" Style="{StaticResource DropTargetsStackPanelStyle}"/>
+                    <TextBlock x:Name="DropTargetsToolTip" Style="{StaticResource DropTargetsToolTipTextBlockStyle}"/>
+                </StackPanel>
+            </Border>
+        </Grid>        
     </Grid>
 </UserControl>

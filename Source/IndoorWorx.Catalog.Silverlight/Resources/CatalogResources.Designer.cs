@@ -61,6 +61,15 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to My Library.
+        /// </summary>
+        public static string AddToMyLibraryHeader {
+            get {
+                return ResourceManager.GetString("AddToMyLibraryHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Average Power:.
         /// </summary>
         public static string AveragePowerLabel {
@@ -160,6 +169,24 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drag items to My Library of Templates.
+        /// </summary>
+        public static string MyLibraryOfTemplates {
+            get {
+                return ResourceManager.GetString("MyLibraryOfTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag items to My Library of Videos.
+        /// </summary>
+        public static string MyLibraryOfVideos {
+            get {
+                return ResourceManager.GetString("MyLibraryOfVideos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Normalized Power (NP):.
         /// </summary>
         public static string NormalizedPowerLabel {
@@ -246,6 +273,15 @@ namespace IndoorWorx.Catalog.Resources {
         public static string PreviewTrainingSetToolTip {
             get {
                 return ResourceManager.GetString("PreviewTrainingSetToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview Video.
+        /// </summary>
+        public static string PreviewVideoHeader {
+            get {
+                return ResourceManager.GetString("PreviewVideoHeader", resourceCulture);
             }
         }
         

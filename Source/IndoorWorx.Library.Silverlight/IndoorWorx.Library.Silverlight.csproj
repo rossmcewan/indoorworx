@@ -120,6 +120,7 @@
     <Compile Include="Controls\VideoMediaElement.xaml.cs">
       <DependentUpon>VideoMediaElement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DragDrop\DropTarget.cs" />
     <Compile Include="Facades\DialogFacade.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />

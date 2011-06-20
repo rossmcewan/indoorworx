@@ -25,15 +25,6 @@ namespace IndoorWorx.Dashboard.Views
         public IDashboardPresentationModel Model
         {
             get { return this.DataContext as IDashboardPresentationModel; }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var widget = (sender as FrameworkElement).DataContext as Widget;
-            if (widget != null)
-            {
-                Model.AddWidget(widget);
-            }
-        }
+        }        
     }
 }

@@ -8,15 +8,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using System.Collections.Generic;
-using IndoorWorx.Infrastructure.Models;
 
-namespace IndoorWorx.Dashboard.Views
+namespace IndoorWorx.Infrastructure.DragDrop
 {
-    public interface IDashboardPresentationModel
+    public interface IDropTargetHost
     {
-        IDashboardView View { get; set; }        
+        void AddDropTarget(IDropTarget dropTarget);
 
-        void Refresh();
+        void RemoveDropTarget(IDropTarget dropTarget);
     }
 }

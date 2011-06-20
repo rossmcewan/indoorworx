@@ -15,6 +15,10 @@ using IndoorWorx.Catalog.Helpers;
 using Microsoft.Practices.Unity;
 using IndoorWorx.Catalog.Views;
 using System.Windows.Navigation;
+using IndoorWorx.Infrastructure.DragDrop;
+using IndoorWorx.Library.DragDrop;
+using IndoorWorx.Catalog.Resources;
+using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Catalog
 {
@@ -31,6 +35,11 @@ namespace IndoorWorx.Catalog
         private INavigationLinks NavigationLinks
         {
             get { return serviceLocator.GetInstance<INavigationLinks>(); }
+        }
+
+        private IDropTargetHost DropTargetHost
+        {
+            get { return serviceLocator.GetInstance<IDropTargetHost>(); }
         }
 
         #region IModule Members
@@ -64,6 +73,31 @@ namespace IndoorWorx.Catalog
                 Allow = new string[] { "?" },
                 Deny = new string[] { "" }
             });
+
+            DropTargetHost.AddDropTarget(new DropTarget(
+                payload =>
+                {
+                    if (payload is Video)
+                        ApplicationUser.CurrentUser.Videos.Add(payload as Video);
+                    //MessageBox.Show(string.Format("Added {0} to my library. My library now has {1} videos", (payload as Video).Title, (ApplicationUser.CurrentUser.Videos.Count)));
+                },
+                payload => payload is Video)
+                {
+                    Id = Guid.NewGuid(),
+                    Image = new Uri("/IndoorWorx.Catalog.Silverlight;component/Images/library.png", UriKind.Relative),
+                    Title = CatalogResources.MyLibraryOfVideos
+                });
+            DropTargetHost.AddDropTarget(new DropTarget(
+                payload =>
+                {
+                    MessageBox.Show("This should not be called");
+                },
+                payload => false)
+                {
+                    Id = Guid.NewGuid(),
+                    Image = new Uri("/IndoorWorx.Catalog.Silverlight;component/Images/templates.png", UriKind.Relative),
+                    Title = CatalogResources.MyLibraryOfTemplates
+                });
         }
 
         #endregion

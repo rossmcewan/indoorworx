@@ -166,15 +166,15 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private ICollection<Widget> availableWidgets;
+        private ICollection<Video> videos = new List<Video>();
         [DataMember]
-        public virtual ICollection<Widget> AvailableWidgets
+        public virtual ICollection<Video> Videos
         {
-            get { return availableWidgets; }
+            get { return videos; }
             set
             {
-                availableWidgets = value;
-                FirePropertyChanged("AvailableWidgets");
+                videos = value;
+                FirePropertyChanged("Videos");
             }
         }
 
