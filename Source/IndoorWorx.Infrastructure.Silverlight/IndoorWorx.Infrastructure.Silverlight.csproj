@@ -246,6 +246,7 @@
       <Link>Models\VideoText.cs</Link>
     </Compile>
     <Compile Include="Animations\ThicknessAnimation.cs" />
+    <Compile Include="ApplicationContext.cs" />
     <Compile Include="Behaviors\WatermarkBehavior.cs" />
     <Compile Include="Converters\BooleanToOppositeVisibilityConverter.cs">
       <SubType>Code</SubType>
@@ -256,6 +257,7 @@
     <Compile Include="Converters\ByteArrayToImageConverter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\CollectionSizeToIntegerConverter.cs" />
     <Compile Include="Converters\EnumValueConverter.cs" />
     <Compile Include="Converters\IntensityColorConverter.cs" />
     <Compile Include="Converters\NullToBooleanConverter.cs" />

@@ -80,6 +80,8 @@ namespace IndoorWorx.Infrastructure.Models
         {
             if (this.Videos == null)
                 this.Videos = new ObservableCollection<Video>();
+            else
+                this.Videos = new ObservableCollection<Video>(this.Videos);
         }
     }
 }
