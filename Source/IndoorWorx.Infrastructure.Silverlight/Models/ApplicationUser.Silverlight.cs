@@ -78,11 +78,12 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        public ApplicationUser AddVideoToLibrary(Video video)
+        public ApplicationUser AddVideoToLibrary(Video video, Action complete)
         {
             var userService = IoC.Resolve<IApplicationUserService>();
             userService.AddVideoError += (sender, e) =>
             {
+                complete();
                 throw e.Value;
             };
             userService.AddVideoCompleted += (sender, e) =>
@@ -105,6 +106,7 @@ namespace IndoorWorx.Infrastructure.Models
                     default:
                         break;
                 }
+                complete();
             };
             userService.AddVideoToLibrary(video);
             return this;

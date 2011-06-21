@@ -17,7 +17,17 @@ namespace IndoorWorx.Infrastructure
 {
     public class ApplicationContext : INotifyPropertyChanged
     {
-        public ApplicationContext()
+        public static ApplicationContext Initialize()
+        {
+            if (Current == null)
+            {
+                var context = new ApplicationContext();
+                Application.Current.Resources.Add("ApplicationContext", context);
+            }
+            return Current;
+        }
+
+        private ApplicationContext()
         {
             ApplicationUser.CurrentUserChanged += (sender, e) =>
                 {

@@ -24,5 +24,7 @@ namespace IndoorWorx.Infrastructure.DragDrop
         void OnDropped(object payload);
 
         int ItemCount { get; set; }
+
+        bool IsBusy { get; set; }
     }
 }

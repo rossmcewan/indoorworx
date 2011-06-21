@@ -205,7 +205,7 @@ using IndoorWorx.Infrastructure.Models;
             {
                 OnEntering(destination);
                 var dropTarget = destination.DataContext as IDropTarget;
-                e.QueryResult = dropTarget.CanDrop(e.Options.Payload);
+                e.QueryResult = dropTarget.CanDrop(e.Options.Payload) && !dropTarget.IsBusy;
                 e.Handled = true;
             }            
         }
@@ -259,7 +259,21 @@ using IndoorWorx.Infrastructure.Models;
 
         public void RemoveDropTarget(IDropTarget dropTarget)
         {
-            throw new NotImplementedException();
+            UIElement toRemove = null;
+            foreach (UIElement child in DropTargetsStackPanel.Children)
+            {
+                var listBox = child as ListBox;
+                if (listBox != null)
+                {
+                    if (listBox.DataContext == dropTarget)
+                    {
+                        toRemove = listBox;
+                        break;
+                    }
+                }
+            }
+            if (toRemove != null)
+                DropTargetsStackPanel.Children.Remove(toRemove);
         }
     }
 }

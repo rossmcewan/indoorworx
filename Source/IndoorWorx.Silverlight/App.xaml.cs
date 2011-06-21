@@ -37,10 +37,10 @@
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            ApplicationContext.Initialize();
             // This will enable you to bind controls in XAML files to WebContext.Current
             // properties
-            this.Resources.Add("WebContext", WebContext.Current);
-            this.Resources.Add("ApplicationContext", new ApplicationContext());
+            this.Resources.Add("WebContext", WebContext.Current);                        
 
             // This will automatically authenticate a user when using windows authentication
             // or when the user chose "Keep me signed in" on a previous login attempt

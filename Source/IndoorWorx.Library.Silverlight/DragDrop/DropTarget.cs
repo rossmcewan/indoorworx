@@ -15,11 +15,11 @@ namespace IndoorWorx.Library.DragDrop
 {
     public class DropTarget : IDropTarget, INotifyPropertyChanged
     {
-        private Action<object> onDropped;
-        private Func<object, bool> canDrop;
-        private Func<int> getItemCount;
+        private Action<IDropTarget,object> onDropped;
+        private Func<IDropTarget,object, bool> canDrop;
+        private Func<IDropTarget,int> getItemCount;
 
-        public DropTarget(Action<object> onDropped, Func<object, bool> canDrop, Func<int> getItemCount)
+        public DropTarget(Action<IDropTarget, object> onDropped, Func<IDropTarget, object, bool> canDrop, Func<IDropTarget, int> getItemCount)
         {
             this.onDropped = onDropped;
             this.canDrop = canDrop;
@@ -54,13 +54,13 @@ namespace IndoorWorx.Library.DragDrop
         public void OnDropped(object payload)
         {
             if (onDropped != null)
-                onDropped(payload);
+                onDropped(this, payload);
         }
 
         public bool CanDrop(object payload)
         {
             if (canDrop != null)
-                return canDrop(payload);
+                return canDrop(this, payload);
             return true;
         }
 
@@ -68,11 +68,22 @@ namespace IndoorWorx.Library.DragDrop
         {
             get
             {
-                return getItemCount();
+                return getItemCount(this);
             }
             set
             {
                 FirePropertyChanged("ItemCount");
+            }
+        }
+
+        private bool busy;
+        public bool IsBusy
+        {
+            get { return this.busy; }
+            set
+            {
+                this.busy = value;
+                FirePropertyChanged("IsBusy");
             }
         }
 

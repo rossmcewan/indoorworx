@@ -81,64 +81,6 @@ namespace IndoorWorx.Catalog
                 Allow = new string[] { "?" },
                 Deny = new string[] { "" }
             });
-
-            var videoDropTarget = new DropTarget(
-                payload =>
-                {
-                    if (payload is Video)
-                    {
-                        var userService = serviceLocator.GetInstance<IApplicationUserService>();
-                        userService.AddVideoError += (sender, e) =>
-                            {
-                                throw e.Value;
-                            };
-                        userService.AddVideoCompleted += (sender, e) =>
-                            {
-                                switch (e.Value.AddVideoStatus)
-                                {
-                                    case AddVideoStatus.Success:
-                                        ApplicationUser.CurrentUser.Videos.Add(payload as Video);
-                                        break;
-                                    case AddVideoStatus.InsufficientCredits:
-                                        DialogFacade.Alert(CatalogResources.InsufficientCredits);
-                                        break;
-                                    case AddVideoStatus.VideoAlreadyAdded:
-                                        DialogFacade.Alert(CatalogResources.VideoAlreadyAdded);
-                                        break;
-                                    case AddVideoStatus.Error:
-                                        DialogFacade.Alert(e.Value.Message);
-                                        break;
-                                    default:
-                                        break;
-                                }                                
-                            };
-                        userService.AddVideoToLibrary(payload as Video);
-                    }
-                },
-                payload => payload is Video, () => ApplicationContext.Current.VideoCount)
-                {
-                    Id = Guid.NewGuid(),
-                    Image = new Uri("/IndoorWorx.Catalog.Silverlight;component/Images/library.png", UriKind.Relative),
-                    Title = CatalogResources.MyLibraryOfVideos
-                };
-            ApplicationContext.Current.PropertyChanged += (sender, e) =>
-                {
-                    if (e.PropertyName == "VideoCount")
-                        videoDropTarget.ItemCount = ApplicationContext.Current.VideoCount;
-                };
-            DropTargetHost.AddDropTarget(videoDropTarget);
-
-            DropTargetHost.AddDropTarget(new DropTarget(
-                payload =>
-                {
-                    MessageBox.Show("This should not be called");
-                },
-                payload => false, () => 0)
-                {
-                    Id = Guid.NewGuid(),
-                    Image = new Uri("/IndoorWorx.Catalog.Silverlight;component/Images/templates.png", UriKind.Relative),
-                    Title = CatalogResources.MyLibraryOfTemplates
-                });
         }
 
         #endregion
