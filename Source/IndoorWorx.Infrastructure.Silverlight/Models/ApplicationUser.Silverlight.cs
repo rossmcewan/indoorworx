@@ -13,6 +13,9 @@ using System.Runtime.Serialization;
 using IndoorWorx.Infrastructure.Helpers;
 using IndoorWorx.Infrastructure.Enums;
 using System.Collections.ObjectModel;
+using IndoorWorx.Infrastructure.Services;
+using IndoorWorx.Infrastructure.Facades;
+using IndoorWorx.Infrastructure.Resources;
 
 namespace IndoorWorx.Infrastructure.Models
 {
@@ -73,6 +76,38 @@ namespace IndoorWorx.Infrastructure.Models
                 genders = value;
                 FirePropertyChanged("Genders");
             }
+        }
+
+        public ApplicationUser AddVideoToLibrary(Video video)
+        {
+            var userService = IoC.Resolve<IApplicationUserService>();
+            userService.AddVideoError += (sender, e) =>
+            {
+                throw e.Value;
+            };
+            userService.AddVideoCompleted += (sender, e) =>
+            {
+                var dialogFacade = IoC.Resolve<IDialogFacade>();
+                switch (e.Value.AddVideoStatus)
+                {
+                    case AddVideoStatus.Success:
+                        ApplicationUser.CurrentUser.Videos.Add(video);
+                        break;
+                    case AddVideoStatus.InsufficientCredits:
+                        dialogFacade.Alert(ApplicationResources.InsufficientCredits);
+                        break;
+                    case AddVideoStatus.VideoAlreadyAdded:
+                        dialogFacade.Alert(ApplicationResources.VideoAlreadyAdded);
+                        break;
+                    case AddVideoStatus.Error:
+                        dialogFacade.Alert(e.Value.Message);
+                        break;
+                    default:
+                        break;
+                }
+            };
+            userService.AddVideoToLibrary(video);
+            return this;
         }
 
         [OnDeserialized]
