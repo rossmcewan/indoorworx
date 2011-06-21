@@ -22,5 +22,7 @@ namespace IndoorWorx.Infrastructure.DragDrop
         bool CanDrop(object payload);
 
         void OnDropped(object payload);
+
+        int ItemCount { get; set; }
     }
 }

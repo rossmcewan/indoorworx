@@ -178,11 +178,23 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        public static event EventHandler CurrentUserChanged;
+
         private static ApplicationUser currentUser = new ApplicationUser();
         public static ApplicationUser CurrentUser
         {
             get { return currentUser; }
-            set { currentUser = value; }
+            set 
+            { 
+                currentUser = value;
+                OnCurrentUserChanged();
+            }
+        }
+
+        private static void OnCurrentUserChanged()
+        {
+            if (CurrentUserChanged != null)
+                CurrentUserChanged(null, EventArgs.Empty);
         }
     }
 }

@@ -19,6 +19,7 @@ using IndoorWorx.Infrastructure.DragDrop;
 using IndoorWorx.Library.DragDrop;
 using IndoorWorx.Catalog.Resources;
 using IndoorWorx.Infrastructure.Models;
+using IndoorWorx.Infrastructure;
 
 namespace IndoorWorx.Catalog
 {
@@ -74,25 +75,31 @@ namespace IndoorWorx.Catalog
                 Deny = new string[] { "" }
             });
 
-            DropTargetHost.AddDropTarget(new DropTarget(
+            var videoDropTarget = new DropTarget(
                 payload =>
                 {
                     if (payload is Video)
                         ApplicationUser.CurrentUser.Videos.Add(payload as Video);
-                    //MessageBox.Show(string.Format("Added {0} to my library. My library now has {1} videos", (payload as Video).Title, (ApplicationUser.CurrentUser.Videos.Count)));
                 },
-                payload => payload is Video)
+                payload => payload is Video, () => ApplicationContext.Current.VideoCount)
                 {
                     Id = Guid.NewGuid(),
                     Image = new Uri("/IndoorWorx.Catalog.Silverlight;component/Images/library.png", UriKind.Relative),
                     Title = CatalogResources.MyLibraryOfVideos
-                });
+                };
+            ApplicationContext.Current.PropertyChanged += (sender, e) =>
+                {
+                    if (e.PropertyName == "VideoCount")
+                        videoDropTarget.ItemCount = ApplicationContext.Current.VideoCount;
+                };
+            DropTargetHost.AddDropTarget(videoDropTarget);
+
             DropTargetHost.AddDropTarget(new DropTarget(
                 payload =>
                 {
                     MessageBox.Show("This should not be called");
                 },
-                payload => false)
+                payload => false, () => 0)
                 {
                     Id = Guid.NewGuid(),
                     Image = new Uri("/IndoorWorx.Catalog.Silverlight;component/Images/templates.png", UriKind.Relative),

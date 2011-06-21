@@ -9,26 +9,47 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.DragDrop;
+using System.ComponentModel;
 
 namespace IndoorWorx.Library.DragDrop
 {
-    public class DropTarget : IDropTarget
+    public class DropTarget : IDropTarget, INotifyPropertyChanged
     {
         private Action<object> onDropped;
-
         private Func<object, bool> canDrop;
+        private Func<int> getItemCount;
 
-        public DropTarget(Action<object> onDropped, Func<object, bool> canDrop)
+        public DropTarget(Action<object> onDropped, Func<object, bool> canDrop, Func<int> getItemCount)
         {
             this.onDropped = onDropped;
             this.canDrop = canDrop;
+            this.getItemCount = getItemCount;
         }
 
         public Guid Id { get; set; }
 
-        public Uri Image { get; set; }
+        private Uri image;
+        public Uri Image
+        {
+            get { return image; }
+            set 
+            { 
+                image = value;
+                FirePropertyChanged("Image");
+            }
+        }
 
-        public string Title { get; set; }
+        private string title;
+        public string Title
+        {
+            get { return title; }
+            set 
+            { 
+                title = value;
+                FirePropertyChanged("Title");
+            }        
+        }
+
 
         public void OnDropped(object payload)
         {
@@ -41,6 +62,26 @@ namespace IndoorWorx.Library.DragDrop
             if (canDrop != null)
                 return canDrop(payload);
             return true;
+        }
+
+        public int ItemCount
+        {
+            get
+            {
+                return getItemCount();
+            }
+            set
+            {
+                FirePropertyChanged("ItemCount");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void FirePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
