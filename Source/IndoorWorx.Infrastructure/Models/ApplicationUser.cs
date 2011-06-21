@@ -166,6 +166,19 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private int credits;
+        [DataMember]
+        public virtual int Credits
+        {
+            get { return credits; }
+            set 
+            { 
+                credits = value;
+                FirePropertyChanged("Credits");
+            }
+        }
+
+
         private ICollection<Video> videos = new List<Video>();
         [DataMember]
         public virtual ICollection<Video> Videos
@@ -176,7 +189,7 @@ namespace IndoorWorx.Infrastructure.Models
                 videos = value;
                 FirePropertyChanged("Videos");
             }
-        }
+        }        
 
         public static event EventHandler CurrentUserChanged;
 

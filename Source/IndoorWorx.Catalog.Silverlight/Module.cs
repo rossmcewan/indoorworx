@@ -20,6 +20,8 @@ using IndoorWorx.Library.DragDrop;
 using IndoorWorx.Catalog.Resources;
 using IndoorWorx.Infrastructure.Models;
 using IndoorWorx.Infrastructure;
+using IndoorWorx.Infrastructure.Services;
+using IndoorWorx.Infrastructure.Facades;
 
 namespace IndoorWorx.Catalog
 {
@@ -31,6 +33,11 @@ namespace IndoorWorx.Catalog
         {
             this.unityContainer = unityContainer;
             this.serviceLocator = serviceLocator;
+        }
+
+        private IDialogFacade DialogFacade
+        {
+            get { return serviceLocator.GetInstance<IDialogFacade>(); }
         }
 
         private INavigationLinks NavigationLinks
@@ -79,7 +86,34 @@ namespace IndoorWorx.Catalog
                 payload =>
                 {
                     if (payload is Video)
-                        ApplicationUser.CurrentUser.Videos.Add(payload as Video);
+                    {
+                        var userService = serviceLocator.GetInstance<IApplicationUserService>();
+                        userService.AddVideoError += (sender, e) =>
+                            {
+                                throw e.Value;
+                            };
+                        userService.AddVideoCompleted += (sender, e) =>
+                            {
+                                switch (e.Value.AddVideoStatus)
+                                {
+                                    case AddVideoStatus.Success:
+                                        ApplicationUser.CurrentUser.Videos.Add(payload as Video);
+                                        break;
+                                    case AddVideoStatus.InsufficientCredits:
+                                        DialogFacade.Alert(CatalogResources.InsufficientCredits);
+                                        break;
+                                    case AddVideoStatus.VideoAlreadyAdded:
+                                        DialogFacade.Alert(CatalogResources.VideoAlreadyAdded);
+                                        break;
+                                    case AddVideoStatus.Error:
+                                        DialogFacade.Alert(e.Value.Message);
+                                        break;
+                                    default:
+                                        break;
+                                }                                
+                            };
+                        userService.AddVideoToLibrary(payload as Video);
+                    }
                 },
                 payload => payload is Video, () => ApplicationContext.Current.VideoCount)
                 {

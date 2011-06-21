@@ -9,6 +9,7 @@
           <xs:element minOccurs="0" name="About" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Activities" nillable="true" type="tns:ArrayOfActivity" />
           <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Enums" minOccurs="0" name="Country" type="q1:Countries" />
+          <xs:element minOccurs="0" name="Credits" type="xs:int" />
           <xs:element minOccurs="0" name="DateOfBirth" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Firstname" nillable="true" type="xs:string" />
@@ -19,6 +20,7 @@
           <xs:element minOccurs="0" name="SocialProfile" nillable="true" type="tns:ArrayOfSocialMediaProfile" />
           <xs:element minOccurs="0" name="SportingHabits" nillable="true" type="tns:SportingHabits" />
           <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Videos" nillable="true" type="tns:ArrayOfVideo" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -323,6 +325,155 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="TrainingVolume" nillable="true" type="tns:TrainingVolume" />
+  <xs:complexType name="ArrayOfVideo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Video" nillable="true" type="tns:Video" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVideo" nillable="true" type="tns:ArrayOfVideo" />
+  <xs:complexType name="Video">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AuditableModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Credits" type="xs:int" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Duration" type="ser:duration" />
+          <xs:element minOccurs="0" name="ImageUri" nillable="true" type="xs:anyURI" />
+          <xs:element minOccurs="0" name="Intervals" nillable="true" type="tns:ArrayOfInterval" />
+          <xs:element minOccurs="0" name="Reviews" nillable="true" type="tns:ArrayOfVideoReview" />
+          <xs:element minOccurs="0" name="Sequence" type="xs:int" />
+          <xs:element minOccurs="0" name="StreamUri" nillable="true" type="xs:anyURI" />
+          <xs:element minOccurs="0" name="TelemetryInfo" nillable="true" type="tns:TelemetryInfo" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TrainingMetrics" nillable="true" type="tns:ArrayOfTrainingMetric" />
+          <xs:element minOccurs="0" name="VideoMetadata" nillable="true" type="tns:VideoMetadata" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Video" nillable="true" type="tns:Video" />
+  <xs:complexType name="AuditableModel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Created" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Modified" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AuditableModel" nillable="true" type="tns:AuditableModel" />
+  <xs:complexType name="ArrayOfInterval">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Interval" nillable="true" type="tns:Interval" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInterval" nillable="true" type="tns:ArrayOfInterval" />
+  <xs:complexType name="Interval">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EndTime" type="ser:duration" />
+          <xs:element minOccurs="0" name="IntervalType" nillable="true" type="tns:IntervalType" />
+          <xs:element minOccurs="0" name="StartTime" type="ser:duration" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Interval" nillable="true" type="tns:Interval" />
+  <xs:complexType name="IntervalType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IntervalType" nillable="true" type="tns:IntervalType" />
+  <xs:complexType name="ArrayOfVideoReview">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VideoReview" nillable="true" type="tns:VideoReview" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVideoReview" nillable="true" type="tns:ArrayOfVideoReview" />
+  <xs:complexType name="VideoReview">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Review">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Video" nillable="true" type="tns:Video" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="VideoReview" nillable="true" type="tns:VideoReview" />
+  <xs:complexType name="Review">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AuditableModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Rating" type="xs:int" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Review" nillable="true" type="tns:Review" />
+  <xs:complexType name="TelemetryInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RecordingInterval" type="xs:int" />
+          <xs:element minOccurs="0" name="TelemetryUri" nillable="true" type="xs:anyURI" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TelemetryInfo" nillable="true" type="tns:TelemetryInfo" />
+  <xs:complexType name="ArrayOfTrainingMetric">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrainingMetric" nillable="true" type="tns:TrainingMetric" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrainingMetric" nillable="true" type="tns:ArrayOfTrainingMetric" />
+  <xs:complexType name="TrainingMetric">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Type" nillable="true" type="tns:TrainingMetricType" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TrainingMetric" nillable="true" type="tns:TrainingMetric" />
+  <xs:complexType name="TrainingMetricType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Calculator" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TrainingMetricType" nillable="true" type="tns:TrainingMetricType" />
+  <xs:complexType name="VideoMetadata">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FilmedBy" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FilmedWith" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="WhenFilmed" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="VideoMetadata" nillable="true" type="tns:VideoMetadata" />
   <xs:complexType name="ArrayOfOccupation">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Occupation" nillable="true" type="tns:Occupation" />
@@ -335,4 +486,19 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfReferralSource" nillable="true" type="tns:ArrayOfReferralSource" />
+  <xs:simpleType name="AddVideoStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="InsufficientCredits" />
+      <xs:enumeration value="VideoAlreadyAdded" />
+      <xs:enumeration value="Error">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">100</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AddVideoStatus" nillable="true" type="tns:AddVideoStatus" />
 </xs:schema>

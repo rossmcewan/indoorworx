@@ -122,6 +122,9 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\ActivityType.cs">
       <Link>Models\ActivityType.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\AddVideoStatus.cs">
+      <Link>Models\AddVideoStatus.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\ApplicationOptions.cs">
       <Link>Models\ApplicationOptions.cs</Link>
     </Compile>
@@ -244,6 +247,12 @@
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\VideoText.cs">
       <Link>Models\VideoText.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Requests\AddVideoRequest.cs">
+      <Link>Requests\AddVideoRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Responses\AddVideoResponse.cs">
+      <Link>Responses\AddVideoResponse.cs</Link>
     </Compile>
     <Compile Include="Animations\ThicknessAnimation.cs" />
     <Compile Include="ApplicationContext.cs" />

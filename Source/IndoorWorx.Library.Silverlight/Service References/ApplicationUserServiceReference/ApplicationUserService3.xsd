@@ -2,6 +2,8 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:3415/ApplicationUserService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" />
   <xs:import schemaLocation="http://localhost:3415/ApplicationUserService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Criteria" />
+  <xs:import schemaLocation="http://localhost:3415/ApplicationUserService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Requests" />
+  <xs:import schemaLocation="http://localhost:3415/ApplicationUserService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Responses" />
   <xs:element name="SaveApplicationUser">
     <xs:complexType>
       <xs:sequence>
@@ -51,6 +53,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" minOccurs="0" name="RetrieveAllReferralSourcesResult" nillable="true" type="q6:ArrayOfReferralSource" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddVideoToLibrary">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Requests" minOccurs="0" name="request" nillable="true" type="q7:AddVideoRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddVideoToLibraryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Responses" minOccurs="0" name="AddVideoToLibraryResult" nillable="true" type="q8:AddVideoResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

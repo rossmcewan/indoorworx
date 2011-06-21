@@ -57,6 +57,7 @@
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\ActivityType.cs" />
+    <Compile Include="Models\AddVideoStatus.cs" />
     <Compile Include="Models\ApplicationOptions.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\AuditableModel.cs" />
@@ -119,6 +120,8 @@
     <Compile Include="Repositories\ITrainingVolumeRepository.cs" />
     <Compile Include="Repositories\IUnitOfMeasureRepository.cs" />
     <Compile Include="Repositories\IVideoRepository.cs" />
+    <Compile Include="Requests\AddVideoRequest.cs" />
+    <Compile Include="Responses\AddVideoResponse.cs" />
     <Compile Include="ServiceModel\IoC.cs" />
     <Compile Include="ServiceModel\SilverlightFaultBehaviorExtensionElement.cs" />
     <Compile Include="ServiceModel\SilverlightFaultMessageInspector.cs" />
@@ -132,6 +135,7 @@
     <Compile Include="Services\ISportingHabitsService.cs" />
     <Compile Include="SmartDispatcher.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

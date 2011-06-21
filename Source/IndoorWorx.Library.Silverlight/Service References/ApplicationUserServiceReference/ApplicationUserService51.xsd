@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Responses" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Responses" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3415/ApplicationUserService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" />
+  <xs:complexType name="AddVideoResponse">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" minOccurs="0" name="AddVideoStatus" type="q1:AddVideoStatus" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddVideoResponse" nillable="true" type="tns:AddVideoResponse" />
+</xs:schema>

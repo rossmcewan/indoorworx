@@ -25,7 +25,9 @@
   <Metadata>
     <MetadataFile FileName="ApplicationUserService.xsd" MetadataType="Schema" ID="30e75d41-38be-4a54-ac2c-38797cc110b0" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?xsd=xsd3" />
     <MetadataFile FileName="ApplicationUserService1.xsd" MetadataType="Schema" ID="dafd7a45-60c8-458f-b92c-91e25ca6ad0d" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ApplicationUserService5.xsd" MetadataType="Schema" ID="0761458a-940a-48fb-8bd6-4b102e934df3" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?xsd=xsd5" />
     <MetadataFile FileName="ApplicationUserService4.xsd" MetadataType="Schema" ID="08a88b9f-6143-461b-9951-243e9226cb58" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?xsd=xsd4" />
+    <MetadataFile FileName="ApplicationUserService51.xsd" MetadataType="Schema" ID="238ca034-71f8-432b-8e0b-1be7c8dcb539" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?xsd=xsd6" />
     <MetadataFile FileName="ApplicationUserService.wsdl" MetadataType="Wsdl" ID="bb0cb253-c6f0-4719-9a0f-c02310df7e55" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?wsdl" />
     <MetadataFile FileName="ApplicationUserService.disco" MetadataType="Disco" ID="6c41fb48-8dc5-45f3-9e5c-8d7a1dad760d" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?disco" />
     <MetadataFile FileName="ApplicationUserService2.xsd" MetadataType="Schema" ID="eed9df4a-a28f-4c59-a99a-fde24500519d" SourceId="1" SourceUrl="http://localhost:3415/ApplicationUserService.svc?xsd=xsd1" />

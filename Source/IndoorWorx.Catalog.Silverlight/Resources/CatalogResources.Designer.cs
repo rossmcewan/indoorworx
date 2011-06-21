@@ -142,6 +142,15 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have insufficient credits to use this video. Please purchase more credits..
+        /// </summary>
+        public static string InsufficientCredits {
+            get {
+                return ResourceManager.GetString("InsufficientCredits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Intensity Factor (IF):.
         /// </summary>
         public static string IntensityFactorLabel {
@@ -363,6 +372,15 @@ namespace IndoorWorx.Catalog.Resources {
         public static string VariabilityIndexLabel {
             get {
                 return ResourceManager.GetString("VariabilityIndexLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have already added the selected video to your library..
+        /// </summary>
+        public static string VideoAlreadyAdded {
+            get {
+                return ResourceManager.GetString("VideoAlreadyAdded", resourceCulture);
             }
         }
         

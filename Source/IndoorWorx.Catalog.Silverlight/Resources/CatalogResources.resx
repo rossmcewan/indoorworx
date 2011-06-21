@@ -144,6 +144,9 @@
   <data name="DesignTrainingSetToolTip" xml:space="preserve">
     <value>Design a new training set using this training set as the basis for it.</value>
   </data>
+  <data name="InsufficientCredits" xml:space="preserve">
+    <value>You have insufficient credits to use this video. Please purchase more credits.</value>
+  </data>
   <data name="IntensityFactorLabel" xml:space="preserve">
     <value>Intensity Factor (IF):</value>
   </data>
@@ -218,6 +221,9 @@
   </data>
   <data name="VariabilityIndexLabel" xml:space="preserve">
     <value>Variability Index (VI):</value>
+  </data>
+  <data name="VideoAlreadyAdded" xml:space="preserve">
+    <value>You have already added the selected video to your library.</value>
   </data>
   <data name="VideosTitle" xml:space="preserve">
     <value>VIDEOS</value>

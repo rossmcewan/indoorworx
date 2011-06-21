@@ -5,6 +5,8 @@ using System.Text;
 using System.ServiceModel;
 using IndoorWorx.Infrastructure.Models;
 using IndoorWorx.Infrastructure.Criteria;
+using IndoorWorx.Infrastructure.Responses;
+using IndoorWorx.Infrastructure.Requests;
 
 namespace IndoorWorx.Infrastructure.Services
 {
@@ -23,6 +25,7 @@ namespace IndoorWorx.Infrastructure.Services
         [OperationContract]
         ICollection<ReferralSource> RetrieveAllReferralSources();
 
-
+        [OperationContract]
+        AddVideoResponse AddVideoToLibrary(AddVideoRequest request);
     }
 }

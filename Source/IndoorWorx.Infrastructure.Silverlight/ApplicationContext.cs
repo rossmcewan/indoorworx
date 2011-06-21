@@ -23,8 +23,13 @@ namespace IndoorWorx.Infrastructure
                 {
                     if (ApplicationUser.CurrentUser != null)
                     {
+                        VideoCount = ApplicationUser.CurrentUser.Videos.Count;
                         ApplicationUser.CurrentUser.PropertyChanged += UserPropertyChanged;
                         (ApplicationUser.CurrentUser.Videos as INotifyCollectionChanged).CollectionChanged += VideoCollectionChanged;
+                    }
+                    else
+                    {
+                        VideoCount = 0;
                     }
                 };
         }

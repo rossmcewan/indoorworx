@@ -190,6 +190,7 @@
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.SocialMediaNotification.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.SocialMediaType.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.TrainingVolume.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.AddVideoResponse.datasource" />
     <None Include="Service References\ActivityServiceReference\ActivityService.wsdl" />
     <None Include="Service References\ActivityServiceReference\ActivityService.xsd">
       <SubType>Designer</SubType>
@@ -214,6 +215,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ApplicationUserServiceReference\ApplicationUserService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApplicationUserServiceReference\ApplicationUserService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApplicationUserServiceReference\ApplicationUserService51.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\CategoryServiceReference\CategoryService.wsdl" />

@@ -5,6 +5,7 @@ using System.Text;
 using System.ServiceModel;
 using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Infrastructure.Responses;
 
 namespace IndoorWorx.Infrastructure.Services
 {
@@ -33,5 +34,11 @@ namespace IndoorWorx.Infrastructure.Services
         event EventHandler<DataEventArgs<Exception>> ReferralSourcesRetrievalError;
 
         void RetrievReferralSources();
+
+        event EventHandler<DataEventArgs<AddVideoResponse>> AddVideoCompleted;
+
+        event EventHandler<DataEventArgs<Exception>> AddVideoError;
+
+        void AddVideoToLibrary(Video video);
     }
 }

@@ -8,6 +8,8 @@ using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.Library.ApplicationUserServiceReference;
 using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Infrastructure.Responses;
+using IndoorWorx.Infrastructure.Requests;
 
 namespace IndoorWorx.Library.Services
 {
@@ -145,6 +147,32 @@ namespace IndoorWorx.Library.Services
                 }
             };
             proxy.RetrieveApplicationUserAsync(new ApplicationUserFindCriteria() { Username = username } );
+        }
+
+        public event EventHandler<DataEventArgs<AddVideoResponse>> AddVideoCompleted;
+
+        public event EventHandler<DataEventArgs<Exception>> AddVideoError;
+
+        public void AddVideoToLibrary(Video video)
+        {
+            Proxy.AddVideoToLibraryCompleted += (sender, e) =>
+                {
+                    if (e.Error != null)
+                    {
+                        if (AddVideoError != null)
+                            AddVideoError(this, new DataEventArgs<Exception>(e.Error));
+                    }
+                    else
+                    {
+                        if (AddVideoCompleted != null)
+                            AddVideoCompleted(this, new DataEventArgs<AddVideoResponse>(e.Result));
+                    }
+                };
+            Proxy.AddVideoToLibraryAsync(new AddVideoRequest()
+            {
+                User = ApplicationUser.CurrentUser.Username,
+                VideoId = video.Id
+            });
         }
 
         #endregion

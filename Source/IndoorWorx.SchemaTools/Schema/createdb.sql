@@ -244,6 +244,7 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        About NVARCHAR(255) null,
        Email NVARCHAR(255) not null,
        Country NVARCHAR(255) null,
+       Credits INT null,
        Occupation_id UNIQUEIDENTIFIER null,
        ReferralSource_id UNIQUEIDENTIFIER null,
        SportingHabits_id UNIQUEIDENTIFIER null,

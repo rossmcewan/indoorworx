@@ -8,6 +8,8 @@ using IndoorWorx.Infrastructure.Criteria;
 using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure.Repositories;
 using System.ServiceModel.Activation;
+using IndoorWorx.Infrastructure.Responses;
+using IndoorWorx.Infrastructure.Requests;
 
 namespace IndoorWorx.Library.Services
 {
@@ -37,6 +39,11 @@ namespace IndoorWorx.Library.Services
             get { return serviceLocator.GetInstance<IOccupationRepository>(); }
         }
 
+        private IVideoRepository VideoRepository
+        {
+            get { return serviceLocator.GetInstance<IVideoRepository>(); }
+        }
+
         #endregion
 
         #region Methods
@@ -63,6 +70,35 @@ namespace IndoorWorx.Library.Services
         {
             var result = ReferralSourcesRepository.FindAll(a => a.IsActive == true);
             return result;
+        }
+
+        public AddVideoResponse AddVideoToLibrary(AddVideoRequest request)
+        {
+            var response = new AddVideoResponse();
+            try
+            {
+                var user = ApplicationUserRepository.FindOne(u => u.Username == request.User);
+                if (user.Videos.Any(x => x.Id == request.VideoId))
+                {
+                    response.AddVideoStatus = AddVideoStatus.VideoAlreadyAdded;
+                    return response;
+                }
+                var video = VideoRepository.FindOne(v => v.Id == request.VideoId);
+                if (user.Credits < video.Credits)
+                {
+                    response.AddVideoStatus = AddVideoStatus.InsufficientCredits;
+                    return response;
+                }
+                user.Videos.Add(video);
+                ApplicationUserRepository.Save(user);
+                response.AddVideoStatus = AddVideoStatus.Success;
+            }
+            catch (Exception ex)
+            {
+                response.AddVideoStatus = AddVideoStatus.Error;
+                response.Message = ex.Message;
+            }
+            return response;
         }
         #endregion
     }
