@@ -8,13 +8,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using IndoorWorx.Infrastructure.DragDrop;
 
-namespace IndoorWorx.Infrastructure.DragDrop
+namespace IndoorWorx.Catalog.Views
 {
-    public interface IDropTargetHost
+    public interface ITemplatesPresentationModel
     {
-        void AddDropTarget(IDropTarget dropTarget);
+        ITemplatesView View { set; get; }
 
-        void RemoveDropTarget(IDropTarget dropTarget);
+        IDropTarget TemplateDropTarget { get; set; }
+
+        void Refresh();
     }
 }

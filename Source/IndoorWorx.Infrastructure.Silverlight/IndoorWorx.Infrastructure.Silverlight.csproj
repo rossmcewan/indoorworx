@@ -285,7 +285,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DragDrop\IDropTarget.cs" />
-    <Compile Include="DragDrop\IDropTargetHost.cs" />
     <Compile Include="Events\CatalogSearchTextChangedEvent.cs" />
     <Compile Include="Events\DesignVideoEvent.cs" />
     <Compile Include="Events\PlayVideoEvent.cs" />

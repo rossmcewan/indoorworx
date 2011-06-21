@@ -83,13 +83,6 @@
             </Border>
 
             <Border x:Name="loginContainer" Style="{StaticResource LoginContainerStyle}"/>
-
-            <Border x:Name="DropTargetsContainer" Style="{StaticResource DropTargetsContainerStyle}" Visibility="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
-                <StackPanel>
-                    <StackPanel x:Name="DropTargetsStackPanel" Style="{StaticResource DropTargetsStackPanelStyle}"/>
-                    <TextBlock x:Name="DropTargetsToolTip" Style="{StaticResource DropTargetsToolTipTextBlockStyle}"/>
-                </StackPanel>
-            </Border>
         </Grid>        
     </Grid>
 </UserControl>

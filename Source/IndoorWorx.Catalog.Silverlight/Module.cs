@@ -45,11 +45,6 @@ namespace IndoorWorx.Catalog
             get { return serviceLocator.GetInstance<INavigationLinks>(); }
         }
 
-        private IDropTargetHost DropTargetHost
-        {
-            get { return serviceLocator.GetInstance<IDropTargetHost>(); }
-        }
-
         #region IModule Members
 
         public void Initialize()
@@ -68,6 +63,8 @@ namespace IndoorWorx.Catalog
             unityContainer.RegisterInstance<IVideoCatalogPresentationModel>(unityContainer.Resolve<VideoCatalogPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<IVideoCatalogView>(unityContainer.Resolve<VideoCatalogView>(), new ContainerControlledLifetimeManager());
 
+            unityContainer.RegisterInstance<ITemplatesPresentationModel>(unityContainer.Resolve<TemplatesPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<ITemplatesView>(unityContainer.Resolve<TemplatesView>(), new ContainerControlledLifetimeManager());
 
             NavigationLinks.MapUri(
                 new Uri("/Catalog", UriKind.Relative),

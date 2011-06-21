@@ -628,7 +628,6 @@
     </Style>
     
     <Style x:Key="DropTargetStyle" TargetType="ListBox">
-        <Setter Property="Opacity" Value="0.5"/>
         <Setter Property="telerik:RadDragAndDropManager.AllowDrop" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>

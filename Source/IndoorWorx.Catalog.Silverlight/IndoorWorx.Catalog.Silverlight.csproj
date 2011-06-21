@@ -128,6 +128,7 @@
     <Compile Include="Converters\VideoNavigationUriConverter.cs" />
     <Compile Include="Events\TrainingSetSelectionChangedEvent.cs" />
     <Compile Include="Events\VideoSelectionChangedEvent.cs" />
+    <Compile Include="Helpers\DropTargetHelper.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Pages\TemplatesPage.xaml.cs">
@@ -149,6 +150,8 @@
     </Compile>
     <Compile Include="Views\ICatalogPresentationModel.cs" />
     <Compile Include="Views\ICatalogView.cs" />
+    <Compile Include="Views\ITemplatesView.cs" />
+    <Compile Include="Views\ITemplatesPresentationModel.cs" />
     <Compile Include="Views\IVideoCatalogPresentationModel.cs" />
     <Compile Include="Views\IVideoCatalogView.cs" />
     <Compile Include="Views\IVideoDetailsPresentationModel.cs" />
@@ -161,6 +164,10 @@
     <Compile Include="Pages\VideoCatalogPage.xaml.cs">
       <DependentUpon>VideoCatalogPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TemplatesView.xaml.cs">
+      <DependentUpon>TemplatesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemplatesPresentationModel.cs" />
     <Compile Include="Views\VideoCatalogPresentationModel.cs" />
     <Compile Include="Views\VideoCatalogView.xaml.cs">
       <DependentUpon>VideoCatalogView.xaml</DependentUpon>
@@ -236,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\VideoCatalogPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TemplatesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

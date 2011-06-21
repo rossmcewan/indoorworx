@@ -9,6 +9,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Telerik.Windows.Controls.DragDrop;
+using IndoorWorx.Infrastructure.DragDrop;
+using IndoorWorx.Catalog.Helpers;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -19,7 +22,14 @@ namespace IndoorWorx.Catalog.Views
             this.DataContext = model;
             InitializeComponent();
             model.View = this;
+            InitializeVideoDropTargetList(this.videoDropTargetList);
         }
+
+        private void InitializeVideoDropTargetList(ListBox listBox)
+        {            
+            RadDragAndDropManager.AddDropQueryHandler(listBox, DropTargetHelper.OnDropQuery);
+            RadDragAndDropManager.AddDropInfoHandler(listBox, DropTargetHelper.OnDropInfo);
+        }        
 
         public IVideosPresentationModel Model
         {
