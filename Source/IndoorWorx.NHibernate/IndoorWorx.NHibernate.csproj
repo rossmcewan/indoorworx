@@ -83,6 +83,7 @@
     <Compile Include="ClassMaps\EquipmentFeaturesClassMap.cs" />
     <Compile Include="ClassMaps\IndoorTrainingFrequencyClassMap.cs" />
     <Compile Include="ClassMaps\IntervalClassMap.cs" />
+    <Compile Include="ClassMaps\IntervalLevelClassMap.cs" />
     <Compile Include="ClassMaps\IntervalTypeClassMap.cs" />
     <Compile Include="ClassMaps\ManufacturerClassMap.cs" />
     <Compile Include="ClassMaps\MeasurementClassMap.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="ClassMaps\TrainingZoneClassMap.cs" />
     <Compile Include="ClassMaps\UnitOfMeasureClassMap.cs" />
     <Compile Include="ClassMaps\VideoClassMap.cs" />
+    <Compile Include="ClassMaps\VideoIntervalClassMap.cs" />
     <Compile Include="ClassMaps\VideoMetadataClassMap.cs" />
     <Compile Include="ClassMaps\VideoReviewClassMap.cs" />
     <Compile Include="ClassMaps\VideoTextClassMap.cs" />

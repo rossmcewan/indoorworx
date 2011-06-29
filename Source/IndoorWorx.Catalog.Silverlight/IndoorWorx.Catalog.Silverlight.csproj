@@ -124,6 +124,7 @@
       <DependentUpon>TrainingSetDetailsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\CategoryTitleNavigationUriConverter.cs" />
+    <Compile Include="Converters\CreditsToTextConverter.cs" />
     <Compile Include="Converters\OrderByVisibilityConverter.cs" />
     <Compile Include="Converters\VideoNavigationUriConverter.cs" />
     <Compile Include="Events\TrainingSetSelectionChangedEvent.cs" />

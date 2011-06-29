@@ -11,6 +11,12 @@
     using IndoorWorx.Infrastructure;
     using IndoorWorx.Infrastructure.Services;
     using IndoorWorx.Infrastructure.Models;
+    using IndoorWorx.Silverlight.Views;
+    using IndoorWorx.Library.Services;
+    using Microsoft.Practices.Composite.Events;
+    using System.Collections.Generic;
+    using System.Windows.Browser;
+    using IndoorWorx.Silverlight.Web;
 
     /// <summary>
     /// Main <see cref="Application"/> class.
@@ -22,33 +28,94 @@
         /// </summary>
         public App()
         {
-            StyleManager.ApplicationTheme = new Telerik.Windows.Controls.TransparentTheme();
-            //ExpressionDarkTheme.SetIsApplicationTheme(this, true);
-            SmartDispatcher.Initialize(Deployment.Current.Dispatcher);
             InitializeComponent();
 
-            // Create a WebContext and add it to the ApplicationLifetimeObjects
-            // collection.  This will then be available as WebContext.Current.
-            WebContext webContext = new WebContext();
-            webContext.Authentication = new FormsAuthentication();
-            //webContext.Authentication = new WindowsAuthentication();
-            this.ApplicationLifetimeObjects.Add(webContext);
+            if (Application.Current.IsRunningOutOfBrowser)
+            {
+                StyleManager.ApplicationTheme = new Telerik.Windows.Controls.TransparentTheme();
+                SmartDispatcher.Initialize(Deployment.Current.Dispatcher);
+                
+                // Create a WebContext and add it to the ApplicationLifetimeObjects
+                // collection.  This will then be available as WebContext.Current.
+                WebContext webContext = new WebContext();
+                webContext.Authentication = new FormsAuthentication();
+                //webContext.Authentication = new WindowsAuthentication();
+                
+                this.ApplicationLifetimeObjects.Add(webContext);
+            }
         }        
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             ApplicationContext.Initialize();
+            if (Application.Current.IsRunningOutOfBrowser)
+            {
+                Application.Current.CheckAndDownloadUpdateCompleted += (obj, args) =>
+                {
+                    if (args.UpdateAvailable)
+                    {
+                        MessageBox.Show(ApplicationStrings.SoftwareUpdateAvailableMessage);
+                        Application.Current.MainWindow.Close();
+                    }
+                    else
+                    {
+                        var settingsUriString = "/Settings.xml";
+                        Uri source = Application.Current.Host.Source;
+
+                        string location = source.AbsoluteUri.Substring(0, source.AbsoluteUri.IndexOf("ClientBin", StringComparison.OrdinalIgnoreCase));
+
+                        settingsUriString = String.Concat(location, settingsUriString);
+                        Uri settingsUri = new Uri(settingsUriString, UriKind.Absolute);
+
+                        SettingsClient settingsService = new SettingsClient(settingsUri);
+                        settingsService.GetSettingsCompleted += this.SettingsService_GetSettingsCompleted;
+                        settingsService.GetSettingsAsync();                          
+                    }
+                };
+                Application.Current.CheckAndDownloadUpdateAsync();                
+            }
+            else
+            {
+                this.RootVisual = new ApplicationInstallerView();
+            }
+        }
+
+        private void SettingsService_GetSettingsCompleted(object sender, DataEventArgs<IDictionary<string, string>> args)
+        {            
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                IDictionary<string, string> settings = args.Value;
+                IDictionary<string, string> queryString = HtmlPage.Document.QueryString;
+
+                if (queryString != null)
+                {
+                    foreach (string key in queryString.Keys)
+                    {
+                        if (!settings.ContainsKey(key))
+                        {
+                            settings.Add(key, queryString[key]);
+                        }
+                    }
+                }
+
+                this.Run(settings);
+            });
+        }
+
+        private void Run(IDictionary<string, string> settings)
+        {
             // This will enable you to bind controls in XAML files to WebContext.Current
             // properties
-            this.Resources.Add("WebContext", WebContext.Current);                        
+            this.Resources.Add("WebContext", WebContext.Current);
 
+            (WebContext.Current.Authentication as WebAuthenticationService).DomainContext = new AuthenticationContext(new Uri(settings["AuthenticationUri"], UriKind.Absolute));
             // This will automatically authenticate a user when using windows authentication
             // or when the user chose "Keep me signed in" on a previous login attempt
             WebContext.Current.Authentication.LoadUser(this.Application_UserLoaded, null);
 
             // Show some UI to the user while LoadUser is in progress
             //this.InitializeRootVisual();
-            new Bootstrapper().Run();
+            new Bootstrapper(settings).Run();
         }
 
         /// <summary>

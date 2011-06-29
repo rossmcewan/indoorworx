@@ -71,6 +71,7 @@
     <Compile Include="Models\EquipmentFeatures.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Interval.cs" />
+    <Compile Include="Models\IntervalLevel.cs" />
     <Compile Include="Models\IntervalType.cs" />
     <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Models\Measurement.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Models\TrainingZone.cs" />
     <Compile Include="Models\UnitOfMeasure.cs" />
     <Compile Include="Models\Video.cs" />
+    <Compile Include="Models\VideoInterval.cs" />
     <Compile Include="Models\VideoMetadata.cs" />
     <Compile Include="Models\VideoReview.cs" />
     <Compile Include="Models\VideoOptions.cs" />

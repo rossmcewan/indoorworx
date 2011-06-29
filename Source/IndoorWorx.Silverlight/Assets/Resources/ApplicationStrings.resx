@@ -196,4 +196,22 @@ Did you say indoor training is boring!? Think again.</value>
   <data name="Search" xml:space="preserve">
     <value>SEARCH</value>
   </data>
+  <data name="ClickToInstall" xml:space="preserve">
+    <value>CLICK TO INSTALL</value>
+  </data>
+  <data name="InstalledText" xml:space="preserve">
+    <value>INSTALLED</value>
+  </data>
+  <data name="InstallFailedText" xml:space="preserve">
+    <value>INSTALL FAILED - CLICK TO TRY AGAIN</value>
+  </data>
+  <data name="InstallingText" xml:space="preserve">
+    <value>INSTALLING</value>
+  </data>
+  <data name="NotInstalledText" xml:space="preserve">
+    <value>CLICK TO INSTALL</value>
+  </data>
+  <data name="SoftwareUpdateAvailableMessage" xml:space="preserve">
+    <value>There is software update available. Please restart the application.</value>
+  </data>
 </root>

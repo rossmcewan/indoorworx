@@ -29,8 +29,13 @@ namespace IndoorWorx.Infrastructure
 
         private ApplicationContext()
         {
+            Application.Current.InstallStateChanged += (sender, e) =>
+                {
+                    FirePropertyChanged("InstallState");
+                };
             ApplicationUser.CurrentUserChanged += (sender, e) =>
                 {
+                    FirePropertyChanged("CurrentUser");
                     if (ApplicationUser.CurrentUser != null)
                     {
                         VideoCount = ApplicationUser.CurrentUser.Videos.Count;
@@ -53,6 +58,11 @@ namespace IndoorWorx.Infrastructure
             VideoCount = ApplicationUser.CurrentUser.Videos.Count;
         }
 
+        public virtual ApplicationUser CurrentUser
+        {
+            get { return ApplicationUser.CurrentUser; }
+        }
+
         private int videoCount;
         public int VideoCount
         {
@@ -62,6 +72,16 @@ namespace IndoorWorx.Infrastructure
                 videoCount = value;
                 FirePropertyChanged("VideoCount");
             }
+        }
+
+        public bool IsRunningOutOfBrowser
+        {
+            get { return Application.Current.IsRunningOutOfBrowser; }
+        }
+
+        public InstallState InstallState
+        {
+            get { return Application.Current.InstallState; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

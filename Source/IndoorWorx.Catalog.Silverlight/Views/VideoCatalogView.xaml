@@ -88,9 +88,7 @@
                                                     <HyperlinkButton Width="138" Height="138" Margin="2" TargetName="VideoDetailsFrame" NavigateUri="{Binding Converter={StaticResource VideoNavigationUriConverter}}">
                                                         <input:ContextMenuService.ContextMenu>
                                                             <input:ContextMenu Style="{StaticResource ZuneLikeContextMenu}" IsEnabled="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Mode=OneWay}">
-                                                                <input:MenuItem Header="{Binding CatalogResources.PreviewVideoHeader, Source={StaticResource CatalogResources}}" Style="{StaticResource ZuneLikeMenuItem}"/>
-                                                                <input:Separator Style="{StaticResource ZuneLikeSeparator}"/>
-                                                                <input:MenuItem Header="{Binding CatalogResources.AddToMyLibraryHeader, Source={StaticResource CatalogResources}}" Style="{StaticResource ZuneLikeMenuItem}"/>
+                                                                <input:MenuItem Header="{Binding CatalogResources.AddToMyLibraryHeader, Source={StaticResource CatalogResources}}" Style="{StaticResource ZuneLikeMenuItem}" Command="{Binding DataContext.AddToMyLibraryCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}"/>
                                                             </input:ContextMenu>
                                                         </input:ContextMenuService.ContextMenu>
                                                         <StackPanel>
@@ -138,8 +136,6 @@
                                                 <HyperlinkButton Width="138" Height="138" Margin="2" TargetName="VideoDetailsFrame" NavigateUri="{Binding Converter={StaticResource VideoNavigationUriConverter}}">
                                                     <input:ContextMenuService.ContextMenu>
                                                         <input:ContextMenu Style="{StaticResource ZuneLikeContextMenu}" IsEnabled="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Mode=OneWay}">
-                                                            <input:MenuItem Header="{Binding CatalogResources.PreviewVideoHeader, Source={StaticResource CatalogResources}}" Style="{StaticResource ZuneLikeMenuItem}"/>
-                                                            <input:Separator Style="{StaticResource ZuneLikeSeparator}"/>
                                                             <input:MenuItem Header="{Binding CatalogResources.AddToMyLibraryHeader, Source={StaticResource CatalogResources}}" Style="{StaticResource ZuneLikeMenuItem}"/>
                                                         </input:ContextMenu>
                                                     </input:ContextMenuService.ContextMenu>

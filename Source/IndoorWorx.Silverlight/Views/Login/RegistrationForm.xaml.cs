@@ -22,7 +22,7 @@
     {
         private LoginRegistrationWindow parentWindow;
         private RegistrationData registrationData = new RegistrationData();
-        private UserRegistrationContext userRegistrationContext = new UserRegistrationContext();//new Uri("http://www.indoorworx.com/indoorworx/IndoorWorx-Silverlight-Web-UserRegistrationService.svc", UriKind.Absolute));
+        private UserRegistrationContext userRegistrationContext;// = new UserRegistrationContext();//new Uri("http://www.indoorworx.com/indoorworx/IndoorWorx-Silverlight-Web-UserRegistrationService.svc", UriKind.Absolute));
 
         public string Header
         {
@@ -35,6 +35,9 @@
         /// </summary>
         public RegistrationForm()
         {
+            var configService = IoC.Resolve<IConfigurationService>();
+            userRegistrationContext = new UserRegistrationContext(new Uri(configService.GetParameterValue("UserRegistrationUri"), UriKind.Absolute));
+
             InitializeComponent();
 
             // Set the DataContext of this control to the

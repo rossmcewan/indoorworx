@@ -47,5 +47,21 @@ namespace IndoorWorx.Silverlight.Services
         }
 
         #endregion
+
+        public event EventHandler LoggedIn;
+
+        public void OnLoggedIn()
+        {
+            if (LoggedIn != null)
+                LoggedIn(this, EventArgs.Empty);
+        }
+
+        public event EventHandler LoggedOut;
+
+        public void OnLoggedOut()
+        {
+            if (LoggedOut != null)
+                LoggedOut(this, EventArgs.Empty);
+        }
     }
 }

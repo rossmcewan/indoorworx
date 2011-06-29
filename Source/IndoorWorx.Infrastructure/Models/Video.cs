@@ -130,9 +130,9 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private ICollection<Interval> intervals = new List<Interval>();
+        private ICollection<VideoInterval> intervals = new List<VideoInterval>();
         [DataMember]
-        public virtual ICollection<Interval> Intervals
+        public virtual ICollection<VideoInterval> Intervals
         {
             get { return intervals; }
             set

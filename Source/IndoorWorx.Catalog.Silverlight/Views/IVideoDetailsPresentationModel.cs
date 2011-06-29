@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 
 namespace IndoorWorx.Catalog.Views
 {
     public interface IVideoDetailsPresentationModel
     {
+        ICommand PreviewVideoCommand { get; }
+
         IVideoDetailsView View { get; set; }
 
         void SelectVideoWithId(Guid id);

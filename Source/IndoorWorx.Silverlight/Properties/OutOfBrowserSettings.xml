@@ -1,7 +1,7 @@
-<OutOfBrowserSettings ShortName="IndoorWorx" EnableGPUAcceleration="False" ShowInstallMenuItem="True">
+<OutOfBrowserSettings ShortName="IndoorWorx" EnableGPUAcceleration="True" ShowInstallMenuItem="True">
   <OutOfBrowserSettings.Blurb>IndoorWorx</OutOfBrowserSettings.Blurb>
   <OutOfBrowserSettings.WindowSettings>
-    <WindowSettings Title="IndoorWorx" WindowStyle="None" />
+    <WindowSettings Title="IndoorWorx" Height="768" Width="1024" WindowStyle="None" />
   </OutOfBrowserSettings.WindowSettings>
   <OutOfBrowserSettings.SecuritySettings>
     <SecuritySettings ElevatedPermissions="Required" />

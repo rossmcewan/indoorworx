@@ -135,6 +135,9 @@
   <data name="CatalogPaneTitle" xml:space="preserve">
     <value>CATALOG</value>
   </data>
+  <data name="Credits" xml:space="preserve">
+    <value>{0} CREDITS</value>
+  </data>
   <data name="DescriptionTitle" xml:space="preserve">
     <value>Description</value>
   </data>
@@ -143,6 +146,12 @@
   </data>
   <data name="DesignTrainingSetToolTip" xml:space="preserve">
     <value>Design a new training set using this training set as the basis for it.</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration:</value>
+  </data>
+  <data name="Free" xml:space="preserve">
+    <value>FREE</value>
   </data>
   <data name="InsufficientCredits" xml:space="preserve">
     <value>You have insufficient credits to use this video. Please purchase more credits.</value>
@@ -214,7 +223,7 @@
     <value>Training Metrics</value>
   </data>
   <data name="TrainingProgramsTitle" xml:space="preserve">
-    <value>TRAINING PROGRAMS</value>
+    <value>PROGRAMS</value>
   </data>
   <data name="TrainingSetsTitle" xml:space="preserve">
     <value>Training Sets</value>

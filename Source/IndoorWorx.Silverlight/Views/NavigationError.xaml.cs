@@ -23,6 +23,7 @@ namespace IndoorWorx.Silverlight.Views
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            
         }
 
     }

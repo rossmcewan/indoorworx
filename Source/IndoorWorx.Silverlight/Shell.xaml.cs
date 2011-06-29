@@ -20,6 +20,9 @@ using IndoorWorx.Infrastructure.Models;
     using IndoorWorx.Infrastructure.Animations;
     using IndoorWorx.Infrastructure.DragDrop;
     using Telerik.Windows.Controls.DragDrop;
+    using Microsoft.Practices.Composite.Events;
+    using IndoorWorx.Infrastructure.Events;
+    using System.Windows.Input;
 
     /// <summary>
     /// <see cref="UserControl"/> class providing the main UI for the application.
@@ -41,6 +44,95 @@ using IndoorWorx.Infrastructure.Models;
             this.loginContainer.Child = new LoginStatus();
             unityContainer.RegisterInstance<INavigationLinks>(this);
         }
+
+        #region Borderless behaviors
+
+        const int MIN_WIDTH = 500;
+        const int MIN_HEIGHT = 300;
+
+        private void minimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
+
+        private void maximizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.MainWindow.WindowState = WindowState.Maximized;
+
+            // Toggle between restore and maximize buttons
+            restoreButton.Visibility = System.Windows.Visibility.Visible;
+            maximizeButton.Visibility = System.Windows.Visibility.Collapsed;
+
+            // Don't show the resize icon if we're maximized
+            resizeButton.Visibility = System.Windows.Visibility.Collapsed;
+
+            // Restore to it's original opacity since this won't be reset with the MouseLeave Event
+            maximizeButton.Opacity = 0.5;
+
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.MainWindow.Close();
+        }
+
+        private void restoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.MainWindow.WindowState = WindowState.Normal;
+
+            maximizeButton.Visibility = System.Windows.Visibility.Visible;
+            restoreButton.Visibility = System.Windows.Visibility.Collapsed;
+
+            // Make sure the resize icon is showing 
+            resizeButton.Visibility = System.Windows.Visibility.Visible;
+
+            // Restore to it's original opacity since this won't be reset with the MouseLeave Event
+            restoreButton.Opacity = 0.5;
+        }
+
+        private void Page_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // If the user initiates a drag in the top part of the screen then start moving the window.
+            if (e.GetPosition(this).Y < 50.0)
+                App.Current.MainWindow.DragMove();
+        }
+
+        private void HyperLinkButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            HyperlinkButton button = sender as HyperlinkButton;
+            button.Opacity = 1;
+        }
+
+        private void HyperLinkButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            HyperlinkButton button = sender as HyperlinkButton;
+            button.Opacity = 0.5;
+        }
+
+        private void resizeButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            App.Current.MainWindow.DragResize(WindowResizeEdge.BottomRight);
+        }
+
+        private void border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            FrameworkElement border = sender as FrameworkElement;
+            App.Current.MainWindow.DragResize((WindowResizeEdge)Enum.Parse(typeof(WindowResizeEdge), border.Tag.ToString(), true));
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.NewSize.Width < MIN_WIDTH)
+            {
+                App.Current.MainWindow.Width = MIN_WIDTH;
+            }
+            if (e.NewSize.Height < MIN_HEIGHT)
+            {
+                App.Current.MainWindow.Height = MIN_HEIGHT;
+            }
+        }
+
+        #endregion
 
         void Authentication_LoggedOut(object sender, AuthenticationEventArgs e)
         {
@@ -138,12 +230,19 @@ using IndoorWorx.Infrastructure.Models;
             if (hb == null)
             {
                 hb = navigation.AsHyperlinkButton();
+                //first check if there is a mapped Uri for this navigation uri
+                var uri = (this.ContentFrame.UriMapper as UriMapper).UriMappings.FirstOrDefault(x => x.Uri.OriginalString.Equals(navigation.NavigationUri));
+                string pattern = navigation.NavigationUri;
+                if (uri != null)
+                    pattern = uri.MappedUri.ToString();
                 NavigationAuthRule authRule = new NavigationAuthRule()
                 {
-                    UriPattern = string.Concat("^", navigation.NavigationUri, "$")
+                    UriPattern = string.Concat("^", pattern, "$")
                 };                
-                authRule.Parts.Add(new Deny() { Users = navigation.GetDeniedRolesAsString() });
-                authRule.Parts.Add(new Allow() { Users = navigation.GetAllowedRolesAsString() });
+                if(navigation.Deny.Count > 0)
+                    authRule.Parts.Add(new Deny() { Users = navigation.GetDeniedRolesAsString() });
+                if(navigation.Allow.Count > 0)
+                    authRule.Parts.Add(new Allow() { Users = navigation.GetAllowedRolesAsString() });
                 NavigationAuthorizer _authorizer = GetAuthorizer();                  
                 _authorizer.Rules.Add(authRule);
                 LinksStackPanel.Children.Add(GetDivider());
@@ -195,5 +294,15 @@ using IndoorWorx.Infrastructure.Models;
         }
 
         #endregion                        
+
+        private void settingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            IoC.Resolve<IEventAggregator>().GetEvent<SettingsEvent>().Publish(null);
+        }
+
+        private void helpButton_Click(object sender, RoutedEventArgs e)
+        {
+            IoC.Resolve<IEventAggregator>().GetEvent<HelpEvent>().Publish(null);
+        }
     }
 }

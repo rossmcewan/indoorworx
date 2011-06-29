@@ -3,16 +3,25 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"             
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"       
+    xmlns:converters="clr-namespace:IndoorWorx.Catalog.Converters"             
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
-    
+    <UserControl.Resources>
+        <converters:CreditsToTextConverter x:Key="CreditsToTextConverter"/>
+    </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
         <StackPanel>
-            <Image Width="256" Margin="5" Source="{Binding Video.ImageUri, Mode=OneWay}"/>
+            <Grid>                
+                <Image Width="256" Margin="5" Source="{Binding Video.ImageUri, Mode=OneWay}"/>
+                <Button x:Name="playButton" Opacity="1" Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Command="{Binding PreviewVideoCommand}" CommandParameter="{Binding Video, Mode=OneWay}"/>
+            </Grid>
             <TextBlock FontWeight="Bold" Text="{Binding Video.Title, Mode=OneWay}" Margin="5"/>
             <TextBlock Text="{Binding Video.Description, Mode=OneWay}" TextWrapping="Wrap" Margin="5"/>
-            <TextBlock Text="{Binding Video.Duration, Mode=OneWay}" Margin="5"/>
+            <TextBlock Text="{Binding CatalogResources.Duration, Source={StaticResource CatalogResources}}" Margin="5,0">
+                <Run Text="{Binding Video.Duration, Mode=OneWay}"/>
+            </TextBlock>
+            <TextBlock Text="{Binding Video.Credits, Mode=OneWay, Converter={StaticResource CreditsToTextConverter}}" Margin="5,0"/>
             <telerik:RadBusyIndicator IsBusy="{Binding Video.IsTelemetryLoading, Mode=OneWay}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0">
                     <telerik:RadLinearSparkline 

@@ -5,24 +5,30 @@
     <Modularity:ModuleInfo Ref="IndoorWorx.Silverlight.xap" ModuleName="Library" ModuleType="IndoorWorx.Library.Module, IndoorWorx.Library.Silverlight, Version=1.0.0.0" InitializationMode="WhenAvailable" />
     
     <Modularity:ModuleInfoGroup InitializationMode="WhenAvailable">
+        <Modularity:ModuleInfo ModuleName="Settings" ModuleType="IndoorWorx.Settings.Module, IndoorWorx.Settings.Silverlight, Version=1.0.0.0"/>
         <Modularity:ModuleInfo ModuleName="Player" ModuleType="IndoorWorx.Player.Module, IndoorWorx.Player.Silverlight, Version=1.0.0.0" >
             <!--<Modularity:ModuleInfo.DependsOn>
                 <sys:String>Designer</sys:String>
             </Modularity:ModuleInfo.DependsOn>-->
         </Modularity:ModuleInfo>
-        <Modularity:ModuleInfo ModuleName="Dashboard" ModuleType="IndoorWorx.Dashboard.Module, IndoorWorx.Dashboard.Silverlight, Version=1.0.0.0" >
+        <!--<Modularity:ModuleInfo ModuleName="Dashboard" ModuleType="IndoorWorx.Dashboard.Module, IndoorWorx.Dashboard.Silverlight, Version=1.0.0.0" >
             <Modularity:ModuleInfo.DependsOn>
                 <sys:String>Library</sys:String>
             </Modularity:ModuleInfo.DependsOn>
-        </Modularity:ModuleInfo>
+        </Modularity:ModuleInfo>-->
         <Modularity:ModuleInfo ModuleName="Catalog" ModuleType="IndoorWorx.Catalog.Module, IndoorWorx.Catalog.Silverlight, Version=1.0.0.0" >
+            <!--<Modularity:ModuleInfo.DependsOn>
+                <sys:String>Dashboard</sys:String>
+            </Modularity:ModuleInfo.DependsOn>-->
+        </Modularity:ModuleInfo>
+        <Modularity:ModuleInfo ModuleName="MyLibrary" ModuleType="IndoorWorx.MyLibrary.Module, IndoorWorx.MyLibrary.Silverlight, Version=1.0.0.0" >
             <Modularity:ModuleInfo.DependsOn>
-                <sys:String>Library</sys:String>
+                <sys:String>Catalog</sys:String>
             </Modularity:ModuleInfo.DependsOn>
         </Modularity:ModuleInfo>
         <Modularity:ModuleInfo ModuleName="Designer" ModuleType="IndoorWorx.Designer.Module, IndoorWorx.Designer.Silverlight, Version=1.0.0.0" >
             <Modularity:ModuleInfo.DependsOn>
-                <sys:String>Catalog</sys:String>
+                <sys:String>MyLibrary</sys:String>
             </Modularity:ModuleInfo.DependsOn>
         </Modularity:ModuleInfo>
         <!--<Modularity:ModuleInfo ModuleName="4me" ModuleType="IndoorWorx.ForMe.Module, IndoorWorx.4me.Silverlight, Version=1.0.0.0" >

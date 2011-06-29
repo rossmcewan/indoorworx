@@ -75,8 +75,7 @@ namespace IndoorWorx.Catalog
                 Content = "catalog",
                 IsAuthenticationRequired = true,
                 NavigationUri = "/Catalog",
-                Allow = new string[] { "?" },
-                Deny = new string[] { "" }
+                Allow = new string[] { "?,*" }
             });
         }
 

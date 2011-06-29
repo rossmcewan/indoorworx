@@ -133,6 +133,15 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CLICK TO INSTALL.
+        /// </summary>
+        public static string ClickToInstall {
+            get {
+                return ResourceManager.GetString("ClickToInstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We all know how boring indoor training can be, yet it is a necessary part of most people training regimes.  Be it because of the weather, the traffic or just the necessity to get a quality session done in a controlled environment. 
         ///Indoor training works, but how do we make it more enjoyable, and overcome the boredom to push ourselves to new limits.
         ///IndoorWorx. That’s how.
@@ -150,6 +159,33 @@ namespace IndoorWorx.Silverlight {
         public static string HomePageTitle {
             get {
                 return ResourceManager.GetString("HomePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSTALLED.
+        /// </summary>
+        public static string InstalledText {
+            get {
+                return ResourceManager.GetString("InstalledText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSTALL FAILED - CLICK TO TRY AGAIN.
+        /// </summary>
+        public static string InstallFailedText {
+            get {
+                return ResourceManager.GetString("InstallFailedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSTALLING.
+        /// </summary>
+        public static string InstallingText {
+            get {
+                return ResourceManager.GetString("InstallingText", resourceCulture);
             }
         }
         
@@ -177,6 +213,15 @@ namespace IndoorWorx.Silverlight {
         public static string LogOffButton {
             get {
                 return ResourceManager.GetString("LogOffButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CLICK TO INSTALL.
+        /// </summary>
+        public static string NotInstalledText {
+            get {
+                return ResourceManager.GetString("NotInstalledText", resourceCulture);
             }
         }
         
@@ -249,6 +294,15 @@ namespace IndoorWorx.Silverlight {
         public static string SignUpNow {
             get {
                 return ResourceManager.GetString("SignUpNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is software update available. Please restart the application..
+        /// </summary>
+        public static string SoftwareUpdateAvailableMessage {
+            get {
+                return ResourceManager.GetString("SoftwareUpdateAvailableMessage", resourceCulture);
             }
         }
         

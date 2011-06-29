@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Composite.Events;
 using IndoorWorx.Infrastructure.Services;
+using Microsoft.Practices.Composite.Presentation.Commands;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -25,9 +26,17 @@ namespace IndoorWorx.Catalog.Views
         {
             this.serviceLocator = serviceLocator;
             this.eventAggregator = eventAggregator;
+            this.AddToMyLibraryCommand = new DelegateCommand<Video>(AddToMyLibrary);
         }
 
         public IVideoCatalogView View { get; set; }
+
+        public ICommand AddToMyLibraryCommand { get; private set; }
+
+        private void AddToMyLibrary(Video video)
+        {
+            ApplicationUser.CurrentUser.AddVideoToLibrary(video, () => { });
+        }
 
         public void Refresh()
         {

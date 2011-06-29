@@ -12,9 +12,9 @@ namespace IndoorWorx.NHibernate.ClassMaps
         public IntervalClassMap()
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
-            References(x => x.IntervalType).Not.Nullable();
-            Map(x => x.StartTime).Not.Nullable();
-            Map(x => x.EndTime).Not.Nullable();
+            Map(x => x.Duration).Not.Nullable();
+            References(x => x.IntervalType).Not.Nullable().Not.LazyLoad();
+            References(x => x.IntervalLevel).Not.Nullable().Not.LazyLoad();
         }
     }
 }

@@ -59,8 +59,20 @@ alter table Equipment_EquipmentFeatures  drop constraint FK76FBBBA832B0BDDD
 alter table [Interval]  drop constraint FK8882D83E2055E96F
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK8882D83EE9F4749E]') AND parent_object_id = OBJECT_ID('[Interval]'))
-alter table [Interval]  drop constraint FK8882D83EE9F4749E
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK8882D83EEB43FADB]') AND parent_object_id = OBJECT_ID('[Interval]'))
+alter table [Interval]  drop constraint FK8882D83EEB43FADB
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKD1BC018BCF534679]') AND parent_object_id = OBJECT_ID('[VideoInterval]'))
+alter table [VideoInterval]  drop constraint FKD1BC018BCF534679
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKD1BC018BE9F4749E]') AND parent_object_id = OBJECT_ID('[VideoInterval]'))
+alter table [VideoInterval]  drop constraint FKD1BC018BE9F4749E
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE48AD1903C498C0]') AND parent_object_id = OBJECT_ID('[IntervalType]'))
+alter table [IntervalType]  drop constraint FKE48AD1903C498C0
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK66ADF886BFB37A41]') AND parent_object_id = OBJECT_ID('[Measurement]'))
@@ -170,6 +182,10 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
     if exists (select * from dbo.sysobjects where id = object_id(N'[IndoorTrainingFrequency]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [IndoorTrainingFrequency]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Interval]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Interval]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[VideoInterval]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VideoInterval]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[IntervalLevel]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [IntervalLevel]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[IntervalType]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [IntervalType]
 
@@ -321,16 +337,38 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
 
     create table [Interval] (
         Id UNIQUEIDENTIFIER not null,
-       StartTime BIGINT not null,
-       EndTime BIGINT not null,
+       Duration BIGINT not null,
        IntervalType_id UNIQUEIDENTIFIER not null,
+       IntervalLevel_id UNIQUEIDENTIFIER not null,
+       primary key (Id)
+    )
+
+    create table [VideoInterval] (
+        Id UNIQUEIDENTIFIER not null,
+       StartTimestamp BIGINT not null,
+       EndTimestamp BIGINT not null,
        Video UNIQUEIDENTIFIER null,
+       primary key (Id)
+    )
+
+    create table [IntervalLevel] (
+        Id UNIQUEIDENTIFIER not null,
+       Name NVARCHAR(255) not null,
+       MaximumPercentageOfFtp DECIMAL(19,5) null,
+       MinimumPercentageOfFtp DECIMAL(19,5) null,
+       MinimumPercentageOfFthr DECIMAL(19,5) null,
+       MaximumPercentageOfFthr DECIMAL(19,5) null,
+       MinRPE INT null,
+       MaxRPE INT null,
+       TypicalMaxDuration BIGINT null,
+       TypicalMinDuration BIGINT null,
        primary key (Id)
     )
 
     create table [IntervalType] (
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null,
+       DefaultLevel_id UNIQUEIDENTIFIER not null,
        primary key (Id)
     )
 
@@ -593,9 +631,24 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
         references [IntervalType]
 
     alter table [Interval] 
-        add constraint FK8882D83EE9F4749E 
+        add constraint FK8882D83EEB43FADB 
+        foreign key (IntervalLevel_id) 
+        references [IntervalLevel]
+
+    alter table [VideoInterval] 
+        add constraint FKD1BC018BCF534679 
+        foreign key (Id) 
+        references [Interval]
+
+    alter table [VideoInterval] 
+        add constraint FKD1BC018BE9F4749E 
         foreign key (Video) 
         references [Video]
+
+    alter table [IntervalType] 
+        add constraint FKE48AD1903C498C0 
+        foreign key (DefaultLevel_id) 
+        references [IntervalLevel]
 
     alter table [Measurement] 
         add constraint FK66ADF886BFB37A41 

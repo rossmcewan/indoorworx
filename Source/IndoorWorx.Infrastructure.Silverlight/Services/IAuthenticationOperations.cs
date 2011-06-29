@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 namespace IndoorWorx.Infrastructure.Services
 {
     public interface IAuthenticationOperations
-    {
+    {        
         bool IsAuthenticated { get; }
 
         bool IsInRole(string role);

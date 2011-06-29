@@ -13,6 +13,8 @@ using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure.Services;
+using Microsoft.Practices.Composite.Presentation.Commands;
+using IndoorWorx.Infrastructure.Events;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -24,6 +26,12 @@ namespace IndoorWorx.Catalog.Views
         {
             this.serviceLocator = serviceLocator;
             this.eventAggregator = eventAggregator;
+            this.PreviewVideoCommand = new DelegateCommand<Video>(PreviewVideo);
+        }
+
+        public void PreviewVideo(Video video)
+        {
+            eventAggregator.GetEvent<PreviewVideoEvent>().Publish(video);
         }
 
         public IVideoDetailsView View { get; set; }
@@ -65,6 +73,8 @@ namespace IndoorWorx.Catalog.Views
             categoryService.RetrieveCategories();
         }
 
+        public ICommand PreviewVideoCommand { get; private set; }
+               
         private bool busy;
         public virtual bool IsBusy
         {

@@ -21,19 +21,7 @@ namespace IndoorWorx.Infrastructure.Models
                 recordingInterval = value;
                 FirePropertyChanged("RecordingInterval");
             }
-        }
-
-        private Uri telemetryUri;
-        [DataMember]
-        public virtual Uri TelemetryUri
-        {
-            get { return telemetryUri; }
-            set
-            {
-                telemetryUri = value;
-                FirePropertyChanged("TelemetryUri");
-            }
-        }
+        }        
 
         private TrainingMetricType trainingMetrics;
         [DataMember]
@@ -47,6 +35,17 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private Uri telemetryUri;
+        [DataMember]
+        public virtual Uri TelemetryUri
+        {
+            get { return telemetryUri; }
+            set
+            {
+                telemetryUri = value;
+                FirePropertyChanged("TelemetryUri");
+            }
+        }
 
         private ICollection<VideoText> videoText = new List<VideoText>();
         [DataMember]

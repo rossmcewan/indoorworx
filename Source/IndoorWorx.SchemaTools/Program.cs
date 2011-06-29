@@ -258,10 +258,33 @@ namespace IndoorWorx.SchemaTools
                 .BuildSessionFactory();
 
             using (var session = sessionFactory.OpenSession())
-            {
-                
+            {                
                 using (var transaction = session.BeginTransaction())
                 {
+                    session.Save(new ApplicationUser() { Email = "rossmcewan@gmail.com", Firstname = "Ross", Gender = Genders.Male, Lastname = "McEwan", Username = "rossmcewan" });
+                    var l1 = new IntervalLevel() { Name = "Active Recovery", MaximumPercentageOfFthr = 68, MaximumPercentageOfFtp = 55, MinRPE = 0, MaxRPE = 2 };
+                    session.Save(l1);
+                    var l2 = new IntervalLevel() { Name = "Endurance", MinimumPercentageOfFthr = 69, MaximumPercentageOfFthr = 83, MaximumPercentageOfFtp = 75, MinimumPercentageOfFtp = 56, MinRPE = 2, MaxRPE = 3 };
+                    session.Save(l2);
+                    var l3 = new IntervalLevel() { Name = "Tempo", MinimumPercentageOfFthr = 84, MaximumPercentageOfFthr = 94, MaximumPercentageOfFtp = 90, MinimumPercentageOfFtp = 76, MinRPE = 3, MaxRPE = 4 };
+                    session.Save(l3);
+                    var l4 = new IntervalLevel() { Name = "Lactate Threshold", MinimumPercentageOfFthr = 95, MaximumPercentageOfFthr = 105, MaximumPercentageOfFtp = 105, MinimumPercentageOfFtp = 91, MinRPE = 4, MaxRPE = 5, TypicalMinDuration = TimeSpan.FromMinutes(8), TypicalMaxDuration = TimeSpan.FromMinutes(30) };
+                    session.Save(l4);
+                    var l5 = new IntervalLevel() { Name = "VO2max", MinimumPercentageOfFthr = 106, MaximumPercentageOfFtp = 120, MinimumPercentageOfFtp = 106, MinRPE = 6, MaxRPE = 7, TypicalMinDuration = TimeSpan.FromMinutes(3), TypicalMaxDuration = TimeSpan.FromMinutes(8) };
+                    session.Save(l5);
+                    var l6 = new IntervalLevel() { Name = "Anaerobic Capacity", MaximumPercentageOfFtp = 150, MinimumPercentageOfFtp = 121, MinRPE = 7, TypicalMinDuration = TimeSpan.FromSeconds(30), TypicalMaxDuration = TimeSpan.FromMinutes(3) };
+                    session.Save(l6);
+                    var l7 = new IntervalLevel() { Name = "Neuromuscular Power", TypicalMaxDuration = TimeSpan.FromSeconds(30) };
+                    session.Save(l7);
+
+                    session.Save(new IntervalType() { Name = "Warm up", DefaultLevel = l2 });
+                    session.Save(new IntervalType() { Name = "Cool down", DefaultLevel = l1 });
+                    session.Save(new IntervalType() { Name = "Recovery", DefaultLevel = l1 });
+                    session.Save(new IntervalType() { Name = "Long Hills", DefaultLevel = l3 });
+                    session.Save(new IntervalType() { Name = "Short Hills", DefaultLevel = l4 });
+                    session.Save(new IntervalType() { Name = "Time Trial", DefaultLevel = l3 });
+                    session.Save(new IntervalType() { Name = "Sprints", DefaultLevel = l5 });
+
                     session.Save(new Category() { Title = "ALL", Sequence = 0, CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=ALL&orderBy=CATEGORY", UriKind.RelativeOrAbsolute) });
                     session.Save(GetCategory());
                     transaction.Commit();

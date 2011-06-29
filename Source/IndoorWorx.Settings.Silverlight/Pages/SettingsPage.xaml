@@ -1,0 +1,19 @@
+﻿<navigation:Page x:Class="IndoorWorx.Settings.Pages.SettingsPage" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="SettingsPage Page">
+    <Grid x:Name="LayoutRoot">
+        <navigation:Frame JournalOwnership="OwnsJournal" Source="/IndoorWorx.Settings.Silverlight;component/Pages/GeneralSettingsPage.xaml" x:Name="CatalogContentFrame" Style="{StaticResource FrameStyle}" Grid.Row="1" Navigated="CatalogContentFrame_Navigated">
+        </navigation:Frame>
+        <Border x:Name="LinksBorder" Style="{StaticResource SubMenuLinksBorderStyle}" Grid.Row="0">
+            <StackPanel x:Name="LinksStackPanel" Style="{StaticResource SubMenuLinksStackPanelStyle}">
+                <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.Settings.Silverlight;component/Pages/GeneralSettingsPage.xaml" TargetName="CatalogContentFrame" Content="{Binding SettingsResources.GeneralTitle, Source={StaticResource SettingsResources}}"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</navigation:Page>

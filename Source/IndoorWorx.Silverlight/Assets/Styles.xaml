@@ -17,6 +17,8 @@
     </ResourceDictionary.MergedDictionaries>
 
     <converters:CollectionSizeToIntegerConverter x:Key="CollectionSizeToIntegerConverter"/>
+
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource AccentColor}"/>
     
     <Style x:Key="LayoutRootGridStyle" TargetType="Grid">
     </Style>
@@ -132,6 +134,16 @@
         </Setter>
     </Style>
 
+    <Style x:Key="SettingsNameStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource BlackBrush}"/>
+        <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource ApplicationNameFontSize}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="TextOptions.TextHintingMode" Value="Animated" />
+        <Setter Property="Margin" Value="32,-4,0,-3"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
 
     <!-- ApplicationName Style -->
     <Style x:Key="ApplicationNameStyle" TargetType="TextBlock">

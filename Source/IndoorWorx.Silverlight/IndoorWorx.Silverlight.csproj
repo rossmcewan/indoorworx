@@ -251,6 +251,8 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controls\TiledBackground.cs" />
+    <Compile Include="Converters\InstallStateToEnabledConverter.cs" />
+    <Compile Include="Converters\InstallStateToTextConverter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\LoginInfo.cs" />
@@ -266,6 +268,9 @@
     <Compile Include="Helpers\TargetNullValueConverter.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Services\AuthenticationOperations.cs" />
+    <Compile Include="Views\ApplicationInstallerView.xaml.cs">
+      <DependentUpon>ApplicationInstallerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AuthorizationError.xaml.cs">
       <DependentUpon>AuthorizationError.xaml</DependentUpon>
     </Compile>
@@ -326,6 +331,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ApplicationInstallerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NavigationError.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -385,6 +394,11 @@
     <Resource Include="Assets\Fonts\SegoeWP.ttf" />
     <Resource Include="Assets\Fonts\SegoeWP_0.ttf" />
     <None Include="Properties\AppManifest.xml" />
+    <Resource Include="Images\closeButton.png" />
+    <Resource Include="Images\maximizeButton.png" />
+    <Resource Include="Images\minimizeButton.png" />
+    <Resource Include="Images\resize.png" />
+    <Resource Include="Images\restoreButton.png" />
     <Content Include="ServiceReferences.ClientConfig" />
     <Resource Include="Images\IndoorWorxDarkBackground.png" />
     <Resource Include="Images\IndoorWorxLightBackground.png" />
@@ -488,9 +502,17 @@
       <Project>{D244AAA6-79A1-4879-9F49-B41059D1F6DA}</Project>
       <Name>IndoorWorx.Library.Silverlight</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IndoorWorx.MyLibrary.Silverlight\IndoorWorx.MyLibrary.Silverlight.csproj">
+      <Project>{C95EE222-31CC-465F-96E5-E4AD5C15D036}</Project>
+      <Name>IndoorWorx.MyLibrary.Silverlight</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IndoorWorx.Player.Silverlight\IndoorWorx.Player.Silverlight.csproj">
       <Project>{2A773D39-8E6B-4952-9EFE-E3891F5C3987}</Project>
       <Name>IndoorWorx.Player.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IndoorWorx.Settings.Silverlight\IndoorWorx.Settings.Silverlight.csproj">
+      <Project>{8A9B8CA1-5A93-4838-9F3E-EFBB64D237E2}</Project>
+      <Name>IndoorWorx.Settings.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

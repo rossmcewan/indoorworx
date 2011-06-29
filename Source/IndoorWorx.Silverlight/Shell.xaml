@@ -14,38 +14,105 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
-  mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
+  mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480" SizeChanged="Page_SizeChanged">
     <UserControl.Resources>
         <iconverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
-     <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
-
+     <Grid x:Name="LayoutRoot" MouseLeftButtonDown="Page_MouseLeftButtonDown" Style="{StaticResource LayoutRootGridStyle}">                
         <Border x:Name="BackgroundBorder" Style="{StaticResource BackgroundBorderStyle}"/>
 
-        <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">            
-            <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
-                              Source="/Dashboard" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
-                <navigation:Frame.UriMapper>
-                    <uriMapper:UriMapper>
-                        <uriMapper:UriMapping Uri="" MappedUri="/IndoorWorx.Dashboard.Silverlight;component/Views/DashboardPage.xaml"/>
-                        <uriMapper:UriMapping Uri="/Dashboard" MappedUri="/IndoorWorx.Dashboard.Silverlight;component/Views/DashboardPage.xaml"/>
-                        <!--<uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml"/>-->
-                        <uriMapper:UriMapping Uri="/{assemblyName};component/{path}" MappedUri="/{assemblyName};component/{path}" />
-                        <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
-                    </uriMapper:UriMapper>
-                </navigation:Frame.UriMapper>
-                <navigation:Frame.ContentLoader>
-                    <SLaBE:ErrorPageLoader>
-                        <SLaBE:ErrorPage ExceptionType="Exception" ErrorPageUri="/NavigationError"/>
-                        <SLaBE:ErrorPage ExceptionType="UnauthorizedAccessException" ErrorPageUri="/AuthorizationError"/>
-                        <SLaBE:ErrorPageLoader.ContentLoader>
-                            <SLaBA:AuthContentLoader Principal="{Binding User, Source={StaticResource WebContext}}">
-                                <SLaBA:NavigationAuthorizer/>
-                            </SLaBA:AuthContentLoader>
-                        </SLaBE:ErrorPageLoader.ContentLoader>
-                    </SLaBE:ErrorPageLoader>
-                </navigation:Frame.ContentLoader>
-            </navigation:Frame>
+        <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="2"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="3"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Borders -->
+                <Rectangle Tag="Top" Fill="{StaticResource BorderBrush}"  Grid.Column="1" Grid.ColumnSpan="3" Cursor="SizeNS" MouseLeftButtonDown="border_MouseLeftButtonDown"></Rectangle>
+                <Rectangle Tag="Bottom" Fill="{StaticResource BorderBrush}" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" Cursor="SizeNS" MouseLeftButtonDown="border_MouseLeftButtonDown"></Rectangle>
+                <Rectangle Tag="Left" Fill="{StaticResource BorderBrush}" Grid.Row="1" Grid.RowSpan="3" Cursor="SizeWE" MouseLeftButtonDown="border_MouseLeftButtonDown"></Rectangle>
+                <Rectangle Tag="Right" Fill="{StaticResource BorderBrush}" Grid.Row="1" Grid.RowSpan="3" Grid.Column="4" Cursor="SizeWE" MouseLeftButtonDown="border_MouseLeftButtonDown"></Rectangle>
+                <Rectangle Tag="TopLeft" Fill="{StaticResource BorderBrush}" Cursor="SizeNWSE" MouseLeftButtonDown="border_MouseLeftButtonDown"></Rectangle>
+                <Rectangle Tag="TopRight" Fill="{StaticResource BorderBrush}" Grid.Column="4" Cursor="SizeNESW" MouseLeftButtonDown="border_MouseLeftButtonDown"></Rectangle>
+                <Rectangle Tag="BottomLeft" Fill="{StaticResource BorderBrush}" Grid.Row="4" Cursor="SizeNESW" MouseLeftButtonDown="border_MouseLeftButtonDown"></Rectangle>
+                <Rectangle Tag="BottomRight" Fill="{StaticResource BorderBrush}" Grid.Row="4" Grid.Column="4" Cursor="SizeNWSE" MouseLeftButtonDown="border_MouseLeftButtonDown"></Rectangle>
+                <HyperlinkButton Tag="BottomRight" x:Name="resizeButton"  Width="10" Height="10" Grid.Row="3" Grid.Column="3" ClickMode="Hover" HorizontalAlignment="Right" VerticalAlignment="Bottom" MouseLeftButtonDown="border_MouseLeftButtonDown" Cursor="SizeNWSE" IsTabStop="False" >
+                    <HyperlinkButton.Background>
+                        <ImageBrush ImageSource="/IndoorWorx.Silverlight;component/Images/resize.png"></ImageBrush>
+                    </HyperlinkButton.Background>
+                </HyperlinkButton>
+                <!-- header row -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Grid.ColumnSpan="4">
+                    <HyperlinkButton x:Name="minimizeButton" Width="12" Margin="5,0,0,0" Click="minimizeButton_Click" IsTabStop="False" Opacity="0.5" MouseEnter="HyperLinkButton_MouseEnter" MouseLeave="HyperLinkButton_MouseLeave">
+                        <HyperlinkButton.Background>
+                            <ImageBrush ImageSource="/IndoorWorx.Silverlight;component/Images/minimizeButton.png" Stretch="None"/>
+                        </HyperlinkButton.Background>
+                        <ToolTipService.ToolTip>
+                            <ToolTip Margin="0,30,0,0" Content="Minimize"/>
+                        </ToolTipService.ToolTip>
+                    </HyperlinkButton>
+
+                    <HyperlinkButton x:Name="maximizeButton" Width="12" Margin="5,0,0,0" Click="maximizeButton_Click" IsTabStop="False" Opacity="0.5"  MouseEnter="HyperLinkButton_MouseEnter" MouseLeave="HyperLinkButton_MouseLeave">
+                        <HyperlinkButton.Background>
+                            <ImageBrush ImageSource="/IndoorWorx.Silverlight;component/Images/maximizeButton.png" Stretch="None"/>
+                        </HyperlinkButton.Background>
+                        <ToolTipService.ToolTip>
+                            <ToolTip Margin="0,30,0,0" Content="Maximise"/>
+                        </ToolTipService.ToolTip>
+                    </HyperlinkButton>
+
+                    <HyperlinkButton x:Name="restoreButton" Width="12" Margin="5,0,0,0" Click="restoreButton_Click" Visibility="Collapsed" IsTabStop="False" Opacity="0.5" MouseEnter="HyperLinkButton_MouseEnter" MouseLeave="HyperLinkButton_MouseLeave">
+                        <HyperlinkButton.Background>
+                            <ImageBrush ImageSource="/IndoorWorx.Silverlight;component/Images/restoreButton.png" Stretch="None"/>
+                        </HyperlinkButton.Background>
+                        <ToolTipService.ToolTip>
+                            <ToolTip Margin="0,30,0,0" Content="Restore"/>
+                        </ToolTipService.ToolTip>
+                    </HyperlinkButton>
+
+                    <HyperlinkButton x:Name="closeButton" Width="12" Margin="5,0,5,0" Click="closeButton_Click" IsTabStop="False" Opacity="0.5"  MouseEnter="HyperLinkButton_MouseEnter" MouseLeave="HyperLinkButton_MouseLeave">
+                        <HyperlinkButton.Background>
+                            <ImageBrush ImageSource="/IndoorWorx.Silverlight;component/Images/closeButton.png" Stretch="None"/>
+                        </HyperlinkButton.Background>
+                        <ToolTipService.ToolTip>
+                            <ToolTip Margin="0,20,0,0" Content="Close"/>
+                        </ToolTipService.ToolTip>
+                    </HyperlinkButton>
+
+                </StackPanel>
+                <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" Grid.Column="2" Grid.Row="2"
+                              Source="" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
+                    <navigation:Frame.UriMapper>
+                        <uriMapper:UriMapper>
+                            <uriMapper:UriMapping Uri="" MappedUri="/IndoorWorx.Catalog.Silverlight;component/Pages/CatalogPage.xaml"/>
+                            <uriMapper:UriMapping Uri="/{assemblyName};component/{path}" MappedUri="/{assemblyName};component/{path}" />
+                            <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
+                        </uriMapper:UriMapper>
+                    </navigation:Frame.UriMapper>
+                    <navigation:Frame.ContentLoader>
+                        <SLaBE:ErrorPageLoader>
+                            <SLaBE:ErrorPage ExceptionType="UnauthorizedAccessException" ErrorPageUri="/IndoorWorx.Silverlight;component/Views/AuthorizationError.xaml"/>
+                            <SLaBE:ErrorPage ExceptionType="Exception" ErrorPageUri="/IndoorWorx.Silverlight;component/Views/NavigationError.xaml"/>
+                            <SLaBE:ErrorPageLoader.ContentLoader>
+                                <SLaBA:AuthContentLoader Principal="{Binding User, Source={StaticResource WebContext}}">
+                                    <SLaBA:NavigationAuthorizer/>
+                                </SLaBA:AuthContentLoader>
+                            </SLaBE:ErrorPageLoader.ContentLoader>
+                        </SLaBE:ErrorPageLoader>
+                    </navigation:Frame.ContentLoader>
+                </navigation:Frame>
+            </Grid>
         </Border>
 
         <Grid x:Name="NavigationOuterGrid" Style="{StaticResource NavigationOuterGridStyle}">
@@ -76,9 +143,9 @@
 
             <Border x:Name="MenuBorder" Style="{StaticResource MenuContainerStyle}">
                 <StackPanel x:Name="MenuStackPanel" Style="{StaticResource MenuStackPanelStyle}">
-                    <Button Style="{StaticResource MenuLinkStyle}" Content="SETTINGS"/>
+                    <Button Style="{StaticResource MenuLinkStyle}" Content="SETTINGS" x:Name="settingsButton" Click="settingsButton_Click"/>
                     <TextBlock Text="|" Style="{StaticResource SpacerStyle}"/>
-                    <Button Style="{StaticResource MenuLinkStyle}" Content="HELP"/>
+                    <Button Style="{StaticResource MenuLinkStyle}" Content="HELP" x:Name="helpButton" Click="helpButton_Click"/>
                 </StackPanel>
             </Border>
 

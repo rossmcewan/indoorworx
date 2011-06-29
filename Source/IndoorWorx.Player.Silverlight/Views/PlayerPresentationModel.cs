@@ -102,9 +102,11 @@ namespace IndoorWorx.Player.Views
 
         private void StopTimers()
         {
-            telemetryTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            if(telemetryTimer != null)
+                telemetryTimer.Change(Timeout.Infinite, Timeout.Infinite);
             //zoomTimer.Change(Timeout.Infinite, Timeout.Infinite);
-            textTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            if(textTimer != null)
+                textTimer.Change(Timeout.Infinite, Timeout.Infinite);
         }
 
         private void FullScreen(object arg)
@@ -132,20 +134,17 @@ namespace IndoorWorx.Player.Views
             set
             {
                 this.video = value;
-                if (value != null && value is TrainingSet)
-                {
-                    LoadVideo((TrainingSet)value);
-                }
+                LoadVideo(value);
                 FirePropertyChanged("Video");
             }
         }
 
         private Queue<VideoText> textQueue = new Queue<VideoText>();
 
-        private void LoadVideo(TrainingSet video)
+        private void LoadVideo(Video video)
         {
-            foreach (var vt in video.VideoText.OrderBy(x => x.StartTime))
-                textQueue.Enqueue(vt);
+            //foreach (var vt in video.VideoText.OrderBy(x => x.StartTime))
+            //    textQueue.Enqueue(vt);
             if (video.IsTelemetryLoaded)
             {
                 LoadLinkedDictionary();
@@ -162,14 +161,11 @@ namespace IndoorWorx.Player.Views
         void LoadLinkedDictionary()
         {
             linked.Clear();
-            if (video is TrainingSet)
+            foreach (var t in video.Telemetry)
             {
-                foreach (var t in (video as TrainingSet).Telemetry)
-                {
-                    linked.Add(t.TimePosition.TotalSeconds, t);
-                    queue.Enqueue(t);
-                }
-            }
+                linked.Add(t.TimePosition.TotalSeconds, t);
+                queue.Enqueue(t);
+            }            
         }
 
         void video_TelemetryLoaded(object sender, EventArgs e)

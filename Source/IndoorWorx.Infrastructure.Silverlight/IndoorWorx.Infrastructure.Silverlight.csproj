@@ -93,6 +93,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls, Version=2010.3.1110.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -163,6 +164,9 @@
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Interval.cs">
       <Link>Models\Interval.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\IntervalLevel.cs">
+      <Link>Models\IntervalLevel.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\IntervalType.cs">
       <Link>Models\IntervalType.cs</Link>
@@ -236,6 +240,9 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Video.cs">
       <Link>Models\Video.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\VideoInterval.cs">
+      <Link>Models\VideoInterval.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\VideoMetadata.cs">
       <Link>Models\VideoMetadata.cs</Link>
     </Compile>
@@ -287,8 +294,10 @@
     <Compile Include="DragDrop\IDropTarget.cs" />
     <Compile Include="Events\CatalogSearchTextChangedEvent.cs" />
     <Compile Include="Events\DesignVideoEvent.cs" />
+    <Compile Include="Events\HelpEvent.cs" />
     <Compile Include="Events\PlayVideoEvent.cs" />
     <Compile Include="Events\PreviewVideoEvent.cs" />
+    <Compile Include="Events\SettingsEvent.cs" />
     <Compile Include="Facades\IDialogFacade.cs" />
     <Compile Include="Helpers\EnumCollection.cs" />
     <Compile Include="Helpers\EnumContainer.cs" />
@@ -321,9 +330,11 @@
     <Compile Include="Services\IApplicationUserService.cs" />
     <Compile Include="Services\IAuthenticationOperations.cs" />
     <Compile Include="Services\ICategoryService.cs" />
+    <Compile Include="Services\IConfigurationService.cs" />
     <Compile Include="Services\ISportingHabitsService.cs" />
     <Compile Include="SmartDispatcher.cs" />
     <Compile Include="Widgets\IWidgetContentRenderer.cs" />
+    <Compile Include="XmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\Backup\Brushes.xaml">

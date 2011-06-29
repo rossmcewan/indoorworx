@@ -9,27 +9,15 @@ namespace IndoorWorx.Infrastructure.Models
     [DataContract]
     public partial class Interval : BaseModel
     {
-        private TimeSpan start;
+        private TimeSpan duration;
         [DataMember]
-        public virtual TimeSpan StartTime
+        public virtual TimeSpan Duration
         {
-            get { return start; }
+            get { return duration; }
             set
             {
-                start = value;
-                FirePropertyChanged("Start");
-            }
-        }
-
-        private TimeSpan end;
-        [DataMember]
-        public virtual TimeSpan EndTime
-        {
-            get { return end; }
-            set
-            {
-                end = value;
-                FirePropertyChanged("End");
+                duration = value;
+                FirePropertyChanged("Duration");
             }
         }
 
@@ -42,6 +30,18 @@ namespace IndoorWorx.Infrastructure.Models
             {
                 intervalType = value;
                 FirePropertyChanged("IntervalType");
+            }
+        }
+
+        private IntervalLevel intervalLevel;
+        [DataMember]
+        public virtual IntervalLevel IntervalLevel
+        {
+            get { return intervalLevel; }
+            set
+            {
+                intervalLevel = value;
+                FirePropertyChanged("IntervalLevel");
             }
         }
     }

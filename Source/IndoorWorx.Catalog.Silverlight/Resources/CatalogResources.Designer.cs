@@ -115,6 +115,15 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} CREDITS.
+        /// </summary>
+        public static string Credits {
+            get {
+                return ResourceManager.GetString("Credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string DescriptionTitle {
@@ -138,6 +147,24 @@ namespace IndoorWorx.Catalog.Resources {
         public static string DesignTrainingSetToolTip {
             get {
                 return ResourceManager.GetString("DesignTrainingSetToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration:.
+        /// </summary>
+        public static string Duration {
+            get {
+                return ResourceManager.GetString("Duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FREE.
+        /// </summary>
+        public static string Free {
+            get {
+                return ResourceManager.GetString("Free", resourceCulture);
             }
         }
         
@@ -349,7 +376,7 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TRAINING PROGRAMS.
+        ///   Looks up a localized string similar to PROGRAMS.
         /// </summary>
         public static string TrainingProgramsTitle {
             get {
