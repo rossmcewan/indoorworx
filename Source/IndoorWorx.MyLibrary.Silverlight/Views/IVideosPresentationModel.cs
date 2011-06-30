@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using IndoorWorx.Infrastructure.DragDrop;
 using IndoorWorx.Infrastructure.Models;
+using System.Windows.Input;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -11,9 +12,7 @@ namespace IndoorWorx.MyLibrary.Views
     {
         IVideosView View { get; set; }
 
-        ICollection<Category> Categories { get; set; }
-
-        Category SelectedCategory { get; set; }
+        ICommand PlayVideoCommand { get; }
 
         string NumberOfVideosLabel { get; }
 

@@ -18,6 +18,8 @@ using IndoorWorx.Infrastructure.DragDrop;
 using IndoorWorx.Library.DragDrop;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.MyLibrary.Resources;
+using Microsoft.Practices.Composite.Presentation.Commands;
+using IndoorWorx.Infrastructure.Events;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -34,58 +36,26 @@ namespace IndoorWorx.MyLibrary.Views
                         FirePropertyChanged("NumberOfVideosLabel");
                 };
             this.serviceLocator = serviceLocator;
-            this.eventAggregator = eventAggregator;            
+            this.eventAggregator = eventAggregator;
+            this.playVideoCommand = new DelegateCommand<Video>(PlayVideo);
+        }
+
+        public void PlayVideo(Video video)
+        {
+            eventAggregator.GetEvent<PlayVideoEvent>().Publish(video);
+        }
+
+        private ICommand playVideoCommand;
+        public ICommand PlayVideoCommand
+        {
+            get { return this.playVideoCommand; }
         }
 
         public IVideosView View { get; set; }
 
         public void Refresh()
-        {
-            LoadCategories();
-        }
-
-        private ICollection<Category> categories;
-        public ICollection<Category> Categories
-        {
-            get { return categories; }
-            set
-            {
-                categories = value;
-                FirePropertyChanged("Categories");
-            }
-        }
-
-        private Category selectedCategory;
-        public Category SelectedCategory
-        {
-            get
-            {
-                return this.selectedCategory;
-            }
-            set
-            {
-                this.selectedCategory = value;
-                FirePropertyChanged("SelectedCategory");
-            }
-        }
-
-        private void LoadCategories()
-        {
-            var categoryService = serviceLocator.GetInstance<ICategoryService>();
-            categoryService.CategoryRetrievalError += (sender, e) =>
-            {
-                this.IsBusy = false;
-                throw e.Value;
-            };
-            categoryService.CategoriesRetrieved += (sender, e) =>
-            {
-                Categories = e.Value;
-                SelectedCategory = Categories.FirstOrDefault();
-                this.IsBusy = false;
-            };
-            this.IsBusy = true;
-            categoryService.RetrieveCategories();
-        }
+        {            
+        }        
 
         private bool busy;
         public virtual bool IsBusy

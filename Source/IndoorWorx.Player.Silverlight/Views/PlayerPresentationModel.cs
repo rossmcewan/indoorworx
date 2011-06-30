@@ -170,7 +170,7 @@ namespace IndoorWorx.Player.Views
 
         void video_TelemetryLoaded(object sender, EventArgs e)
         {
-            var video = sender as TrainingSet;
+            var video = sender as Video;
             LoadLinkedDictionary();
             View.LoadTelemetry(video.Telemetry);
         }
