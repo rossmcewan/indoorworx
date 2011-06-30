@@ -1,0 +1,16 @@
+﻿<controls:ChildWindow x:Class="IndoorWorx.Library.Views.AlertWindow"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"           
+           Title="{Binding LibraryResources.AlertTitle, Source={StaticResource LibraryResources}}" Style="{StaticResource ChildWindowStyle}">
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <TextBlock FontSize="{StaticResource HyperlinkFontSize}" FontFamily="{StaticResource HeaderFontFamily}" x:Name="alertText"/>
+        
+        <Button x:Name="OKButton" Content="{Binding LibraryResources.OK, Source={StaticResource LibraryResources}}" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+    </Grid>
+</controls:ChildWindow>

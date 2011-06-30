@@ -154,6 +154,6 @@
                 </Grid>
             </ScrollViewer>
         </Grid>
-        <navigation:Frame Grid.Column="1" x:Name="VideoDetailsFrame" Style="{StaticResource VideoDetailsFrameStyle}"/>
+        <navigation:Frame Grid.Column="1" x:Name="VideoDetailsFrame" Style="{StaticResource VideoDetailsFrameStyle}" JournalOwnership="OwnsJournal"/>
     </Grid>
 </UserControl>

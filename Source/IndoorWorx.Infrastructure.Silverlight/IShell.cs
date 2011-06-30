@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 namespace IndoorWorx.Infrastructure
 {
     public interface IShell
-    {
+    {        
         void Show();
 
         bool IsFullScreen { get; set; }

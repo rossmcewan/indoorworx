@@ -10,7 +10,7 @@
         <iconverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot">
-        <Border Grid.Row="1" x:Name="DropTargetsContainer" Style="{StaticResource DropTargetsContainerStyle}" Visibility="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+        <Border Grid.Row="1" x:Name="DropTargetsContainer" Style="{StaticResource DropTargetsContainerStyle}" Visibility="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" Cursor="Hand" MouseLeftButtonUp="DropTargetsContainer_MouseLeftButtonUp">
             <StackPanel>
                 <StackPanel x:Name="DropTargetsStackPanel" Style="{StaticResource DropTargetsStackPanelStyle}">
                     <ListBox x:Name="templateDropTargetList" Style="{StaticResource DropTargetStyle}" DataContext="{Binding TemplateDropTarget, Mode=OneWay}"/>

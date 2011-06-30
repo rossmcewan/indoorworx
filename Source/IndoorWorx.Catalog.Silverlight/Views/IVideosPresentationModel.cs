@@ -18,5 +18,7 @@ namespace IndoorWorx.Catalog.Views
         Category SelectedCategory { get; set; }
 
         void Refresh();
+
+        void OnMyLibrarySelected();
     }
 }

@@ -15,6 +15,8 @@ using IndoorWorx.Infrastructure.Navigation;
 using IndoorWorx.MyLibrary.Helpers;
 using IndoorWorx.Infrastructure.Models;
 using IndoorWorx.MyLibrary.Views;
+using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Infrastructure.Events;
 
 namespace IndoorWorx.MyLibrary
 {
@@ -22,10 +24,22 @@ namespace IndoorWorx.MyLibrary
     {
         private readonly IUnityContainer unityContainer;
         private readonly IServiceLocator serviceLocator;
-        public Module(IUnityContainer unityContainer, IServiceLocator serviceLocator)
+        private readonly IEventAggregator eventAggregator;
+        public Module(IUnityContainer unityContainer, IServiceLocator serviceLocator, IEventAggregator eventAggregator)
         {
             this.unityContainer = unityContainer;
             this.serviceLocator = serviceLocator;
+            this.eventAggregator = eventAggregator;
+
+            eventAggregator.GetEvent<MyLibraryEvent>().Subscribe(HandleMyLibraryEvent, true);
+        }
+
+        public void HandleMyLibraryEvent(LibraryPart libraryPart)
+        {
+            serviceLocator.GetInstance<INavigationService>().NavigateTo(
+                new Uri(
+                    string.Format("/MyLibrary?libraryPart={0}", libraryPart.ToString()), 
+                    UriKind.Relative));
         }
 
         private INavigationLinks NavigationLinks
@@ -41,6 +55,9 @@ namespace IndoorWorx.MyLibrary
 
             unityContainer.RegisterInstance<IMyLibraryPresentationModel>(unityContainer.Resolve<MyLibraryPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<IMyLibraryView>(unityContainer.Resolve<MyLibraryView>(), new ContainerControlledLifetimeManager());
+
+            unityContainer.RegisterInstance<IVideosPresentationModel>(unityContainer.Resolve<VideosPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IVideosView>(unityContainer.Resolve<VideosView>(), new ContainerControlledLifetimeManager());
 
             NavigationLinks.MapUri(
                 new Uri("/MyLibrary", UriKind.Relative),

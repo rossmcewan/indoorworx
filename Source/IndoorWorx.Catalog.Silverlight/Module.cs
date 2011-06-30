@@ -45,6 +45,11 @@ namespace IndoorWorx.Catalog
             get { return serviceLocator.GetInstance<INavigationLinks>(); }
         }
 
+        private INavigationService NavigationService
+        {
+            get { return serviceLocator.GetInstance<INavigationService>(); }
+        }
+
         #region IModule Members
 
         public void Initialize()
@@ -76,7 +81,7 @@ namespace IndoorWorx.Catalog
                 IsAuthenticationRequired = true,
                 NavigationUri = "/Catalog",
                 Allow = new string[] { "?,*" }
-            });
+            });            
         }
 
         #endregion

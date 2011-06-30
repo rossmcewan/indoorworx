@@ -295,6 +295,8 @@
     <Compile Include="Events\CatalogSearchTextChangedEvent.cs" />
     <Compile Include="Events\DesignVideoEvent.cs" />
     <Compile Include="Events\HelpEvent.cs" />
+    <Compile Include="Events\LibraryPart.cs" />
+    <Compile Include="Events\MyLibraryEvent.cs" />
     <Compile Include="Events\PlayVideoEvent.cs" />
     <Compile Include="Events\PreviewVideoEvent.cs" />
     <Compile Include="Events\SettingsEvent.cs" />

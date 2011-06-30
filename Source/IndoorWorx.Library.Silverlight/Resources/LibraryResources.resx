@@ -117,11 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlertTitle" xml:space="preserve">
+    <value>ALERT</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>cancel</value>
+  </data>
   <data name="CatalogHeader" xml:space="preserve">
     <value>Catalog</value>
   </data>
+  <data name="ConfirmationTitle" xml:space="preserve">
+    <value>CONFIRMATION</value>
+  </data>
   <data name="LoadingMediaProgressMessage" xml:space="preserve">
     <value>Loading media ...</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>ok</value>
   </data>
   <data name="SearchWatermark" xml:space="preserve">
     <value>Search...</value>

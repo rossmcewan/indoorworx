@@ -18,6 +18,7 @@ using IndoorWorx.Infrastructure.DragDrop;
 using IndoorWorx.Library.DragDrop;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.Catalog.Resources;
+using IndoorWorx.Infrastructure.Events;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -119,6 +120,11 @@ namespace IndoorWorx.Catalog.Views
                 busy = value;
                 FirePropertyChanged("IsBusy");
             }
+        }
+
+        public void OnMyLibrarySelected()
+        {
+            eventAggregator.GetEvent<MyLibraryEvent>().Publish(LibraryPart.Videos);
         }
     }
 }

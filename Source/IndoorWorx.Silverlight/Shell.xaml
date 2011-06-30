@@ -14,7 +14,7 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
-  mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480" SizeChanged="Page_SizeChanged">
+  mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480" MinHeight="600" MinWidth="800" SizeChanged="Page_SizeChanged">
     <UserControl.Resources>
         <iconverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
@@ -92,10 +92,10 @@
 
                 </StackPanel>
                 <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" Grid.Column="2" Grid.Row="2"
-                              Source="" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
+                              Source="/Catalog" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
                     <navigation:Frame.UriMapper>
                         <uriMapper:UriMapper>
-                            <uriMapper:UriMapping Uri="" MappedUri="/IndoorWorx.Catalog.Silverlight;component/Pages/CatalogPage.xaml"/>
+                            <!--<uriMapper:UriMapping Uri="" MappedUri="/IndoorWorx.Catalog.Silverlight;component/Pages/CatalogPage.xaml"/>-->
                             <uriMapper:UriMapping Uri="/{assemblyName};component/{path}" MappedUri="/{assemblyName};component/{path}" />
                             <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
                         </uriMapper:UriMapper>

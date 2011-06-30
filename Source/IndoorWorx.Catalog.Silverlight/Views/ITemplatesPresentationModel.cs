@@ -19,5 +19,7 @@ namespace IndoorWorx.Catalog.Views
         IDropTarget TemplateDropTarget { get; set; }
 
         void Refresh();
+
+        void OnMyLibrarySelected();
     }
 }

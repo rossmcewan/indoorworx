@@ -49,7 +49,6 @@ namespace IndoorWorx.Silverlight
             IConfigurationService configurationService = this.Container.Resolve<IConfigurationService>();
 
             string moduleCatalog = configurationService.GetParameterValue("ModulesCatalog");
-
             Uri moduleCatelogUri = new Uri(moduleCatalog, UriKind.Relative);
             IModuleCatalog catalog = ModuleCatalog.CreateFromXaml(moduleCatelogUri);
 

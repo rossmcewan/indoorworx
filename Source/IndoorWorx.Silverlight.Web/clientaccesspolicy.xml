@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <access-policy>
   <cross-domain-access>
     <policy>
-      <allow-from http-request-headers="*">
+      <allow-from http-methods="*" http-request-headers="*">
         <domain uri="*"/>
       </allow-from>
       <grant-to>
-        <resource include-subpaths="true" path="/"/>
+        <resource path="/" include-subpaths="true"/>
       </grant-to>
     </policy>
   </cross-domain-access>

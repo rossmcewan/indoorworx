@@ -1064,7 +1064,7 @@
     </Style>
 
     <!-- Error Window Style -->
-    <Style x:Key="ErrorWindowStyle" TargetType="controls:ChildWindow">
+    <Style x:Key="ChildWindowStyle" TargetType="controls:ChildWindow">
         <Setter Property="Background" Value="#FFF0F0F0" />
         <Setter Property="IsTabStop" Value="false"/>
         <Setter Property="TabNavigation" Value="Cycle"/>

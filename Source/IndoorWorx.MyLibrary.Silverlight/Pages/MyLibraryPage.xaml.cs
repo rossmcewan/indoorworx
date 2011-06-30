@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using System.Windows.Navigation;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.MyLibrary.Views;
+using IndoorWorx.Infrastructure.Events;
 
 namespace IndoorWorx.MyLibrary
 {
@@ -28,10 +29,20 @@ namespace IndoorWorx.MyLibrary
             this.Content = content;
         }
 
+        private IMyLibraryView View
+        {
+            get { return this.Content as IMyLibraryView; }
+        }
+
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            var libraryPart = string.Empty;
+            if (this.NavigationContext.QueryString.TryGetValue("libraryPart", out libraryPart))
+            {
+                var libraryPartEnum = (LibraryPart)Enum.Parse(typeof(LibraryPart), libraryPart, true);
+                View.NavigateToLibraryPart(libraryPartEnum);
+            }
         }
-
     }
 }

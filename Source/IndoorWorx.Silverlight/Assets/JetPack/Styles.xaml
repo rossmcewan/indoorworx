@@ -808,7 +808,7 @@
 
 
     <!-- Error Window Style -->
-    <Style x:Key="ErrorWindowStyle" TargetType="controls:ChildWindow">
+    <Style x:Key="ChildWindowStyle" TargetType="controls:ChildWindow">
         <Setter Property="Background" Value="#FFE0E0E0"/>
         <Setter Property="BorderBrush" Value="Red"/>
         <Setter Property="BorderThickness" Value="1"/>

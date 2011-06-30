@@ -8,5 +8,7 @@ namespace IndoorWorx.MyLibrary.Views
     public interface IMyLibraryView
     {
         IMyLibraryPresentationModel Model { get; }
+
+        void NavigateToLibraryPart(Infrastructure.Events.LibraryPart libraryPartEnum);
     }
 }

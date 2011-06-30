@@ -17,6 +17,8 @@
     using System.Collections.Generic;
     using System.Windows.Browser;
     using IndoorWorx.Silverlight.Web;
+    using IndoorWorx.Library.Views;
+    using System.Diagnostics;
 
     /// <summary>
     /// Main <see cref="Application"/> class.
@@ -39,7 +41,6 @@
                 // collection.  This will then be available as WebContext.Current.
                 WebContext webContext = new WebContext();
                 webContext.Authentication = new FormsAuthentication();
-                //webContext.Authentication = new WindowsAuthentication();
                 
                 this.ApplicationLifetimeObjects.Add(webContext);
             }
@@ -48,58 +49,56 @@
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             ApplicationContext.Initialize();
+            this.RootVisual = new UserControlContainer();
             if (Application.Current.IsRunningOutOfBrowser)
             {
                 Application.Current.CheckAndDownloadUpdateCompleted += (obj, args) =>
                 {
                     if (args.UpdateAvailable)
                     {
-                        MessageBox.Show(ApplicationStrings.SoftwareUpdateAvailableMessage);
-                        Application.Current.MainWindow.Close();
+                        UpdateAvailableWindow.Show(()=>Application.Current.MainWindow.Close());                        
                     }
                     else
                     {
-                        var settingsUriString = "/Settings.xml";
+                        var settingsUriString = "Settings.xml";
                         Uri source = Application.Current.Host.Source;
 
-                        string location = source.AbsoluteUri.Substring(0, source.AbsoluteUri.IndexOf("ClientBin", StringComparison.OrdinalIgnoreCase));
+                        string location;
+                        if (Debugger.IsAttached)
+                        {
+                            location = "http://localhost:3415/";
+                        }
+                        else
+                        {
+                            location = source.AbsoluteUri.Substring(0, source.AbsoluteUri.IndexOf("ClientBin", StringComparison.OrdinalIgnoreCase));
+                        }
 
                         settingsUriString = String.Concat(location, settingsUriString);
+
                         Uri settingsUri = new Uri(settingsUriString, UriKind.Absolute);
 
                         SettingsClient settingsService = new SettingsClient(settingsUri);
                         settingsService.GetSettingsCompleted += this.SettingsService_GetSettingsCompleted;
-                        settingsService.GetSettingsAsync();                          
+                        settingsService.GetSettingsAsync();
                     }
                 };
-                Application.Current.CheckAndDownloadUpdateAsync();                
+                Application.Current.CheckAndDownloadUpdateAsync();
             }
             else
             {
-                this.RootVisual = new ApplicationInstallerView();
+                RootContainer.SwitchControl(new ApplicationInstallerView());
             }
         }
 
+        public UserControlContainer RootContainer
+        {
+            get { return this.RootVisual as UserControlContainer; }
+        }
+
         private void SettingsService_GetSettingsCompleted(object sender, DataEventArgs<IDictionary<string, string>> args)
-        {            
-            Deployment.Current.Dispatcher.BeginInvoke(() =>
-            {
-                IDictionary<string, string> settings = args.Value;
-                IDictionary<string, string> queryString = HtmlPage.Document.QueryString;
-
-                if (queryString != null)
-                {
-                    foreach (string key in queryString.Keys)
-                    {
-                        if (!settings.ContainsKey(key))
-                        {
-                            settings.Add(key, queryString[key]);
-                        }
-                    }
-                }
-
-                this.Run(settings);
-            });
+        {
+            IDictionary<string, string> settings = args.Value;
+            SmartDispatcher.BeginInvoke(() => this.Run(settings));
         }
 
         private void Run(IDictionary<string, string> settings)
@@ -109,6 +108,7 @@
             this.Resources.Add("WebContext", WebContext.Current);
 
             (WebContext.Current.Authentication as WebAuthenticationService).DomainContext = new AuthenticationContext(new Uri(settings["AuthenticationUri"], UriKind.Absolute));
+
             // This will automatically authenticate a user when using windows authentication
             // or when the user chose "Keep me signed in" on a previous login attempt
             WebContext.Current.Authentication.LoadUser(this.Application_UserLoaded, null);

@@ -933,7 +933,7 @@
     </Style>
 
     <!-- Error Window Style -->
-    <Style x:Key="ErrorWindowStyle" TargetType="controls:ChildWindow">
+    <!--<Style x:Key="ChildWindowStyle" TargetType="controls:ChildWindow">
         <Setter Property="IsTabStop" Value="false"/>
         <Setter Property="TabNavigation" Value="Cycle"/>
         <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
@@ -1109,7 +1109,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
 
     <!-- LoginRegistration Window Style -->

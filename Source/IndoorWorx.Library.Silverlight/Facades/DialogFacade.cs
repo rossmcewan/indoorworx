@@ -10,6 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Facades;
 using Telerik.Windows.Controls;
+using IndoorWorx.Library.Views;
 
 namespace IndoorWorx.Library.Facades
 {
@@ -19,12 +20,14 @@ namespace IndoorWorx.Library.Facades
 
         public void Alert(object content)
         {
-            RadWindow.Alert(content);
+            AlertWindow.Show(content.ToString());
+            //RadWindow.Alert(content);
         }
 
         public void Confirm(object content, Action<bool> closed)
         {
-            RadWindow.Confirm(content, (sender, args) => closed(args.DialogResult.GetValueOrDefault()));
+            ConfirmationWindow.Show(content.ToString(), closed);
+            //RadWindow.Confirm(content, (sender, args) => closed(args.DialogResult.GetValueOrDefault()));
         }
 
         #endregion

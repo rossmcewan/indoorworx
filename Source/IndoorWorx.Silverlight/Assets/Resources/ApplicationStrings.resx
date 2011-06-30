@@ -214,4 +214,7 @@ Did you say indoor training is boring!? Think again.</value>
   <data name="SoftwareUpdateAvailableMessage" xml:space="preserve">
     <value>There is software update available. Please restart the application.</value>
   </data>
+  <data name="UpdateAvailableTitle" xml:space="preserve">
+    <value>UPDATE AVAILABLE</value>
+  </data>
 </root>

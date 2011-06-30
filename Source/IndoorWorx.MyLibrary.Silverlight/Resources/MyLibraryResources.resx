@@ -117,16 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="InMyLibrary" xml:space="preserve">
+    <value>IN MY LIBRARY</value>
+  </data>
+  <data name="NumberOfVideosLabel" xml:space="preserve">
+    <value>{0} VIDEOS</value>
+  </data>
   <data name="PlayVideo" xml:space="preserve">
     <value>Play</value>
   </data>
-  <data name="Templates" xml:space="preserve">
+  <data name="TemplatesTitle" xml:space="preserve">
     <value>TEMPLATES</value>
   </data>
-  <data name="TrainingPrograms" xml:space="preserve">
+  <data name="TrainingProgramsTitle" xml:space="preserve">
     <value>PROGRAMS</value>
   </data>
-  <data name="Videos" xml:space="preserve">
+  <data name="VideosTitle" xml:space="preserve">
     <value>VIDEOS</value>
   </data>
 </root>

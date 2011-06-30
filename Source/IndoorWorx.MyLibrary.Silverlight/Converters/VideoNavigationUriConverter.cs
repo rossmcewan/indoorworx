@@ -9,20 +9,22 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Data;
+using IndoorWorx.Infrastructure.Models;
 
-namespace IndoorWorx.Catalog.Converters
+namespace IndoorWorx.MyLibrary.Converters
 {
-    public class CategoryTitleNavigationUriConverter : IValueConverter
+    public class VideoNavigationUriConverter : IValueConverter
     {
-        private string UriTemplate = "/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter={0}";
+        private string VideoDetailsUriTemplate = "/IndoorWorx.MyLibrary.Silverlight;component/Pages/VideoDetailsPage.xaml?id={0}";
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
+            var video = value as Video;
+            if (video != null)
             {
-                return new Uri(string.Format(UriTemplate, "ALL"), UriKind.Relative);
+                return new Uri(string.Format(VideoDetailsUriTemplate, video.Id.ToString()), UriKind.Relative);
             }
-            return new Uri(string.Format(UriTemplate, value.ToString()), UriKind.Relative);
+            return new Uri(string.Format(VideoDetailsUriTemplate, "error"), UriKind.Relative);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

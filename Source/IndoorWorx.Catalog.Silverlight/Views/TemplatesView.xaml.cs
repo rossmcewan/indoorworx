@@ -34,5 +34,10 @@ namespace IndoorWorx.Catalog.Views
             RadDragAndDropManager.AddDropQueryHandler(listBox, DropTargetHelper.OnDropQuery);
             RadDragAndDropManager.AddDropInfoHandler(listBox, DropTargetHelper.OnDropInfo);
         }
+
+        private void DropTargetsContainer_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Model.OnMyLibrarySelected();
+        }
     }
 }

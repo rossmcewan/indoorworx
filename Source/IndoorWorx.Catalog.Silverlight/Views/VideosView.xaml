@@ -12,7 +12,6 @@
     d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.Resources>
         <iconverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <lconverters:CategoryTitleNavigationUriConverter x:Key="CategoryTitleNavigationUriConverter"/>
     </UserControl.Resources>
     <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=TwoWay}">
         <Grid>
@@ -32,8 +31,8 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <navigation:Frame Source="{Binding SelectedCategory.CatalogUri, Mode=OneWay}" x:Name="VideosContentFrame" Style="{StaticResource FrameStyle}" Grid.Row="1" Navigated="VideosContentFrame_Navigated"/>
-            <Border Grid.Row="1" x:Name="DropTargetsContainer" Style="{StaticResource DropTargetsContainerStyle}" Visibility="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+            <navigation:Frame Source="{Binding SelectedCategory.CatalogUri, Mode=OneWay}" x:Name="VideosContentFrame" Style="{StaticResource FrameStyle}" Grid.Row="1" Navigated="VideosContentFrame_Navigated" JournalOwnership="OwnsJournal"/>
+            <Border Grid.Row="1" x:Name="DropTargetsContainer" Style="{StaticResource DropTargetsContainerStyle}" Visibility="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" Cursor="Hand" MouseLeftButtonUp="DropTargetsContainer_MouseLeftButtonUp">
                 <StackPanel>
                     <StackPanel x:Name="DropTargetsStackPanel" Style="{StaticResource DropTargetsStackPanelStyle}">
                         <ListBox x:Name="videoDropTargetList" Style="{StaticResource DropTargetStyle}" DataContext="{Binding VideoDropTarget, Mode=OneWay}"/>

@@ -60,6 +60,11 @@ namespace IndoorWorx.Catalog.Views
                     }
                 }
             }
+        }
+
+        private void DropTargetsContainer_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Model.OnMyLibrarySelected();
         }     
     }
 }

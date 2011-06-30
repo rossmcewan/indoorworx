@@ -47,8 +47,8 @@ using IndoorWorx.Infrastructure.Models;
 
         #region Borderless behaviors
 
-        const int MIN_WIDTH = 500;
-        const int MIN_HEIGHT = 300;
+        const int MIN_WIDTH = 800;
+        const int MIN_HEIGHT = 600;
 
         private void minimizeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -163,6 +163,8 @@ using IndoorWorx.Infrastructure.Models;
                     var compareTo = uriString;
                     if (uriString.Contains('?'))
                         compareTo = uriString.Substring(0, uriString.IndexOf('?'));
+                    var mappedUri = (this.ContentFrame.UriMapper as UriMapper).UriMappings.FirstOrDefault(x => x.Uri.OriginalString.Equals(hb.NavigateUri));
+                    
                     if (hb.NavigateUri.ToString().Equals(compareTo))
                     {
                         VisualStateManager.GoToState(hb, "ActiveLink", true);
@@ -192,8 +194,8 @@ using IndoorWorx.Infrastructure.Models;
             busyIndicator.Content = this;
             busyIndicator.HorizontalContentAlignment = HorizontalAlignment.Stretch;
             busyIndicator.VerticalContentAlignment = VerticalAlignment.Stretch;
-            
-            Application.Current.RootVisual = busyIndicator;
+
+            (Application.Current as App).RootContainer.SwitchControl(busyIndicator);
         }
 
         public void AddToLayoutRoot(UIElement ui)

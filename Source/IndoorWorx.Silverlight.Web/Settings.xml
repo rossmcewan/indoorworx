@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <Parameter Name="ModulesCatalog" Value="/IndoorWorx.Silverlight;component/ModulesCatalog.xaml"/>
+  <Parameter Name="UserRegistrationUri" Value="http://localhost:3415/IndoorWorx-Silverlight-Web-UserRegistrationService.svc"/>
+  <Parameter Name="AuthenticationUri" Value="http://localhost:3415/IndoorWorx-Silverlight-Web-AuthenticationService.svc"/>
+  <!--<Parameter Name="DataServiceUrl" Value="http://localhost/RCE.Web/DataService.svc"/>
+  <Parameter Name="AssetsDataServiceUrl" Value="http://localhost/RCE.Web/AssetsDataService.svc"/>
+  <Parameter Name="LoggerServiceUri" Value="http://localhost/RCE.Web/LaggerService.svc"/>
+  <Parameter Name="ExpressionEncoderServiceUrl" Value="http://localhost/RCE.Web/ExpressionEncoderService.svc"/>
+  <Parameter Name="CompositeStreamManifestUri" Value="http://localhost/RCE.Web/CompositeStreamManifestService.svc"/>
+  <Parameter Name="UserName" Value="RCE\Default" />
+  <Parameter Name="CDN" Value="http://rcecdn" />
+  <Parameter Name="MetadataFields" Value="Title;Duration;Frame Rate;Height;Width" />
+  <Parameter Name="MaxNumberOfItems" Value="1000" />
+  <Parameter Name="CommentTypes" Value="Global;Playhead;Shot;Ink" />
+  <Parameter Name="UndoLevel" Value="20" />
+  <Parameter Name="TitleTemplates" Value="Spinner|http://localhost/RCE.Web/TitleTemplates/Spinner.xaml;ScrollingCenter|http://localhost/RCE.Web/TitleTemplates/ScrollingCenter.xaml;FadeCenter|http://localhost/RCE.Web/TitleTemplates/FadeCenter.xaml;ZoomCenter|http://localhost/RCE.Web/TitleTemplates/ZoomCenter.xaml" />
+  <Parameter Name="SearchWithinAssetsLimit" Value="15"/>
+  <Parameter Name="MarkInOffsetInSeconds" Value="3"/>
+  <Parameter Name="MaxNumberOfAudioTracks" Value="2"/>
+  <Parameter Name="SnapModeEnabled" Value="false"/>
+  <Parameter Name="DefaultTimelineDurationInSeconds" Value="7200"/>
+  <Parameter Name="DefaultThumbnailImageUri" Value="http://localhost/RCE.Web/Images/DefaultThumbnail.jpg"/>
+  <Parameter Name="CommentDurationInSeconds" Value="60"/>-->
+</Settings>

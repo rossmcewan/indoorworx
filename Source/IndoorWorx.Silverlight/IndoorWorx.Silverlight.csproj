@@ -251,6 +251,9 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controls\TiledBackground.cs" />
+    <Compile Include="Controls\UserControlContainer.xaml.cs">
+      <DependentUpon>UserControlContainer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\InstallStateToEnabledConverter.cs" />
     <Compile Include="Converters\InstallStateToTextConverter.cs" />
     <Compile Include="Extensions.cs" />
@@ -308,6 +311,9 @@
     <Compile Include="Views\TileView.xaml.cs">
       <DependentUpon>TileView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UpdateAvailableWindow.xaml.cs">
+      <DependentUpon>UpdateAvailableWindow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -331,6 +337,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\UserControlContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ApplicationInstallerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -340,6 +350,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateAvailableWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
