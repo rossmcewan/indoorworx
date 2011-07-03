@@ -103,6 +103,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\TemplateNavigationUriConverter.cs" />
     <Compile Include="Converters\VideoNavigationUriConverter.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />
@@ -129,11 +130,17 @@
     </Compile>
     <Compile Include="Views\IMyLibraryPresentationModel.cs" />
     <Compile Include="Views\IMyLibraryView.cs" />
+    <Compile Include="Views\ITemplatesPresentationModel.cs" />
+    <Compile Include="Views\ITemplatesView.cs" />
     <Compile Include="Views\IVideosPresentationModel.cs" />
     <Compile Include="Views\IVideosView.cs" />
     <Compile Include="Views\MyLibraryPresentationModel.cs" />
     <Compile Include="Views\MyLibraryView.xaml.cs">
       <DependentUpon>MyLibraryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemplatesPresentationModel.cs" />
+    <Compile Include="Views\TemplatesView.xaml.cs">
+      <DependentUpon>TemplatesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VideosPresentationModel.cs" />
     <Compile Include="Views\VideosView.xaml.cs">
@@ -181,12 +188,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\TemplatesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\VideosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\template.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

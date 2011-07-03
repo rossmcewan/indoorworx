@@ -59,6 +59,9 @@ namespace IndoorWorx.MyLibrary
             unityContainer.RegisterInstance<IVideosPresentationModel>(unityContainer.Resolve<VideosPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<IVideosView>(unityContainer.Resolve<VideosView>(), new ContainerControlledLifetimeManager());
 
+            unityContainer.RegisterInstance<ITemplatesPresentationModel>(unityContainer.Resolve<TemplatesPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<ITemplatesView>(unityContainer.Resolve<TemplatesView>(), new ContainerControlledLifetimeManager());
+
             NavigationLinks.MapUri(
                 new Uri("/MyLibrary", UriKind.Relative),
                 new Uri("/IndoorWorx.MyLibrary.Silverlight;component/Pages/MyLibraryPage.xaml", UriKind.Relative));

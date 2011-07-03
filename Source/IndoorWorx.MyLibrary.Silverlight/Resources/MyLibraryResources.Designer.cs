@@ -70,6 +70,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} TEMPLATES.
+        /// </summary>
+        public static string NumberOfTemplatesLabel {
+            get {
+                return ResourceManager.GetString("NumberOfTemplatesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} VIDEOS.
         /// </summary>
         public static string NumberOfVideosLabel {

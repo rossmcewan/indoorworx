@@ -120,6 +120,9 @@
   <data name="InMyLibrary" xml:space="preserve">
     <value>IN MY LIBRARY</value>
   </data>
+  <data name="NumberOfTemplatesLabel" xml:space="preserve">
+    <value>{0} TEMPLATES</value>
+  </data>
   <data name="NumberOfVideosLabel" xml:space="preserve">
     <value>{0} VIDEOS</value>
   </data>
