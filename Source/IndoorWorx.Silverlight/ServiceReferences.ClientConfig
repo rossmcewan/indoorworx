@@ -14,6 +14,10 @@
             maxReceivedMessageSize="2147483647">
           <security mode="None" />
         </binding>
+        <binding name="BasicHttpBinding_ITrainingSetTemplateService" maxBufferSize="2147483647"
+            maxReceivedMessageSize="2147483647">
+          <security mode="None" />
+        </binding>
         <binding name="BasicHttpBinding_ISocialMediaService" maxBufferSize="2147483647"
             maxReceivedMessageSize="2147483647">
           <security mode="None" />
@@ -35,6 +39,9 @@
       <endpoint address="http://localhost:3415/CategoryService.svc"
           binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ICategoryService"
           contract="CategoryServiceReference.ICategoryService" name="BasicHttpBinding_ICategoryService" />
+      <endpoint address="http://localhost:3415/TrainingSetTemplateService.svc"
+          binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ITrainingSetTemplateService"
+          contract="TrainingSetTemplateServiceReference.ITrainingSetTemplateService" name="BasicHttpBinding_ITrainingSetTemplateService" />
       <endpoint address="http://localhost:3415/SocialMediaService.svc"
           binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISocialMediaService"
           contract="SocialMediaServiceReference.ISocialMediaService"

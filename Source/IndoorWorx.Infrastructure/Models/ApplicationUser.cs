@@ -189,7 +189,19 @@ namespace IndoorWorx.Infrastructure.Models
                 videos = value;
                 FirePropertyChanged("Videos");
             }
-        }        
+        }
+
+        private ICollection<TrainingSetTemplate> templates = new List<TrainingSetTemplate>();
+        [DataMember]
+        public virtual ICollection<TrainingSetTemplate> Templates
+        {
+            get { return templates; }
+            set
+            {
+                templates = value;
+                FirePropertyChanged("Templates");
+            }
+        }
 
         public static event EventHandler CurrentUserChanged;
 

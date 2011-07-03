@@ -44,6 +44,11 @@ namespace IndoorWorx.Library.Services
             get { return serviceLocator.GetInstance<IVideoRepository>(); }
         }
 
+        private ITrainingSetTemplateRepository TemplateRepository
+        {
+            get { return serviceLocator.GetInstance<ITrainingSetTemplateRepository>(); }
+        }
+
         #endregion
 
         #region Methods
@@ -96,6 +101,35 @@ namespace IndoorWorx.Library.Services
             catch (Exception ex)
             {
                 response.AddVideoStatus = AddVideoStatus.Error;
+                response.Message = ex.Message;
+            }
+            return response;
+        }        
+
+        public AddTemplateResponse AddTemplateToLibrary(AddTemplateRequest request)
+        {
+            var response = new AddTemplateResponse();
+            try
+            {
+                var user = ApplicationUserRepository.FindOne(u => u.Username == request.User);
+                if (user.Templates.Any(x => x.Id == request.TemplateId))
+                {
+                    response.AddTemplateStatus = AddTemplateStatus.TemplateAlreadyAdded;
+                    return response;
+                }
+                var template = TemplateRepository.FindOne(v => v.Id == request.TemplateId);
+                if (user.Credits < template.Credits)
+                {
+                    response.AddTemplateStatus = AddTemplateStatus.InsufficientCredits;
+                    return response;
+                }
+                user.Templates.Add(template);
+                ApplicationUserRepository.Save(user);
+                response.AddTemplateStatus = AddTemplateStatus.Success;
+            }
+            catch (Exception ex)
+            {
+                response.AddTemplateStatus = AddTemplateStatus.Error;
                 response.Message = ex.Message;
             }
             return response;

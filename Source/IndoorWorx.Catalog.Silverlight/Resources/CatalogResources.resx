@@ -132,6 +132,9 @@
   <data name="ByGenre" xml:space="preserve">
     <value>BY GENRE</value>
   </data>
+  <data name="ByTitle" xml:space="preserve">
+    <value>BY TITLE</value>
+  </data>
   <data name="CatalogPaneTitle" xml:space="preserve">
     <value>CATALOG</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="NormalizedPowerLabel" xml:space="preserve">
     <value>Normalized Power (NP):</value>
+  </data>
+  <data name="NumberOfTemplatesLabel" xml:space="preserve">
+    <value>{0} TEMPLATES</value>
   </data>
   <data name="NumberOfVideosLabel" xml:space="preserve">
     <value>{0} VIDEOS</value>

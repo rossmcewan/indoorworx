@@ -20,7 +20,7 @@ namespace IndoorWorx.Catalog.Pages
 {
     public partial class TemplatesPage : Page
     {
-        private bool reloadRequired;
+        private bool reloadRequired = true;
         public TemplatesPage()
         {
             InitializeComponent();

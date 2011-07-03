@@ -9,15 +9,15 @@ namespace IndoorWorx.Infrastructure.Models
     [DataContract]
     public class IntervalLevel : BaseModel
     {
-        private string name;
+        private string title;
         [DataMember]
-        public virtual string Name
+        public virtual string Title
         {
-            get { return name; }
+            get { return title; }
             set
             {
-                name = value;
-                FirePropertyChanged("Name");
+                title = value;
+                FirePropertyChanged("Title");
             }
         }
 
@@ -33,9 +33,9 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private decimal? minimumPercentageOfFtp;
+        private int? minimumPercentageOfFtp;
         [DataMember]
-        public virtual decimal? MinimumPercentageOfFtp
+        public virtual int? MinimumPercentageOfFtp
         {
             get { return minimumPercentageOfFtp; }
             set
@@ -45,9 +45,9 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private decimal? maximumPercentageOfFtp;
+        private int? maximumPercentageOfFtp;
         [DataMember]
-        public virtual decimal? MaximumPercentageOfFtp
+        public virtual int? MaximumPercentageOfFtp
         {
             get { return maximumPercentageOfFtp; }
             set
@@ -57,9 +57,9 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private decimal? minimumPercentageOfFthr;
+        private int? minimumPercentageOfFthr;
         [DataMember]
-        public virtual decimal? MinimumPercentageOfFthr
+        public virtual int? MinimumPercentageOfFthr
         {
             get { return minimumPercentageOfFthr; }
             set
@@ -69,9 +69,9 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private decimal? maximumPercentageOfFthr;
+        private int? maximumPercentageOfFthr;
         [DataMember]
-        public virtual decimal? MaximumPercentageOfFthr
+        public virtual int? MaximumPercentageOfFthr
         {
             get { return maximumPercentageOfFthr; }
             set

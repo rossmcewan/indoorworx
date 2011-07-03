@@ -142,6 +142,15 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREDITS .
+        /// </summary>
+        public static string Credits {
+            get {
+                return ResourceManager.GetString("Credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We all know how boring indoor training can be, yet it is a necessary part of most people training regimes.  Be it because of the weather, the traffic or just the necessity to get a quality session done in a controlled environment. 
         ///Indoor training works, but how do we make it more enjoyable, and overcome the boredom to push ourselves to new limits.
         ///IndoorWorx. That’s how.

@@ -41,6 +41,12 @@
   <wsdl:message name="IApplicationUserService_AddVideoToLibrary_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddVideoToLibraryResponse" />
   </wsdl:message>
+  <wsdl:message name="IApplicationUserService_AddTemplateToLibrary_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTemplateToLibrary" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationUserService_AddTemplateToLibrary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTemplateToLibraryResponse" />
+  </wsdl:message>
   <wsdl:portType name="IApplicationUserService">
     <wsdl:operation name="SaveApplicationUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IApplicationUserService/SaveApplicationUser" message="tns:IApplicationUserService_SaveApplicationUser_InputMessage" />
@@ -61,6 +67,10 @@
     <wsdl:operation name="AddVideoToLibrary">
       <wsdl:input wsaw:Action="http://tempuri.org/IApplicationUserService/AddVideoToLibrary" message="tns:IApplicationUserService_AddVideoToLibrary_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IApplicationUserService/AddVideoToLibraryResponse" message="tns:IApplicationUserService_AddVideoToLibrary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTemplateToLibrary">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationUserService/AddTemplateToLibrary" message="tns:IApplicationUserService_AddTemplateToLibrary_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationUserService/AddTemplateToLibraryResponse" message="tns:IApplicationUserService_AddTemplateToLibrary_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IApplicationUserService" type="tns:IApplicationUserService">
@@ -103,6 +113,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddVideoToLibrary">
       <soap:operation soapAction="http://tempuri.org/IApplicationUserService/AddVideoToLibrary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTemplateToLibrary">
+      <soap:operation soapAction="http://tempuri.org/IApplicationUserService/AddTemplateToLibrary" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

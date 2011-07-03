@@ -176,5 +176,31 @@ namespace IndoorWorx.Library.Services
         }
 
         #endregion
+
+        public event EventHandler<DataEventArgs<AddTemplateResponse>> AddTemplateCompleted;
+
+        public event EventHandler<DataEventArgs<Exception>> AddTemplateError;
+
+        public void AddTemplateToLibrary(TrainingSetTemplate template)
+        {
+            Proxy.AddTemplateToLibraryCompleted += (sender, e) =>
+            {
+                if (e.Error != null)
+                {
+                    if (AddTemplateError != null)
+                        AddTemplateError(this, new DataEventArgs<Exception>(e.Error));
+                }
+                else
+                {
+                    if (AddTemplateCompleted != null)
+                        AddTemplateCompleted(this, new DataEventArgs<AddTemplateResponse>(e.Result));
+                }
+            };
+            Proxy.AddTemplateToLibraryAsync(new AddTemplateRequest()
+            {
+                User = ApplicationUser.CurrentUser.Username,
+                TemplateId = template.Id
+            });
+        }
     }
 }

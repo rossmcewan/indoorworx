@@ -35,6 +35,14 @@ alter table VideoToApplicationUser  drop constraint FK8FEB02F3E9F4749E
 alter table VideoToApplicationUser  drop constraint FK8FEB02F3BCD0E4BF
 
 
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK604A00512B3E4BD3]') AND parent_object_id = OBJECT_ID('TrainingSetTemplateToApplicationUser'))
+alter table TrainingSetTemplateToApplicationUser  drop constraint FK604A00512B3E4BD3
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK604A0051BCD0E4BF]') AND parent_object_id = OBJECT_ID('TrainingSetTemplateToApplicationUser'))
+alter table TrainingSetTemplateToApplicationUser  drop constraint FK604A0051BCD0E4BF
+
+
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK7FDA1AFC888C8F93]') AND parent_object_id = OBJECT_ID('[Catalog]'))
 alter table [Catalog]  drop constraint FK7FDA1AFC888C8F93
 
@@ -61,6 +69,10 @@ alter table [Interval]  drop constraint FK8882D83E2055E96F
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK8882D83EEB43FADB]') AND parent_object_id = OBJECT_ID('[Interval]'))
 alter table [Interval]  drop constraint FK8882D83EEB43FADB
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK8882D83E2B3E4BD3]') AND parent_object_id = OBJECT_ID('[Interval]'))
+alter table [Interval]  drop constraint FK8882D83E2B3E4BD3
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKD1BC018BCF534679]') AND parent_object_id = OBJECT_ID('[VideoInterval]'))
@@ -165,6 +177,8 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
 
     if exists (select * from dbo.sysobjects where id = object_id(N'VideoToApplicationUser') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table VideoToApplicationUser
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'TrainingSetTemplateToApplicationUser') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table TrainingSetTemplateToApplicationUser
+
     if exists (select * from dbo.sysobjects where id = object_id(N'[Catalog]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Catalog]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Category]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Category]
@@ -221,6 +235,8 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingMetricType]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingMetricType]
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingSetTemplate]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingSetTemplate]
+
     if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingVolume]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingVolume]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingZone]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingZone]
@@ -270,6 +286,11 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
     create table VideoToApplicationUser (
         ApplicationUser NVARCHAR(255) not null,
        Video UNIQUEIDENTIFIER not null
+    )
+
+    create table TrainingSetTemplateToApplicationUser (
+        ApplicationUser NVARCHAR(255) not null,
+       TrainingSetTemplate UNIQUEIDENTIFIER not null
     )
 
     create table [Catalog] (
@@ -338,8 +359,15 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
     create table [Interval] (
         Id UNIQUEIDENTIFIER not null,
        Duration BIGINT not null,
+       Title NVARCHAR(255) null,
+       Description NVARCHAR(255) null,
+       EffortFrom INT null,
+       EffortTo INT null,
+       EffortType INT null,
+       Sequence INT not null,
        IntervalType_id UNIQUEIDENTIFIER not null,
        IntervalLevel_id UNIQUEIDENTIFIER not null,
+       TrainingSetTemplate UNIQUEIDENTIFIER null,
        primary key (Id)
     )
 
@@ -353,11 +381,11 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
 
     create table [IntervalLevel] (
         Id UNIQUEIDENTIFIER not null,
-       Name NVARCHAR(255) not null,
-       MaximumPercentageOfFtp DECIMAL(19,5) null,
-       MinimumPercentageOfFtp DECIMAL(19,5) null,
-       MinimumPercentageOfFthr DECIMAL(19,5) null,
-       MaximumPercentageOfFthr DECIMAL(19,5) null,
+       Title NVARCHAR(255) not null,
+       MaximumPercentageOfFtp INT null,
+       MinimumPercentageOfFtp INT null,
+       MinimumPercentageOfFthr INT null,
+       MaximumPercentageOfFthr INT null,
        MinRPE INT null,
        MaxRPE INT null,
        TypicalMaxDuration BIGINT null,
@@ -494,6 +522,15 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        primary key (Id)
     )
 
+    create table [TrainingSetTemplate] (
+        Id UNIQUEIDENTIFIER not null,
+       Title NVARCHAR(255) null,
+       Description NVARCHAR(255) null,
+       Duration BIGINT null,
+       Credits INT null,
+       primary key (Id)
+    )
+
     create table [TrainingVolume] (
         Id UNIQUEIDENTIFIER not null,
        Description NVARCHAR(255) not null,
@@ -600,6 +637,16 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
         foreign key (ApplicationUser) 
         references [ApplicationUser]
 
+    alter table TrainingSetTemplateToApplicationUser 
+        add constraint FK604A00512B3E4BD3 
+        foreign key (TrainingSetTemplate) 
+        references [TrainingSetTemplate]
+
+    alter table TrainingSetTemplateToApplicationUser 
+        add constraint FK604A0051BCD0E4BF 
+        foreign key (ApplicationUser) 
+        references [ApplicationUser]
+
     alter table [Catalog] 
         add constraint FK7FDA1AFC888C8F93 
         foreign key (Category) 
@@ -634,6 +681,11 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
         add constraint FK8882D83EEB43FADB 
         foreign key (IntervalLevel_id) 
         references [IntervalLevel]
+
+    alter table [Interval] 
+        add constraint FK8882D83E2B3E4BD3 
+        foreign key (TrainingSetTemplate) 
+        references [TrainingSetTemplate]
 
     alter table [VideoInterval] 
         add constraint FKD1BC018BCF534679 

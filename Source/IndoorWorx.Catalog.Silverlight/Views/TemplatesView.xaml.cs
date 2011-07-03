@@ -20,8 +20,8 @@ namespace IndoorWorx.Catalog.Views
         {
             this.DataContext = model;            
             InitializeComponent();
-            InitializeTemplateDropTargetList(this.templateDropTargetList);
             model.View = this;
+            InitializeTemplateDropTargetList(this.templateDropTargetList);
         }
 
         public ITemplatesPresentationModel Model
@@ -38,6 +38,24 @@ namespace IndoorWorx.Catalog.Views
         private void DropTargetsContainer_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Model.OnMyLibrarySelected();
+        }
+
+        private void Template_DragQuery(object sender, Telerik.Windows.Controls.DragDrop.DragDropQueryEventArgs e)
+        {
+            if (e.Options.Status == DragStatus.DragQuery)
+            {
+                var draggedItem = e.Options.Source;
+                ContentControl dragCue = new ContentControl();
+                dragCue.Content = draggedItem.DataContext;
+                dragCue.ContentTemplate = this.Resources["DragCueTemplate"] as DataTemplate;
+                e.Options.DragCue = dragCue;
+            }
+        }
+
+        private void ItemsControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            RadDragAndDropManager.RemoveDragQueryHandler(sender as DependencyObject, Template_DragQuery);
+            RadDragAndDropManager.AddDragQueryHandler(sender as DependencyObject, Template_DragQuery);
         }
     }
 }

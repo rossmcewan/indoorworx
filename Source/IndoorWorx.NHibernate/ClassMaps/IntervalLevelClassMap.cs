@@ -12,7 +12,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
         public IntervalLevelClassMap()
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
-            Map(x => x.Name).Not.Nullable();
+            Map(x => x.Title).Not.Nullable();
             Map(x => x.MaximumPercentageOfFtp);
             Map(x => x.MinimumPercentageOfFtp);
             Map(x => x.MinimumPercentageOfFthr);

@@ -78,6 +78,40 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        public ApplicationUser AddTemplateToLibrary(TrainingSetTemplate template, Action complete)
+        {
+            var userService = IoC.Resolve<IApplicationUserService>();
+            userService.AddTemplateError += (sender, e) =>
+                {
+                    complete();
+                    throw e.Value;
+                };
+            userService.AddTemplateCompleted += (sender, e) =>
+                {
+                    var dialogFacade = IoC.Resolve<IDialogFacade>();
+                    switch (e.Value.AddTemplateStatus)
+                    {
+                        case AddTemplateStatus.Success:
+                            ApplicationUser.CurrentUser.Templates.Add(template);
+                            break;
+                        case AddTemplateStatus.InsufficientCredits:
+                            dialogFacade.Alert(ApplicationResources.InsufficientCredits);
+                            break;
+                        case AddTemplateStatus.TemplateAlreadyAdded:
+                            dialogFacade.Alert(ApplicationResources.TemplateAlreadyAdded);
+                            break;
+                        case AddTemplateStatus.Error:
+                            dialogFacade.Alert(e.Value.Message);
+                            break;
+                        default:
+                            break;
+                    }
+                    complete();
+                };
+            userService.AddTemplateToLibrary(template);
+            return this;
+        }
+
         public ApplicationUser AddVideoToLibrary(Video video, Action complete)
         {
             var userService = IoC.Resolve<IApplicationUserService>();
@@ -118,7 +152,11 @@ namespace IndoorWorx.Infrastructure.Models
             if (this.Videos == null)
                 this.Videos = new ObservableCollection<Video>();
             else
-                this.Videos = new ObservableCollection<Video>(this.Videos);
+                this.Videos = new ObservableCollection<Video>(videos);
+            if (this.Templates == null)
+                this.Templates = new ObservableCollection<TrainingSetTemplate>();
+            else
+                this.Templates = new ObservableCollection<TrainingSetTemplate>(templates);
         }
     }
 }

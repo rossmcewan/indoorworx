@@ -123,6 +123,9 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\ActivityType.cs">
       <Link>Models\ActivityType.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\AddTemplateStatus.cs">
+      <Link>Models\AddTemplateStatus.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\AddVideoStatus.cs">
       <Link>Models\AddVideoStatus.cs</Link>
     </Compile>
@@ -149,6 +152,9 @@
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\CompetitiveLevel.cs">
       <Link>Models\CompetitiveLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\EffortType.cs">
+      <Link>Models\EffortType.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Equipment.cs">
       <Link>Models\Equipment.cs</Link>
@@ -231,6 +237,9 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingSet.cs">
       <Link>Models\TrainingSet.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingSetTemplate.cs">
+      <Link>Models\TrainingSetTemplate.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingVolume.cs">
       <Link>Models\TrainingVolume.cs</Link>
     </Compile>
@@ -255,8 +264,14 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\VideoText.cs">
       <Link>Models\VideoText.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Requests\AddTemplateRequest.cs">
+      <Link>Requests\AddTemplateRequest.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Requests\AddVideoRequest.cs">
       <Link>Requests\AddVideoRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Responses\AddTemplateResponse.cs">
+      <Link>Responses\AddTemplateResponse.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Responses\AddVideoResponse.cs">
       <Link>Responses\AddVideoResponse.cs</Link>
@@ -310,6 +325,7 @@
     <Compile Include="Models\ApplicationUser.Silverlight.cs" />
     <Compile Include="Models\Colour.Silverlight.cs" />
     <Compile Include="Models\SportingHabits.Silverlight.cs" />
+    <Compile Include="Models\TrainingSetTemplate.Silverlight.cs" />
     <Compile Include="Models\UnitOfMeasure.cs" />
     <Compile Include="Navigation\IMenuItem.cs" />
     <Compile Include="IoC.cs" />
@@ -334,8 +350,8 @@
     <Compile Include="Services\ICategoryService.cs" />
     <Compile Include="Services\IConfigurationService.cs" />
     <Compile Include="Services\ISportingHabitsService.cs" />
+    <Compile Include="Services\ITrainingSetTemplateService.cs" />
     <Compile Include="SmartDispatcher.cs" />
-    <Compile Include="Widgets\IWidgetContentRenderer.cs" />
     <Compile Include="XmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

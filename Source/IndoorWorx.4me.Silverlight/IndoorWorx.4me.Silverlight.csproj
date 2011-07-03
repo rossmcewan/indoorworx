@@ -139,7 +139,6 @@
     <Compile Include="Views\ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Widgets\MyLibraryWidgetContentRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IndoorWorx.Infrastructure.Silverlight\IndoorWorx.Infrastructure.Silverlight.csproj">

@@ -71,6 +71,9 @@ namespace IndoorWorx.Catalog
             unityContainer.RegisterInstance<ITemplatesPresentationModel>(unityContainer.Resolve<TemplatesPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<ITemplatesView>(unityContainer.Resolve<TemplatesView>(), new ContainerControlledLifetimeManager());
 
+            unityContainer.RegisterInstance<ITemplateDetailsPresentationModel>(unityContainer.Resolve<TemplateDetailsPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<ITemplateDetailsView>(unityContainer.Resolve<TemplateDetailsView>(), new ContainerControlledLifetimeManager());
+
             NavigationLinks.MapUri(
                 new Uri("/Catalog", UriKind.Relative),
                 new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/CatalogPage.xaml", UriKind.Relative));

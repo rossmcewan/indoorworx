@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5bd15a20-1c54-4156-b094-1d90c721b048" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3415/TrainingSetTemplateService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TrainingSetTemplateService.disco" MetadataType="Disco" ID="5f05e731-e371-475f-8ef6-ab1aa869df1c" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?disco" />
+    <MetadataFile FileName="TrainingSetTemplateService.xsd" MetadataType="Schema" ID="94ee404d-29cf-4c9a-b162-2868d28851db" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TrainingSetTemplateService1.xsd" MetadataType="Schema" ID="90020b13-9d7b-4878-8103-979efc9d16aa" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?xsd=xsd2" />
+    <MetadataFile FileName="TrainingSetTemplateService2.xsd" MetadataType="Schema" ID="07b465b7-acff-4c76-97e0-70a00dc1a5a2" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TrainingSetTemplateService.wsdl" MetadataType="Wsdl" ID="6adcbff9-4354-477f-a21f-757f39154904" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

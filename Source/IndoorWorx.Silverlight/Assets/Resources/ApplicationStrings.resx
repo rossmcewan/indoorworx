@@ -217,4 +217,7 @@ Did you say indoor training is boring!? Think again.</value>
   <data name="UpdateAvailableTitle" xml:space="preserve">
     <value>UPDATE AVAILABLE</value>
   </data>
+  <data name="Credits" xml:space="preserve">
+    <value>CREDITS </value>
+  </data>
 </root>

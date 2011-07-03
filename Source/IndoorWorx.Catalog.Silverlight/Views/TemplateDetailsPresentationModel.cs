@@ -8,19 +8,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using IndoorWorx.Infrastructure.Widgets;
 
-namespace IndoorWorx.ForMe.Widgets
+namespace IndoorWorx.Catalog.Views
 {
-    public class MyLibraryWidgetContentRenderer : IWidgetContentRenderer
+    public class TemplateDetailsPresentationModel : ITemplateDetailsPresentationModel
     {
-        #region IWidgetContentRenderer Members
+        public ITemplateDetailsView View { get; set; }
 
-        public object Render()
+        public void SelectTemplateWithId(Guid guid)
         {
-            return new TextBlock() { Text = "My Library" };
+            throw new NotImplementedException();
         }
-
-        #endregion
     }
 }

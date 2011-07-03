@@ -120,6 +120,9 @@
   <data name="InsufficientCredits" xml:space="preserve">
     <value>You have insufficient credits to use this video. Please purchase more credits.</value>
   </data>
+  <data name="TemplateAlreadyAdded" xml:space="preserve">
+    <value>You have already added the selected template to your library.</value>
+  </data>
   <data name="VideoAlreadyAdded" xml:space="preserve">
     <value>You have already added the selected video to your library.</value>
   </data>

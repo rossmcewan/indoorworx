@@ -22,7 +22,6 @@ namespace IndoorWorx.Library
             IoC.Initialize(this.unityContainer);
         }
 
-
         #region IModule Members
 
         public void Initialize()
@@ -30,7 +29,6 @@ namespace IndoorWorx.Library
             unityContainer.RegisterType<IApplicationUserService, ApplicationUserService>();
             unityContainer.RegisterType<ISportingHabitsService, SportingHabitsService>();
             unityContainer.RegisterType<IActivityService, ActivityService>();
-
         }
 
         #endregion

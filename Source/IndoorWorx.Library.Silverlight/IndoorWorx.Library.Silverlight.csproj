@@ -158,12 +158,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\TrainingSetTemplateServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Services\ApplicationUserService.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\ActivityService.cs" />
     <Compile Include="Services\ConfigurationService.cs" />
     <Compile Include="Services\SettingsClient.cs" />
     <Compile Include="Services\SportingHabitsService.cs" />
+    <Compile Include="Services\TrainingSetTemplateService.cs" />
     <Compile Include="Views\AlertWindow.xaml.cs">
       <DependentUpon>AlertWindow.xaml</DependentUpon>
     </Compile>
@@ -199,7 +205,9 @@
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.ReferralSource.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.SocialMediaNotification.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.SocialMediaType.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.TrainingSetTemplate.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.TrainingVolume.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.AddTemplateResponse.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.AddVideoResponse.datasource" />
     <None Include="Service References\ActivityServiceReference\ActivityService.wsdl" />
     <None Include="Service References\ActivityServiceReference\ActivityService.xsd">
@@ -271,6 +279,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\TrainingSetTemplateServiceReference\TrainingSetTemplateService.disco" />
+    <None Include="Service References\TrainingSetTemplateServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\TrainingSetTemplateServiceReference\configuration.svcinfo" />
+    <None Include="Service References\TrainingSetTemplateServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServiceReferences.ClientConfig" />
     <None Include="Service References\SocialMediaServiceReference\SocialMediaService.wsdl" />
     <None Include="Service References\SocialMediaServiceReference\SocialMediaService.xsd">
@@ -292,6 +307,16 @@
     <None Include="Service References\SportingHabitsServiceReference\SportingHabitsService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\TrainingSetTemplateServiceReference\TrainingSetTemplateService.wsdl" />
+    <None Include="Service References\TrainingSetTemplateServiceReference\TrainingSetTemplateService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingSetTemplateServiceReference\TrainingSetTemplateService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingSetTemplateServiceReference\TrainingSetTemplateService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ActivityServiceReference\" />
@@ -299,6 +324,7 @@
     <WCFMetadataStorage Include="Service References\CategoryServiceReference\" />
     <WCFMetadataStorage Include="Service References\SocialMediaServiceReference\" />
     <WCFMetadataStorage Include="Service References\SportingHabitsServiceReference\" />
+    <WCFMetadataStorage Include="Service References\TrainingSetTemplateServiceReference\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\CategoryServiceReference\CategoryService.disco" />

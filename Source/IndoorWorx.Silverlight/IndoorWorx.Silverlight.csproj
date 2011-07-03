@@ -484,18 +484,6 @@
     <Resource Include="Images\backgroundtexture.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IndoorWorx.4coaches.Silverlight\IndoorWorx.4coaches.Silverlight.csproj">
-      <Project>{EABF5770-AE15-4D71-ABC7-37DE6778A016}</Project>
-      <Name>IndoorWorx.4coaches.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IndoorWorx.4me.Silverlight\IndoorWorx.4me.Silverlight.csproj">
-      <Project>{99FF852F-7293-434E-85C5-170FEE16443D}</Project>
-      <Name>IndoorWorx.4me.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IndoorWorx.4studios.Silverlight\IndoorWorx.4studios.Silverlight.csproj">
-      <Project>{90D53DE7-AB66-46D5-9BE9-1E4A629203F0}</Project>
-      <Name>IndoorWorx.4studios.Silverlight</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IndoorWorx.Catalog.Silverlight\IndoorWorx.Catalog.Silverlight.csproj">
       <Project>{5FC95272-5312-45A6-B2B4-DCE46FB87829}</Project>
       <Name>IndoorWorx.Catalog.Silverlight</Name>

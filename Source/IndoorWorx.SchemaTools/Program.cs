@@ -262,28 +262,141 @@ namespace IndoorWorx.SchemaTools
                 using (var transaction = session.BeginTransaction())
                 {
                     session.Save(new ApplicationUser() { Email = "rossmcewan@gmail.com", Firstname = "Ross", Gender = Genders.Male, Lastname = "McEwan", Username = "rossmcewan" });
-                    var l1 = new IntervalLevel() { Name = "Active Recovery", MaximumPercentageOfFthr = 68, MaximumPercentageOfFtp = 55, MinRPE = 0, MaxRPE = 2 };
+                    
+                    var l1 = new IntervalLevel() { Title = "Active Recovery", MaximumPercentageOfFthr = 68, MaximumPercentageOfFtp = 55, MinRPE = 0, MaxRPE = 2 };
                     session.Save(l1);
-                    var l2 = new IntervalLevel() { Name = "Endurance", MinimumPercentageOfFthr = 69, MaximumPercentageOfFthr = 83, MaximumPercentageOfFtp = 75, MinimumPercentageOfFtp = 56, MinRPE = 2, MaxRPE = 3 };
+                    var l2 = new IntervalLevel() { Title = "Endurance", MinimumPercentageOfFthr = 69, MaximumPercentageOfFthr = 83, MaximumPercentageOfFtp = 75, MinimumPercentageOfFtp = 56, MinRPE = 2, MaxRPE = 3 };
                     session.Save(l2);
-                    var l3 = new IntervalLevel() { Name = "Tempo", MinimumPercentageOfFthr = 84, MaximumPercentageOfFthr = 94, MaximumPercentageOfFtp = 90, MinimumPercentageOfFtp = 76, MinRPE = 3, MaxRPE = 4 };
+                    var l3 = new IntervalLevel() { Title = "Tempo", MinimumPercentageOfFthr = 84, MaximumPercentageOfFthr = 94, MaximumPercentageOfFtp = 90, MinimumPercentageOfFtp = 76, MinRPE = 3, MaxRPE = 4 };
                     session.Save(l3);
-                    var l4 = new IntervalLevel() { Name = "Lactate Threshold", MinimumPercentageOfFthr = 95, MaximumPercentageOfFthr = 105, MaximumPercentageOfFtp = 105, MinimumPercentageOfFtp = 91, MinRPE = 4, MaxRPE = 5, TypicalMinDuration = TimeSpan.FromMinutes(8), TypicalMaxDuration = TimeSpan.FromMinutes(30) };
+                    var l4 = new IntervalLevel() { Title = "Lactate Threshold", MinimumPercentageOfFthr = 95, MaximumPercentageOfFthr = 105, MaximumPercentageOfFtp = 105, MinimumPercentageOfFtp = 91, MinRPE = 4, MaxRPE = 5, TypicalMinDuration = TimeSpan.FromMinutes(8), TypicalMaxDuration = TimeSpan.FromMinutes(30) };
                     session.Save(l4);
-                    var l5 = new IntervalLevel() { Name = "VO2max", MinimumPercentageOfFthr = 106, MaximumPercentageOfFtp = 120, MinimumPercentageOfFtp = 106, MinRPE = 6, MaxRPE = 7, TypicalMinDuration = TimeSpan.FromMinutes(3), TypicalMaxDuration = TimeSpan.FromMinutes(8) };
+                    var l5 = new IntervalLevel() { Title = "VO2max", MinimumPercentageOfFthr = 106, MaximumPercentageOfFtp = 120, MinimumPercentageOfFtp = 106, MinRPE = 6, MaxRPE = 7, TypicalMinDuration = TimeSpan.FromMinutes(3), TypicalMaxDuration = TimeSpan.FromMinutes(8) };
                     session.Save(l5);
-                    var l6 = new IntervalLevel() { Name = "Anaerobic Capacity", MaximumPercentageOfFtp = 150, MinimumPercentageOfFtp = 121, MinRPE = 7, TypicalMinDuration = TimeSpan.FromSeconds(30), TypicalMaxDuration = TimeSpan.FromMinutes(3) };
+                    var l6 = new IntervalLevel() { Title = "Anaerobic Capacity", MaximumPercentageOfFtp = 150, MinimumPercentageOfFtp = 121, MinRPE = 7, TypicalMinDuration = TimeSpan.FromSeconds(30), TypicalMaxDuration = TimeSpan.FromMinutes(3) };
                     session.Save(l6);
-                    var l7 = new IntervalLevel() { Name = "Neuromuscular Power", TypicalMaxDuration = TimeSpan.FromSeconds(30) };
+                    var l7 = new IntervalLevel() { Title = "Neuromuscular Power", TypicalMaxDuration = TimeSpan.FromSeconds(30) };
                     session.Save(l7);
 
-                    session.Save(new IntervalType() { Name = "Warm up", DefaultLevel = l2 });
-                    session.Save(new IntervalType() { Name = "Cool down", DefaultLevel = l1 });
-                    session.Save(new IntervalType() { Name = "Recovery", DefaultLevel = l1 });
-                    session.Save(new IntervalType() { Name = "Long Hills", DefaultLevel = l3 });
-                    session.Save(new IntervalType() { Name = "Short Hills", DefaultLevel = l4 });
-                    session.Save(new IntervalType() { Name = "Time Trial", DefaultLevel = l3 });
-                    session.Save(new IntervalType() { Name = "Sprints", DefaultLevel = l5 });
+                    var warmup = new IntervalType() { Name = "Warm up", DefaultLevel = l2 };
+                    session.Save(warmup);
+                    var cooldown = new IntervalType() { Name = "Cool down", DefaultLevel = l1 };
+                    session.Save(cooldown);
+                    var recover = new IntervalType() { Name = "Recovery", DefaultLevel = l1 };
+                    session.Save(recover);
+                    var longHills = new IntervalType() { Name = "Long Hills", DefaultLevel = l3 };
+                    session.Save(longHills);
+                    var shortHills = new IntervalType() { Name = "Short Hills", DefaultLevel = l4 };
+                    session.Save(shortHills);
+                    var tt = new IntervalType() { Name = "Time Trial", DefaultLevel = l3 };
+                    session.Save(tt);
+                    var sprints = new IntervalType() { Name = "Sprints", DefaultLevel = l5 };
+                    session.Save(sprints);
+
+                    var trainingTemplate = new TrainingSetTemplate();
+                    trainingTemplate.Duration = TimeSpan.FromHours(1);
+                    trainingTemplate.Title = "4 x 10";
+                    trainingTemplate.Description = "An easy 10 minute warm up followed by 4 10 minute intervals at threshold with 5 minutes recovery. This is followed by an easy 5 minute cool down.";
+                    trainingTemplate.Intervals.Add(new Interval()
+                    {
+                        Title = "Warm up",
+                        IntervalType = warmup,
+                        IntervalLevel = warmup.DefaultLevel,
+                        Duration = TimeSpan.FromMinutes(10),
+                        EffortType = EffortType.Power,
+                        EffortFrom = warmup.DefaultLevel.MinimumPercentageOfFtp,
+                        EffortTo = warmup.DefaultLevel.MaximumPercentageOfFtp,
+                        Sequence = 0
+                    });
+                    trainingTemplate.Intervals.Add(new Interval()
+                    {
+                        Title = "Interval #1",
+                        IntervalType = tt,
+                        IntervalLevel = tt.DefaultLevel,
+                        Duration = TimeSpan.FromMinutes(10),
+                        EffortType = EffortType.Power,
+                        EffortFrom = tt.DefaultLevel.MinimumPercentageOfFtp,
+                        EffortTo = tt.DefaultLevel.MaximumPercentageOfFtp,
+                        Sequence = 1
+                    });
+                    trainingTemplate.Intervals.Add(new Interval()
+                    {
+                        Title = "Recovery",
+                        IntervalType = recover,
+                        IntervalLevel = recover.DefaultLevel,
+                        Duration = TimeSpan.FromMinutes(5),
+                        EffortType = EffortType.Power,
+                        EffortFrom = recover.DefaultLevel.MinimumPercentageOfFtp,
+                        EffortTo = recover.DefaultLevel.MaximumPercentageOfFtp,
+                        Sequence = 2
+                    });
+                    trainingTemplate.Intervals.Add(new Interval()
+                    {
+                        Title = "Interval #2",
+                        IntervalType = tt,
+                        IntervalLevel = tt.DefaultLevel,
+                        Duration = TimeSpan.FromMinutes(10),
+                        EffortType = EffortType.Power,
+                        EffortFrom = tt.DefaultLevel.MinimumPercentageOfFtp,
+                        EffortTo = tt.DefaultLevel.MaximumPercentageOfFtp,
+                        Sequence = 3
+                    });
+                    trainingTemplate.Intervals.Add(new Interval()
+                    {
+                        Title = "Recovery",
+                        IntervalType = recover,
+                        IntervalLevel = recover.DefaultLevel,
+                        Duration = TimeSpan.FromMinutes(5),
+                        EffortType = EffortType.Power,
+                        EffortFrom = recover.DefaultLevel.MinimumPercentageOfFtp,
+                        EffortTo = recover.DefaultLevel.MaximumPercentageOfFtp,
+                        Sequence = 4
+                    });
+                    trainingTemplate.Intervals.Add(new Interval()
+                    {
+                        Title = "Interval #3",
+                        IntervalType = tt,
+                        IntervalLevel = tt.DefaultLevel,
+                        Duration = TimeSpan.FromMinutes(10),
+                        EffortType = EffortType.Power,
+                        EffortFrom = tt.DefaultLevel.MinimumPercentageOfFtp,
+                        EffortTo = tt.DefaultLevel.MaximumPercentageOfFtp,
+                        Sequence = 5
+                    });
+                    trainingTemplate.Intervals.Add(new Interval()
+                    {
+                        Title = "Recovery",
+                        IntervalType = recover,
+                        IntervalLevel = recover.DefaultLevel,
+                        Duration = TimeSpan.FromMinutes(5),
+                        EffortType = EffortType.Power,
+                        EffortFrom = recover.DefaultLevel.MinimumPercentageOfFtp,
+                        EffortTo = recover.DefaultLevel.MaximumPercentageOfFtp,
+                        Sequence = 6
+                    });
+                    trainingTemplate.Intervals.Add(new Interval()
+                    {
+                        Title = "Interval #4",
+                        IntervalType = tt,
+                        IntervalLevel = tt.DefaultLevel,
+                        Duration = TimeSpan.FromMinutes(10),
+                        EffortType = EffortType.Power,
+                        EffortFrom = tt.DefaultLevel.MinimumPercentageOfFtp,
+                        EffortTo = tt.DefaultLevel.MaximumPercentageOfFtp,
+                        Sequence = 7
+                    });
+                    trainingTemplate.Intervals.Add(new Interval()
+                    {
+                        Title = "Cool down",
+                        IntervalType = cooldown,
+                        IntervalLevel = cooldown.DefaultLevel,
+                        Duration = TimeSpan.FromMinutes(5),
+                        EffortType = EffortType.Power,
+                        EffortFrom = cooldown.DefaultLevel.MinimumPercentageOfFtp,
+                        EffortTo = cooldown.DefaultLevel.MaximumPercentageOfFtp,
+                        Sequence = 8
+                    });
+                    session.Save(trainingTemplate);
 
                     session.Save(new Category() { Title = "ALL", Sequence = 0, CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=ALL&orderBy=CATEGORY", UriKind.RelativeOrAbsolute) });
                     session.Save(GetCategory());

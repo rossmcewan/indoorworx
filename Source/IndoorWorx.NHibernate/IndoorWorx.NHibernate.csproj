@@ -98,6 +98,7 @@
     <Compile Include="ClassMaps\TelemetryInfoClassMap.cs" />
     <Compile Include="ClassMaps\TrainingMetricClassMap.cs" />
     <Compile Include="ClassMaps\TrainingMetricTypeClassMap.cs" />
+    <Compile Include="ClassMaps\TrainingSetTemplateClassMap.cs" />
     <Compile Include="ClassMaps\TrainingZoneClassMap.cs" />
     <Compile Include="ClassMaps\UnitOfMeasureClassMap.cs" />
     <Compile Include="ClassMaps\VideoClassMap.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\SocialMediaNotificationRepository.cs" />
     <Compile Include="Repositories\SocialMediaTypeRepository.cs" />
+    <Compile Include="Repositories\TrainingSetTemplateRepository.cs" />
     <Compile Include="Repositories\TrainingVolumeRepository.cs" />
     <Compile Include="Repositories\UnitOfMeasureRepository.cs" />
     <Compile Include="Repositories\VideoRepository.cs" />

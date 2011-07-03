@@ -64,6 +64,7 @@
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\SocialMediaService.cs" />
     <Compile Include="Services\SportingHabitsService.cs" />
+    <Compile Include="Services\TrainingSetTemplateService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IndoorWorx.Infrastructure\IndoorWorx.Infrastructure.csproj">

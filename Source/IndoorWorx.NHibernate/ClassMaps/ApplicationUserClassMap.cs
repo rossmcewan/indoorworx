@@ -30,6 +30,12 @@ namespace IndoorWorx.NHibernate.ClassMaps
                 .ChildKeyColumn("Video")
                 .Cascade.SaveUpdate()
                 .Fetch.Subselect();
+            HasManyToMany(x=>x.Templates)
+                .Not.LazyLoad()
+                .ParentKeyColumn("ApplicationUser")
+                .ChildKeyColumn("TrainingSetTemplate")
+                .Cascade.SaveUpdate()
+                .Fetch.Subselect();
         }
     }
 }

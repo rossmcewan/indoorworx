@@ -3,20 +3,94 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:iconverters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"             
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"   
+    xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"      
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+    xmlns:iconverters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"  
+    xmlns:lconverters="clr-namespace:IndoorWorx.Catalog.Converters"       
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" 
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.Resources>
         <iconverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <lconverters:TemplateNavigationUriConverter x:Key="TemplateNavigationUriConverter"/>
+        <Style x:Key="TemplateDetailsFrameStyle" TargetType="navigation:Frame">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="navigation:Frame">
+                        <Grid Background="{TemplateBinding Background}">
+                            <telerik:RadTransitionControl x:Name="PART_FrameCP" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}">
+                                <telerik:RadTransitionControl.Transition>
+                                    <telerik:FadeTransition />
+                                </telerik:RadTransitionControl.Transition>
+                            </telerik:RadTransitionControl>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="DragCueTemplate">
+            <Image Source="/IndoorWorx.Catalog.Silverlight;component/Images/template.png" Width="64" Margin="2"/>
+        </DataTemplate>
     </UserControl.Resources>
-    <Grid x:Name="LayoutRoot">
-        <Border Grid.Row="1" x:Name="DropTargetsContainer" Style="{StaticResource DropTargetsContainerStyle}" Visibility="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" Cursor="Hand" MouseLeftButtonUp="DropTargetsContainer_MouseLeftButtonUp">
-            <StackPanel>
-                <StackPanel x:Name="DropTargetsStackPanel" Style="{StaticResource DropTargetsStackPanelStyle}">
-                    <ListBox x:Name="templateDropTargetList" Style="{StaticResource DropTargetStyle}" DataContext="{Binding TemplateDropTarget, Mode=OneWay}"/>
+    <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=TwoWay}">
+        <Grid x:Name="LayoutRoot">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="2" >
+                    <TextBlock FontWeight="Bold" FontSize="13" Text="{Binding NumberOfTemplatesLabel, Mode=OneWay}" VerticalAlignment="Center" Margin="2,0"/>
+                    <TextBlock FontWeight="Bold" FontSize="13" Text="{Binding CatalogResources.ByTitle, Source={StaticResource CatalogResources}}" VerticalAlignment="Center" Margin="2,0" Foreground="Gray" />
                 </StackPanel>
-                <TextBlock x:Name="DropTargetsToolTip" Style="{StaticResource DropTargetsToolTipTextBlockStyle}" Text="{Binding TemplateDropTarget.Title, Mode=OneWay}"/>
-            </StackPanel>
-        </Border>
-    </Grid>
+                <telerik:ItemsControl ItemsSource="{Binding Templates, Mode=OneWay}" Grid.Row="1" Loaded="ItemsControl_Loaded">
+                    <telerik:ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <telerik:RadWrapPanel Orientation="Horizontal" IsAnimated="True" />
+                        </ItemsPanelTemplate>
+                    </telerik:ItemsControl.ItemsPanel>
+                    <telerik:ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="telerik:RadDragAndDropManager.AllowDrag" Value="True" />
+                            <Setter Property="telerik:RadDragAndDropManager.AllowDrop" Value="True" />
+                            <Setter Property="telerik:RadDragAndDropManager.AutoDrag" Value="True" />
+                        </Style>
+                    </telerik:ItemsControl.ItemContainerStyle>
+                    <telerik:ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="0">
+                                <HyperlinkButton Width="138" Height="138" Margin="2" TargetName="TemplateDetailsFrame" NavigateUri="{Binding Converter={StaticResource TemplateNavigationUriConverter}}">
+                                    <input:ContextMenuService.ContextMenu>
+                                        <input:ContextMenu Style="{StaticResource ZuneLikeContextMenu}" IsEnabled="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Mode=OneWay}">
+                                            <input:MenuItem Header="{Binding CatalogResources.AddToMyLibraryHeader, Source={StaticResource CatalogResources}}" Style="{StaticResource ZuneLikeMenuItem}" Command="{Binding DataContext.AddToMyLibraryCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}"/>
+                                        </input:ContextMenu>
+                                    </input:ContextMenuService.ContextMenu>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Title}" TextTrimming="WordEllipsis" TextWrapping="Wrap" FontWeight="Bold"/>
+                                        <Image Source="/IndoorWorx.Catalog.Silverlight;component/Images/template.png" Width="128" Margin="5"/>
+                                    </StackPanel>
+                                </HyperlinkButton>
+                            </Border>
+                        </DataTemplate>
+                    </telerik:ItemsControl.ItemTemplate>
+                </telerik:ItemsControl>
+            </Grid>
+            <navigation:Frame Grid.Column="1" x:Name="TemplateDetailsFrame" Style="{StaticResource TemplateDetailsFrameStyle}" JournalOwnership="OwnsJournal"/>
+            <Border x:Name="DropTargetsContainer" Style="{StaticResource DropTargetsContainerStyle}" Visibility="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" Cursor="Hand" MouseLeftButtonUp="DropTargetsContainer_MouseLeftButtonUp">
+                <StackPanel>
+                    <StackPanel x:Name="DropTargetsStackPanel" Style="{StaticResource DropTargetsStackPanelStyle}">
+                        <ListBox x:Name="templateDropTargetList" Style="{StaticResource DropTargetStyle}" DataContext="{Binding TemplateDropTarget, Mode=OneWay}"/>
+                    </StackPanel>
+                    <TextBlock x:Name="DropTargetsToolTip" Style="{StaticResource DropTargetsToolTipTextBlockStyle}" Text="{Binding TemplateDropTarget.Title, Mode=OneWay}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </telerik:RadBusyIndicator>
 </UserControl>

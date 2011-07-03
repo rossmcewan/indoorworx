@@ -57,6 +57,7 @@
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\ActivityType.cs" />
+    <Compile Include="Models\AddTemplateStatus.cs" />
     <Compile Include="Models\AddVideoStatus.cs" />
     <Compile Include="Models\ApplicationOptions.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Models\Colour.cs" />
     <Compile Include="Enums\Countries.cs" />
     <Compile Include="Models\CompetitiveLevel.cs" />
+    <Compile Include="Models\EffortType.cs" />
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\EquipmentFeatures.cs" />
     <Compile Include="Models\Gender.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Models\TrainingMetric.cs" />
     <Compile Include="Models\TrainingMetricType.cs" />
     <Compile Include="Models\TrainingSet.cs" />
+    <Compile Include="Models\TrainingSetTemplate.cs" />
     <Compile Include="Models\TrainingVolume.cs" />
     <Compile Include="Models\TrainingZone.cs" />
     <Compile Include="Models\UnitOfMeasure.cs" />
@@ -119,11 +122,14 @@
     <Compile Include="Repositories\IReviewRepository.cs" />
     <Compile Include="Repositories\ISocialMediaNotificationRepository.cs" />
     <Compile Include="Repositories\ISocialMediaTypeRepository.cs" />
+    <Compile Include="Repositories\ITrainingSetTemplateRepository.cs" />
     <Compile Include="Repositories\ITrainingVolumeRepository.cs" />
     <Compile Include="Repositories\IUnitOfMeasureRepository.cs" />
     <Compile Include="Repositories\IVideoRepository.cs" />
+    <Compile Include="Requests\AddTemplateRequest.cs" />
     <Compile Include="Requests\AddVideoRequest.cs" />
     <Compile Include="Responses\AddVideoResponse.cs" />
+    <Compile Include="Responses\AddTemplateResponse.cs" />
     <Compile Include="ServiceModel\IoC.cs" />
     <Compile Include="ServiceModel\SilverlightFaultBehaviorExtensionElement.cs" />
     <Compile Include="ServiceModel\SilverlightFaultMessageInspector.cs" />
@@ -135,6 +141,7 @@
     <Compile Include="Services\ICategoryService.cs" />
     <Compile Include="Services\ISocialMediaService.cs" />
     <Compile Include="Services\ISportingHabitsService.cs" />
+    <Compile Include="Services\ITrainingSetTemplateService.cs" />
     <Compile Include="SmartDispatcher.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -39,8 +39,9 @@ namespace IndoorWorx.Infrastructure
                     if (ApplicationUser.CurrentUser != null)
                     {
                         VideoCount = ApplicationUser.CurrentUser.Videos.Count;
-                        ApplicationUser.CurrentUser.PropertyChanged += UserPropertyChanged;
                         (ApplicationUser.CurrentUser.Videos as INotifyCollectionChanged).CollectionChanged += VideoCollectionChanged;
+                        TemplateCount = ApplicationUser.CurrentUser.Templates.Count;
+                        (ApplicationUser.CurrentUser.Templates as INotifyCollectionChanged).CollectionChanged += TemplateCollectionChanged;
                     }
                     else
                     {
@@ -49,13 +50,14 @@ namespace IndoorWorx.Infrastructure
                 };
         }
 
-        private void UserPropertyChanged(object sender, PropertyChangedEventArgs args)
-        {            
-        }
-
         private void VideoCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
             VideoCount = ApplicationUser.CurrentUser.Videos.Count;
+        }
+
+        private void TemplateCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+        {
+            TemplateCount = ApplicationUser.CurrentUser.Templates.Count;
         }
 
         public virtual ApplicationUser CurrentUser
@@ -71,6 +73,17 @@ namespace IndoorWorx.Infrastructure
             { 
                 videoCount = value;
                 FirePropertyChanged("VideoCount");
+            }
+        }
+
+        private int templateCount;
+        public virtual int TemplateCount
+        {
+            get { return templateCount; }
+            set
+            {
+                templateCount = value;
+                FirePropertyChanged("TemplateCount");
             }
         }
 

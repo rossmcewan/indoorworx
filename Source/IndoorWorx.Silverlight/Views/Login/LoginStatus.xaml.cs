@@ -19,11 +19,10 @@
         public LoginStatus()
         {
             this.InitializeComponent();
-
             this.welcomeText.SetBinding(TextBlock.TextProperty, WebContext.Current.CreateOneWayBinding("User.DisplayName", new StringFormatValueConverter(ApplicationStrings.WelcomeMessage)));
             this.authService.LoggedIn += this.Authentication_LoggedIn;
             this.authService.LoggedOut += this.Authentication_LoggedOut;
-            this.UpdateLoginState();
+            this.UpdateLoginState();            
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
