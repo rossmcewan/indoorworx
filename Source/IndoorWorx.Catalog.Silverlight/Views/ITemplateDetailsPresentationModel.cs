@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -10,5 +11,9 @@ namespace IndoorWorx.Catalog.Views
         ITemplateDetailsView View { get; set; }
 
         void SelectTemplateWithId(Guid guid);
+
+        bool IsBusy { get; set; }
+
+        TrainingSetTemplate Template { get; set; }
     }
 }

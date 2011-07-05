@@ -3,10 +3,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"       
+    xmlns:converters="clr-namespace:IndoorWorx.Catalog.Converters"             
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
-    
-    <Grid x:Name="LayoutRoot" Background="White">
-
-    </Grid>
+    <UserControl.Resources>
+        <converters:CreditsToTextConverter x:Key="CreditsToTextConverter"/>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
+        <StackPanel>
+            <TextBlock FontWeight="Bold" Text="{Binding Template.Title, Mode=OneWay}" Margin="5"/>
+            <TextBlock Text="{Binding Template.Description, Mode=OneWay}" TextWrapping="Wrap" Margin="5"/>
+            <TextBlock Text="{Binding CatalogResources.Duration, Source={StaticResource CatalogResources}}" Margin="5,0">
+                <Run Text="{Binding Template.Duration, Mode=OneWay}"/>
+            </TextBlock>
+            <TextBlock Text="{Binding Template.Credits, Mode=OneWay, Converter={StaticResource CreditsToTextConverter}}" Margin="5,0"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0">
+                <telerik:RadColumnSparkline 
+                    Width="256" Height="100"
+                    MinYValue="0"
+                    AutoRange="False"
+                    ItemsSource="{Binding Template.Intervals, Mode=TwoWay}" 
+                    ShowAxis="False"                                               
+                    YValuePath="AverageEffort" 
+                    XValuePath="OADateTime"/>
+            </ScrollViewer>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

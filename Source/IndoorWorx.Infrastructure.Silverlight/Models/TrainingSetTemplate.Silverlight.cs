@@ -20,6 +20,15 @@ namespace IndoorWorx.Infrastructure.Models
         {
             if (this.Intervals == null)
                 this.Intervals = new ObservableCollection<Interval>();
-        }
+            else
+                this.Intervals = new ObservableCollection<Interval>(this.intervals);
+            double oaDateTime = 0;
+            DateTime today = DateTime.Now;
+            foreach (var interval in Intervals)
+            {
+                interval.OADateTime = oaDateTime;
+                oaDateTime += new DateTime(today.Year, today.Month, today.Day, interval.Duration.Hours, interval.Duration.Minutes, interval.Duration.Seconds).ToOADate(); 
+            }
+        }        
     }
 }

@@ -73,8 +73,16 @@
                                         </input:ContextMenu>
                                     </input:ContextMenuService.ContextMenu>
                                     <StackPanel>
+                                        <telerik:RadColumnSparkline 
+                                            Width="128" Height="50"
+                                            MinYValue="0"
+                                            AutoRange="False"
+                                            ItemsSource="{Binding Intervals, Mode=TwoWay}" 
+                                            ShowAxis="False"                                               
+                                            YValuePath="AverageEffort" 
+                                            XValuePath="OADateTime"/>
                                         <TextBlock Text="{Binding Title}" TextTrimming="WordEllipsis" TextWrapping="Wrap" FontWeight="Bold"/>
-                                        <Image Source="/IndoorWorx.Catalog.Silverlight;component/Images/template.png" Width="128" Margin="5"/>
+                                        <!--<Image Source="/IndoorWorx.Catalog.Silverlight;component/Images/template.png" Width="128" Margin="5"/>-->
                                     </StackPanel>
                                 </HyperlinkButton>
                             </Border>
