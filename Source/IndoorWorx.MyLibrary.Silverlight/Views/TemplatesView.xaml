@@ -45,7 +45,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Margin="2" >
                     <TextBlock FontWeight="Bold" FontSize="13" Text="{Binding NumberOfTemplatesLabel, Mode=OneWay}" VerticalAlignment="Center" Margin="2,0"/>
-                    <TextBlock FontWeight="Bold" FontSize="13" Text="{Binding MyLibraryResources.ByTitle, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center" Margin="2,0" Foreground="Gray" />
+                    <TextBlock FontWeight="Bold" FontSize="13" Text="{Binding MyLibraryResources.InMyLibrary, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center" Margin="2,0" Foreground="Gray" />
                 </StackPanel>
                 <telerik:ItemsControl ItemsSource="{Binding CurrentUser.Templates, Mode=OneWay, Source={StaticResource ApplicationContext}}" Grid.Row="1">
                     <telerik:ItemsControl.ItemsPanel>
@@ -58,8 +58,15 @@
                             <Border BorderThickness="0">
                                 <HyperlinkButton Width="138" Height="138" Margin="2" TargetName="TemplateDetailsFrame" NavigateUri="{Binding Converter={StaticResource TemplateNavigationUriConverter}}">                                    
                                     <StackPanel>
+                                        <telerik:RadColumnSparkline 
+                                            Width="128" Height="50"
+                                            MinYValue="0"
+                                            AutoRange="False"
+                                            ItemsSource="{Binding Intervals, Mode=TwoWay}" 
+                                            ShowAxis="False"                                               
+                                            YValuePath="AverageEffort" 
+                                            XValuePath="OADateTime"/>
                                         <TextBlock Text="{Binding Title}" TextTrimming="WordEllipsis" TextWrapping="Wrap" FontWeight="Bold"/>
-                                        <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/template.png" Width="128" Margin="5"/>
                                     </StackPanel>
                                 </HyperlinkButton>
                             </Border>

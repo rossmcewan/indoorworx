@@ -110,6 +110,9 @@
     <Compile Include="Pages\MyLibraryPage.xaml.cs">
       <DependentUpon>MyLibraryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TemplateDetailsPage.xaml.cs">
+      <DependentUpon>TemplateDetailsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TemplatesPage.xaml.cs">
       <DependentUpon>TemplatesPage.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Pages\MyLibraryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TemplateDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

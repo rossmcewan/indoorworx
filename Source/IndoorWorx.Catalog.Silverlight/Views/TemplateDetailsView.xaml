@@ -12,12 +12,6 @@
     </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
         <StackPanel>
-            <TextBlock FontWeight="Bold" Text="{Binding Template.Title, Mode=OneWay}" Margin="5"/>
-            <TextBlock Text="{Binding Template.Description, Mode=OneWay}" TextWrapping="Wrap" Margin="5"/>
-            <TextBlock Text="{Binding CatalogResources.Duration, Source={StaticResource CatalogResources}}" Margin="5,0">
-                <Run Text="{Binding Template.Duration, Mode=OneWay}"/>
-            </TextBlock>
-            <TextBlock Text="{Binding Template.Credits, Mode=OneWay, Converter={StaticResource CreditsToTextConverter}}" Margin="5,0"/>
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0">
                 <telerik:RadColumnSparkline 
                     Width="256" Height="100"
@@ -28,6 +22,12 @@
                     YValuePath="AverageEffort" 
                     XValuePath="OADateTime"/>
             </ScrollViewer>
+            <TextBlock FontWeight="Bold" Text="{Binding Template.Title, Mode=OneWay}" Margin="5"/>
+            <TextBlock Text="{Binding Template.Description, Mode=OneWay}" TextWrapping="Wrap" Margin="5"/>
+            <TextBlock Text="{Binding CatalogResources.Duration, Source={StaticResource CatalogResources}}" Margin="5,0">
+                <Run Text="{Binding Template.Duration, Mode=OneWay}"/>
+            </TextBlock>
+            <TextBlock Text="{Binding Template.Credits, Mode=OneWay, Converter={StaticResource CreditsToTextConverter}}" Margin="5,0"/>            
         </StackPanel>
     </ScrollViewer>
 </UserControl>
