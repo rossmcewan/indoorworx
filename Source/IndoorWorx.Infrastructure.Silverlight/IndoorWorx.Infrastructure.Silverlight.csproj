@@ -324,6 +324,7 @@
     <Compile Include="IMainRegionView.cs" />
     <Compile Include="Models\ApplicationUser.Silverlight.cs" />
     <Compile Include="Models\Colour.Silverlight.cs" />
+    <Compile Include="Models\CrudOperation.cs" />
     <Compile Include="Models\Interval.Silverlight.cs" />
     <Compile Include="Models\SportingHabits.Silverlight.cs" />
     <Compile Include="Models\TrainingSetTemplate.Silverlight.cs" />

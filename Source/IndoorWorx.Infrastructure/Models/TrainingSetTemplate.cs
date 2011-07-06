@@ -45,7 +45,7 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private TimeSpan duration;
+        private TimeSpan duration =  TimeSpan.Zero;
         [DataMember]
         public virtual TimeSpan Duration
         {

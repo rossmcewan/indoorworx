@@ -55,6 +55,11 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <Style x:Key="ContentGridStyle" TargetType="Grid">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Margin" Value="0,75,0,0"/>
+    </Style>
 
     <!-- Content Frame Style -->
     <Style x:Key="ContentFrameStyle" TargetType="navigation:Frame">
@@ -339,6 +344,17 @@
         <Setter Property="FontFamily" Value="{StaticResource HeaderFontFamily}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="TextOptions.TextHintingMode" Value="Animated" />
+    </Style>
+    
+    <Style x:Key="LinkTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource NavigationForegroundBrush}"/>
+        <Setter Property="FontFamily" Value="{StaticResource HeaderFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource NavigationFontSize}"/>
+        <Setter Property="TextOptions.TextHintingMode" Value="Animated" />
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="MinHeight" Value="28"/>
+        <Setter Property="MinWidth" Value="78"/>
+        <Setter Property="Padding" Value="8,4,18,4"/>
     </Style>
 
     <!--Link Style-->
@@ -700,7 +716,7 @@
 
     <Style x:Key="CreditsTextStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="13"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>

@@ -15,6 +15,22 @@ namespace IndoorWorx.Infrastructure.Models
 {
     public partial class TrainingSetTemplate
     {
+        public TrainingSetTemplate()
+        {
+            this.Intervals = new ObservableCollection<Interval>();
+        }
+
+        private Interval selectedInterval;
+        public virtual Interval SelectedInterval
+        {
+            get { return selectedInterval; }
+            set
+            {
+                selectedInterval = value;
+                FirePropertyChanged("SelectedInterval");
+            }
+        }
+
         [OnDeserialized]
         public void OnDeserialized(StreamingContext context)
         {

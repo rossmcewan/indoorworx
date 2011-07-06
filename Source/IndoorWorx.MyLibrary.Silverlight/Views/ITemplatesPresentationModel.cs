@@ -16,6 +16,8 @@ namespace IndoorWorx.MyLibrary.Views
     {
         ITemplatesView View { set; get; }
 
+        ICommand AddTemplateCommand { get; }
+
         void Refresh();
     }
 }

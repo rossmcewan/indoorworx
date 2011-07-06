@@ -142,7 +142,7 @@ namespace IndoorWorx.Silverlight {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREDITS .
+        ///   Looks up a localized string similar to  CREDITS REMAINING.
         /// </summary>
         public static string Credits {
             get {

@@ -74,18 +74,12 @@
                                     Style="{StaticResource LoginRegisterLinkStyle}" 
                                     IsEnabled="{Binding Path=Authentication.IsLoggingOut, Converter={StaticResource NotOperatorValueConverter}}" />
                     </StackPanel>
-                    <TextBlock Text="{Binding Path=ApplicationStrings.Credits, Source={StaticResource ResourceWrapper}}" Style="{StaticResource CreditsTextStyle}">
-                        <Run Text="{Binding CurrentUser.Credits, Mode=OneWay, Source={StaticResource ApplicationContext}}"/>
-                    </TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding CurrentUser.Credits, Mode=OneWay, Source={StaticResource ApplicationContext}}" Style="{StaticResource CreditsTextStyle}"/>
+                        <TextBlock Text="{Binding Path=ApplicationStrings.Credits, Source={StaticResource ResourceWrapper}}" Style="{StaticResource CreditsTextStyle}"/>
+                    </StackPanel>
                 </StackPanel>
             </Border>
-            <!-- welcomeText.Text property's binding is setup in code-behind -->
-            <!--<TextBlock x:Name="welcomeText" Style="{StaticResource WelcomeTextStyle}"/>
-            <TextBlock Text="  |  " Style="{StaticResource SpacerStyle}"/>
-            <Button x:Name="logoutButton" Content="{Binding Path=ApplicationStrings.LogOffButton, Source={StaticResource ResourceWrapper}}" 
-                                    Click="LogoutButton_Click" 
-                                    Style="{StaticResource LoginRegisterLinkStyle}" 
-                                    IsEnabled="{Binding Path=Authentication.IsLoggingOut, Converter={StaticResource NotOperatorValueConverter}}" />-->
         </StackPanel>
     </Grid>
 

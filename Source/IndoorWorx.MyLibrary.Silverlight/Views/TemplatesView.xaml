@@ -37,11 +37,12 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Margin="2" >
                     <TextBlock FontWeight="Bold" FontSize="13" Text="{Binding NumberOfTemplatesLabel, Mode=OneWay}" VerticalAlignment="Center" Margin="2,0"/>
@@ -56,7 +57,7 @@
                     <telerik:ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="0">
-                                <HyperlinkButton Width="138" Height="138" Margin="2" TargetName="TemplateDetailsFrame" NavigateUri="{Binding Converter={StaticResource TemplateNavigationUriConverter}}">                                    
+                                <HyperlinkButton Width="138" Height="85" Margin="2" TargetName="TemplateDetailsFrame" NavigateUri="{Binding Converter={StaticResource TemplateNavigationUriConverter}}">                                    
                                     <StackPanel>
                                         <telerik:RadColumnSparkline 
                                             Width="128" Height="50"
@@ -73,8 +74,19 @@
                         </DataTemplate>
                     </telerik:ItemsControl.ItemTemplate>
                 </telerik:ItemsControl>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
+                    <Button Margin="10" BorderThickness="0" IsTabStop="False" Cursor="Hand" Command="{Binding AddTemplateCommand, Mode=OneWay}">
+                        <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/add.png"/>
+                    </Button>
+                    <Button Margin="10" IsEnabled="False" BorderThickness="0">
+                        <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/edit.png"/>
+                    </Button>
+                    <Button Margin="10" IsEnabled="False" BorderThickness="0">
+                        <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/delete.png"/>
+                    </Button>
+                </StackPanel>
             </Grid>
-            <navigation:Frame Grid.Column="1" x:Name="TemplateDetailsFrame" Style="{StaticResource TemplateDetailsFrameStyle}" JournalOwnership="OwnsJournal"/>
+            <navigation:Frame Grid.Column="1" x:Name="TemplateDetailsFrame" Style="{StaticResource TemplateDetailsFrameStyle}" JournalOwnership="OwnsJournal"/>            
         </Grid>
     </telerik:RadBusyIndicator>
 </UserControl>

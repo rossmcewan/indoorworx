@@ -61,11 +61,56 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to new template.
+        /// </summary>
+        public static string CreateTemplate {
+            get {
+                return ResourceManager.GetString("CreateTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete template.
+        /// </summary>
+        public static string DeleteTemplate {
+            get {
+                return ResourceManager.GetString("DeleteTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string DescriptionLabel {
+            get {
+                return ResourceManager.GetString("DescriptionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        public static string DurationLabel {
+            get {
+                return ResourceManager.GetString("DurationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IN MY LIBRARY.
         /// </summary>
         public static string InMyLibrary {
             get {
                 return ResourceManager.GetString("InMyLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intervals.
+        /// </summary>
+        public static string IntervalsLabel {
+            get {
+                return ResourceManager.GetString("IntervalsLabel", resourceCulture);
             }
         }
         
@@ -97,6 +142,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to view template.
+        /// </summary>
+        public static string ReadTemplate {
+            get {
+                return ResourceManager.GetString("ReadTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TEMPLATES.
         /// </summary>
         public static string TemplatesTitle {
@@ -106,11 +160,29 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string TitleLabel {
+            get {
+                return ResourceManager.GetString("TitleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PROGRAMS.
         /// </summary>
         public static string TrainingProgramsTitle {
             get {
                 return ResourceManager.GetString("TrainingProgramsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to edit template.
+        /// </summary>
+        public static string UpdateTemplate {
+            get {
+                return ResourceManager.GetString("UpdateTemplate", resourceCulture);
             }
         }
         

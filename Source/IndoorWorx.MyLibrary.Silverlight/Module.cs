@@ -59,8 +59,19 @@ namespace IndoorWorx.MyLibrary
             unityContainer.RegisterInstance<IVideosPresentationModel>(unityContainer.Resolve<VideosPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<IVideosView>(unityContainer.Resolve<VideosView>(), new ContainerControlledLifetimeManager());
 
+            unityContainer.RegisterInstance<IVideoDetailsPresentationModel>(unityContainer.Resolve<VideoDetailsPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IVideoDetailsView>(unityContainer.Resolve<VideoDetailsView>(), new ContainerControlledLifetimeManager());
+
             unityContainer.RegisterInstance<ITemplatesPresentationModel>(unityContainer.Resolve<TemplatesPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<ITemplatesView>(unityContainer.Resolve<TemplatesView>(), new ContainerControlledLifetimeManager());
+
+            unityContainer.RegisterInstance<ITemplateDetailsPresentationModel>(unityContainer.Resolve<TemplateDetailsPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<ITemplateDetailsView>(unityContainer.Resolve<TemplateDetailsView>(), new ContainerControlledLifetimeManager());
+
+            unityContainer.RegisterType<ITemplateView, TemplateView>();
+            unityContainer.RegisterType<ITemplatePresentationModel, TemplatePresentationModel>();
+            //unityContainer.RegisterInstance<ITemplatePresentationModel>(unityContainer.Resolve<TemplatePresentationModel>(), new ContainerControlledLifetimeManager());
+            //unityContainer.RegisterInstance<ITemplateView>(unityContainer.Resolve<TemplateView>(), new ContainerControlledLifetimeManager());
 
             NavigationLinks.MapUri(
                 new Uri("/MyLibrary", UriKind.Relative),
@@ -76,18 +87,6 @@ namespace IndoorWorx.MyLibrary
             };
 
             NavigationLinks.Add(link);
-
-            //ApplicationUser.CurrentUserChanged += (sender, e) =>
-            //    {
-            //        if (ApplicationUser.CurrentUser == null)
-            //        {
-            //            NavigationLinks.Remove(link);
-            //        }
-            //        else
-            //        {
-            //            NavigationLinks.Add(link);
-            //        }
-            //    };
         }
 
         #endregion

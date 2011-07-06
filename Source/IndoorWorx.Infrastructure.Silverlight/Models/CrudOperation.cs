@@ -9,14 +9,13 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace IndoorWorx.Infrastructure.Facades
+namespace IndoorWorx.Infrastructure.Models
 {
-    public interface IDialogFacade
+    public enum CrudOperation
     {
-        void Alert(object content);
-
-        void Confirm(object content, Action<bool> closed);
-
-        void Show(object content);
+        Create,
+        Read,
+        Update,
+        Delete
     }
 }

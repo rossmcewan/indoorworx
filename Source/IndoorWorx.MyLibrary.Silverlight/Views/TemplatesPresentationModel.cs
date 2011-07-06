@@ -19,6 +19,7 @@ using IndoorWorx.Infrastructure.Events;
 using IndoorWorx.Infrastructure.Services;
 using System.Collections.Generic;
 using Microsoft.Practices.Composite.Presentation.Commands;
+using IndoorWorx.Infrastructure.Facades;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -26,11 +27,24 @@ namespace IndoorWorx.MyLibrary.Views
     {
         private readonly IServiceLocator serviceLocator;
         private readonly IEventAggregator eventAggregator;
+        private readonly IDialogFacade dialogFacade;
 
-        public TemplatesPresentationModel(IServiceLocator serviceLocator, IEventAggregator eventAggregator)
+        public TemplatesPresentationModel(IServiceLocator serviceLocator, IEventAggregator eventAggregator, IDialogFacade dialogFacade)
         {
+            ApplicationContext.Current.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == "TemplateCount")
+                    FirePropertyChanged("NumberOfTemplatesLabel");
+            };
             this.serviceLocator = serviceLocator;
-            this.eventAggregator = eventAggregator;            
+            this.eventAggregator = eventAggregator;
+            this.AddTemplateCommand = new DelegateCommand<object>(AddTemplate);
+        }
+
+        private void AddTemplate(object arg)
+        {
+            var view = serviceLocator.GetInstance<ITemplateView>();
+            view.Model.NewTemplate();
         }
 
         #region ITemplatesViewPresentationModel Members
@@ -58,5 +72,7 @@ namespace IndoorWorx.MyLibrary.Views
                 FirePropertyChanged("IsBusy");
             }
         }
+
+        public ICommand AddTemplateCommand { get; private set; }
     }
 }

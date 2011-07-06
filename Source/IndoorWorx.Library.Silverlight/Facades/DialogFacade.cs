@@ -31,5 +31,12 @@ namespace IndoorWorx.Library.Facades
         }
 
         #endregion
+
+        public void Show(object content)
+        {
+            var window = new ChildWindow();            
+            window.Content = content;
+            window.Show();
+        }
     }
 }

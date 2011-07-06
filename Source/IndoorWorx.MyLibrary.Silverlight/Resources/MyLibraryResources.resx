@@ -117,8 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CreateTemplate" xml:space="preserve">
+    <value>new template</value>
+  </data>
+  <data name="DeleteTemplate" xml:space="preserve">
+    <value>delete template</value>
+  </data>
+  <data name="DescriptionLabel" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DurationLabel" xml:space="preserve">
+    <value>Duration</value>
+  </data>
   <data name="InMyLibrary" xml:space="preserve">
     <value>IN MY LIBRARY</value>
+  </data>
+  <data name="IntervalsLabel" xml:space="preserve">
+    <value>Intervals</value>
   </data>
   <data name="NumberOfTemplatesLabel" xml:space="preserve">
     <value>{0} TEMPLATES</value>
@@ -129,11 +144,20 @@
   <data name="PlayVideo" xml:space="preserve">
     <value>Play</value>
   </data>
+  <data name="ReadTemplate" xml:space="preserve">
+    <value>view template</value>
+  </data>
   <data name="TemplatesTitle" xml:space="preserve">
     <value>TEMPLATES</value>
   </data>
+  <data name="TitleLabel" xml:space="preserve">
+    <value>Title</value>
+  </data>
   <data name="TrainingProgramsTitle" xml:space="preserve">
     <value>PROGRAMS</value>
+  </data>
+  <data name="UpdateTemplate" xml:space="preserve">
+    <value>edit template</value>
   </data>
   <data name="VideosTitle" xml:space="preserve">
     <value>VIDEOS</value>
