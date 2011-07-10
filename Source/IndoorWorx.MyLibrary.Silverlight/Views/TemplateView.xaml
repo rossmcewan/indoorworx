@@ -4,59 +4,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="clr-namespace:IndoorWorx.MyLibrary.Converters"             
+    xmlns:iconverters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"             
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
     xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"  
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
-    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"             
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"        
+    xmlns:controls="clr-namespace:IndoorWorx.MyLibrary.Controls"             
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400" >
     <UserControl.Resources>
+        <iconverters:BooleanToOppositeVisibilityConverter x:Key="BooleanToOppositeVisibilityConverter"/>
         <converters:TemplateOperationToTextConverter x:Key="TemplateOperationToTextConverter"/>
     </UserControl.Resources>
-    <toolkit:DataForm AutoEdit="True" AutoGenerateFields="False" CurrentItem="{Binding Template}">
-        <toolkit:DataForm.EditTemplate>
-            <DataTemplate>
-                <StackPanel>
-                    <toolkit:DataField LabelPosition="Top" Label="{Binding MyLibraryResources.TitleLabel, Source={StaticResource MyLibraryResources}}">
-                        <TextBox Text="{Binding Title, Mode=TwoWay}"/>
-                    </toolkit:DataField>
-                    <toolkit:DataField LabelPosition="Top" Label="{Binding MyLibraryResources.DescriptionLabel, Source={StaticResource MyLibraryResources}}">
-                        <TextBox Text="{Binding Description, Mode=TwoWay}"/>
-                    </toolkit:DataField>
-                    <toolkit:DataField LabelPosition="Top" Label="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}">
-                        <toolkit:TimeUpDown Value="{Binding Duration, Mode=TwoWay}"/>
-                    </toolkit:DataField>
-                    <toolkit:DataField LabelPosition="Top" Label="{Binding MyLibraryResources.IntervalsLabel, Source={StaticResource MyLibraryResources}}">
-                        <StackPanel Orientation="Horizontal">
-                            <toolkit:DataForm CommandButtonsVisibility="All" ItemsSource="{Binding Intervals, Mode=TwoWay}" CurrentItem="{Binding SelectedInterval, Mode=TwoWay}" AutoGenerateFields="False">
-                                <toolkit:DataForm.EditTemplate>
-                                    <DataTemplate>
-                                        <StackPanel>
-                                            <toolkit:DataField LabelPosition="Top" Label="{Binding MyLibraryResources.TitleLabel, Source={StaticResource MyLibraryResources}}">
-                                                <TextBox Text="{Binding Title, Mode=TwoWay}"/>
-                                            </toolkit:DataField>
-                                            <toolkit:DataField LabelPosition="Top" Label="{Binding MyLibraryResources.DescriptionLabel, Source={StaticResource MyLibraryResources}}">
-                                                <TextBox Text="{Binding Description, Mode=TwoWay}"/>
-                                            </toolkit:DataField>
-                                            <toolkit:DataField LabelPosition="Top" Label="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}">
-                                                <toolkit:TimeUpDown Value="{Binding Duration, Mode=TwoWay}"/>
-                                            </toolkit:DataField>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </toolkit:DataForm.EditTemplate>
-                            </toolkit:DataForm>
-                            <sdk:DataGrid ItemsSource="{Binding Intervals, Mode=TwoWay}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedInterval, Mode=TwoWay}">
-                                <sdk:DataGrid.Columns>
-                                    <sdk:DataGridTextColumn Header="{Binding MyLibraryResources.TitleLabel, Source={StaticResource MyLibraryResources}}" Binding="{Binding Title, Mode=TwoWay}"/>
-                                </sdk:DataGrid.Columns>
-                            </sdk:DataGrid>
-                        </StackPanel>
-                    </toolkit:DataField>
-                </StackPanel>
-            </DataTemplate>
-        </toolkit:DataForm.EditTemplate>
-    </toolkit:DataForm>
-    <!--<Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
+    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
         <Border x:Name="BackgroundBorder" Style="{StaticResource BackgroundBorderStyle}"/>
 
         <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
@@ -65,18 +26,64 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>            
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <sdk:Label Content="TITLE" Margin="5"/>
-                <TextBox Grid.Column="1" Width="200" Margin="5"/>
-                <sdk:DescriptionViewer Description="The title" Grid.Column="2" Margin="5"/>
+                <sdk:Label Content="{Binding MyLibraryResources.TitleLabel, Source={StaticResource MyLibraryResources}}" Margin="5" />
+                <TextBox Grid.Column="1" Width="200" Margin="5" Text="{Binding Template.Title, Mode=TwoWay}"/>
+                <sdk:Label Content="{Binding MyLibraryResources.EffortTypeLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Column="2" />
+                <ComboBox Grid.Column="3" Width="200" Margin="5" ItemsSource="{Binding EffortTypes, Mode=OneWay}" SelectedItem="{Binding Template.EffortType, Mode=TwoWay}"/>
+                <sdk:Label Content="{Binding MyLibraryResources.DescriptionLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Row="1" />
+                <TextBox AcceptsReturn="True" Margin="5" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Height="50" Text="{Binding Template.Description, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+                <sdk:Label Content="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}" Grid.Row="2" Margin="5" />
+                <sdk:Label Content="{Binding Template.Duration, Mode=OneWay}" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="20" FontWeight="SemiBold" />
+                <sdk:TabControl Grid.Row="3" Grid.ColumnSpan="4" Margin="5" Width="650">
+                    <sdk:TabItem Header="{Binding MyLibraryResources.WarmupHeader, Source={StaticResource MyLibraryResources}}">
+                        <controls:IntervalsCaptureControl 
+                            ItemsSource="{Binding WarmupIntervals, Mode=OneWay}" 
+                            IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
+                            BeginCommand="{Binding AddIntervalToWarmupCommand}"                              
+                            BeginVisibility="{Binding HasWarmupIntervals, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"
+                            MoveDownCommand="{Binding MoveWarmupIntervalDownCommand}"
+                            MoveUpCommand="{Binding MoveWarmupIntervalUpCommand}"
+                            AddIntervalCommand="{Binding AddIntervalToWarmupCommand}"                             
+                            RemoveIntervalCommand="{Binding RemoveIntervalFromWarmupCommand}"/>
+                    </sdk:TabItem>
+                    <sdk:TabItem Header="{Binding MyLibraryResources.MainSetHeader, Source={StaticResource MyLibraryResources}}">
+                        <controls:IntervalsCaptureControl 
+                            ItemsSource="{Binding MainSetIntervals, Mode=OneWay}" 
+                            BeginCommand="{Binding AddIntervalToMainSetCommand}"  
+                            BeginVisibility="{Binding HasMainSetIntervals, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"
+                            AddIntervalCommand="{Binding AddIntervalToMainSetCommand}" 
+                            RemoveIntervalCommand="{Binding RemoveIntervalFromMainSetCommand}"/>
+                    </sdk:TabItem>
+                    <sdk:TabItem Header="{Binding MyLibraryResources.CooldownHeader, Source={StaticResource MyLibraryResources}}">
+                        <controls:IntervalsCaptureControl 
+                            ItemsSource="{Binding CooldownIntervals, Mode=OneWay}" 
+                            BeginCommand="{Binding AddIntervalToCooldownCommand}"  
+                            BeginVisibility="{Binding HasCooldownIntervals, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"
+                            AddIntervalCommand="{Binding AddIntervalToCooldownCommand}" 
+                            RemoveIntervalCommand="{Binding RemoveIntervalFromCooldownCommand}"/>
+                    </sdk:TabItem>
+                    <sdk:TabItem Header="{Binding MyLibraryResources.TextMessagesHeader, Source={StaticResource MyLibraryResources}}"></sdk:TabItem>
+                    <sdk:TabItem Header="{Binding MyLibraryResources.SocialMediaHeader, Source={StaticResource MyLibraryResources}}"></sdk:TabItem>
+                </sdk:TabControl>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0" Grid.Row="4" Margin="2" Grid.ColumnSpan="4">
+                    <telerik:RadColumnSparkline 
+                        Width="600" Height="100"
+                        MinYValue="0"
+                        AutoRange="False"
+                        ItemsSource="{Binding Template.Intervals, Mode=TwoWay}" 
+                        ShowAxis="False"                                               
+                        YValuePath="AverageEffort" 
+                        XValuePath="OADateTime"/>
+                </ScrollViewer>                
             </Grid>
         </Border>
 
@@ -97,10 +104,11 @@
                     </StackPanel>
                 </Border>
             </Grid>
-            <Button Content="Cancel" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="40"/>
+            <Button Content="{Binding MyLibraryResources.Cancel, Source={StaticResource MyLibraryResources}}" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40"/>
+            <Button Content="{Binding MyLibraryResources.Save, Source={StaticResource MyLibraryResources}}" Command="{Binding SaveCommand, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,100,40"/>
         </Grid>
         <HyperlinkButton Command="{Binding CancelCommand}" Margin="-10" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/back.png" Width="50"  />
         </HyperlinkButton>                
-    </Grid>-->
+    </Grid>
 </UserControl>

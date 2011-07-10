@@ -1955,6 +1955,7 @@
     <!--Label Style-->
     <Style TargetType="dataInput:Label">
         <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dataInput:Label">

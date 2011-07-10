@@ -59,6 +59,7 @@
     <Style x:Key="ContentGridStyle" TargetType="Grid">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Margin" Value="0,75,0,0"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
 
     <!-- Content Frame Style -->

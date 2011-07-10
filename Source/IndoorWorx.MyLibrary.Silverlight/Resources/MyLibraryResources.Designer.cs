@@ -61,6 +61,42 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BEGIN.
+        /// </summary>
+        public static string BeginButtonText {
+            get {
+                return ResourceManager.GetString("BeginButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CANCEL.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COOL DOWN.
+        /// </summary>
+        public static string CooldownHeader {
+            get {
+                return ResourceManager.GetString("CooldownHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COUNT DOWNS.
+        /// </summary>
+        public static string CountDownsHeader {
+            get {
+                return ResourceManager.GetString("CountDownsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to new template.
         /// </summary>
         public static string CreateTemplate {
@@ -79,7 +115,7 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description.
+        ///   Looks up a localized string similar to DESCRIPTION.
         /// </summary>
         public static string DescriptionLabel {
             get {
@@ -88,11 +124,29 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duration.
+        ///   Looks up a localized string similar to DURATION.
         /// </summary>
         public static string DurationLabel {
             get {
                 return ResourceManager.GetString("DurationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EFFORT TYPE.
+        /// </summary>
+        public static string EffortTypeLabel {
+            get {
+                return ResourceManager.GetString("EffortTypeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hours.
+        /// </summary>
+        public static string HoursLabel {
+            get {
+                return ResourceManager.GetString("HoursLabel", resourceCulture);
             }
         }
         
@@ -106,11 +160,56 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Intervals.
+        ///   Looks up a localized string similar to INTERVALS.
         /// </summary>
         public static string IntervalsLabel {
             get {
                 return ResourceManager.GetString("IntervalsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TYPE.
+        /// </summary>
+        public static string IntervalTypeLabel {
+            get {
+                return ResourceManager.GetString("IntervalTypeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LEVEL.
+        /// </summary>
+        public static string LevelLabel {
+            get {
+                return ResourceManager.GetString("LevelLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MAIN SET.
+        /// </summary>
+        public static string MainSetHeader {
+            get {
+                return ResourceManager.GetString("MainSetHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minutes.
+        /// </summary>
+        public static string MinutesLabel {
+            get {
+                return ResourceManager.GetString("MinutesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to REPEATS.
+        /// </summary>
+        public static string NumberOfRepeatsLabel {
+            get {
+                return ResourceManager.GetString("NumberOfRepeatsLabel", resourceCulture);
             }
         }
         
@@ -133,6 +232,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OPTIONS.
+        /// </summary>
+        public static string OptionsLabel {
+            get {
+                return ResourceManager.GetString("OptionsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play.
         /// </summary>
         public static string PlayVideo {
@@ -151,6 +259,42 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RECOVERY INTERVAL.
+        /// </summary>
+        public static string RecoveryIntervalLabel {
+            get {
+                return ResourceManager.GetString("RecoveryIntervalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SAVE.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to seconds.
+        /// </summary>
+        public static string SecondsLabel {
+            get {
+                return ResourceManager.GetString("SecondsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SOCIAL MEDIA.
+        /// </summary>
+        public static string SocialMediaHeader {
+            get {
+                return ResourceManager.GetString("SocialMediaHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TEMPLATES.
         /// </summary>
         public static string TemplatesTitle {
@@ -160,7 +304,16 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title.
+        ///   Looks up a localized string similar to TEXT MESSAGES.
+        /// </summary>
+        public static string TextMessagesHeader {
+            get {
+                return ResourceManager.GetString("TextMessagesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TITLE.
         /// </summary>
         public static string TitleLabel {
             get {
@@ -192,6 +345,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string VideosTitle {
             get {
                 return ResourceManager.GetString("VideosTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WARM UP.
+        /// </summary>
+        public static string WarmupHeader {
+            get {
+                return ResourceManager.GetString("WarmupHeader", resourceCulture);
             }
         }
     }

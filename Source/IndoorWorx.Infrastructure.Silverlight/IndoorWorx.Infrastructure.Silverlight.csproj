@@ -289,7 +289,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Converters\CollectionSizeToIntegerConverter.cs" />
+    <Compile Include="Converters\CollectionSizeToVisibilityConverter.cs" />
     <Compile Include="Converters\EnumValueConverter.cs" />
+    <Compile Include="Converters\IntegerToTimeSpanConverter.cs" />
     <Compile Include="Converters\IntensityColorConverter.cs" />
     <Compile Include="Converters\NullToBooleanConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />

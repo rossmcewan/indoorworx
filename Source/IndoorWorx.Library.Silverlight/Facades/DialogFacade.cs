@@ -34,7 +34,9 @@ namespace IndoorWorx.Library.Facades
 
         public void Show(object content)
         {
-            var window = new ChildWindow();            
+            var window = new ChildWindow();
+            window.Style = Application.Current.Resources["ChildWindowStyle"] as Style;
+            window.HasCloseButton = false;
             window.Content = content;
             window.Show();
         }

@@ -26,6 +26,6 @@ namespace IndoorWorx.MyLibrary.Views
         public ITemplatesPresentationModel Model
         {
             get { return this.DataContext as ITemplatesPresentationModel; }
-        }
+        }        
     }
 }

@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BeginButtonText" xml:space="preserve">
+    <value>BEGIN</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>CANCEL</value>
+  </data>
+  <data name="CooldownHeader" xml:space="preserve">
+    <value>COOL DOWN</value>
+  </data>
+  <data name="CountDownsHeader" xml:space="preserve">
+    <value>COUNT DOWNS</value>
+  </data>
   <data name="CreateTemplate" xml:space="preserve">
     <value>new template</value>
   </data>
@@ -124,16 +136,37 @@
     <value>delete template</value>
   </data>
   <data name="DescriptionLabel" xml:space="preserve">
-    <value>Description</value>
+    <value>DESCRIPTION</value>
   </data>
   <data name="DurationLabel" xml:space="preserve">
-    <value>Duration</value>
+    <value>DURATION</value>
+  </data>
+  <data name="EffortTypeLabel" xml:space="preserve">
+    <value>EFFORT TYPE</value>
+  </data>
+  <data name="HoursLabel" xml:space="preserve">
+    <value>hours</value>
   </data>
   <data name="InMyLibrary" xml:space="preserve">
     <value>IN MY LIBRARY</value>
   </data>
   <data name="IntervalsLabel" xml:space="preserve">
-    <value>Intervals</value>
+    <value>INTERVALS</value>
+  </data>
+  <data name="IntervalTypeLabel" xml:space="preserve">
+    <value>TYPE</value>
+  </data>
+  <data name="LevelLabel" xml:space="preserve">
+    <value>LEVEL</value>
+  </data>
+  <data name="MainSetHeader" xml:space="preserve">
+    <value>MAIN SET</value>
+  </data>
+  <data name="MinutesLabel" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="NumberOfRepeatsLabel" xml:space="preserve">
+    <value>REPEATS</value>
   </data>
   <data name="NumberOfTemplatesLabel" xml:space="preserve">
     <value>{0} TEMPLATES</value>
@@ -141,17 +174,35 @@
   <data name="NumberOfVideosLabel" xml:space="preserve">
     <value>{0} VIDEOS</value>
   </data>
+  <data name="OptionsLabel" xml:space="preserve">
+    <value>OPTIONS</value>
+  </data>
   <data name="PlayVideo" xml:space="preserve">
     <value>Play</value>
   </data>
   <data name="ReadTemplate" xml:space="preserve">
     <value>view template</value>
   </data>
+  <data name="RecoveryIntervalLabel" xml:space="preserve">
+    <value>RECOVERY INTERVAL</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>SAVE</value>
+  </data>
+  <data name="SecondsLabel" xml:space="preserve">
+    <value>seconds</value>
+  </data>
+  <data name="SocialMediaHeader" xml:space="preserve">
+    <value>SOCIAL MEDIA</value>
+  </data>
   <data name="TemplatesTitle" xml:space="preserve">
     <value>TEMPLATES</value>
   </data>
+  <data name="TextMessagesHeader" xml:space="preserve">
+    <value>TEXT MESSAGES</value>
+  </data>
   <data name="TitleLabel" xml:space="preserve">
-    <value>Title</value>
+    <value>TITLE</value>
   </data>
   <data name="TrainingProgramsTitle" xml:space="preserve">
     <value>PROGRAMS</value>
@@ -161,5 +212,8 @@
   </data>
   <data name="VideosTitle" xml:space="preserve">
     <value>VIDEOS</value>
+  </data>
+  <data name="WarmupHeader" xml:space="preserve">
+    <value>WARM UP</value>
   </data>
 </root>
