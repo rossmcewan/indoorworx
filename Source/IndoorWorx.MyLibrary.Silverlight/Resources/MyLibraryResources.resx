@@ -216,4 +216,19 @@
   <data name="WarmupHeader" xml:space="preserve">
     <value>WARM UP</value>
   </data>
+  <data name="CountDownToEndOfIntervalLabel" xml:space="preserve">
+    <value>COUNT DOWN TO END OF INTERVAL?</value>
+  </data>
+  <data name="CountDownToStartOfIntervalLabel" xml:space="preserve">
+    <value>COUNT DOWN TO START OF INTERVAL?</value>
+  </data>
+  <data name="EndIntervalMessageLabel" xml:space="preserve">
+    <value>END INTERVAL MESSAGE</value>
+  </data>
+  <data name="FromLabel" xml:space="preserve">
+    <value>FROM</value>
+  </data>
+  <data name="StartIntervalMessageLabel" xml:space="preserve">
+    <value>START INTERVAL MESSAGE</value>
+  </data>
 </root>

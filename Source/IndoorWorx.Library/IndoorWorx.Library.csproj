@@ -62,6 +62,7 @@
     <Compile Include="Services\ActivityService.cs" />
     <Compile Include="Services\ApplicationUserService.cs" />
     <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\IntervalMetadataService.cs" />
     <Compile Include="Services\SocialMediaService.cs" />
     <Compile Include="Services\SportingHabitsService.cs" />
     <Compile Include="Services\TrainingSetTemplateService.cs" />

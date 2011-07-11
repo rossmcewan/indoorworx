@@ -79,6 +79,7 @@
     <Compile Include="ClassMaps\CategoryClassMap.cs" />
     <Compile Include="ClassMaps\ColourClassMap.cs" />
     <Compile Include="ClassMaps\CompetitiveLevelClassMap.cs" />
+    <Compile Include="ClassMaps\EffortTypeClassMap.cs" />
     <Compile Include="ClassMaps\EquipmentClassMap.cs" />
     <Compile Include="ClassMaps\EquipmentFeaturesClassMap.cs" />
     <Compile Include="ClassMaps\IndoorTrainingFrequencyClassMap.cs" />
@@ -114,10 +115,13 @@
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Repositories\CatalogRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\EffortTypeRepository.cs" />
     <Compile Include="Repositories\EquipmentFeaturesRepository.cs" />
     <Compile Include="Repositories\EquipmentRepository.cs" />
     <Compile Include="Repositories\CompetitiveLevelRepository.cs" />
     <Compile Include="Repositories\IndoorTrainingFrequencyRepository.cs" />
+    <Compile Include="Repositories\IntervalLevelRepository.cs" />
+    <Compile Include="Repositories\IntervalTypeRepository.cs" />
     <Compile Include="Repositories\ManufacturerRepository.cs" />
     <Compile Include="Repositories\MeasurementRepository.cs" />
     <Compile Include="Repositories\OccupationRepository.cs" />

@@ -83,21 +83,6 @@ namespace IndoorWorx.MyLibrary.Controls
             control.FirePropertyChanged("RemoveIntervalCommand");
         }
 
-        public ICommand BeginCommand
-        {
-            get { return (ICommand)GetValue(BeginCommandProperty); }
-            set { SetValue(BeginCommandProperty, value); }
-        }
-
-        public static readonly DependencyProperty BeginCommandProperty =
-            DependencyProperty.Register("BeginCommand", typeof(ICommand), typeof(IntervalsCaptureControl), new PropertyMetadata(null, BeginCommandChanged));
-
-        private static void BeginCommandChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            var control = (IntervalsCaptureControl)obj;
-            control.FirePropertyChanged("BeginCommand");
-        }
-
         public ICommand MoveUpCommand
         {
             get { return (ICommand)GetValue(MoveUpCommandProperty); }
@@ -126,23 +111,7 @@ namespace IndoorWorx.MyLibrary.Controls
         {
             var control = (IntervalsCaptureControl)obj;
             control.FirePropertyChanged("MoveDownCommand");
-        }
-
-        public Visibility BeginVisibility
-        {
-            get { return (Visibility)GetValue(BeginVisibilityProperty); }
-            set { SetValue(BeginVisibilityProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for IsBeginVisible.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty BeginVisibilityProperty =
-            DependencyProperty.Register("BeginVisibility", typeof(bool), typeof(IntervalsCaptureControl), new PropertyMetadata(true, BeginVisibilityChanged));
-
-        private static void BeginVisibilityChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            var control = (IntervalsCaptureControl)obj;
-            control.FirePropertyChanged("BeginVisibility");
-        }
+        }        
 
         public event PropertyChangedEventHandler PropertyChanged;
 

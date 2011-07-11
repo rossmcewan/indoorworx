@@ -148,6 +148,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\IntervalMetadataServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\SocialMediaServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -167,6 +172,7 @@
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\ActivityService.cs" />
     <Compile Include="Services\ConfigurationService.cs" />
+    <Compile Include="Services\IntervalMetadataService.cs" />
     <Compile Include="Services\SettingsClient.cs" />
     <Compile Include="Services\SportingHabitsService.cs" />
     <Compile Include="Services\TrainingSetTemplateService.cs" />
@@ -197,9 +203,12 @@
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.ApplicationUser.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.Category.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.CompetitiveLevel.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.EffortType.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.Equipment.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.EquipmentFeatures.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.IndoorTrainingFrequency.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.IntervalLevel.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.IntervalType.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.Manufacturer.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.Occupation.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.ReferralSource.datasource" />
@@ -258,6 +267,16 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\IntervalMetadataServiceReference\IntervalMetadataService.wsdl" />
+    <None Include="Service References\IntervalMetadataServiceReference\IntervalMetadataService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\IntervalMetadataServiceReference\IntervalMetadataService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\IntervalMetadataServiceReference\IntervalMetadataService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\SocialMediaServiceReference\SocialMediaService.disco" />
     <None Include="Service References\SocialMediaServiceReference\configuration91.svcinfo" />
     <None Include="Service References\SocialMediaServiceReference\configuration.svcinfo" />
@@ -283,6 +302,13 @@
     <None Include="Service References\TrainingSetTemplateServiceReference\configuration91.svcinfo" />
     <None Include="Service References\TrainingSetTemplateServiceReference\configuration.svcinfo" />
     <None Include="Service References\TrainingSetTemplateServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\IntervalMetadataServiceReference\IntervalMetadataService.disco" />
+    <None Include="Service References\IntervalMetadataServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\IntervalMetadataServiceReference\configuration.svcinfo" />
+    <None Include="Service References\IntervalMetadataServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -322,6 +348,7 @@
     <WCFMetadataStorage Include="Service References\ActivityServiceReference\" />
     <WCFMetadataStorage Include="Service References\ApplicationUserServiceReference\" />
     <WCFMetadataStorage Include="Service References\CategoryServiceReference\" />
+    <WCFMetadataStorage Include="Service References\IntervalMetadataServiceReference\" />
     <WCFMetadataStorage Include="Service References\SocialMediaServiceReference\" />
     <WCFMetadataStorage Include="Service References\SportingHabitsServiceReference\" />
     <WCFMetadataStorage Include="Service References\TrainingSetTemplateServiceReference\" />

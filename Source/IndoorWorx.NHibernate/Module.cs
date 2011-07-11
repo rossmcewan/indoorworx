@@ -39,6 +39,9 @@ namespace IndoorWorx.NHibernate
             Container.RegisterInstance<IReferralSourcesRepository>(Container.Resolve<ReferralSourcesRepository>());
             Container.RegisterInstance<ICompetitiveLevelRepository>(Container.Resolve<CompetitiveLevelRepository>());
             Container.RegisterInstance<ITrainingSetTemplateRepository>(Container.Resolve<TrainingSetTemplateRepository>());
+            Container.RegisterInstance<IIntervalLevelRepository>(Container.Resolve<IntervalLevelRepository>());
+            Container.RegisterInstance<IIntervalTypeRepository>(Container.Resolve<IntervalTypeRepository>());
+            Container.RegisterInstance<IEffortTypeRepository>(Container.Resolve<EffortTypeRepository>());
         }
 
         #endregion

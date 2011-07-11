@@ -3,16 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace IndoorWorx.Infrastructure.Models
 {
-    public enum EffortType
+    [DataContract]
+    public class EffortType : BaseModel
     {
-        [Description("Power")]
-        Power,
-        [Description("HeartRate")]
-        HeartRate,
-        [Description("RPE")]
-        RPE
+        private string title;
+        [DataMember]
+        public virtual string Title
+        {
+            get { return title; }
+            set
+            {
+                title = value;
+                FirePropertyChanged("Title");
+            }
+        }
+
+        private string description;
+        [DataMember]
+        public virtual string Description
+        {
+            get { return description; }
+            set
+            {
+                description = value;
+                FirePropertyChanged("Description");
+            }
+        }
+        //[Description("Power")]
+        //Power,
+        //[Description("HeartRate")]
+        //HeartRate,
+        //[Description("RPE")]
+        //RPE
     }
 }

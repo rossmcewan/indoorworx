@@ -17,6 +17,7 @@ using IndoorWorx.Infrastructure.Facades;
 using IndoorWorx.Infrastructure;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using IndoorWorx.Infrastructure.Services;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -31,10 +32,7 @@ namespace IndoorWorx.MyLibrary.Views
             this.serviceLocator = serviceLocator;
             this.eventAggregator = eventAggregator;
             this.dialogFacade = dialogFacade;
-            this.shell = shell;
-            this.IntervalTypes = new ObservableCollection<IntervalType>();
-            this.IntervalTypes.Add(new IntervalType() { Name = "Warm up" });
-            this.IntervalTypes.Add(new IntervalType() { Name = "Cool down" });
+            this.shell = shell;            
             this.warmupIntervals = new ObservableCollection<Interval>();
             this.mainSetIntervals = new ObservableCollection<Interval>();
             this.cooldownIntervals = new ObservableCollection<Interval>();
@@ -47,6 +45,24 @@ namespace IndoorWorx.MyLibrary.Views
             this.removeIntervalFromMainSetCommand = new DelegateCommand<Interval>(RemoveIntervalFromMainSet);
             this.addIntervalToCooldownCommand = new DelegateCommand<Interval>(AddIntervalToCooldown);
             this.removeIntervalFromCooldownCommand = new DelegateCommand<Interval>(RemoveIntervalFromCooldown);
+
+            var intervalMetadataService = serviceLocator.GetInstance<IIntervalMetadataService>();
+            intervalMetadataService.IntervalLevelsRetrieved += (sender, e) =>
+                {
+                };
+            intervalMetadataService.IntervalTypesRetrieved += (sender, e) =>
+                {
+                    this.IntervalTypes = e.Value;
+                    FirePropertyChanged("IntervalTypes");
+                };
+            intervalMetadataService.EffortTypesRetrieved += (sender, e) =>
+                {
+                    this.EffortTypes = e.Value;
+                    FirePropertyChanged("EffortTypes");
+                };
+            intervalMetadataService.RetrieveIntervalLevels();
+            intervalMetadataService.RetrieveIntervalTypes();
+            intervalMetadataService.RetrieveEffortTypes();
         }
 
         private void Cancel(object arg)
@@ -63,6 +79,8 @@ namespace IndoorWorx.MyLibrary.Views
         public TrainingSetTemplate Template { get; private set; }
 
         public ICollection<IntervalType> IntervalTypes { get; private set; }
+
+        public ICollection<EffortType> EffortTypes { get; private set; }
 
         public void NewTemplate()
         {

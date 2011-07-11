@@ -46,6 +46,7 @@ namespace IndoorWorx.Library
             unityContainer.RegisterType<IApplicationUserService, ApplicationUserService>();
             unityContainer.RegisterType<ISportingHabitsService, SportingHabitsService>();
             unityContainer.RegisterType<ITrainingSetTemplateService, TrainingSetTemplateService>();
+            unityContainer.RegisterType<IIntervalMetadataService, IntervalMetadataService>();
         }
 
         #endregion

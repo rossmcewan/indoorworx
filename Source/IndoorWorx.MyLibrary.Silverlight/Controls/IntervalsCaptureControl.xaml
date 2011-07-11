@@ -10,6 +10,7 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <converters:IntegerToTimeSpanConverter x:Key="IntegerToTimeSpanConverter"/>
         <converters:CollectionSizeToVisibilityConverter x:Key="CollectionSizeToVisibilityConverter"/>
     </UserControl.Resources>
@@ -17,9 +18,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Button Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Content="{Binding MyLibraryResources.BeginButtonText, Source={StaticResource MyLibraryResources}}" 
-                Command="{Binding DataContext.BeginCommand, ElementName=LayoutRoot}" Visibility="{Binding DataContext.BeginVisibility, ElementName=LayoutRoot, Mode=OneWay}"/>
+        </Grid.RowDefinitions>        
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <ItemsControl x:Name="IntervalItems">
                 <ItemsControl.ItemTemplate>
@@ -64,8 +63,41 @@
                             </Grid>
                             <toolkit:Expander Grid.Row="1" Header="{Binding MyLibraryResources.OptionsLabel, Source={StaticResource MyLibraryResources}}" IsTabStop="False">
                                 <StackPanel>
-                                    <TextBlock Text="{Binding MyLibraryResources.CountDownsHeader, Source={StaticResource MyLibraryResources}}" FontWeight="SemiBold"/>
-                                    
+                                    <TextBlock Text="{Binding MyLibraryResources.CountDownsHeader, Source={StaticResource MyLibraryResources}}" FontWeight="SemiBold" Margin="2"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <sdk:Label Content="{Binding MyLibraryResources.CountDownToStartOfIntervalLabel, Source={StaticResource MyLibraryResources}}"/>
+                                        <CheckBox Margin="2" IsChecked="{Binding CountDownToStartOfInterval, Mode=TwoWay}"/>
+                                    </StackPanel>
+                                    <StackPanel Visibility="{Binding CountDownToStartOfInterval, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <sdk:Label Content="{Binding MyLibraryResources.FromLabel, Source={StaticResource MyLibraryResources}}"/>
+                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding CountDownToStartOfIntervalMinutes, Mode=TwoWay}"/>
+                                            <sdk:Label Content="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"/>
+                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding CountDownToStartOfIntervalSeconds, Mode=TwoWay}"/>
+                                            <sdk:Label Content="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <sdk:Label Content="{Binding MyLibraryResources.StartIntervalMessageLabel, Source={StaticResource MyLibraryResources}}"/>
+                                            <TextBox Text="{Binding StartIntervalMessage, Mode=TwoWay}" Margin="2" Width="350"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <sdk:Label Content="{Binding MyLibraryResources.CountDownToEndOfIntervalLabel, Source={StaticResource MyLibraryResources}}" />
+                                        <CheckBox Margin="2" VerticalContentAlignment="Center" IsChecked="{Binding CountDownToEndOfInterval, Mode=TwoWay}"/>
+                                    </StackPanel>
+                                    <StackPanel Visibility="{Binding CountDownToEndOfInterval, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <sdk:Label Content="{Binding MyLibraryResources.FromLabel, Source={StaticResource MyLibraryResources}}"/>
+                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding CountDownToEndOfIntervalMinutes, Mode=TwoWay}"/>
+                                            <sdk:Label Content="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"/>
+                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding CountDownToEndOfIntervalSeconds, Mode=TwoWay}"/>
+                                            <sdk:Label Content="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <sdk:Label Content="{Binding MyLibraryResources.EndIntervalMessageLabel, Source={StaticResource MyLibraryResources}}"/>
+                                            <TextBox Text="{Binding EndIntervalMessage, Mode=TwoWay}" Margin="2" Width="350"/>
+                                        </StackPanel>
+                                    </StackPanel>
                                 </StackPanel>
                             </toolkit:Expander>
                             <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="2">

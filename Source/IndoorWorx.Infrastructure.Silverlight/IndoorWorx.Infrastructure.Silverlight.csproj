@@ -353,6 +353,7 @@
     <Compile Include="Services\IAuthenticationOperations.cs" />
     <Compile Include="Services\ICategoryService.cs" />
     <Compile Include="Services\IConfigurationService.cs" />
+    <Compile Include="Services\IIntervalMetadataService.cs" />
     <Compile Include="Services\ISportingHabitsService.cs" />
     <Compile Include="Services\ITrainingSetTemplateService.cs" />
     <Compile Include="SmartDispatcher.cs" />

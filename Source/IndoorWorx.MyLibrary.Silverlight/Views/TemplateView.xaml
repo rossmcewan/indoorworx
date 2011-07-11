@@ -36,45 +36,45 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <sdk:Label Content="{Binding MyLibraryResources.TitleLabel, Source={StaticResource MyLibraryResources}}" Margin="5" />
-                <TextBox Grid.Column="1" Width="200" Margin="5" Text="{Binding Template.Title, Mode=TwoWay}"/>
+                <TextBox Grid.Column="1" Width="200" Margin="5" Text="{Binding Template.Title, Mode=TwoWay}" HorizontalAlignment="Left"/>
                 <sdk:Label Content="{Binding MyLibraryResources.EffortTypeLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Column="2" />
-                <ComboBox Grid.Column="3" Width="200" Margin="5" ItemsSource="{Binding EffortTypes, Mode=OneWay}" SelectedItem="{Binding Template.EffortType, Mode=TwoWay}"/>
+                <ComboBox Grid.Column="3" Width="200" Margin="5" ItemsSource="{Binding EffortTypes, Mode=OneWay}" SelectedItem="{Binding Template.EffortType, Mode=TwoWay}" DisplayMemberPath="Title" HorizontalAlignment="Left"/>
                 <sdk:Label Content="{Binding MyLibraryResources.DescriptionLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Row="1" />
-                <TextBox AcceptsReturn="True" Margin="5" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Height="50" Text="{Binding Template.Description, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+                <TextBox AcceptsReturn="True" Margin="5" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Height="50" Text="{Binding Template.Description, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Stretch"/>
                 <sdk:Label Content="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}" Grid.Row="2" Margin="5" />
                 <sdk:Label Content="{Binding Template.Duration, Mode=OneWay}" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="20" FontWeight="SemiBold" />
                 <sdk:TabControl Grid.Row="3" Grid.ColumnSpan="4" Margin="5" Width="650">
                     <sdk:TabItem Header="{Binding MyLibraryResources.WarmupHeader, Source={StaticResource MyLibraryResources}}">
-                        <controls:IntervalsCaptureControl 
-                            ItemsSource="{Binding WarmupIntervals, Mode=OneWay}" 
-                            IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
-                            BeginCommand="{Binding AddIntervalToWarmupCommand}"                              
-                            BeginVisibility="{Binding HasWarmupIntervals, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"
-                            MoveDownCommand="{Binding MoveWarmupIntervalDownCommand}"
-                            MoveUpCommand="{Binding MoveWarmupIntervalUpCommand}"
-                            AddIntervalCommand="{Binding AddIntervalToWarmupCommand}"                             
-                            RemoveIntervalCommand="{Binding RemoveIntervalFromWarmupCommand}"/>
+                        <Grid>
+                            <controls:IntervalsCaptureControl 
+                                ItemsSource="{Binding WarmupIntervals, Mode=OneWay}" 
+                                IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
+                                MoveDownCommand="{Binding MoveWarmupIntervalDownCommand}"
+                                MoveUpCommand="{Binding MoveWarmupIntervalUpCommand}"
+                                AddIntervalCommand="{Binding AddIntervalToWarmupCommand}"                             
+                                RemoveIntervalCommand="{Binding RemoveIntervalFromWarmupCommand}"/>
+                            <Button HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" 
+                                    Content="{Binding MyLibraryResources.BeginButtonText, Source={StaticResource MyLibraryResources}}" 
+                                    Command="{Binding AddIntervalToWarmupCommand}" 
+                                    Visibility="{Binding HasWarmupIntervals, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"/>
+                        </Grid>
                     </sdk:TabItem>
                     <sdk:TabItem Header="{Binding MyLibraryResources.MainSetHeader, Source={StaticResource MyLibraryResources}}">
                         <controls:IntervalsCaptureControl 
                             ItemsSource="{Binding MainSetIntervals, Mode=OneWay}" 
-                            BeginCommand="{Binding AddIntervalToMainSetCommand}"  
-                            BeginVisibility="{Binding HasMainSetIntervals, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"
                             AddIntervalCommand="{Binding AddIntervalToMainSetCommand}" 
                             RemoveIntervalCommand="{Binding RemoveIntervalFromMainSetCommand}"/>
                     </sdk:TabItem>
                     <sdk:TabItem Header="{Binding MyLibraryResources.CooldownHeader, Source={StaticResource MyLibraryResources}}">
                         <controls:IntervalsCaptureControl 
                             ItemsSource="{Binding CooldownIntervals, Mode=OneWay}" 
-                            BeginCommand="{Binding AddIntervalToCooldownCommand}"  
-                            BeginVisibility="{Binding HasCooldownIntervals, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"
                             AddIntervalCommand="{Binding AddIntervalToCooldownCommand}" 
                             RemoveIntervalCommand="{Binding RemoveIntervalFromCooldownCommand}"/>
                     </sdk:TabItem>
                     <sdk:TabItem Header="{Binding MyLibraryResources.TextMessagesHeader, Source={StaticResource MyLibraryResources}}"></sdk:TabItem>
                     <sdk:TabItem Header="{Binding MyLibraryResources.SocialMediaHeader, Source={StaticResource MyLibraryResources}}"></sdk:TabItem>
                 </sdk:TabControl>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0" Grid.Row="4" Margin="2" Grid.ColumnSpan="4">
+                <!--<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0" Grid.Row="4" Margin="2" Grid.ColumnSpan="4">
                     <telerik:RadColumnSparkline 
                         Width="600" Height="100"
                         MinYValue="0"
@@ -83,7 +83,7 @@
                         ShowAxis="False"                                               
                         YValuePath="AverageEffort" 
                         XValuePath="OADateTime"/>
-                </ScrollViewer>                
+                </ScrollViewer>-->                
             </Grid>
         </Border>
 

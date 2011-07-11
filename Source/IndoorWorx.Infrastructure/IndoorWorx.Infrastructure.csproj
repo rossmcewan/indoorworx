@@ -111,9 +111,12 @@
     <Compile Include="Repositories\ICatalogRepository.cs" />
     <Compile Include="Repositories\ICategoryRepository.cs" />
     <Compile Include="Repositories\ICompetitiveLevelRepository.cs" />
+    <Compile Include="Repositories\IEffortTypeRepository.cs" />
     <Compile Include="Repositories\IEquipmentFeaturesRepository.cs" />
     <Compile Include="Repositories\IEquipmentRepository.cs" />
     <Compile Include="Repositories\IIndoorTrainingFrequencyRepository.cs" />
+    <Compile Include="Repositories\IIntervalLevelRepository.cs" />
+    <Compile Include="Repositories\IIntervalTypeRepository.cs" />
     <Compile Include="Repositories\IManufacturerRepository.cs" />
     <Compile Include="Repositories\IMeasurementRepository.cs" />
     <Compile Include="Repositories\IOccupationRepository.cs" />
@@ -139,6 +142,7 @@
     <Compile Include="Services\IActivityService.cs" />
     <Compile Include="Services\IApplicationUserService.cs" />
     <Compile Include="Services\ICategoryService.cs" />
+    <Compile Include="Services\IIntervalMetadataService.cs" />
     <Compile Include="Services\ISocialMediaService.cs" />
     <Compile Include="Services\ISportingHabitsService.cs" />
     <Compile Include="Services\ITrainingSetTemplateService.cs" />

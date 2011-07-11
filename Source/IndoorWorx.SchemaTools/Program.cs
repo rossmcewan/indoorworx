@@ -262,6 +262,13 @@ namespace IndoorWorx.SchemaTools
                 using (var transaction = session.BeginTransaction())
                 {
                     session.Save(new ApplicationUser() { Email = "rossmcewan@gmail.com", Firstname = "Ross", Gender = Genders.Male, Lastname = "McEwan", Username = "rossmcewan" });
+
+                    var power = new EffortType() { Title = "Power" };
+                    session.Save(power);
+                    var hr = new EffortType() { Title = "Heart Rate" };
+                    session.Save(hr);
+                    var rpe = new EffortType() { Title = "RPE", Description = "Rate of perceived exertion" };
+                    session.Save(rpe);
                     
                     var l1 = new IntervalLevel() { Title = "Active Recovery", MaximumPercentageOfFthr = 68, MaximumPercentageOfFtp = 55, MinRPE = 0, MaxRPE = 2 };
                     session.Save(l1);
@@ -295,6 +302,7 @@ namespace IndoorWorx.SchemaTools
 
                     #region 4x10
                     var trainingTemplate = new TrainingSetTemplate();
+                    trainingTemplate.EffortType = power;
                     trainingTemplate.Duration = TimeSpan.FromMinutes(70);
                     trainingTemplate.Title = "4 x 10";
                     trainingTemplate.Description = "An easy 10 minute warm up followed by 4 10 minute intervals at threshold with 5 minutes recovery. This is followed by an easy 5 minute cool down.";
@@ -304,7 +312,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = warmup,
                         IntervalLevel = warmup.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(10),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = warmup.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = warmup.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 0
@@ -315,7 +323,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = tt,
                         IntervalLevel = tt.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(10),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = tt.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = tt.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 1
@@ -326,7 +334,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = recover,
                         IntervalLevel = recover.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(5),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = recover.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = recover.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 2
@@ -337,7 +345,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = tt,
                         IntervalLevel = tt.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(10),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = tt.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = tt.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 3
@@ -348,7 +356,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = recover,
                         IntervalLevel = recover.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(5),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = recover.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = recover.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 4
@@ -359,7 +367,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = tt,
                         IntervalLevel = tt.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(10),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = tt.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = tt.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 5
@@ -370,7 +378,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = recover,
                         IntervalLevel = recover.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(5),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = recover.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = recover.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 6
@@ -381,7 +389,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = tt,
                         IntervalLevel = tt.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(10),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = tt.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = tt.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 7
@@ -392,7 +400,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = cooldown,
                         IntervalLevel = cooldown.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(5),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = cooldown.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = cooldown.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 8
@@ -402,6 +410,7 @@ namespace IndoorWorx.SchemaTools
 
                     #region 2x20
                     var trainingTemplate1 = new TrainingSetTemplate();
+                    trainingTemplate1.EffortType = power;
                     trainingTemplate1.Duration = TimeSpan.FromHours(1);
                     trainingTemplate1.Title = "2 x 20";
                     trainingTemplate1.Description = "An easy 10 minute warm up followed by 2 20 minute intervals at threshold with 5 minutes recovery. This is followed by an easy 5 minute cool down.";
@@ -411,7 +420,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = warmup,
                         IntervalLevel = warmup.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(10),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = warmup.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = warmup.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 0
@@ -422,7 +431,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = tt,
                         IntervalLevel = tt.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(20),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = tt.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = tt.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 1
@@ -433,7 +442,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = recover,
                         IntervalLevel = recover.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(5),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = recover.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = recover.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 2
@@ -444,7 +453,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = tt,
                         IntervalLevel = tt.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(20),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = tt.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = tt.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 3
@@ -455,7 +464,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalType = cooldown,
                         IntervalLevel = cooldown.DefaultLevel,
                         Duration = TimeSpan.FromMinutes(5),
-                        EffortType = EffortType.Power,
+                        EffortType = power,
                         EffortFrom = cooldown.DefaultLevel.MinimumPercentageOfFtp,
                         EffortTo = cooldown.DefaultLevel.MaximumPercentageOfFtp,
                         Sequence = 8

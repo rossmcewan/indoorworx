@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3415/IntervalMetadataService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfIntervalLevel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IntervalLevel" nillable="true" type="tns:IntervalLevel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIntervalLevel" nillable="true" type="tns:ArrayOfIntervalLevel" />
+  <xs:complexType name="IntervalLevel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MaxRPE" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="MaximumPercentageOfFthr" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="MaximumPercentageOfFtp" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="MinRPE" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="MinimumPercentageOfFthr" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="MinimumPercentageOfFtp" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TypicalMaxDuration" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="TypicalMinDuration" nillable="true" type="ser:duration" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IntervalLevel" nillable="true" type="tns:IntervalLevel" />
+  <xs:complexType name="BaseModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="BaseModel" nillable="true" type="tns:BaseModel" />
+  <xs:complexType name="ArrayOfIntervalType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IntervalType" nillable="true" type="tns:IntervalType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIntervalType" nillable="true" type="tns:ArrayOfIntervalType" />
+  <xs:complexType name="IntervalType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DefaultLevel" nillable="true" type="tns:IntervalLevel" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IntervalType" nillable="true" type="tns:IntervalType" />
+  <xs:complexType name="ArrayOfEffortType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EffortType" nillable="true" type="tns:EffortType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEffortType" nillable="true" type="tns:ArrayOfEffortType" />
+  <xs:complexType name="EffortType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EffortType" nillable="true" type="tns:EffortType" />
+</xs:schema>

@@ -68,5 +68,17 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("Credits");
             }
         }
+
+        private EffortType effortType;
+        [DataMember]
+        public virtual EffortType EffortType
+        {
+            get { return effortType; }
+            set
+            {
+                effortType = value;
+                FirePropertyChanged("EffortType");
+            }
+        }
     }
 }

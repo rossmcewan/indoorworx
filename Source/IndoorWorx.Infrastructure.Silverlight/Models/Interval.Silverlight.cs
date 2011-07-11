@@ -88,5 +88,93 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("DurationSeconds");
             }
         }
+
+        private bool countDownToStartOfInterval;
+        public virtual bool CountDownToStartOfInterval
+        {
+            get { return countDownToStartOfInterval; }
+            set
+            {
+                countDownToStartOfInterval = value;
+                FirePropertyChanged("CountDownToStartOfInterval");
+            }
+        }
+
+        private int countDownToStartOfIntervalMinutes;
+        public virtual int CountDownToStartOfIntervalMinutes
+        {
+            get { return countDownToStartOfIntervalMinutes; }
+            set
+            {
+                countDownToStartOfIntervalMinutes = value;
+                FirePropertyChanged("CountDownToStartOfIntervalMinutes");
+            }
+        }
+
+        private int countDownToStartOfIntervalSeconds;
+        public virtual int CountDownToStartOfIntervalSeconds
+        {
+            get { return countDownToStartOfIntervalSeconds; }
+            set
+            {
+                countDownToStartOfIntervalSeconds = value;
+                FirePropertyChanged("CountDownToStartOfIntervalSeconds");
+            }
+        }
+
+        private string startIntervalMessage;
+        public virtual string StartIntervalMessage
+        {
+            get { return startIntervalMessage; }
+            set
+            {
+                startIntervalMessage = value;
+                FirePropertyChanged("StartIntervalMessage");
+            }
+        }
+
+        private bool countDownToEndOfInterval;
+        public virtual bool CountDownToEndOfInterval
+        {
+            get { return countDownToEndOfInterval; }
+            set
+            {
+                countDownToEndOfInterval = value;
+                FirePropertyChanged("CountDownToEndOfInterval");
+            }
+        }
+
+        private int countDownToEndOfIntervalMinutes;
+        public virtual int CountDownToEndOfIntervalMinutes
+        {
+            get { return countDownToEndOfIntervalMinutes; }
+            set
+            {
+                countDownToEndOfIntervalMinutes = value;
+                FirePropertyChanged("CountDownToEndOfIntervalMinutes");
+            }
+        }
+
+        private int countDownToEndOfIntervalSeconds;
+        public virtual int CountDownToEndOfIntervalSeconds
+        {
+            get { return countDownToEndOfIntervalSeconds; }
+            set
+            {
+                countDownToEndOfIntervalSeconds = value;
+                FirePropertyChanged("CountDownToEndOfIntervalSeconds");
+            }
+        }
+
+        private string endIntervalMessage;
+        public virtual string EndIntervalMessage
+        {
+            get { return endIntervalMessage; }
+            set
+            {
+                endIntervalMessage = value;
+                FirePropertyChanged("EndIntervalMessage");
+            }
+        }
     }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="564e0cc4-2bf0-40c0-9c34-ee66c67daca1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3415/IntervalMetadataService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="IntervalMetadataService.xsd" MetadataType="Schema" ID="b65e6567-3134-497c-b374-3196eca1fb14" SourceId="1" SourceUrl="http://localhost:3415/IntervalMetadataService.svc?xsd=xsd2" />
+    <MetadataFile FileName="IntervalMetadataService.disco" MetadataType="Disco" ID="c6f629f2-74fd-4849-a9db-b454bade4508" SourceId="1" SourceUrl="http://localhost:3415/IntervalMetadataService.svc?disco" />
+    <MetadataFile FileName="IntervalMetadataService.wsdl" MetadataType="Wsdl" ID="eb256288-fe8b-4a0e-a594-5a12b6481461" SourceId="1" SourceUrl="http://localhost:3415/IntervalMetadataService.svc?wsdl" />
+    <MetadataFile FileName="IntervalMetadataService1.xsd" MetadataType="Schema" ID="bb3ed658-b571-4a3d-a5b7-00258bc7a2f8" SourceId="1" SourceUrl="http://localhost:3415/IntervalMetadataService.svc?xsd=xsd1" />
+    <MetadataFile FileName="IntervalMetadataService2.xsd" MetadataType="Schema" ID="18bf9beb-cd8a-4f01-be3e-7af930d4b928" SourceId="1" SourceUrl="http://localhost:3415/IntervalMetadataService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

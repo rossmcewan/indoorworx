@@ -16,6 +16,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.Description);
             Map(x => x.Duration);
             Map(x => x.Credits);
+            References(x => x.EffortType).Not.Nullable().Not.LazyLoad();
             HasMany(x => x.Intervals).KeyColumn("TrainingSetTemplate").Cascade.All().Not.LazyLoad().OrderBy("Sequence");
         }
     }

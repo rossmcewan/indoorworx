@@ -97,6 +97,24 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to COUNT DOWN TO END OF INTERVAL?.
+        /// </summary>
+        public static string CountDownToEndOfIntervalLabel {
+            get {
+                return ResourceManager.GetString("CountDownToEndOfIntervalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COUNT DOWN TO START OF INTERVAL?.
+        /// </summary>
+        public static string CountDownToStartOfIntervalLabel {
+            get {
+                return ResourceManager.GetString("CountDownToStartOfIntervalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to new template.
         /// </summary>
         public static string CreateTemplate {
@@ -138,6 +156,24 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string EffortTypeLabel {
             get {
                 return ResourceManager.GetString("EffortTypeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to END INTERVAL MESSAGE.
+        /// </summary>
+        public static string EndIntervalMessageLabel {
+            get {
+                return ResourceManager.GetString("EndIntervalMessageLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FROM.
+        /// </summary>
+        public static string FromLabel {
+            get {
+                return ResourceManager.GetString("FromLabel", resourceCulture);
             }
         }
         
@@ -291,6 +327,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string SocialMediaHeader {
             get {
                 return ResourceManager.GetString("SocialMediaHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to START INTERVAL MESSAGE.
+        /// </summary>
+        public static string StartIntervalMessageLabel {
+            get {
+                return ResourceManager.GetString("StartIntervalMessageLabel", resourceCulture);
             }
         }
         

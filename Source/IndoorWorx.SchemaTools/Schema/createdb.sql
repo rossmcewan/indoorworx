@@ -63,6 +63,10 @@ alter table Equipment_EquipmentFeatures  drop constraint FK76FBBBA858C3A259
 alter table Equipment_EquipmentFeatures  drop constraint FK76FBBBA832B0BDDD
 
 
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK8882D83EB4649974]') AND parent_object_id = OBJECT_ID('[Interval]'))
+alter table [Interval]  drop constraint FK8882D83EB4649974
+
+
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK8882D83E2055E96F]') AND parent_object_id = OBJECT_ID('[Interval]'))
 alter table [Interval]  drop constraint FK8882D83E2055E96F
 
@@ -147,6 +151,10 @@ alter table [TrainingMetric]  drop constraint FKF9617E1749B17005
 alter table [TrainingMetric]  drop constraint FKF9617E17E9F4749E
 
 
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK79A4D8B9B4649974]') AND parent_object_id = OBJECT_ID('[TrainingSetTemplate]'))
+alter table [TrainingSetTemplate]  drop constraint FK79A4D8B9B4649974
+
+
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC33B97A4263AB471]') AND parent_object_id = OBJECT_ID('[TrainingZone]'))
 alter table [TrainingZone]  drop constraint FKC33B97A4263AB471
 
@@ -186,6 +194,8 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
     if exists (select * from dbo.sysobjects where id = object_id(N'[Colour]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Colour]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[CompetitiveLevel]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [CompetitiveLevel]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[EffortType]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EffortType]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Equipment]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Equipment]
 
@@ -328,6 +338,13 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        primary key (Id)
     )
 
+    create table [EffortType] (
+        Id UNIQUEIDENTIFIER not null,
+       Title NVARCHAR(255) null,
+       Description NVARCHAR(255) null,
+       primary key (Id)
+    )
+
     create table [Equipment] (
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null,
@@ -363,8 +380,8 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        Description NVARCHAR(255) null,
        EffortFrom INT null,
        EffortTo INT null,
-       EffortType INT null,
        Sequence INT not null,
+       EffortType_id UNIQUEIDENTIFIER not null,
        IntervalType_id UNIQUEIDENTIFIER not null,
        IntervalLevel_id UNIQUEIDENTIFIER not null,
        TrainingSetTemplate UNIQUEIDENTIFIER null,
@@ -528,6 +545,7 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        Description NVARCHAR(255) null,
        Duration BIGINT null,
        Credits INT null,
+       EffortType_id UNIQUEIDENTIFIER not null,
        primary key (Id)
     )
 
@@ -673,6 +691,11 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
         references [Equipment]
 
     alter table [Interval] 
+        add constraint FK8882D83EB4649974 
+        foreign key (EffortType_id) 
+        references [EffortType]
+
+    alter table [Interval] 
         add constraint FK8882D83E2055E96F 
         foreign key (IntervalType_id) 
         references [IntervalType]
@@ -776,6 +799,11 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
         add constraint FKF9617E17E9F4749E 
         foreign key (Video) 
         references [Video]
+
+    alter table [TrainingSetTemplate] 
+        add constraint FK79A4D8B9B4649974 
+        foreign key (EffortType_id) 
+        references [EffortType]
 
     alter table [TrainingZone] 
         add constraint FKC33B97A4263AB471 
