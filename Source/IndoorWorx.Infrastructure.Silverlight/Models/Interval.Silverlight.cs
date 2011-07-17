@@ -49,6 +49,11 @@ namespace IndoorWorx.Infrastructure.Models
         public virtual TimeSpan RecoveryInterval
         {
             get { return recoveryInterval; }
+            set
+            {
+                this.recoveryInterval = value;
+                FirePropertyChanged("RecoveryInterval");
+            }
         }
 
         private TimeSpan intervalDuration;// = new Duration();

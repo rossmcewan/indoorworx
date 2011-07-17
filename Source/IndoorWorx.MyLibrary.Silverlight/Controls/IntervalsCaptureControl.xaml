@@ -345,6 +345,7 @@
                         </Button>
                         <telerik:RadComboBox x:Name="comboBox" Margin="0" 
                             Grid.Column="1" 
+                            Grid.RowSpan="2"
                             ItemsSource="{Binding DataContext.IntervalTypes, Mode=OneWay, ElementName=LayoutRoot}" 
                             DisplayMemberPath="Name" 
                             SelectedItem="{Binding IntervalType, Mode=TwoWay}"
