@@ -279,6 +279,7 @@
     <Compile Include="Animations\ThicknessAnimation.cs" />
     <Compile Include="ApplicationContext.cs" />
     <Compile Include="Behaviors\WatermarkBehavior.cs" />
+    <Compile Include="Controls\MetroContentControl.cs" />
     <Compile Include="Converters\BooleanToOppositeVisibilityConverter.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -415,6 +416,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\MetroContentControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

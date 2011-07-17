@@ -45,14 +45,14 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private Duration recoveryInterval = new Duration();
-        public virtual Duration RecoveryInterval
+        private TimeSpan recoveryInterval;// = new Duration();
+        public virtual TimeSpan RecoveryInterval
         {
             get { return recoveryInterval; }
         }
 
-        private Duration intervalDuration = new Duration();
-        public virtual Duration IntervalDuration
+        private TimeSpan intervalDuration;// = new Duration();
+        public virtual TimeSpan IntervalDuration
         {
             get { return intervalDuration; }
         }

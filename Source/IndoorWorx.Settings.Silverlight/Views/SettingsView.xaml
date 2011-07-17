@@ -5,43 +5,46 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
     xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"  
+    xmlns:infControls="clr-namespace:IndoorWorx.Infrastructure.Controls;assembly=IndoorWorx.Infrastructure.Silverlight"             
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
-    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">        
-        <Border x:Name="BackgroundBorder" Style="{StaticResource BackgroundBorderStyle}"/>
+    <infControls:MetroContentControl>
+        <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
+            <Border x:Name="BackgroundBorder" Style="{StaticResource BackgroundBorderStyle}"/>
 
-        <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
-            <navigation:Frame x:Name="SettingsContentFrame" Style="{StaticResource ContentFrameStyle}" JournalOwnership="OwnsJournal" 
+            <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
+                <navigation:Frame x:Name="SettingsContentFrame" Style="{StaticResource ContentFrameStyle}" JournalOwnership="OwnsJournal" 
                               Source="/Settings" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
-                <navigation:Frame.UriMapper>
-                    <uriMapper:UriMapper>
-                        <uriMapper:UriMapping Uri="/Settings" MappedUri="/IndoorWorx.Settings.Silverlight;component/Pages/SettingsPage.xaml"/>                        
-                    </uriMapper:UriMapper>
-                </navigation:Frame.UriMapper>                
-            </navigation:Frame>
-        </Border>
+                    <navigation:Frame.UriMapper>
+                        <uriMapper:UriMapper>
+                            <uriMapper:UriMapping Uri="/Settings" MappedUri="/IndoorWorx.Settings.Silverlight;component/Pages/SettingsPage.xaml"/>
+                        </uriMapper:UriMapper>
+                    </navigation:Frame.UriMapper>
+                </navigation:Frame>
+            </Border>
 
-        <Grid x:Name="NavigationOuterGrid" Style="{StaticResource NavigationOuterGridStyle}">
-            <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}">
+            <Grid x:Name="NavigationOuterGrid" Style="{StaticResource NavigationOuterGridStyle}">
+                <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}">
 
-                <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}">
-                    <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
-                        <ContentControl Style="{StaticResource LogoIcon}"/>
-                        <TextBlock x:Name="settingsTextBlock" Style="{StaticResource SettingsNameStyle}" 
+                    <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}">
+                        <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
+                            <ContentControl Style="{StaticResource LogoIcon}"/>
+                            <TextBlock x:Name="settingsTextBlock" Style="{StaticResource SettingsNameStyle}" 
                                Text="{Binding ApplicationStrings.ApplicationName, Source={StaticResource ResourceWrapper}}"/>
-                    </StackPanel>
-                </Border>
+                        </StackPanel>
+                    </Border>
 
-                <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
-                    <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
-                        <HyperlinkButton Style="{StaticResource LinkStyle}" Content="{Binding SettingsResources.SettingsTitle, Source={StaticResource SettingsResources}}" NavigateUri="/Settings" />
-                    </StackPanel>
-                </Border>                
+                    <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
+                        <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
+                            <HyperlinkButton Style="{StaticResource LinkStyle}" Content="{Binding SettingsResources.SettingsTitle, Source={StaticResource SettingsResources}}" NavigateUri="/Settings" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <Button Content="Cancel" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="40"/>
             </Grid>
-            <Button Content="Cancel" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="40"/>            
+            <HyperlinkButton Command="{Binding CancelCommand}" Margin="-10" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Image Source="/IndoorWorx.Settings.Silverlight;component/Images/back.png" Width="50"/>
+            </HyperlinkButton>
         </Grid>
-        <HyperlinkButton Command="{Binding CancelCommand}" Margin="-10" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <Image Source="/IndoorWorx.Settings.Silverlight;component/Images/back.png" Width="50"/>
-        </HyperlinkButton>
-    </Grid>
+    </infControls:MetroContentControl>
 </UserControl>

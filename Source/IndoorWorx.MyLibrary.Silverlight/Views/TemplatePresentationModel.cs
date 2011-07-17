@@ -103,11 +103,18 @@ namespace IndoorWorx.MyLibrary.Views
 
         private void AddIntervalToWarmup(Interval arg)
         {
-            var index = warmupIntervals.IndexOf(arg);
-            if (index != -1)
-                warmupIntervals.Insert(++index, new Interval());
-            else
+            if (arg == null)
+            {
                 warmupIntervals.Add(new Interval());
+            }
+            else
+            {
+                var index = warmupIntervals.IndexOf(arg);
+                if (index != -1)
+                    warmupIntervals.Insert(++index, new Interval());
+                else
+                    warmupIntervals.Add(new Interval());
+            }
             FirePropertyChanged("HasWarmupIntervals");
             RefreshTemplate();
         }

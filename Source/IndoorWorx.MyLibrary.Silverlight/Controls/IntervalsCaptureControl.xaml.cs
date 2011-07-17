@@ -50,6 +50,7 @@ namespace IndoorWorx.MyLibrary.Controls
         private static void ItemsSourceChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var control = (IntervalsCaptureControl)obj;
+            //control.FirePropertyChanged("ItemsSource");
             control.IntervalItems.ItemsSource = control.ItemsSource;
         }
 

@@ -18,6 +18,7 @@
                 <ResourceDictionary Source="Assets/Styles.xaml"/>
                 <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/Metro7.xaml"/>
                 <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/Zune.xaml"/>
+                <ResourceDictionary Source="/IndoorWorx.Infrastructure.Silverlight;component/Assets/MetroContentControl.xaml"/>
                 <ResourceDictionary>
                     <app:ResourceWrapper x:Key="ResourceWrapper" />
                     <app:NotOperatorValueConverter x:Key="NotOperatorValueConverter" />

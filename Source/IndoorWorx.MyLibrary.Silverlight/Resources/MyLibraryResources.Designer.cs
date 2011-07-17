@@ -304,7 +304,7 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RECOVERY INTERVAL.
+        ///   Looks up a localized string similar to RECOVERY.
         /// </summary>
         public static string RecoveryIntervalLabel {
             get {

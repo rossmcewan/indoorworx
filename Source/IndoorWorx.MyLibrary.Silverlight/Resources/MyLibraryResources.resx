@@ -184,7 +184,7 @@
     <value>view template</value>
   </data>
   <data name="RecoveryIntervalLabel" xml:space="preserve">
-    <value>RECOVERY INTERVAL</value>
+    <value>RECOVERY</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>SAVE</value>
