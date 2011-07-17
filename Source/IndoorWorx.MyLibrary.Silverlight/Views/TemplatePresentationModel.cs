@@ -266,7 +266,7 @@ namespace IndoorWorx.MyLibrary.Views
                 add(new Interval()
                 {
                     Description = interval.Description,
-                    Duration = new TimeSpan(0, interval.DurationMinutes, interval.DurationSeconds),
+                    Duration = new TimeSpan(0, interval.IntervalDuration.Minutes, interval.IntervalDuration.Seconds),
                     IntervalType = interval.IntervalType,
                     EffortFrom = 200
                     //need to set the other information as well
@@ -274,7 +274,7 @@ namespace IndoorWorx.MyLibrary.Views
                 add(new Interval()
                 {
                     Description = interval.Description,
-                    Duration = new TimeSpan(0, interval.RecoveryIntervalMinutes, interval.RecoveryIntervalSeconds),
+                    Duration = new TimeSpan(0, interval.RecoveryInterval.Minutes, interval.RecoveryInterval.Seconds),
                     EffortFrom = 100
                     //need to set the interval type to 'Recovery'
                 });

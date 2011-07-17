@@ -59,6 +59,7 @@
                                                      SmoothStreamingErrorOccurred="mediaElement_SmoothStreamingErrorOccurred"/>
 
         <infcontrols:TelemetryChart 
+            Background="Transparent"
             x:Name="profileChart" 
             Grid.ColumnSpan="3" 
             BorderThickness="0"  

@@ -225,6 +225,9 @@
   <data name="EndIntervalMessageLabel" xml:space="preserve">
     <value>END INTERVAL MESSAGE</value>
   </data>
+  <data name="EveryLabel" xml:space="preserve">
+    <value>EVERY</value>
+  </data>
   <data name="FromLabel" xml:space="preserve">
     <value>FROM</value>
   </data>

@@ -19,6 +19,7 @@
     using IndoorWorx.Silverlight.Web;
     using IndoorWorx.Library.Views;
     using System.Diagnostics;
+    using Telerik.Windows.Controls.DragDrop;
 
     /// <summary>
     /// Main <see cref="Application"/> class.
@@ -30,11 +31,12 @@
         /// </summary>
         public App()
         {
+            RadDragAndDropManager.ExecutionMode = DragExecutionMode.Legacy;
             InitializeComponent();
 
             if (Application.Current.IsRunningOutOfBrowser)
             {
-                StyleManager.ApplicationTheme = new Telerik.Windows.Controls.TransparentTheme();
+                StyleManager.ApplicationTheme = new Telerik.Windows.Controls.MetroTheme();
                 SmartDispatcher.Initialize(Deployment.Current.Dispatcher);
                 
                 // Create a WebContext and add it to the ApplicationLifetimeObjects

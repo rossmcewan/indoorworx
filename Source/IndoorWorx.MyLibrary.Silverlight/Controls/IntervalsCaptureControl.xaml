@@ -44,9 +44,9 @@
                                 </Grid.RowDefinitions>
                                 <sdk:Label Content="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}" FontWeight="SemiBold"/>
                                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding DurationMinutes, Mode=TwoWay}"/>
+                                    <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding IntervalDuration.Minutes, Mode=TwoWay}"/>
                                     <sdk:Label Content="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"/>
-                                    <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding DurationSeconds, Mode=TwoWay}"/>
+                                    <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding IntervalDuration.Seconds, Mode=TwoWay}"/>
                                     <sdk:Label Content="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"/>
                                 </StackPanel>
                                 <sdk:Label Content="{Binding MyLibraryResources.IntervalTypeLabel, Source={StaticResource MyLibraryResources}}" Grid.Column="3" FontWeight="SemiBold"/>
@@ -55,9 +55,9 @@
                                 <toolkit:NumericUpDown Margin="2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Width="50" Value="{Binding Repeats, Mode=TwoWay}"/>
                                 <sdk:Label Content="{Binding MyLibraryResources.RecoveryIntervalLabel, Source={StaticResource MyLibraryResources}}" Grid.Row="1" Grid.Column="3" FontWeight="SemiBold"/>
                                 <StackPanel Grid.Row="1" Grid.Column="4" Orientation="Horizontal">
-                                    <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding RecoveryIntervalMinutes, Mode=TwoWay}"/>
+                                    <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding RecoveryInterval.Minutes, Mode=TwoWay}"/>
                                     <sdk:Label Content="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"/>
-                                    <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding RecoveryIntervalSeconds, Mode=TwoWay}"/>
+                                    <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding RecoveryInterval.Seconds, Mode=TwoWay}"/>
                                     <sdk:Label Content="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"/>
                                 </StackPanel>
                             </Grid>
@@ -65,54 +65,64 @@
                                 <StackPanel>
                                     <TextBlock Text="{Binding MyLibraryResources.CountDownsHeader, Source={StaticResource MyLibraryResources}}" FontWeight="SemiBold" Margin="2"/>
                                     <StackPanel Orientation="Horizontal">
-                                        <sdk:Label Content="{Binding MyLibraryResources.CountDownToStartOfIntervalLabel, Source={StaticResource MyLibraryResources}}"/>
-                                        <CheckBox Margin="2" IsChecked="{Binding CountDownToStartOfInterval, Mode=TwoWay}"/>
+                                        <sdk:Label Content="{Binding MyLibraryResources.CountDownToStartOfIntervalLabel, Source={StaticResource MyLibraryResources}}" Width="200"/>
+                                        <CheckBox Margin="2" IsChecked="{Binding ToStart.IsActive, Mode=TwoWay}"/>
                                     </StackPanel>
-                                    <StackPanel Visibility="{Binding CountDownToStartOfInterval, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Visibility="{Binding ToStart.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <StackPanel Orientation="Horizontal">
                                             <sdk:Label Content="{Binding MyLibraryResources.FromLabel, Source={StaticResource MyLibraryResources}}"/>
-                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding CountDownToStartOfIntervalMinutes, Mode=TwoWay}"/>
+                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding ToStart.Duration.Minutes, Mode=TwoWay}"/>
                                             <sdk:Label Content="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"/>
-                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding CountDownToStartOfIntervalSeconds, Mode=TwoWay}"/>
+                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding ToStart.Duration.Seconds, Mode=TwoWay}"/>
+                                            <sdk:Label Content="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"/>
+                                            <sdk:Label Content="{Binding MyLibraryResources.EveryLabel, Source={StaticResource MyLibraryResources}}"/>
+                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding ToStart.Tick.Minutes, Mode=TwoWay}"/>
+                                            <sdk:Label Content="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"/>
+                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding ToStart.Tick.Seconds, Mode=TwoWay}"/>
                                             <sdk:Label Content="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <sdk:Label Content="{Binding MyLibraryResources.StartIntervalMessageLabel, Source={StaticResource MyLibraryResources}}"/>
-                                            <TextBox Text="{Binding StartIntervalMessage, Mode=TwoWay}" Margin="2" Width="350"/>
+                                            <TextBox Text="{Binding ToStart.EndMessage, Mode=TwoWay}" Margin="2" Width="350"/>
                                         </StackPanel>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <sdk:Label Content="{Binding MyLibraryResources.CountDownToEndOfIntervalLabel, Source={StaticResource MyLibraryResources}}" />
-                                        <CheckBox Margin="2" VerticalContentAlignment="Center" IsChecked="{Binding CountDownToEndOfInterval, Mode=TwoWay}"/>
+                                        <sdk:Label Content="{Binding MyLibraryResources.CountDownToEndOfIntervalLabel, Source={StaticResource MyLibraryResources}}" Width="200" />
+                                        <CheckBox Margin="2" VerticalContentAlignment="Center" IsChecked="{Binding ToEnd.IsActive, Mode=TwoWay}"/>
                                     </StackPanel>
-                                    <StackPanel Visibility="{Binding CountDownToEndOfInterval, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Visibility="{Binding ToEnd.IsActive, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <StackPanel Orientation="Horizontal">
                                             <sdk:Label Content="{Binding MyLibraryResources.FromLabel, Source={StaticResource MyLibraryResources}}"/>
-                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding CountDownToEndOfIntervalMinutes, Mode=TwoWay}"/>
+                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding ToEnd.Duration.Minutes, Mode=TwoWay}"/>
                                             <sdk:Label Content="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"/>
-                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding CountDownToEndOfIntervalSeconds, Mode=TwoWay}"/>
+                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding ToEnd.Duration.Seconds, Mode=TwoWay}"/>
+                                            <sdk:Label Content="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"/>
+                                            <sdk:Label Content="{Binding MyLibraryResources.EveryLabel, Source={StaticResource MyLibraryResources}}"/>
+                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding ToEnd.Tick.Minutes, Mode=TwoWay}"/>
+                                            <sdk:Label Content="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"/>
+                                            <toolkit:NumericUpDown Margin="2" Width="50" Value="{Binding ToEnd.Tick.Seconds, Mode=TwoWay}"/>
                                             <sdk:Label Content="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <sdk:Label Content="{Binding MyLibraryResources.EndIntervalMessageLabel, Source={StaticResource MyLibraryResources}}"/>
-                                            <TextBox Text="{Binding EndIntervalMessage, Mode=TwoWay}" Margin="2" Width="350"/>
+                                            <TextBox Text="{Binding ToEnd.EndMessage, Mode=TwoWay}" Margin="2" Width="350"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
                             </toolkit:Expander>
                             <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="2">
-                                <HyperlinkButton x:Name="AddIntervalButton" Margin="0,0,0,2" BorderThickness="0" IsTabStop="False" Command="{Binding DataContext.AddIntervalCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}">
+                                <Button x:Name="AddIntervalButton" Margin="0,0,0,2" BorderThickness="0" IsTabStop="False" Command="{Binding DataContext.AddIntervalCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}">
                                     <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/add.png" Width="16"/>
-                                </HyperlinkButton>
-                                <HyperlinkButton x:Name="MoveUpButton" Margin="2,0,0,2" BorderThickness="0" IsTabStop="False" Command="{Binding DataContext.MoveUpCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}">
+                                </Button>
+                                <Button x:Name="MoveUpButton" Margin="2,0,0,2" BorderThickness="0" IsTabStop="False" Command="{Binding DataContext.MoveUpCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}">
                                     <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/moveup.png" Width="16"/>
-                                </HyperlinkButton>
-                                <HyperlinkButton x:Name="MoveDownButton" Margin="2,0,0,2" BorderThickness="0" IsTabStop="False" Command="{Binding DataContext.MoveDownCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}">
+                                </Button>
+                                <Button x:Name="MoveDownButton" Margin="2,0,0,2" BorderThickness="0" IsTabStop="False" Command="{Binding DataContext.MoveDownCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}">
                                     <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/movedown.png" Width="16"/>
-                                </HyperlinkButton>
-                                <HyperlinkButton x:Name="DeleteIntervalButton" Margin="2,0,0,0" BorderThickness="0" Command="{Binding DataContext.RemoveIntervalCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}">
+                                </Button>
+                                <Button x:Name="DeleteIntervalButton" Margin="2,0,0,0" BorderThickness="0" Command="{Binding DataContext.RemoveIntervalCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}">
                                     <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/delete.png" Width="16"/>
-                                </HyperlinkButton>
+                                </Button>
                             </StackPanel>
                             <toolkit:Separator Grid.Row="3" Margin="2"/>
                         </Grid>

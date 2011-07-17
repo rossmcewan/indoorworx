@@ -169,6 +169,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EVERY.
+        /// </summary>
+        public static string EveryLabel {
+            get {
+                return ResourceManager.GetString("EveryLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FROM.
         /// </summary>
         public static string FromLabel {
