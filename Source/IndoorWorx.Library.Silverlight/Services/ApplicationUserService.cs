@@ -10,29 +10,25 @@ using IndoorWorx.Library.ApplicationUserServiceReference;
 using Microsoft.Practices.Composite.Events;
 using IndoorWorx.Infrastructure.Responses;
 using IndoorWorx.Infrastructure.Requests;
+using System.ServiceModel;
 
 namespace IndoorWorx.Library.Services
 {
     public class ApplicationUserService : IndoorWorx.Infrastructure.Services.IApplicationUserService
     {
         private readonly IServiceLocator serviceLocator;
-        public ApplicationUserService(IServiceLocator serviceLocator)
+        private readonly Uri serviceUri;
+        public ApplicationUserService(IServiceLocator serviceLocator, IConfigurationService configurationService)
         {
             this.serviceLocator = serviceLocator;
+            this.serviceUri = new Uri(configurationService.GetParameterValue("ApplicationUserServiceUri"), UriKind.Absolute);
         }
 
         public ICache Cache
         {
             get { return serviceLocator.GetInstance<ICache>(); }
         }
-
-
-        private ApplicationUserServiceClient proxy = new ApplicationUserServiceClient();
-        public ApplicationUserServiceClient Proxy
-        {
-            get { return proxy; }
-        }
-
+        
         #region Occupation Methods
 
         public event EventHandler<DataEventArgs<ICollection<Occupation>>> OccupationsRetrieved;
@@ -46,10 +42,12 @@ namespace IndoorWorx.Library.Services
             {
                 if (OccupationsRetrieved != null)
                     OccupationsRetrieved(this, new DataEventArgs<ICollection<Occupation>>(occupation));
+                return;
             }
             else
             {
-                Proxy.RetrieveAllOccupationsCompleted += (sender, e) =>
+                var proxy = CreateApplicationUserServiceClient();
+                proxy.RetrieveAllOccupationsCompleted += (sender, e) =>
                 {
                     if (e.Error != null)
                     {
@@ -64,7 +62,7 @@ namespace IndoorWorx.Library.Services
                 };
                 proxy.RetrieveAllOccupationsAsync();
             }
-        }
+        }        
 
         #endregion
 
@@ -81,10 +79,12 @@ namespace IndoorWorx.Library.Services
             {
                 if (ReferralSourcesRetrieved != null)
                     ReferralSourcesRetrieved(this, new DataEventArgs<ICollection<ReferralSource>>(referralSource));
+                return;
             }
             else
             {
-                Proxy.RetrieveAllReferralSourcesCompleted += (sender, e) =>
+                var proxy = CreateApplicationUserServiceClient();
+                proxy.RetrieveAllReferralSourcesCompleted += (sender, e) =>
                 {
                     if (e.Error != null)
                     {
@@ -111,7 +111,8 @@ namespace IndoorWorx.Library.Services
 
         public void SaveApplicationUser(ApplicationUser user)
         {
-            Proxy.SaveApplicationUserCompleted += (sender, e) =>
+            var proxy = CreateApplicationUserServiceClient();
+            proxy.SaveApplicationUserCompleted += (sender, e) =>
             {
                 if (e.Error != null)
                 {
@@ -133,7 +134,8 @@ namespace IndoorWorx.Library.Services
 
         public void RetrieveApplicationUser(string username)
         {
-            Proxy.RetrieveApplicationUserCompleted += (sender, e) =>
+            var proxy = CreateApplicationUserServiceClient();
+            proxy.RetrieveApplicationUserCompleted += (sender, e) =>
             {
                 if (e.Error != null)
                 {
@@ -155,7 +157,8 @@ namespace IndoorWorx.Library.Services
 
         public void AddVideoToLibrary(Video video)
         {
-            Proxy.AddVideoToLibraryCompleted += (sender, e) =>
+            var proxy = CreateApplicationUserServiceClient();
+            proxy.AddVideoToLibraryCompleted += (sender, e) =>
                 {
                     if (e.Error != null)
                     {
@@ -168,7 +171,7 @@ namespace IndoorWorx.Library.Services
                             AddVideoCompleted(this, new DataEventArgs<AddVideoResponse>(e.Result));
                     }
                 };
-            Proxy.AddVideoToLibraryAsync(new AddVideoRequest()
+            proxy.AddVideoToLibraryAsync(new AddVideoRequest()
             {
                 User = ApplicationUser.CurrentUser.Username,
                 VideoId = video.Id
@@ -183,7 +186,8 @@ namespace IndoorWorx.Library.Services
 
         public void AddTemplateToLibrary(TrainingSetTemplate template)
         {
-            Proxy.AddTemplateToLibraryCompleted += (sender, e) =>
+            var proxy = CreateApplicationUserServiceClient();
+            proxy.AddTemplateToLibraryCompleted += (sender, e) =>
             {
                 if (e.Error != null)
                 {
@@ -196,11 +200,25 @@ namespace IndoorWorx.Library.Services
                         AddTemplateCompleted(this, new DataEventArgs<AddTemplateResponse>(e.Result));
                 }
             };
-            Proxy.AddTemplateToLibraryAsync(new AddTemplateRequest()
+            proxy.AddTemplateToLibraryAsync(new AddTemplateRequest()
             {
                 User = ApplicationUser.CurrentUser.Username,
                 TemplateId = template.Id
             });
+        }
+
+        private ApplicationUserServiceClient CreateApplicationUserServiceClient()
+        {
+            BasicHttpBinding binding = new BasicHttpBinding(BasicHttpSecurityMode.None)
+            {
+                Name = "ApplicationUserServiceBinding",
+                MaxReceivedMessageSize = 2147483647,
+                MaxBufferSize = 2147483647,
+            };
+
+            EndpointAddress endpointAddress = new EndpointAddress(this.serviceUri);
+
+            return new ApplicationUserServiceClient(binding, endpointAddress);
         }
     }
 }

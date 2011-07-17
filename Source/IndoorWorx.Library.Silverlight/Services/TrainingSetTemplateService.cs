@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure;
+using System.ServiceModel;
 
 namespace IndoorWorx.Library.Services
 {
@@ -24,9 +25,11 @@ namespace IndoorWorx.Library.Services
         public event EventHandler<DataEventArgs<Exception>> TrainingSetTemplateRetrievalError;
 
         private readonly IServiceLocator serviceLocator;
-        public TrainingSetTemplateService(IServiceLocator serviceLocator)
+        private Uri serviceAddress;
+        public TrainingSetTemplateService(IServiceLocator serviceLocator, IConfigurationService configurationService)
         {
             this.serviceLocator = serviceLocator;
+            this.serviceAddress = new Uri(configurationService.GetParameterValue("TrainingSetTemplateServiceUri"), UriKind.Absolute);
         }
 
         public ICache Cache
@@ -41,8 +44,9 @@ namespace IndoorWorx.Library.Services
             {
                 if (TrainingSetTemplatesRetrieved != null)
                     TrainingSetTemplatesRetrieved(this, new DataEventArgs<ICollection<TrainingSetTemplate>>(templates));
+                return;
             }
-            var proxy = new IndoorWorx.Library.TrainingSetTemplateServiceReference.TrainingSetTemplateServiceClient();
+            var proxy = CreateTrainingSetTemplateServiceClient();
             proxy.FindAllCompleted += (sender, e) =>
             {
                 if (e.Error != null)
@@ -58,6 +62,20 @@ namespace IndoorWorx.Library.Services
                 }
             };
             proxy.FindAllAsync();
+        }
+
+        private IndoorWorx.Library.TrainingSetTemplateServiceReference.TrainingSetTemplateServiceClient CreateTrainingSetTemplateServiceClient()
+        {
+            BasicHttpBinding binding = new BasicHttpBinding(BasicHttpSecurityMode.None)
+            {
+                Name = "TrainingSetTemplateServiceBinding",
+                MaxReceivedMessageSize = 2147483647,
+                MaxBufferSize = 2147483647,
+            };
+
+            EndpointAddress endpointAddress = new EndpointAddress(this.serviceAddress);
+
+            return new IndoorWorx.Library.TrainingSetTemplateServiceReference.TrainingSetTemplateServiceClient(binding, endpointAddress);
         }
     }
 }

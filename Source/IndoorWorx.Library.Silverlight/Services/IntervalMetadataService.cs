@@ -14,16 +14,18 @@ using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure;
+using System.ServiceModel;
 
 namespace IndoorWorx.Library.Services
 {
     public class IntervalMetadataService : IIntervalMetadataService
     {
-        private IntervalMetadataServiceReference.IntervalMetadataServiceClient proxy = new IntervalMetadataServiceReference.IntervalMetadataServiceClient();        
         private readonly IServiceLocator serviceLocator;
-        public IntervalMetadataService(IServiceLocator serviceLocator)
+        private readonly Uri serviceUri;
+        public IntervalMetadataService(IServiceLocator serviceLocator, IConfigurationService configurationService)
         {
             this.serviceLocator = serviceLocator;
+            this.serviceUri = new Uri(configurationService.GetParameterValue("IntervalMetadataServiceUri"), UriKind.Absolute);
         }
 
         public ICache Cache
@@ -42,7 +44,9 @@ namespace IndoorWorx.Library.Services
             {
                 if (IntervalLevelsRetrieved != null)
                     IntervalLevelsRetrieved(this, new DataEventArgs<ICollection<IntervalLevel>>(intervalLevels));
+                return;
             }
+            IntervalMetadataServiceReference.IntervalMetadataServiceClient proxy = CreateIntervalMetadataServiceClient();
             proxy.FetchIntervalLevelsCompleted += (sender, e) =>
                 {
                     if (e.Error != null)
@@ -57,7 +61,7 @@ namespace IndoorWorx.Library.Services
                     }
                 };
             proxy.FetchIntervalLevelsAsync();
-        }
+        }        
 
         public event EventHandler<DataEventArgs<ICollection<IntervalType>>> IntervalTypesRetrieved;
 
@@ -70,7 +74,9 @@ namespace IndoorWorx.Library.Services
             {
                 if (IntervalTypesRetrieved != null)
                     IntervalTypesRetrieved(this, new DataEventArgs<ICollection<IntervalType>>(intervalTypes));
+                return;
             }
+            IntervalMetadataServiceReference.IntervalMetadataServiceClient proxy = CreateIntervalMetadataServiceClient();
             proxy.FetchIntervalTypesCompleted += (sender, e) =>
             {
                 if (e.Error != null)
@@ -96,9 +102,11 @@ namespace IndoorWorx.Library.Services
             var intervalTypes = Cache.Get("EffortTypes") as ICollection<EffortType>;
             if (intervalTypes != null)
             {
-                if (EffortTypesRetrieved != null)
+                if (EffortTypesRetrieved != null)                
                     EffortTypesRetrieved(this, new DataEventArgs<ICollection<EffortType>>(intervalTypes));
+                return;
             }
+            IntervalMetadataServiceReference.IntervalMetadataServiceClient proxy = CreateIntervalMetadataServiceClient();
             proxy.FetchEffortTypesCompleted += (sender, e) =>
             {
                 if (e.Error != null)
@@ -113,6 +121,20 @@ namespace IndoorWorx.Library.Services
                 }
             };
             proxy.FetchEffortTypesAsync();
+        }
+
+        private IntervalMetadataServiceReference.IntervalMetadataServiceClient CreateIntervalMetadataServiceClient()
+        {
+            BasicHttpBinding binding = new BasicHttpBinding(BasicHttpSecurityMode.None)
+            {
+                Name = "IntervalMetadataServiceBinding",
+                MaxReceivedMessageSize = 2147483647,
+                MaxBufferSize = 2147483647,
+            };
+
+            EndpointAddress endpointAddress = new EndpointAddress(this.serviceUri);
+
+            return new IntervalMetadataServiceReference.IntervalMetadataServiceClient(binding, endpointAddress);
         }
     }
 }

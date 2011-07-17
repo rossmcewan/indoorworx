@@ -14,15 +14,18 @@ using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure;
+using System.ServiceModel;
 
 namespace IndoorWorx.Library.Services
 {
     public class CategoryService : ICategoryService
     {
         private readonly IServiceLocator serviceLocator;
-        public CategoryService(IServiceLocator serviceLocator)
+        private readonly Uri serviceUri;
+        public CategoryService(IServiceLocator serviceLocator, IConfigurationService configurationService)
         {
             this.serviceLocator = serviceLocator;
+            this.serviceUri = new Uri(configurationService.GetParameterValue("CategoryServiceUri"), UriKind.Absolute);
         }
 
         public ICache Cache
@@ -43,8 +46,9 @@ namespace IndoorWorx.Library.Services
             {
                 if (CategoriesRetrieved != null)
                     CategoriesRetrieved(this, new DataEventArgs<ICollection<Category>>(categories));
+                return;
             }
-            var proxy = new IndoorWorx.Library.CategoryServiceReference.CategoryServiceClient();
+            var proxy = CreateCategoryServiceClient();
             proxy.FindAllCompleted += (sender, e) =>
                 {
                     if (e.Error != null)
@@ -60,6 +64,20 @@ namespace IndoorWorx.Library.Services
                     }
                 };
             proxy.FindAllAsync();
+        }
+
+        private CategoryServiceReference.CategoryServiceClient CreateCategoryServiceClient()
+        {
+            BasicHttpBinding binding = new BasicHttpBinding(BasicHttpSecurityMode.None)
+            {
+                Name = "CategoryServiceBinding",
+                MaxReceivedMessageSize = 2147483647,
+                MaxBufferSize = 2147483647,
+            };
+
+            EndpointAddress endpointAddress = new EndpointAddress(this.serviceUri);
+
+            return new CategoryServiceReference.CategoryServiceClient(binding, endpointAddress);
         }
 
         #endregion
