@@ -38,6 +38,17 @@ namespace IndoorWorx.Infrastructure.Models
         //[Description("HeartRate")]
         //HeartRate,
         //[Description("RPE")]
-        //RPE
+        //RPE        
+
+        //public int? GetLowValueFor(IntervalLevel value)
+        //{
+        //    if (title == "Power")
+        //        return value.MinimumPercentageOfFtp;
+        //    if (title == "HR")
+        //        return value.MinimumPercentageOfFthr;
+        //    if (title == "RPE")
+        //        return value.MinRPE;
+        //    return null;
+        //}
     }
 }

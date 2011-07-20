@@ -144,7 +144,9 @@
     <Content Include="ActivityService.svc" />
     <Content Include="IntervalMetadataService.svc" />
     <Content Include="TrainingSetTemplateService.svc" />
-    <Content Include="Settings.xml" />
+    <Content Include="Settings.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SportingHabitsService.svc" />
     <Content Include="SocialMediaService.svc" />
     <Content Include="css\blank.gif" />

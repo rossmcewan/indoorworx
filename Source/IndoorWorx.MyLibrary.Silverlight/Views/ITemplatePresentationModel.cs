@@ -19,6 +19,8 @@ namespace IndoorWorx.MyLibrary.Views
 
         ICollection<EffortType> EffortTypes { get; }
 
+        ICommand EditIntervalCommand { get; }
+
         void NewTemplate();
 
         TrainingSetTemplate Template { get; }

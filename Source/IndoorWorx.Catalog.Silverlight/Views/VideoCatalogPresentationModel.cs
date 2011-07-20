@@ -53,6 +53,7 @@ namespace IndoorWorx.Catalog.Views
                 FirePropertyChanged("Categories");
                 FirePropertyChanged("FilteredCategories");
                 FirePropertyChanged("FilteredCatalogs");
+                FirePropertyChanged("NumberOfVideosLabel");
             }
         }
 
@@ -141,6 +142,7 @@ namespace IndoorWorx.Catalog.Views
             this.filter = filter;
             FirePropertyChanged("FilteredCategories");
             FirePropertyChanged("FilteredCatalogs");
+            FirePropertyChanged("NumberOfVideosLabel");
             return this;
         }
 
@@ -151,6 +153,7 @@ namespace IndoorWorx.Catalog.Views
             FirePropertyChanged("OrderBy");
             FirePropertyChanged("FilteredCategories");
             FirePropertyChanged("FilteredCatalogs");
+            FirePropertyChanged("NumberOfVideosLabel");
             return this;
         }
 

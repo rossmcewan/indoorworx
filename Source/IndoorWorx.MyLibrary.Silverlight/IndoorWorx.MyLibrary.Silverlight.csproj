@@ -111,6 +111,8 @@
       <DependentUpon>IntervalsCaptureControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\AlternatingRowBackgroundConverter.cs" />
+    <Compile Include="Converters\CrudOperationReadOnlyConverter.cs" />
+    <Compile Include="Converters\CrudOperationTitleConverter.cs" />
     <Compile Include="Converters\TemplateNavigationUriConverter.cs" />
     <Compile Include="Converters\TemplateOperationToTextConverter.cs" />
     <Compile Include="Converters\VideoNavigationUriConverter.cs" />
@@ -140,8 +142,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyLibraryResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\IIntervalPresentationModel.cs" />
+    <Compile Include="Views\IIntervalView.cs" />
     <Compile Include="Views\IMyLibraryPresentationModel.cs" />
     <Compile Include="Views\IMyLibraryView.cs" />
+    <Compile Include="Views\IntervalPresentationModel.cs" />
+    <Compile Include="Views\IntervalWindow.xaml.cs">
+      <DependentUpon>IntervalWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ITemplateDetailsPresentationModel.cs" />
     <Compile Include="Views\ITemplateDetailsView.cs" />
     <Compile Include="Views\ITemplatePresentationModel.cs" />
@@ -219,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\VideosPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IntervalWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

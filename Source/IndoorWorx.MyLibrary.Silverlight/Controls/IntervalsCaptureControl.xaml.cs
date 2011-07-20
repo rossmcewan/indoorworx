@@ -69,6 +69,21 @@ namespace IndoorWorx.MyLibrary.Controls
             control.FirePropertyChanged("AddIntervalCommand");
         }
 
+        public ICommand EditIntervalCommand
+        {
+            get { return (ICommand)GetValue(EditIntervalCommandProperty); }
+            set { SetValue(EditIntervalCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty EditIntervalCommandProperty =
+            DependencyProperty.Register("EditIntervalCommand", typeof(ICommand), typeof(IntervalsCaptureControl), new PropertyMetadata(null, EditIntervalCommandChanged));
+
+        private static void EditIntervalCommandChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var control = (IntervalsCaptureControl)obj;
+            control.FirePropertyChanged("EditIntervalCommand");
+        }
+
         public ICommand RemoveIntervalCommand
         {
             get { return (ICommand)GetValue(RemoveIntervalCommandProperty); }

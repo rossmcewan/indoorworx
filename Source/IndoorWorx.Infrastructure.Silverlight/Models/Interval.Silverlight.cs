@@ -45,8 +45,8 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private TimeSpan recoveryInterval;// = new Duration();
-        public virtual TimeSpan RecoveryInterval
+        private Duration recoveryInterval = new Duration();
+        public virtual Duration RecoveryInterval
         {
             get { return recoveryInterval; }
             set
@@ -56,8 +56,8 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private TimeSpan intervalDuration;// = new Duration();
-        public virtual TimeSpan IntervalDuration
+        private Duration intervalDuration = new Duration();
+        public virtual Duration IntervalDuration
         {
             get { return intervalDuration; }
         }

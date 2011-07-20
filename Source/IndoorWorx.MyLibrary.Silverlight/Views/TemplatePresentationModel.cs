@@ -37,6 +37,7 @@ namespace IndoorWorx.MyLibrary.Views
             this.mainSetIntervals = new ObservableCollection<Interval>();
             this.cooldownIntervals = new ObservableCollection<Interval>();
             this.CancelCommand = new DelegateCommand<object>(Cancel);
+            this.editIntervalCommand = new DelegateCommand<Interval>(EditInterval);
             this.addIntervalToWarmupCommand = new DelegateCommand<Interval>(AddIntervalToWarmup);
             this.removeIntervalFromWarmupCommand = new DelegateCommand<Interval>(RemoveIntervalFromWarmup);
             this.MoveWarmupIntervalDownCommand = new DelegateCommand<Interval>(MoveWarmupIntervalDown);
@@ -63,6 +64,20 @@ namespace IndoorWorx.MyLibrary.Views
             intervalMetadataService.RetrieveIntervalLevels();
             intervalMetadataService.RetrieveIntervalTypes();
             intervalMetadataService.RetrieveEffortTypes();
+        }
+
+        private ICommand editIntervalCommand;
+        public ICommand EditIntervalCommand
+        {
+            get { return this.editIntervalCommand; }
+        }
+
+        private void EditInterval(Interval interval)
+        {
+            var view = serviceLocator.GetInstance<IIntervalView>();
+            view.Model.Interval = interval;
+            view.Model.Mode = CrudOperation.Update;
+            view.Show();
         }
 
         private void Cancel(object arg)

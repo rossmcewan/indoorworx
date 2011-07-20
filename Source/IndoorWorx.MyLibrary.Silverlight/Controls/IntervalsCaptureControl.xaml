@@ -258,22 +258,39 @@
                         </VisualStateGroup.Transitions>
                         <VisualState x:Name="MouseOver">
                             <Storyboard>
-                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsHitTestVisible)" Storyboard.TargetName="button">
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsHitTestVisible)" Storyboard.TargetName="deleteButton">
                                     <DiscreteObjectKeyFrame KeyTime="0">
                                         <DiscreteObjectKeyFrame.Value>
                                             <System:Boolean>True</System:Boolean>
                                         </DiscreteObjectKeyFrame.Value>
                                     </DiscreteObjectKeyFrame>
                                 </ObjectAnimationUsingKeyFrames>
-                                <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="button" d:IsOptimized="True"/>
-                                <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="button" d:IsOptimized="True"/>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsHitTestVisible)" Storyboard.TargetName="editButton">
+                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <System:Boolean>True</System:Boolean>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="deleteButton" d:IsOptimized="True"/>
+                                <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="editButton" d:IsOptimized="True"/>
+                                <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="deleteButton" d:IsOptimized="True"/>
+                                <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="editButton" d:IsOptimized="True"/>
                                 <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="comboBox" d:IsOptimized="True"/>
                             </Storyboard>
                         </VisualState>
                         <VisualState x:Name="MouseOut">
                             <Storyboard>
-                                <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="button" d:IsOptimized="True"/>
-                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsHitTestVisible)" Storyboard.TargetName="button">
+                                <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="deleteButton" d:IsOptimized="True"/>
+                                <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="editButton" d:IsOptimized="True"/>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsHitTestVisible)" Storyboard.TargetName="deleteButton">
+                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <System:Boolean>False</System:Boolean>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsHitTestVisible)" Storyboard.TargetName="editButton">
                                     <DiscreteObjectKeyFrame KeyTime="0">
                                         <DiscreteObjectKeyFrame.Value>
                                             <System:Boolean>False</System:Boolean>
@@ -299,6 +316,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Border
 						BorderBrush="{StaticResource PageBorderBrush}"
@@ -310,19 +328,25 @@
 						BorderThickness="0,0,1,1"
 						Grid.Row="2"
 						Grid.Column="1"
-						Width="110"/>
+						Width="130"/>
                 <Border
 						BorderBrush="{StaticResource PageBorderBrush}"
 						BorderThickness="0,0,1,1"
 						Grid.Row="2"
 						Grid.Column="2"
-						Width="110"/>
+						Width="90"/>
+                <Border
+						BorderBrush="{StaticResource PageBorderBrush}"
+						BorderThickness="0,0,1,1"
+						Grid.Row="2"
+						Grid.Column="3"
+						Width="130"/>
                 <Border
 						BorderBrush="{StaticResource PageBorderBrush}"
 						BorderThickness="0,0,0,1"
 						Grid.Row="2"
-						Grid.Column="3"
-						Width="110"/>
+						Grid.Column="4"
+						Width="90"/>
                 <controls:MetroContentControl>
                     <Grid Margin="10">
                         <Grid.ColumnDefinitions>
@@ -330,22 +354,35 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Button
-								x:Name="button"
+								x:Name="deleteButton"
                                 Command="{Binding DataContext.RemoveIntervalCommand, ElementName=LayoutRoot}"
                                 CommandParameter="{Binding}"
 								Style="{StaticResource RoundButton}"
-								Margin="0,0,15,0"
-								Width="24"
-								Height="24"
+								Margin="0,0,-15,0"
+								Width="16"
+								Height="16"
 								RenderTransformOrigin="0.5,0.5">
                             <Button.RenderTransform>
                                 <CompositeTransform TranslateX="-50"/>
                             </Button.RenderTransform>
-                            <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/delete.png" Stretch="Fill" Width="24" Height="24" ToolTipService.ToolTip="Delete Item"/>
+                            <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/delete.png" Stretch="Fill" Width="16" Height="16" ToolTipService.ToolTip="delete interval"/>
+                        </Button>
+                        <Button
+								x:Name="editButton"
+                                Command="{Binding DataContext.EditIntervalCommand, ElementName=LayoutRoot}"
+                                CommandParameter="{Binding}"
+								Style="{StaticResource RoundButton}"
+								Margin="0,0,20,0"
+								Width="16"
+								Height="16"
+								RenderTransformOrigin="0.5,0.5">
+                            <Button.RenderTransform>
+                                <CompositeTransform TranslateX="-50"/>
+                            </Button.RenderTransform>
+                            <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/edit.png" Stretch="Fill" Width="16" Height="16" ToolTipService.ToolTip="edit interval"/>
                         </Button>
                         <telerik:RadComboBox x:Name="comboBox" Margin="0" 
                             Grid.Column="1" 
-                            Grid.RowSpan="2"
                             ItemsSource="{Binding DataContext.IntervalTypes, Mode=OneWay, ElementName=LayoutRoot}" 
                             DisplayMemberPath="Name" 
                             SelectedItem="{Binding IntervalType, Mode=TwoWay}"
@@ -359,36 +396,30 @@
                 <controls:MetroContentControl						
 						Grid.Row="2"
 						Grid.Column="1">
-                    <TextBox
-							x:Name="durationTextBox"
-							Text="{Binding Duration, Mode=TwoWay}"
-							Style="{StaticResource MyLibraryTextBoxStyleIntervalItem}"	
-							HorizontalAlignment="Right"
-							VerticalAlignment="Top"
-							Margin="10"/>
+                    <StackPanel Margin="10" HorizontalAlignment="Right" Orientation="Horizontal">
+                        <toolkit:NumericUpDown Width="50" Value="{Binding IntervalDuration.Minutes, Mode=TwoWay}" ToolTipService.ToolTip="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"/>
+                        <TextBlock Margin="1,0" Text=":" VerticalAlignment="Center"/>
+                        <toolkit:NumericUpDown Width="50" Value="{Binding IntervalDuration.Seconds, Mode=TwoWay}" ToolTipService.ToolTip="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"/>
+                    </StackPanel>
                 </controls:MetroContentControl>
                 <controls:MetroContentControl						
 						Grid.Row="2"
 						Grid.Column="2">
-                    <TextBox
-							x:Name="repeatsTextBox"
-							Text="{Binding Repeats, Mode=TwoWay, StringFormat=\{0:N0\}}"
-							Style="{StaticResource MyLibraryTextBoxStyleIntervalItem}"
-							HorizontalAlignment="Right"
-							VerticalAlignment="Top"
-							Margin="10">
-                    </TextBox>
+                    <toolkit:NumericUpDown Margin="10" HorizontalAlignment="Right" Value="{Binding Repeats, Mode=TwoWay}"/>
                 </controls:MetroContentControl>
                 <controls:MetroContentControl						
 						Grid.Row="2"
 						Grid.Column="3">
-                    <TextBox
-							x:Name="riTextBox"
-							Text="{Binding RecoveryInterval, Mode=TwoWay}"
-							Style="{StaticResource MyLibraryTextBoxStyleIntervalItem}"	
-							HorizontalAlignment="Right"
-							VerticalAlignment="Top"
-							Margin="10"/>
+                    <StackPanel Margin="10" HorizontalAlignment="Right" Orientation="Horizontal">
+                        <toolkit:NumericUpDown Width="50" Value="{Binding RecoveryInterval.Minutes, Mode=TwoWay}" ToolTipService.ToolTip="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"/>
+                        <TextBlock Margin="1,0" Text=":" VerticalAlignment="Center"/>
+                        <toolkit:NumericUpDown Width="50" Value="{Binding RecoveryInterval.Seconds, Mode=TwoWay}" ToolTipService.ToolTip="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"/>
+                    </StackPanel>
+                </controls:MetroContentControl>
+                <controls:MetroContentControl						
+						Grid.Row="2"
+						Grid.Column="4">
+                    <toolkit:NumericUpDown Margin="10" HorizontalAlignment="Right" Value="{Binding EffortFrom, Mode=TwoWay}"/>
                 </controls:MetroContentControl>
             </Grid>
         </DataTemplate>
@@ -464,6 +495,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -476,7 +508,7 @@
             <Border
     					BorderBrush="{StaticResource PageBorderBrush}"
     					BorderThickness="0,0,0,1"
-    					Grid.ColumnSpan="4"/>
+    					Grid.ColumnSpan="5"/>
             <Border
     					BorderBrush="{StaticResource PageBorderBrush}"
     					BorderThickness="0,0,1,0"
@@ -485,17 +517,22 @@
     					BorderBrush="{StaticResource PageBorderBrush}"
     					BorderThickness="0,0,1,0"
     					Grid.Column="1"
-    					Width="110"/>
+    					Width="130"/>
             <Border
     					BorderBrush="{StaticResource PageBorderBrush}"
     					BorderThickness="0,0,1,0"
     					Grid.Column="2"
-    					Width="110"/>
+    					Width="90"/>
+            <Border
+    					BorderBrush="{StaticResource PageBorderBrush}"
+    					BorderThickness="0,0,1,0"
+    					Grid.Column="3"
+    					Width="130"/>
             <Border
     					BorderBrush="{StaticResource PageBorderBrush}"
     					BorderThickness="0,0,0,0"
-    					Grid.Column="3"
-    					Width="110"/>
+    					Grid.Column="4"
+    					Width="90"/>
             <TextBlock
     					Text="{Binding MyLibraryResources.IntervalTypeLabel, Source={StaticResource MyLibraryResources}}"
     					Style="{StaticResource SmallTitle}"
@@ -513,10 +550,15 @@
     					Style="{StaticResource SmallTitle}"
     					HorizontalAlignment="Right"
     					Grid.Column="3" Margin="0,0,10,0"/>
+            <TextBlock
+    					Text="{Binding MyLibraryResources.EffortLabel, Source={StaticResource MyLibraryResources}}"
+    					Style="{StaticResource SmallTitle}"
+    					HorizontalAlignment="Right"
+    					Grid.Column="4" Margin="0,0,10,0"/>
 
                 <ListBox
     					x:Name="IntervalItems"
-                        Grid.Row="1" Grid.ColumnSpan="4"
+                        Grid.Row="1" Grid.ColumnSpan="5"
     					ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                         ScrollViewer.VerticalScrollBarVisibility="Auto"    					
     					ItemTemplate="{StaticResource IntervalItemTemplate}"

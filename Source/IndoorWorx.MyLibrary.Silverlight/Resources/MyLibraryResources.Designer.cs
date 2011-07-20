@@ -124,6 +124,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DELETE INTERVAL.
+        /// </summary>
+        public static string DeleteIntervalTitle {
+            get {
+                return ResourceManager.GetString("DeleteIntervalTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete template.
         /// </summary>
         public static string DeleteTemplate {
@@ -147,6 +156,24 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string DurationLabel {
             get {
                 return ResourceManager.GetString("DurationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EDIT INTERVAL.
+        /// </summary>
+        public static string EditIntervalTitle {
+            get {
+                return ResourceManager.GetString("EditIntervalTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EFFORT.
+        /// </summary>
+        public static string EffortLabel {
+            get {
+                return ResourceManager.GetString("EffortLabel", resourceCulture);
             }
         }
         
@@ -223,6 +250,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is an invalid mode for this view..
+        /// </summary>
+        public static string InvalidMode {
+            get {
+                return ResourceManager.GetString("InvalidMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LEVEL.
         /// </summary>
         public static string LevelLabel {
@@ -246,6 +282,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string MinutesLabel {
             get {
                 return ResourceManager.GetString("MinutesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NEW INTERVAL.
+        /// </summary>
+        public static string NewIntervalTitle {
+            get {
+                return ResourceManager.GetString("NewIntervalTitle", resourceCulture);
             }
         }
         
@@ -399,6 +444,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string VideosTitle {
             get {
                 return ResourceManager.GetString("VideosTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VIEW INTERVAL.
+        /// </summary>
+        public static string ViewIntervalTitle {
+            get {
+                return ResourceManager.GetString("ViewIntervalTitle", resourceCulture);
             }
         }
         

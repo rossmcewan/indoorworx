@@ -234,4 +234,22 @@
   <data name="StartIntervalMessageLabel" xml:space="preserve">
     <value>START INTERVAL MESSAGE</value>
   </data>
+  <data name="DeleteIntervalTitle" xml:space="preserve">
+    <value>DELETE INTERVAL</value>
+  </data>
+  <data name="EditIntervalTitle" xml:space="preserve">
+    <value>EDIT INTERVAL</value>
+  </data>
+  <data name="EffortLabel" xml:space="preserve">
+    <value>EFFORT</value>
+  </data>
+  <data name="InvalidMode" xml:space="preserve">
+    <value>{0} is an invalid mode for this view.</value>
+  </data>
+  <data name="NewIntervalTitle" xml:space="preserve">
+    <value>NEW INTERVAL</value>
+  </data>
+  <data name="ViewIntervalTitle" xml:space="preserve">
+    <value>VIEW INTERVAL</value>
+  </data>
 </root>

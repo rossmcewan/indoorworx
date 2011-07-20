@@ -76,14 +76,14 @@ namespace IndoorWorx.SchemaTools
             };
         }
 
-        static Category GetCategory()
+        static Category GetRidesCategory()
         {
             var category = new Category()
             {
-                Title = "CYCLING",
+                Title = "RIDES",
                 Description = "Indoor cycling training videos.",
                 Sequence = 1,
-                CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=CYCLING&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
+                CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=RIDES&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
                 Catalogs = new List<Catalog>()
                     {                        
                         new Catalog()
@@ -228,26 +228,186 @@ namespace IndoorWorx.SchemaTools
             return category;
         }
 
-        //static GetActivities()
-        //{
-        //    var eq = new List<Equipment>()
-        //    {
-        //        new Equipment()
-        //        {
-        //            Name = "Computrainer",
-        //            Manufacturer = new Manufacturer() { Name = "RacerMate" }
-        //        };
-        //    };
-        //    ActivityType at = new ActivityType()
-        //    {
-        //        Name = "Cycling",
-        //        Equipment
-        //    }
-        //    var cycling = new Activity()
-        //    {
-        //        ActivityType = new ActivityType() 
-        //    };
-        //}
+        static Category GetPartsCategory()
+        {
+            var category = new Category()
+            {
+                Title = "PARTS",
+                Description = "Indoor cycling training videos.",
+                Sequence = 1,
+                CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=PARTS&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
+                Catalogs = new List<Catalog>()
+                    {                        
+                        new Catalog()
+                        {
+                            Title = "Hill climbs",
+                            Sequence = 1,
+                            Description = "Watch the best riding the hills as they should be riddne ... HARD!",
+                            Videos = new List<Video>()
+                            {
+#region Rand Waterboard
+                                new Video()
+                                {
+                                    Sequence = 1,
+                                    Created = DateTime.Now,
+                                    CreatedBy = typeof(Program).Assembly.FullName,
+                                    ImageUri = new Uri("http://localhost:3415/Mock/hillclimb1.jpg",UriKind.Absolute),                                    
+                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
+                                    Title = "Hill climb 1",
+                                    Description = "",
+                                    TelemetryInfo = new TelemetryInfo()
+                                    {
+                                        RecordingInterval = 2,
+                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                    },
+                                    Duration = new TimeSpan(1, 18, 0),
+                                    VideoMetadata = new VideoMetadata()
+                                    {
+                                        WhenFilmed = DateTime.Now.AddYears(-1),
+                                        FilmedWith = "Contour HD 1080p",
+                                        FilmedBy = "Ross McEwan"
+                                    }                                    
+                                },
+#endregion
+
+#region Suikerbosrand
+                                new Video()
+                                {
+                                    Sequence = 2,
+                                    Created = DateTime.Now,
+                                    CreatedBy = typeof(Program).Assembly.FullName,
+                                    ImageUri = new Uri("http://localhost:3415/Mock/hillclimb2.jpg",UriKind.Absolute),                                    
+                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
+                                    Title = "Hill climb 2",
+                                    Description = "",
+                                    TelemetryInfo = new TelemetryInfo()
+                                    {
+                                        RecordingInterval = 2,
+                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                    },
+                                    Duration = new TimeSpan(1, 18, 0),
+                                    VideoMetadata = new VideoMetadata()
+                                    {
+                                        WhenFilmed = DateTime.Now.AddYears(-1),
+                                        FilmedWith = "Contour HD 1080p",
+                                        FilmedBy = "Ross McEwan"
+                                    }                                    
+                                }
+#endregion
+                            }
+                        },
+                        new Catalog()
+                        {
+                            Title = "Time trials",
+                            ImageUri = new Uri("http://localhost:3415/Mock/mtn_energade.jpg", UriKind.Absolute),
+                            Sequence = 2,
+                            Description = "The deciding moment in a race ... maybe!",
+                            Videos = new List<Video>()
+                            {
+                                new Video()
+                                {
+                                    Sequence = 1,
+                                    Created = DateTime.Now,
+                                    CreatedBy = typeof(Program).Assembly.FullName,
+                                    ImageUri = new Uri("http://localhost:3415/Mock/timetrial1.jpg",UriKind.Absolute),                                    
+                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
+                                    Title = "Time trial 1",
+                                    Description = "",
+                                    TelemetryInfo = new TelemetryInfo()
+                                    {
+                                        RecordingInterval = 2,
+                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                    },
+                                    Duration = new TimeSpan(1, 18, 0),
+                                    VideoMetadata = new VideoMetadata()
+                                    {
+                                        WhenFilmed = DateTime.Now.AddYears(-1),
+                                        FilmedWith = "Contour HD 1080p",
+                                        FilmedBy = "Ross McEwan"
+                                    }                                    
+                                },
+                                new Video()
+                                {
+                                    Sequence = 2,
+                                    Created = DateTime.Now,
+                                    CreatedBy = typeof(Program).Assembly.FullName,
+                                    ImageUri = new Uri("http://localhost:3415/Mock/timetrial2.jpg",UriKind.Absolute),                                    
+                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
+                                    Title = "Time trial 2",
+                                    Description = "",
+                                    TelemetryInfo = new TelemetryInfo()
+                                    {
+                                        RecordingInterval = 2,
+                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                    },
+                                    Duration = new TimeSpan(1, 18, 0),
+                                    VideoMetadata = new VideoMetadata()
+                                    {
+                                        WhenFilmed = DateTime.Now.AddYears(-1),
+                                        FilmedWith = "Contour HD 1080p",
+                                        FilmedBy = "Ross McEwan"
+                                    }
+                                }
+                            }
+                        },
+                        new Catalog()
+                        {
+                            Title = "Breakaways",
+                            ImageUri = new Uri("http://localhost:3415/Mock/mtn_energade.jpg", UriKind.Absolute),
+                            Sequence = 2,
+                            Description = "The deciding moment in a race ... maybe!",
+                            Videos = new List<Video>()
+                            {
+                                new Video()
+                                {
+                                    Sequence = 1,
+                                    Created = DateTime.Now,
+                                    CreatedBy = typeof(Program).Assembly.FullName,
+                                    ImageUri = new Uri("http://localhost:3415/Mock/breakaway1.jpg",UriKind.Absolute),                                    
+                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
+                                    Title = "Breakaway 1",
+                                    Description = "",
+                                    TelemetryInfo = new TelemetryInfo()
+                                    {
+                                        RecordingInterval = 2,
+                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                    },
+                                    Duration = new TimeSpan(1, 18, 0),
+                                    VideoMetadata = new VideoMetadata()
+                                    {
+                                        WhenFilmed = DateTime.Now.AddYears(-1),
+                                        FilmedWith = "Contour HD 1080p",
+                                        FilmedBy = "Ross McEwan"
+                                    }                                    
+                                },
+                                new Video()
+                                {
+                                    Sequence = 2,
+                                    Created = DateTime.Now,
+                                    CreatedBy = typeof(Program).Assembly.FullName,
+                                    ImageUri = new Uri("http://localhost:3415/Mock/breakaway2.jpg",UriKind.Absolute),                                    
+                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
+                                    Title = "Breakaway 2",
+                                    Description = "",
+                                    TelemetryInfo = new TelemetryInfo()
+                                    {
+                                        RecordingInterval = 2,
+                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
+                                    },
+                                    Duration = new TimeSpan(1, 18, 0),
+                                    VideoMetadata = new VideoMetadata()
+                                    {
+                                        WhenFilmed = DateTime.Now.AddYears(-1),
+                                        FilmedWith = "Contour HD 1080p",
+                                        FilmedBy = "Ross McEwan"
+                                    }
+                                }
+                            }
+                        }
+                    }
+            };
+            return category;
+        }
 
         static void Main(string[] args)
         {
@@ -473,7 +633,8 @@ namespace IndoorWorx.SchemaTools
                     #endregion
 
                     session.Save(new Category() { Title = "ALL", Sequence = 0, CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=ALL&orderBy=CATEGORY", UriKind.RelativeOrAbsolute) });
-                    session.Save(GetCategory());
+                    session.Save(GetRidesCategory());
+                    session.Save(GetPartsCategory());
                     transaction.Commit();
                 }
             }

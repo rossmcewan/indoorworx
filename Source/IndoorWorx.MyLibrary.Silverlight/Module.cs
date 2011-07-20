@@ -70,8 +70,9 @@ namespace IndoorWorx.MyLibrary
 
             unityContainer.RegisterType<ITemplateView, TemplateView>();
             unityContainer.RegisterType<ITemplatePresentationModel, TemplatePresentationModel>();
-            //unityContainer.RegisterInstance<ITemplatePresentationModel>(unityContainer.Resolve<TemplatePresentationModel>(), new ContainerControlledLifetimeManager());
-            //unityContainer.RegisterInstance<ITemplateView>(unityContainer.Resolve<TemplateView>(), new ContainerControlledLifetimeManager());
+
+            unityContainer.RegisterType<IIntervalPresentationModel,IntervalPresentationModel>();
+            unityContainer.RegisterType<IIntervalView,IntervalWindow>();
 
             NavigationLinks.MapUri(
                 new Uri("/MyLibrary", UriKind.Relative),
