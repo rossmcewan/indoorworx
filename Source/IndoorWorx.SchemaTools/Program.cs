@@ -423,42 +423,44 @@ namespace IndoorWorx.SchemaTools
                 {
                     session.Save(new ApplicationUser() { Email = "rossmcewan@gmail.com", Firstname = "Ross", Gender = Genders.Male, Lastname = "McEwan", Username = "rossmcewan" });
 
-                    var power = new EffortType() { Title = "Power" };
+                    var power = new EffortType() { Title = "Power", Sequence = 10, Tag = "POWER" };
                     session.Save(power);
-                    var hr = new EffortType() { Title = "Heart Rate" };
+                    var hr = new EffortType() { Title = "Heart Rate", Sequence = 20, Tag = "HR" };
                     session.Save(hr);
-                    var rpe = new EffortType() { Title = "RPE", Description = "Rate of perceived exertion" };
+                    var rpe = new EffortType() { Title = "RPE", Description = "Rate of perceived exertion", Sequence = 30, Tag = "RPE" };
                     session.Save(rpe);
                     
-                    var l1 = new IntervalLevel() { Title = "Active Recovery", MaximumPercentageOfFthr = 68, MaximumPercentageOfFtp = 55, MinRPE = 0, MaxRPE = 2 };
+                    var l1 = new IntervalLevel() { Title = "Active Recovery", Sequence = 10, MaximumPercentageOfFthr = 68, MaximumPercentageOfFtp = 55, MinRPE = 0, MaxRPE = 2 };
                     session.Save(l1);
-                    var l2 = new IntervalLevel() { Title = "Endurance", MinimumPercentageOfFthr = 69, MaximumPercentageOfFthr = 83, MaximumPercentageOfFtp = 75, MinimumPercentageOfFtp = 56, MinRPE = 2, MaxRPE = 3 };
+                    var l2 = new IntervalLevel() { Title = "Endurance", Sequence = 20, MinimumPercentageOfFthr = 69, MaximumPercentageOfFthr = 83, MaximumPercentageOfFtp = 75, MinimumPercentageOfFtp = 56, MinRPE = 2, MaxRPE = 3 };
                     session.Save(l2);
-                    var l3 = new IntervalLevel() { Title = "Tempo", MinimumPercentageOfFthr = 84, MaximumPercentageOfFthr = 94, MaximumPercentageOfFtp = 90, MinimumPercentageOfFtp = 76, MinRPE = 3, MaxRPE = 4 };
+                    var l3 = new IntervalLevel() { Title = "Tempo", Sequence = 30, MinimumPercentageOfFthr = 84, MaximumPercentageOfFthr = 94, MaximumPercentageOfFtp = 90, MinimumPercentageOfFtp = 76, MinRPE = 3, MaxRPE = 4 };
                     session.Save(l3);
-                    var l4 = new IntervalLevel() { Title = "Lactate Threshold", MinimumPercentageOfFthr = 95, MaximumPercentageOfFthr = 105, MaximumPercentageOfFtp = 105, MinimumPercentageOfFtp = 91, MinRPE = 4, MaxRPE = 5, TypicalMinDuration = TimeSpan.FromMinutes(8), TypicalMaxDuration = TimeSpan.FromMinutes(30) };
+                    var l4 = new IntervalLevel() { Title = "Lactate Threshold", Sequence = 40, MinimumPercentageOfFthr = 95, MaximumPercentageOfFthr = 105, MaximumPercentageOfFtp = 105, MinimumPercentageOfFtp = 91, MinRPE = 4, MaxRPE = 5, TypicalMinDuration = TimeSpan.FromMinutes(8), TypicalMaxDuration = TimeSpan.FromMinutes(30) };
                     session.Save(l4);
-                    var l5 = new IntervalLevel() { Title = "VO2max", MinimumPercentageOfFthr = 106, MaximumPercentageOfFtp = 120, MinimumPercentageOfFtp = 106, MinRPE = 6, MaxRPE = 7, TypicalMinDuration = TimeSpan.FromMinutes(3), TypicalMaxDuration = TimeSpan.FromMinutes(8) };
+                    var l5 = new IntervalLevel() { Title = "VO2max", Sequence = 50, MinimumPercentageOfFthr = 106, MaximumPercentageOfFtp = 120, MinimumPercentageOfFtp = 106, MinRPE = 6, MaxRPE = 7, TypicalMinDuration = TimeSpan.FromMinutes(3), TypicalMaxDuration = TimeSpan.FromMinutes(8) };
                     session.Save(l5);
-                    var l6 = new IntervalLevel() { Title = "Anaerobic Capacity", MaximumPercentageOfFtp = 150, MinimumPercentageOfFtp = 121, MinRPE = 7, TypicalMinDuration = TimeSpan.FromSeconds(30), TypicalMaxDuration = TimeSpan.FromMinutes(3) };
+                    var l6 = new IntervalLevel() { Title = "Anaerobic Capacity", Sequence = 60, MaximumPercentageOfFtp = 150, MinimumPercentageOfFtp = 121, MinRPE = 7, TypicalMinDuration = TimeSpan.FromSeconds(30), TypicalMaxDuration = TimeSpan.FromMinutes(3) };
                     session.Save(l6);
-                    var l7 = new IntervalLevel() { Title = "Neuromuscular Power", TypicalMaxDuration = TimeSpan.FromSeconds(30) };
+                    var l7 = new IntervalLevel() { Title = "Neuromuscular Power", Sequence = 70, TypicalMaxDuration = TimeSpan.FromSeconds(30) };
                     session.Save(l7);
 
-                    var warmup = new IntervalType() { Name = "Warm up", DefaultLevel = l2 };
+                    var warmup = new IntervalType() { Name = "Warm up", DefaultLevel = l2, Tag = "WARMUP", Sequence = 10 };
                     session.Save(warmup);
-                    var cooldown = new IntervalType() { Name = "Cool down", DefaultLevel = l1 };
+                    var cooldown = new IntervalType() { Name = "Cool down", DefaultLevel = l1, Tag = "COOLDOWN", Sequence = 20 };
                     session.Save(cooldown);
-                    var recover = new IntervalType() { Name = "Recovery", DefaultLevel = l1 };
+                    var recover = new IntervalType() { Name = "Recovery", DefaultLevel = l1, Tag = "RECOVERY", Sequence = 30 };
                     session.Save(recover);
-                    var longHills = new IntervalType() { Name = "Long Hills", DefaultLevel = l3 };
+                    var longHills = new IntervalType() { Name = "Long Hills", DefaultLevel = l3, Tag = "LONGHILLS", Sequence = 40 };
                     session.Save(longHills);
-                    var shortHills = new IntervalType() { Name = "Short Hills", DefaultLevel = l4 };
+                    var shortHills = new IntervalType() { Name = "Short Hills", DefaultLevel = l4, Tag = "SHORTHILLS", Sequence = 50 };
                     session.Save(shortHills);
-                    var tt = new IntervalType() { Name = "Time Trial", DefaultLevel = l3 };
+                    var tt = new IntervalType() { Name = "Time Trial", DefaultLevel = l3, Tag = "TIMETRIAL", Sequence = 60 };
                     session.Save(tt);
-                    var sprints = new IntervalType() { Name = "Sprints", DefaultLevel = l5 };
+                    var sprints = new IntervalType() { Name = "Sprints", DefaultLevel = l5, Tag = "SPRINTS", Sequence = 70 };
                     session.Save(sprints);
+                    var breakaways = new IntervalType() { Name = "Breakaways", DefaultLevel = l5, Tag = "BREAKAWAYS", Sequence = 80 };
+                    session.Save(breakaways);
 
                     #region 4x10
                     var trainingTemplate = new TrainingSetTemplate();

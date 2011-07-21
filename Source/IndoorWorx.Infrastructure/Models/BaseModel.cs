@@ -21,7 +21,7 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("Id");
             }
         }
-
+       
         public virtual event PropertyChangedEventHandler PropertyChanged;
 
         public virtual void FirePropertyChanged(string propertyName)
@@ -38,6 +38,22 @@ namespace IndoorWorx.Infrastructure.Models
                 {
                 }
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            var model = obj as BaseModel;
+            if (model != null)
+            {
+                if (model.Id != Guid.Empty && this.Id != Guid.Empty)
+                    return model.Id == this.Id;
+            }
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

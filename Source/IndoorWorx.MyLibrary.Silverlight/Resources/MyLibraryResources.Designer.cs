@@ -61,6 +61,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BEFORE THE START OF THE INTERVAL.
+        /// </summary>
+        public static string BeforeTheStartOfTheInterval {
+            get {
+                return ResourceManager.GetString("BeforeTheStartOfTheInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BEGIN.
         /// </summary>
         public static string BeginButtonText {

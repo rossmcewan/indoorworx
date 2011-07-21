@@ -13,6 +13,8 @@ namespace IndoorWorx.NHibernate.ClassMaps
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
             Map(x => x.Name).Not.Nullable();
+            Map(x => x.Tag).Not.Nullable();
+            Map(x => x.Sequence).Not.Nullable();
             References(x => x.DefaultLevel).Not.Nullable().Not.LazyLoad();
         }
     }

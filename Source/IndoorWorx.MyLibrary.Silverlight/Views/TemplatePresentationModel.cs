@@ -47,23 +47,23 @@ namespace IndoorWorx.MyLibrary.Views
             this.addIntervalToCooldownCommand = new DelegateCommand<Interval>(AddIntervalToCooldown);
             this.removeIntervalFromCooldownCommand = new DelegateCommand<Interval>(RemoveIntervalFromCooldown);
 
-            var intervalMetadataService = serviceLocator.GetInstance<IIntervalMetadataService>();
-            intervalMetadataService.IntervalLevelsRetrieved += (sender, e) =>
-                {
-                };
-            intervalMetadataService.IntervalTypesRetrieved += (sender, e) =>
-                {
-                    this.IntervalTypes = e.Value;
-                    FirePropertyChanged("IntervalTypes");
-                };
-            intervalMetadataService.EffortTypesRetrieved += (sender, e) =>
-                {
-                    this.EffortTypes = e.Value;
-                    FirePropertyChanged("EffortTypes");
-                };
-            intervalMetadataService.RetrieveIntervalLevels();
-            intervalMetadataService.RetrieveIntervalTypes();
-            intervalMetadataService.RetrieveEffortTypes();
+            //var intervalMetadataService = serviceLocator.GetInstance<IIntervalMetadataService>();
+            //intervalMetadataService.IntervalLevelsRetrieved += (sender, e) =>
+            //    {
+            //    };
+            //intervalMetadataService.IntervalTypesRetrieved += (sender, e) =>
+            //    {
+            //        this.IntervalTypes = e.Value;
+            //        FirePropertyChanged("IntervalTypes");
+            //    };
+            //intervalMetadataService.EffortTypesRetrieved += (sender, e) =>
+            //    {
+            //        this.EffortTypes = e.Value;
+            //        FirePropertyChanged("EffortTypes");
+            //    };
+            //intervalMetadataService.RetrieveIntervalLevels();
+            //intervalMetadataService.RetrieveIntervalTypes();
+            //intervalMetadataService.RetrieveEffortTypes();
         }
 
         private ICommand editIntervalCommand;
@@ -93,14 +93,11 @@ namespace IndoorWorx.MyLibrary.Views
 
         public TrainingSetTemplate Template { get; private set; }
 
-        public ICollection<IntervalType> IntervalTypes { get; private set; }
-
-        public ICollection<EffortType> EffortTypes { get; private set; }
-
         public void NewTemplate()
         {
             this.TemplateOperation = CrudOperation.Create;
             this.Template = new TrainingSetTemplate();
+            this.Template.EffortType = ApplicationContext.Current.EffortTypes.FirstOrDefault();
             shell.AddToLayoutRoot(View as UIElement);
         }
 
@@ -118,17 +115,18 @@ namespace IndoorWorx.MyLibrary.Views
 
         private void AddIntervalToWarmup(Interval arg)
         {
+            var interval = Interval.NewWarmupInterval(Template.EffortType);
             if (arg == null)
             {
-                warmupIntervals.Add(new Interval());
+                warmupIntervals.Add(interval);
             }
             else
             {
                 var index = warmupIntervals.IndexOf(arg);
                 if (index != -1)
-                    warmupIntervals.Insert(++index, new Interval());
+                    warmupIntervals.Insert(++index, interval);
                 else
-                    warmupIntervals.Add(new Interval());
+                    warmupIntervals.Add(interval);
             }
             FirePropertyChanged("HasWarmupIntervals");
             RefreshTemplate();

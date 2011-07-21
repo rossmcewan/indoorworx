@@ -40,7 +40,7 @@
                     <sdk:Label Content="{Binding MyLibraryResources.TitleLabel, Source={StaticResource MyLibraryResources}}" Margin="5" />
                     <TextBox Grid.Column="1" Width="200" Margin="5" Text="{Binding Template.Title, Mode=TwoWay}" HorizontalAlignment="Left"/>
                     <sdk:Label Content="{Binding MyLibraryResources.EffortTypeLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Column="2" />
-                    <telerik:RadComboBox Grid.Column="3" Width="200" Margin="5" ItemsSource="{Binding EffortTypes, Mode=OneWay}" SelectedItem="{Binding Template.EffortType, Mode=TwoWay}" DisplayMemberPath="Title" HorizontalAlignment="Left"/>
+                    <telerik:RadComboBox Grid.Column="3" Width="200" Margin="5" ItemsSource="{Binding EffortTypes, Mode=OneWay, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding Template.EffortType, Mode=TwoWay}" DisplayMemberPath="Title" HorizontalAlignment="Left"/>
                     <sdk:Label Content="{Binding MyLibraryResources.DescriptionLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Row="1" />
                     <TextBox AcceptsReturn="True" Margin="5" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Height="50" Text="{Binding Template.Description, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Stretch"/>
                     <sdk:Label Content="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}" Grid.Row="2" Margin="5" />

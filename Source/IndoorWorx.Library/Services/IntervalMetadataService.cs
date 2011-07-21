@@ -35,17 +35,17 @@ namespace IndoorWorx.Library.Services
 
         public ICollection<Infrastructure.Models.IntervalLevel> FetchIntervalLevels()
         {
-            return IntervalLevelRepository.FindAll(null);
+            return IntervalLevelRepository.FindAll(null).OrderBy(x => x.Sequence).ToList();
         }
 
         public ICollection<Infrastructure.Models.IntervalType> FetchIntervalTypes()
         {
-            return IntervalTypeRepository.FindAll(null);
+            return IntervalTypeRepository.FindAll(null).OrderBy(x => x.Sequence).ToList();
         }
 
         public ICollection<Infrastructure.Models.EffortType> FetchEffortTypes()
         {
-            return EffortTypeRepository.FindAll(null);
+            return EffortTypeRepository.FindAll(null).OrderBy(x => x.Sequence).ToList();
         }
     }
 }

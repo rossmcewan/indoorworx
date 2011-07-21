@@ -11,6 +11,8 @@ using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.MyLibrary.Resources;
+using System.Collections.Generic;
+using IndoorWorx.Infrastructure.Services;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -65,7 +67,8 @@ namespace IndoorWorx.MyLibrary.Views
             {
                 mode = value;
                 FirePropertyChanged("Mode");
+                FirePropertyChanged("Title");
             }
-        }
+        }        
     }
 }

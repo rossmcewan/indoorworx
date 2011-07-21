@@ -8,8 +8,8 @@ using System.Runtime.Serialization;
 namespace IndoorWorx.Infrastructure.Models
 {
     [DataContract]
-    public class EffortType : BaseModel
-    {
+    public partial class EffortType : BaseModel
+    {       
         private string title;
         [DataMember]
         public virtual string Title
@@ -33,22 +33,29 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("Description");
             }
         }
-        //[Description("Power")]
-        //Power,
-        //[Description("HeartRate")]
-        //HeartRate,
-        //[Description("RPE")]
-        //RPE        
 
-        //public int? GetLowValueFor(IntervalLevel value)
-        //{
-        //    if (title == "Power")
-        //        return value.MinimumPercentageOfFtp;
-        //    if (title == "HR")
-        //        return value.MinimumPercentageOfFthr;
-        //    if (title == "RPE")
-        //        return value.MinRPE;
-        //    return null;
-        //}
+        private int sequence;
+        [DataMember]
+        public virtual int Sequence
+        {
+            get { return sequence; }
+            set
+            {
+                sequence = value;
+                FirePropertyChanged("Sequence");
+            }
+        }
+
+        private string tag;
+        [DataMember]
+        public virtual string Tag
+        {
+            get { return tag; }
+            set
+            {
+                tag = value;
+                FirePropertyChanged("Tag");
+            }
+        }        
     }
 }

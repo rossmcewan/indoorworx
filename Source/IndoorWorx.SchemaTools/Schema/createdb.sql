@@ -342,6 +342,8 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
         Id UNIQUEIDENTIFIER not null,
        Title NVARCHAR(255) null,
        Description NVARCHAR(255) null,
+       Tag NVARCHAR(255) null,
+       Sequence INT null,
        primary key (Id)
     )
 
@@ -407,12 +409,15 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        MaxRPE INT null,
        TypicalMaxDuration BIGINT null,
        TypicalMinDuration BIGINT null,
+       Sequence INT null,
        primary key (Id)
     )
 
     create table [IntervalType] (
         Id UNIQUEIDENTIFIER not null,
        Name NVARCHAR(255) not null,
+       Tag NVARCHAR(255) not null,
+       Sequence INT not null,
        DefaultLevel_id UNIQUEIDENTIFIER not null,
        primary key (Id)
     )

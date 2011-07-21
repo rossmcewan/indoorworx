@@ -32,5 +32,29 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("DefaultLevel");
             }
         }
+
+        private string tag;
+        [DataMember]
+        public virtual string Tag
+        {
+            get { return tag; }
+            set
+            {
+                tag = value;
+                FirePropertyChanged("Tag");
+            }
+        }
+
+        private int sequence;
+        [DataMember]
+        public virtual int Sequence
+        {
+            get { return sequence; }
+            set
+            {
+                sequence = value;
+                FirePropertyChanged("Sequence");
+            }
+        }
     }
 }

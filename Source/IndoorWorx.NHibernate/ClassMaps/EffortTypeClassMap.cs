@@ -14,6 +14,8 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Id(x => x.Id).GeneratedBy.GuidComb();
             Map(x => x.Title);
             Map(x => x.Description);
+            Map(x => x.Tag);
+            Map(x => x.Sequence);            
         }
     }
 }

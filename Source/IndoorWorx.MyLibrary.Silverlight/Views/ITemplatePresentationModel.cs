@@ -13,11 +13,7 @@ namespace IndoorWorx.MyLibrary.Views
 
         ICommand CancelCommand { get; }
 
-        CrudOperation TemplateOperation { get; }
-
-        ICollection<IntervalType> IntervalTypes { get; }
-
-        ICollection<EffortType> EffortTypes { get; }
+        CrudOperation TemplateOperation { get; }        
 
         ICommand EditIntervalCommand { get; }
 

@@ -29,8 +29,6 @@ namespace IndoorWorx.Infrastructure.Models
             set
             {
                 intervalType = value;
-                //if(value != null && IntervalLevel == null)
-                //    IntervalLevel = value.DefaultLevel;
                 FirePropertyChanged("IntervalType");
             }
         }
@@ -43,13 +41,6 @@ namespace IndoorWorx.Infrastructure.Models
             set
             {
                 intervalLevel = value;
-                //if (value != null && EffortFrom.GetValueOrDefault() == 0)
-                //{
-                //    if (EffortType != null)
-                //    {
-                //        EffortFrom = this.EffortType.GetLowValueFor(value);
-                //    }
-                //}
                 FirePropertyChanged("IntervalLevel");
             }
         }

@@ -128,5 +128,17 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("TypicalMaxDuration");
             }
         }
+
+        private int sequence;
+        [DataMember]
+        public virtual int Sequence
+        {
+            get { return sequence; }
+            set
+            {
+                sequence = value;
+                FirePropertyChanged("Sequence");
+            }
+        }
     }
 }

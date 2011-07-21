@@ -21,6 +21,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.MaxRPE);
             Map(x => x.TypicalMaxDuration);
             Map(x => x.TypicalMinDuration);
+            Map(x => x.Sequence);
         }
     }
 }

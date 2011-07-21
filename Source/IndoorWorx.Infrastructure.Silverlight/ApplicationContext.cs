@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +13,8 @@ using IndoorWorx.Infrastructure.Models;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Collections.Generic;
+using IndoorWorx.Infrastructure.Services;
 
 namespace IndoorWorx.Infrastructure
 {
@@ -48,6 +51,33 @@ namespace IndoorWorx.Infrastructure
                         VideoCount = 0;
                     }
                 };
+            //RefreshIntervalMetadata();
+        }
+
+        public void RefreshIntervalMetadata()
+        {
+            var metadataService = IoC.Resolve<IIntervalMetadataService>();
+            metadataService.IntervalLevelsRetrieved += (sender, e) =>
+                {
+                    intervalLevels.Clear();
+                    foreach (var x in e.Value)
+                        intervalLevels.Add(x);
+                };
+            metadataService.IntervalTypesRetrieved += (sender, e) =>
+                {
+                    intervalTypes.Clear();
+                    foreach (var x in e.Value)
+                        intervalTypes.Add(x);
+                };
+            metadataService.EffortTypesRetrieved += (sender, e) =>
+                {
+                    effortTypes.Clear();
+                    foreach (var x in e.Value)
+                        effortTypes.Add(x);
+                };
+            metadataService.RetrieveEffortTypes();
+            metadataService.RetrieveIntervalLevels();
+            metadataService.RetrieveIntervalTypes();
         }
 
         private void VideoCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
@@ -108,6 +138,24 @@ namespace IndoorWorx.Infrastructure
         public static ApplicationContext Current
         {
             get { return Application.Current.Resources["ApplicationContext"] as ApplicationContext; }
+        }
+
+        private ICollection<EffortType> effortTypes = new ObservableCollection<EffortType>();
+        public ICollection<EffortType> EffortTypes
+        {
+            get { return this.effortTypes; }
+        }
+
+        private ICollection<IntervalLevel> intervalLevels = new ObservableCollection<IntervalLevel>();
+        public ICollection<IntervalLevel> IntervalLevels
+        {
+            get { return this.intervalLevels; }
+        }        
+
+        private ICollection<IntervalType> intervalTypes = new ObservableCollection<IntervalType>();
+        public ICollection<IntervalType> IntervalTypes
+        {
+            get { return this.intervalTypes; }
         }
     }
 }

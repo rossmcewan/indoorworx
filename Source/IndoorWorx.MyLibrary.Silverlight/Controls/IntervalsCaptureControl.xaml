@@ -383,7 +383,7 @@
                         </Button>
                         <telerik:RadComboBox x:Name="comboBox" Margin="0" 
                             Grid.Column="1" 
-                            ItemsSource="{Binding DataContext.IntervalTypes, Mode=OneWay, ElementName=LayoutRoot}" 
+                            ItemsSource="{Binding IntervalTypes, Mode=OneWay, Source={StaticResource ApplicationContext}}" 
                             DisplayMemberPath="Name" 
                             SelectedItem="{Binding IntervalType, Mode=TwoWay}"
                             RenderTransformOrigin="0.5,0.5">
