@@ -46,24 +46,6 @@ namespace IndoorWorx.MyLibrary.Views
             this.removeIntervalFromMainSetCommand = new DelegateCommand<Interval>(RemoveIntervalFromMainSet);
             this.addIntervalToCooldownCommand = new DelegateCommand<Interval>(AddIntervalToCooldown);
             this.removeIntervalFromCooldownCommand = new DelegateCommand<Interval>(RemoveIntervalFromCooldown);
-
-            //var intervalMetadataService = serviceLocator.GetInstance<IIntervalMetadataService>();
-            //intervalMetadataService.IntervalLevelsRetrieved += (sender, e) =>
-            //    {
-            //    };
-            //intervalMetadataService.IntervalTypesRetrieved += (sender, e) =>
-            //    {
-            //        this.IntervalTypes = e.Value;
-            //        FirePropertyChanged("IntervalTypes");
-            //    };
-            //intervalMetadataService.EffortTypesRetrieved += (sender, e) =>
-            //    {
-            //        this.EffortTypes = e.Value;
-            //        FirePropertyChanged("EffortTypes");
-            //    };
-            //intervalMetadataService.RetrieveIntervalLevels();
-            //intervalMetadataService.RetrieveIntervalTypes();
-            //intervalMetadataService.RetrieveEffortTypes();
         }
 
         private ICommand editIntervalCommand;
@@ -96,8 +78,20 @@ namespace IndoorWorx.MyLibrary.Views
         public void NewTemplate()
         {
             this.TemplateOperation = CrudOperation.Create;
-            this.Template = new TrainingSetTemplate();
+            this.Template = new TrainingSetTemplate();            
             this.Template.EffortType = ApplicationContext.Current.EffortTypes.FirstOrDefault();
+            this.Template.PropertyChanged += (sender, e) =>
+                {
+                    if (e.PropertyName == "EffortType")
+                    {
+                        foreach (var interval in WarmupIntervals)
+                            interval.EffortType = this.Template.EffortType;
+                        foreach (var interval in MainSetIntervals)
+                            interval.EffortType = this.Template.EffortType;
+                        foreach (var interval in CooldownIntervals)
+                            interval.EffortType = this.Template.EffortType;
+                    }
+                };            
             shell.AddToLayoutRoot(View as UIElement);
         }
 

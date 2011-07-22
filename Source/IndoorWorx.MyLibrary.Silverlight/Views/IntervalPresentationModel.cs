@@ -13,6 +13,7 @@ using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.MyLibrary.Resources;
 using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Services;
+using System.ComponentModel;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -35,10 +36,10 @@ namespace IndoorWorx.MyLibrary.Views
             }
             set
             {
-                this.interval = value;
+                this.interval = value;                
                 FirePropertyChanged("Interval");
             }
-        }
+        }        
 
         public string Title
         {

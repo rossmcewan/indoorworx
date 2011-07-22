@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 namespace IndoorWorx.Infrastructure.Models
 {
@@ -81,26 +82,70 @@ namespace IndoorWorx.Infrastructure.Models
 
         public static Interval NewWarmupInterval(EffortType effortType)
         {
+            return NewInterval(Interval.WarmupTag, effortType);
+        }
+
+        private static Interval NewInterval(string tag, EffortType effortType)
+        {
             var interval = new Interval();
+            interval.PropertyChanged += IntervalPropertyChanged;
             interval.EffortType = effortType;
-            interval.IntervalType = ApplicationContext.Current.IntervalTypes.FirstOrDefault(x => x.Tag == Interval.WarmupTag);
-            interval.IntervalLevel = interval.IntervalType.DefaultLevel;
-            if(effortType.IsHR)
-            {
-                interval.EffortFrom = interval.IntervalLevel.MinimumPercentageOfFthr;
-                interval.EffortTo = interval.IntervalLevel.MaximumPercentageOfFthr;
-            }
-            else if(effortType.IsPower)
-            {
-                interval.EffortFrom = interval.IntervalLevel.MinimumPercentageOfFtp;
-                interval.EffortTo = interval.IntervalLevel.MaximumPercentageOfFtp;
-            }
-            else if(effortType.IsRPE)
-            {
-                interval.EffortFrom = interval.IntervalLevel.MinRPE;
-                interval.EffortTo = interval.IntervalLevel.MaxRPE;
-            }
+            interval.IntervalType = ApplicationContext.Current.IntervalTypes.FirstOrDefault(x => x.Tag == tag);
+            if(interval.IntervalType != null)
+                interval.IntervalLevel = interval.IntervalType.DefaultLevel;
             return interval;
+        }
+
+        private static void IntervalPropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            var interval = sender as Interval;
+            if (args.PropertyName == "IntervalLevel")
+            {
+                if (interval.IntervalLevel != null)
+                {
+                    if (interval.EffortType.IsHR)
+                    {
+                        interval.EffortFrom = interval.IntervalLevel.MinimumPercentageOfFthr;
+                        interval.EffortTo = interval.IntervalLevel.MaximumPercentageOfFthr;
+                    }
+                    else if (interval.EffortType.IsPower)
+                    {
+                        interval.EffortFrom = interval.IntervalLevel.MinimumPercentageOfFtp;
+                        interval.EffortTo = interval.IntervalLevel.MaximumPercentageOfFtp;
+                    }
+                    else if (interval.EffortType.IsRPE)
+                    {
+                        interval.EffortFrom = interval.IntervalLevel.MinRPE;
+                        interval.EffortTo = interval.IntervalLevel.MaxRPE;
+                    }
+                }
+            }
+            if (args.PropertyName == "IntervalType")
+            {
+                if (interval.IntervalType != null)
+                    interval.IntervalLevel = interval.IntervalType.DefaultLevel;
+            }
+            if (args.PropertyName == "EffortType")
+            {
+                if (interval.EffortType != null)
+                {
+                    if (interval.EffortType.IsHR)
+                    {
+                        interval.EffortFrom = interval.IntervalLevel.MinimumPercentageOfFthr;
+                        interval.EffortTo = interval.IntervalLevel.MaximumPercentageOfFthr;
+                    }
+                    else if (interval.EffortType.IsPower)
+                    {
+                        interval.EffortFrom = interval.IntervalLevel.MinimumPercentageOfFtp;
+                        interval.EffortTo = interval.IntervalLevel.MaximumPercentageOfFtp;
+                    }
+                    else if (interval.EffortType.IsRPE)
+                    {
+                        interval.EffortFrom = interval.IntervalLevel.MinRPE;
+                        interval.EffortTo = interval.IntervalLevel.MaxRPE;
+                    }
+                }
+            }
         }
     }
 }
