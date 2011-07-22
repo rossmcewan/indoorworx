@@ -252,6 +252,9 @@
   <data name="ViewIntervalTitle" xml:space="preserve">
     <value>VIEW INTERVAL</value>
   </data>
+  <data name="BeforeTheEndOfTheInterval" xml:space="preserve">
+    <value>BEFORE THE END OF THE INTERVAL</value>
+  </data>
   <data name="BeforeTheStartOfTheInterval" xml:space="preserve">
     <value>BEFORE THE START OF THE INTERVAL</value>
   </data>
