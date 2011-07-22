@@ -187,11 +187,19 @@ namespace IndoorWorx.MyLibrary.Views
 
         private void AddIntervalToMainSet(Interval arg)
         {
-            var index = warmupIntervals.IndexOf(arg);
-            if (index != -1)
-                warmupIntervals.Insert(++index, new Interval());
+            var interval = Interval.NewMainSetInterval(Template.EffortType);
+            if (arg == null)
+            {
+                mainSetIntervals.Add(interval);
+            }
             else
-                warmupIntervals.Add(new Interval());
+            {
+                var index = mainSetIntervals.IndexOf(arg);
+                if (index != -1)
+                    mainSetIntervals.Insert(++index, interval);
+                else
+                    mainSetIntervals.Add(interval);
+            }
             FirePropertyChanged("HasMainSetIntervals");
             RefreshTemplate();
         }
@@ -228,11 +236,19 @@ namespace IndoorWorx.MyLibrary.Views
 
         private void AddIntervalToCooldown(Interval arg)
         {
-            var index = warmupIntervals.IndexOf(arg);
-            if (index != -1)
-                warmupIntervals.Insert(++index, new Interval());
+            var interval = Interval.NewCooldownInterval(Template.EffortType);
+            if (arg == null)
+            {
+                cooldownIntervals.Add(interval);
+            }
             else
-                warmupIntervals.Add(new Interval());
+            {
+                var index = cooldownIntervals.IndexOf(arg);
+                if (index != -1)
+                    cooldownIntervals.Insert(++index, interval);
+                else
+                    cooldownIntervals.Add(interval);
+            }
             FirePropertyChanged("HasCooldownIntervals");
             RefreshTemplate();
         }
@@ -258,40 +274,76 @@ namespace IndoorWorx.MyLibrary.Views
         protected virtual void RefreshTemplate()
         {
             Template.Intervals.Clear();
+            TimeSpan totalDuration = TimeSpan.Zero;
             foreach (var interval in warmupIntervals)
             {
-                CreateIntervals(interval, x => Template.Intervals.Add(x));
+                CreateIntervals(interval, x => 
+                {
+                    Template.Intervals.Add(x);
+                    totalDuration = totalDuration.Add(x.Duration);
+                });
             }
             foreach (var interval in mainSetIntervals)
             {
-                CreateIntervals(interval, x => Template.Intervals.Add(x));
+                CreateIntervals(interval, x =>
+                {
+                    Template.Intervals.Add(x);
+                    totalDuration = totalDuration.Add(x.Duration);
+                });
             }
             foreach (var interval in cooldownIntervals)
             {
-                CreateIntervals(interval, x => Template.Intervals.Add(x));
+                CreateIntervals(interval, x =>
+                {
+                    Template.Intervals.Add(x);
+                    totalDuration = totalDuration.Add(x.Duration);
+                });
             }
             Template.SetupIntervalTimes();
+            Template.Duration = totalDuration;
         }
 
         private void CreateIntervals(Interval interval, Action<Interval> add)
         {
+            var recovery = ApplicationContext.Current.IntervalTypes.FirstOrDefault(x => x.IsRecovery);
             for (int i = 0; i < interval.Repeats; i++)
             {
                 add(new Interval()
                 {
                     Description = interval.Description,
-                    Duration = new TimeSpan(0, interval.IntervalDuration.Minutes, interval.IntervalDuration.Seconds),
+                    Duration = interval.IntervalDuration.AsTimeSpan(),
                     IntervalType = interval.IntervalType,
-                    EffortFrom = 200
-                    //need to set the other information as well
+                    EffortFrom = interval.EffortFrom,
+                    EffortTo = interval.EffortTo,
+                    EffortType = interval.EffortType,
+                    IntervalLevel = interval.IntervalLevel,
+                    Title = interval.Title
                 });
-                add(new Interval()
+                var recoveryInterval = new Interval()
                 {
                     Description = interval.Description,
-                    Duration = new TimeSpan(0, interval.RecoveryInterval.Minutes, interval.RecoveryInterval.Seconds),
-                    EffortFrom = 100
-                    //need to set the interval type to 'Recovery'
-                });
+                    Duration = interval.RecoveryInterval.AsTimeSpan(),
+                    IntervalType = recovery,                    
+                    EffortType = interval.EffortType,
+                    IntervalLevel = recovery.DefaultLevel,
+                    Title = interval.Title
+                };
+                if (recoveryInterval.EffortType.IsRPE)
+                {
+                    recoveryInterval.EffortFrom = recovery.DefaultLevel.MinRPE;
+                    recoveryInterval.EffortTo = recovery.DefaultLevel.MaxRPE;
+                }
+                else if (recoveryInterval.EffortType.IsHR)
+                {
+                    recoveryInterval.EffortFrom = recovery.DefaultLevel.MinimumPercentageOfFthr;
+                    recoveryInterval.EffortTo = recovery.DefaultLevel.MaximumPercentageOfFthr;
+                }
+                else if (recoveryInterval.EffortType.IsPower)
+                {
+                    recoveryInterval.EffortFrom = recovery.DefaultLevel.MinimumPercentageOfFtp;
+                    recoveryInterval.EffortTo = recovery.DefaultLevel.MaximumPercentageOfFtp;
+                }
+                add(recoveryInterval);
             }
         }
     }

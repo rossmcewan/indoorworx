@@ -85,9 +85,20 @@ namespace IndoorWorx.Infrastructure.Models
             return NewInterval(Interval.WarmupTag, effortType);
         }
 
+        public static Interval NewMainSetInterval(EffortType effortType)
+        {
+            return NewInterval(string.Empty, effortType);
+        }
+
+        public static Interval NewCooldownInterval(EffortType effortType)
+        {
+            return NewInterval(Interval.CooldownTag, effortType);
+        }
+
         private static Interval NewInterval(string tag, EffortType effortType)
         {
             var interval = new Interval();
+            interval.Repeats = 1;
             interval.PropertyChanged += IntervalPropertyChanged;
             interval.EffortType = effortType;
             interval.IntervalType = ApplicationContext.Current.IntervalTypes.FirstOrDefault(x => x.Tag == tag);
