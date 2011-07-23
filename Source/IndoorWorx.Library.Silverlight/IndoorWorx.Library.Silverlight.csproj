@@ -218,6 +218,7 @@
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.TrainingVolume.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.AddTemplateResponse.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.AddVideoResponse.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.PlayVideoResponse.datasource" />
     <None Include="Service References\ActivityServiceReference\ActivityService.wsdl" />
     <None Include="Service References\ActivityServiceReference\ActivityService.xsd">
       <SubType>Designer</SubType>

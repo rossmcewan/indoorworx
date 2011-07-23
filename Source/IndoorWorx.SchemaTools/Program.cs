@@ -421,7 +421,7 @@ namespace IndoorWorx.SchemaTools
             {                
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.Save(new ApplicationUser() { Email = "rossmcewan@gmail.com", Firstname = "Ross", Gender = Genders.Male, Lastname = "McEwan", Username = "rossmcewan" });
+                    session.Save(new ApplicationUser() { Email = "rossmcewan@gmail.com", Firstname = "Ross", Gender = Genders.Male, Lastname = "McEwan", Username = "rossmcewan", Credits = 100 });
 
                     var power = new EffortType() { Title = "Power", Sequence = 10, Tag = "POWER" };
                     session.Save(power);

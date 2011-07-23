@@ -84,4 +84,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="PlayVideo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Requests" minOccurs="0" name="request" nillable="true" type="q11:PlayVideoRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PlayVideoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Responses" minOccurs="0" name="PlayVideoResult" nillable="true" type="q12:PlayVideoResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

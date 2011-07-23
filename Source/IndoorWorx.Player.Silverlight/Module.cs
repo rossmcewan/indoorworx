@@ -23,6 +23,8 @@ using IndoorWorx.Player.Controls;
 using IndoorWorx.Library.Controls;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.Infrastructure.Facades;
+using IndoorWorx.Infrastructure.Services;
+using IndoorWorx.Player.Resources;
 
 namespace IndoorWorx.Player
 {
@@ -53,10 +55,32 @@ namespace IndoorWorx.Player
             capture.Model.Video = video;
             capture.Show(() =>
                 {
-                    video.LoadPlayingTelemetry();
-                    var view = unityContainer.Resolve<IPlayerView>();                    
-                    view.Model.Video = video;
-                    view.Show();
+                    var userService = serviceLocator.GetInstance<IApplicationUserService>();
+                    userService.PlayVideoCompleted += (sender, e) =>
+                        {
+                            switch (e.Value.Status)
+                            {
+                                case PlayVideoStatus.Success:
+                                    video.LoadPlayingTelemetry();
+                                    var view = unityContainer.Resolve<IPlayerView>();
+                                    view.Model.Video = video;
+                                    view.Show();
+                                    break;
+                                case PlayVideoStatus.InsufficientCredits:
+                                    DialogFacade.Alert(PlayerResources.InsufficientCredits);
+                                    break;
+                                case PlayVideoStatus.Error:
+                                    DialogFacade.Alert(e.Value.Message);
+                                    break;
+                                default:
+                                    break;
+                            }                            
+                        };
+                    userService.PlayVideoError += (sender, e) =>
+                        {
+                            throw e.Value;
+                        };
+                    userService.PlayVideo(video);
                 },
                 () =>
                 {

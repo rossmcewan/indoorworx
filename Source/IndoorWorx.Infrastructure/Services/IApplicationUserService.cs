@@ -30,5 +30,8 @@ namespace IndoorWorx.Infrastructure.Services
 
         [OperationContract]
         AddTemplateResponse AddTemplateToLibrary(AddTemplateRequest request);
+
+        [OperationContract]
+        PlayVideoResponse PlayVideo(PlayVideoRequest request);
     }
 }

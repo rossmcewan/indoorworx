@@ -78,6 +78,11 @@ namespace IndoorWorx.Library.ApplicationUserServiceReference {
         System.IAsyncResult BeginAddTemplateToLibrary(IndoorWorx.Infrastructure.Requests.AddTemplateRequest request, System.AsyncCallback callback, object asyncState);
         
         IndoorWorx.Infrastructure.Responses.AddTemplateResponse EndAddTemplateToLibrary(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IApplicationUserService/PlayVideo", ReplyAction="http://tempuri.org/IApplicationUserService/PlayVideoResponse")]
+        System.IAsyncResult BeginPlayVideo(IndoorWorx.Infrastructure.Requests.PlayVideoRequest request, System.AsyncCallback callback, object asyncState);
+        
+        IndoorWorx.Infrastructure.Responses.PlayVideoResponse EndPlayVideo(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -200,6 +205,25 @@ namespace IndoorWorx.Library.ApplicationUserServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class PlayVideoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public PlayVideoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public IndoorWorx.Infrastructure.Responses.PlayVideoResponse Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((IndoorWorx.Infrastructure.Responses.PlayVideoResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ApplicationUserServiceClient : System.ServiceModel.ClientBase<IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService>, IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService {
         
         private BeginOperationDelegate onBeginSaveApplicationUserDelegate;
@@ -237,6 +261,12 @@ namespace IndoorWorx.Library.ApplicationUserServiceReference {
         private EndOperationDelegate onEndAddTemplateToLibraryDelegate;
         
         private System.Threading.SendOrPostCallback onAddTemplateToLibraryCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginPlayVideoDelegate;
+        
+        private EndOperationDelegate onEndPlayVideoDelegate;
+        
+        private System.Threading.SendOrPostCallback onPlayVideoCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -302,6 +332,8 @@ namespace IndoorWorx.Library.ApplicationUserServiceReference {
         public event System.EventHandler<AddVideoToLibraryCompletedEventArgs> AddVideoToLibraryCompleted;
         
         public event System.EventHandler<AddTemplateToLibraryCompletedEventArgs> AddTemplateToLibraryCompleted;
+        
+        public event System.EventHandler<PlayVideoCompletedEventArgs> PlayVideoCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -579,6 +611,52 @@ namespace IndoorWorx.Library.ApplicationUserServiceReference {
                         request}, this.onEndAddTemplateToLibraryDelegate, this.onAddTemplateToLibraryCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService.BeginPlayVideo(IndoorWorx.Infrastructure.Requests.PlayVideoRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginPlayVideo(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        IndoorWorx.Infrastructure.Responses.PlayVideoResponse IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService.EndPlayVideo(System.IAsyncResult result) {
+            return base.Channel.EndPlayVideo(result);
+        }
+        
+        private System.IAsyncResult OnBeginPlayVideo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            IndoorWorx.Infrastructure.Requests.PlayVideoRequest request = ((IndoorWorx.Infrastructure.Requests.PlayVideoRequest)(inValues[0]));
+            return ((IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService)(this)).BeginPlayVideo(request, callback, asyncState);
+        }
+        
+        private object[] OnEndPlayVideo(System.IAsyncResult result) {
+            IndoorWorx.Infrastructure.Responses.PlayVideoResponse retVal = ((IndoorWorx.Library.ApplicationUserServiceReference.IApplicationUserService)(this)).EndPlayVideo(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnPlayVideoCompleted(object state) {
+            if ((this.PlayVideoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.PlayVideoCompleted(this, new PlayVideoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void PlayVideoAsync(IndoorWorx.Infrastructure.Requests.PlayVideoRequest request) {
+            this.PlayVideoAsync(request, null);
+        }
+        
+        public void PlayVideoAsync(IndoorWorx.Infrastructure.Requests.PlayVideoRequest request, object userState) {
+            if ((this.onBeginPlayVideoDelegate == null)) {
+                this.onBeginPlayVideoDelegate = new BeginOperationDelegate(this.OnBeginPlayVideo);
+            }
+            if ((this.onEndPlayVideoDelegate == null)) {
+                this.onEndPlayVideoDelegate = new EndOperationDelegate(this.OnEndPlayVideo);
+            }
+            if ((this.onPlayVideoCompletedDelegate == null)) {
+                this.onPlayVideoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnPlayVideoCompleted);
+            }
+            base.InvokeAsync(this.onBeginPlayVideoDelegate, new object[] {
+                        request}, this.onEndPlayVideoDelegate, this.onPlayVideoCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -728,6 +806,19 @@ namespace IndoorWorx.Library.ApplicationUserServiceReference {
             public IndoorWorx.Infrastructure.Responses.AddTemplateResponse EndAddTemplateToLibrary(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 IndoorWorx.Infrastructure.Responses.AddTemplateResponse _result = ((IndoorWorx.Infrastructure.Responses.AddTemplateResponse)(base.EndInvoke("AddTemplateToLibrary", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginPlayVideo(IndoorWorx.Infrastructure.Requests.PlayVideoRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("PlayVideo", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public IndoorWorx.Infrastructure.Responses.PlayVideoResponse EndPlayVideo(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                IndoorWorx.Infrastructure.Responses.PlayVideoResponse _result = ((IndoorWorx.Infrastructure.Responses.PlayVideoResponse)(base.EndInvoke("PlayVideo", _args, result)));
                 return _result;
             }
         }

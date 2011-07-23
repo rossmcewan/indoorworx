@@ -80,6 +80,7 @@
     <Compile Include="Models\NavigationInfo.cs" />
     <Compile Include="Models\Occupation.cs" />
     <Compile Include="Models\OrderBy.cs" />
+    <Compile Include="Models\PlayVideoStatus.cs" />
     <Compile Include="Models\Range.cs" />
     <Compile Include="Models\ReferralSource.cs" />
     <Compile Include="Models\SocialMediaNotification.cs" />
@@ -131,8 +132,11 @@
     <Compile Include="Repositories\IVideoRepository.cs" />
     <Compile Include="Requests\AddTemplateRequest.cs" />
     <Compile Include="Requests\AddVideoRequest.cs" />
+    <Compile Include="Requests\PlayVideoRequest.cs" />
     <Compile Include="Responses\AddVideoResponse.cs" />
     <Compile Include="Responses\AddTemplateResponse.cs" />
+    <Compile Include="Responses\PlayVideoResponse.cs" />
+    <Compile Include="Responses\ResponseBase.cs" />
     <Compile Include="ServiceModel\IoC.cs" />
     <Compile Include="ServiceModel\SilverlightFaultBehaviorExtensionElement.cs" />
     <Compile Include="ServiceModel\SilverlightFaultMessageInspector.cs" />

@@ -126,6 +126,9 @@
   <data name="FromLabel" xml:space="preserve">
     <value>FROM</value>
   </data>
+  <data name="InsufficientCredits" xml:space="preserve">
+    <value>You have insufficient credits to ride this video.</value>
+  </data>
   <data name="MediaError" xml:space="preserve">
     <value>A smooth streaming media error has occurred.
 Error code : {0}

@@ -15,4 +15,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="AddTemplateResponse" nillable="true" type="tns:AddTemplateResponse" />
+  <xs:complexType name="PlayVideoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" minOccurs="0" name="Status" type="q3:PlayVideoStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlayVideoResponse" nillable="true" type="tns:PlayVideoResponse" />
 </xs:schema>

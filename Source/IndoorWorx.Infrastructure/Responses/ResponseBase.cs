@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
-using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Infrastructure.Responses
 {
     [DataContract]
-    public class AddTemplateResponse : ResponseBase
+    public class ResponseBase
     {
         [DataMember]
-        public AddTemplateStatus AddTemplateStatus { get; set; }
+        public string Message { get; set; }
+
+        [DataMember]
+        public int Credits { get; set; }
     }
 }

@@ -8,12 +8,9 @@ using IndoorWorx.Infrastructure.Models;
 namespace IndoorWorx.Infrastructure.Responses
 {
     [DataContract]
-    public class AddVideoResponse
+    public class AddVideoResponse : ResponseBase
     {
         [DataMember]
         public AddVideoStatus AddVideoStatus { get; set; }
-
-        [DataMember]
-        public string Message { get; set; }
     }
 }

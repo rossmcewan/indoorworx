@@ -46,5 +46,11 @@ namespace IndoorWorx.Infrastructure.Services
         event EventHandler<DataEventArgs<Exception>> AddTemplateError;
 
         void AddTemplateToLibrary(TrainingSetTemplate template);
+
+        event EventHandler<DataEventArgs<PlayVideoResponse>> PlayVideoCompleted;
+
+        event EventHandler<DataEventArgs<Exception>> PlayVideoError;
+
+        void PlayVideo(Video video);
     }
 }

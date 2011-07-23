@@ -94,8 +94,10 @@ namespace IndoorWorx.Library.Services
                     response.AddVideoStatus = AddVideoStatus.InsufficientCredits;
                     return response;
                 }
+                user.Credits -= video.Credits;
                 user.Videos.Add(video);
                 ApplicationUserRepository.Save(user);
+                response.Credits = user.Credits;
                 response.AddVideoStatus = AddVideoStatus.Success;
             }
             catch (Exception ex)
@@ -123,8 +125,10 @@ namespace IndoorWorx.Library.Services
                     response.AddTemplateStatus = AddTemplateStatus.InsufficientCredits;
                     return response;
                 }
+                user.Credits -= template.Credits;
                 user.Templates.Add(template);
                 ApplicationUserRepository.Save(user);
+                response.Credits = user.Credits;
                 response.AddTemplateStatus = AddTemplateStatus.Success;
             }
             catch (Exception ex)
@@ -134,6 +138,32 @@ namespace IndoorWorx.Library.Services
             }
             return response;
         }
+
         #endregion
+
+        public PlayVideoResponse PlayVideo(PlayVideoRequest request)
+        {
+            var response = new PlayVideoResponse();
+            try
+            {
+                var user = ApplicationUserRepository.FindOne(u => u.Username == request.User);                
+                var video = VideoRepository.FindOne(v => v.Id == request.VideoId);
+                if (user.Credits < video.RideCredits)
+                {
+                    response.Status = PlayVideoStatus.InsufficientCredits;
+                    return response;
+                }
+                user.Credits -= video.RideCredits;
+                ApplicationUserRepository.Save(user);
+                response.Credits = user.Credits;
+                response.Status = PlayVideoStatus.Success;
+            }
+            catch (Exception ex)
+            {
+                response.Status = PlayVideoStatus.Error;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
     }
 }

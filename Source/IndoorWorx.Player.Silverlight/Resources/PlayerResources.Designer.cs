@@ -88,6 +88,15 @@ namespace IndoorWorx.Player.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have insufficient credits to ride this video..
+        /// </summary>
+        public static string InsufficientCredits {
+            get {
+                return ResourceManager.GetString("InsufficientCredits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A smooth streaming media error has occurred.
         ///Error code : {0}
         ///Error message : {1}

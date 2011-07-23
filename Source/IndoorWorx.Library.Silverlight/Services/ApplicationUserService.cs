@@ -168,7 +168,11 @@ namespace IndoorWorx.Library.Services
                     else
                     {
                         if (AddVideoCompleted != null)
+                        {
+                            if (e.Result.AddVideoStatus == AddVideoStatus.Success)
+                                ApplicationUser.CurrentUser.Credits = e.Result.Credits;
                             AddVideoCompleted(this, new DataEventArgs<AddVideoResponse>(e.Result));
+                        }
                     }
                 };
             proxy.AddVideoToLibraryAsync(new AddVideoRequest()
@@ -197,13 +201,48 @@ namespace IndoorWorx.Library.Services
                 else
                 {
                     if (AddTemplateCompleted != null)
+                    {
+                        if (e.Result.AddTemplateStatus == AddTemplateStatus.Success)
+                            ApplicationUser.CurrentUser.Credits = e.Result.Credits;
                         AddTemplateCompleted(this, new DataEventArgs<AddTemplateResponse>(e.Result));
+                    }
                 }
             };
             proxy.AddTemplateToLibraryAsync(new AddTemplateRequest()
             {
                 User = ApplicationUser.CurrentUser.Username,
                 TemplateId = template.Id
+            });
+        }
+
+        public event EventHandler<DataEventArgs<PlayVideoResponse>> PlayVideoCompleted;
+
+        public event EventHandler<DataEventArgs<Exception>> PlayVideoError;
+
+        public void PlayVideo(Video video)
+        {
+            var proxy = CreateApplicationUserServiceClient();
+            proxy.PlayVideoCompleted += (sender, e) =>
+                {
+                    if (e.Error != null)
+                    {
+                        if (PlayVideoError != null)
+                            PlayVideoError(this, new DataEventArgs<Exception>(e.Error));
+                    }
+                    else
+                    {
+                        if (PlayVideoCompleted != null)
+                        {
+                            if (e.Result.Status == PlayVideoStatus.Success)
+                                ApplicationUser.CurrentUser.Credits = e.Result.Credits;
+                            PlayVideoCompleted(this, new DataEventArgs<PlayVideoResponse>(e.Result));
+                        }
+                    }
+                };
+            proxy.PlayVideoAsync(new PlayVideoRequest()
+            {
+                User = ApplicationUser.CurrentUser.Username,
+                VideoId = video.Id
             });
         }
 
@@ -219,6 +258,6 @@ namespace IndoorWorx.Library.Services
             EndpointAddress endpointAddress = new EndpointAddress(this.serviceUri);
 
             return new ApplicationUserServiceClient(binding, endpointAddress);
-        }
+        }        
     }
 }

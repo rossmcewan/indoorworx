@@ -192,6 +192,9 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\OrderBy.cs">
       <Link>Models\OrderBy.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\PlayVideoStatus.cs">
+      <Link>Models\PlayVideoStatus.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Range.cs">
       <Link>Models\Range.cs</Link>
     </Compile>
@@ -270,11 +273,20 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Requests\AddVideoRequest.cs">
       <Link>Requests\AddVideoRequest.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Requests\PlayVideoRequest.cs">
+      <Link>Requests\PlayVideoRequest.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Responses\AddTemplateResponse.cs">
       <Link>Responses\AddTemplateResponse.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Responses\AddVideoResponse.cs">
       <Link>Responses\AddVideoResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Responses\PlayVideoResponse.cs">
+      <Link>Responses\PlayVideoResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Responses\ResponseBase.cs">
+      <Link>Responses\ResponseBase.cs</Link>
     </Compile>
     <Compile Include="Animations\ThicknessAnimation.cs" />
     <Compile Include="ApplicationContext.cs" />
