@@ -27,11 +27,17 @@ namespace IndoorWorx.MyLibrary.Views
             this.serviceLocator = serviceLocator;
             this.eventAggregator = eventAggregator;
             this.PreviewVideoCommand = new DelegateCommand<Video>(PreviewVideo);
+            this.PlayVideoCommand = new DelegateCommand<Video>(PlayVideo);
         }
 
-        public void PreviewVideo(Video video)
+        private void PreviewVideo(Video video)
         {
             eventAggregator.GetEvent<PreviewVideoEvent>().Publish(video);
+        }
+
+        private void PlayVideo(Video video)
+        {
+            eventAggregator.GetEvent<PlayVideoEvent>().Publish(video);
         }
 
         public IVideoDetailsView View { get; set; }
@@ -74,6 +80,8 @@ namespace IndoorWorx.MyLibrary.Views
         }
 
         public ICommand PreviewVideoCommand { get; private set; }
+
+        public ICommand PlayVideoCommand { get; private set; }
                
         private bool busy;
         public virtual bool IsBusy

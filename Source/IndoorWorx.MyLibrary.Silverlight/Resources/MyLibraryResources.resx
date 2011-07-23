@@ -178,7 +178,7 @@
     <value>OPTIONS</value>
   </data>
   <data name="PlayVideo" xml:space="preserve">
-    <value>Play</value>
+    <value>RIDE VIDEO</value>
   </data>
   <data name="ReadTemplate" xml:space="preserve">
     <value>view template</value>
@@ -257,5 +257,11 @@
   </data>
   <data name="BeforeTheStartOfTheInterval" xml:space="preserve">
     <value>BEFORE THE START OF THE INTERVAL</value>
+  </data>
+  <data name="PerRide" xml:space="preserve">
+    <value> CREDIT(S) PER RIDE</value>
+  </data>
+  <data name="PreviewVideo" xml:space="preserve">
+    <value>preview</value>
   </data>
 </root>

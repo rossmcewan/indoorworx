@@ -376,6 +376,15 @@ namespace IndoorWorx.Catalog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RIDES.
+        /// </summary>
+        public static string RidesTitle {
+            get {
+                return ResourceManager.GetString("RidesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TEMPLATES.
         /// </summary>
         public static string TemplatesTitle {

@@ -130,17 +130,17 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private ICollection<VideoInterval> intervals = new List<VideoInterval>();
-        [DataMember]
-        public virtual ICollection<VideoInterval> Intervals
-        {
-            get { return intervals; }
-            set
-            {
-                intervals = value;
-                FirePropertyChanged("Intervals");
-            }
-        }
+        //private ICollection<VideoInterval> intervals = new List<VideoInterval>();
+        //[DataMember]
+        //public virtual ICollection<VideoInterval> Intervals
+        //{
+        //    get { return intervals; }
+        //    set
+        //    {
+        //        intervals = value;
+        //        FirePropertyChanged("Intervals");
+        //    }
+        //}
 
         private int credits;
         [DataMember]
@@ -151,6 +151,18 @@ namespace IndoorWorx.Infrastructure.Models
             {
                 credits = value;
                 FirePropertyChanged("Credits");
+            }
+        }
+
+        private int rideCredits = 1;
+        [DataMember]
+        public virtual int RideCredits
+        {
+            get { return rideCredits; }
+            set
+            {
+                rideCredits = value;
+                FirePropertyChanged("RideCredits");
             }
         }
 

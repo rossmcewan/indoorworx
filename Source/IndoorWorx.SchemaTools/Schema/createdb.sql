@@ -83,10 +83,6 @@ alter table [Interval]  drop constraint FK8882D83E2B3E4BD3
 alter table [VideoInterval]  drop constraint FKD1BC018BCF534679
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKD1BC018BE9F4749E]') AND parent_object_id = OBJECT_ID('[VideoInterval]'))
-alter table [VideoInterval]  drop constraint FKD1BC018BE9F4749E
-
-
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE48AD1903C498C0]') AND parent_object_id = OBJECT_ID('[IntervalType]'))
 alter table [IntervalType]  drop constraint FKE48AD1903C498C0
 
@@ -394,7 +390,6 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
         Id UNIQUEIDENTIFIER not null,
        StartTimestamp BIGINT not null,
        EndTimestamp BIGINT not null,
-       Video UNIQUEIDENTIFIER null,
        primary key (Id)
     )
 
@@ -591,6 +586,7 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        StreamUri NVARCHAR(255) not null,
        Duration BIGINT null,
        Credits INT null,
+       RideCredits INT null,
        VideoMetadata_id UNIQUEIDENTIFIER null,
        TelemetryInfo_id UNIQUEIDENTIFIER null,
        Catalog UNIQUEIDENTIFIER null,
@@ -719,11 +715,6 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
         add constraint FKD1BC018BCF534679 
         foreign key (Id) 
         references [Interval]
-
-    alter table [VideoInterval] 
-        add constraint FKD1BC018BE9F4749E 
-        foreign key (Video) 
-        references [Video]
 
     alter table [IntervalType] 
         add constraint FKE48AD1903C498C0 

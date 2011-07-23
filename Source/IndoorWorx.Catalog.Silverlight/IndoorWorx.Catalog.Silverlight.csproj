@@ -132,6 +132,9 @@
     <Compile Include="Helpers\DropTargetHelper.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />
+    <Compile Include="Pages\RidesPage.xaml.cs">
+      <DependentUpon>RidesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TemplateDetailsPage.xaml.cs">
       <DependentUpon>TemplateDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -244,6 +247,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CatalogPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RidesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

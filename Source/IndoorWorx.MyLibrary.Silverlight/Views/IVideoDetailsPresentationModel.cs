@@ -10,6 +10,8 @@ namespace IndoorWorx.MyLibrary.Views
     {
         ICommand PreviewVideoCommand { get; }
 
+        ICommand PlayVideoCommand { get; }
+
         IVideoDetailsView View { get; set; }
 
         void SelectVideoWithId(Guid id);

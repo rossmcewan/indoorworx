@@ -349,11 +349,29 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Play.
+        ///   Looks up a localized string similar to  CREDIT(S) PER RIDE.
+        /// </summary>
+        public static string PerRide {
+            get {
+                return ResourceManager.GetString("PerRide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RIDE VIDEO.
         /// </summary>
         public static string PlayVideo {
             get {
                 return ResourceManager.GetString("PlayVideo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to preview.
+        /// </summary>
+        public static string PreviewVideo {
+            get {
+                return ResourceManager.GetString("PreviewVideo", resourceCulture);
             }
         }
         

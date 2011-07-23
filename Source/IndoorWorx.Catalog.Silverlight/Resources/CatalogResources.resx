@@ -222,6 +222,9 @@
   <data name="ReviewsTitle" xml:space="preserve">
     <value>Reviews</value>
   </data>
+  <data name="RidesTitle" xml:space="preserve">
+    <value>RIDES</value>
+  </data>
   <data name="TemplatesTitle" xml:space="preserve">
     <value>TEMPLATES</value>
   </data>

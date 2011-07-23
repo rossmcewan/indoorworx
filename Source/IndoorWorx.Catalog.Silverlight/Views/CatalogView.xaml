@@ -34,7 +34,8 @@
             <StackPanel x:Name="LinksStackPanel" Style="{StaticResource SubMenuLinksStackPanelStyle}">
                 <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.Catalog.Silverlight;component/Pages/VideosPage.xaml" TargetName="CatalogContentFrame" Content="{Binding CatalogResources.VideosTitle, Source={StaticResource CatalogResources}}"/>
                 <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.Catalog.Silverlight;component/Pages/TemplatesPage.xaml" TargetName="CatalogContentFrame" Content="{Binding CatalogResources.TemplatesTitle, Source={StaticResource CatalogResources}}"/>
-                <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.Catalog.Silverlight;component/Pages/TrainingProgramsPage.xaml" TargetName="CatalogContentFrame" Content="{Binding CatalogResources.TrainingProgramsTitle, Source={StaticResource CatalogResources}}"/>
+                <!--<HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.Catalog.Silverlight;component/Pages/TrainingProgramsPage.xaml" TargetName="CatalogContentFrame" Content="{Binding CatalogResources.TrainingProgramsTitle, Source={StaticResource CatalogResources}}"/>-->
+                <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.Catalog.Silverlight;component/Pages/RidesPage.xaml" TargetName="CatalogContentFrame" Content="{Binding CatalogResources.RidesTitle, Source={StaticResource CatalogResources}}"/>
             </StackPanel>
         </Border>
     </Grid>
