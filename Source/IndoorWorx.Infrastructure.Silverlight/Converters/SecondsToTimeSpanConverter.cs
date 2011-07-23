@@ -32,7 +32,16 @@ namespace IndoorWorx.Infrastructure.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            throw new NotImplementedException();
+            if (value != null)
+            {
+                if (parameter != null && "string".Equals(parameter))
+                {
+                    TimeSpan result;
+                    if (TimeSpan.TryParse(value.ToString(), out result))
+                        return result.TotalSeconds;
+                }
+            }
+            return null;
         }
 
         #endregion

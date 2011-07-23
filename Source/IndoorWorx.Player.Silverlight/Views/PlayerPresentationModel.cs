@@ -148,7 +148,7 @@ namespace IndoorWorx.Player.Views
             if (video.IsTelemetryLoaded)
             {
                 LoadLinkedDictionary();
-                View.LoadTelemetry(video.Telemetry);
+                View.LoadTelemetry(video.PlayingTelemetry);
             }
             else
             {
@@ -161,7 +161,7 @@ namespace IndoorWorx.Player.Views
         void LoadLinkedDictionary()
         {
             linked.Clear();
-            foreach (var t in video.Telemetry)
+            foreach (var t in video.PlayingTelemetry)
             {
                 linked.Add(t.TimePosition.TotalSeconds, t);
                 queue.Enqueue(t);
@@ -172,7 +172,7 @@ namespace IndoorWorx.Player.Views
         {
             var video = sender as Video;
             LoadLinkedDictionary();
-            View.LoadTelemetry(video.Telemetry);
+            View.LoadTelemetry(video.PlayingTelemetry);
         }
 
         private TimeSpan playerPosition = new TimeSpan();
@@ -285,6 +285,7 @@ namespace IndoorWorx.Player.Views
             }), null, Timeout.Infinite, Timeout.Infinite);
             Video.IsMediaLoading = false;
             IsMediaOpened = true;
+            View.SetStartPosition(TimeSpan.FromSeconds(Video.PlayFrom));
         }
 
         private void LoadVideoText(VideoText videoText)

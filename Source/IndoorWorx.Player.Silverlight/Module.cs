@@ -46,10 +46,21 @@ namespace IndoorWorx.Player
 
         public void PlayVideo(Video video)
         {
-            var view = unityContainer.Resolve<IPlayerView>();
-            view.Model.Video = video;
-            
-            view.Show();
+            video.PlayFrom = 0;
+            video.PlayTo = video.Duration.TotalSeconds;
+            video.LoadPlayingTelemetry();
+            var capture = unityContainer.Resolve<IPlayerDataCaptureView>();
+            capture.Model.Video = video;
+            capture.Show(() =>
+                {
+                    video.LoadPlayingTelemetry();
+                    var view = unityContainer.Resolve<IPlayerView>();                    
+                    view.Model.Video = video;
+                    view.Show();
+                },
+                () =>
+                {
+                });            
         }
 
         public void PreviewVideo(Video video)
@@ -91,6 +102,9 @@ namespace IndoorWorx.Player
 
             unityContainer.RegisterType<IPlayerPresentationModel, PlayerPresentationModel>();
             unityContainer.RegisterType<IPlayerView, PlayerView>();
+
+            unityContainer.RegisterType<IPlayerDataCapturePresentationModel, PlayerDataCapturePresentationModel>();
+            unityContainer.RegisterType<IPlayerDataCaptureView, PlayerDataCaptureWindow>();
 
             NavigationLinks.MapUri(
                 new Uri("/Player", UriKind.Relative),

@@ -120,11 +120,23 @@
   <data name="ConfirmStopVideo" xml:space="preserve">
     <value>Are you sure you would like to stop the video playing?</value>
   </data>
+  <data name="DurationLabel" xml:space="preserve">
+    <value>DURATION</value>
+  </data>
+  <data name="FromLabel" xml:space="preserve">
+    <value>FROM</value>
+  </data>
   <data name="MediaError" xml:space="preserve">
     <value>A smooth streaming media error has occurred.
 Error code : {0}
 Error message : {1}
 Technical support has been notified. We will try to resolve this as soon as possible.</value>
+  </data>
+  <data name="PlayerDataCaptureTitle" xml:space="preserve">
+    <value>PLAYER DATA</value>
+  </data>
+  <data name="PlayerDetailsInstructions" xml:space="preserve">
+    <value>You have chosen to ride a video with associated telemetry. You now have the option of configuring what portion of the ride you would like to do by selecting the start and end time.</value>
   </data>
   <data name="PowerLabel" xml:space="preserve">
     <value>Power:</value>
@@ -134,5 +146,8 @@ Technical support has been notified. We will try to resolve this as soon as poss
   </data>
   <data name="TimeLabel" xml:space="preserve">
     <value>Time:</value>
+  </data>
+  <data name="ToLabel" xml:space="preserve">
+    <value>TO</value>
   </data>
 </root>

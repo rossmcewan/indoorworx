@@ -261,7 +261,10 @@
   <data name="PerRide" xml:space="preserve">
     <value> CREDIT(S) PER RIDE</value>
   </data>
-  <data name="PreviewVideo" xml:space="preserve">
-    <value>preview</value>
+  <data name="PlayVideoTooltip" xml:space="preserve">
+    <value>ride video</value>
+  </data>
+  <data name="PreviewVideoTooltip" xml:space="preserve">
+    <value>preview video</value>
   </data>
 </root>

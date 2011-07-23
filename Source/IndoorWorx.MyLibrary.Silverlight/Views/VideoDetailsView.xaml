@@ -11,7 +11,10 @@
         <StackPanel>
             <Grid>                
                 <Image Width="256" Margin="5" Source="{Binding Video.ImageUri, Mode=OneWay}"/>
-                <Button x:Name="playButton" Opacity="1" Style="{StaticResource MainPlayerPlayButtonStyle}" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Command="{Binding PreviewVideoCommand}" CommandParameter="{Binding Video, Mode=OneWay}" ToolTipService.ToolTip="{Binding MyLibraryResources.PreviewVideo, Source={StaticResource MyLibraryResources}}"/>
+                <Button x:Name="playButton" Opacity="1" Style="{StaticResource MainPlayerPlayButtonStyle}" 
+                        Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                        Command="{Binding PlayVideoCommand}" CommandParameter="{Binding Video, Mode=OneWay}" 
+                        ToolTipService.ToolTip="{Binding MyLibraryResources.PlayVideoTooltip, Source={StaticResource MyLibraryResources}}"/>
             </Grid>
             <TextBlock FontWeight="Bold" Text="{Binding Video.Title, Mode=OneWay}" Margin="5"/>
             <TextBlock Text="{Binding Video.Description, Mode=OneWay}" TextWrapping="Wrap" Margin="5"/>
@@ -22,7 +25,7 @@
                 <TextBlock Text="{Binding Video.RideCredits, Mode=OneWay}" Margin="5,0" />
                 <TextBlock Text="{Binding MyLibraryResources.PerRide, Source={StaticResource MyLibraryResources}}"/>
             </StackPanel>
-            <telerik:RadButton HorizontalAlignment="Left" Content="{Binding MyLibraryResources.PlayVideo, Source={StaticResource MyLibraryResources}}" Command="{Binding PlayVideoCommand}" CommandParameter="{Binding Video, Mode=OneWay}" Margin="5"/>
+            <!--<telerik:RadButton HorizontalAlignment="Left" Content="{Binding MyLibraryResources.PlayVideo, Source={StaticResource MyLibraryResources}}" Command="{Binding PlayVideoCommand}" CommandParameter="{Binding Video, Mode=OneWay}" Margin="5"/>-->
             <telerik:RadBusyIndicator IsBusy="{Binding Video.IsTelemetryLoading, Mode=OneWay}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0">
                     <telerik:RadLinearSparkline 

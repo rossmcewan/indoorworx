@@ -367,11 +367,20 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to preview.
+        ///   Looks up a localized string similar to ride video.
         /// </summary>
-        public static string PreviewVideo {
+        public static string PlayVideoTooltip {
             get {
-                return ResourceManager.GetString("PreviewVideo", resourceCulture);
+                return ResourceManager.GetString("PlayVideoTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to preview video.
+        /// </summary>
+        public static string PreviewVideoTooltip {
+            get {
+                return ResourceManager.GetString("PreviewVideoTooltip", resourceCulture);
             }
         }
         

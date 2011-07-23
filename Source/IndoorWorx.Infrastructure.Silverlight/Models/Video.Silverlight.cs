@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -155,10 +156,30 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        public void LoadPlayingTelemetry()
+        {
+            this.PlayingTelemetry = Telemetry.Where(x => x.TimePosition.TotalSeconds > this.PlayFrom && x.TimePosition.TotalSeconds < this.PlayTo).ToList();
+        }
+
+        private ICollection<Telemetry> playingTelemetry;
+        public virtual ICollection<Telemetry> PlayingTelemetry
+        {
+            get
+            {
+                return playingTelemetry;
+            }
+            set
+            {
+                this.playingTelemetry = value;
+                FirePropertyChanged("PlayingTelemetry");
+            }
+        }
+
         [OnDeserialized]
         public void OnDeserialized(StreamingContext context)
         {
             Initialize();
+            PlayTo = Duration.TotalSeconds;
         }
 
         private void Initialize()
@@ -177,6 +198,35 @@ namespace IndoorWorx.Infrastructure.Models
         {
             if (SelectedTrainingSetChanged != null)
                 SelectedTrainingSetChanged(this, EventArgs.Empty);
+        }
+
+        private double playFrom;
+        public virtual double PlayFrom
+        {
+            get { return playFrom; }
+            set
+            {
+                playFrom = value;
+                FirePropertyChanged("PlayFrom");
+                FirePropertyChanged("PlayDuration");
+            }
+        }
+
+        private double playTo;
+        public virtual double PlayTo
+        {
+            get { return playTo; }
+            set
+            {
+                playTo = value;
+                FirePropertyChanged("PlayTo");
+                FirePropertyChanged("PlayDuration");
+            }
+        }
+
+        public double PlayDuration
+        {
+            get { return PlayTo - PlayFrom; }
         }
     }
 }

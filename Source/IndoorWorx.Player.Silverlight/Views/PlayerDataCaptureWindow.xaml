@@ -1,0 +1,45 @@
+﻿<controls:ChildWindow x:Class="IndoorWorx.Player.Views.PlayerDataCaptureWindow"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+           xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"                  
+           Width="400" Height="500" 
+           Style="{StaticResource ChildWindowStyle}" Title="{Binding Title, Mode=OneWay}">
+    <controls:ChildWindow.Resources>
+        <converters:SecondsToOADateConverter x:Key="SecondsToOADateConverter"/>
+        <converters:SecondsToTimeSpanConverter x:Key="SecondsToTimeSpanConverter"/>
+    </controls:ChildWindow.Resources>
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock TextWrapping="Wrap" Text="{Binding PlayerResources.PlayerDetailsInstructions, Source={StaticResource PlayerResources}}"/>
+                <TextBlock Text="{Binding PlayerResources.FromLabel, Source={StaticResource PlayerResources}}" FontWeight="SemiBold"/>
+                <TextBox Text="{Binding Video.PlayFrom, Mode=TwoWay, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}" HorizontalAlignment="Left" Width="100"/>
+                <TextBlock Text="{Binding PlayerResources.ToLabel, Source={StaticResource PlayerResources}}" FontWeight="SemiBold"/>
+                <TextBox Text="{Binding Video.PlayTo, Mode=TwoWay, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}" HorizontalAlignment="Left" Width="100"/>
+                <TextBlock Text="{Binding PlayerResources.DurationLabel, Source={StaticResource PlayerResources}}" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding Video.PlayDuration, Mode=OneWay, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}"/>
+                <telerik:RadSlider HandlesVisibility="Visible" IsSelectionRangeEnabled="True" VerticalAlignment="Top"
+                                   Minimum="0" Maximum="{Binding Video.Duration.TotalSeconds}"
+                                   DragCompleted="RadSlider_DragCompleted" TickFrequency="5" IsSnapToTickEnabled="True" TickPlacement="None"
+                                   SelectionStart="{Binding Video.PlayFrom, Mode=TwoWay}" SelectionEnd="{Binding Video.PlayTo, Mode=TwoWay}"/>
+                <telerik:RadLinearSparkline 
+                            Height="100" 
+                            Width="400"                                                    
+                            ItemsSource="{Binding Video.PlayingTelemetry, Mode=TwoWay}" 
+                            ShowAxis="False"                            
+                            YValuePath="PercentageThreshold" 
+                            XValuePath="OATimePosition" 
+                            VerticalAlignment="Bottom" 
+                            HorizontalAlignment="Left"/>
+            </StackPanel>
+        </ScrollViewer>
+        <Button x:Name="CancelButton" Content="Cancel" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+        <Button x:Name="OKButton" Content="OK" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+    </Grid>
+</controls:ChildWindow>

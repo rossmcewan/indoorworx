@@ -22,7 +22,7 @@ using System.Threading;
 
 namespace IndoorWorx.Player.Views
 {
-    public partial class PlayerView : UserControl ,IPlayerView
+    public partial class PlayerView : UserControl, IPlayerView
     {
         private DateTime now = DateTime.Now;
         private IServiceLocator serviceLocator;
@@ -169,6 +169,11 @@ namespace IndoorWorx.Player.Views
                     });
                 }, animation);
             }
+        }
+
+        public void SetStartPosition(TimeSpan timeSpan)
+        {
+            mediaElement.Position = timeSpan;
         }
     }
 }

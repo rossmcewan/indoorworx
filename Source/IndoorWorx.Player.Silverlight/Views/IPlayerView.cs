@@ -35,5 +35,7 @@ namespace IndoorWorx.Player.Views
         void Show();
 
         void Hide();
+
+        void SetStartPosition(TimeSpan timeSpan);
     }
 }
