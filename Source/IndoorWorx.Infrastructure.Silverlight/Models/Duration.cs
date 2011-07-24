@@ -50,5 +50,14 @@ namespace IndoorWorx.Infrastructure.Models
         {
             return new TimeSpan(Hours, Minutes, Seconds);
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Duration)
+            {
+                return this.AsTimeSpan() == (obj as Duration).AsTimeSpan();
+            }
+            return base.Equals(obj);
+        }
     }
 }

@@ -57,5 +57,18 @@ namespace IndoorWorx.Infrastructure.Models
         {
             get { return tick; }
         }
+
+        public override bool Equals(object obj)
+        {
+            var cd = obj as CountDown;
+            if (cd != null)
+            {
+                return cd.Duration.Equals(this.Duration) &&
+                    cd.EndMessage.Equals(this.EndMessage) &&
+                    cd.StartMessage.Equals(this.StartMessage) &&
+                    cd.Tick.Equals(this.Tick);
+            }
+            return base.Equals(obj);
+        }
     }
 }

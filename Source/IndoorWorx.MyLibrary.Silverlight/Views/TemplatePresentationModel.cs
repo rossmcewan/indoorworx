@@ -18,6 +18,7 @@ using IndoorWorx.Infrastructure;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using IndoorWorx.Infrastructure.Services;
+using IndoorWorx.MyLibrary.Resources;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -64,7 +65,22 @@ namespace IndoorWorx.MyLibrary.Views
 
         private void Cancel(object arg)
         {
-            shell.RemoveFromLayoutRoot(View as UIElement);
+            if (Template.IsChanged)
+            {
+                dialogFacade.Confirm(MyLibraryResources.TemplateChangedCancelConfirmation, (confirmed) =>
+                    {
+                        if (confirmed)
+                        {
+                            this.Template.CancelEdit();
+                            shell.RemoveFromLayoutRoot(View as UIElement);
+                        }
+                    });
+            }
+            else
+            {
+                this.Template.CancelEdit();
+                shell.RemoveFromLayoutRoot(View as UIElement);
+            }
         }
 
         public ITemplateView View { get; set; }
@@ -78,7 +94,7 @@ namespace IndoorWorx.MyLibrary.Views
         public void NewTemplate()
         {
             this.TemplateOperation = CrudOperation.Create;
-            this.Template = new TrainingSetTemplate();            
+            this.Template = new TrainingSetTemplate();
             this.Template.EffortType = ApplicationContext.Current.EffortTypes.FirstOrDefault();
             this.Template.PropertyChanged += (sender, e) =>
                 {
@@ -91,7 +107,8 @@ namespace IndoorWorx.MyLibrary.Views
                         foreach (var interval in CooldownIntervals)
                             interval.EffortType = this.Template.EffortType;
                     }
-                };            
+                };
+            this.Template.BeginEdit();
             shell.AddToLayoutRoot(View as UIElement);
         }
 

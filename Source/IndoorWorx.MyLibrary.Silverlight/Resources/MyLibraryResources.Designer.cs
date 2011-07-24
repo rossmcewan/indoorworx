@@ -439,6 +439,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The template has changed. If you continue you will lose all of the changes you have made..
+        /// </summary>
+        public static string TemplateChangedCancelConfirmation {
+            get {
+                return ResourceManager.GetString("TemplateChangedCancelConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TEMPLATES.
         /// </summary>
         public static string TemplatesTitle {

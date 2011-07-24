@@ -116,5 +116,10 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("Sequence");
             }
         }
+
+        public virtual Interval Clone()
+        {
+            return (Interval)this.MemberwiseClone();
+        }
     }
 }

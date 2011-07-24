@@ -267,4 +267,7 @@
   <data name="PreviewVideoTooltip" xml:space="preserve">
     <value>preview video</value>
   </data>
+  <data name="TemplateChangedCancelConfirmation" xml:space="preserve">
+    <value>The template has changed. If you continue you will lose all of the changes you have made.</value>
+  </data>
 </root>

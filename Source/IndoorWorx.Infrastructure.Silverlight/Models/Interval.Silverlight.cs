@@ -158,5 +158,22 @@ namespace IndoorWorx.Infrastructure.Models
                 }
             }
         }
+
+        public bool ValuesEquals(Interval compareTo)
+        {
+            return this.Description == compareTo.Description &&
+                this.Duration == compareTo.Duration &&
+                this.EffortFrom == compareTo.EffortFrom &&
+                this.EffortTo == compareTo.EffortTo &&
+                this.EffortType.Equals(compareTo.EffortType) &&
+                this.IntervalDuration.Equals(compareTo.IntervalDuration) &&
+                this.IntervalLevel.Equals(compareTo.IntervalLevel) &&
+                this.IntervalType.Equals(compareTo.IntervalType) &&
+                this.RecoveryInterval.Equals(compareTo.RecoveryInterval) &&
+                this.Repeats == compareTo.Repeats &&
+                this.Title == compareTo.Title &&
+                this.ToEnd.Equals(compareTo.ToEnd) &&
+                this.ToStart.Equals(compareTo.ToStart);
+        }
     }
 }
