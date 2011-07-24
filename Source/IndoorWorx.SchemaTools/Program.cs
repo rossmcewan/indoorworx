@@ -464,6 +464,7 @@ namespace IndoorWorx.SchemaTools
 
                     #region 4x10
                     var trainingTemplate = new TrainingSetTemplate();
+                    trainingTemplate.IsPublic = true;
                     trainingTemplate.EffortType = power;
                     trainingTemplate.Duration = TimeSpan.FromMinutes(70);
                     trainingTemplate.Title = "4 x 10";
@@ -572,6 +573,7 @@ namespace IndoorWorx.SchemaTools
 
                     #region 2x20
                     var trainingTemplate1 = new TrainingSetTemplate();
+                    trainingTemplate1.IsPublic = true;
                     trainingTemplate1.EffortType = power;
                     trainingTemplate1.Duration = TimeSpan.FromHours(1);
                     trainingTemplate1.Title = "2 x 20";

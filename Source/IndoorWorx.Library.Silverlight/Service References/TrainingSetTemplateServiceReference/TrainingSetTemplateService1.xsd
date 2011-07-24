@@ -11,8 +11,10 @@
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseModel">
         <xs:sequence>
+          <xs:element minOccurs="0" name="Credits" type="xs:int" />
           <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Duration" type="ser:duration" />
+          <xs:element minOccurs="0" name="EffortType" nillable="true" type="tns:EffortType" />
           <xs:element minOccurs="0" name="Intervals" nillable="true" type="tns:ArrayOfInterval" />
           <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
         </xs:sequence>
@@ -28,6 +30,19 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="BaseModel" nillable="true" type="tns:BaseModel" />
+  <xs:complexType name="EffortType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Sequence" type="xs:int" />
+          <xs:element minOccurs="0" name="Tag" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EffortType" nillable="true" type="tns:EffortType" />
   <xs:complexType name="ArrayOfInterval">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Interval" nillable="true" type="tns:Interval" />
@@ -42,7 +57,7 @@
           <xs:element minOccurs="0" name="Duration" type="ser:duration" />
           <xs:element minOccurs="0" name="EffortFrom" nillable="true" type="xs:int" />
           <xs:element minOccurs="0" name="EffortTo" nillable="true" type="xs:int" />
-          <xs:element minOccurs="0" name="EffortType" type="tns:EffortType" />
+          <xs:element minOccurs="0" name="EffortType" nillable="true" type="tns:EffortType" />
           <xs:element minOccurs="0" name="IntervalLevel" nillable="true" type="tns:IntervalLevel" />
           <xs:element minOccurs="0" name="IntervalType" nillable="true" type="tns:IntervalType" />
           <xs:element minOccurs="0" name="Sequence" type="xs:int" />
@@ -52,14 +67,6 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="Interval" nillable="true" type="tns:Interval" />
-  <xs:simpleType name="EffortType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Power" />
-      <xs:enumeration value="HeartRate" />
-      <xs:enumeration value="RPE" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="EffortType" nillable="true" type="tns:EffortType" />
   <xs:complexType name="IntervalLevel">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseModel">
@@ -71,6 +78,7 @@
           <xs:element minOccurs="0" name="MinRPE" nillable="true" type="xs:int" />
           <xs:element minOccurs="0" name="MinimumPercentageOfFthr" nillable="true" type="xs:int" />
           <xs:element minOccurs="0" name="MinimumPercentageOfFtp" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Sequence" type="xs:int" />
           <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="TypicalMaxDuration" nillable="true" type="ser:duration" />
           <xs:element minOccurs="0" name="TypicalMinDuration" nillable="true" type="ser:duration" />
@@ -85,9 +93,25 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="DefaultLevel" nillable="true" type="tns:IntervalLevel" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Sequence" type="xs:int" />
+          <xs:element minOccurs="0" name="Tag" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="IntervalType" nillable="true" type="tns:IntervalType" />
+  <xs:simpleType name="SaveTemplateStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="Error" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SaveTemplateStatus" nillable="true" type="tns:SaveTemplateStatus" />
+  <xs:simpleType name="RemoveTemplateStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="Error" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="RemoveTemplateStatus" nillable="true" type="tns:RemoveTemplateStatus" />
 </xs:schema>

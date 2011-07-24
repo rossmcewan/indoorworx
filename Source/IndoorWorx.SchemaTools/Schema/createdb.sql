@@ -545,6 +545,7 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        Description NVARCHAR(255) null,
        Duration BIGINT null,
        Credits INT null,
+       IsPublic BIT null,
        EffortType_id UNIQUEIDENTIFIER not null,
        primary key (Id)
     )

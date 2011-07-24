@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Responses" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Responses" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3415/TrainingSetTemplateService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" />
+  <xs:complexType name="SaveTemplateResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResponseBase">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" minOccurs="0" name="SavedTemplate" nillable="true" type="q1:TrainingSetTemplate" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" minOccurs="0" name="Status" type="q2:SaveTemplateStatus" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SaveTemplateResponse" nillable="true" type="tns:SaveTemplateResponse" />
+  <xs:complexType name="ResponseBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Credits" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResponseBase" nillable="true" type="tns:ResponseBase" />
+  <xs:complexType name="RemoveTemplateResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResponseBase">
+        <xs:sequence>
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" minOccurs="0" name="Status" type="q3:RemoveTemplateStatus" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RemoveTemplateResponse" nillable="true" type="tns:RemoveTemplateResponse" />
+</xs:schema>

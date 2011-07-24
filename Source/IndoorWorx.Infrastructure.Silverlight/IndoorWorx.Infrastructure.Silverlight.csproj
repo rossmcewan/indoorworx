@@ -201,8 +201,14 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\ReferralSource.cs">
       <Link>Models\ReferralSource.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\RemoveTemplateStatus.cs">
+      <Link>Models\RemoveTemplateStatus.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Review.cs">
       <Link>Models\Review.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\SaveTemplateStatus.cs">
+      <Link>Models\SaveTemplateStatus.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\SocialMediaNotification.cs">
       <Link>Models\SocialMediaNotification.cs</Link>
@@ -276,6 +282,12 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Requests\PlayVideoRequest.cs">
       <Link>Requests\PlayVideoRequest.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Requests\RemoveTemplateRequest.cs">
+      <Link>Requests\RemoveTemplateRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Requests\SaveTemplateRequest.cs">
+      <Link>Requests\SaveTemplateRequest.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Responses\AddTemplateResponse.cs">
       <Link>Responses\AddTemplateResponse.cs</Link>
     </Compile>
@@ -285,8 +297,14 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Responses\PlayVideoResponse.cs">
       <Link>Responses\PlayVideoResponse.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Responses\RemoveTemplateResponse.cs">
+      <Link>Responses\RemoveTemplateResponse.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Responses\ResponseBase.cs">
       <Link>Responses\ResponseBase.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Responses\SaveTemplateResponse.cs">
+      <Link>Responses\SaveTemplateResponse.cs</Link>
     </Compile>
     <Compile Include="Animations\ThicknessAnimation.cs" />
     <Compile Include="ApplicationContext.cs" />

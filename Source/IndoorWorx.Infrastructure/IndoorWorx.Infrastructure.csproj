@@ -83,6 +83,8 @@
     <Compile Include="Models\PlayVideoStatus.cs" />
     <Compile Include="Models\Range.cs" />
     <Compile Include="Models\ReferralSource.cs" />
+    <Compile Include="Models\RemoveTemplateStatus.cs" />
+    <Compile Include="Models\SaveTemplateStatus.cs" />
     <Compile Include="Models\SocialMediaNotification.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\SocialMediaProfile.cs" />
@@ -133,10 +135,14 @@
     <Compile Include="Requests\AddTemplateRequest.cs" />
     <Compile Include="Requests\AddVideoRequest.cs" />
     <Compile Include="Requests\PlayVideoRequest.cs" />
+    <Compile Include="Requests\RemoveTemplateRequest.cs" />
+    <Compile Include="Requests\SaveTemplateRequest.cs" />
     <Compile Include="Responses\AddVideoResponse.cs" />
     <Compile Include="Responses\AddTemplateResponse.cs" />
     <Compile Include="Responses\PlayVideoResponse.cs" />
+    <Compile Include="Responses\RemoveTemplateResponse.cs" />
     <Compile Include="Responses\ResponseBase.cs" />
+    <Compile Include="Responses\SaveTemplateResponse.cs" />
     <Compile Include="ServiceModel\IoC.cs" />
     <Compile Include="ServiceModel\SilverlightFaultBehaviorExtensionElement.cs" />
     <Compile Include="ServiceModel\SilverlightFaultMessageInspector.cs" />

@@ -15,6 +15,8 @@ using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure;
 using System.ServiceModel;
+using IndoorWorx.Infrastructure.Requests;
+using IndoorWorx.Infrastructure.Responses;
 
 namespace IndoorWorx.Library.Services
 {
@@ -64,6 +66,60 @@ namespace IndoorWorx.Library.Services
             proxy.FindAllAsync();
         }
 
+        public event EventHandler<DataEventArgs<SaveTemplateResponse>> TrainingSetTemplateSaved;
+
+        public event EventHandler<DataEventArgs<Exception>> TrainingSetTemplateSaveError;
+
+        public void SaveTemplate(TrainingSetTemplate template)
+        {
+            var proxy = CreateTrainingSetTemplateServiceClient();
+            proxy.SaveCompleted += (sender, e) =>
+                {
+                    if (e.Error != null)
+                    {
+                        if (TrainingSetTemplateSaveError != null)
+                            TrainingSetTemplateSaveError(this, new DataEventArgs<Exception>(e.Error));
+                    }
+                    else
+                    {
+                        if (TrainingSetTemplateSaved != null)
+                            TrainingSetTemplateSaved(this, new DataEventArgs<SaveTemplateResponse>(e.Result));
+                    }
+                };
+            proxy.SaveAsync(new SaveTemplateRequest()
+            {
+                Template = template,
+                User = ApplicationUser.CurrentUser.Username
+            });
+        }
+
+        public event EventHandler<DataEventArgs<Infrastructure.Responses.RemoveTemplateResponse>> TrainingSetTemplateRemoved;
+
+        public event EventHandler<DataEventArgs<Exception>> TrainingSetTemplateRemoveError;
+
+        public void RemoveTemplate(TrainingSetTemplate template)
+        {
+            var proxy = CreateTrainingSetTemplateServiceClient();
+            proxy.RemoveCompleted += (sender, e) =>
+            {
+                if (e.Error != null)
+                {
+                    if (TrainingSetTemplateRemoveError != null)
+                        TrainingSetTemplateRemoveError(this, new DataEventArgs<Exception>(e.Error));
+                }
+                else
+                {
+                    if (TrainingSetTemplateRemoved != null)
+                        TrainingSetTemplateRemoved(this, new DataEventArgs<RemoveTemplateResponse>(e.Result));
+                }
+            };
+            proxy.RemoveAsync(new RemoveTemplateRequest()
+            {
+                Template = template,
+                User = ApplicationUser.CurrentUser.Username
+            });
+        }
+
         private IndoorWorx.Library.TrainingSetTemplateServiceReference.TrainingSetTemplateServiceClient CreateTrainingSetTemplateServiceClient()
         {
             BasicHttpBinding binding = new BasicHttpBinding(BasicHttpSecurityMode.None)
@@ -76,6 +132,6 @@ namespace IndoorWorx.Library.Services
             EndpointAddress endpointAddress = new EndpointAddress(this.serviceAddress);
 
             return new IndoorWorx.Library.TrainingSetTemplateServiceReference.TrainingSetTemplateServiceClient(binding, endpointAddress);
-        }
+        }        
     }
 }

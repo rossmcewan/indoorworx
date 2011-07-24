@@ -6,6 +6,7 @@ using IndoorWorx.Infrastructure.Repositories;
 using NHibernate;
 using NHibernate.Linq;
 using System.Linq.Expressions;
+using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.NHibernate.Repositories
 {
@@ -72,11 +73,11 @@ namespace IndoorWorx.NHibernate.Repositories
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.SaveOrUpdate(entity);
+                    var obj = session.SaveOrUpdateCopy(entity);
                     transaction.Commit();
-                }
-            }
-            return entity;
+                    return (T)obj;
+                }                
+            }            
         }
 
         #endregion

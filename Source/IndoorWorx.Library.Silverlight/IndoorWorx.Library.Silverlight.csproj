@@ -219,6 +219,8 @@
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.AddTemplateResponse.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.AddVideoResponse.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.PlayVideoResponse.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.RemoveTemplateResponse.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.SaveTemplateResponse.datasource" />
     <None Include="Service References\ActivityServiceReference\ActivityService.wsdl" />
     <None Include="Service References\ActivityServiceReference\ActivityService.xsd">
       <SubType>Designer</SubType>
@@ -342,6 +344,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TrainingSetTemplateServiceReference\TrainingSetTemplateService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingSetTemplateServiceReference\TrainingSetTemplateService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingSetTemplateServiceReference\TrainingSetTemplateService31.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

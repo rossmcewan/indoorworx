@@ -33,6 +33,18 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private bool @public;
+        [DataMember]
+        public virtual bool IsPublic
+        {
+            get { return @public; }
+            set
+            {
+                @public = value;
+                FirePropertyChanged("IsPublic");
+            }
+        }
+
         private ICollection<Interval> intervals = new List<Interval>();
         [DataMember]
         public virtual ICollection<Interval> Intervals

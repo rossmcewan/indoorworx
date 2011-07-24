@@ -9,9 +9,13 @@ namespace IndoorWorx.MyLibrary.Views
 {
     public interface ITemplatePresentationModel
     {
+        bool IsBusy { get; set; }
+
         ITemplateView View { get; set; }
 
         ICommand CancelCommand { get; }
+
+        ICommand SaveCommand { get; }
 
         CrudOperation TemplateOperation { get; }        
 

@@ -280,6 +280,9 @@
   <ItemGroup>
     <Resource Include="Images\new.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\video.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

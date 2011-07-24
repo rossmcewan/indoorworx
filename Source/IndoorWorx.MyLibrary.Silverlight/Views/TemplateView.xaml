@@ -19,36 +19,37 @@
         <converters:TemplateOperationToTextConverter x:Key="TemplateOperationToTextConverter"/>
     </UserControl.Resources>
     <infControls:MetroContentControl>
-        <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
-            <Border x:Name="BackgroundBorder" Style="{StaticResource BackgroundBorderStyle}"/>
+        <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
+            <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
+                <Border x:Name="BackgroundBorder" Style="{StaticResource BackgroundBorderStyle}"/>
 
-            <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
-                <Grid Style="{StaticResource ContentGridStyle}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <sdk:Label Content="{Binding MyLibraryResources.TitleLabel, Source={StaticResource MyLibraryResources}}" Margin="5" />
-                    <TextBox Grid.Column="1" Width="200" Margin="5" Text="{Binding Template.Title, Mode=TwoWay}" HorizontalAlignment="Left"/>
-                    <sdk:Label Content="{Binding MyLibraryResources.EffortTypeLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Column="2" />
-                    <telerik:RadComboBox Grid.Column="3" Width="200" Margin="5" ItemsSource="{Binding EffortTypes, Mode=OneWay, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding Template.EffortType, Mode=TwoWay}" DisplayMemberPath="Title" HorizontalAlignment="Left"/>
-                    <sdk:Label Content="{Binding MyLibraryResources.DescriptionLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Row="1" />
-                    <TextBox AcceptsReturn="True" Margin="5" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Height="50" Text="{Binding Template.Description, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Stretch"/>
-                    <sdk:Label Content="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}" Grid.Row="2" Margin="5" />
-                    <sdk:Label Content="{Binding Template.Duration, Mode=OneWay}" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="20" FontWeight="SemiBold" />
-                    <sdk:TabControl Grid.Row="3" Grid.ColumnSpan="4" Margin="5" Width="750">
-                        <sdk:TabItem Header="{Binding MyLibraryResources.WarmupHeader, Source={StaticResource MyLibraryResources}}">
-                            <Grid>
-                                <controls:IntervalsCaptureControl 
+                <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
+                    <Grid Style="{StaticResource ContentGridStyle}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <sdk:Label Content="{Binding MyLibraryResources.TitleLabel, Source={StaticResource MyLibraryResources}}" Margin="5" />
+                        <TextBox Grid.Column="1" Width="200" Margin="5" Text="{Binding Template.Title, Mode=TwoWay}" HorizontalAlignment="Left"/>
+                        <sdk:Label Content="{Binding MyLibraryResources.EffortTypeLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Column="2" />
+                        <telerik:RadComboBox Grid.Column="3" Width="200" Margin="5" ItemsSource="{Binding EffortTypes, Mode=OneWay, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding Template.EffortType, Mode=TwoWay}" DisplayMemberPath="Title" HorizontalAlignment="Left"/>
+                        <sdk:Label Content="{Binding MyLibraryResources.DescriptionLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Row="1" />
+                        <TextBox AcceptsReturn="True" Margin="5" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Height="50" Text="{Binding Template.Description, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Stretch"/>
+                        <sdk:Label Content="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}" Grid.Row="2" Margin="5" />
+                        <sdk:Label Content="{Binding Template.Duration, Mode=OneWay}" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="20" FontWeight="SemiBold" />
+                        <sdk:TabControl Grid.Row="3" Grid.ColumnSpan="4" Margin="5" Width="750">
+                            <sdk:TabItem Header="{Binding MyLibraryResources.WarmupHeader, Source={StaticResource MyLibraryResources}}">
+                                <Grid>
+                                    <controls:IntervalsCaptureControl 
                                     ItemsSource="{Binding WarmupIntervals, Mode=OneWay}" 
                                     IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
                                     MoveDownCommand="{Binding MoveWarmupIntervalDownCommand}"
@@ -56,63 +57,54 @@
                                     AddIntervalCommand="{Binding AddIntervalToWarmupCommand}"
                                     EditIntervalCommand="{Binding EditIntervalCommand}"
                                     RemoveIntervalCommand="{Binding RemoveIntervalFromWarmupCommand}"/>
-                                <!--<Button HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" 
-                                    Content="{Binding MyLibraryResources.BeginButtonText, Source={StaticResource MyLibraryResources}}" 
-                                    Command="{Binding AddIntervalToWarmupCommand}" 
-                                    Visibility="{Binding HasWarmupIntervals, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}"/>-->
-                            </Grid>
-                        </sdk:TabItem>
-                        <sdk:TabItem Header="{Binding MyLibraryResources.MainSetHeader, Source={StaticResource MyLibraryResources}}">
-                            <controls:IntervalsCaptureControl 
-                            ItemsSource="{Binding MainSetIntervals, Mode=OneWay}" 
-                            AddIntervalCommand="{Binding AddIntervalToMainSetCommand}" 
-                            RemoveIntervalCommand="{Binding RemoveIntervalFromMainSetCommand}"/>
-                        </sdk:TabItem>
-                        <sdk:TabItem Header="{Binding MyLibraryResources.CooldownHeader, Source={StaticResource MyLibraryResources}}">
-                            <controls:IntervalsCaptureControl 
-                            ItemsSource="{Binding CooldownIntervals, Mode=OneWay}" 
-                            AddIntervalCommand="{Binding AddIntervalToCooldownCommand}" 
-                            RemoveIntervalCommand="{Binding RemoveIntervalFromCooldownCommand}"/>
-                        </sdk:TabItem>
-                        <sdk:TabItem Header="{Binding MyLibraryResources.TextMessagesHeader, Source={StaticResource MyLibraryResources}}"></sdk:TabItem>
-                        <sdk:TabItem Header="{Binding MyLibraryResources.SocialMediaHeader, Source={StaticResource MyLibraryResources}}"></sdk:TabItem>
-                    </sdk:TabControl>
-                    <!--<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0" Grid.Row="4" Margin="2" Grid.ColumnSpan="4">
-                    <telerik:RadColumnSparkline 
-                        Width="600" Height="100"
-                        MinYValue="0"
-                        AutoRange="False"
-                        ItemsSource="{Binding Template.Intervals, Mode=TwoWay}" 
-                        ShowAxis="False"                                               
-                        YValuePath="AverageEffort" 
-                        XValuePath="OADateTime"/>
-                </ScrollViewer>-->
-                </Grid>
-            </Border>
+                                </Grid>
+                            </sdk:TabItem>
+                            <sdk:TabItem Header="{Binding MyLibraryResources.MainSetHeader, Source={StaticResource MyLibraryResources}}">
+                                <controls:IntervalsCaptureControl 
+                                IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
+                                ItemsSource="{Binding MainSetIntervals, Mode=OneWay}" 
+                                AddIntervalCommand="{Binding AddIntervalToMainSetCommand}" 
+                                EditIntervalCommand="{Binding EditIntervalCommand}"
+                                RemoveIntervalCommand="{Binding RemoveIntervalFromMainSetCommand}"/>
+                            </sdk:TabItem>
+                            <sdk:TabItem Header="{Binding MyLibraryResources.CooldownHeader, Source={StaticResource MyLibraryResources}}">
+                                <controls:IntervalsCaptureControl 
+                                IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
+                                ItemsSource="{Binding CooldownIntervals, Mode=OneWay}" 
+                                AddIntervalCommand="{Binding AddIntervalToCooldownCommand}"
+                                EditIntervalCommand="{Binding EditIntervalCommand}"
+                                RemoveIntervalCommand="{Binding RemoveIntervalFromCooldownCommand}"/>
+                            </sdk:TabItem>
+                            <sdk:TabItem Header="{Binding MyLibraryResources.TextMessagesHeader, Source={StaticResource MyLibraryResources}}"></sdk:TabItem>
+                            <sdk:TabItem Header="{Binding MyLibraryResources.SocialMediaHeader, Source={StaticResource MyLibraryResources}}"></sdk:TabItem>
+                        </sdk:TabControl>
+                    </Grid>
+                </Border>
 
-            <Grid x:Name="NavigationOuterGrid" Style="{StaticResource NavigationOuterGridStyle}">
-                <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}">
+                <Grid x:Name="NavigationOuterGrid" Style="{StaticResource NavigationOuterGridStyle}">
+                    <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}">
 
-                    <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}">
-                        <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
-                            <ContentControl Style="{StaticResource LogoIcon}"/>
-                            <TextBlock x:Name="settingsTextBlock" Style="{StaticResource SettingsNameStyle}" 
+                        <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}">
+                            <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
+                                <ContentControl Style="{StaticResource LogoIcon}"/>
+                                <TextBlock x:Name="settingsTextBlock" Style="{StaticResource SettingsNameStyle}" 
                                Text="{Binding ApplicationStrings.ApplicationName, Source={StaticResource ResourceWrapper}}"/>
-                        </StackPanel>
-                    </Border>
+                            </StackPanel>
+                        </Border>
 
-                    <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
-                        <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
-                            <TextBlock Text="{Binding TemplateOperation, Mode=OneWay, Converter={StaticResource TemplateOperationToTextConverter}}" Style="{StaticResource LinkTextBlockStyle}"/>
-                        </StackPanel>
-                    </Border>
+                        <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
+                            <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
+                                <TextBlock Text="{Binding TemplateOperation, Mode=OneWay, Converter={StaticResource TemplateOperationToTextConverter}}" Style="{StaticResource LinkTextBlockStyle}"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <telerik:RadButton Content="{Binding MyLibraryResources.Cancel, Source={StaticResource MyLibraryResources}}" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40"/>
+                    <telerik:RadButton Content="{Binding MyLibraryResources.Save, Source={StaticResource MyLibraryResources}}" Command="{Binding SaveCommand, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,100,40"/>
                 </Grid>
-                <telerik:RadButton Content="{Binding MyLibraryResources.Cancel, Source={StaticResource MyLibraryResources}}" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40"/>
-                <telerik:RadButton Content="{Binding MyLibraryResources.Save, Source={StaticResource MyLibraryResources}}" Command="{Binding SaveCommand, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,100,40"/>
+                <HyperlinkButton Command="{Binding CancelCommand}" Margin="-10" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/back.png" Width="50"  />
+                </HyperlinkButton>
             </Grid>
-            <HyperlinkButton Command="{Binding CancelCommand}" Margin="-10" VerticalAlignment="Top" HorizontalAlignment="Left">
-                <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/back.png" Width="50"  />
-            </HyperlinkButton>
-        </Grid>
+        </telerik:RadBusyIndicator>
     </infControls:MetroContentControl>
 </UserControl>

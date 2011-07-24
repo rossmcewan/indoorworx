@@ -38,6 +38,7 @@ namespace IndoorWorx.MyLibrary.Views
             this.mainSetIntervals = new ObservableCollection<Interval>();
             this.cooldownIntervals = new ObservableCollection<Interval>();
             this.CancelCommand = new DelegateCommand<object>(Cancel);
+            this.SaveCommand = new DelegateCommand<object>(Save);
             this.editIntervalCommand = new DelegateCommand<Interval>(EditInterval);
             this.addIntervalToWarmupCommand = new DelegateCommand<Interval>(AddIntervalToWarmup);
             this.removeIntervalFromWarmupCommand = new DelegateCommand<Interval>(RemoveIntervalFromWarmup);
@@ -47,6 +48,17 @@ namespace IndoorWorx.MyLibrary.Views
             this.removeIntervalFromMainSetCommand = new DelegateCommand<Interval>(RemoveIntervalFromMainSet);
             this.addIntervalToCooldownCommand = new DelegateCommand<Interval>(AddIntervalToCooldown);
             this.removeIntervalFromCooldownCommand = new DelegateCommand<Interval>(RemoveIntervalFromCooldown);
+        }
+
+        private bool busy;
+        public virtual bool IsBusy
+        {
+            get { return busy; }
+            set
+            {
+                busy = value;
+                FirePropertyChanged("IsBusy");
+            }
         }
 
         private ICommand editIntervalCommand;
@@ -83,9 +95,59 @@ namespace IndoorWorx.MyLibrary.Views
             }
         }
 
+        private void Save(object arg)
+        {
+            if (Template.IsChanged)
+            {
+                IsBusy = true;
+                try
+                {
+                    var service = serviceLocator.GetInstance<ITrainingSetTemplateService>();
+                    service.TrainingSetTemplateSaved += (sender, e) =>
+                        {
+                            switch (e.Value.Status)
+                            {
+                                case SaveTemplateStatus.Success:
+                                    if (!ApplicationUser.CurrentUser.Templates.Contains(e.Value.SavedTemplate))
+                                    {
+                                        SmartDispatcher.BeginInvoke(() =>
+                                            {
+                                                ApplicationUser.CurrentUser.Templates.Add(e.Value.SavedTemplate);
+                                                shell.RemoveFromLayoutRoot(View as UIElement);
+                                            });
+                                    }
+                                    break;
+                                case SaveTemplateStatus.Error:
+                                    dialogFacade.Alert(MyLibraryResources.ErrorSavingTemplate);                                    
+                                    break;
+                                default:
+                                    break;
+                            }
+                            IsBusy = false;
+                        };
+                    service.TrainingSetTemplateSaveError += (sender, e) =>
+                        {
+                            IsBusy = false;
+                        };
+                    service.SaveTemplate(Template);
+                }
+                catch (Exception ex)
+                {
+                    dialogFacade.Alert(MyLibraryResources.ErrorSavingTemplate); 
+                    IsBusy = false;
+                }
+            }
+            else
+            {
+                shell.RemoveFromLayoutRoot(View as UIElement);
+            }
+        }
+
         public ITemplateView View { get; set; }
 
         public ICommand CancelCommand { get; private set; }
+
+        public ICommand SaveCommand { get; private set; }
 
         public CrudOperation TemplateOperation { get; private set; }
 
@@ -292,10 +354,12 @@ namespace IndoorWorx.MyLibrary.Views
         {
             Template.Intervals.Clear();
             TimeSpan totalDuration = TimeSpan.Zero;
+            int sequence = 0;
             foreach (var interval in warmupIntervals)
             {
                 CreateIntervals(interval, x => 
                 {
+                    x.Sequence = sequence++;
                     Template.Intervals.Add(x);
                     totalDuration = totalDuration.Add(x.Duration);
                 });
@@ -304,6 +368,7 @@ namespace IndoorWorx.MyLibrary.Views
             {
                 CreateIntervals(interval, x =>
                 {
+                    x.Sequence = sequence++;
                     Template.Intervals.Add(x);
                     totalDuration = totalDuration.Add(x.Duration);
                 });
@@ -312,6 +377,7 @@ namespace IndoorWorx.MyLibrary.Views
             {
                 CreateIntervals(interval, x =>
                 {
+                    x.Sequence = sequence++;
                     Template.Intervals.Add(x);
                     totalDuration = totalDuration.Add(x.Duration);
                 });

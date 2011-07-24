@@ -23,11 +23,13 @@
     <MetadataSource Address="http://localhost:3415/TrainingSetTemplateService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TrainingSetTemplateService.disco" MetadataType="Disco" ID="5f05e731-e371-475f-8ef6-ab1aa869df1c" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?disco" />
+    <MetadataFile FileName="TrainingSetTemplateService2.xsd" MetadataType="Schema" ID="07b465b7-acff-4c76-97e0-70a00dc1a5a2" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?xsd=xsd0" />
     <MetadataFile FileName="TrainingSetTemplateService.xsd" MetadataType="Schema" ID="94ee404d-29cf-4c9a-b162-2868d28851db" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?xsd=xsd1" />
     <MetadataFile FileName="TrainingSetTemplateService1.xsd" MetadataType="Schema" ID="90020b13-9d7b-4878-8103-979efc9d16aa" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?xsd=xsd2" />
-    <MetadataFile FileName="TrainingSetTemplateService2.xsd" MetadataType="Schema" ID="07b465b7-acff-4c76-97e0-70a00dc1a5a2" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TrainingSetTemplateService3.xsd" MetadataType="Schema" ID="91321f03-563f-417d-9887-016a823431ba" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?xsd=xsd3" />
+    <MetadataFile FileName="TrainingSetTemplateService31.xsd" MetadataType="Schema" ID="7c1579ec-5db5-4b6b-8ef3-6a96634bdd70" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?xsd=xsd4" />
     <MetadataFile FileName="TrainingSetTemplateService.wsdl" MetadataType="Wsdl" ID="6adcbff9-4354-477f-a21f-757f39154904" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?wsdl" />
+    <MetadataFile FileName="TrainingSetTemplateService.disco" MetadataType="Disco" ID="5f05e731-e371-475f-8ef6-ab1aa869df1c" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetTemplateService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

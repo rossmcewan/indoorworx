@@ -22,6 +22,16 @@ namespace IndoorWorx.Library.TrainingSetTemplateServiceReference {
         System.IAsyncResult BeginFindAll(System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.TrainingSetTemplate> EndFindAll(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ITrainingSetTemplateService/Save", ReplyAction="http://tempuri.org/ITrainingSetTemplateService/SaveResponse")]
+        System.IAsyncResult BeginSave(IndoorWorx.Infrastructure.Requests.SaveTemplateRequest request, System.AsyncCallback callback, object asyncState);
+        
+        IndoorWorx.Infrastructure.Responses.SaveTemplateResponse EndSave(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ITrainingSetTemplateService/Remove", ReplyAction="http://tempuri.org/ITrainingSetTemplateService/RemoveResponse")]
+        System.IAsyncResult BeginRemove(IndoorWorx.Infrastructure.Requests.RemoveTemplateRequest request, System.AsyncCallback callback, object asyncState);
+        
+        IndoorWorx.Infrastructure.Responses.RemoveTemplateResponse EndRemove(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,6 +59,44 @@ namespace IndoorWorx.Library.TrainingSetTemplateServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SaveCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SaveCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public IndoorWorx.Infrastructure.Responses.SaveTemplateResponse Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((IndoorWorx.Infrastructure.Responses.SaveTemplateResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class RemoveCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public RemoveCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public IndoorWorx.Infrastructure.Responses.RemoveTemplateResponse Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((IndoorWorx.Infrastructure.Responses.RemoveTemplateResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class TrainingSetTemplateServiceClient : System.ServiceModel.ClientBase<IndoorWorx.Library.TrainingSetTemplateServiceReference.ITrainingSetTemplateService>, IndoorWorx.Library.TrainingSetTemplateServiceReference.ITrainingSetTemplateService {
         
         private BeginOperationDelegate onBeginFindAllDelegate;
@@ -56,6 +104,18 @@ namespace IndoorWorx.Library.TrainingSetTemplateServiceReference {
         private EndOperationDelegate onEndFindAllDelegate;
         
         private System.Threading.SendOrPostCallback onFindAllCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSaveDelegate;
+        
+        private EndOperationDelegate onEndSaveDelegate;
+        
+        private System.Threading.SendOrPostCallback onSaveCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginRemoveDelegate;
+        
+        private EndOperationDelegate onEndRemoveDelegate;
+        
+        private System.Threading.SendOrPostCallback onRemoveCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -112,6 +172,10 @@ namespace IndoorWorx.Library.TrainingSetTemplateServiceReference {
         
         public event System.EventHandler<FindAllCompletedEventArgs> FindAllCompleted;
         
+        public event System.EventHandler<SaveCompletedEventArgs> SaveCompleted;
+        
+        public event System.EventHandler<RemoveCompletedEventArgs> RemoveCompleted;
+        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
@@ -158,6 +222,98 @@ namespace IndoorWorx.Library.TrainingSetTemplateServiceReference {
                 this.onFindAllCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnFindAllCompleted);
             }
             base.InvokeAsync(this.onBeginFindAllDelegate, null, this.onEndFindAllDelegate, this.onFindAllCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult IndoorWorx.Library.TrainingSetTemplateServiceReference.ITrainingSetTemplateService.BeginSave(IndoorWorx.Infrastructure.Requests.SaveTemplateRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSave(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        IndoorWorx.Infrastructure.Responses.SaveTemplateResponse IndoorWorx.Library.TrainingSetTemplateServiceReference.ITrainingSetTemplateService.EndSave(System.IAsyncResult result) {
+            return base.Channel.EndSave(result);
+        }
+        
+        private System.IAsyncResult OnBeginSave(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            IndoorWorx.Infrastructure.Requests.SaveTemplateRequest request = ((IndoorWorx.Infrastructure.Requests.SaveTemplateRequest)(inValues[0]));
+            return ((IndoorWorx.Library.TrainingSetTemplateServiceReference.ITrainingSetTemplateService)(this)).BeginSave(request, callback, asyncState);
+        }
+        
+        private object[] OnEndSave(System.IAsyncResult result) {
+            IndoorWorx.Infrastructure.Responses.SaveTemplateResponse retVal = ((IndoorWorx.Library.TrainingSetTemplateServiceReference.ITrainingSetTemplateService)(this)).EndSave(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSaveCompleted(object state) {
+            if ((this.SaveCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SaveCompleted(this, new SaveCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SaveAsync(IndoorWorx.Infrastructure.Requests.SaveTemplateRequest request) {
+            this.SaveAsync(request, null);
+        }
+        
+        public void SaveAsync(IndoorWorx.Infrastructure.Requests.SaveTemplateRequest request, object userState) {
+            if ((this.onBeginSaveDelegate == null)) {
+                this.onBeginSaveDelegate = new BeginOperationDelegate(this.OnBeginSave);
+            }
+            if ((this.onEndSaveDelegate == null)) {
+                this.onEndSaveDelegate = new EndOperationDelegate(this.OnEndSave);
+            }
+            if ((this.onSaveCompletedDelegate == null)) {
+                this.onSaveCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSaveCompleted);
+            }
+            base.InvokeAsync(this.onBeginSaveDelegate, new object[] {
+                        request}, this.onEndSaveDelegate, this.onSaveCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult IndoorWorx.Library.TrainingSetTemplateServiceReference.ITrainingSetTemplateService.BeginRemove(IndoorWorx.Infrastructure.Requests.RemoveTemplateRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRemove(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        IndoorWorx.Infrastructure.Responses.RemoveTemplateResponse IndoorWorx.Library.TrainingSetTemplateServiceReference.ITrainingSetTemplateService.EndRemove(System.IAsyncResult result) {
+            return base.Channel.EndRemove(result);
+        }
+        
+        private System.IAsyncResult OnBeginRemove(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            IndoorWorx.Infrastructure.Requests.RemoveTemplateRequest request = ((IndoorWorx.Infrastructure.Requests.RemoveTemplateRequest)(inValues[0]));
+            return ((IndoorWorx.Library.TrainingSetTemplateServiceReference.ITrainingSetTemplateService)(this)).BeginRemove(request, callback, asyncState);
+        }
+        
+        private object[] OnEndRemove(System.IAsyncResult result) {
+            IndoorWorx.Infrastructure.Responses.RemoveTemplateResponse retVal = ((IndoorWorx.Library.TrainingSetTemplateServiceReference.ITrainingSetTemplateService)(this)).EndRemove(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnRemoveCompleted(object state) {
+            if ((this.RemoveCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.RemoveCompleted(this, new RemoveCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void RemoveAsync(IndoorWorx.Infrastructure.Requests.RemoveTemplateRequest request) {
+            this.RemoveAsync(request, null);
+        }
+        
+        public void RemoveAsync(IndoorWorx.Infrastructure.Requests.RemoveTemplateRequest request, object userState) {
+            if ((this.onBeginRemoveDelegate == null)) {
+                this.onBeginRemoveDelegate = new BeginOperationDelegate(this.OnBeginRemove);
+            }
+            if ((this.onEndRemoveDelegate == null)) {
+                this.onEndRemoveDelegate = new EndOperationDelegate(this.OnEndRemove);
+            }
+            if ((this.onRemoveCompletedDelegate == null)) {
+                this.onRemoveCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnRemoveCompleted);
+            }
+            base.InvokeAsync(this.onBeginRemoveDelegate, new object[] {
+                        request}, this.onEndRemoveDelegate, this.onRemoveCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -245,6 +401,32 @@ namespace IndoorWorx.Library.TrainingSetTemplateServiceReference {
             public System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.TrainingSetTemplate> EndFindAll(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.TrainingSetTemplate> _result = ((System.Collections.ObjectModel.ObservableCollection<IndoorWorx.Infrastructure.Models.TrainingSetTemplate>)(base.EndInvoke("FindAll", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginSave(IndoorWorx.Infrastructure.Requests.SaveTemplateRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("Save", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public IndoorWorx.Infrastructure.Responses.SaveTemplateResponse EndSave(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                IndoorWorx.Infrastructure.Responses.SaveTemplateResponse _result = ((IndoorWorx.Infrastructure.Responses.SaveTemplateResponse)(base.EndInvoke("Save", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginRemove(IndoorWorx.Infrastructure.Requests.RemoveTemplateRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("Remove", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public IndoorWorx.Infrastructure.Responses.RemoveTemplateResponse EndRemove(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                IndoorWorx.Infrastructure.Responses.RemoveTemplateResponse _result = ((IndoorWorx.Infrastructure.Responses.RemoveTemplateResponse)(base.EndInvoke("Remove", _args, result)));
                 return _result;
             }
         }

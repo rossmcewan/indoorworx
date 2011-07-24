@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using Microsoft.Practices.Composite.Events;
 using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Models;
+using IndoorWorx.Infrastructure.Responses;
 
 namespace IndoorWorx.Infrastructure.Services
 {
@@ -21,5 +22,17 @@ namespace IndoorWorx.Infrastructure.Services
         event EventHandler<DataEventArgs<Exception>> TrainingSetTemplateRetrievalError;
 
         void RetrieveTrainingSetTemplates();
+
+        event EventHandler<DataEventArgs<SaveTemplateResponse>> TrainingSetTemplateSaved;
+
+        event EventHandler<DataEventArgs<Exception>> TrainingSetTemplateSaveError;
+
+        void SaveTemplate(TrainingSetTemplate template);
+
+        event EventHandler<DataEventArgs<RemoveTemplateResponse>> TrainingSetTemplateRemoved;
+
+        event EventHandler<DataEventArgs<Exception>> TrainingSetTemplateRemoveError;
+
+        void RemoveTemplate(TrainingSetTemplate template);
     }
 }

@@ -30,19 +30,27 @@ namespace IndoorWorx.MyLibrary.Views
 
         public void SelectTemplateWithId(Guid id)
         {
-            var templateService = serviceLocator.GetInstance<ITrainingSetTemplateService>();
-            templateService.TrainingSetTemplatesRetrieved += (sender, e) =>
+            var template = ApplicationUser.CurrentUser.Templates.FirstOrDefault(x => x.Id == id);
+            if (template != null)
             {
-                var templates = e.Value;
-                Template = templates.FirstOrDefault(x => x.Id == id);
-                IsBusy = false;
-            };
-            templateService.TrainingSetTemplateRetrievalError += (sender, e) =>
+                Template = template;
+            }
+            else
             {
-                IsBusy = false;
-            };
-            IsBusy = true;
-            templateService.RetrieveTrainingSetTemplates();
+                var templateService = serviceLocator.GetInstance<ITrainingSetTemplateService>();
+                templateService.TrainingSetTemplatesRetrieved += (sender, e) =>
+                {
+                    var templates = e.Value;
+                    Template = templates.FirstOrDefault(x => x.Id == id);
+                    IsBusy = false;
+                };
+                templateService.TrainingSetTemplateRetrievalError += (sender, e) =>
+                {
+                    IsBusy = false;
+                };
+                IsBusy = true;
+                templateService.RetrieveTrainingSetTemplates();
+            }
         }
 
         private bool busy;

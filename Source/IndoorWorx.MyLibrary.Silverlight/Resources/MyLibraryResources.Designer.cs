@@ -61,6 +61,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new template.
+        /// </summary>
+        public static string AddNewTemplateHeader {
+            get {
+                return ResourceManager.GetString("AddNewTemplateHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BEFORE THE END OF THE INTERVAL.
         /// </summary>
         public static string BeforeTheEndOfTheInterval {
@@ -129,6 +138,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string CountDownToStartOfIntervalLabel {
             get {
                 return ResourceManager.GetString("CountDownToStartOfIntervalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE RIDE.
+        /// </summary>
+        public static string CreateRide {
+            get {
+                return ResourceManager.GetString("CreateRide", resourceCulture);
             }
         }
         
@@ -210,6 +228,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string EndIntervalMessageLabel {
             get {
                 return ResourceManager.GetString("EndIntervalMessageLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error saving this template..
+        /// </summary>
+        public static string ErrorSavingTemplate {
+            get {
+                return ResourceManager.GetString("ErrorSavingTemplate", resourceCulture);
             }
         }
         

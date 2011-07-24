@@ -270,4 +270,13 @@
   <data name="TemplateChangedCancelConfirmation" xml:space="preserve">
     <value>The template has changed. If you continue you will lose all of the changes you have made.</value>
   </data>
+  <data name="AddNewTemplateHeader" xml:space="preserve">
+    <value>Add new template</value>
+  </data>
+  <data name="CreateRide" xml:space="preserve">
+    <value>CREATE RIDE</value>
+  </data>
+  <data name="ErrorSavingTemplate" xml:space="preserve">
+    <value>There was an error saving this template.</value>
+  </data>
 </root>
