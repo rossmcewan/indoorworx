@@ -19,7 +19,7 @@
                     AutoRange="False"
                     ItemsSource="{Binding Template.Intervals, Mode=TwoWay}" 
                     ShowAxis="False"                                               
-                    YValuePath="AverageEffort" 
+                    YValuePath="Effort" 
                     XValuePath="OADateTime"/>
             </ScrollViewer>
             <TextBlock FontWeight="Bold" Text="{Binding Template.Title, Mode=OneWay}" Margin="5"/>

@@ -9,7 +9,28 @@ namespace IndoorWorx.Infrastructure.Models
 {
     [DataContract]
     public partial class EffortType : BaseModel
-    {       
+    {
+        public static readonly string HRTag = "HR";
+
+        public static readonly string PowerTag = "POWER";
+
+        public static readonly string RPETag = "RPE";
+
+        public virtual bool IsHR
+        {
+            get { return Tag == HRTag; }
+        }
+
+        public virtual bool IsPower
+        {
+            get { return Tag == PowerTag; }
+        }
+
+        public virtual bool IsRPE
+        {
+            get { return Tag == RPETag; }
+        }
+
         private string title;
         [DataMember]
         public virtual string Title

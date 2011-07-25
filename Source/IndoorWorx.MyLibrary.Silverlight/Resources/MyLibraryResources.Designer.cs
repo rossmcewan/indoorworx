@@ -142,11 +142,11 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE RIDE.
+        ///   Looks up a localized string similar to Create a ride from this template..
         /// </summary>
-        public static string CreateRide {
+        public static string CreateRideToolTip {
             get {
-                return ResourceManager.GetString("CreateRide", resourceCulture);
+                return ResourceManager.GetString("CreateRideToolTip", resourceCulture);
             }
         }
         
@@ -205,6 +205,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit this template..
+        /// </summary>
+        public static string EditTemplateToolTip {
+            get {
+                return ResourceManager.GetString("EditTemplateToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EFFORT.
         /// </summary>
         public static string EffortLabel {
@@ -223,11 +232,20 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to END INTERVAL MESSAGE.
+        ///   Looks up a localized string similar to SHOW THIS MESSAGE WHEN THE INTERVAL ENDS.
         /// </summary>
-        public static string EndIntervalMessageLabel {
+        public static string EndOfIntervalMessageLabel {
             get {
-                return ResourceManager.GetString("EndIntervalMessageLabel", resourceCulture);
+                return ResourceManager.GetString("EndOfIntervalMessageLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error removing this template from your library..
+        /// </summary>
+        public static string ErrorRemovingTemplate {
+            get {
+                return ResourceManager.GetString("ErrorRemovingTemplate", resourceCulture);
             }
         }
         
@@ -273,6 +291,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string InMyLibrary {
             get {
                 return ResourceManager.GetString("InMyLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The interval has changed. If you continue you will lose all of the changes you have made..
+        /// </summary>
+        public static string IntervalChangedCancelConfirmation {
+            get {
+                return ResourceManager.GetString("IntervalChangedCancelConfirmation", resourceCulture);
             }
         }
         
@@ -430,6 +457,24 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you would like to remove this template from your library?.
+        /// </summary>
+        public static string RemoveTemplateConfirmation {
+            get {
+                return ResourceManager.GetString("RemoveTemplateConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove this template from your library..
+        /// </summary>
+        public static string RemoveTemplateToolTip {
+            get {
+                return ResourceManager.GetString("RemoveTemplateToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SAVE.
         /// </summary>
         public static string Save {
@@ -457,11 +502,11 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to START INTERVAL MESSAGE.
+        ///   Looks up a localized string similar to SHOW THIS MESSAGE WHEN THE INTERVAL STARTS.
         /// </summary>
-        public static string StartIntervalMessageLabel {
+        public static string StartOfIntervalMessageLabel {
             get {
-                return ResourceManager.GetString("StartIntervalMessageLabel", resourceCulture);
+                return ResourceManager.GetString("StartOfIntervalMessageLabel", resourceCulture);
             }
         }
         

@@ -46,6 +46,21 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        public Duration Clone()
+        {
+            return Duration.FromTimeSpan(this.AsTimeSpan());
+        }
+
+        public static Duration FromTimeSpan(TimeSpan timeSpan)
+        {
+            return new Duration()
+            {
+                Hours = timeSpan.Hours,
+                Minutes = timeSpan.Minutes,
+                Seconds = timeSpan.Seconds
+            };
+        }
+
         public TimeSpan AsTimeSpan()
         {
             return new TimeSpan(Hours, Minutes, Seconds);

@@ -57,6 +57,12 @@ namespace IndoorWorx.MockRepositories
         {
             throw new NotImplementedException();
         }
+
+
+        public void Delete(Infrastructure.Models.Catalog entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     class CategoryRepository : ICategoryRepository
@@ -82,6 +88,12 @@ namespace IndoorWorx.MockRepositories
         }
 
         public Infrastructure.Models.Category Save(Infrastructure.Models.Category entity)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void Delete(Infrastructure.Models.Category entity)
         {
             throw new NotImplementedException();
         }
@@ -113,6 +125,12 @@ namespace IndoorWorx.MockRepositories
         {
             throw new NotImplementedException();
         }
+
+
+        public void Delete(Infrastructure.Models.Video entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     class ApplicationUserRepository : IApplicationUserRepository
@@ -138,6 +156,12 @@ namespace IndoorWorx.MockRepositories
         }
 
         public Infrastructure.Models.ApplicationUser Save(Infrastructure.Models.ApplicationUser entity)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void Delete(Infrastructure.Models.ApplicationUser entity)
         {
             throw new NotImplementedException();
         }
@@ -169,6 +193,12 @@ namespace IndoorWorx.MockRepositories
         {
             throw new NotImplementedException();
         }
+
+
+        public void Delete(Infrastructure.Models.Occupation entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     class TrainingVolumeRepository : ITrainingVolumeRepository
@@ -194,6 +224,12 @@ namespace IndoorWorx.MockRepositories
         }
 
         public Infrastructure.Models.TrainingVolume Save(Infrastructure.Models.TrainingVolume entity)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void Delete(Infrastructure.Models.TrainingVolume entity)
         {
             throw new NotImplementedException();
         }
@@ -225,6 +261,12 @@ namespace IndoorWorx.MockRepositories
         {
             throw new NotImplementedException();
         }
+
+
+        public void Delete(Infrastructure.Models.IndoorTrainingFrequency entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     class ReferralSourcesRepository : IReferralSourcesRepository
@@ -253,6 +295,12 @@ namespace IndoorWorx.MockRepositories
         {
             throw new NotImplementedException();
         }
+
+
+        public void Delete(Infrastructure.Models.ReferralSource entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     class CompetitiveLevelRepository : ICompetitiveLevelRepository
@@ -278,6 +326,12 @@ namespace IndoorWorx.MockRepositories
         }
 
         public Infrastructure.Models.CompetitiveLevel Save(Infrastructure.Models.CompetitiveLevel entity)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void Delete(Infrastructure.Models.CompetitiveLevel entity)
         {
             throw new NotImplementedException();
         }

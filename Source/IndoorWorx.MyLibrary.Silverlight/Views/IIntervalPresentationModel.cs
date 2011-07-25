@@ -15,5 +15,9 @@ namespace IndoorWorx.MyLibrary.Views
         IIntervalView View { get; set; }
 
         string Title { get; }
+
+        void OnAccepted(Action accepted);
+
+        void OnCancelled(Action cancelled);
     }
 }

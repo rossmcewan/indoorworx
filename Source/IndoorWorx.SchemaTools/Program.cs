@@ -476,8 +476,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(10),
                         EffortType = power,
-                        EffortFrom = l1.MinimumPercentageOfFtp,
-                        EffortTo = l1.MaximumPercentageOfFtp,
+                        Effort = (l1.MinimumPercentageOfFtp + l1.MaximumPercentageOfFtp) / 2,
                         Sequence = 0
                     });
                     trainingTemplate.Intervals.Add(new Interval()
@@ -487,8 +486,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l3,
                         Duration = TimeSpan.FromMinutes(10),
                         EffortType = power,
-                        EffortFrom = l3.MinimumPercentageOfFtp,
-                        EffortTo = l3.MaximumPercentageOfFtp,
+                        Effort = (l3.MinimumPercentageOfFtp + l3.MaximumPercentageOfFtp) / 2,
                         Sequence = 1
                     });
                     trainingTemplate.Intervals.Add(new Interval()
@@ -498,8 +496,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(5),
                         EffortType = power,
-                        EffortFrom = l1.MinimumPercentageOfFtp,
-                        EffortTo = l1.MaximumPercentageOfFtp,
+                        Effort = (l1.MinimumPercentageOfFtp + l1.MaximumPercentageOfFtp) / 2,
                         Sequence = 2
                     });
                     trainingTemplate.Intervals.Add(new Interval()
@@ -509,8 +506,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l3,
                         Duration = TimeSpan.FromMinutes(10),
                         EffortType = power,
-                        EffortFrom = l3.MinimumPercentageOfFtp,
-                        EffortTo = l3.MaximumPercentageOfFtp,
+                        Effort = (l3.MinimumPercentageOfFtp + l3.MaximumPercentageOfFtp) / 2,
                         Sequence = 3
                     });
                     trainingTemplate.Intervals.Add(new Interval()
@@ -520,8 +516,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(5),
                         EffortType = power,
-                        EffortFrom = l1.MinimumPercentageOfFtp,
-                        EffortTo = l1.MaximumPercentageOfFtp,
+                        Effort = (l1.MinimumPercentageOfFtp + l1.MaximumPercentageOfFtp) / 2,
                         Sequence = 4
                     });
                     trainingTemplate.Intervals.Add(new Interval()
@@ -531,8 +526,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l3,
                         Duration = TimeSpan.FromMinutes(10),
                         EffortType = power,
-                        EffortFrom = l3.MinimumPercentageOfFtp,
-                        EffortTo = l3.MaximumPercentageOfFtp,
+                        Effort = (l3.MinimumPercentageOfFtp + l3.MaximumPercentageOfFtp) / 2,
                         Sequence = 5
                     });
                     trainingTemplate.Intervals.Add(new Interval()
@@ -542,8 +536,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(5),
                         EffortType = power,
-                        EffortFrom = l1.MinimumPercentageOfFtp,
-                        EffortTo = l1.MaximumPercentageOfFtp,
+                        Effort = (l1.MinimumPercentageOfFtp + l1.MaximumPercentageOfFtp) / 2,
                         Sequence = 6
                     });
                     trainingTemplate.Intervals.Add(new Interval()
@@ -553,8 +546,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l3,
                         Duration = TimeSpan.FromMinutes(10),
                         EffortType = power,
-                        EffortFrom = l3.MinimumPercentageOfFtp,
-                        EffortTo = l3.MaximumPercentageOfFtp,
+                        Effort = (l3.MinimumPercentageOfFtp + l3.MaximumPercentageOfFtp) / 2,
                         Sequence = 7
                     });
                     trainingTemplate.Intervals.Add(new Interval()
@@ -564,8 +556,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(5),
                         EffortType = power,
-                        EffortFrom = l1.MinimumPercentageOfFtp,
-                        EffortTo = l1.MaximumPercentageOfFtp,
+                        Effort = (l1.MinimumPercentageOfFtp + l1.MaximumPercentageOfFtp) / 2,
                         Sequence = 8
                     });
                     session.Save(trainingTemplate);
@@ -585,8 +576,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(10),
                         EffortType = power,
-                        EffortFrom = l1.MinimumPercentageOfFtp,
-                        EffortTo = l1.MaximumPercentageOfFtp,
+                        Effort = (l1.MinimumPercentageOfFtp + l1.MaximumPercentageOfFtp) / 2,
                         Sequence = 0
                     });
                     trainingTemplate1.Intervals.Add(new Interval()
@@ -596,8 +586,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l3,
                         Duration = TimeSpan.FromMinutes(20),
                         EffortType = power,
-                        EffortFrom = l3.MinimumPercentageOfFtp,
-                        EffortTo = l3.MaximumPercentageOfFtp,
+                        Effort = (l3.MinimumPercentageOfFtp + l3.MaximumPercentageOfFtp) / 2,
                         Sequence = 1
                     });
                     trainingTemplate1.Intervals.Add(new Interval()
@@ -607,8 +596,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(5),
                         EffortType = power,
-                        EffortFrom = l1.MinimumPercentageOfFtp,
-                        EffortTo = l1.MaximumPercentageOfFtp,
+                        Effort = (l1.MinimumPercentageOfFtp + l1.MaximumPercentageOfFtp) / 2,
                         Sequence = 2
                     });
                     trainingTemplate1.Intervals.Add(new Interval()
@@ -618,8 +606,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l3,
                         Duration = TimeSpan.FromMinutes(20),
                         EffortType = power,
-                        EffortFrom = l3.MinimumPercentageOfFtp,
-                        EffortTo = l3.MaximumPercentageOfFtp,
+                        Effort = (l3.MinimumPercentageOfFtp + l3.MaximumPercentageOfFtp) / 2,
                         Sequence = 3
                     });
                     trainingTemplate1.Intervals.Add(new Interval()
@@ -629,8 +616,7 @@ namespace IndoorWorx.SchemaTools
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(5),
                         EffortType = power,
-                        EffortFrom = l1.MinimumPercentageOfFtp,
-                        EffortTo = l1.MaximumPercentageOfFtp,
+                        Effort = (l1.MinimumPercentageOfFtp + l1.MaximumPercentageOfFtp) / 2,
                         Sequence = 8
                     });
                     session.Save(trainingTemplate1);

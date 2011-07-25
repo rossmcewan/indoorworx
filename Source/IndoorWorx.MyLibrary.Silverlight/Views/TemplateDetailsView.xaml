@@ -8,40 +8,42 @@
     mc:Ignorable="d"
     VerticalAlignment="Stretch" HorizontalAlignment="Stretch"             
     d:DesignHeight="300" d:DesignWidth="400">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
-            <StackPanel>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0">
-                    <telerik:RadColumnSparkline 
+    <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
+                <StackPanel>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0">
+                        <telerik:RadColumnSparkline 
                     Width="256" Height="100"
                     MinYValue="0"
                     AutoRange="False"
                     ItemsSource="{Binding Template.Intervals, Mode=TwoWay}" 
                     ShowAxis="False"                                               
-                    YValuePath="AverageEffort" 
+                    YValuePath="Effort" 
                     XValuePath="OADateTime"/>
-                </ScrollViewer>
-                <TextBlock FontWeight="Bold" Text="{Binding Template.Title, Mode=OneWay}" Margin="5"/>
-                <TextBlock Text="{Binding Template.Description, Mode=OneWay}" TextWrapping="Wrap" Margin="5"/>
-                <TextBlock Text="{Binding MyLibraryResources.Duration, Source={StaticResource MyLibraryResources}}" Margin="5,0">
+                    </ScrollViewer>
+                    <TextBlock FontWeight="Bold" Text="{Binding Template.Title, Mode=OneWay}" Margin="5"/>
+                    <TextBlock Text="{Binding Template.Description, Mode=OneWay}" TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock Text="{Binding MyLibraryResources.Duration, Source={StaticResource MyLibraryResources}}" Margin="5,0">
                 <Run Text="{Binding Template.Duration, Mode=OneWay}"/>
-                </TextBlock>
+                    </TextBlock>
+                </StackPanel>
+            </ScrollViewer>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                <Button Cursor="Hand" Margin="10" BorderThickness="0" ToolTipService.ToolTip="{Binding MyLibraryResources.CreateRideToolTip, Source={StaticResource MyLibraryResources}}" Command="{Binding CreateRideCommand}">
+                    <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/video.png" Width="32"/>
+                </Button>
+                <Button Cursor="Hand" Margin="10" BorderThickness="0" ToolTipService.ToolTip="{Binding MyLibraryResources.EditTemplateToolTip, Source={StaticResource MyLibraryResources}}" Command="{Binding EditTemplateCommand}">
+                    <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/edit.png" Width="32"/>
+                </Button>
+                <Button Cursor="Hand" Margin="10" BorderThickness="0" ToolTipService.ToolTip="{Binding MyLibraryResources.RemoveTemplateToolTip, Source={StaticResource MyLibraryResources}}" Command="{Binding RemoveTemplateCommand}">
+                    <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/delete.png" Width="32"/>
+                </Button>
             </StackPanel>
-        </ScrollViewer>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
-            <Button Margin="10" IsEnabled="False" BorderThickness="0">
-                <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/video.png" Width="32" ToolTipService.ToolTip="{Binding MyLibraryResources.CreateRide, Source={StaticResource MyLibraryResources}}"/>
-            </Button>
-            <Button Margin="10" IsEnabled="False" BorderThickness="0">
-                <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/edit.png" Width="32"/>
-            </Button>
-            <Button Margin="10" IsEnabled="False" BorderThickness="0">
-                <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/delete.png" Width="32"/>
-            </Button>
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </telerik:RadBusyIndicator>
 </UserControl>

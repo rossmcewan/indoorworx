@@ -72,6 +72,7 @@ namespace IndoorWorx.MyLibrary.Views
             var view = serviceLocator.GetInstance<IIntervalView>();
             view.Model.Interval = interval;
             view.Model.Mode = CrudOperation.Update;
+            interval.BeginEdit();
             view.Show();
         }
 
@@ -188,7 +189,7 @@ namespace IndoorWorx.MyLibrary.Views
 
         private void AddIntervalToWarmup(Interval arg)
         {
-            var interval = Interval.NewWarmupInterval(Template.EffortType);
+            var interval = Interval.NewWarmupInterval(Template.EffortType, () => RefreshTemplate());
             if (arg == null)
             {
                 warmupIntervals.Add(interval);
@@ -266,7 +267,7 @@ namespace IndoorWorx.MyLibrary.Views
 
         private void AddIntervalToMainSet(Interval arg)
         {
-            var interval = Interval.NewMainSetInterval(Template.EffortType);
+            var interval = Interval.NewMainSetInterval(Template.EffortType, () => RefreshTemplate());
             if (arg == null)
             {
                 mainSetIntervals.Add(interval);
@@ -315,7 +316,7 @@ namespace IndoorWorx.MyLibrary.Views
 
         private void AddIntervalToCooldown(Interval arg)
         {
-            var interval = Interval.NewCooldownInterval(Template.EffortType);
+            var interval = Interval.NewCooldownInterval(Template.EffortType, () => RefreshTemplate());
             if (arg == null)
             {
                 cooldownIntervals.Add(interval);
@@ -397,8 +398,7 @@ namespace IndoorWorx.MyLibrary.Views
                     Description = interval.Description,
                     Duration = interval.IntervalDuration.AsTimeSpan(),
                     IntervalType = interval.IntervalType,
-                    EffortFrom = interval.EffortFrom,
-                    EffortTo = interval.EffortTo,
+                    Effort = interval.Effort,
                     EffortType = interval.EffortType,
                     IntervalLevel = interval.IntervalLevel,
                     Title = interval.Title
@@ -414,21 +414,7 @@ namespace IndoorWorx.MyLibrary.Views
                         IntervalLevel = recovery,
                         Title = interval.Title
                     };
-                    if (recoveryInterval.EffortType.IsRPE)
-                    {
-                        recoveryInterval.EffortFrom = recovery.MinRPE;
-                        recoveryInterval.EffortTo = recovery.MaxRPE;
-                    }
-                    else if (recoveryInterval.EffortType.IsHR)
-                    {
-                        recoveryInterval.EffortFrom = recovery.MinimumPercentageOfFthr;
-                        recoveryInterval.EffortTo = recovery.MaximumPercentageOfFthr;
-                    }
-                    else if (recoveryInterval.EffortType.IsPower)
-                    {
-                        recoveryInterval.EffortFrom = recovery.MinimumPercentageOfFtp;
-                        recoveryInterval.EffortTo = recovery.MaximumPercentageOfFtp;
-                    }
+                    recoveryInterval.Effort = recovery.AverageEffortFor(interval.EffortType);
                     add(recoveryInterval);
                 }
             }

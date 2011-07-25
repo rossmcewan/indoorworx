@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using System.Windows.Navigation;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.MyLibrary.Views;
+using IndoorWorx.Infrastructure.Services;
 
 namespace IndoorWorx.MyLibrary.Pages
 {
@@ -27,7 +28,13 @@ namespace IndoorWorx.MyLibrary.Pages
                 (contentElement.Parent as VideoDetailsPage).Content = null;
                 reloadRequired = false;
             }
+            IoC.Resolve<IAuthenticationOperations>().LoggedOut += (sender, e) => SetContentNull();
             this.Content = contentElement;
+        }
+
+        private void SetContentNull()
+        {
+            SmartDispatcher.BeginInvoke(() => Content = null);
         }
 
         private IVideoDetailsView View

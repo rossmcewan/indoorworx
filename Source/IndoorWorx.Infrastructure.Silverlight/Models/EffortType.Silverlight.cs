@@ -12,26 +12,6 @@ using System.Windows.Shapes;
 namespace IndoorWorx.Infrastructure.Models
 {
     public partial class EffortType
-    {
-        public static readonly string HRTag = "HR";
-
-        public static readonly string PowerTag = "POWER";
-
-        public static readonly string RPETag = "RPE";
-
-        public bool IsHR
-        {
-            get { return Tag == HRTag; }
-        }
-
-        public bool IsPower
-        {
-            get { return Tag == PowerTag; }
-        }
-
-        public bool IsRPE
-        {
-            get { return Tag == RPETag; }
-        }
+    {        
     }
 }

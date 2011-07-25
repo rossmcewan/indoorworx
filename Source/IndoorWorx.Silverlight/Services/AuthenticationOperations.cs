@@ -14,6 +14,12 @@ namespace IndoorWorx.Silverlight.Services
 {
     public class AuthenticationOperations : IAuthenticationOperations
     {
+        public AuthenticationOperations()
+        {
+            WebContext.Current.Authentication.LoggedIn += (sender, e) => OnLoggedIn();
+            WebContext.Current.Authentication.LoggedOut += (sender, e) => OnLoggedOut();
+        }
+
         #region IAuthenticationOperations Members
 
         public bool IsAuthenticated

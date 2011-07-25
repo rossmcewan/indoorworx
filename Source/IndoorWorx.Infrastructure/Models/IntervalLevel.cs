@@ -140,5 +140,34 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("Sequence");
             }
         }
+
+        public virtual int AverageEffortFor(EffortType effortType)
+        {
+            if (effortType.IsHR)
+            {
+                if (MinimumPercentageOfFthr == null)
+                    return MaximumPercentageOfFthr.GetValueOrDefault();
+                if (MaximumPercentageOfFthr == null)
+                    return MinimumPercentageOfFthr.GetValueOrDefault();
+                return (MaximumPercentageOfFthr.GetValueOrDefault() + MinimumPercentageOfFthr.GetValueOrDefault()) / 2;
+            }
+            else if (effortType.IsPower)
+            {
+                if (MinimumPercentageOfFtp == null)
+                    return MaximumPercentageOfFtp.GetValueOrDefault();
+                if (MaximumPercentageOfFtp == null)
+                    return MinimumPercentageOfFtp.GetValueOrDefault();
+                return (MaximumPercentageOfFtp.GetValueOrDefault() + MinimumPercentageOfFtp.GetValueOrDefault()) / 2;
+            }
+            else if (effortType.IsRPE)
+            {
+                if (MinRPE == null)
+                    return MaxRPE.GetValueOrDefault();
+                if (MaxRPE == null)
+                    return MinRPE.GetValueOrDefault();
+                return (MaxRPE.GetValueOrDefault() + MinRPE.GetValueOrDefault()) / 2;
+            }
+            return 0;
+        }
     }
 }

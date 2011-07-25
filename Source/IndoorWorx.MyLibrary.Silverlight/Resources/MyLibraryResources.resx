@@ -222,8 +222,8 @@
   <data name="CountDownToStartOfIntervalLabel" xml:space="preserve">
     <value>COUNT DOWN TO START OF INTERVAL?</value>
   </data>
-  <data name="EndIntervalMessageLabel" xml:space="preserve">
-    <value>END INTERVAL MESSAGE</value>
+  <data name="EndOfIntervalMessageLabel" xml:space="preserve">
+    <value>SHOW THIS MESSAGE WHEN THE INTERVAL ENDS</value>
   </data>
   <data name="EveryLabel" xml:space="preserve">
     <value>EVERY</value>
@@ -231,8 +231,8 @@
   <data name="FromLabel" xml:space="preserve">
     <value>FROM</value>
   </data>
-  <data name="StartIntervalMessageLabel" xml:space="preserve">
-    <value>START INTERVAL MESSAGE</value>
+  <data name="StartOfIntervalMessageLabel" xml:space="preserve">
+    <value>SHOW THIS MESSAGE WHEN THE INTERVAL STARTS</value>
   </data>
   <data name="DeleteIntervalTitle" xml:space="preserve">
     <value>DELETE INTERVAL</value>
@@ -273,10 +273,25 @@
   <data name="AddNewTemplateHeader" xml:space="preserve">
     <value>Add new template</value>
   </data>
-  <data name="CreateRide" xml:space="preserve">
-    <value>CREATE RIDE</value>
+  <data name="CreateRideToolTip" xml:space="preserve">
+    <value>Create a ride from this template.</value>
   </data>
   <data name="ErrorSavingTemplate" xml:space="preserve">
     <value>There was an error saving this template.</value>
+  </data>
+  <data name="IntervalChangedCancelConfirmation" xml:space="preserve">
+    <value>The interval has changed. If you continue you will lose all of the changes you have made.</value>
+  </data>
+  <data name="EditTemplateToolTip" xml:space="preserve">
+    <value>Edit this template.</value>
+  </data>
+  <data name="ErrorRemovingTemplate" xml:space="preserve">
+    <value>There was an error removing this template from your library.</value>
+  </data>
+  <data name="RemoveTemplateConfirmation" xml:space="preserve">
+    <value>Are you sure you would like to remove this template from your library?</value>
+  </data>
+  <data name="RemoveTemplateToolTip" xml:space="preserve">
+    <value>Remove this template from your library.</value>
   </data>
 </root>

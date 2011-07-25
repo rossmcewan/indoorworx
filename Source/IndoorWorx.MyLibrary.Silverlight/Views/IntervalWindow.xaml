@@ -6,6 +6,8 @@
            xmlns:converters="clr-namespace:IndoorWorx.MyLibrary.Converters"  
            xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
            xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+           xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+           xmlns:behaviors="clr-namespace:IndoorWorx.Infrastructure.Behaviors;assembly=IndoorWorx.Infrastructure.Silverlight"                      
            Width="450"
            Title="{Binding Title, Mode=OneWay}"  
            HasCloseButton="False"                                   
@@ -40,6 +42,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="{Binding MyLibraryResources.TitleLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center"/>
                 <TextBox Text="{Binding Interval.Title, Mode=TwoWay}" IsReadOnly="{Binding Mode, Mode=OneWay, Converter={StaticResource CrudOperationReadOnlyConverter}}" Grid.Column="1" Margin="2"/>
@@ -60,7 +64,7 @@
                             DisplayMemberPath="Title" 
                             SelectedItem="{Binding Interval.IntervalLevel, Mode=TwoWay}"/>
                 <TextBlock Grid.Row="3" Text="{Binding MyLibraryResources.NumberOfRepeatsLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center"/>
-                <toolkit:NumericUpDown Grid.Row="3" Grid.Column="1" Value="{Binding Interval.Repeats, Mode=TwoWay}" Margin="2"/>
+                <toolkit:NumericUpDown Grid.Row="3" Grid.Column="1" Value="{Binding Interval.Repeats, Mode=TwoWay}" Margin="2" HorizontalAlignment="Left" />
                 <TextBlock Grid.Row="4" Text="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center"/>
                 <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="2">
                     <toolkit:NumericUpDown 
@@ -81,6 +85,7 @@
                     ToolTipService.ToolTip="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"
                     Value="{Binding Interval.RecoveryInterval.Seconds, Mode=TwoWay}"/>
                 </StackPanel>
+                
                 <toolkit:Separator Grid.Row="6" Grid.ColumnSpan="2"/>
                 <CheckBox Grid.ColumnSpan="2" Grid.Row="7" telerik:StyleManager.Theme="Metro" IsChecked="{Binding Interval.ToStart.IsActive, Mode=TwoWay}" Content="{Binding MyLibraryResources.CountDownToStartOfIntervalLabel, Source={StaticResource MyLibraryResources}}"/>
                 <TextBlock Grid.Row="8" Text="{Binding MyLibraryResources.FromLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center" Visibility="{Binding Interval.ToStart.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -104,11 +109,19 @@
                     ToolTipService.ToolTip="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"
                     Value="{Binding Interval.ToStart.Tick.Seconds, Mode=TwoWay}"/>
                 </StackPanel>
+                <!--<TextBlock Grid.Row="10" Text="{Binding MyLibraryResources.StartOfIntervalMessageLabel, Source={StaticResource MyLibraryResources}}" Visibility="{Binding Interval.ToStart.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
+                <TextBox Grid.Row="10" Grid.ColumnSpan="2" 
+                         Text="{Binding Interval.ToStart.Message, Mode=TwoWay}" 
+                         Visibility="{Binding Interval.ToStart.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <i:Interaction.Behaviors>
+                        <behaviors:Watermark Foreground="Gray" Text="{Binding MyLibraryResources.StartOfIntervalMessageLabel, Source={StaticResource MyLibraryResources}}"/>
+                    </i:Interaction.Behaviors>                    
+                </TextBox>
 
-                <toolkit:Separator Grid.Row="10" Grid.ColumnSpan="2"/>
-                <CheckBox Grid.ColumnSpan="2" Grid.Row="11" telerik:StyleManager.Theme="Metro" IsChecked="{Binding Interval.ToEnd.IsActive, Mode=TwoWay}" Content="{Binding MyLibraryResources.CountDownToEndOfIntervalLabel, Source={StaticResource MyLibraryResources}}"/>
-                <TextBlock Grid.Row="12" Text="{Binding MyLibraryResources.FromLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center" Visibility="{Binding Interval.ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <StackPanel Grid.Row="12" Grid.Column="1" Margin="2" Orientation="Horizontal" Visibility="{Binding Interval.ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <toolkit:Separator Grid.Row="11" Grid.ColumnSpan="2"/>
+                <CheckBox Grid.ColumnSpan="2" Grid.Row="12" telerik:StyleManager.Theme="Metro" IsChecked="{Binding Interval.ToEnd.IsActive, Mode=TwoWay}" Content="{Binding MyLibraryResources.CountDownToEndOfIntervalLabel, Source={StaticResource MyLibraryResources}}"/>
+                <TextBlock Grid.Row="13" Text="{Binding MyLibraryResources.FromLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center" Visibility="{Binding Interval.ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <StackPanel Grid.Row="13" Grid.Column="1" Margin="2" Orientation="Horizontal" Visibility="{Binding Interval.ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <toolkit:NumericUpDown 
                     ToolTipService.ToolTip="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"
                     Value="{Binding Interval.ToEnd.Duration.Minutes, Mode=TwoWay}"/>
@@ -118,8 +131,8 @@
                     Value="{Binding Interval.ToEnd.Duration.Seconds, Mode=TwoWay}"/>
                     <TextBlock Margin="2,0" Text="{Binding MyLibraryResources.BeforeTheEndOfTheInterval, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center"/>
                 </StackPanel>
-                <TextBlock Grid.Row="13" Text="{Binding MyLibraryResources.EveryLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center" Visibility="{Binding Interval.ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <StackPanel Grid.Row="13" Grid.Column="1" Margin="2" Orientation="Horizontal" Visibility="{Binding Interval.ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock Grid.Row="14" Text="{Binding MyLibraryResources.EveryLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center" Visibility="{Binding Interval.ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <StackPanel Grid.Row="14" Grid.Column="1" Margin="2" Orientation="Horizontal" Visibility="{Binding Interval.ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <toolkit:NumericUpDown 
                     ToolTipService.ToolTip="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"
                     Value="{Binding Interval.ToEnd.Tick.Minutes, Mode=TwoWay}"/>
@@ -128,6 +141,14 @@
                     ToolTipService.ToolTip="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"
                     Value="{Binding Interval.ToEnd.Tick.Seconds, Mode=TwoWay}"/>
                 </StackPanel>
+                <!--<TextBlock Grid.Row="15" Text="{Binding MyLibraryResources.EndOfIntervalMessageLabel, Source={StaticResource MyLibraryResources}}" Visibility="{Binding Interval.ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
+                <TextBox Grid.Row="15" Grid.ColumnSpan="2" 
+                         Text="{Binding Interval.ToEnd.Message, Mode=TwoWay}" 
+                         Visibility="{Binding Interval.ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <i:Interaction.Behaviors>
+                        <behaviors:Watermark Foreground="Gray" Text="{Binding MyLibraryResources.EndOfIntervalMessageLabel, Source={StaticResource MyLibraryResources}}"/>
+                    </i:Interaction.Behaviors>
+                </TextBox>
             </Grid>
             <Button x:Name="CancelButton" Content="Cancel" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
             <Button x:Name="OKButton" Content="OK" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />

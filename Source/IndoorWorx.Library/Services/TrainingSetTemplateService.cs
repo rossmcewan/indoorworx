@@ -75,6 +75,10 @@ namespace IndoorWorx.Library.Services
                 {
                     user.Templates.Remove(request.Template);
                     user = ApplicationUserRepository.Save(user);
+                    if (!request.Template.IsPublic)
+                    {
+                        Repository.Delete(request.Template);
+                    }
                 }
                 response.Credits = user.Credits;
                 response.Status = RemoveTemplateStatus.Success;                

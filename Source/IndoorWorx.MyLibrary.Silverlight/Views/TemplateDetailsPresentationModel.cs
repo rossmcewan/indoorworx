@@ -13,6 +13,10 @@ using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Composite.Events;
 using IndoorWorx.Infrastructure.Services;
 using IndoorWorx.Infrastructure.Models;
+using Microsoft.Practices.Composite.Presentation.Commands;
+using IndoorWorx.Infrastructure.Facades;
+using IndoorWorx.MyLibrary.Resources;
+using IndoorWorx.Infrastructure;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -20,10 +24,77 @@ namespace IndoorWorx.MyLibrary.Views
     {
         private readonly IServiceLocator serviceLocator;
         private readonly IEventAggregator eventAggregator;
-        public TemplateDetailsPresentationModel(IServiceLocator serviceLocator, IEventAggregator eventAggregator)
+        private readonly IDialogFacade dialogFacade;
+        public TemplateDetailsPresentationModel(IServiceLocator serviceLocator, IEventAggregator eventAggregator, IDialogFacade dialogFacade)
         {
             this.serviceLocator = serviceLocator;
             this.eventAggregator = eventAggregator;
+            this.dialogFacade = dialogFacade;
+            this.RemoveTemplateCommand = new DelegateCommand<object>(RemoveTemplate);
+            this.EditTemplateCommand = new DelegateCommand<object>(EditTemplate);
+            this.CreateRideCommand = new DelegateCommand<object>(CreateRide);
+        }
+
+        public event EventHandler TemplateRemoved;
+
+        private void OnTemplateRemoved()
+        {
+            if (TemplateRemoved != null)
+                TemplateRemoved(this, EventArgs.Empty);
+        }
+
+        private void RemoveTemplate(object arg)
+        {
+            dialogFacade.Confirm(MyLibraryResources.RemoveTemplateConfirmation, result =>
+                {
+                    if (result)
+                    {
+                        var service = serviceLocator.GetInstance<ITrainingSetTemplateService>();
+                        service.TrainingSetTemplateRemoved += (sender, e) =>
+                            {
+                                switch (e.Value.Status)
+                                {
+                                    case RemoveTemplateStatus.Success:
+                                        SmartDispatcher.BeginInvoke(() =>
+                                            {
+                                                ApplicationUser.CurrentUser.Templates.Remove(Template);
+                                                this.Template = null;
+                                                this.IsBusy = false;
+                                                OnTemplateRemoved();
+                                            });
+                                        break;
+                                    case RemoveTemplateStatus.Error:
+                                        this.IsBusy = false;
+                                        dialogFacade.Alert(MyLibraryResources.ErrorRemovingTemplate);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            };
+                        service.TrainingSetTemplateRemoveError += (sender, e) =>
+                            {
+                                throw e.Value;
+                            };
+                        this.IsBusy = true;
+                        try
+                        {
+                            service.RemoveTemplate(Template);
+                        }
+                        catch
+                        {
+                            IsBusy = false;
+                            throw;
+                        }
+                    }
+                });
+        }
+
+        private void EditTemplate(object arg)
+        {
+        }
+
+        private void CreateRide(object arg)
+        {
         }
 
         public ITemplateDetailsView View { get; set; }
@@ -74,5 +145,11 @@ namespace IndoorWorx.MyLibrary.Views
                 FirePropertyChanged("Template");
             }
         }
+
+        public ICommand CreateRideCommand { get; private set; }
+
+        public ICommand EditTemplateCommand { get; private set; }
+
+        public ICommand RemoveTemplateCommand { get; private set; }
     }
 }

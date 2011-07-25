@@ -12,7 +12,11 @@ using System.Windows.Shapes;
 namespace IndoorWorx.Infrastructure.Services
 {
     public interface IAuthenticationOperations
-    {        
+    {
+        event EventHandler LoggedIn;
+
+        event EventHandler LoggedOut;
+
         bool IsAuthenticated { get; }
 
         bool IsInRole(string role);

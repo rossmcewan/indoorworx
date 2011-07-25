@@ -80,6 +80,17 @@ namespace IndoorWorx.NHibernate.Repositories
             }            
         }
 
+        public void Delete(T entity)
+        {
+            using (var session = sessionFactory.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    session.Delete(entity);
+                    transaction.Commit();
+                }
+            }
+        }
         #endregion
     }
 }

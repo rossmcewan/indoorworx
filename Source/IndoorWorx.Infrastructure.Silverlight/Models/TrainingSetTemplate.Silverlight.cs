@@ -89,7 +89,7 @@ namespace IndoorWorx.Infrastructure.Models
 
         public void AcceptChanges()
         {
-            backupValues = new TrainingSetTemplate();
+            backupValues = null;
         }
 
         public bool IsChanged

@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using System.Windows.Navigation;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.MyLibrary.Views;
+using IndoorWorx.Infrastructure.Services;
 
 namespace IndoorWorx.MyLibrary.Pages
 {
@@ -21,13 +22,20 @@ namespace IndoorWorx.MyLibrary.Pages
         public TemplateDetailsPage()
         {
             InitializeComponent();
-            var contentElement = IoC.Resolve<ITemplateDetailsView>() as UserControl;
+            var contentElement = IoC.Resolve<ITemplateDetailsView>() as UserControl;            
             if (contentElement.Parent != null)
             {
                 (contentElement.Parent as TemplateDetailsPage).Content = null;
                 reloadRequired = false;
             }
             this.Content = contentElement;
+            IoC.Resolve<IAuthenticationOperations>().LoggedOut += (sender, e) => SetContentNull();
+            View.Model.TemplateRemoved += (sender, e) => SetContentNull();
+        }
+
+        private void SetContentNull()
+        {
+            SmartDispatcher.BeginInvoke(() => Content = null);
         }
 
         private ITemplateDetailsView View
@@ -37,13 +45,12 @@ namespace IndoorWorx.MyLibrary.Pages
 
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
+        {            
             string templateId;
             if (this.NavigationContext.QueryString.TryGetValue("id", out templateId))
             {
                 View.Model.SelectTemplateWithId(new Guid(templateId));
             }
         }
-
     }
 }

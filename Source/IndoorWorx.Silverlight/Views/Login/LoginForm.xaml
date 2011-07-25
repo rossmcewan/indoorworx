@@ -4,6 +4,7 @@
     xmlns:local="clr-namespace:IndoorWorx.Silverlight.Controls"
     xmlns:login="clr-namespace:IndoorWorx.Silverlight.LoginUI"
     x:Class="IndoorWorx.Silverlight.LoginUI.LoginForm"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     KeyDown="LoginForm_KeyDown"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -15,8 +16,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <local:BusyIndicator x:Name="busyIndicator" BusyContent="{Binding Path=ApplicationStrings.BusyIndicatorLoggingIn, Source={StaticResource ResourceWrapper}}"
-                             IsBusy="{Binding IsLoggingIn}">
+        <telerik:RadBusyIndicator x:Name="busyIndicator" BusyContent="{Binding Path=ApplicationStrings.BusyIndicatorLoggingIn, Source={StaticResource ResourceWrapper}}"
+                             IsBusy="{Binding IsLoggingIn}">        
             <StackPanel Orientation="Vertical">
                 <local:CustomDataForm x:Name="loginForm"
                                       Padding="10,10,20,0"
@@ -26,7 +27,7 @@
                                       AutoGeneratingField="LoginForm_AutoGeneratingField" 
                                       Style="{StaticResource LoginDataFormStyle}" />
             </StackPanel>
-        </local:BusyIndicator>
+        </telerik:RadBusyIndicator>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
             <Button x:Name="loginButton" Content="{Binding Path=ApplicationStrings.OKButton, Source={StaticResource ResourceWrapper}}" Click="LoginButton_Click" Style="{StaticResource RegisterLoginButtonStyle}" IsEnabled="{Binding Path=CanLogIn}" />

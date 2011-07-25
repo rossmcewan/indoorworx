@@ -13,7 +13,7 @@ using System.ComponentModel;
 
 namespace IndoorWorx.Infrastructure.Models
 {
-    public partial class Interval
+    public partial class Interval : IEditableObject, IChangeTracking
     {
         public static readonly string WarmupTag = "WARMUP";
 
@@ -28,17 +28,7 @@ namespace IndoorWorx.Infrastructure.Models
                 oaDateTime = value;
                 FirePropertyChanged("OADateTime");
             }
-        }
-
-        public int AverageEffort
-        {
-            get 
-            { 
-                var sum = this.effortFrom.GetValueOrDefault() + this.effortTo.GetValueOrDefault();
-                var ave = sum / 2;
-                return ave; 
-            }
-        }
+        }        
 
         private int repeats;
         public virtual int Repeats
@@ -65,46 +55,64 @@ namespace IndoorWorx.Infrastructure.Models
         private Duration intervalDuration = new Duration();
         public virtual Duration IntervalDuration
         {
+            set
+            {
+                this.intervalDuration = value;
+                FirePropertyChanged("IntervalDuration");
+            }
             get { return intervalDuration; }
         }
 
         private CountDown toStart = new CountDown();
         public virtual CountDown ToStart
         {
+            set
+            {
+                this.toStart = value;
+                FirePropertyChanged("ToStart");
+            }
             get { return toStart; }
         }
 
         private CountDown toEnd = new CountDown();
         public virtual CountDown ToEnd
         {
+            set
+            {
+                this.toEnd = value;
+                FirePropertyChanged("ToEnd");
+            }
             get { return toEnd; }                
         }
 
-        public static Interval NewWarmupInterval(EffortType effortType)
+        public static Interval NewWarmupInterval(EffortType effortType, Action onChange)
         {
-            return NewInterval(Interval.WarmupTag, effortType);
+            return NewInterval(Interval.WarmupTag, effortType, onChange);
         }
 
-        public static Interval NewMainSetInterval(EffortType effortType)
+        public static Interval NewMainSetInterval(EffortType effortType, Action onChange)
         {
-            return NewInterval(string.Empty, effortType);
+            return NewInterval(string.Empty, effortType, onChange);
         }
 
-        public static Interval NewCooldownInterval(EffortType effortType)
+        public static Interval NewCooldownInterval(EffortType effortType, Action onChange)
         {
-            return NewInterval(Interval.CooldownTag, effortType);
+            return NewInterval(Interval.CooldownTag, effortType, onChange);
         }
 
-        private static Interval NewInterval(string tag, EffortType effortType)
+        private static Interval NewInterval(string tag, EffortType effortType, Action onChange)
         {
             var interval = new Interval();
             interval.Repeats = 1;
+            interval.PropertyChanged += (sender, e) => onChange();
+            interval.IntervalDuration.PropertyChanged += (sender, e) => onChange();
+            interval.RecoveryInterval.PropertyChanged += (sender, e) => onChange();
+            interval.ToEnd.PropertyChanged += (sender, e) => onChange();
+            interval.ToStart.PropertyChanged += (sender, e) => onChange();
             interval.PropertyChanged += IntervalPropertyChanged;
             interval.IntervalLevel = ApplicationContext.Current.IntervalLevels.FirstOrDefault();
             interval.EffortType = effortType;
             interval.IntervalType = ApplicationContext.Current.IntervalTypes.FirstOrDefault(x => x.Tag == tag);
-            //if(interval.IntervalType != null)
-            //    interval.IntervalLevel = interval.IntervalType.DefaultLevel;
             return interval;
         }
 
@@ -113,50 +121,41 @@ namespace IndoorWorx.Infrastructure.Models
             var interval = sender as Interval;
             if (args.PropertyName == "IntervalLevel")
             {
-                if (interval.IntervalLevel != null)
-                {
-                    if (interval.EffortType.IsHR)
-                    {
-                        interval.EffortFrom = interval.IntervalLevel.MinimumPercentageOfFthr;
-                        interval.EffortTo = interval.IntervalLevel.MaximumPercentageOfFthr;
-                    }
-                    else if (interval.EffortType.IsPower)
-                    {
-                        interval.EffortFrom = interval.IntervalLevel.MinimumPercentageOfFtp;
-                        interval.EffortTo = interval.IntervalLevel.MaximumPercentageOfFtp;
-                    }
-                    else if (interval.EffortType.IsRPE)
-                    {
-                        interval.EffortFrom = interval.IntervalLevel.MinRPE;
-                        interval.EffortTo = interval.IntervalLevel.MaxRPE;
-                    }
-                }
+                interval.Effort = interval.IntervalLevel.AverageEffortFor(interval.EffortType);
+                //if (interval.IntervalLevel != null)
+                //{
+                //    if (interval.EffortType.IsHR)
+                //    {
+                //        interval.Effort = (interval.IntervalLevel.MinimumPercentageOfFthr + interval.IntervalLevel.MaximumPercentageOfFthr) / 2;
+                //    }
+                //    else if (interval.EffortType.IsPower)
+                //    {
+                //        interval.Effort = (interval.IntervalLevel.MinimumPercentageOfFtp + interval.IntervalLevel.MaximumPercentageOfFtp) / 2;
+                //    }
+                //    else if (interval.EffortType.IsRPE)
+                //    {
+                //        interval.Effort = (interval.IntervalLevel.MinRPE + interval.IntervalLevel.MaxRPE) / 2;
+                //    }
+                //}
             }
-            //if (args.PropertyName == "IntervalType")
-            //{
-            //    if (interval.IntervalType != null)
-            //        interval.IntervalLevel = interval.IntervalType.DefaultLevel;
-            //}
             if (args.PropertyName == "EffortType")
             {
-                if (interval.EffortType != null)
-                {
-                    if (interval.EffortType.IsHR)
-                    {
-                        interval.EffortFrom = interval.IntervalLevel.MinimumPercentageOfFthr;
-                        interval.EffortTo = interval.IntervalLevel.MaximumPercentageOfFthr;
-                    }
-                    else if (interval.EffortType.IsPower)
-                    {
-                        interval.EffortFrom = interval.IntervalLevel.MinimumPercentageOfFtp;
-                        interval.EffortTo = interval.IntervalLevel.MaximumPercentageOfFtp;
-                    }
-                    else if (interval.EffortType.IsRPE)
-                    {
-                        interval.EffortFrom = interval.IntervalLevel.MinRPE;
-                        interval.EffortTo = interval.IntervalLevel.MaxRPE;
-                    }
-                }
+                interval.Effort = interval.IntervalLevel.AverageEffortFor(interval.EffortType);
+                //if (interval.EffortType != null)
+                //{
+                //    if (interval.EffortType.IsHR)
+                //    {
+                //        interval.Effort = (interval.IntervalLevel.MinimumPercentageOfFthr + interval.IntervalLevel.MaximumPercentageOfFthr) / 2;
+                //    }
+                //    else if (interval.EffortType.IsPower)
+                //    {
+                //        interval.Effort = (interval.IntervalLevel.MinimumPercentageOfFtp + interval.IntervalLevel.MaximumPercentageOfFtp) / 2;
+                //    }
+                //    else if (interval.EffortType.IsRPE)
+                //    {
+                //        interval.Effort = (interval.IntervalLevel.MinRPE + interval.IntervalLevel.MaxRPE) / 2;
+                //    }
+                //}
             }
         }
 
@@ -164,8 +163,7 @@ namespace IndoorWorx.Infrastructure.Models
         {
             return this.Description == compareTo.Description &&
                 this.Duration == compareTo.Duration &&
-                this.EffortFrom == compareTo.EffortFrom &&
-                this.EffortTo == compareTo.EffortTo &&
+                this.Effort == compareTo.Effort &&
                 this.EffortType.Equals(compareTo.EffortType) &&
                 this.IntervalDuration.Equals(compareTo.IntervalDuration) &&
                 this.IntervalLevel.Equals(compareTo.IntervalLevel) &&
@@ -175,6 +173,59 @@ namespace IndoorWorx.Infrastructure.Models
                 this.Title == compareTo.Title &&
                 this.ToEnd.Equals(compareTo.ToEnd) &&
                 this.ToStart.Equals(compareTo.ToStart);
+        }
+
+        private Interval backup;
+        public void BeginEdit()
+        {
+            backup = new Interval();
+            backup.Description = this.Description;
+            backup.Duration = this.Duration;
+            backup.Effort = this.Effort;
+            backup.EffortType = this.EffortType;
+            backup.IntervalLevel = this.IntervalLevel;
+            backup.IntervalType = this.IntervalType;
+            backup.IntervalDuration = this.IntervalDuration.Clone();
+            backup.RecoveryInterval = this.RecoveryInterval.Clone();
+            backup.Repeats = this.Repeats;
+            backup.Title = this.Title;
+            backup.ToEnd = this.ToEnd.Clone();
+            backup.ToStart = this.ToStart.Clone();
+        }
+
+        public void CancelEdit()
+        {
+            this.Description = backup.Description;
+            this.Duration = backup.Duration;
+            this.Effort = backup.Effort;
+            this.EffortType = backup.EffortType;
+            this.IntervalLevel = backup.IntervalLevel;
+            this.IntervalType = backup.IntervalType;
+            this.IntervalDuration = backup.IntervalDuration.Clone();
+            this.RecoveryInterval = backup.RecoveryInterval.Clone();
+            this.Repeats = backup.Repeats;
+            this.Title = backup.Title;
+            this.ToEnd = backup.ToEnd.Clone();
+            this.ToStart = backup.ToStart.Clone();
+            backup = null;
+        }
+
+        public void EndEdit()
+        {
+            backup = null;
+        }
+
+        public void AcceptChanges()
+        {
+            backup = null;
+        }
+
+        public bool IsChanged
+        {
+            get 
+            {
+                return !this.ValuesEquals(backup);
+            }
         }
     }
 }

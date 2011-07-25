@@ -18,7 +18,7 @@ namespace IndoorWorx.MyLibrary.Views
         {
             this.DataContext = model;
             InitializeComponent();
-            model.View = this;
+            model.View = this;            
         }
 
         public IIntervalPresentationModel Model
@@ -28,12 +28,12 @@ namespace IndoorWorx.MyLibrary.Views
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
+            Model.OnAccepted(() => this.DialogResult = true);            
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
+            Model.OnCancelled(() => this.DialogResult = false);         
         }
 
         public void Hide()

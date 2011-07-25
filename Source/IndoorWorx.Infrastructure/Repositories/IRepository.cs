@@ -17,5 +17,7 @@ namespace IndoorWorx.Infrastructure.Repositories
         T FindFirst(Expression<Func<T, bool>> where);
 
         T Save(T entity);
+
+        void Delete(T entity);
     }
 }

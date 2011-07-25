@@ -372,11 +372,10 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        Duration BIGINT not null,
        Title NVARCHAR(255) null,
        Description NVARCHAR(255) null,
-       EffortFrom INT null,
-       EffortTo INT null,
+       Effort INT null,
        Sequence INT not null,
        EffortType_id UNIQUEIDENTIFIER not null,
-       IntervalType_id UNIQUEIDENTIFIER not null,
+       IntervalType_id UNIQUEIDENTIFIER null,
        IntervalLevel_id UNIQUEIDENTIFIER not null,
        TrainingSetTemplate UNIQUEIDENTIFIER null,
        primary key (Id)

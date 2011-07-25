@@ -80,7 +80,7 @@
                                             AutoRange="False"
                                             ItemsSource="{Binding Intervals, Mode=TwoWay}" 
                                             ShowAxis="False"                                               
-                                            YValuePath="AverageEffort" 
+                                            YValuePath="Effort" 
                                             XValuePath="OADateTime"/>
                                         <TextBlock Text="{Binding Title}" TextTrimming="WordEllipsis" TextWrapping="Wrap" FontWeight="Bold"/>
                                     </StackPanel>

@@ -14,15 +14,19 @@ using IndoorWorx.MyLibrary.Resources;
 using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Services;
 using System.ComponentModel;
+using IndoorWorx.Infrastructure.Facades;
+using IndoorWorx.Infrastructure;
 
 namespace IndoorWorx.MyLibrary.Views
 {
     public class IntervalPresentationModel : BaseModel, IIntervalPresentationModel
     {
         private readonly IServiceLocator serviceLocator;
-        public IntervalPresentationModel(IServiceLocator serviceLocator)
+        private readonly IDialogFacade dialogFacade;
+        public IntervalPresentationModel(IServiceLocator serviceLocator, IDialogFacade dialogFacade)
         {
             this.serviceLocator = serviceLocator;
+            this.dialogFacade = dialogFacade;
         }
 
         public IIntervalView View { get; set; }
@@ -70,6 +74,32 @@ namespace IndoorWorx.MyLibrary.Views
                 FirePropertyChanged("Mode");
                 FirePropertyChanged("Title");
             }
-        }        
+        }
+
+        public void OnAccepted(Action accepted)
+        {
+            Interval.AcceptChanges();
+            SmartDispatcher.BeginInvoke(accepted);
+        }
+
+        public void OnCancelled(Action cancelled)
+        {
+            if (Interval.IsChanged)
+            {
+                dialogFacade.Confirm(MyLibraryResources.IntervalChangedCancelConfirmation, (result) =>
+                    {
+                        if (result)
+                        {
+                            Interval.CancelEdit();
+                            SmartDispatcher.BeginInvoke(cancelled);
+                        }
+                    });
+            }
+            else
+            {
+                Interval.CancelEdit();
+                SmartDispatcher.BeginInvoke(cancelled);
+            }
+        }
     }
 }

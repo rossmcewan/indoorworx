@@ -27,8 +27,17 @@ namespace IndoorWorx.Infrastructure.Behaviors
             base.OnAttached();
             if (Text != null)
                 SetWatermarkText();
+            AssociatedObject.Loaded += Loaded;
             AssociatedObject.GotFocus += GotFocus;
             AssociatedObject.LostFocus += LostFocus;
+        }
+
+        private void Loaded(object sender, RoutedEventArgs e)
+        {
+            if (_hasWatermark)
+                SetWatermarkText();
+            else
+                RemoveWatermarkText();
         }
 
         private void LostFocus(object sender, RoutedEventArgs e)

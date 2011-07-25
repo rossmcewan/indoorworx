@@ -27,10 +27,15 @@ namespace IndoorWorx.Infrastructure.Models
         private Duration duration = new Duration();
         public virtual Duration Duration
         {
+            set
+            {
+                this.duration = value;
+                FirePropertyChanged("Duration");
+            }
             get { return duration; }
         }
 
-        private string startMessage;
+        private string startMessage = string.Empty;
         public virtual string StartMessage
         {
             get { return startMessage; }
@@ -41,7 +46,7 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private string endMessage;
+        private string endMessage = string.Empty;
         public virtual string EndMessage
         {
             get { return endMessage; }
@@ -55,6 +60,11 @@ namespace IndoorWorx.Infrastructure.Models
         private Duration tick = new Duration();
         public virtual Duration Tick
         {
+            set
+            {
+                this.tick = value;
+                FirePropertyChanged("Tick");
+            }
             get { return tick; }
         }
 
@@ -69,6 +79,14 @@ namespace IndoorWorx.Infrastructure.Models
                     cd.Tick.Equals(this.Tick);
             }
             return base.Equals(obj);
+        }
+
+        public CountDown Clone()
+        {
+            var cloned = (CountDown)this.MemberwiseClone();
+            cloned.Tick = this.Tick.Clone();
+            cloned.Duration = this.Duration.Clone();
+            return cloned;
         }
     }
 }
