@@ -294,4 +294,13 @@
   <data name="RemoveTemplateToolTip" xml:space="preserve">
     <value>Remove this template from your library.</value>
   </data>
+  <data name="CreateRideHeader" xml:space="preserve">
+    <value>CREATE RIDE</value>
+  </data>
+  <data name="EditTemplateHeader" xml:space="preserve">
+    <value>EDIT TEMPLATE</value>
+  </data>
+  <data name="RemoveTemplateHeader" xml:space="preserve">
+    <value>REMOVE TEMPLATE</value>
+  </data>
 </root>

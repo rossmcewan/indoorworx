@@ -63,7 +63,15 @@
                     <telerik:ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="0">
-                                <HyperlinkButton Width="138" Height="85" Margin="2" TargetName="TemplateDetailsFrame" NavigateUri="{Binding Converter={StaticResource TemplateNavigationUriConverter}}">                                    
+                                <HyperlinkButton Width="138" Height="85" Margin="2" TargetName="TemplateDetailsFrame" NavigateUri="{Binding Converter={StaticResource TemplateNavigationUriConverter}}">
+                                    <input:ContextMenuService.ContextMenu>
+                                        <input:ContextMenu Style="{StaticResource ZuneLikeContextMenu}" IsEnabled="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Mode=OneWay}">
+                                            <input:MenuItem Header="{Binding MyLibraryResources.CreateRideHeader, Source={StaticResource MyLibraryResources}}" Style="{StaticResource ZuneLikeMenuItem}" Command="{Binding DataContext.CreateRideCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}"/>
+                                            <input:Separator Style="{StaticResource ZuneLikeSeparator}"/>
+                                            <input:MenuItem Header="{Binding MyLibraryResources.EditTemplateHeader, Source={StaticResource MyLibraryResources}}" Style="{StaticResource ZuneLikeMenuItem}" Command="{Binding DataContext.EditTemplateCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}"/>
+                                            <input:MenuItem Header="{Binding MyLibraryResources.RemoveTemplateHeader, Source={StaticResource MyLibraryResources}}" Style="{StaticResource ZuneLikeMenuItem}" Command="{Binding DataContext.RemoveTemplateCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}"/>
+                                        </input:ContextMenu>
+                                    </input:ContextMenuService.ContextMenu>
                                     <StackPanel>
                                         <telerik:RadColumnSparkline
                                             Margin="2"

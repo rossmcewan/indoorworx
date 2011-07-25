@@ -142,6 +142,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE RIDE.
+        /// </summary>
+        public static string CreateRideHeader {
+            get {
+                return ResourceManager.GetString("CreateRideHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a ride from this template..
         /// </summary>
         public static string CreateRideToolTip {
@@ -201,6 +210,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string EditIntervalTitle {
             get {
                 return ResourceManager.GetString("EditIntervalTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EDIT TEMPLATE.
+        /// </summary>
+        public static string EditTemplateHeader {
+            get {
+                return ResourceManager.GetString("EditTemplateHeader", resourceCulture);
             }
         }
         
@@ -462,6 +480,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string RemoveTemplateConfirmation {
             get {
                 return ResourceManager.GetString("RemoveTemplateConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to REMOVE TEMPLATE.
+        /// </summary>
+        public static string RemoveTemplateHeader {
+            get {
+                return ResourceManager.GetString("RemoveTemplateHeader", resourceCulture);
             }
         }
         
