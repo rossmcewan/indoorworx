@@ -388,7 +388,8 @@ namespace IndoorWorx.MyLibrary.Views
 
         private void CreateIntervals(Interval interval, Action<Interval> add)
         {
-            var recovery = ApplicationContext.Current.IntervalTypes.FirstOrDefault(x => x.IsRecovery);
+            var recovery = ApplicationContext.Current.IntervalLevels.FirstOrDefault();
+            var recoveryType = ApplicationContext.Current.IntervalTypes.FirstOrDefault(x => x.IsRecovery);
             for (int i = 0; i < interval.Repeats; i++)
             {
                 add(new Interval()
@@ -402,31 +403,34 @@ namespace IndoorWorx.MyLibrary.Views
                     IntervalLevel = interval.IntervalLevel,
                     Title = interval.Title
                 });
-                var recoveryInterval = new Interval()
+                if (interval.RecoveryInterval.AsTimeSpan() > TimeSpan.Zero)
                 {
-                    Description = interval.Description,
-                    Duration = interval.RecoveryInterval.AsTimeSpan(),
-                    IntervalType = recovery,                    
-                    EffortType = interval.EffortType,
-                    IntervalLevel = recovery.DefaultLevel,
-                    Title = interval.Title
-                };
-                if (recoveryInterval.EffortType.IsRPE)
-                {
-                    recoveryInterval.EffortFrom = recovery.DefaultLevel.MinRPE;
-                    recoveryInterval.EffortTo = recovery.DefaultLevel.MaxRPE;
+                    var recoveryInterval = new Interval()
+                    {
+                        Description = interval.Description,
+                        Duration = interval.RecoveryInterval.AsTimeSpan(),
+                        IntervalType = recoveryType,
+                        EffortType = interval.EffortType,
+                        IntervalLevel = recovery,
+                        Title = interval.Title
+                    };
+                    if (recoveryInterval.EffortType.IsRPE)
+                    {
+                        recoveryInterval.EffortFrom = recovery.MinRPE;
+                        recoveryInterval.EffortTo = recovery.MaxRPE;
+                    }
+                    else if (recoveryInterval.EffortType.IsHR)
+                    {
+                        recoveryInterval.EffortFrom = recovery.MinimumPercentageOfFthr;
+                        recoveryInterval.EffortTo = recovery.MaximumPercentageOfFthr;
+                    }
+                    else if (recoveryInterval.EffortType.IsPower)
+                    {
+                        recoveryInterval.EffortFrom = recovery.MinimumPercentageOfFtp;
+                        recoveryInterval.EffortTo = recovery.MaximumPercentageOfFtp;
+                    }
+                    add(recoveryInterval);
                 }
-                else if (recoveryInterval.EffortType.IsHR)
-                {
-                    recoveryInterval.EffortFrom = recovery.DefaultLevel.MinimumPercentageOfFthr;
-                    recoveryInterval.EffortTo = recovery.DefaultLevel.MaximumPercentageOfFthr;
-                }
-                else if (recoveryInterval.EffortType.IsPower)
-                {
-                    recoveryInterval.EffortFrom = recovery.DefaultLevel.MinimumPercentageOfFtp;
-                    recoveryInterval.EffortTo = recovery.DefaultLevel.MaximumPercentageOfFtp;
-                }
-                add(recoveryInterval);
             }
         }
     }

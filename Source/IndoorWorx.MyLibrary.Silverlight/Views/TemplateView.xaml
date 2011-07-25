@@ -12,7 +12,7 @@
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"        
     xmlns:controls="clr-namespace:IndoorWorx.MyLibrary.Controls"    
     xmlns:infControls="clr-namespace:IndoorWorx.Infrastructure.Controls;assembly=IndoorWorx.Infrastructure.Silverlight"             
-    mc:Ignorable="d"
+    mc:Ignorable="d"    
     d:DesignHeight="300" d:DesignWidth="400" >
     <UserControl.Resources>
         <iconverters:BooleanToOppositeVisibilityConverter x:Key="BooleanToOppositeVisibilityConverter"/>
@@ -24,12 +24,12 @@
                 <Border x:Name="BackgroundBorder" Style="{StaticResource BackgroundBorderStyle}"/>
 
                 <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
-                    <Grid Style="{StaticResource ContentGridStyle}">
+                    <Grid Style="{StaticResource ContentGridStyle}" Width="750">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -43,10 +43,10 @@
                         <sdk:Label Content="{Binding MyLibraryResources.EffortTypeLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Column="2" />
                         <telerik:RadComboBox Grid.Column="3" Width="200" Margin="5" ItemsSource="{Binding EffortTypes, Mode=OneWay, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding Template.EffortType, Mode=TwoWay}" DisplayMemberPath="Title" HorizontalAlignment="Left"/>
                         <sdk:Label Content="{Binding MyLibraryResources.DescriptionLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Row="1" />
-                        <TextBox AcceptsReturn="True" Margin="5" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Height="50" Text="{Binding Template.Description, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Stretch"/>
+                        <TextBox TextWrapping="Wrap" AcceptsReturn="True" Margin="5" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Height="100" VerticalContentAlignment="Top" Text="{Binding Template.Description, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch"/>
                         <sdk:Label Content="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}" Grid.Row="2" Margin="5" />
                         <sdk:Label Content="{Binding Template.Duration, Mode=OneWay}" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="20" FontWeight="SemiBold" />
-                        <sdk:TabControl Grid.Row="3" Grid.ColumnSpan="4" Margin="5" Width="750">
+                        <sdk:TabControl Grid.Row="3" Grid.ColumnSpan="4" Margin="5">
                             <sdk:TabItem Header="{Binding MyLibraryResources.WarmupHeader, Source={StaticResource MyLibraryResources}}">
                                 <Grid>
                                     <controls:IntervalsCaptureControl 

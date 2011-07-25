@@ -83,10 +83,6 @@ alter table [Interval]  drop constraint FK8882D83E2B3E4BD3
 alter table [VideoInterval]  drop constraint FKD1BC018BCF534679
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE48AD1903C498C0]') AND parent_object_id = OBJECT_ID('[IntervalType]'))
-alter table [IntervalType]  drop constraint FKE48AD1903C498C0
-
-
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK66ADF886BFB37A41]') AND parent_object_id = OBJECT_ID('[Measurement]'))
 alter table [Measurement]  drop constraint FK66ADF886BFB37A41
 
@@ -413,7 +409,6 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        Name NVARCHAR(255) not null,
        Tag NVARCHAR(255) not null,
        Sequence INT not null,
-       DefaultLevel_id UNIQUEIDENTIFIER not null,
        primary key (Id)
     )
 
@@ -542,7 +537,7 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
     create table [TrainingSetTemplate] (
         Id UNIQUEIDENTIFIER not null,
        Title NVARCHAR(255) null,
-       Description NVARCHAR(255) null,
+       Description NVARCHAR(MAX) null,
        Duration BIGINT null,
        Credits INT null,
        IsPublic BIT null,
@@ -716,11 +711,6 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
         add constraint FKD1BC018BCF534679 
         foreign key (Id) 
         references [Interval]
-
-    alter table [IntervalType] 
-        add constraint FKE48AD1903C498C0 
-        foreign key (DefaultLevel_id) 
-        references [IntervalLevel]
 
     alter table [Measurement] 
         add constraint FK66ADF886BFB37A41 

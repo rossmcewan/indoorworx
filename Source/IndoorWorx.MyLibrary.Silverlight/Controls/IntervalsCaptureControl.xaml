@@ -383,9 +383,9 @@
                         </Button>
                         <telerik:RadComboBox x:Name="comboBox" Margin="0" 
                             Grid.Column="1" 
-                            ItemsSource="{Binding IntervalTypes, Mode=OneWay, Source={StaticResource ApplicationContext}}" 
-                            DisplayMemberPath="Name" 
-                            SelectedItem="{Binding IntervalType, Mode=TwoWay}"
+                            ItemsSource="{Binding IntervalLevels, Mode=OneWay, Source={StaticResource ApplicationContext}}" 
+                            DisplayMemberPath="Title" 
+                            SelectedItem="{Binding IntervalLevel, Mode=TwoWay}"
                             RenderTransformOrigin="0.5,0.5">
                             <telerik:RadComboBox.RenderTransform>
                                 <CompositeTransform TranslateX="-39"/>
@@ -534,7 +534,7 @@
     					Grid.Column="4"
     					Width="90"/>
             <TextBlock
-    					Text="{Binding MyLibraryResources.IntervalTypeLabel, Source={StaticResource MyLibraryResources}}"
+    					Text="{Binding MyLibraryResources.IntervalLevelLabel, Source={StaticResource MyLibraryResources}}"
     					Style="{StaticResource SmallTitle}"
     					Margin="10,0,0,2"/>
             <TextBlock

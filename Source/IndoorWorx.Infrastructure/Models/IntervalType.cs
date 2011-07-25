@@ -21,17 +21,17 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private IntervalLevel defaultLevel;
-        [DataMember]
-        public virtual IntervalLevel DefaultLevel
-        {
-            get { return defaultLevel; }
-            set
-            {
-                defaultLevel = value;
-                FirePropertyChanged("DefaultLevel");
-            }
-        }
+        //private IntervalLevel defaultLevel;
+        //[DataMember]
+        //public virtual IntervalLevel DefaultLevel
+        //{
+        //    get { return defaultLevel; }
+        //    set
+        //    {
+        //        defaultLevel = value;
+        //        FirePropertyChanged("DefaultLevel");
+        //    }
+        //}
 
         private string tag;
         [DataMember]

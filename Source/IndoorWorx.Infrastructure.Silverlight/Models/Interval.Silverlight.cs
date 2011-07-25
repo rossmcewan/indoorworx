@@ -100,10 +100,11 @@ namespace IndoorWorx.Infrastructure.Models
             var interval = new Interval();
             interval.Repeats = 1;
             interval.PropertyChanged += IntervalPropertyChanged;
+            interval.IntervalLevel = ApplicationContext.Current.IntervalLevels.FirstOrDefault();
             interval.EffortType = effortType;
             interval.IntervalType = ApplicationContext.Current.IntervalTypes.FirstOrDefault(x => x.Tag == tag);
-            if(interval.IntervalType != null)
-                interval.IntervalLevel = interval.IntervalType.DefaultLevel;
+            //if(interval.IntervalType != null)
+            //    interval.IntervalLevel = interval.IntervalType.DefaultLevel;
             return interval;
         }
 
@@ -131,11 +132,11 @@ namespace IndoorWorx.Infrastructure.Models
                     }
                 }
             }
-            if (args.PropertyName == "IntervalType")
-            {
-                if (interval.IntervalType != null)
-                    interval.IntervalLevel = interval.IntervalType.DefaultLevel;
-            }
+            //if (args.PropertyName == "IntervalType")
+            //{
+            //    if (interval.IntervalType != null)
+            //        interval.IntervalLevel = interval.IntervalType.DefaultLevel;
+            //}
             if (args.PropertyName == "EffortType")
             {
                 if (interval.EffortType != null)

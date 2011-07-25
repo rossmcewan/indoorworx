@@ -13,7 +13,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
             Map(x => x.Title);
-            Map(x => x.Description);
+            Map(x => x.Description).Length(5000);
             Map(x => x.Duration);
             Map(x => x.Credits);
             Map(x => x.IsPublic);

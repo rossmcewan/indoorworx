@@ -15,7 +15,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.Name).Not.Nullable();
             Map(x => x.Tag).Not.Nullable();
             Map(x => x.Sequence).Not.Nullable();
-            References(x => x.DefaultLevel).Not.Nullable().Not.LazyLoad();
+            //References(x => x.DefaultLevel).Not.Nullable().Not.LazyLoad();
         }
     }
 }
