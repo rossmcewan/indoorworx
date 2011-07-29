@@ -109,7 +109,18 @@ namespace IndoorWorx.MyLibrary.Views
                             switch (e.Value.Status)
                             {
                                 case SaveTemplateStatus.Success:
-                                    if (!ApplicationUser.CurrentUser.Templates.Contains(e.Value.SavedTemplate))
+                                    if (ApplicationUser.CurrentUser.Templates.Contains(e.Value.SavedTemplate))
+                                    {
+                                        SmartDispatcher.BeginInvoke(() =>
+                                            {
+                                                var list = ApplicationUser.CurrentUser.Templates as ObservableCollection<TrainingSetTemplate>;
+                                                var index = list.IndexOf(e.Value.SavedTemplate);
+                                                list.RemoveAt(index);
+                                                list.Insert(index, e.Value.SavedTemplate);
+                                                shell.RemoveFromLayoutRoot(View as UIElement);
+                                            });
+                                    }
+                                    else
                                     {
                                         SmartDispatcher.BeginInvoke(() =>
                                             {
@@ -173,6 +184,58 @@ namespace IndoorWorx.MyLibrary.Views
                 };
             this.Template.BeginEdit();
             shell.AddToLayoutRoot(View as UIElement);
+        }
+
+        public void EditTemplate(TrainingSetTemplate template)
+        {
+            this.TemplateOperation = CrudOperation.Update;
+            this.Template = template;
+            var warmups = template.Intervals.Where(x=>x.TemplateSection == Interval.WarmupTag);
+            PopulateIntervals(warmups, x => warmupIntervals.Add(x));
+            var mainsets = template.Intervals.Where(x=>x.TemplateSection == Interval.MainSetTag);
+            PopulateIntervals(mainsets, x => mainSetIntervals.Add(x));
+            var cooldowns = template.Intervals.Where(x=>x.TemplateSection == Interval.CooldownTag);
+            PopulateIntervals(cooldowns, x => cooldownIntervals.Add(x));
+            this.Template.BeginEdit();
+            shell.AddToLayoutRoot(View as UIElement);
+        }
+
+        private void PopulateIntervals(IEnumerable<Interval> rootIntervals, Action<Interval> add)
+        {
+            var intervalGroups = rootIntervals.GroupBy(x => x.SectionGroup);
+            foreach (var group in intervalGroups)
+            {
+                var intervals = group.ToList();
+                var hasRecovery = intervals.Count > 1 && intervals.GroupBy(x => x.Effort).Count() > 1;
+                var firstInterval = intervals.First();
+
+                var interval = new Interval();
+
+                interval.Description = firstInterval.Description;
+                interval.Duration = firstInterval.Duration;
+                interval.Effort = firstInterval.Effort;
+                interval.EffortType = firstInterval.EffortType;
+                interval.IntervalDuration = new Infrastructure.Models.Duration() { Hours = firstInterval.Duration.Hours, Minutes = firstInterval.Duration.Minutes, Seconds = firstInterval.Duration.Seconds };
+                interval.IntervalLevel = firstInterval.IntervalLevel;
+                interval.IntervalType = firstInterval.IntervalType;
+                interval.RecoveryInterval = new Infrastructure.Models.Duration() { Hours = 0, Minutes = 0, Seconds = 0 };
+                interval.TemplateSection = firstInterval.TemplateSection;
+                interval.SectionGroup = firstInterval.SectionGroup;
+                interval.Title = firstInterval.Title;
+                if (hasRecovery)
+                {
+                    var recoveryInterval = intervals.ElementAt(1);
+                    interval.Repeats = intervals.Count / 2;
+                    interval.RecoveryInterval = new Infrastructure.Models.Duration() { Hours = recoveryInterval.Duration.Hours, Minutes = recoveryInterval.Duration.Minutes, Seconds = recoveryInterval.Duration.Seconds };
+                }
+                else
+                {
+                    interval.RecoveryInterval = new Infrastructure.Models.Duration() { Hours = 0, Minutes = 0, Seconds = 0 };
+                    interval.Repeats = intervals.Count;
+                }
+                interval.NotifyOnChange(RefreshTemplate);
+                add(interval);
+            }
         }
 
         private ObservableCollection<Interval> warmupIntervals;
@@ -401,7 +464,9 @@ namespace IndoorWorx.MyLibrary.Views
                     Effort = interval.Effort,
                     EffortType = interval.EffortType,
                     IntervalLevel = interval.IntervalLevel,
-                    Title = interval.Title
+                    Title = interval.Title,
+                    TemplateSection = interval.TemplateSection,
+                    SectionGroup = interval.SectionGroup
                 });
                 if (interval.RecoveryInterval.AsTimeSpan() > TimeSpan.Zero)
                 {
@@ -412,7 +477,9 @@ namespace IndoorWorx.MyLibrary.Views
                         IntervalType = recoveryType,
                         EffortType = interval.EffortType,
                         IntervalLevel = recovery,
-                        Title = interval.Title
+                        Title = interval.Title,
+                        TemplateSection = interval.TemplateSection,
+                        SectionGroup = interval.SectionGroup
                     };
                     recoveryInterval.Effort = recovery.AverageEffortFor(interval.EffortType);
                     add(recoveryInterval);

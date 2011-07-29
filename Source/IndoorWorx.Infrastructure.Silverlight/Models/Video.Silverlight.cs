@@ -20,9 +20,6 @@ namespace IndoorWorx.Infrastructure.Models
 {
     public partial class Video
     {
-        public event EventHandler SelectedTrainingSetChanging;
-        public event EventHandler SelectedTrainingSetChanged;
-
         public Video()
         {
             Initialize();
@@ -60,24 +57,7 @@ namespace IndoorWorx.Infrastructure.Models
                 mediaLoading = value;
                 FirePropertyChanged("IsMediaLoading");
             }
-        }
-
-        private TrainingSet selectedTrainingSet;
-        public virtual TrainingSet SelectedTrainingSet
-        {
-            get { return selectedTrainingSet; }
-            set
-            {
-                OnSelectedTrainingSetChanging();
-                bool changed = value != selectedTrainingSet;
-                selectedTrainingSet = value;
-                if (selectedTrainingSet != null)
-                    selectedTrainingSet.LoadTelemetry();
-                if (changed)
-                    OnSelectedTrainingSetChanged();
-                FirePropertyChanged("SelectedTrainingSet");
-            }
-        }
+        }        
 
         public event EventHandler TelemetryLoaded;
 
@@ -158,7 +138,7 @@ namespace IndoorWorx.Infrastructure.Models
 
         public void LoadPlayingTelemetry()
         {
-            this.PlayingTelemetry = Telemetry.Where(x => x.TimePosition.TotalSeconds > this.PlayFrom && x.TimePosition.TotalSeconds < this.PlayTo).ToList();
+            this.PlayingTelemetry = Telemetry.Where(x => x.TimePosition > this.PlayFrom && x.TimePosition < this.PlayTo).ToList();
         }
 
         private ICollection<Telemetry> playingTelemetry;
@@ -179,54 +159,53 @@ namespace IndoorWorx.Infrastructure.Models
         public void OnDeserialized(StreamingContext context)
         {
             Initialize();
-            PlayTo = Duration.TotalSeconds;
+            PlayTo = Duration;
         }
 
         private void Initialize()
         {
             this.IsMediaLoading = true;
             this.telemetry = new ObservableCollection<Telemetry>();
-        }
+        }        
 
-        protected virtual void OnSelectedTrainingSetChanging()
-        {
-            if (SelectedTrainingSetChanging != null)
-                SelectedTrainingSetChanging(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnSelectedTrainingSetChanged()
-        {
-            if (SelectedTrainingSetChanged != null)
-                SelectedTrainingSetChanged(this, EventArgs.Empty);
-        }
-
-        private double playFrom;
-        public virtual double PlayFrom
+        private TimeSpan playFrom;
+        public virtual TimeSpan PlayFrom
         {
             get { return playFrom; }
             set
             {
-                playFrom = value;
+                playFrom = TimeSpan.FromSeconds(Math.Round(value.TotalSeconds, 0));
                 FirePropertyChanged("PlayFrom");
                 FirePropertyChanged("PlayDuration");
             }
         }
 
-        private double playTo;
-        public virtual double PlayTo
+        private TimeSpan playTo;
+        public virtual TimeSpan PlayTo
         {
             get { return playTo; }
             set
             {
-                playTo = value;
+                playTo = TimeSpan.FromSeconds(Math.Round(value.TotalSeconds, 0));
                 FirePropertyChanged("PlayTo");
                 FirePropertyChanged("PlayDuration");
             }
         }
 
-        public double PlayDuration
+        public TimeSpan PlayDuration
         {
             get { return PlayTo - PlayFrom; }
+        }
+
+        private DateTime reference;
+        public DateTime StartDateTime
+        {
+            get { return reference; }
+        }
+
+        public DateTime EndDateTime
+        {
+            get { return reference.AddMilliseconds(Duration.TotalMilliseconds); }
         }
     }
 }

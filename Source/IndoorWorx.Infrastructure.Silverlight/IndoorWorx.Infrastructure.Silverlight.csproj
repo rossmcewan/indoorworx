@@ -336,12 +336,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Converters\StringToUriConverter.cs" />
+    <Compile Include="Converters\TimeSpanToDateTimeConverter.cs" />
     <Compile Include="Converters\UrlToImageConverter.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DragDrop\IDropTarget.cs" />
     <Compile Include="Events\CatalogSearchTextChangedEvent.cs" />
-    <Compile Include="Events\DesignVideoEvent.cs" />
     <Compile Include="Events\HelpEvent.cs" />
     <Compile Include="Events\LibraryPart.cs" />
     <Compile Include="Events\MyLibraryEvent.cs" />
@@ -349,6 +349,7 @@
     <Compile Include="Events\PreviewVideoEvent.cs" />
     <Compile Include="Events\SettingsEvent.cs" />
     <Compile Include="Facades\IDialogFacade.cs" />
+    <Compile Include="Helpers\CommandExtensions.cs" />
     <Compile Include="Helpers\EnumCollection.cs" />
     <Compile Include="Helpers\EnumContainer.cs" />
     <Compile Include="Helpers\FullScreenExtensions.cs" />

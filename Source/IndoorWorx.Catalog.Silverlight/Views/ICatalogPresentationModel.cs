@@ -15,26 +15,8 @@ namespace IndoorWorx.Catalog.Views
 {
     public interface ICatalogPresentationModel
     {
-        object SelectedItem { get; set; }
-
         ICatalogView View { get; set; }
-
-        ICollection<Category> Categories { get; set; }
-
-        Category SelectedCategory { get; set; }
-
-        ICommand DesignTrainingSetCommand { get; set; }
-
-        ICommand PlayTrainingSetCommand { get; set; }
-
-        ICommand PreviewTrainingSetCommand { get; set; }
-
-        void LoadCategories();
-
+        
         bool IsBusy { get; set; }
-
-        void OnTrainingSetSelectionChanged();
-
-        void OnVideoSelectionChanged();
     }
 }

@@ -47,14 +47,14 @@ namespace IndoorWorx.Catalog.Controls
 
         public void VideoSelectionChanged(Video video)
         {
-            if (video != null && video.SelectedTrainingSet != null)
-            {
-                LoadTelemetryOnChart(video.SelectedTrainingSet);
-            }
-            else
-            {
-                ClearTelemetryChart();
-            }
+            //if (video != null && video.SelectedTrainingSet != null)
+            //{
+            //    LoadTelemetryOnChart(video.SelectedTrainingSet);
+            //}
+            //else
+            //{
+            //    ClearTelemetryChart();
+            //}
         }
 
         private void profileChart_Loaded(object sender, RoutedEventArgs e)

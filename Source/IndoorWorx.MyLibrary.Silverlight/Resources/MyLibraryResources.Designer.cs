@@ -385,6 +385,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Editing of public templates is not allowed..
+        /// </summary>
+        public static string NoEditingOfPublicTemplates {
+            get {
+                return ResourceManager.GetString("NoEditingOfPublicTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to REPEATS.
         /// </summary>
         public static string NumberOfRepeatsLabel {

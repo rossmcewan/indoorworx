@@ -17,6 +17,7 @@ using Microsoft.Practices.Composite.Presentation.Commands;
 using IndoorWorx.Infrastructure.Facades;
 using IndoorWorx.MyLibrary.Resources;
 using IndoorWorx.Infrastructure;
+using IndoorWorx.Infrastructure.Helpers;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -91,6 +92,15 @@ namespace IndoorWorx.MyLibrary.Views
 
         private void EditTemplate(object arg)
         {
+            if (Template.IsPublic)
+            {
+                dialogFacade.Alert(MyLibraryResources.NoEditingOfPublicTemplates);
+            }
+            else
+            {
+                var view = serviceLocator.GetInstance<ITemplateView>();
+                view.Model.EditTemplate(Template);
+            }
         }
 
         private void CreateRide(object arg)
@@ -112,7 +122,7 @@ namespace IndoorWorx.MyLibrary.Views
                 templateService.TrainingSetTemplatesRetrieved += (sender, e) =>
                 {
                     var templates = e.Value;
-                    Template = templates.FirstOrDefault(x => x.Id == id);
+                    Template = templates.FirstOrDefault(x => x.Id == id);                    
                     IsBusy = false;
                 };
                 templateService.TrainingSetTemplateRetrievalError += (sender, e) =>
@@ -143,6 +153,7 @@ namespace IndoorWorx.MyLibrary.Views
             {
                 template = value;
                 FirePropertyChanged("Template");
+                SmartDispatcher.BeginInvoke(() => EditTemplateCommand.RaiseCanExecuteChanged<object>());
             }
         }
 

@@ -7,6 +7,7 @@
            Width="400" Height="500" 
            Style="{StaticResource ChildWindowStyle}" Title="{Binding Title, Mode=OneWay}">
     <controls:ChildWindow.Resources>
+        <converters:TimeSpanToDateTimeConverter x:Key="TimeSpanToDateTimeConverter"/>
         <converters:SecondsToOADateConverter x:Key="SecondsToOADateConverter"/>
         <converters:SecondsToTimeSpanConverter x:Key="SecondsToTimeSpanConverter"/>
     </controls:ChildWindow.Resources>
@@ -18,25 +19,32 @@
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <TextBlock TextWrapping="Wrap" Text="{Binding PlayerResources.PlayerDetailsInstructions, Source={StaticResource PlayerResources}}"/>
-                <TextBlock Text="{Binding PlayerResources.FromLabel, Source={StaticResource PlayerResources}}" FontWeight="SemiBold"/>
-                <TextBox Text="{Binding Video.PlayFrom, Mode=TwoWay, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}" HorizontalAlignment="Left" Width="100"/>
-                <TextBlock Text="{Binding PlayerResources.ToLabel, Source={StaticResource PlayerResources}}" FontWeight="SemiBold"/>
-                <TextBox Text="{Binding Video.PlayTo, Mode=TwoWay, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}" HorizontalAlignment="Left" Width="100"/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="2,0">
+                        <TextBlock Text="{Binding PlayerResources.FromLabel, Source={StaticResource PlayerResources}}" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding Video.PlayFrom, Mode=TwoWay}" HorizontalAlignment="Left" Width="100"/>
+                    </StackPanel>
+                    <StackPanel Margin="2,0">
+                        <TextBlock Text="{Binding PlayerResources.ToLabel, Source={StaticResource PlayerResources}}" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding Video.PlayTo, Mode=TwoWay}" HorizontalAlignment="Left" Width="100"/>
+                    </StackPanel>
+                </StackPanel>
                 <TextBlock Text="{Binding PlayerResources.DurationLabel, Source={StaticResource PlayerResources}}" FontWeight="SemiBold"/>
-                <TextBlock Text="{Binding Video.PlayDuration, Mode=OneWay, Converter={StaticResource SecondsToTimeSpanConverter}, ConverterParameter=string}"/>
-                <telerik:RadSlider HandlesVisibility="Visible" IsSelectionRangeEnabled="True" VerticalAlignment="Top"
-                                   Minimum="0" Maximum="{Binding Video.Duration.TotalSeconds}"
-                                   DragCompleted="RadSlider_DragCompleted" TickFrequency="5" IsSnapToTickEnabled="True" TickPlacement="None"
-                                   SelectionStart="{Binding Video.PlayFrom, Mode=TwoWay}" SelectionEnd="{Binding Video.PlayTo, Mode=TwoWay}"/>
-                <telerik:RadLinearSparkline 
-                            Height="100" 
-                            Width="400"                                                    
-                            ItemsSource="{Binding Video.PlayingTelemetry, Mode=TwoWay}" 
+                <TextBlock Text="{Binding Video.PlayDuration, Mode=OneWay}"/>
+                <telerik:RadTimeBar x:Name="timeBar" Height="200" 
+                                    PeriodStart="{Binding Video.StartDateTime}" PeriodEnd="{Binding Video.EndDateTime}"
+                                    SelectionStart="{Binding Video.PlayFrom, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}" 
+                                    SelectionEnd="{Binding Video.PlayTo, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}">
+                    <telerik:RadTimeBar.Intervals>
+                        <telerik:SecondInterval/>
+                        <telerik:MinuteInterval/>
+                    </telerik:RadTimeBar.Intervals>
+                    <telerik:RadLinearSparkline 
+                            ItemsSource="{Binding Video.Telemetry, Mode=TwoWay}" 
                             ShowAxis="False"                            
                             YValuePath="PercentageThreshold" 
-                            XValuePath="OATimePosition" 
-                            VerticalAlignment="Bottom" 
-                            HorizontalAlignment="Left"/>
+                            XValuePath="TimePositionAsDateTime" />
+                </telerik:RadTimeBar>
             </StackPanel>
         </ScrollViewer>
         <Button x:Name="CancelButton" Content="Cancel" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />

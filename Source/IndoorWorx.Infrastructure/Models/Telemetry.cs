@@ -73,6 +73,6 @@ namespace IndoorWorx.Infrastructure.Models
                 var datetime = new DateTime(today.Year, today.Month, today.Day, timespan.Hours, timespan.Minutes, timespan.Seconds);
                 return datetime.ToOADate();
             }
-        }
+        }        
     }
 }

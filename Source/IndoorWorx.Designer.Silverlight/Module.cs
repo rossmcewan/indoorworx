@@ -31,13 +31,6 @@ namespace IndoorWorx.Designer
         {
             this.unityContainer = unityContainer;
             this.serviceLocator = serviceLocator;
-
-            eventAggregator.GetEvent<DesignVideoEvent>().Subscribe(DesignVideo, ThreadOption.UIThread, true);
-        }
-
-        public void DesignVideo(Video video)
-        {
-            NavigationService.NavigateTo(new Uri(string.Format("/Designer?VideoId={0}", video.Id), UriKind.Relative));
         }
 
         private INavigationService NavigationService
@@ -56,18 +49,13 @@ namespace IndoorWorx.Designer
         {
             Application.Current.Resources.Add("DesignerResources", new ResourceWrapper());
 
-            unityContainer.RegisterInstance<IDesignerPresentationModel>(unityContainer.Resolve<DesignerPresentationModel>(), new ContainerControlledLifetimeManager());
-            unityContainer.RegisterInstance<IDesignerView>(unityContainer.Resolve<DesignerView>(), new ContainerControlledLifetimeManager());
-            unityContainer.RegisterType<IDesignerSelectorPresentationModel, DesignerSelectorPresentationModel>();
-            unityContainer.RegisterType<IDesignerSelectorView, DesignerSelectorView>();
-
             NavigationLinks.MapUri(
                 new Uri("/Designer", UriKind.Relative),
-                new Uri("/IndoorWorx.Designer.Silverlight;component/Views/DesignerPage.xaml", UriKind.Relative));
+                new Uri("/IndoorWorx.Designer.Silverlight;component/Pages/DesignerPage.xaml", UriKind.Relative));
 
             NavigationLinks.Add(new Infrastructure.Models.NavigationInfo()
             {
-                Content = "designer",                
+                Content = "mydesigner",                
                 IsAuthenticationRequired = true,
                 NavigationUri = "/Designer",
                 Allow = new string[] { "*" },

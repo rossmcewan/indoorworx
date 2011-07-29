@@ -303,4 +303,7 @@
   <data name="RemoveTemplateHeader" xml:space="preserve">
     <value>REMOVE TEMPLATE</value>
   </data>
+  <data name="NoEditingOfPublicTemplates" xml:space="preserve">
+    <value>Editing of public templates is not allowed.</value>
+  </data>
 </root>

@@ -25,7 +25,7 @@ using IndoorWorx.Catalog.Events;
 
 namespace IndoorWorx.Catalog.Views
 {
-    public class CatalogPresentationModel : BaseModel, ICatalogPresentationModel, ICategoryTreeControlModel
+    public class CatalogPresentationModel : BaseModel, ICatalogPresentationModel
     {
         private readonly IServiceLocator serviceLocator;
         private readonly IEventAggregator eventAggregator;
@@ -33,29 +33,11 @@ namespace IndoorWorx.Catalog.Views
         {
             this.serviceLocator = serviceLocator;
             this.eventAggregator = eventAggregator;
-            this.DesignTrainingSetCommand = new DelegateCommand<Video>(DesignTrainingSet);
-            this.PlayTrainingSetCommand = new DelegateCommand<Video>(PlayTrainingSet);
-            this.PreviewTrainingSetCommand = new DelegateCommand<Video>(PreviewTrainingSet);
         }
 
         private IShell Shell
         {
             get { return this.serviceLocator.GetInstance<IShell>(); }
-        }
-
-        private void DesignTrainingSet(Video video)
-        {
-            eventAggregator.GetEvent<DesignVideoEvent>().Publish(video);            
-        }
-
-        private void PlayTrainingSet(Video video)
-        {            
-            eventAggregator.GetEvent<PlayVideoEvent>().Publish(video);            
-        }
-
-        private void PreviewTrainingSet(Video video)
-        {
-            eventAggregator.GetEvent<PreviewVideoEvent>().Publish(video);
         }
 
         #region ICatalogPresentationModel Members
@@ -73,99 +55,6 @@ namespace IndoorWorx.Catalog.Views
             }
         }
 
-        private ICollection<Category> allCategories;
-        public ICollection<Category> AllCategories
-        {
-            get { return allCategories; }
-            set
-            {
-                allCategories = value;
-            }
-        }
-
-        private Category selectedCategory;
-        public Category SelectedCategory
-        {
-            get
-            {
-                return this.selectedCategory;
-            }
-            set
-            {
-                this.selectedCategory = value;
-                FirePropertyChanged("SelectedCategory");
-            }
-        }
-
-        public void LoadCategories()
-        {
-            var categoryService = serviceLocator.GetInstance<ICategoryService>();
-            categoryService.CategoryRetrievalError += (sender, e) =>
-                {
-                    this.IsBusy = false;
-                    throw e.Value;
-                };
-            categoryService.CategoriesRetrieved += (sender, e) =>
-                {
-                    AllCategories = new List<Category>(e.Value);
-                    Categories = e.Value;
-                    this.IsBusy = false;
-                };
-            this.IsBusy = true;
-            categoryService.RetrieveCategories();            
-        }
-
-        private ICommand designTrainingSetCommand;
-        public ICommand DesignTrainingSetCommand
-        {
-            get { return designTrainingSetCommand; }
-            set
-            {
-                designTrainingSetCommand = value;
-                FirePropertyChanged("DesignTrainingSetCommand");
-            }
-        }
-
-        private ICommand playTrainingSetCommand;
-        public ICommand PlayTrainingSetCommand
-        {
-            get { return playTrainingSetCommand; }
-            set
-            {
-                playTrainingSetCommand = value;
-                FirePropertyChanged("PlayTrainingSetCommand");
-            }
-        }
-
-        private ICommand previewTrainingSetCommand;
-        public ICommand PreviewTrainingSetCommand
-        {
-            get { return previewTrainingSetCommand; }
-            set
-            {
-                previewTrainingSetCommand = value;
-                FirePropertyChanged("PreviewTrainingSetCommand");
-            }
-        }
-
-        public void OnTrainingSetSelectionChanged()
-        {
-            eventAggregator.GetEvent<TrainingSetSelectionChangedEvent>().Publish(SelectedCategory.SelectedCatalog.SelectedVideo.SelectedTrainingSet);
-        }
-
-        public void OnVideoSelectionChanged()
-        {
-            if (SelectedCategory != null && SelectedCategory.SelectedCatalog != null)
-            {
-                eventAggregator.GetEvent<VideoSelectionChangedEvent>().Publish(SelectedCategory.SelectedCatalog.SelectedVideo);
-            }
-            FirePropertyChanged("IsVideoSelected");
-        }
-
-        #endregion
-
-        #region ICategoryTreeControlModel Members
-
         private bool busy;
         public bool IsBusy
         {
@@ -176,180 +65,6 @@ namespace IndoorWorx.Catalog.Views
                 FirePropertyChanged("IsBusy");
             }
         }
-
-        private object selectedItem;
-        public object SelectedItem
-        {
-            get { return selectedItem; }
-            set
-            {
-                selectedItem = value;
-                if (selectedItem is Category)
-                    SelectedCategory = value as Category;
-                if (selectedItem is IndoorWorx.Infrastructure.Models.Catalog)
-                {
-                    var catalog = selectedItem as IndoorWorx.Infrastructure.Models.Catalog;
-                    foreach (var category in Categories)
-                    {
-                        foreach (var c in category.Catalogs)
-                        {
-                            if (c.Id == catalog.Id)
-                            {
-                                SelectedCategory = category;
-                                category.SelectedCatalog = c;
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (selectedItem is Video)
-                {
-                    var video = selectedItem as Video;
-                    foreach (var category in Categories)
-                    {
-                        foreach (var c in category.Catalogs)
-                        {
-                            foreach (var v in c.Videos)
-                            {
-                                if (v.Id == video.Id)
-                                {
-                                    SelectedCategory = category;
-                                    category.SelectedCatalog = c;
-                                    c.SelectedVideo = v;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-                FirePropertyChanged("SelectedItem");
-            }
-        }
-
-        private ICollection<Category> categories = new ObservableCollection<Category>();
-        public ICollection<Category> Categories
-        {
-            get
-            {
-                return this.categories;
-            }
-            set
-            {
-                this.categories.Clear();
-                foreach (var category in value)
-                {
-                    category.SelectedCatalogChanging -= SelectedCatalogChanging;
-                    category.SelectedCatalogChanging += SelectedCatalogChanging;
-                    category.SelectedCatalogChanged -= SelectedCatalogChanged;
-                    category.SelectedCatalogChanged += SelectedCatalogChanged;
-                    foreach (var catalog in category.Catalogs)
-                    {
-                        catalog.SelectedVideoChanging -= SelectedVideoChanging;
-                        catalog.SelectedVideoChanging += SelectedVideoChanging;
-                        catalog.SelectedVideoChanged -= SelectedVideoChanged;
-                        catalog.SelectedVideoChanged += SelectedVideoChanged;
-                        foreach (var video in catalog.Videos)
-                        {
-                            video.SelectedTrainingSetChanged -= SelectedTrainingSetChanged;
-                            video.SelectedTrainingSetChanged += SelectedTrainingSetChanged;
-                        }
-                    }
-                    this.categories.Add(category);
-                }
-                FirePropertyChanged("Categories");
-            }
-        }
-
-        private void SelectedCatalogChanging(object sender, EventArgs args)
-        {
-            //var catalog = SelectedCategory.SelectedCatalog;
-            //if (catalog != null)
-            //{
-            //    var video = catalog.SelectedVideo;
-            //    if (video != null)
-            //        video.SelectedTrainingSet = null;
-            //}
-        }
-
-        private void SelectedCatalogChanged(object sender, EventArgs args)
-        {
-        }
-
-        private void SelectedVideoChanging(object sender, EventArgs args)
-        {
-            //var video = SelectedCategory.SelectedCatalog.SelectedVideo;
-            //if(video != null)
-            //    video.SelectedTrainingSet = null;
-        }
-
-        private void SelectedVideoChanged(object sender, EventArgs args)
-        {
-            OnVideoSelectionChanged();
-        }
-
-        private void SelectedTrainingSetChanged(object sender, EventArgs args)
-        {
-            OnTrainingSetSelectionChanged();
-        }
-
-        private string searchText;
-        public string SearchText
-        {
-            get { return searchText; }
-            set
-            {
-                //need to build a new collection - only adding the ones that meet the search criteria
-                if (string.IsNullOrWhiteSpace(value))
-                    Categories = AllCategories.ToList();
-                else
-                {
-                    if (value != searchText)
-                    {
-                        eventAggregator.GetEvent<CatalogSearchTextChangedEvent>().Publish(value);
-                        FilterValidSearchResults(value);
-                    }
-                }
-                searchText = value;
-                FirePropertyChanged("SearchText");
-            }
-        }
-
-        private void FilterValidSearchResults(string searchText)
-        {
-            var validSearchResults = new List<Category>();
-            foreach (var category in AllCategories)
-            {
-                var newCategory = new Category() { Title = category.Title };
-                foreach (var catalog in category.Catalogs)
-                {
-                    var newCatalog = new IndoorWorx.Infrastructure.Models.Catalog() { Title = catalog.Title, Sequence = catalog.Sequence };
-                    foreach (var video in catalog.Videos)
-                    {
-                        if (video.Title.IndexOf(searchText.ToLower(), StringComparison.OrdinalIgnoreCase) >= 0)
-                        {
-                            newCatalog.Videos.Add(video);
-                        }
-                    }
-                    if (newCatalog.Videos.Any())
-                        newCategory.Catalogs.Add(newCatalog);
-                }
-                if (newCategory.Catalogs.Any())
-                    validSearchResults.Add(newCategory);
-            }
-            Categories = validSearchResults;
-        }
-
-        public bool IsVideoSelected
-        {
-            get
-            {
-                var result = SelectedCategory != null &&
-                    SelectedCategory.SelectedCatalog != null &&
-                    SelectedCategory.SelectedCatalog.SelectedVideo != null;
-                return result;
-            }
-        }
-
         #endregion
     }
 }

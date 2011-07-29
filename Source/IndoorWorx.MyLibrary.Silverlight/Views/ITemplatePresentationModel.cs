@@ -23,6 +23,8 @@ namespace IndoorWorx.MyLibrary.Views
 
         void NewTemplate();
 
+        void EditTemplate(TrainingSetTemplate template);
+
         TrainingSetTemplate Template { get; }
 
         ICollection<Interval> WarmupIntervals { get; }

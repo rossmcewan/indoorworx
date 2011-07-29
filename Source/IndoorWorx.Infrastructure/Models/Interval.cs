@@ -93,29 +93,29 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        //private int? effortFrom;
-        //[DataMember]
-        //public virtual int? EffortFrom
-        //{
-        //    get { return effortFrom; }
-        //    set
-        //    {
-        //        effortFrom = value;
-        //        FirePropertyChanged("EffortFrom");
-        //    }
-        //}
+        private string templateSection;
+        [DataMember]
+        public virtual string TemplateSection
+        {
+            get { return templateSection; }
+            set
+            {
+                templateSection = value;
+                FirePropertyChanged("TemplateSection");
+            }
+        }
 
-        //private int? effortTo;
-        //[DataMember]
-        //public virtual int? EffortTo
-        //{
-        //    get { return effortTo; }
-        //    set
-        //    {
-        //        effortTo = value;
-        //        FirePropertyChanged("EffortTo");
-        //    }
-        //}
+        private string sectionGroup;
+        [DataMember]
+        public virtual string SectionGroup
+        {
+            get { return sectionGroup; }
+            set
+            {
+                sectionGroup = value;
+                FirePropertyChanged("SectionGroup");
+            }
+        }
 
         private int sequence;
         [DataMember]

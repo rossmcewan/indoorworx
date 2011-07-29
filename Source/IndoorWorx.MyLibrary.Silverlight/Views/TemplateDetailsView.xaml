@@ -4,10 +4,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"       
-    xmlns:converters="clr-namespace:IndoorWorx.MyLibrary.Converters"             
+    xmlns:converters="clr-namespace:IndoorWorx.MyLibrary.Converters" 
+    xmlns:iconverters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"             
     mc:Ignorable="d"
     VerticalAlignment="Stretch" HorizontalAlignment="Stretch"             
     d:DesignHeight="300" d:DesignWidth="400">
+    <UserControl.Resources>
+        <iconverters:BooleanToOppositeVisibilityConverter x:Key="BooleanToOppositeVisibilityConverter"/>
+    </UserControl.Resources>
     <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
         <Grid>
             <Grid.RowDefinitions>
@@ -37,7 +41,10 @@
                 <Button Cursor="Hand" Margin="10" BorderThickness="0" ToolTipService.ToolTip="{Binding MyLibraryResources.CreateRideToolTip, Source={StaticResource MyLibraryResources}}" Command="{Binding CreateRideCommand}">
                     <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/video.png" Width="32"/>
                 </Button>
-                <Button Cursor="Hand" Margin="10" BorderThickness="0" ToolTipService.ToolTip="{Binding MyLibraryResources.EditTemplateToolTip, Source={StaticResource MyLibraryResources}}" Command="{Binding EditTemplateCommand}">
+                <Button Cursor="Hand" Margin="10" BorderThickness="0" 
+                        ToolTipService.ToolTip="{Binding MyLibraryResources.EditTemplateToolTip, Source={StaticResource MyLibraryResources}}" 
+                        Command="{Binding EditTemplateCommand, Mode=OneWay}">
+                        <!--IsEnabled="{Binding Template.IsPublic, Mode=OneWay, Converter={StaticResource BooleanToOppositeVisibilityConverter}}">-->
                     <Image Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/edit.png" Width="32"/>
                 </Button>
                 <Button Cursor="Hand" Margin="10" BorderThickness="0" ToolTipService.ToolTip="{Binding MyLibraryResources.RemoveTemplateToolTip, Source={StaticResource MyLibraryResources}}" Command="{Binding RemoveTemplateCommand}">

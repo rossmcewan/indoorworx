@@ -285,7 +285,7 @@ namespace IndoorWorx.Player.Views
             }), null, Timeout.Infinite, Timeout.Infinite);
             Video.IsMediaLoading = false;
             IsMediaOpened = true;
-            View.SetStartPosition(TimeSpan.FromSeconds(Video.PlayFrom));
+            View.SetStartPosition(Video.PlayFrom);
         }
 
         private void LoadVideoText(VideoText videoText)

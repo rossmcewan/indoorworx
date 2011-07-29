@@ -27,9 +27,22 @@
             </StackPanel>
             <!--<telerik:RadButton HorizontalAlignment="Left" Content="{Binding MyLibraryResources.PlayVideo, Source={StaticResource MyLibraryResources}}" Command="{Binding PlayVideoCommand}" CommandParameter="{Binding Video, Mode=OneWay}" Margin="5"/>-->
             <telerik:RadBusyIndicator IsBusy="{Binding Video.IsTelemetryLoading, Mode=OneWay}">
+                <!--<telerik:RadTimeBar x:Name="timeBar" Height="200" 
+                                    PeriodStart="{Binding Video.StartDateTime}" PeriodEnd="{Binding Video.EndDateTime}"
+                                    SelectionStart="{Binding Video.StartDateTime}" SelectionEnd="{Binding Video.EndDateTime}">                    
+                    <telerik:RadTimeBar.Intervals>
+                        <telerik:SecondInterval/>
+                        <telerik:MinuteInterval/>
+                    </telerik:RadTimeBar.Intervals>
+                    <telerik:RadLinearSparkline 
+                            ItemsSource="{Binding Video.Telemetry, Mode=TwoWay}" 
+                            ShowAxis="False"                            
+                            YValuePath="PercentageThreshold" 
+                            XValuePath="TimePositionAsDateTime" />
+                </telerik:RadTimeBar>-->                
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0">
                     <telerik:RadLinearSparkline 
-                            Height="200" 
+                            Height="150" 
                             Width="500"                                                    
                             ItemsSource="{Binding Video.Telemetry, Mode=TwoWay}" 
                             ShowAxis="False"                            

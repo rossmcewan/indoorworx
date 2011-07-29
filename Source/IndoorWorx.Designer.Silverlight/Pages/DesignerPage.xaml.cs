@@ -9,21 +9,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Windows.Navigation;
 
-namespace IndoorWorx.Designer.Views
+namespace IndoorWorx.Designer.Pages
 {
-    public partial class DesignerView : UserControl, IDesignerView
+    public partial class DesignerPage : Page
     {
-        public DesignerView(IDesignerPresentationModel model)
+        public DesignerPage()
         {
-            this.DataContext = model;
             InitializeComponent();
-            model.View = this;
         }
 
-        public IDesignerPresentationModel Model
+        // Executes when the user navigates to this page.
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            get { return this.DataContext as IDesignerPresentationModel; }
         }
+
     }
 }

@@ -17,6 +17,8 @@ namespace IndoorWorx.Infrastructure.Models
     {
         public static readonly string WarmupTag = "WARMUP";
 
+        public static readonly string MainSetTag = "MAINSET";
+
         public static readonly string CooldownTag = "COOLDOWN";
 
         private double oaDateTime;
@@ -92,7 +94,7 @@ namespace IndoorWorx.Infrastructure.Models
 
         public static Interval NewMainSetInterval(EffortType effortType, Action onChange)
         {
-            return NewInterval(string.Empty, effortType, onChange);
+            return NewInterval(Interval.MainSetTag, effortType, onChange);
         }
 
         public static Interval NewCooldownInterval(EffortType effortType, Action onChange)
@@ -100,7 +102,7 @@ namespace IndoorWorx.Infrastructure.Models
             return NewInterval(Interval.CooldownTag, effortType, onChange);
         }
 
-        private static Interval NewInterval(string tag, EffortType effortType, Action onChange)
+        public static Interval NewInterval(string tag, EffortType effortType, Action onChange)
         {
             var interval = new Interval();
             interval.Repeats = 1;
@@ -113,8 +115,10 @@ namespace IndoorWorx.Infrastructure.Models
             interval.IntervalLevel = ApplicationContext.Current.IntervalLevels.FirstOrDefault();
             interval.EffortType = effortType;
             interval.IntervalType = ApplicationContext.Current.IntervalTypes.FirstOrDefault(x => x.Tag == tag);
+            interval.TemplateSection = tag;
+            interval.SectionGroup = Guid.NewGuid().ToString();
             return interval;
-        }
+        }        
 
         private static void IntervalPropertyChanged(object sender, PropertyChangedEventArgs args)
         {
@@ -122,41 +126,21 @@ namespace IndoorWorx.Infrastructure.Models
             if (args.PropertyName == "IntervalLevel")
             {
                 interval.Effort = interval.IntervalLevel.AverageEffortFor(interval.EffortType);
-                //if (interval.IntervalLevel != null)
-                //{
-                //    if (interval.EffortType.IsHR)
-                //    {
-                //        interval.Effort = (interval.IntervalLevel.MinimumPercentageOfFthr + interval.IntervalLevel.MaximumPercentageOfFthr) / 2;
-                //    }
-                //    else if (interval.EffortType.IsPower)
-                //    {
-                //        interval.Effort = (interval.IntervalLevel.MinimumPercentageOfFtp + interval.IntervalLevel.MaximumPercentageOfFtp) / 2;
-                //    }
-                //    else if (interval.EffortType.IsRPE)
-                //    {
-                //        interval.Effort = (interval.IntervalLevel.MinRPE + interval.IntervalLevel.MaxRPE) / 2;
-                //    }
-                //}
             }
             if (args.PropertyName == "EffortType")
             {
                 interval.Effort = interval.IntervalLevel.AverageEffortFor(interval.EffortType);
-                //if (interval.EffortType != null)
-                //{
-                //    if (interval.EffortType.IsHR)
-                //    {
-                //        interval.Effort = (interval.IntervalLevel.MinimumPercentageOfFthr + interval.IntervalLevel.MaximumPercentageOfFthr) / 2;
-                //    }
-                //    else if (interval.EffortType.IsPower)
-                //    {
-                //        interval.Effort = (interval.IntervalLevel.MinimumPercentageOfFtp + interval.IntervalLevel.MaximumPercentageOfFtp) / 2;
-                //    }
-                //    else if (interval.EffortType.IsRPE)
-                //    {
-                //        interval.Effort = (interval.IntervalLevel.MinRPE + interval.IntervalLevel.MaxRPE) / 2;
-                //    }
-                //}
             }
+        }
+
+        public void NotifyOnChange(Action onChange)
+        {
+            this.PropertyChanged += (sender, e) => onChange();
+            this.IntervalDuration.PropertyChanged += (sender, e) => onChange();
+            this.RecoveryInterval.PropertyChanged += (sender, e) => onChange();
+            this.ToEnd.PropertyChanged += (sender, e) => onChange();
+            this.ToStart.PropertyChanged += (sender, e) => onChange();
+            this.PropertyChanged += IntervalPropertyChanged;
         }
 
         public bool ValuesEquals(Interval compareTo)
@@ -164,15 +148,22 @@ namespace IndoorWorx.Infrastructure.Models
             return this.Description == compareTo.Description &&
                 this.Duration == compareTo.Duration &&
                 this.Effort == compareTo.Effort &&
-                this.EffortType.Equals(compareTo.EffortType) &&
-                this.IntervalDuration.Equals(compareTo.IntervalDuration) &&
-                this.IntervalLevel.Equals(compareTo.IntervalLevel) &&
-                this.IntervalType.Equals(compareTo.IntervalType) &&
-                this.RecoveryInterval.Equals(compareTo.RecoveryInterval) &&
+                object.Equals(this.EffortType, compareTo.EffortType) &&
+                //this.EffortType.Equals(compareTo.EffortType) &&
+                object.Equals(this.IntervalDuration, compareTo.IntervalDuration) &&
+                //this.IntervalDuration.Equals(compareTo.IntervalDuration) &&
+                object.Equals(this.IntervalLevel, compareTo.IntervalLevel) &&
+                object.Equals(this.IntervalType, compareTo.IntervalType) &&
+                object.Equals(this.RecoveryInterval, compareTo.RecoveryInterval) &&
+                //this.IntervalLevel.Equals(compareTo.IntervalLevel) &&
+                //this.IntervalType.Equals(compareTo.IntervalType) &&
+                //this.RecoveryInterval.Equals(compareTo.RecoveryInterval) &&
                 this.Repeats == compareTo.Repeats &&
                 this.Title == compareTo.Title &&
-                this.ToEnd.Equals(compareTo.ToEnd) &&
-                this.ToStart.Equals(compareTo.ToStart);
+                object.Equals(this.ToEnd, compareTo.ToEnd) &&
+                object.Equals(this.ToStart, compareTo.ToStart);
+                //this.ToEnd.Equals(compareTo.ToEnd) &&
+                //this.ToStart.Equals(compareTo.ToStart);
         }
 
         private Interval backup;

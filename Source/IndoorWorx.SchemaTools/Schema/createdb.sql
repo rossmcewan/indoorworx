@@ -374,6 +374,8 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        Description NVARCHAR(255) null,
        Effort INT null,
        Sequence INT not null,
+       TemplateSection NVARCHAR(255) null,
+       SectionGroup NVARCHAR(255) null,
        EffortType_id UNIQUEIDENTIFIER not null,
        IntervalType_id UNIQUEIDENTIFIER null,
        IntervalLevel_id UNIQUEIDENTIFIER not null,

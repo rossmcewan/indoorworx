@@ -112,36 +112,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\CategoryTreeDataTemplateSelector.cs" />
-    <Compile Include="Converters\IsSelectedToBackgroundConverter.cs" />
-    <Compile Include="Converters\TelemetryToHeightConverter.cs" />
-    <Compile Include="Converters\TrainingSetDesignEntryToWidthConverter.cs" />
-    <Compile Include="Events\UseSelectedVideoEvent.cs" />
-    <Compile Include="Models\TrainingSetDesignEntry.cs" />
-    <Compile Include="Events\AddDesignEntryEvent.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />
-    <Compile Include="Navigation\UseSelectedVideoMenuItem.cs" />
+    <Compile Include="Pages\DesignerPage.xaml.cs">
+      <DependentUpon>DesignerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\DesignerResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DesignerResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Views\DesignerPage.xaml.cs">
-      <DependentUpon>DesignerPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\DesignerPresentationModel.cs" />
-    <Compile Include="Views\DesignerSelectorPresentationModel.cs" />
-    <Compile Include="Views\DesignerSelectorView.xaml.cs">
-      <DependentUpon>DesignerSelectorView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\DesignerView.xaml.cs">
       <DependentUpon>DesignerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IDesignerPresentationModel.cs" />
-    <Compile Include="Views\IDesignerSelectorPresentationModel.cs" />
-    <Compile Include="Views\IDesignerSelectorView.cs" />
     <Compile Include="Views\IDesignerView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,20 +150,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\DesignerPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\DesignerSelectorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DesignerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\DesignerResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DesignerResources.Designer.cs</LastGenOutput>
@@ -185,14 +157,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Images\add.png1" />
-    <None Include="Resources\Images\design.png1" />
-    <None Include="Resources\Images\play.png1" />
-    <None Include="Resources\Images\refresh.png1" />
-    <None Include="Resources\Images\save.png1" />
-    <None Include="Resources\Images\stop.png1" />
-    <None Include="Resources\Images\zoom_in.png1" />
-    <None Include="Resources\Images\zoom_out.png1" />
+    <Page Include="Pages\DesignerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DesignerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

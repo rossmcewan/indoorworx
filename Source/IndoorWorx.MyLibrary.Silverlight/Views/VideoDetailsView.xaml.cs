@@ -18,7 +18,7 @@ namespace IndoorWorx.MyLibrary.Views
         {
             this.DataContext = model;
             InitializeComponent();
-            model.View = this;
+            model.View = this;            
         }
 
         public IVideoDetailsPresentationModel Model

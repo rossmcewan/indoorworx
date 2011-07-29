@@ -38,8 +38,6 @@ namespace IndoorWorx.Catalog.Pages
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if(reloadRequired)
-                View.Model.LoadCategories();
         }
     }
 }

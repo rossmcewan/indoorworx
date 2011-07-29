@@ -48,8 +48,8 @@ namespace IndoorWorx.Player
 
         public void PlayVideo(Video video)
         {
-            video.PlayFrom = 0;
-            video.PlayTo = video.Duration.TotalSeconds;
+            video.PlayFrom = TimeSpan.Zero;
+            video.PlayTo = video.Duration;
             video.LoadPlayingTelemetry();
             var capture = unityContainer.Resolve<IPlayerDataCaptureView>();
             capture.Model.Video = video;
