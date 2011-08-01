@@ -3,10 +3,73 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"  
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"             
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="400">
-    
-    <Grid x:Name="LayoutRoot" Background="White">
-
+    d:DesignHeight="300" d:DesignWidth="400">    
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>        
+        <StackPanel Orientation="Horizontal" Margin="2">
+            <TextBlock Text="{Binding DesignerResources.TemplateLabel, Source={StaticResource DesignerResources}}" VerticalAlignment="Center" Margin="2"/>
+            <telerik:RadComboBox Width="150" ItemsSource="{Binding CurrentUser.Templates, Mode=OneWay, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding SelectedTemplate, Mode=TwoWay}" DisplayMemberPath="Title" Margin="2"/>
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding DesignerResources.SetsLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold"/>
+            <sdk:TreeView Grid.Row="1" ItemsSource="{Binding SelectedTemplate.Sets, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <sdk:TreeView.ItemTemplate>
+                    <sdk:HierarchicalDataTemplate ItemsSource="{Binding Intervals, Mode=OneWay}">
+                        <TextBlock Text="{Binding Title, Mode=OneWay}" VerticalAlignment="Center"/>
+                    </sdk:HierarchicalDataTemplate>
+                </sdk:TreeView.ItemTemplate>
+            </sdk:TreeView>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.RowSpan="2" Margin="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding DesignerResources.VideosInYourLibraryLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold"/>
+                <ListBox Grid.Row="1" ItemsSource="{Binding CurrentUser.Videos, Mode=OneWay, Source={StaticResource ApplicationContext}}" DisplayMemberPath="Title" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+            </Grid>
+            <telerik:RadTimeBar Grid.Column="1" Margin="2"/>
+            <telerik:ListBox Grid.Column="1" Grid.Row="1" Margin="2"/>
+        </Grid>
+        <telerik:RadTimeBar x:Name="timeBar" Height="200" Grid.Row="3" Grid.ColumnSpan="2">
+                                    <!--PeriodStart="{Binding Video.StartDateTime}" PeriodEnd="{Binding Video.EndDateTime}"
+                                    SelectionStart="{Binding Video.PlayFrom, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}" 
+                                    SelectionEnd="{Binding Video.PlayTo, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}">-->
+            <telerik:RadTimeBar.Intervals>
+                <telerik:SecondInterval/>
+                <telerik:MinuteInterval/>
+            </telerik:RadTimeBar.Intervals>
+            <!--<telerik:RadLinearSparkline 
+                            ItemsSource="{Binding Video.Telemetry, Mode=TwoWay}" 
+                            ShowAxis="False"                            
+                            YValuePath="PercentageThreshold" 
+                            XValuePath="TimePositionAsDateTime" />-->
+        </telerik:RadTimeBar>
     </Grid>
 </UserControl>

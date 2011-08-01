@@ -15,5 +15,18 @@ namespace IndoorWorx.Designer.Views
     public class DesignerPresentationModel : BaseModel, IDesignerPresentationModel
     {
         public IDesignerView View { get; set; }
+
+        private TrainingSetTemplate selectedTemplate;
+        public virtual TrainingSetTemplate SelectedTemplate
+        {
+            get { return selectedTemplate; }
+            set
+            {
+                selectedTemplate = value;
+                if (selectedTemplate != null)
+                    selectedTemplate.ParseSets();
+                FirePropertyChanged("SelectedTemplate");
+            }
+        }
     }
 }

@@ -103,7 +103,7 @@
                     <navigation:Frame.ContentLoader>
                         <SLaBE:ErrorPageLoader>
                             <SLaBE:ErrorPage ExceptionType="UnauthorizedAccessException" ErrorPageUri="/IndoorWorx.Silverlight;component/Views/AuthorizationError.xaml"/>
-                            <SLaBE:ErrorPage ExceptionType="Exception" ErrorPageUri="/IndoorWorx.Silverlight;component/Views/NavigationError.xaml"/>
+                            <!--<SLaBE:ErrorPage ExceptionType="Exception" ErrorPageUri="/IndoorWorx.Silverlight;component/Views/NavigationError.xaml"/>-->
                             <SLaBE:ErrorPageLoader.ContentLoader>
                                 <SLaBA:AuthContentLoader Principal="{Binding User, Source={StaticResource WebContext}}">
                                     <SLaBA:NavigationAuthorizer/>

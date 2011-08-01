@@ -59,5 +59,50 @@ namespace IndoorWorx.Designer.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BY INTERVAL.
+        /// </summary>
+        public static string ByIntervalLabel {
+            get {
+                return ResourceManager.GetString("ByIntervalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BY SET.
+        /// </summary>
+        public static string BySetLabel {
+            get {
+                return ResourceManager.GetString("BySetLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SETS.
+        /// </summary>
+        public static string SetsLabel {
+            get {
+                return ResourceManager.GetString("SetsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEMPLATE.
+        /// </summary>
+        public static string TemplateLabel {
+            get {
+                return ResourceManager.GetString("TemplateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VIDEOS IN YOUR LIBRARY.
+        /// </summary>
+        public static string VideosInYourLibraryLabel {
+            get {
+                return ResourceManager.GetString("VideosInYourLibraryLabel", resourceCulture);
+            }
+        }
     }
 }

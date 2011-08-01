@@ -49,6 +49,9 @@ namespace IndoorWorx.Designer
         {
             Application.Current.Resources.Add("DesignerResources", new ResourceWrapper());
 
+            unityContainer.RegisterInstance<IDesignerPresentationModel>(unityContainer.Resolve<DesignerPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IDesignerView>(unityContainer.Resolve<DesignerView>(), new ContainerControlledLifetimeManager());
+
             NavigationLinks.MapUri(
                 new Uri("/Designer", UriKind.Relative),
                 new Uri("/IndoorWorx.Designer.Silverlight;component/Pages/DesignerPage.xaml", UriKind.Relative));

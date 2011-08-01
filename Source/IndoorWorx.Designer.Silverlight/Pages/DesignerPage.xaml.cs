@@ -10,20 +10,34 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
+using IndoorWorx.Infrastructure;
+using IndoorWorx.Designer.Views;
 
 namespace IndoorWorx.Designer.Pages
 {
     public partial class DesignerPage : Page
     {
+        bool reloadRequired = true;
         public DesignerPage()
         {
             InitializeComponent();
+            var contentElement = IoC.Resolve<IDesignerView>() as UserControl;
+            if (contentElement.Parent != null)
+            {
+                (contentElement.Parent as DesignerPage).Content = null;
+                reloadRequired = false;
+            }
+            this.Content = contentElement;
+        }
+
+        private IDesignerView View
+        {
+            get { return this.Content as IDesignerView; }
         }
 
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
-
     }
 }

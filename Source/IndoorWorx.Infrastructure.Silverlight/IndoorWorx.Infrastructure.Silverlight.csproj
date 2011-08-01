@@ -363,6 +363,7 @@
     <Compile Include="Models\Duration.cs" />
     <Compile Include="Models\EffortType.Silverlight.cs" />
     <Compile Include="Models\Interval.Silverlight.cs" />
+    <Compile Include="Models\IntervalGroup.cs" />
     <Compile Include="Models\IntervalType.Silverlight.cs" />
     <Compile Include="Models\SportingHabits.Silverlight.cs" />
     <Compile Include="Models\TrainingSetTemplate.Silverlight.cs" />

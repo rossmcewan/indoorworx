@@ -23,6 +23,65 @@ namespace IndoorWorx.Infrastructure.Models
             this.Intervals = new ObservableCollection<Interval>();
         }
 
+        private ICollection<IntervalGroup> sets = new ObservableCollection<IntervalGroup>();
+        public virtual ICollection<IntervalGroup> Sets
+        {
+            get { return sets; }
+            set
+            {
+                sets = value;
+                FirePropertyChanged("Sets");
+            }
+        }
+
+        public void ParseSets()
+        {
+            sets.Clear();
+            var warmups = this.Intervals.Where(x => x.TemplateSection == Interval.WarmupTag);
+            PopulateIntervals(warmups, x => Sets.Add(x));
+            var mainsets = this.Intervals.Where(x => x.TemplateSection == Interval.MainSetTag);
+            PopulateIntervals(mainsets, x => Sets.Add(x));            
+            var cooldowns = this.Intervals.Where(x => x.TemplateSection == Interval.CooldownTag);
+            PopulateIntervals(cooldowns, x => Sets.Add(x));            
+        }
+
+        private void PopulateIntervals(IEnumerable<Interval> rootIntervals, Action<IntervalGroup> add)
+        {
+            var intervalGroups = rootIntervals.GroupBy(x => x.SectionGroup);
+            foreach (var group in intervalGroups)
+            {
+                var intervals = group.ToList();
+                var hasRecovery = intervals.Count > 1 && intervals.GroupBy(x => x.Effort).Count() > 1;
+                var firstInterval = intervals.First();
+
+                var interval = new IntervalGroup();
+                interval.Intervals = intervals;
+                interval.Description = firstInterval.Description;
+                interval.Duration = firstInterval.Duration;
+                interval.Effort = firstInterval.Effort;
+                interval.EffortType = firstInterval.EffortType;
+                interval.IntervalDuration = new Infrastructure.Models.Duration() { Hours = firstInterval.Duration.Hours, Minutes = firstInterval.Duration.Minutes, Seconds = firstInterval.Duration.Seconds };
+                interval.IntervalLevel = firstInterval.IntervalLevel;
+                interval.IntervalType = firstInterval.IntervalType;
+                interval.RecoveryInterval = new Infrastructure.Models.Duration() { Hours = 0, Minutes = 0, Seconds = 0 };
+                interval.TemplateSection = firstInterval.TemplateSection;
+                interval.SectionGroup = firstInterval.SectionGroup;
+                interval.Title = firstInterval.Title;
+                if (hasRecovery)
+                {
+                    var recoveryInterval = intervals.ElementAt(1);
+                    interval.Repeats = intervals.Count / 2;
+                    interval.RecoveryInterval = new Infrastructure.Models.Duration() { Hours = recoveryInterval.Duration.Hours, Minutes = recoveryInterval.Duration.Minutes, Seconds = recoveryInterval.Duration.Seconds };
+                }
+                else
+                {
+                    interval.RecoveryInterval = new Infrastructure.Models.Duration() { Hours = 0, Minutes = 0, Seconds = 0 };
+                    interval.Repeats = intervals.Count;
+                }
+                add(interval);
+            }
+        }
+
         private Interval selectedInterval;
         public virtual Interval SelectedInterval
         {
@@ -41,6 +100,7 @@ namespace IndoorWorx.Infrastructure.Models
                 this.Intervals = new ObservableCollection<Interval>();
             else
                 this.Intervals = new ObservableCollection<Interval>(this.intervals);
+            this.sets = new ObservableCollection<IntervalGroup>();
             SetupIntervalTimes();
         }
 
