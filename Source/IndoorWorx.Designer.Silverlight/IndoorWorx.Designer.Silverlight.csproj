@@ -122,6 +122,9 @@
     <Compile Include="Controls\IntervalTabItem.xaml.cs">
       <DependentUpon>IntervalTabItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SingleVideoDesignControl.xaml.cs">
+      <DependentUpon>SingleVideoDesignControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\IntervalsToTabItemsConverter.cs" />
     <Compile Include="Converters\IntervalToTabItemConverter.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
@@ -135,6 +138,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DesignerResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\IDesignerPresentationModelBase.cs" />
     <Compile Include="Views\IIntervalDesignerPresentationModel.cs" />
     <Compile Include="Views\IIntervalDesignerView.cs" />
     <Compile Include="Views\IntervalDesignerPresentationModel.cs" />
@@ -179,6 +183,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\IntervalTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SingleVideoDesignControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

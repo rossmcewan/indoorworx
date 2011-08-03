@@ -13,12 +13,11 @@ namespace IndoorWorx.Infrastructure.Models
 {
     public partial class Telemetry
     {
-        DateTime reference = new DateTime();
         public virtual DateTime TimePositionAsDateTime
         {
             get
-            {                
-                return new DateTime(reference.Year, reference.Month, reference.Day, TimePosition.Hours, TimePosition.Minutes, TimePosition.Seconds);
+            {
+                return DateTime.MinValue.Add(TimePosition);
             }
         }
     }

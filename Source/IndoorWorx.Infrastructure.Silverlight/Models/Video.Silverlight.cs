@@ -202,15 +202,14 @@ namespace IndoorWorx.Infrastructure.Models
             get { return PlayTo - PlayFrom; }
         }
 
-        private DateTime reference;
         public DateTime StartDateTime
         {
-            get { return new DateTime(1,1,1); }
+            get { return DateTime.MinValue; }
         }
 
         public DateTime EndDateTime
         {
-            get { return new DateTime(1, 1, 1, duration.Hours, duration.Minutes, duration.Seconds); }
+            get { return DateTime.MinValue.Add(Duration); }
         }
     }
 }

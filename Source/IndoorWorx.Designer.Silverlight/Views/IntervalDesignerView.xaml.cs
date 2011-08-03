@@ -19,39 +19,12 @@ namespace IndoorWorx.Designer.Views
         {
             this.DataContext = model;
             InitializeComponent();
-            model.View = this;
+            model.View = this; 
         }
 
         public IIntervalDesignerPresentationModel Model
         {
             get { return this.DataContext as IIntervalDesignerPresentationModel; }
-        }
-
-        private void RadTimeBar_SelectionChanged(object sender, Telerik.Windows.RadRoutedEventArgs e)
-        {
-            SetPositions();
-        }
-
-        private void SetPositions()
-        {
-            try
-            {
-                fromMediaElement.Position = this.Model.VideoFrom;
-                toMediaElement.Position = this.Model.VideoTo;
-            }
-            catch { }
-        }
-
-        private void MediaElement_MediaFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-            SetPositions();
-            Model.Video.IsMediaLoading = false;
-        }
-
-        private void MediaElement_MediaOpened(object sender, RoutedEventArgs e)
-        {
-            SetPositions();
-            Model.Video.IsMediaLoading = false;
         }
     }
 }

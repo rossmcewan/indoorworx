@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"             
     xmlns:controls="clr-namespace:IndoorWorx.Infrastructure.Controls;assembly=IndoorWorx.Infrastructure.Silverlight"
+    xmlns:dcontrols="clr-namespace:IndoorWorx.Designer.Controls"             
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
     xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"             
     mc:Ignorable="d"
@@ -28,7 +29,8 @@
                 <CheckBox telerik:StyleManager.Theme="Metro" Content="{Binding DesignerResources.UseSingleVideoLabel, Source={StaticResource DesignerResources}}" IsChecked="{Binding UseSingleVideo, Mode=TwoWay}" Margin="0,5"/>
             </StackPanel>
         </controls:MetroContentControl>
-        <Grid Grid.Row="1" Visibility="{Binding UseSingleVideo, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <dcontrols:SingleVideoDesignControl Grid.Row="1" Visibility="{Binding UseSingleVideo, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <!--<Grid Grid.Row="1" Visibility="{Binding UseSingleVideo, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -50,12 +52,11 @@
                 </Grid>
             </controls:MetroContentControl>
             <controls:MetroContentControl Grid.Column="1">
-                <telerik:RadTimeBar Grid.Column="1" 
+                <telerik:RadTimeBar Grid.Column="1" x:Name="timeBar"
                                 PeriodStart="{Binding Video.StartDateTime}" PeriodEnd="{Binding Video.EndDateTime}" SelectionChanged="RadTimeBar_SelectionChanged"
+                                VisiblePeriodStart="{Binding Video.StartDateTime}" VisiblePeriodEnd="{Binding Video.EndDateTime}"
                                 SelectionStart="{Binding VideoFrom, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}" 
-                                SelectionEnd="{Binding VideoTo, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}"
-                                MaxSelectionRange="{Binding MaxRange, Mode=OneWay}"  
-                                MinSelectionRange="{Binding MinRange, Mode=OneWay}">                                
+                                SelectionEnd="{Binding VideoTo, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}">                                
                     <telerik:RadLinearSparkline 
                                 ItemsSource="{Binding Video.Telemetry, Mode=TwoWay}" 
                                 ShowAxis="False"                            
@@ -75,7 +76,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="{Binding DesignerResources.FromLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold" HorizontalAlignment="Center"/>
                     <TextBlock Grid.Column="1" Text="{Binding DesignerResources.ToLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold" HorizontalAlignment="Center"/>
-                    <telerik:RadBusyIndicator IsBusy="{Binding IsMediaLoading, Mode=OneWay}" Grid.Row="1">
+                    <telerik:RadBusyIndicator IsBusy="{Binding Video.IsMediaLoading, Mode=OneWay}" Grid.Row="1">
                         <smoothstreaming:SmoothStreamingMediaElement
                             MediaFailed="MediaElement_MediaFailed"
                             MediaOpened="MediaElement_MediaOpened"
@@ -87,7 +88,7 @@
                             x:Name="fromMediaElement"/>
                     </telerik:RadBusyIndicator>
                     <TextBlock Text="{Binding VideoFrom, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Foreground="White" FontWeight="SemiBold" TextOptions.TextHintingMode="Animated"/>
-                    <telerik:RadBusyIndicator IsBusy="{Binding IsMediaLoading, Mode=OneWay}" Grid.Column="1" Grid.Row="1">                        
+                    <telerik:RadBusyIndicator IsBusy="{Binding Video.IsMediaLoading, Mode=OneWay}" Grid.Column="1" Grid.Row="1">                        
                         <smoothstreaming:SmoothStreamingMediaElement
                             MediaFailed="MediaElement_MediaFailed"
                             MediaOpened="MediaElement_MediaOpened"
@@ -101,6 +102,6 @@
                     <TextBlock Text="{Binding VideoTo, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Foreground="White" FontWeight="SemiBold" TextOptions.TextHintingMode="Animated"/>
                 </Grid>
             </controls:MetroContentControl>
-        </Grid>
+        </Grid>-->
     </Grid>
 </UserControl>

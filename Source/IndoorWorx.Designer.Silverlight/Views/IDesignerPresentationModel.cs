@@ -6,7 +6,7 @@ using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Designer.Views
 {
-    public interface IDesignerPresentationModel
+    public interface IDesignerPresentationModel : IDesignerPresentationModelBase
     {
         IDesignerView View { get; set; }
 
@@ -16,6 +16,6 @@ namespace IndoorWorx.Designer.Views
 
         TrainingSetTemplate SelectedTemplate { get; set; }
 
-        Interval SelectedInterval { get; set; }
+        Interval SelectedInterval { get; set; }        
     }
 }

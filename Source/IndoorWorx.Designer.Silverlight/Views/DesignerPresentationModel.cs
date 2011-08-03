@@ -65,5 +65,86 @@ namespace IndoorWorx.Designer.Views
                 FirePropertyChanged("SelectedInterval");
             }
         }
+
+        private TimeSpan videoFrom;
+        public virtual TimeSpan VideoFrom
+        {
+            get { return videoFrom; }
+            set
+            {
+                videoFrom = value;
+                if (video != null)
+                {
+                    var length = videoTo.Subtract(videoFrom);
+                    if (length != selectedTemplate.Duration)
+                    {
+                        //video from has changed, attempt to move video to
+                        videoTo = videoFrom.Add(selectedTemplate.Duration);
+                        if (videoTo > video.Duration)
+                        {
+                            //it moved past the end, so send it back and adjust the video from accordingly
+                            videoTo = video.Duration;
+                            videoFrom = videoTo.Subtract(selectedTemplate.Duration);
+                        }
+                    }
+                    videoTo = new TimeSpan(videoTo.Hours, videoTo.Minutes, videoTo.Seconds);
+                    videoFrom = new TimeSpan(videoFrom.Hours, videoFrom.Minutes, videoFrom.Seconds);
+                }
+                FirePropertyChanged("VideoFrom");
+                FirePropertyChanged("VideoTo");
+            }
+        }
+
+        private TimeSpan videoTo;
+        public virtual TimeSpan VideoTo
+        {
+            get { return videoTo; }
+            set
+            {
+                videoTo = value;
+                if (video != null)
+                {
+                    var length = videoTo.Subtract(videoFrom);
+                    if (length != selectedTemplate.Duration)
+                    {
+                        //video to has changed, attempt to move video from
+                        videoFrom = videoTo.Subtract(selectedTemplate.Duration);
+                        if (videoFrom < TimeSpan.Zero)
+                        {
+                            //it moved past the beginning, so set it to zero and adjust the video to accordingly
+                            videoFrom = TimeSpan.Zero;
+                            videoTo = videoFrom.Add(selectedTemplate.Duration);
+                        }
+                    }
+                    videoTo = new TimeSpan(videoTo.Hours, videoTo.Minutes, videoTo.Seconds);
+                    videoFrom = new TimeSpan(videoFrom.Hours, videoFrom.Minutes, videoFrom.Seconds);
+                }
+                FirePropertyChanged("VideoTo");
+                FirePropertyChanged("VideoFrom");
+            }
+        }
+
+        private Video video;
+        public virtual Video Video
+        {
+            get { return video; }
+            set
+            {
+                video = value;
+                if (video != null)
+                    video.IsMediaLoading = true;
+                if (video != null)
+                {
+                    video.TelemetryLoaded += (sender, e) =>
+                    {
+                        VideoTo = VideoFrom.Add(selectedTemplate.Duration);
+                    };
+                    video.LoadTelemetry();
+                }
+                FirePropertyChanged("Video");
+                FirePropertyChanged("MaxRange");
+                FirePropertyChanged("MinRange");
+            }
+        }
     }
 }

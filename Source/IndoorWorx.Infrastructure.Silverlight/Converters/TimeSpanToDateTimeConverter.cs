@@ -24,7 +24,7 @@ namespace IndoorWorx.Infrastructure.Converters
             if (value is TimeSpan)
             {
                 var timespan = (TimeSpan)value;
-                return new DateTime(1, 1, 1, timespan.Hours, timespan.Minutes, timespan.Seconds);
+                return DateTime.MinValue.Add(timespan);
             }
             if (value is DateTime)
             {

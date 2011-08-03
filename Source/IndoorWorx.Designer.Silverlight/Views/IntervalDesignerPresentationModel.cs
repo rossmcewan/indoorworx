@@ -70,20 +70,23 @@ namespace IndoorWorx.Designer.Views
             set
             {
                 videoFrom = value;
-                var length = videoTo.Subtract(videoFrom);
-                if (length != interval.Duration)
+                if (video != null)
                 {
-                    //video from has changed, attempt to move video to
-                    videoTo = videoFrom.Add(interval.Duration);
-                    if (videoTo > video.Duration)
+                    var length = videoTo.Subtract(videoFrom);
+                    if (length != interval.Duration)
                     {
-                        //it moved past the end, so send it back and adjust the video from accordingly
-                        videoTo = video.Duration;
-                        videoFrom = videoTo.Subtract(interval.Duration);
+                        //video from has changed, attempt to move video to
+                        videoTo = videoFrom.Add(interval.Duration);
+                        if (videoTo > video.Duration)
+                        {
+                            //it moved past the end, so send it back and adjust the video from accordingly
+                            videoTo = video.Duration;
+                            videoFrom = videoTo.Subtract(interval.Duration);
+                        }
                     }
+                    videoTo = new TimeSpan(videoTo.Hours, videoTo.Minutes, videoTo.Seconds);
+                    videoFrom = new TimeSpan(videoFrom.Hours, videoFrom.Minutes, videoFrom.Seconds);
                 }
-                videoTo = new TimeSpan(videoTo.Hours, videoTo.Minutes, videoTo.Seconds);
-                videoFrom = new TimeSpan(videoFrom.Hours, videoFrom.Minutes, videoFrom.Seconds);
                 FirePropertyChanged("VideoFrom");
                 FirePropertyChanged("VideoTo");
             }
@@ -96,20 +99,23 @@ namespace IndoorWorx.Designer.Views
             set
             {
                 videoTo = value;
-                var length = videoTo.Subtract(videoFrom);
-                if (length != interval.Duration)
+                if (video != null)
                 {
-                    //video to has changed, attempt to move video from
-                    videoFrom = videoTo.Subtract(interval.Duration);
-                    if (videoFrom < TimeSpan.Zero)
+                    var length = videoTo.Subtract(videoFrom);
+                    if (length != interval.Duration)
                     {
-                        //it moved past the beginning, so set it to zero and adjust the video to accordingly
-                        videoFrom = TimeSpan.Zero;
-                        videoTo = videoFrom.Add(interval.Duration);
+                        //video to has changed, attempt to move video from
+                        videoFrom = videoTo.Subtract(interval.Duration);
+                        if (videoFrom < TimeSpan.Zero)
+                        {
+                            //it moved past the beginning, so set it to zero and adjust the video to accordingly
+                            videoFrom = TimeSpan.Zero;
+                            videoTo = videoFrom.Add(interval.Duration);
+                        }
                     }
+                    videoTo = new TimeSpan(videoTo.Hours, videoTo.Minutes, videoTo.Seconds);
+                    videoFrom = new TimeSpan(videoFrom.Hours, videoFrom.Minutes, videoFrom.Seconds);
                 }
-                videoTo = new TimeSpan(videoTo.Hours, videoTo.Minutes, videoTo.Seconds);
-                videoFrom = new TimeSpan(videoFrom.Hours, videoFrom.Minutes, videoFrom.Seconds);
                 FirePropertyChanged("VideoTo");
                 FirePropertyChanged("VideoFrom");
             }

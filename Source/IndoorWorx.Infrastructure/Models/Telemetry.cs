@@ -70,7 +70,8 @@ namespace IndoorWorx.Infrastructure.Models
                 var seconds = TimePosition.TotalSeconds;
                 var valueAsSeconds = System.Convert.ToDouble(seconds);
                 var timespan = TimeSpan.FromSeconds(valueAsSeconds);
-                var datetime = new DateTime(today.Year, today.Month, today.Day, timespan.Hours, timespan.Minutes, timespan.Seconds);
+                var datetime = DateTime.MinValue.Add(timespan);
+                //var datetime = new DateTime(today.Year, today.Month, today.Day, timespan.Hours, timespan.Minutes, timespan.Seconds);
                 return datetime.ToOADate();
             }
         }        

@@ -6,7 +6,7 @@ using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Designer.Views
 {
-    public interface IIntervalDesignerPresentationModel
+    public interface IIntervalDesignerPresentationModel : IDesignerPresentationModelBase
     {
         IIntervalDesignerView View { get; set; }
 
@@ -18,12 +18,6 @@ namespace IndoorWorx.Designer.Views
 
         TimeSpan MinRange { get; }
 
-        TimeSpan MaxRange { get; }
-
-        TimeSpan VideoFrom { get; set; }
-
-        TimeSpan VideoTo { get; set; }
-
-        Video Video { get; set; }
+        TimeSpan MaxRange { get; }        
     }
 }
