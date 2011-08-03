@@ -79,6 +79,15 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FROM.
+        /// </summary>
+        public static string FromLabel {
+            get {
+                return ResourceManager.GetString("FromLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RECOMMENDED VIDEOS.
         /// </summary>
         public static string RecommendedVideosLabel {
@@ -102,6 +111,15 @@ namespace IndoorWorx.Designer.Resources {
         public static string TemplateLabel {
             get {
                 return ResourceManager.GetString("TemplateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TO.
+        /// </summary>
+        public static string ToLabel {
+            get {
+                return ResourceManager.GetString("ToLabel", resourceCulture);
             }
         }
         

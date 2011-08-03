@@ -69,12 +69,6 @@ namespace IndoorWorx.Designer.Views
             get { return videoFrom; }
             set
             {
-                //var length = videoTo.Subtract(value);
-                //if (length == interval.Duration)
-                //{
-                //    videoFrom = value;
-                //}
-                //FirePropertyChanged("VideoFrom");
                 videoFrom = value;
                 var length = videoTo.Subtract(videoFrom);
                 if (length != interval.Duration)
@@ -88,6 +82,8 @@ namespace IndoorWorx.Designer.Views
                         videoFrom = videoTo.Subtract(interval.Duration);
                     }
                 }
+                videoTo = new TimeSpan(videoTo.Hours, videoTo.Minutes, videoTo.Seconds);
+                videoFrom = new TimeSpan(videoFrom.Hours, videoFrom.Minutes, videoFrom.Seconds);
                 FirePropertyChanged("VideoFrom");
                 FirePropertyChanged("VideoTo");
             }
@@ -99,12 +95,6 @@ namespace IndoorWorx.Designer.Views
             get { return videoTo; }
             set
             {
-                //var length = value.Subtract(videoFrom);
-                //if (length == interval.Duration)
-                //{
-                //    videoTo = value;
-                //}
-                //FirePropertyChanged("VideoTo");
                 videoTo = value;
                 var length = videoTo.Subtract(videoFrom);
                 if (length != interval.Duration)
@@ -118,6 +108,8 @@ namespace IndoorWorx.Designer.Views
                         videoTo = videoFrom.Add(interval.Duration);
                     }
                 }
+                videoTo = new TimeSpan(videoTo.Hours, videoTo.Minutes, videoTo.Seconds);
+                videoFrom = new TimeSpan(videoFrom.Hours, videoFrom.Minutes, videoFrom.Seconds);
                 FirePropertyChanged("VideoTo");
                 FirePropertyChanged("VideoFrom");
             }
@@ -131,17 +123,19 @@ namespace IndoorWorx.Designer.Views
             {
                 video = value;
                 if (video != null)
+                    video.IsMediaLoading = true;
+                if (video != null)
                 {
                     video.TelemetryLoaded += (sender, e) =>
                     {
                         VideoTo = VideoFrom.Add(Interval.Duration);
-                    };
+                    };                    
                     video.LoadTelemetry();
                 }
                 FirePropertyChanged("Video");
                 FirePropertyChanged("MaxRange");
                 FirePropertyChanged("MinRange");
             }
-        }   
+        }
     }
 }

@@ -5,7 +5,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"             
     xmlns:controls="clr-namespace:IndoorWorx.Infrastructure.Controls;assembly=IndoorWorx.Infrastructure.Silverlight"
-    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"             
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+    xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"             
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.Resources>
@@ -50,7 +51,7 @@
             </controls:MetroContentControl>
             <controls:MetroContentControl Grid.Column="1">
                 <telerik:RadTimeBar Grid.Column="1" 
-                                PeriodStart="{Binding Video.StartDateTime}" PeriodEnd="{Binding Video.EndDateTime}"
+                                PeriodStart="{Binding Video.StartDateTime}" PeriodEnd="{Binding Video.EndDateTime}" SelectionChanged="RadTimeBar_SelectionChanged"
                                 SelectionStart="{Binding VideoFrom, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}" 
                                 SelectionEnd="{Binding VideoTo, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}"
                                 MaxSelectionRange="{Binding MaxRange, Mode=OneWay}"  
@@ -64,12 +65,40 @@
             </controls:MetroContentControl>
             <controls:MetroContentControl Grid.Column="1" Grid.Row="1">
                 <Grid Margin="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding DesignerResources.RecommendedVideosLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold"/>
-                    <telerik:ListBox Grid.Row="1"/>
+                    <TextBlock Text="{Binding DesignerResources.FromLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Text="{Binding DesignerResources.ToLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                    <telerik:RadBusyIndicator IsBusy="{Binding IsMediaLoading, Mode=OneWay}" Grid.Row="1">
+                        <smoothstreaming:SmoothStreamingMediaElement
+                            MediaFailed="MediaElement_MediaFailed"
+                            MediaOpened="MediaElement_MediaOpened"
+                            Background="Transparent"
+                            Margin="2"                        
+                            SmoothStreamingSource="{Binding Video.StreamUri, Mode=TwoWay}"
+                            SmoothStreamingPlaybackMode="VideoOnly"
+                            AutoPlay="False"                    
+                            x:Name="fromMediaElement"/>
+                    </telerik:RadBusyIndicator>
+                    <TextBlock Text="{Binding VideoFrom, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Foreground="White" FontWeight="SemiBold" TextOptions.TextHintingMode="Animated"/>
+                    <telerik:RadBusyIndicator IsBusy="{Binding IsMediaLoading, Mode=OneWay}" Grid.Column="1" Grid.Row="1">                        
+                        <smoothstreaming:SmoothStreamingMediaElement
+                            MediaFailed="MediaElement_MediaFailed"
+                            MediaOpened="MediaElement_MediaOpened"
+                            Background="Transparent"
+                            Margin="2"                        
+                            SmoothStreamingSource="{Binding Video.StreamUri, Mode=TwoWay}"
+                            SmoothStreamingPlaybackMode="VideoOnly"
+                            AutoPlay="False"                    
+                            x:Name="toMediaElement"/>
+                    </telerik:RadBusyIndicator>
+                    <TextBlock Text="{Binding VideoTo, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Foreground="White" FontWeight="SemiBold" TextOptions.TextHintingMode="Animated"/>
                 </Grid>
             </controls:MetroContentControl>
         </Grid>
