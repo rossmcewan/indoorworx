@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="IndoorWorx.Designer.Views.DesignerView"
+﻿<UserControl x:Class="IndoorWorx.Designer.Views.TabbedDesignerView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,6 +6,7 @@
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"  
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"    
+    xmlns:dconverters="clr-namespace:IndoorWorx.Designer.Converters"             
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"
     xmlns:controls="clr-namespace:IndoorWorx.Infrastructure.Controls;assembly=IndoorWorx.Infrastructure.Silverlight"             
     mc:Ignorable="d"
@@ -14,6 +15,8 @@
         <converters:TimeSpanToDateTimeConverter x:Key="TimeSpanToDateTimeConverter"/>
         <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <dconverters:IntervalToTabItemConverter x:Key="IntervalToTabItemConverter"/>
+        <dconverters:IntervalsToTabItemsConverter x:Key="IntervalsToTabItemsConverter"/>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
@@ -33,6 +36,62 @@
             </StackPanel>
         </controls:MetroContentControl>
         <Grid Grid.Row="2" Visibility="{Binding UseMultipleVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <sdk:TabControl ItemsSource="{Binding SelectedTemplate.Sets, Mode=OneWay, Converter={StaticResource IntervalsToTabItemsConverter}}"
+                            SelectedItem="{Binding SelectedInterval, Mode=TwoWay, Converter={StaticResource IntervalToTabItemConverter}}"
+                            TabStripPlacement="Left">                
+            </sdk:TabControl>
+            <!--<telerik:RadTabControl ItemsSource="{Binding SelectedTemplate.Sets, Mode=OneWay}" 
+                                   SelectedItem="{Binding SelectedInterval, Mode=TwoWay}" 
+                                   DisplayMemberPath="Title">                
+                <telerik:RadTabControl.ContentTemplate>
+                    <DataTemplate>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.RowSpan="2" Margin="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding DesignerResources.VideosInYourLibraryLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold"/>
+                                <ListBox IsTabStop="False" Grid.Row="1" ItemsSource="{Binding CurrentUser.Videos, Mode=OneWay, Source={StaticResource ApplicationContext}}" 
+                                     DisplayMemberPath="Title" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                     SelectedItem="{Binding Video, Mode=TwoWay}"/>
+                            </Grid>
+                            <controls:MetroContentControl Grid.Column="1">
+                                <telerik:RadTimeBar Grid.Column="1" 
+                                        MinSelectionRange="{Binding Duration, Mode=TwoWay}"
+                                        MaxSelectionRange="{Binding Duration, Mode=TwoWay}" 
+                                        PeriodStart="{Binding Video.StartDateTime}" PeriodEnd="{Binding Video.EndDateTime}"
+                                        SelectionStart="{Binding VideoFrom, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}" 
+                                        SelectionEnd="{Binding VideoTo, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}">
+                                    <telerik:RadLinearSparkline 
+                                        ItemsSource="{Binding Video.Telemetry, Mode=TwoWay}" 
+                                        ShowAxis="False"                            
+                                        YValuePath="PercentageThreshold" 
+                                        XValuePath="TimePositionAsDateTime" />
+                                </telerik:RadTimeBar>
+                            </controls:MetroContentControl>
+                            <Grid Grid.Column="1" Grid.Row="1" Margin="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding DesignerResources.RecommendedVideosLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold"/>
+                                <telerik:ListBox Grid.Row="1"/>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </telerik:RadTabControl.ContentTemplate>
+            </telerik:RadTabControl>-->
+        </Grid>
+        <!--<Grid Grid.Row="2" Visibility="{Binding UseMultipleVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -88,10 +147,6 @@
                                     PeriodStart="{Binding SelectedInterval.Video.StartDateTime}" PeriodEnd="{Binding SelectedInterval.Video.EndDateTime}"
                                     SelectionStart="{Binding SelectedInterval.VideoFrom, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}" 
                                     SelectionEnd="{Binding SelectedInterval.VideoTo, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}">
-                        <!--<telerik:RadTimeBar.Intervals>
-                            <telerik:SecondInterval/>
-                            <telerik:MinuteInterval/>
-                        </telerik:RadTimeBar.Intervals>-->
                         <telerik:RadLinearSparkline 
                             ItemsSource="{Binding SelectedInterval.Video.Telemetry, Mode=TwoWay}" 
                             ShowAxis="False"                            
@@ -108,7 +163,7 @@
                     <telerik:ListBox Grid.Row="1"/>
                 </Grid>
             </Grid>
-        </Grid>
+        </Grid>-->
         <telerik:RadTimeBar x:Name="timeBar" Height="200" Grid.Row="3" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}">
                                     <!--PeriodStart="{Binding Video.StartDateTime}" PeriodEnd="{Binding Video.EndDateTime}"
                                     SelectionStart="{Binding Video.PlayFrom, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}" 

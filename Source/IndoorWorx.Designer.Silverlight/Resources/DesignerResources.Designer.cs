@@ -79,6 +79,15 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RECOMMENDED VIDEOS.
+        /// </summary>
+        public static string RecommendedVideosLabel {
+            get {
+                return ResourceManager.GetString("RecommendedVideosLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SETS.
         /// </summary>
         public static string SetsLabel {
@@ -93,6 +102,24 @@ namespace IndoorWorx.Designer.Resources {
         public static string TemplateLabel {
             get {
                 return ResourceManager.GetString("TemplateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to USE MULTIPLE VIDEOS.
+        /// </summary>
+        public static string UseMultipleVideosLabel {
+            get {
+                return ResourceManager.GetString("UseMultipleVideosLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to USE SINGLE VIDEO.
+        /// </summary>
+        public static string UseSingleVideoLabel {
+            get {
+                return ResourceManager.GetString("UseSingleVideoLabel", resourceCulture);
             }
         }
         

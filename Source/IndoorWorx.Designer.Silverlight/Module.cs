@@ -50,7 +50,10 @@ namespace IndoorWorx.Designer
             Application.Current.Resources.Add("DesignerResources", new ResourceWrapper());
 
             unityContainer.RegisterInstance<IDesignerPresentationModel>(unityContainer.Resolve<DesignerPresentationModel>(), new ContainerControlledLifetimeManager());
-            unityContainer.RegisterInstance<IDesignerView>(unityContainer.Resolve<DesignerView>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IDesignerView>(unityContainer.Resolve<TabbedDesignerView>(), new ContainerControlledLifetimeManager());
+
+            unityContainer.RegisterType<IIntervalDesignerPresentationModel, IntervalDesignerPresentationModel>();
+            unityContainer.RegisterType<IIntervalDesignerView, IntervalDesignerView>();
 
             NavigationLinks.MapUri(
                 new Uri("/Designer", UriKind.Relative),

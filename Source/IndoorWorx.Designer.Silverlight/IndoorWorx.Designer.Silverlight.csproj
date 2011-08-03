@@ -119,6 +119,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\IntervalTabItem.xaml.cs">
+      <DependentUpon>IntervalTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\IntervalsToTabItemsConverter.cs" />
+    <Compile Include="Converters\IntervalToTabItemConverter.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Pages\DesignerPage.xaml.cs">
@@ -129,6 +134,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DesignerResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IIntervalDesignerPresentationModel.cs" />
+    <Compile Include="Views\IIntervalDesignerView.cs" />
+    <Compile Include="Views\IntervalDesignerPresentationModel.cs" />
+    <Compile Include="Views\IntervalDesignerView.xaml.cs">
+      <DependentUpon>IntervalDesignerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabbedDesignerView.xaml.cs">
+      <DependentUpon>TabbedDesignerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DesignerPresentationModel.cs" />
     <Compile Include="Views\DesignerView.xaml.cs">
@@ -164,9 +178,21 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\IntervalTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\DesignerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IntervalDesignerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabbedDesignerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DesignerView.xaml">
       <SubType>Designer</SubType>

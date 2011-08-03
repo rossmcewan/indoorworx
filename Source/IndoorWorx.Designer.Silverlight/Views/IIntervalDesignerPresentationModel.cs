@@ -6,16 +6,14 @@ using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Designer.Views
 {
-    public interface IDesignerPresentationModel
+    public interface IIntervalDesignerPresentationModel
     {
-        IDesignerView View { get; set; }
+        IIntervalDesignerView View { get; set; }
+
+        Interval Interval { get; set; }
 
         bool UseSingleVideo { get; set; }
 
         bool UseMultipleVideos { get; set; }
-
-        TrainingSetTemplate SelectedTemplate { get; set; }
-
-        Interval SelectedInterval { get; set; }
     }
 }

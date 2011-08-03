@@ -123,11 +123,20 @@
   <data name="BySetLabel" xml:space="preserve">
     <value>BY SET</value>
   </data>
+  <data name="RecommendedVideosLabel" xml:space="preserve">
+    <value>RECOMMENDED VIDEOS</value>
+  </data>
   <data name="SetsLabel" xml:space="preserve">
     <value>SETS</value>
   </data>
   <data name="TemplateLabel" xml:space="preserve">
     <value>TEMPLATE</value>
+  </data>
+  <data name="UseMultipleVideosLabel" xml:space="preserve">
+    <value>USE MULTIPLE VIDEOS</value>
+  </data>
+  <data name="UseSingleVideoLabel" xml:space="preserve">
+    <value>USE SINGLE VIDEO</value>
   </data>
   <data name="VideosInYourLibraryLabel" xml:space="preserve">
     <value>VIDEOS IN YOUR LIBRARY</value>

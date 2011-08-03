@@ -104,13 +104,7 @@
   <ItemGroup>
     <Compile Include="Cache.cs" />
     <Compile Include="CacheItem.cs" />
-    <Compile Include="Controls\CatalogTreeControl.xaml.cs">
-      <DependentUpon>CatalogTreeControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\CategoryTreeDataTemplateSelector.cs" />
-    <Compile Include="Controls\DocumentViewer.xaml.cs">
-      <DependentUpon>DocumentViewer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\FishEyePanel.cs" />
     <Compile Include="Controls\ICategoryTreeControlModel.cs" />
     <Compile Include="Controls\PagerViewModel.cs" />
@@ -182,12 +176,6 @@
     <Compile Include="Views\ConfirmationWindow.xaml.cs">
       <DependentUpon>ConfirmationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TabbedNavigationPresentationModel.cs" />
-    <Compile Include="Views\TabbedNavigationView.xaml.cs">
-      <DependentUpon>TabbedNavigationView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ITabbedNavigationPresentationModel.cs" />
-    <Compile Include="Views\ITabbedNavigationView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IndoorWorx.Infrastructure.Silverlight\IndoorWorx.Infrastructure.Silverlight.csproj">
@@ -381,14 +369,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\CatalogTreeControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\DocumentViewer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\TransitionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -404,10 +384,6 @@
     <Page Include="Views\ConfirmationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TabbedNavigationView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -55,18 +55,10 @@ namespace IndoorWorx.Infrastructure.Models
                 var firstInterval = intervals.First();
 
                 var interval = new IntervalGroup();
-                interval.Intervals = intervals;
-                interval.Description = firstInterval.Description;
-                interval.Duration = firstInterval.Duration;
-                interval.Effort = firstInterval.Effort;
-                interval.EffortType = firstInterval.EffortType;
-                interval.IntervalDuration = new Infrastructure.Models.Duration() { Hours = firstInterval.Duration.Hours, Minutes = firstInterval.Duration.Minutes, Seconds = firstInterval.Duration.Seconds };
-                interval.IntervalLevel = firstInterval.IntervalLevel;
-                interval.IntervalType = firstInterval.IntervalType;
-                interval.RecoveryInterval = new Infrastructure.Models.Duration() { Hours = 0, Minutes = 0, Seconds = 0 };
+                interval.Duration = TimeSpan.FromSeconds(intervals.Sum(x => x.Duration.TotalSeconds));
+                interval.Intervals = intervals;                
                 interval.TemplateSection = firstInterval.TemplateSection;
                 interval.SectionGroup = firstInterval.SectionGroup;
-                interval.Title = firstInterval.Title;
                 if (hasRecovery)
                 {
                     var recoveryInterval = intervals.ElementAt(1);

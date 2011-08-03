@@ -21,7 +21,7 @@ namespace IndoorWorx.Infrastructure.Models
             set { }
             get
             {
-                var hasRecovery = intervals.Count > 1 && intervals.GroupBy(x => x.Effort).Count() > 1;
+                var hasRecovery = HasRecoveryIntervals;
                 var title = string.Format("{0} x {1} {2}{3}",
                     hasRecovery ? Intervals.Count/2 : Intervals.Count,
                     Intervals.First().Duration,
@@ -40,6 +40,14 @@ namespace IndoorWorx.Infrastructure.Models
                 intervals = value;
                 FirePropertyChanged("Intervals");
             }
-        }        
+        }
+
+        public bool HasRecoveryIntervals
+        {
+            get
+            {
+                return intervals.Count > 1 && intervals.GroupBy(x => x.Effort).Count() > 1;
+            }
+        }
     }
 }

@@ -12,9 +12,20 @@ using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Designer.Views
 {
-    public class DesignerPresentationModel : BaseModel, IDesignerPresentationModel
+    public class IntervalDesignerPresentationModel : BaseModel, IIntervalDesignerPresentationModel
     {
-        public IDesignerView View { get; set; }
+        public IIntervalDesignerView View { get; set; }
+
+        private Interval interval;
+        public virtual Interval Interval
+        {
+            get { return interval; }
+            set
+            {
+                interval = value;
+                FirePropertyChanged("Interval");
+            }
+        }
 
         private bool useSingleVideo = false;
         public virtual bool UseSingleVideo
@@ -23,7 +34,7 @@ namespace IndoorWorx.Designer.Views
             set
             {
                 useSingleVideo = value;
-                useMultipleVideos = !useSingleVideo;                
+                useMultipleVideos = !useSingleVideo;
                 FirePropertyChanged("UseSingleVideo");
                 FirePropertyChanged("UseMultipleVideos");
             }
@@ -39,30 +50,6 @@ namespace IndoorWorx.Designer.Views
                 useSingleVideo = !useMultipleVideos;
                 FirePropertyChanged("UseMultipleVideos");
                 FirePropertyChanged("UseSingleVideo");
-            }
-        }
-
-        private TrainingSetTemplate selectedTemplate;
-        public virtual TrainingSetTemplate SelectedTemplate
-        {
-            get { return selectedTemplate; }
-            set
-            {
-                selectedTemplate = value;
-                if (selectedTemplate != null)
-                    selectedTemplate.ParseSets();
-                FirePropertyChanged("SelectedTemplate");
-            }
-        }
-
-        private Interval selectedInterval;
-        public virtual Interval SelectedInterval
-        {
-            get { return selectedInterval; }
-            set
-            {
-                selectedInterval = value;
-                FirePropertyChanged("SelectedInterval");
             }
         }
     }

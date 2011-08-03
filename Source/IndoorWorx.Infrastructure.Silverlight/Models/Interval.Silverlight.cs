@@ -87,6 +87,55 @@ namespace IndoorWorx.Infrastructure.Models
             get { return toEnd; }                
         }
 
+        private Video video;
+        public virtual Video Video
+        {
+            get { return video; }
+            set
+            {
+                video = value;
+                if (video != null)
+                {
+                    video.TelemetryLoaded += (sender, e) =>
+                        {
+                            FirePropertyChanged("VideoFrom");
+                            FirePropertyChanged("VideoTo");
+
+                            //VideoFrom = TimeSpan.Zero;
+                            //VideoTo = TimeSpan.FromSeconds(Math.Min(video.Duration.TotalSeconds, this.Duration.TotalSeconds));
+                        };
+                    video.LoadTelemetry();
+                }
+                FirePropertyChanged("Video");
+            }
+        }
+
+        private TimeSpan videoFrom;
+        public virtual TimeSpan VideoFrom
+        {
+            get { return videoFrom; }
+            set
+            {
+                videoFrom = value;
+                //if (videoTo.Subtract(videoFrom) > duration)
+                //    videoFrom = TimeSpan.FromSeconds(Math.Max(0, videoTo.Subtract(duration).TotalSeconds));
+                FirePropertyChanged("VideoFrom");
+            }
+        }
+
+        private TimeSpan videoTo;
+        public virtual TimeSpan VideoTo
+        {
+            get { return videoTo; }
+            set
+            {
+                videoTo = value;
+                //if (videoTo.Subtract(videoFrom) > duration)
+                //    videoTo = videoFrom.Add(duration);
+                FirePropertyChanged("VideoTo");
+            }
+        }
+
         public static Interval NewWarmupInterval(EffortType effortType, Action onChange)
         {
             return NewInterval(Interval.WarmupTag, effortType, onChange);
@@ -149,21 +198,14 @@ namespace IndoorWorx.Infrastructure.Models
                 this.Duration == compareTo.Duration &&
                 this.Effort == compareTo.Effort &&
                 object.Equals(this.EffortType, compareTo.EffortType) &&
-                //this.EffortType.Equals(compareTo.EffortType) &&
                 object.Equals(this.IntervalDuration, compareTo.IntervalDuration) &&
-                //this.IntervalDuration.Equals(compareTo.IntervalDuration) &&
                 object.Equals(this.IntervalLevel, compareTo.IntervalLevel) &&
                 object.Equals(this.IntervalType, compareTo.IntervalType) &&
                 object.Equals(this.RecoveryInterval, compareTo.RecoveryInterval) &&
-                //this.IntervalLevel.Equals(compareTo.IntervalLevel) &&
-                //this.IntervalType.Equals(compareTo.IntervalType) &&
-                //this.RecoveryInterval.Equals(compareTo.RecoveryInterval) &&
                 this.Repeats == compareTo.Repeats &&
                 this.Title == compareTo.Title &&
                 object.Equals(this.ToEnd, compareTo.ToEnd) &&
                 object.Equals(this.ToStart, compareTo.ToStart);
-                //this.ToEnd.Equals(compareTo.ToEnd) &&
-                //this.ToStart.Equals(compareTo.ToStart);
         }
 
         private Interval backup;

@@ -120,6 +120,11 @@ namespace IndoorWorx.Infrastructure.Models
                 };
                 dataRetriever.DownloadStringAsync(TelemetryInfo.TelemetryUri);
             }
+            else
+            {
+                if (TelemetryLoaded != null)
+                    TelemetryLoaded(this, EventArgs.Empty);
+            }
         }
 
         private ICollection<Telemetry> telemetry = new ObservableCollection<Telemetry>();
@@ -200,12 +205,12 @@ namespace IndoorWorx.Infrastructure.Models
         private DateTime reference;
         public DateTime StartDateTime
         {
-            get { return reference; }
+            get { return new DateTime(1,1,1); }
         }
 
         public DateTime EndDateTime
         {
-            get { return reference.AddMilliseconds(Duration.TotalMilliseconds); }
+            get { return new DateTime(1, 1, 1, duration.Hours, duration.Minutes, duration.Seconds); }
         }
     }
 }
