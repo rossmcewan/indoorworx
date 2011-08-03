@@ -16,50 +16,62 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <controls:MetroContentControl Grid.ColumnSpan="2">
+        <controls:MetroContentControl>
             <StackPanel>
                 <CheckBox telerik:StyleManager.Theme="Metro" Content="{Binding DesignerResources.UseMultipleVideosLabel, Source={StaticResource DesignerResources}}" IsChecked="{Binding UseMultipleVideos, Mode=TwoWay}" Margin="0,5"/>
                 <CheckBox telerik:StyleManager.Theme="Metro" Content="{Binding DesignerResources.UseSingleVideoLabel, Source={StaticResource DesignerResources}}" IsChecked="{Binding UseSingleVideo, Mode=TwoWay}" Margin="0,5"/>
             </StackPanel>
         </controls:MetroContentControl>
-        <Grid Grid.RowSpan="2" Grid.Row="1" Margin="2">
+        <Grid Grid.Row="1" Visibility="{Binding UseSingleVideo, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="{Binding DesignerResources.VideosInYourLibraryLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold"/>
-            <ListBox IsTabStop="False" Grid.Row="1" ItemsSource="{Binding CurrentUser.Videos, Mode=OneWay, Source={StaticResource ApplicationContext}}" 
+            <controls:MetroContentControl Grid.RowSpan="2">
+                <Grid Margin="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding DesignerResources.VideosInYourLibraryLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold"/>
+                    <ListBox IsTabStop="False" Grid.Row="1" ItemsSource="{Binding CurrentUser.Videos, Mode=OneWay, Source={StaticResource ApplicationContext}}" 
                                      DisplayMemberPath="Title" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                     SelectedItem="{Binding Interval.Video, Mode=TwoWay}"/>
-        </Grid>
-        <controls:MetroContentControl Grid.Column="1" Grid.Row="1">
-            <telerik:RadTimeBar Grid.Column="1" 
-                                        MinSelectionRange="{Binding Interval.Duration, Mode=TwoWay}"
-                                        MaxSelectionRange="{Binding Interval.Duration, Mode=TwoWay}" 
-                                        PeriodStart="{Binding Interval.Video.StartDateTime}" PeriodEnd="{Binding Interval.Video.EndDateTime}"
-                                        SelectionStart="{Binding Interval.VideoFrom, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}" 
-                                        SelectionEnd="{Binding Interval.VideoTo, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}">
-                <telerik:RadLinearSparkline 
-                                        ItemsSource="{Binding Interval.Video.Telemetry, Mode=TwoWay}" 
-                                        ShowAxis="False"                            
-                                        YValuePath="PercentageThreshold" 
-                                        XValuePath="TimePositionAsDateTime" />
-            </telerik:RadTimeBar>
-        </controls:MetroContentControl>
-        <Grid Grid.Column="1" Grid.Row="2" Margin="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <TextBlock Text="{Binding DesignerResources.RecommendedVideosLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold"/>
-            <telerik:ListBox Grid.Row="1"/>
+                                     SelectedItem="{Binding Video, Mode=TwoWay}"/>
+                </Grid>
+            </controls:MetroContentControl>
+            <controls:MetroContentControl Grid.Column="1">
+                <telerik:RadTimeBar Grid.Column="1" 
+                                PeriodStart="{Binding Video.StartDateTime}" PeriodEnd="{Binding Video.EndDateTime}"
+                                SelectionStart="{Binding VideoFrom, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}" 
+                                SelectionEnd="{Binding VideoTo, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}"
+                                MaxSelectionRange="{Binding MaxRange, Mode=OneWay}"  
+                                MinSelectionRange="{Binding MinRange, Mode=OneWay}">                                
+                    <telerik:RadLinearSparkline 
+                                ItemsSource="{Binding Video.Telemetry, Mode=TwoWay}" 
+                                ShowAxis="False"                            
+                                YValuePath="PercentageThreshold" 
+                                XValuePath="TimePositionAsDateTime" />
+                </telerik:RadTimeBar>
+            </controls:MetroContentControl>
+            <controls:MetroContentControl Grid.Column="1" Grid.Row="1">
+                <Grid Margin="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding DesignerResources.RecommendedVideosLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold"/>
+                    <telerik:ListBox Grid.Row="1"/>
+                </Grid>
+            </controls:MetroContentControl>
         </Grid>
     </Grid>
 </UserControl>

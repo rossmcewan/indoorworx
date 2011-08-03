@@ -15,5 +15,15 @@ namespace IndoorWorx.Designer.Views
         bool UseSingleVideo { get; set; }
 
         bool UseMultipleVideos { get; set; }
+
+        TimeSpan MinRange { get; }
+
+        TimeSpan MaxRange { get; }
+
+        TimeSpan VideoFrom { get; set; }
+
+        TimeSpan VideoTo { get; set; }
+
+        Video Video { get; set; }
     }
 }

@@ -85,56 +85,7 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("ToEnd");
             }
             get { return toEnd; }                
-        }
-
-        private Video video;
-        public virtual Video Video
-        {
-            get { return video; }
-            set
-            {
-                video = value;
-                if (video != null)
-                {
-                    video.TelemetryLoaded += (sender, e) =>
-                        {
-                            FirePropertyChanged("VideoFrom");
-                            FirePropertyChanged("VideoTo");
-
-                            //VideoFrom = TimeSpan.Zero;
-                            //VideoTo = TimeSpan.FromSeconds(Math.Min(video.Duration.TotalSeconds, this.Duration.TotalSeconds));
-                        };
-                    video.LoadTelemetry();
-                }
-                FirePropertyChanged("Video");
-            }
-        }
-
-        private TimeSpan videoFrom;
-        public virtual TimeSpan VideoFrom
-        {
-            get { return videoFrom; }
-            set
-            {
-                videoFrom = value;
-                //if (videoTo.Subtract(videoFrom) > duration)
-                //    videoFrom = TimeSpan.FromSeconds(Math.Max(0, videoTo.Subtract(duration).TotalSeconds));
-                FirePropertyChanged("VideoFrom");
-            }
-        }
-
-        private TimeSpan videoTo;
-        public virtual TimeSpan VideoTo
-        {
-            get { return videoTo; }
-            set
-            {
-                videoTo = value;
-                //if (videoTo.Subtract(videoFrom) > duration)
-                //    videoTo = videoFrom.Add(duration);
-                FirePropertyChanged("VideoTo");
-            }
-        }
+        }                     
 
         public static Interval NewWarmupInterval(EffortType effortType, Action onChange)
         {
