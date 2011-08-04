@@ -309,4 +309,16 @@
   <data name="RidesTitle" xml:space="preserve">
     <value>RIDES</value>
   </data>
+  <data name="IntervalTitle" xml:space="preserve">
+    <value>Interval #{0}</value>
+  </data>
+  <data name="RecoveryTitle" xml:space="preserve">
+    <value>Recovery #{0}</value>
+  </data>
+  <data name="CountdownToEndText" xml:space="preserve">
+    <value>to end ...</value>
+  </data>
+  <data name="CountdownToStartText" xml:space="preserve">
+    <value>to start ...</value>
+  </data>
 </root>

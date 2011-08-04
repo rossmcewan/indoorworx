@@ -133,11 +133,29 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to to end ....
+        /// </summary>
+        public static string CountdownToEndText {
+            get {
+                return ResourceManager.GetString("CountdownToEndText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to COUNT DOWN TO START OF INTERVAL?.
         /// </summary>
         public static string CountDownToStartOfIntervalLabel {
             get {
                 return ResourceManager.GetString("CountDownToStartOfIntervalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to start ....
+        /// </summary>
+        public static string CountdownToStartText {
+            get {
+                return ResourceManager.GetString("CountdownToStartText", resourceCulture);
             }
         }
         
@@ -331,6 +349,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Interval #{0}.
+        /// </summary>
+        public static string IntervalTitle {
+            get {
+                return ResourceManager.GetString("IntervalTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TYPE.
         /// </summary>
         public static string IntervalTypeLabel {
@@ -480,6 +507,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string RecoveryIntervalLabel {
             get {
                 return ResourceManager.GetString("RecoveryIntervalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recovery #{0}.
+        /// </summary>
+        public static string RecoveryTitle {
+            get {
+                return ResourceManager.GetString("RecoveryTitle", resourceCulture);
             }
         }
         

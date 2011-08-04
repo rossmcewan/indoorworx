@@ -124,6 +124,15 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This video is too short to be used for this template..
+        /// </summary>
+        public static string SelectedVideoIsTooShortForTemplate {
+            get {
+                return ResourceManager.GetString("SelectedVideoIsTooShortForTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SETS.
         /// </summary>
         public static string SetsLabel {

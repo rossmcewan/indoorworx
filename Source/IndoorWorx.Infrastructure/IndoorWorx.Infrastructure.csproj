@@ -97,7 +97,9 @@
     <Compile Include="Models\TrainingMetric.cs" />
     <Compile Include="Models\TrainingMetricType.cs" />
     <Compile Include="Models\TrainingSet.cs" />
+    <Compile Include="Models\TrainingSetInterval.cs" />
     <Compile Include="Models\TrainingSetTemplate.cs" />
+    <Compile Include="Models\TrainingSetText.cs" />
     <Compile Include="Models\TrainingVolume.cs" />
     <Compile Include="Models\TrainingZone.cs" />
     <Compile Include="Models\UnitOfMeasure.cs" />

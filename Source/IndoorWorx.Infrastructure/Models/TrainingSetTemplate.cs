@@ -92,5 +92,17 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("EffortType");
             }
         }
+
+        private ICollection<VideoText> videoText = new List<VideoText>();
+        [DataMember]
+        public virtual ICollection<VideoText> VideoText
+        {
+            get { return videoText; }
+            set
+            {
+                videoText = value;
+                FirePropertyChanged("VideoText");
+            }
+        }
     }
 }

@@ -56,19 +56,7 @@ namespace IndoorWorx.Infrastructure.Models
                 imageUri = value;
                 FirePropertyChanged("ImageUri");
             }
-        }
-       
-        private int sequence;
-        [DataMember]
-        public virtual int Sequence
-        {
-            get { return sequence; }
-            set
-            {
-                sequence = value;
-                FirePropertyChanged("Sequence");
-            }
-        }
+        }              
 
         private TimeSpan duration;
         [DataMember]
@@ -129,18 +117,6 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("VideoMetadata");
             }
         }
-
-        //private ICollection<VideoInterval> intervals = new List<VideoInterval>();
-        //[DataMember]
-        //public virtual ICollection<VideoInterval> Intervals
-        //{
-        //    get { return intervals; }
-        //    set
-        //    {
-        //        intervals = value;
-        //        FirePropertyChanged("Intervals");
-        //    }
-        //}
 
         private int credits;
         [DataMember]

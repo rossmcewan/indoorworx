@@ -31,7 +31,7 @@ namespace IndoorWorx.NHibernate.Repositories
                     category.Catalogs = category.Catalogs.Distinct().OrderBy(x=>x.Sequence).ToList();
                     foreach (var catalog in category.Catalogs)
                     {
-                        catalog.Videos = catalog.Videos.Distinct().OrderBy(x => x.Sequence).ToList();                        
+                        catalog.Videos = catalog.Videos.Distinct().ToList();//.OrderBy(x => x.Sequence).ToList();                        
                     }
                 }
                 return categories;

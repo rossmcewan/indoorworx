@@ -92,6 +92,10 @@ namespace IndoorWorx.Infrastructure.Models
                 this.Intervals = new ObservableCollection<Interval>();
             else
                 this.Intervals = new ObservableCollection<Interval>(this.intervals);
+            if (this.VideoText == null)
+                this.VideoText = new ObservableCollection<VideoText>();
+            else
+                this.VideoText = new ObservableCollection<VideoText>(this.videoText);
             this.sets = new ObservableCollection<IntervalGroup>();
             SetupIntervalTimes();
         }

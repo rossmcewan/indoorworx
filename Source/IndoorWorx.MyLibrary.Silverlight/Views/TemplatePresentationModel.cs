@@ -417,6 +417,7 @@ namespace IndoorWorx.MyLibrary.Views
         protected virtual void RefreshTemplate()
         {
             Template.Intervals.Clear();
+            Template.VideoText.Clear();
             TimeSpan totalDuration = TimeSpan.Zero;
             int sequence = 0;
             foreach (var interval in warmupIntervals)
@@ -448,6 +449,68 @@ namespace IndoorWorx.MyLibrary.Views
             }
             Template.SetupIntervalTimes();
             Template.Duration = totalDuration;
+
+            TimeSpan start = TimeSpan.Zero;
+            foreach (var interval in Template.Intervals)
+            {
+                if (interval.ToStart.IsActive)
+                {
+                    var countDownFrom = interval.ToStart.Duration.AsTimeSpan();
+                    if (countDownFrom <= start)
+                    {
+                        var tick = interval.ToStart.Tick.AsTimeSpan();
+                        int numberOfCounts = (int)(countDownFrom.TotalSeconds / tick.TotalSeconds);
+                        for (int i = numberOfCounts; i > 0; i--)
+                        {
+                            var textEntry = new VideoText();
+                            textEntry.Animation = Infrastructure.Enums.VideoTextAnimations.ZoomCenter;
+                            textEntry.Duration = TimeSpan.FromSeconds(Math.Min(1, tick.TotalSeconds));
+                            textEntry.StartTime = start.Subtract(TimeSpan.FromSeconds(tick.TotalSeconds * i));
+                            textEntry.MainText = TimeSpan.FromSeconds(tick.TotalSeconds * i).ToString();
+                            textEntry.SubText = MyLibraryResources.CountdownToStartText;
+                            Template.VideoText.Add(textEntry);
+                        }                        
+                    }
+                    if (!string.IsNullOrWhiteSpace(interval.ToStart.Message))
+                    {
+                        var textEntry = new VideoText();
+                        textEntry.Animation = Infrastructure.Enums.VideoTextAnimations.ZoomCenter;
+                        textEntry.Duration = TimeSpan.FromSeconds(1);
+                        textEntry.StartTime = start;
+                        textEntry.MainText = interval.ToStart.Message;
+                        Template.VideoText.Add(textEntry);
+                    }
+                }
+                if (interval.ToEnd.IsActive)
+                {
+                    var countDownFrom = interval.ToEnd.Duration.AsTimeSpan();
+                    if (countDownFrom < interval.Duration)
+                    {
+                        var tick = interval.ToEnd.Tick.AsTimeSpan();
+                        int numberOfCounts = (int)(countDownFrom.TotalSeconds / tick.TotalSeconds);
+                        for (int i = numberOfCounts; i > 0; i--)
+                        {
+                            var textEntry = new VideoText();
+                            textEntry.Animation = Infrastructure.Enums.VideoTextAnimations.ZoomCenter;
+                            textEntry.Duration = TimeSpan.FromSeconds(Math.Min(1, tick.TotalSeconds));
+                            textEntry.StartTime = start.Add(interval.Duration).Subtract(TimeSpan.FromSeconds(tick.TotalSeconds * i));
+                            textEntry.MainText = TimeSpan.FromSeconds(tick.TotalSeconds * i).ToString();
+                            textEntry.SubText = MyLibraryResources.CountdownToEndText;
+                            Template.VideoText.Add(textEntry);
+                        }                        
+                    }
+                    if (!string.IsNullOrWhiteSpace(interval.ToEnd.Message))
+                    {
+                        var textEntry = new VideoText();
+                        textEntry.Animation = Infrastructure.Enums.VideoTextAnimations.ZoomCenter;
+                        textEntry.Duration = TimeSpan.FromSeconds(1);
+                        textEntry.StartTime = start;
+                        textEntry.MainText = interval.ToEnd.Message;
+                        Template.VideoText.Add(textEntry);
+                    }
+                }
+                start += interval.Duration;
+            }
         }
 
         private void CreateIntervals(Interval interval, Action<Interval> add)
@@ -464,9 +527,11 @@ namespace IndoorWorx.MyLibrary.Views
                     Effort = interval.Effort,
                     EffortType = interval.EffortType,
                     IntervalLevel = interval.IntervalLevel,
-                    Title = interval.Title,
+                    Title = string.Format(MyLibraryResources.IntervalTitle, (i+1)),
                     TemplateSection = interval.TemplateSection,
-                    SectionGroup = interval.SectionGroup
+                    SectionGroup = interval.SectionGroup,
+                    ToStart = interval.ToStart,
+                    ToEnd = interval.ToEnd
                 });
                 if (interval.RecoveryInterval.AsTimeSpan() > TimeSpan.Zero)
                 {
@@ -477,7 +542,7 @@ namespace IndoorWorx.MyLibrary.Views
                         IntervalType = recoveryType,
                         EffortType = interval.EffortType,
                         IntervalLevel = recovery,
-                        Title = interval.Title,
+                        Title = string.Format(MyLibraryResources.RecoveryTitle, (i+1)),
                         TemplateSection = interval.TemplateSection,
                         SectionGroup = interval.SectionGroup
                     };

@@ -143,8 +143,40 @@ alter table [TrainingMetric]  drop constraint FKF9617E1749B17005
 alter table [TrainingMetric]  drop constraint FKF9617E17E9F4749E
 
 
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK9449533D1A252A22]') AND parent_object_id = OBJECT_ID('[TrainingSet]'))
+alter table [TrainingSet]  drop constraint FK9449533D1A252A22
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK9449533D3C0CDC1E]') AND parent_object_id = OBJECT_ID('[TrainingSet]'))
+alter table [TrainingSet]  drop constraint FK9449533D3C0CDC1E
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK9449533DB4649974]') AND parent_object_id = OBJECT_ID('[TrainingSet]'))
+alter table [TrainingSet]  drop constraint FK9449533DB4649974
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK49625937B4649974]') AND parent_object_id = OBJECT_ID('[TrainingSetInterval]'))
+alter table [TrainingSetInterval]  drop constraint FK49625937B4649974
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK496259372055E96F]') AND parent_object_id = OBJECT_ID('[TrainingSetInterval]'))
+alter table [TrainingSetInterval]  drop constraint FK496259372055E96F
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK49625937EB43FADB]') AND parent_object_id = OBJECT_ID('[TrainingSetInterval]'))
+alter table [TrainingSetInterval]  drop constraint FK49625937EB43FADB
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK4962593774BBB917]') AND parent_object_id = OBJECT_ID('[TrainingSetInterval]'))
+alter table [TrainingSetInterval]  drop constraint FK4962593774BBB917
+
+
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK79A4D8B9B4649974]') AND parent_object_id = OBJECT_ID('[TrainingSetTemplate]'))
 alter table [TrainingSetTemplate]  drop constraint FK79A4D8B9B4649974
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKDCDC8BAE74BBB917]') AND parent_object_id = OBJECT_ID('[TrainingSetText]'))
+alter table [TrainingSetText]  drop constraint FKDCDC8BAE74BBB917
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC33B97A4263AB471]') AND parent_object_id = OBJECT_ID('[TrainingZone]'))
@@ -165,6 +197,10 @@ alter table [Video]  drop constraint FK30300B573C0CDC1E
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK30300B57A4ECB12B]') AND parent_object_id = OBJECT_ID('[Video]'))
 alter table [Video]  drop constraint FK30300B57A4ECB12B
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE82DEBED2B3E4BD3]') AND parent_object_id = OBJECT_ID('[VideoText]'))
+alter table [VideoText]  drop constraint FKE82DEBED2B3E4BD3
 
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Activity]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Activity]
@@ -237,7 +273,13 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingMetricType]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingMetricType]
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingSet]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingSet]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingSetInterval]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingSetInterval]
+
     if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingSetTemplate]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingSetTemplate]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingSetText]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingSetText]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[TrainingVolume]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [TrainingVolume]
 
@@ -385,8 +427,6 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
 
     create table [VideoInterval] (
         Id UNIQUEIDENTIFIER not null,
-       StartTimestamp BIGINT not null,
-       EndTimestamp BIGINT not null,
        primary key (Id)
     )
 
@@ -535,6 +575,42 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        primary key (Id)
     )
 
+    create table [TrainingSet] (
+        Id UNIQUEIDENTIFIER not null,
+       Title NVARCHAR(255) not null,
+       Description NVARCHAR(255) null,
+       Created DATETIME null,
+       CreatedBy NVARCHAR(255) null,
+       Modified DATETIME null,
+       ModifiedBy NVARCHAR(255) null,
+       ImageUri NVARCHAR(255) null,
+       StreamUri NVARCHAR(255) not null,
+       Duration BIGINT null,
+       Credits INT null,
+       RideCredits INT null,
+       IsPublic BIT null,
+       VideoMetadata_id UNIQUEIDENTIFIER null,
+       TelemetryInfo_id UNIQUEIDENTIFIER null,
+       EffortType_id UNIQUEIDENTIFIER null,
+       primary key (Id)
+    )
+
+    create table [TrainingSetInterval] (
+        Id UNIQUEIDENTIFIER not null,
+       Duration BIGINT not null,
+       Title NVARCHAR(255) null,
+       Description NVARCHAR(255) null,
+       Effort INT null,
+       Sequence INT not null,
+       TemplateSection NVARCHAR(255) null,
+       SectionGroup NVARCHAR(255) null,
+       EffortType_id UNIQUEIDENTIFIER not null,
+       IntervalType_id UNIQUEIDENTIFIER null,
+       IntervalLevel_id UNIQUEIDENTIFIER not null,
+       TrainingSet UNIQUEIDENTIFIER null,
+       primary key (Id)
+    )
+
     create table [TrainingSetTemplate] (
         Id UNIQUEIDENTIFIER not null,
        Title NVARCHAR(255) null,
@@ -543,6 +619,17 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        Credits INT null,
        IsPublic BIT null,
        EffortType_id UNIQUEIDENTIFIER not null,
+       primary key (Id)
+    )
+
+    create table [TrainingSetText] (
+        Id UNIQUEIDENTIFIER not null,
+       Animation NVARCHAR(255) null,
+       Duration BIGINT null,
+       MainText NVARCHAR(255) null,
+       StartTime BIGINT null,
+       SubText NVARCHAR(255) null,
+       TrainingSet UNIQUEIDENTIFIER null,
        primary key (Id)
     )
 
@@ -578,7 +665,6 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        CreatedBy NVARCHAR(255) null,
        Modified DATETIME null,
        ModifiedBy NVARCHAR(255) null,
-       Sequence INT null,
        ImageUri NVARCHAR(255) null,
        StreamUri NVARCHAR(255) not null,
        Duration BIGINT null,
@@ -605,6 +691,7 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
        MainText NVARCHAR(255) null,
        StartTime BIGINT null,
        SubText NVARCHAR(255) null,
+       TrainingSetTemplate UNIQUEIDENTIFIER null,
        primary key (Id)
     )
 
@@ -788,10 +875,50 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
         foreign key (Video) 
         references [Video]
 
+    alter table [TrainingSet] 
+        add constraint FK9449533D1A252A22 
+        foreign key (VideoMetadata_id) 
+        references [VideoMetadata]
+
+    alter table [TrainingSet] 
+        add constraint FK9449533D3C0CDC1E 
+        foreign key (TelemetryInfo_id) 
+        references [TelemetryInfo]
+
+    alter table [TrainingSet] 
+        add constraint FK9449533DB4649974 
+        foreign key (EffortType_id) 
+        references [EffortType]
+
+    alter table [TrainingSetInterval] 
+        add constraint FK49625937B4649974 
+        foreign key (EffortType_id) 
+        references [EffortType]
+
+    alter table [TrainingSetInterval] 
+        add constraint FK496259372055E96F 
+        foreign key (IntervalType_id) 
+        references [IntervalType]
+
+    alter table [TrainingSetInterval] 
+        add constraint FK49625937EB43FADB 
+        foreign key (IntervalLevel_id) 
+        references [IntervalLevel]
+
+    alter table [TrainingSetInterval] 
+        add constraint FK4962593774BBB917 
+        foreign key (TrainingSet) 
+        references [TrainingSet]
+
     alter table [TrainingSetTemplate] 
         add constraint FK79A4D8B9B4649974 
         foreign key (EffortType_id) 
         references [EffortType]
+
+    alter table [TrainingSetText] 
+        add constraint FKDCDC8BAE74BBB917 
+        foreign key (TrainingSet) 
+        references [TrainingSet]
 
     alter table [TrainingZone] 
         add constraint FKC33B97A4263AB471 
@@ -817,3 +944,8 @@ alter table [Video]  drop constraint FK30300B57A4ECB12B
         add constraint FK30300B57A4ECB12B 
         foreign key (Catalog) 
         references [Catalog]
+
+    alter table [VideoText] 
+        add constraint FKE82DEBED2B3E4BD3 
+        foreign key (TrainingSetTemplate) 
+        references [TrainingSetTemplate]

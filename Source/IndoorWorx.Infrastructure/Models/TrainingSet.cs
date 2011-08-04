@@ -21,35 +21,11 @@ namespace IndoorWorx.Infrastructure.Models
                 recordingInterval = value;
                 FirePropertyChanged("RecordingInterval");
             }
-        }        
-
-        private TrainingMetricType trainingMetrics;
-        [DataMember]
-        public virtual TrainingMetricType TrainingMetrics
-        {
-            get { return trainingMetrics; }
-            set
-            {
-                trainingMetrics = value;
-                FirePropertyChanged("TrainingMetrics");
-            }
         }
 
-        private Uri telemetryUri;
+        private ICollection<TrainingSetText> videoText = new List<TrainingSetText>();
         [DataMember]
-        public virtual Uri TelemetryUri
-        {
-            get { return telemetryUri; }
-            set
-            {
-                telemetryUri = value;
-                FirePropertyChanged("TelemetryUri");
-            }
-        }
-
-        private ICollection<VideoText> videoText = new List<VideoText>();
-        [DataMember]
-        public virtual ICollection<VideoText> VideoText
+        public virtual ICollection<TrainingSetText> VideoText
         {
             get { return videoText; }
             set
@@ -59,5 +35,40 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private bool @public;
+        [DataMember]
+        public virtual bool IsPublic
+        {
+            get { return @public; }
+            set
+            {
+                @public = value;
+                FirePropertyChanged("IsPublic");
+            }
+        }
+
+        private ICollection<TrainingSetInterval> intervals = new List<TrainingSetInterval>();
+        [DataMember]
+        public virtual ICollection<TrainingSetInterval> Intervals
+        {
+            get { return intervals; }
+            set
+            {
+                intervals = value;
+                FirePropertyChanged("Intervals");
+            }
+        }
+
+        private EffortType effortType;
+        [DataMember]
+        public virtual EffortType EffortType
+        {
+            get { return effortType; }
+            set
+            {
+                effortType = value;
+                FirePropertyChanged("EffortType");
+            }
+        }
     }
 }

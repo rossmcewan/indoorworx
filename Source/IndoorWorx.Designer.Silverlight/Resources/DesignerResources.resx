@@ -138,6 +138,9 @@
   <data name="Save" xml:space="preserve">
     <value>save</value>
   </data>
+  <data name="SelectedVideoIsTooShortForTemplate" xml:space="preserve">
+    <value>This video is too short to be used for this template.</value>
+  </data>
   <data name="SetsLabel" xml:space="preserve">
     <value>SETS</value>
   </data>

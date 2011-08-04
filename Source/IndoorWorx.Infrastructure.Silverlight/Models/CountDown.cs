@@ -35,25 +35,14 @@ namespace IndoorWorx.Infrastructure.Models
             get { return duration; }
         }
 
-        private string startMessage = string.Empty;
-        public virtual string StartMessage
+        private string message = string.Empty;
+        public virtual string Message
         {
-            get { return startMessage; }
+            get { return message; }
             set
             {
-                startMessage = value;
-                FirePropertyChanged("StartMessage");
-            }
-        }
-
-        private string endMessage = string.Empty;
-        public virtual string EndMessage
-        {
-            get { return endMessage; }
-            set
-            {
-                endMessage = value;
-                FirePropertyChanged("EndMessage");
+                message = value;
+                FirePropertyChanged("Message");
             }
         }
 
@@ -74,8 +63,7 @@ namespace IndoorWorx.Infrastructure.Models
             if (cd != null)
             {
                 return cd.Duration.Equals(this.Duration) &&
-                    cd.EndMessage.Equals(this.EndMessage) &&
-                    cd.StartMessage.Equals(this.StartMessage) &&
+                    cd.Message.Equals(this.Message) &&
                     cd.Tick.Equals(this.Tick);
             }
             return base.Equals(obj);

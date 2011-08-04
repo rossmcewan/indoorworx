@@ -12,8 +12,6 @@ namespace IndoorWorx.NHibernate.ClassMaps
         public VideoIntervalClassMap()
         {
             KeyColumn("Id");
-            Map(x => x.StartTimestamp).Not.Nullable();
-            Map(x => x.EndTimestamp).Not.Nullable();
         }
     }
 }

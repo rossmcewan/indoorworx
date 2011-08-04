@@ -96,7 +96,6 @@ namespace IndoorWorx.SchemaTools
 #region Rand Waterboard
                                 new Video()
                                 {
-                                    Sequence = 1,
                                     Created = DateTime.Now,
                                     CreatedBy = typeof(Program).Assembly.FullName,
                                     ImageUri = new Uri("http://localhost:3415/Mock/randwaterboard.jpg",UriKind.Absolute),                                    
@@ -121,7 +120,6 @@ namespace IndoorWorx.SchemaTools
 #region Suikerbosrand
                                 new Video()
                                 {
-                                    Sequence = 2,
                                     Created = DateTime.Now,
                                     CreatedBy = typeof(Program).Assembly.FullName,
                                     ImageUri = new Uri("http://localhost:3415/Mock/suikerbosrand.jpg",UriKind.Absolute),                                    
@@ -146,7 +144,6 @@ namespace IndoorWorx.SchemaTools
 #region Sun City
                                 new Video()
                                 {
-                                    Sequence = 3,
                                     Created = DateTime.Now,
                                     CreatedBy = typeof(Program).Assembly.FullName,
                                     ImageUri = new Uri("http://localhost:3415/Mock/suncity.jpg", UriKind.Absolute),
@@ -179,7 +176,6 @@ namespace IndoorWorx.SchemaTools
                             {
                                 new Video()
                                 {
-                                    Sequence = 1,
                                     Created = DateTime.Now,
                                     CreatedBy = typeof(Program).Assembly.FullName,
                                     ImageUri = new Uri("http://localhost:3415/Mock/cyclechallenge.jpg",UriKind.Absolute),                                    
@@ -201,7 +197,6 @@ namespace IndoorWorx.SchemaTools
                                 },
                                 new Video()
                                 {
-                                    Sequence = 2,
                                     Created = DateTime.Now,
                                     CreatedBy = typeof(Program).Assembly.FullName,
                                     ImageUri = new Uri("http://localhost:3415/Mock/cape-argus.jpg",UriKind.Absolute),                                    
@@ -248,7 +243,6 @@ namespace IndoorWorx.SchemaTools
 #region Rand Waterboard
                                 new Video()
                                 {
-                                    Sequence = 1,
                                     Created = DateTime.Now,
                                     CreatedBy = typeof(Program).Assembly.FullName,
                                     ImageUri = new Uri("http://localhost:3415/Mock/hillclimb1.jpg",UriKind.Absolute),                                    
@@ -273,7 +267,6 @@ namespace IndoorWorx.SchemaTools
 #region Suikerbosrand
                                 new Video()
                                 {
-                                    Sequence = 2,
                                     Created = DateTime.Now,
                                     CreatedBy = typeof(Program).Assembly.FullName,
                                     ImageUri = new Uri("http://localhost:3415/Mock/hillclimb2.jpg",UriKind.Absolute),                                    
@@ -306,7 +299,6 @@ namespace IndoorWorx.SchemaTools
                             {
                                 new Video()
                                 {
-                                    Sequence = 1,
                                     Created = DateTime.Now,
                                     CreatedBy = typeof(Program).Assembly.FullName,
                                     ImageUri = new Uri("http://localhost:3415/Mock/timetrial1.jpg",UriKind.Absolute),                                    
@@ -328,7 +320,6 @@ namespace IndoorWorx.SchemaTools
                                 },
                                 new Video()
                                 {
-                                    Sequence = 2,
                                     Created = DateTime.Now,
                                     CreatedBy = typeof(Program).Assembly.FullName,
                                     ImageUri = new Uri("http://localhost:3415/Mock/timetrial2.jpg",UriKind.Absolute),                                    
@@ -360,7 +351,6 @@ namespace IndoorWorx.SchemaTools
                             {
                                 new Video()
                                 {
-                                    Sequence = 1,
                                     Created = DateTime.Now,
                                     CreatedBy = typeof(Program).Assembly.FullName,
                                     ImageUri = new Uri("http://localhost:3415/Mock/breakaway1.jpg",UriKind.Absolute),                                    
@@ -382,7 +372,6 @@ namespace IndoorWorx.SchemaTools
                                 },
                                 new Video()
                                 {
-                                    Sequence = 2,
                                     Created = DateTime.Now,
                                     CreatedBy = typeof(Program).Assembly.FullName,
                                     ImageUri = new Uri("http://localhost:3415/Mock/breakaway2.jpg",UriKind.Absolute),                                    

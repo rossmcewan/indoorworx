@@ -58,18 +58,6 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private TrainingSet trainingSet;
-        [DataMember]
-        public virtual TrainingSet TrainingSet
-        {
-            get { return trainingSet; }
-            set
-            {
-                trainingSet = value;
-                FirePropertyChanged("TrainingSet");
-            }
-        }
-
         private TimeSpan duration;
         [DataMember]
         public virtual TimeSpan Duration
@@ -81,7 +69,6 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("Duration");
             }
         }
-
       
         public virtual void Clear()
         {

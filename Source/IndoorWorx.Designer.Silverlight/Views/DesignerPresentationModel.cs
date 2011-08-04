@@ -12,6 +12,8 @@ using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.ServiceLocation;
 using IndoorWorx.Infrastructure;
 using Microsoft.Practices.Composite.Presentation.Commands;
+using IndoorWorx.Infrastructure.Facades;
+using IndoorWorx.Designer.Resources;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -19,11 +21,13 @@ namespace IndoorWorx.Designer.Views
     {
         private readonly IServiceLocator serviceLocator;
         private readonly IShell shell;
+        private readonly IDialogFacade dialogFacade;
 
-        public DesignerPresentationModel(IServiceLocator serviceLocator, IShell shell)
+        public DesignerPresentationModel(IServiceLocator serviceLocator, IShell shell, IDialogFacade dialogFacade)
         {
             this.serviceLocator = serviceLocator;
             this.shell = shell;
+            this.dialogFacade = dialogFacade;
             this.CancelCommand = new DelegateCommand<object>(Cancel);
             this.SaveCommand = new DelegateCommand<object>(Save);
         }
@@ -155,6 +159,12 @@ namespace IndoorWorx.Designer.Views
             get { return video; }
             set
             {
+                if (value != null && value.Duration < SelectedTemplate.Duration)
+                {
+                    dialogFacade.Alert(DesignerResources.SelectedVideoIsTooShortForTemplate);
+                    FirePropertyChanged("Video");
+                    return;
+                }
                 video = value;
                 if (video != null)
                     video.IsMediaLoading = true;

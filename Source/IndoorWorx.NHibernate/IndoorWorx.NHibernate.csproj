@@ -99,7 +99,10 @@
     <Compile Include="ClassMaps\TelemetryInfoClassMap.cs" />
     <Compile Include="ClassMaps\TrainingMetricClassMap.cs" />
     <Compile Include="ClassMaps\TrainingMetricTypeClassMap.cs" />
+    <Compile Include="ClassMaps\TrainingSetClassMap.cs" />
+    <Compile Include="ClassMaps\TrainingSetIntervalClassMap.cs" />
     <Compile Include="ClassMaps\TrainingSetTemplateClassMap.cs" />
+    <Compile Include="ClassMaps\TrainingSetTextClassMap.cs" />
     <Compile Include="ClassMaps\TrainingZoneClassMap.cs" />
     <Compile Include="ClassMaps\UnitOfMeasureClassMap.cs" />
     <Compile Include="ClassMaps\VideoClassMap.cs" />
