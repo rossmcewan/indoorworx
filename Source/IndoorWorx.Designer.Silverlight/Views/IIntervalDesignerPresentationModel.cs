@@ -8,16 +8,16 @@ namespace IndoorWorx.Designer.Views
 {
     public interface IIntervalDesignerPresentationModel : IDesignerPresentationModelBase
     {
+        bool AllowSingleOrMultipleVideoSelection { get; set; }
+
         IIntervalDesignerView View { get; set; }
 
         Interval Interval { get; set; }
 
+        Interval SelectedInterval { get; set; }
+
         bool UseSingleVideo { get; set; }
 
         bool UseMultipleVideos { get; set; }
-
-        TimeSpan MinRange { get; }
-
-        TimeSpan MaxRange { get; }        
     }
 }

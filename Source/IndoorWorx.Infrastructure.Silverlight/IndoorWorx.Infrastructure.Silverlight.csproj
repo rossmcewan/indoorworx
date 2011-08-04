@@ -342,6 +342,7 @@
     </Compile>
     <Compile Include="DragDrop\IDropTarget.cs" />
     <Compile Include="Events\CatalogSearchTextChangedEvent.cs" />
+    <Compile Include="Events\DesignEvent.cs" />
     <Compile Include="Events\HelpEvent.cs" />
     <Compile Include="Events\LibraryPart.cs" />
     <Compile Include="Events\MyLibraryEvent.cs" />

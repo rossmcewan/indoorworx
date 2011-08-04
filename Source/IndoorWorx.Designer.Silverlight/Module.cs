@@ -27,10 +27,19 @@ namespace IndoorWorx.Designer
     {
         private readonly IUnityContainer unityContainer;
         private readonly IServiceLocator serviceLocator;
+        
         public Module(IUnityContainer unityContainer, IServiceLocator serviceLocator, IEventAggregator eventAggregator)
         {
             this.unityContainer = unityContainer;
             this.serviceLocator = serviceLocator;
+            eventAggregator.GetEvent<DesignEvent>().Subscribe(Design, true);
+        }
+
+        public void Design(TrainingSetTemplate template)
+        {
+            var view = serviceLocator.GetInstance<IDesignerView>();
+            view.Model.SelectedTemplate = template;
+            view.Model.Show();
         }
 
         private INavigationService NavigationService
@@ -49,24 +58,25 @@ namespace IndoorWorx.Designer
         {
             Application.Current.Resources.Add("DesignerResources", new ResourceWrapper());
 
-            unityContainer.RegisterInstance<IDesignerPresentationModel>(unityContainer.Resolve<DesignerPresentationModel>(), new ContainerControlledLifetimeManager());
-            unityContainer.RegisterInstance<IDesignerView>(unityContainer.Resolve<TabbedDesignerView>(), new ContainerControlledLifetimeManager());
-
+            //unityContainer.RegisterInstance<IDesignerPresentationModel>(unityContainer.Resolve<DesignerPresentationModel>(), new ContainerControlledLifetimeManager());
+            //unityContainer.RegisterInstance<IDesignerView>(unityContainer.Resolve<TabbedDesignerView>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterType<IDesignerPresentationModel, DesignerPresentationModel>();
+            unityContainer.RegisterType<IDesignerView, TabbedDesignerView>();
             unityContainer.RegisterType<IIntervalDesignerPresentationModel, IntervalDesignerPresentationModel>();
             unityContainer.RegisterType<IIntervalDesignerView, IntervalDesignerView>();
 
-            NavigationLinks.MapUri(
-                new Uri("/Designer", UriKind.Relative),
-                new Uri("/IndoorWorx.Designer.Silverlight;component/Pages/DesignerPage.xaml", UriKind.Relative));
+            //NavigationLinks.MapUri(
+            //    new Uri("/Designer", UriKind.Relative),
+            //    new Uri("/IndoorWorx.Designer.Silverlight;component/Pages/DesignerPage.xaml", UriKind.Relative));
 
-            NavigationLinks.Add(new Infrastructure.Models.NavigationInfo()
-            {
-                Content = "mydesigner",                
-                IsAuthenticationRequired = true,
-                NavigationUri = "/Designer",
-                Allow = new string[] { "*" },
-                Deny = new string[] { "?" }
-            });
+            //NavigationLinks.Add(new Infrastructure.Models.NavigationInfo()
+            //{
+            //    Content = "mydesigner",                
+            //    IsAuthenticationRequired = true,
+            //    NavigationUri = "/Designer",
+            //    Allow = new string[] { "*" },
+            //    Deny = new string[] { "?" }
+            //});            
         }
 
         #endregion

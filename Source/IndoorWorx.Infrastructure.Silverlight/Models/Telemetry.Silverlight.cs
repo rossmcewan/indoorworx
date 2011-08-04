@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using IndoorWorx.Infrastructure.Helpers;
 
 namespace IndoorWorx.Infrastructure.Models
 {
@@ -17,7 +18,7 @@ namespace IndoorWorx.Infrastructure.Models
         {
             get
             {
-                return DateTime.MinValue.Add(TimePosition);
+                return DateTimeHelper.ZeroTime.Add(TimePosition);
             }
         }
     }

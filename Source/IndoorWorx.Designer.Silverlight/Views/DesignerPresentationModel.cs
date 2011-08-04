@@ -9,14 +9,39 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
+using Microsoft.Practices.ServiceLocation;
+using IndoorWorx.Infrastructure;
+using Microsoft.Practices.Composite.Presentation.Commands;
 
 namespace IndoorWorx.Designer.Views
 {
     public class DesignerPresentationModel : BaseModel, IDesignerPresentationModel
     {
+        private readonly IServiceLocator serviceLocator;
+        private readonly IShell shell;
+
+        public DesignerPresentationModel(IServiceLocator serviceLocator, IShell shell)
+        {
+            this.serviceLocator = serviceLocator;
+            this.shell = shell;
+            this.CancelCommand = new DelegateCommand<object>(Cancel);
+            this.SaveCommand = new DelegateCommand<object>(Save);
+        }
+
+        public ICommand CancelCommand { get; private set; }
+
+        public ICommand SaveCommand { get; private set; }
+
+        private void Cancel(object arg) 
+        {
+            Hide();
+        }
+
+        private void Save(object arg) { }
+
         public IDesignerView View { get; set; }
 
-        private bool useSingleVideo = false;
+        private bool useSingleVideo = true;
         public virtual bool UseSingleVideo
         {
             get { return useSingleVideo; }
@@ -29,7 +54,7 @@ namespace IndoorWorx.Designer.Views
             }
         }
 
-        private bool useMultipleVideos = true;
+        private bool useMultipleVideos = false;
         public virtual bool UseMultipleVideos
         {
             get { return useMultipleVideos; }
@@ -145,6 +170,16 @@ namespace IndoorWorx.Designer.Views
                 FirePropertyChanged("MaxRange");
                 FirePropertyChanged("MinRange");
             }
+        }
+
+        public void Show()
+        {
+            shell.AddToLayoutRoot(View as UIElement);
+        }
+
+        public void Hide()
+        {
+            shell.RemoveFromLayoutRoot(View as UIElement);
         }
     }
 }

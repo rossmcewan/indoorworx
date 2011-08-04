@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Data;
+using IndoorWorx.Infrastructure.Helpers;
 
 namespace IndoorWorx.Infrastructure.Converters
 {
@@ -24,7 +25,7 @@ namespace IndoorWorx.Infrastructure.Converters
             if (value is TimeSpan)
             {
                 var timespan = (TimeSpan)value;
-                return DateTime.MinValue.Add(timespan);
+                return DateTimeHelper.ZeroTime.Add(timespan);
             }
             if (value is DateTime)
             {

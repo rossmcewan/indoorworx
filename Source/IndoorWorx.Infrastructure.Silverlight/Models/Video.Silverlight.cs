@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using System.Threading;
 using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Infrastructure.Helpers;
 
 namespace IndoorWorx.Infrastructure.Models
 {
@@ -165,6 +166,8 @@ namespace IndoorWorx.Infrastructure.Models
         {
             Initialize();
             PlayTo = Duration;
+            StartDateTime = DateTimeHelper.ZeroTime;
+            EndDateTime = StartDateTime.Add(Duration);
         }
 
         private void Initialize()
@@ -202,14 +205,19 @@ namespace IndoorWorx.Infrastructure.Models
             get { return PlayTo - PlayFrom; }
         }
 
+
+        private DateTime startDateTime = DateTimeHelper.ZeroTime;
         public DateTime StartDateTime
         {
-            get { return DateTime.MinValue; }
+            set { this.startDateTime = value; }
+            get { return startDateTime; }
         }
 
+        private DateTime endDateTime;
         public DateTime EndDateTime
         {
-            get { return DateTime.MinValue.Add(Duration); }
+            set { this.endDateTime = value; }
+            get { return endDateTime; }
         }
     }
 }

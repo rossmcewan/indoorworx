@@ -30,6 +30,8 @@ namespace IndoorWorx.Designer.Converters
                 {
                     var view = IoC.Resolve<IIntervalDesignerView>();
                     view.Model.Interval = interval;
+                    if (parameter != null && "nochoice".Equals(parameter.ToString()))
+                        view.Model.AllowSingleOrMultipleVideoSelection = false;
 
                     var tabItem = new IntervalTabItem();
                     tabItem.Header = interval.Title;

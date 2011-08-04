@@ -18,6 +18,7 @@ using IndoorWorx.Infrastructure.Facades;
 using IndoorWorx.MyLibrary.Resources;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.Infrastructure.Helpers;
+using IndoorWorx.Infrastructure.Events;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -105,6 +106,7 @@ namespace IndoorWorx.MyLibrary.Views
 
         private void CreateRide(object arg)
         {
+            eventAggregator.GetEvent<DesignEvent>().Publish(Template);
         }
 
         public ITemplateDetailsView View { get; set; }

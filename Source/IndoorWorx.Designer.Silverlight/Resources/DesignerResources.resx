@@ -123,11 +123,20 @@
   <data name="BySetLabel" xml:space="preserve">
     <value>BY SET</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>cancel</value>
+  </data>
   <data name="FromLabel" xml:space="preserve">
     <value>FROM</value>
   </data>
   <data name="RecommendedVideosLabel" xml:space="preserve">
     <value>RECOMMENDED VIDEOS</value>
+  </data>
+  <data name="RideDesignTitle" xml:space="preserve">
+    <value>new ride design</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>save</value>
   </data>
   <data name="SetsLabel" xml:space="preserve">
     <value>SETS</value>

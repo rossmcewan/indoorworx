@@ -14,6 +14,17 @@ namespace IndoorWorx.Designer.Views
 {
     public class IntervalDesignerPresentationModel : BaseModel, IIntervalDesignerPresentationModel
     {
+        private bool allowSingleOrMultipleVideoSelection = true;
+        public virtual bool AllowSingleOrMultipleVideoSelection
+        {
+            get { return allowSingleOrMultipleVideoSelection; }
+            set
+            {
+                allowSingleOrMultipleVideoSelection = value;
+                FirePropertyChanged("AllowSingleOrMultipleVideoSelection");
+            }
+        }
+
         public IIntervalDesignerView View { get; set; }
 
         private Interval interval;
@@ -27,7 +38,18 @@ namespace IndoorWorx.Designer.Views
             }
         }
 
-        private bool useSingleVideo = false;
+        private Interval selectedInterval;
+        public virtual Interval SelectedInterval
+        {
+            get { return selectedInterval; }
+            set
+            {
+                selectedInterval = value;
+                FirePropertyChanged("SelectedInterval");
+            }
+        }
+
+        private bool useSingleVideo = true;
         public virtual bool UseSingleVideo
         {
             get { return useSingleVideo; }
@@ -40,7 +62,7 @@ namespace IndoorWorx.Designer.Views
             }
         }
 
-        private bool useMultipleVideos = true;
+        private bool useMultipleVideos = false;
         public virtual bool UseMultipleVideos
         {
             get { return useMultipleVideos; }
@@ -51,16 +73,6 @@ namespace IndoorWorx.Designer.Views
                 FirePropertyChanged("UseMultipleVideos");
                 FirePropertyChanged("UseSingleVideo");
             }
-        }
-
-        public virtual TimeSpan MinRange
-        {
-            get { return this.Interval.Duration.Subtract(TimeSpan.FromMilliseconds(1)); }
-        }
-
-        public virtual TimeSpan MaxRange
-        {
-            get { return this.Interval.Duration; }
         }
 
         private TimeSpan videoFrom;
@@ -139,8 +151,6 @@ namespace IndoorWorx.Designer.Views
                     video.LoadTelemetry();
                 }
                 FirePropertyChanged("Video");
-                FirePropertyChanged("MaxRange");
-                FirePropertyChanged("MinRange");
             }
         }
     }

@@ -7,9 +7,10 @@ namespace IndoorWorx.Infrastructure.Helpers
 {
     public class DateTimeHelper
     {
+        private static DateTime zero = new DateTime(1971, 1, 1, 0, 0, 0);
         public static DateTime ZeroTime
         {
-            get { return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0); }
+            get { return zero; }
         }
     }
 }

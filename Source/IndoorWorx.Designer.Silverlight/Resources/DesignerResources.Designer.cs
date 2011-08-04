@@ -79,6 +79,15 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FROM.
         /// </summary>
         public static string FromLabel {
@@ -93,6 +102,24 @@ namespace IndoorWorx.Designer.Resources {
         public static string RecommendedVideosLabel {
             get {
                 return ResourceManager.GetString("RecommendedVideosLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new ride design.
+        /// </summary>
+        public static string RideDesignTitle {
+            get {
+                return ResourceManager.GetString("RideDesignTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         
