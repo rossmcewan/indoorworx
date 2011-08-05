@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -79,7 +80,11 @@ namespace IndoorWorx.Designer.Views
             {
                 selectedTemplate = value;
                 if (selectedTemplate != null)
+                {
                     selectedTemplate.ParseSets();
+                    selectedTemplate.CreateTelemetry();
+                    SelectedInterval = SelectedTemplate.Intervals.FirstOrDefault();
+                }
                 FirePropertyChanged("SelectedTemplate");
             }
         }

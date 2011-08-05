@@ -13,6 +13,7 @@ using System.Runtime.Serialization;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Collections.Generic;
+using IndoorWorx.Infrastructure.Helpers;
 
 namespace IndoorWorx.Infrastructure.Models
 {
@@ -21,6 +22,20 @@ namespace IndoorWorx.Infrastructure.Models
         public TrainingSetTemplate()
         {
             this.Intervals = new ObservableCollection<Interval>();
+        }
+
+        private DateTime startDateTime = DateTimeHelper.ZeroTime;
+        public DateTime StartDateTime
+        {
+            set { this.startDateTime = value; }
+            get { return startDateTime; }
+        }
+
+        private DateTime endDateTime;
+        public DateTime EndDateTime
+        {
+            set { this.endDateTime = value; }
+            get { return endDateTime; }
         }
 
         private ICollection<IntervalGroup> sets = new ObservableCollection<IntervalGroup>();
@@ -74,6 +89,36 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private ICollection<Telemetry> telemetry = new ObservableCollection<Telemetry>();
+        public virtual ICollection<Telemetry> Telemetry
+        {
+            get { return telemetry; }
+            set
+            {
+                telemetry = value;
+                FirePropertyChanged("Telemetry");
+            }
+        }
+
+        public void CreateTelemetry()
+        {
+            Telemetry.Clear();
+            var timer = TimeSpan.Zero;
+            var recordingInterval = TimeSpan.FromSeconds(2);
+            foreach (var interval in Intervals)
+            {
+                var numberOfElements = interval.Duration.TotalSeconds / recordingInterval.TotalSeconds;
+                for (int i = 0; i < numberOfElements; i++)
+                {
+                    var telemetry = new Telemetry();
+                    telemetry.PercentageThreshold = Convert.ToDouble(interval.Effort);
+                    telemetry.TimePosition = timer;
+                    Telemetry.Add(telemetry);
+                    timer = timer.Add(recordingInterval);
+                }
+            }
+        }
+
         private Interval selectedInterval;
         public virtual Interval SelectedInterval
         {
@@ -97,7 +142,9 @@ namespace IndoorWorx.Infrastructure.Models
             else
                 this.VideoText = new ObservableCollection<VideoText>(this.videoText);
             this.sets = new ObservableCollection<IntervalGroup>();
+            this.telemetry = new ObservableCollection<Telemetry>();
             SetupIntervalTimes();
+            EndDateTime = startDateTime.Add(Duration);
         }
 
         public void SetupIntervalTimes()

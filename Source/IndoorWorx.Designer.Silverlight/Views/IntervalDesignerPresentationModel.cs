@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,6 +35,10 @@ namespace IndoorWorx.Designer.Views
             set
             {
                 interval = value;
+                if (interval != null && interval is IntervalGroup)
+                {
+                    SelectedInterval = (interval as IntervalGroup).Intervals.FirstOrDefault();
+                }
                 FirePropertyChanged("Interval");
             }
         }
