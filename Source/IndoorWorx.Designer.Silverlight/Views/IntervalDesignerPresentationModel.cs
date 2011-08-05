@@ -10,11 +10,19 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
+using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Designer.Events;
 
 namespace IndoorWorx.Designer.Views
 {
     public class IntervalDesignerPresentationModel : BaseModel, IIntervalDesignerPresentationModel
     {
+        private readonly IEventAggregator eventAggregator;
+        public IntervalDesignerPresentationModel(IEventAggregator eventAggregator)
+        {
+            this.eventAggregator = eventAggregator;
+        }
+
         private bool allowSingleOrMultipleVideoSelection = true;
         public virtual bool AllowSingleOrMultipleVideoSelection
         {
@@ -50,6 +58,7 @@ namespace IndoorWorx.Designer.Views
             set
             {
                 selectedInterval = value;
+                eventAggregator.GetEvent<IntervalSelectedEvent>().Publish(selectedInterval);
                 FirePropertyChanged("SelectedInterval");
             }
         }

@@ -25,6 +25,6 @@ namespace IndoorWorx.Designer.Views
         public IDesignerPresentationModel Model
         {
             get { return this.DataContext as IDesignerPresentationModel; }
-        }        
+        }
     }
 }

@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="Converters\IntervalsToTabItemsConverter.cs" />
     <Compile Include="Converters\IntervalToTabItemConverter.cs" />
+    <Compile Include="Events\IntervalSelectedEvent.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Pages\DesignerPage.xaml.cs">
@@ -149,9 +150,6 @@
       <DependentUpon>TabbedDesignerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DesignerPresentationModel.cs" />
-    <Compile Include="Views\DesignerView.xaml.cs">
-      <DependentUpon>DesignerView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\IDesignerPresentationModel.cs" />
     <Compile Include="Views\IDesignerView.cs" />
   </ItemGroup>
@@ -201,10 +199,6 @@
     <Page Include="Views\TabbedDesignerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\DesignerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,8 @@ using IndoorWorx.Infrastructure;
 using Microsoft.Practices.Composite.Presentation.Commands;
 using IndoorWorx.Infrastructure.Facades;
 using IndoorWorx.Designer.Resources;
+using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Designer.Events;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -23,14 +25,44 @@ namespace IndoorWorx.Designer.Views
         private readonly IServiceLocator serviceLocator;
         private readonly IShell shell;
         private readonly IDialogFacade dialogFacade;
+        private readonly IEventAggregator eventAggregator;
 
-        public DesignerPresentationModel(IServiceLocator serviceLocator, IShell shell, IDialogFacade dialogFacade)
+        public DesignerPresentationModel(IServiceLocator serviceLocator, IShell shell, IDialogFacade dialogFacade, IEventAggregator eventAggregator)
         {
             this.serviceLocator = serviceLocator;
             this.shell = shell;
             this.dialogFacade = dialogFacade;
             this.CancelCommand = new DelegateCommand<object>(Cancel);
             this.SaveCommand = new DelegateCommand<object>(Save);
+            eventAggregator.GetEvent<IntervalSelectedEvent>().Subscribe(IntervalSelected, true);
+        }
+
+        private void IntervalSelected(Interval interval)
+        {
+            RangeFrom = interval.Position;
+            RangeTo = RangeFrom.Add(interval.Duration);
+        }
+
+        private DateTime rangeFrom;
+        public virtual DateTime RangeFrom
+        {
+            get { return rangeFrom; }
+            set
+            {
+                rangeFrom = value;
+                FirePropertyChanged("RangeFrom");
+            }
+        }
+
+        private DateTime rangeTo;
+        public virtual DateTime RangeTo
+        {
+            get { return rangeTo; }
+            set
+            {
+                rangeTo = value;
+                FirePropertyChanged("RangeTo");
+            }
         }
 
         public ICommand CancelCommand { get; private set; }
@@ -80,10 +112,11 @@ namespace IndoorWorx.Designer.Views
             {
                 selectedTemplate = value;
                 if (selectedTemplate != null)
-                {
+                {                    
                     selectedTemplate.ParseSets();
+                    selectedTemplate.SetupIntervalTimes();
                     selectedTemplate.CreateTelemetry();
-                    SelectedInterval = SelectedTemplate.Intervals.FirstOrDefault();
+                    SelectedInterval = SelectedTemplate.Sets.FirstOrDefault();//SelectedTemplate.Intervals.FirstOrDefault();
                 }
                 FirePropertyChanged("SelectedTemplate");
             }
@@ -96,6 +129,7 @@ namespace IndoorWorx.Designer.Views
             set
             {
                 selectedInterval = value;
+                IntervalSelected(selectedInterval);
                 FirePropertyChanged("SelectedInterval");
             }
         }

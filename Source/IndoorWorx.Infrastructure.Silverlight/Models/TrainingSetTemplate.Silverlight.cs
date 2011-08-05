@@ -74,6 +74,7 @@ namespace IndoorWorx.Infrastructure.Models
                 interval.Intervals = intervals;                
                 interval.TemplateSection = firstInterval.TemplateSection;
                 interval.SectionGroup = firstInterval.SectionGroup;
+                
                 if (hasRecovery)
                 {
                     var recoveryInterval = intervals.ElementAt(1);
@@ -89,7 +90,7 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private ICollection<Telemetry> telemetry = new ObservableCollection<Telemetry>();
+        private ICollection<Telemetry> telemetry;
         public virtual ICollection<Telemetry> Telemetry
         {
             get { return telemetry; }
@@ -102,7 +103,7 @@ namespace IndoorWorx.Infrastructure.Models
 
         public void CreateTelemetry()
         {
-            Telemetry.Clear();
+            var _telemetry = new List<Telemetry>();
             var timer = TimeSpan.Zero;
             var recordingInterval = TimeSpan.FromSeconds(2);
             foreach (var interval in Intervals)
@@ -113,10 +114,11 @@ namespace IndoorWorx.Infrastructure.Models
                     var telemetry = new Telemetry();
                     telemetry.PercentageThreshold = Convert.ToDouble(interval.Effort);
                     telemetry.TimePosition = timer;
-                    Telemetry.Add(telemetry);
+                    _telemetry.Add(telemetry);
                     timer = timer.Add(recordingInterval);
                 }
             }
+            Telemetry = _telemetry;
         }
 
         private Interval selectedInterval;
@@ -142,20 +144,28 @@ namespace IndoorWorx.Infrastructure.Models
             else
                 this.VideoText = new ObservableCollection<VideoText>(this.videoText);
             this.sets = new ObservableCollection<IntervalGroup>();
-            this.telemetry = new ObservableCollection<Telemetry>();
-            SetupIntervalTimes();
+            StartDateTime = DateTimeHelper.ZeroTime;
             EndDateTime = startDateTime.Add(Duration);
+            SetupIntervalTimes();
         }
 
         public void SetupIntervalTimes()
         {
             double oaDateTime = 0;
-            DateTime today = DateTime.Now;
+            DateTime position = DateTimeHelper.ZeroTime;
             foreach (var interval in Intervals)
             {
+                position = position.Add(interval.Duration);
+                interval.Position = position;
                 interval.OADateTime = oaDateTime;
-                var oaToAdd = new DateTime(today.Year, today.Month, today.Day, interval.Duration.Hours, interval.Duration.Minutes, interval.Duration.Seconds).ToOADate();
+                var oaToAdd = DateTimeHelper.ZeroTime.Add(interval.Duration).ToOADate(); //new DateTime(zero.Year, zero.Month, zero.Day, interval.Duration.Hours, interval.Duration.Minutes, interval.Duration.Seconds).ToOADate();
                 oaDateTime += oaToAdd;
+            }
+            position = DateTimeHelper.ZeroTime;
+            foreach (var group in Sets)
+            {
+                position = position.Add(group.Duration);
+                group.Position = position;
             }
         }
 

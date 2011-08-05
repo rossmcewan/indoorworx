@@ -10,10 +10,11 @@
     xmlns:dcontrols="clr-namespace:IndoorWorx.Designer.Controls"             
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"
     xmlns:controls="clr-namespace:IndoorWorx.Infrastructure.Controls;assembly=IndoorWorx.Infrastructure.Silverlight"  
-    xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"              
+    xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming" 
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">    
     <UserControl.Resources>
+        <converters:SecondsToOADateConverter x:Key="SecondsToOADateConverter"/>
         <converters:TimeSpanToDateTimeConverter x:Key="TimeSpanToDateTimeConverter"/>
         <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -50,15 +51,17 @@
                                     SelectedItem="{Binding SelectedInterval, Mode=TwoWay, Converter={StaticResource IntervalToTabItemConverter}}"
                                     TabStripPlacement="Left"/>
                             </Grid>
-                        </Grid>
+                        </Grid>                        
                         <telerik:RadTimeBar x:Name="timeBar" Height="150" Grid.Row="3" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}"
                                 PeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}" 
-                                VisiblePeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}">
-                                <!--SelectionStart="{Binding VideoFrom, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}" 
-                                SelectionEnd="{Binding VideoTo, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}">-->
+                                VisiblePeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}"                                                                            
+                                SelectionStart="{Binding RangeFrom, Mode=TwoWay}" 
+                                SelectionEnd="{Binding RangeTo, Mode=TwoWay}">
                             <telerik:RadLinearSparkline 
-                                ItemsSource="{Binding SelectedTemplate.Telemetry, Mode=TwoWay}" 
-                                ShowAxis="False"                            
+                                ItemsSource="{Binding SelectedTemplate.Telemetry, Mode=OneWay}" 
+                                ShowAxis="False"                
+                                MinYValue="0"
+                                AutoRange="False"
                                 YValuePath="PercentageThreshold" 
                                 XValuePath="TimePositionAsDateTime" />
                         </telerik:RadTimeBar>

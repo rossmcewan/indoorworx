@@ -30,7 +30,18 @@ namespace IndoorWorx.Infrastructure.Models
                 oaDateTime = value;
                 FirePropertyChanged("OADateTime");
             }
-        }        
+        }
+
+        private DateTime position;
+        public virtual DateTime Position
+        {
+            get { return position; }
+            set
+            {
+                position = value;
+                FirePropertyChanged("Position");
+            }
+        }
 
         private int repeats;
         public virtual int Repeats
