@@ -155,8 +155,8 @@ namespace IndoorWorx.Infrastructure.Models
             DateTime position = DateTimeHelper.ZeroTime;
             foreach (var interval in Intervals)
             {
-                position = position.Add(interval.Duration);
                 interval.Position = position;
+                position = position.Add(interval.Duration);
                 interval.OADateTime = oaDateTime;
                 var oaToAdd = DateTimeHelper.ZeroTime.Add(interval.Duration).ToOADate(); //new DateTime(zero.Year, zero.Month, zero.Day, interval.Duration.Hours, interval.Duration.Minutes, interval.Duration.Seconds).ToOADate();
                 oaDateTime += oaToAdd;
@@ -164,8 +164,8 @@ namespace IndoorWorx.Infrastructure.Models
             position = DateTimeHelper.ZeroTime;
             foreach (var group in Sets)
             {
-                position = position.Add(group.Duration);
                 group.Position = position;
+                position = position.Add(group.Duration);
             }
         }
 

@@ -124,6 +124,24 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This video is too short to be used for this interval..
+        /// </summary>
+        public static string SelectedVideoIsTooShortForInterval {
+            get {
+                return ResourceManager.GetString("SelectedVideoIsTooShortForInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This video is too short to be used for this group of intervals..
+        /// </summary>
+        public static string SelectedVideoIsTooShortForIntervalGroup {
+            get {
+                return ResourceManager.GetString("SelectedVideoIsTooShortForIntervalGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This video is too short to be used for this template..
         /// </summary>
         public static string SelectedVideoIsTooShortForTemplate {

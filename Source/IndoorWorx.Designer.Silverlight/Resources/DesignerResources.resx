@@ -138,6 +138,12 @@
   <data name="Save" xml:space="preserve">
     <value>save</value>
   </data>
+  <data name="SelectedVideoIsTooShortForInterval" xml:space="preserve">
+    <value>This video is too short to be used for this interval.</value>
+  </data>
+  <data name="SelectedVideoIsTooShortForIntervalGroup" xml:space="preserve">
+    <value>This video is too short to be used for this group of intervals.</value>
+  </data>
   <data name="SelectedVideoIsTooShortForTemplate" xml:space="preserve">
     <value>This video is too short to be used for this template.</value>
   </data>

@@ -12,15 +12,19 @@ using System.Windows.Shapes;
 using IndoorWorx.Infrastructure.Models;
 using Microsoft.Practices.Composite.Events;
 using IndoorWorx.Designer.Events;
+using IndoorWorx.Designer.Resources;
+using IndoorWorx.Infrastructure.Facades;
 
 namespace IndoorWorx.Designer.Views
 {
     public class IntervalDesignerPresentationModel : BaseModel, IIntervalDesignerPresentationModel
     {
         private readonly IEventAggregator eventAggregator;
-        public IntervalDesignerPresentationModel(IEventAggregator eventAggregator)
+        private readonly IDialogFacade dialogFacade;
+        public IntervalDesignerPresentationModel(IEventAggregator eventAggregator, IDialogFacade dialogFacade)
         {
             this.eventAggregator = eventAggregator;
+            this.dialogFacade = dialogFacade;
         }
 
         private bool allowSingleOrMultipleVideoSelection = true;
@@ -42,11 +46,7 @@ namespace IndoorWorx.Designer.Views
             get { return interval; }
             set
             {
-                interval = value;
-                if (interval != null && interval is IntervalGroup)
-                {
-                    SelectedInterval = (interval as IntervalGroup).Intervals.FirstOrDefault();
-                }
+                interval = value;                
                 FirePropertyChanged("Interval");
             }
         }
@@ -58,8 +58,8 @@ namespace IndoorWorx.Designer.Views
             set
             {
                 selectedInterval = value;
-                eventAggregator.GetEvent<IntervalSelectedEvent>().Publish(selectedInterval);
                 FirePropertyChanged("SelectedInterval");
+                eventAggregator.GetEvent<IntervalSelectedEvent>().Publish(selectedInterval);
             }
         }
 
@@ -71,6 +71,17 @@ namespace IndoorWorx.Designer.Views
             {
                 useSingleVideo = value;
                 useMultipleVideos = !useSingleVideo;
+                if (useSingleVideo)
+                {
+                    eventAggregator.GetEvent<IntervalSelectedEvent>().Publish(Interval);
+                }
+                if (useMultipleVideos)
+                {
+                    if(SelectedInterval == null && interval is IntervalGroup)
+                        SelectedInterval = (interval as IntervalGroup).Intervals.FirstOrDefault();
+                    else
+                        eventAggregator.GetEvent<IntervalSelectedEvent>().Publish(SelectedInterval);
+                }
                 FirePropertyChanged("UseSingleVideo");
                 FirePropertyChanged("UseMultipleVideos");
             }
@@ -84,6 +95,17 @@ namespace IndoorWorx.Designer.Views
             {
                 useMultipleVideos = value;
                 useSingleVideo = !useMultipleVideos;
+                if (useSingleVideo)
+                {
+                    eventAggregator.GetEvent<IntervalSelectedEvent>().Publish(Interval);
+                }
+                if (useMultipleVideos)
+                {
+                    if (SelectedInterval == null && interval is IntervalGroup)
+                        SelectedInterval = (interval as IntervalGroup).Intervals.FirstOrDefault();
+                    else
+                        eventAggregator.GetEvent<IntervalSelectedEvent>().Publish(SelectedInterval);
+                }
                 FirePropertyChanged("UseMultipleVideos");
                 FirePropertyChanged("UseSingleVideo");
             }
@@ -153,6 +175,15 @@ namespace IndoorWorx.Designer.Views
             get { return video; }
             set
             {
+                if (value != null && value.Duration < Interval.Duration)
+                {
+                    if(Interval is IntervalGroup)
+                        dialogFacade.Alert(DesignerResources.SelectedVideoIsTooShortForIntervalGroup);
+                    else
+                        dialogFacade.Alert(DesignerResources.SelectedVideoIsTooShortForInterval);
+                    FirePropertyChanged("Video");
+                    return;
+                }
                 video = value;
                 if (video != null)
                     video.IsMediaLoading = true;

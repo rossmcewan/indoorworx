@@ -17,6 +17,7 @@ using IndoorWorx.Infrastructure.Facades;
 using IndoorWorx.Designer.Resources;
 using Microsoft.Practices.Composite.Events;
 using IndoorWorx.Designer.Events;
+using IndoorWorx.Infrastructure.Helpers;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -39,8 +40,11 @@ namespace IndoorWorx.Designer.Views
 
         private void IntervalSelected(Interval interval)
         {
-            RangeFrom = interval.Position;
-            RangeTo = RangeFrom.Add(interval.Duration);
+            if (interval != null)
+            {
+                RangeFrom = interval.Position;
+                RangeTo = RangeFrom.Add(interval.Duration);
+            }
         }
 
         private DateTime rangeFrom;
@@ -85,7 +89,18 @@ namespace IndoorWorx.Designer.Views
             set
             {
                 useSingleVideo = value;
-                useMultipleVideos = !useSingleVideo;                
+                useMultipleVideos = !useSingleVideo;
+                if (useSingleVideo)
+                {
+                    RangeFrom = DateTimeHelper.ZeroTime;
+                    RangeTo = RangeFrom.Add(selectedTemplate.Duration);
+                }
+                if (useMultipleVideos)
+                {
+                    if (SelectedInterval == null)
+                        SelectedInterval = selectedTemplate.Sets.FirstOrDefault();
+                    IntervalSelected(SelectedInterval);
+                }
                 FirePropertyChanged("UseSingleVideo");
                 FirePropertyChanged("UseMultipleVideos");
             }
@@ -99,6 +114,18 @@ namespace IndoorWorx.Designer.Views
             {
                 useMultipleVideos = value;
                 useSingleVideo = !useMultipleVideos;
+                if (useSingleVideo)
+                {
+                    RangeFrom = DateTimeHelper.ZeroTime;
+                    RangeTo = RangeFrom.Add(selectedTemplate.Duration);
+                }
+                if (useMultipleVideos)
+                {
+                    if (SelectedInterval == null)
+                        SelectedInterval = selectedTemplate.Sets.FirstOrDefault();
+                    else
+                        IntervalSelected(SelectedInterval);
+                }
                 FirePropertyChanged("UseMultipleVideos");
                 FirePropertyChanged("UseSingleVideo");
             }
@@ -116,7 +143,8 @@ namespace IndoorWorx.Designer.Views
                     selectedTemplate.ParseSets();
                     selectedTemplate.SetupIntervalTimes();
                     selectedTemplate.CreateTelemetry();
-                    SelectedInterval = SelectedTemplate.Sets.FirstOrDefault();//SelectedTemplate.Intervals.FirstOrDefault();
+                    RangeFrom = DateTimeHelper.ZeroTime;
+                    RangeTo = RangeFrom.Add(selectedTemplate.Duration);
                 }
                 FirePropertyChanged("SelectedTemplate");
             }
