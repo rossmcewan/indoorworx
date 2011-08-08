@@ -16,7 +16,7 @@ using IndoorWorx.Infrastructure.Events;
 
 namespace IndoorWorx.MyLibrary.Views
 {
-    public class TrainingSetDetailsPresentationModel : BaseModel, ITrainingSetDetailPresentationModel
+    public class TrainingSetDetailsPresentationModel : BaseModel, ITrainingSetDetailsPresentationModel
     {
         public event EventHandler TrainingSetRemoved;
 

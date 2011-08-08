@@ -163,7 +163,7 @@
     <Compile Include="Views\ITemplatesPresentationModel.cs" />
     <Compile Include="Views\ITemplatesView.cs" />
     <Compile Include="Views\ITemplateView.cs" />
-    <Compile Include="Views\ITrainingSetDetailPresentationModel.cs" />
+    <Compile Include="Views\ITrainingSetDetailsPresentationModel.cs" />
     <Compile Include="Views\ITrainingSetDetailsView.cs" />
     <Compile Include="Views\ITrainingSetsPresentationModel.cs" />
     <Compile Include="Views\ITrainingSetsView.cs" />

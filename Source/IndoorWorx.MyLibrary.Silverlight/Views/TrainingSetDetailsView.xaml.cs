@@ -14,16 +14,16 @@ namespace IndoorWorx.MyLibrary.Views
 {
     public partial class TrainingSetDetailsView : UserControl, ITrainingSetDetailsView
     {
-        public TrainingSetDetailsView(ITrainingSetDetailPresentationModel model)
+        public TrainingSetDetailsView(ITrainingSetDetailsPresentationModel model)
         {
             this.DataContext = model;
             InitializeComponent();
             model.View = this;
         }
 
-        public ITrainingSetDetailPresentationModel Model
+        public ITrainingSetDetailsPresentationModel Model
         {
-            get { return this.DataContext as ITrainingSetDetailPresentationModel; }
+            get { return this.DataContext as ITrainingSetDetailsPresentationModel; }
         }
     }
 }

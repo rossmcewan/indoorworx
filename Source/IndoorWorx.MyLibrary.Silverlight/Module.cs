@@ -71,6 +71,9 @@ namespace IndoorWorx.MyLibrary
             unityContainer.RegisterInstance<ITrainingSetsPresentationModel>(unityContainer.Resolve<TrainingSetsPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<ITrainingSetsView>(unityContainer.Resolve<TrainingSetsView>(), new ContainerControlledLifetimeManager());
 
+            unityContainer.RegisterInstance<ITrainingSetDetailsPresentationModel>(unityContainer.Resolve<TrainingSetDetailsPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<ITrainingSetDetailsView>(unityContainer.Resolve<TrainingSetDetailsView>(), new ContainerControlledLifetimeManager());
+
             unityContainer.RegisterType<ITemplateView, TemplateView>();
             unityContainer.RegisterType<ITemplatePresentationModel, TemplatePresentationModel>();
 

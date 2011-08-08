@@ -7,6 +7,6 @@ namespace IndoorWorx.MyLibrary.Views
 {
     public interface ITrainingSetDetailsView
     {
-        ITrainingSetDetailPresentationModel Model { get; }
+        ITrainingSetDetailsPresentationModel Model { get; }
     }
 }
