@@ -439,6 +439,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} TRAININGSETS.
+        /// </summary>
+        public static string NumberOfTrainingSetsLabel {
+            get {
+                return ResourceManager.GetString("NumberOfTrainingSetsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} VIDEOS.
         /// </summary>
         public static string NumberOfVideosLabel {
@@ -633,6 +642,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string TrainingProgramsTitle {
             get {
                 return ResourceManager.GetString("TrainingProgramsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TRAININGSETS.
+        /// </summary>
+        public static string TrainingSetsTitle {
+            get {
+                return ResourceManager.GetString("TrainingSetsTitle", resourceCulture);
             }
         }
         

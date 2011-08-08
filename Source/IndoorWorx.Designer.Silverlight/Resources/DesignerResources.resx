@@ -129,6 +129,15 @@
   <data name="FromLabel" xml:space="preserve">
     <value>FROM</value>
   </data>
+  <data name="PerInterval" xml:space="preserve">
+    <value>ONE FOR EACH INTERVAL AND RECOVERY</value>
+  </data>
+  <data name="PerIntervalAndRecovery" xml:space="preserve">
+    <value>ONE FOR INTERVALS, ONE FOR RECOVERIES</value>
+  </data>
+  <data name="PerIntervalAndRecoveryGroup" xml:space="preserve">
+    <value>ONE FOR AN INTERVAL-RECOVERY GROUP</value>
+  </data>
   <data name="RecommendedVideosLabel" xml:space="preserve">
     <value>RECOMMENDED VIDEOS</value>
   </data>

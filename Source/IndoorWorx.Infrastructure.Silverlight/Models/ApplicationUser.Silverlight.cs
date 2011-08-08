@@ -153,10 +153,16 @@ namespace IndoorWorx.Infrastructure.Models
                 this.Videos = new ObservableCollection<Video>();
             else
                 this.Videos = new ObservableCollection<Video>(videos);
+
             if (this.Templates == null)
                 this.Templates = new ObservableCollection<TrainingSetTemplate>();
             else
                 this.Templates = new ObservableCollection<TrainingSetTemplate>(templates);
+
+            if (this.TrainingSets == null)
+                this.TrainingSets = new ObservableCollection<TrainingSet>();
+            else
+                this.TrainingSets = new ObservableCollection<TrainingSet>(trainingSets);
         }
     }
 }

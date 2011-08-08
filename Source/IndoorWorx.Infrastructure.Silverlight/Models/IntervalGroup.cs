@@ -49,5 +49,14 @@ namespace IndoorWorx.Infrastructure.Models
                 return intervals.Count > 1 && intervals.GroupBy(x => x.Effort).Count() > 1;
             }
         }
+
+        public override void ClearDesignData()
+        {
+            base.ClearDesignData();
+            foreach (var interval in Intervals)
+            {
+                interval.ClearDesignData();
+            }
+        }
     }
 }

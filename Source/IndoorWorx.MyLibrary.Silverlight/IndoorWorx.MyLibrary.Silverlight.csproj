@@ -115,14 +115,12 @@
     <Compile Include="Converters\CrudOperationTitleConverter.cs" />
     <Compile Include="Converters\TemplateNavigationUriConverter.cs" />
     <Compile Include="Converters\TemplateOperationToTextConverter.cs" />
+    <Compile Include="Converters\TrainingSetNavigationUriConverter.cs" />
     <Compile Include="Converters\VideoNavigationUriConverter.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Pages\MyLibraryPage.xaml.cs">
       <DependentUpon>MyLibraryPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\RidesPage.xaml.cs">
-      <DependentUpon>RidesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TemplateDetailsPage.xaml.cs">
       <DependentUpon>TemplateDetailsPage.xaml</DependentUpon>
@@ -132,6 +130,12 @@
     </Compile>
     <Compile Include="Pages\TrainingProgramsPage.xaml.cs">
       <DependentUpon>TrainingProgramsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TrainingSetDetailsPage.xaml.cs">
+      <DependentUpon>TrainingSetDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TrainingSetsPage.xaml.cs">
+      <DependentUpon>TrainingSetsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VideoDetailsPage.xaml.cs">
       <DependentUpon>VideoDetailsPage.xaml</DependentUpon>
@@ -159,6 +163,10 @@
     <Compile Include="Views\ITemplatesPresentationModel.cs" />
     <Compile Include="Views\ITemplatesView.cs" />
     <Compile Include="Views\ITemplateView.cs" />
+    <Compile Include="Views\ITrainingSetDetailPresentationModel.cs" />
+    <Compile Include="Views\ITrainingSetDetailsView.cs" />
+    <Compile Include="Views\ITrainingSetsPresentationModel.cs" />
+    <Compile Include="Views\ITrainingSetsView.cs" />
     <Compile Include="Views\IVideoDetailsPresentationModel.cs" />
     <Compile Include="Views\IVideoDetailsView.cs" />
     <Compile Include="Views\IVideosPresentationModel.cs" />
@@ -178,6 +186,14 @@
     </Compile>
     <Compile Include="Views\TemplateView.xaml.cs">
       <DependentUpon>TemplateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrainingSetDetailsPresentationModel.cs" />
+    <Compile Include="Views\TrainingSetDetailsView.xaml.cs">
+      <DependentUpon>TrainingSetDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrainingSetsPresentationModel.cs" />
+    <Compile Include="Views\TrainingSetsView.xaml.cs">
+      <DependentUpon>TrainingSetsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VideoDetailsPresentationModel.cs" />
     <Compile Include="Views\VideoDetailsView.xaml.cs">
@@ -213,10 +229,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RidesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\TemplateDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -226,6 +238,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TrainingProgramsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TrainingSetDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TrainingSetsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,6 +274,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\TemplateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TrainingSetDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TrainingSetsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -35,9 +35,19 @@
         </controls:MetroContentControl>
         <dcontrols:SingleVideoDesignControl Grid.Row="1" Visibility="{Binding UseSingleVideo, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <Grid Grid.Row="1" Visibility="{Binding UseMultipleVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <sdk:TabControl BorderBrush="Transparent" ItemsSource="{Binding Interval.Intervals, Mode=OneWay, Converter={StaticResource IntervalsToTabItemsConverter}, ConverterParameter=nochoice}"
+            <telerik:RadTabControl>
+                <telerik:RadTabItem Header="{Binding DesignerResources.PerInterval, Source={StaticResource DesignerResources}}">
+                    <sdk:TabControl BorderBrush="Transparent" ItemsSource="{Binding Interval.Intervals, Mode=OneWay, Converter={StaticResource IntervalsToTabItemsConverter}, ConverterParameter=nochoice}"
                             SelectedItem="{Binding SelectedInterval, Mode=TwoWay, Converter={StaticResource IntervalToTabItemConverter}, ConverterParameter=nochoice}"
                             TabStripPlacement="Left"/>
+                </telerik:RadTabItem>
+                <telerik:RadTabItem Header="{Binding DesignerResources.PerIntervalAndRecovery, Source={StaticResource DesignerResources}}">
+                    
+                </telerik:RadTabItem>
+                <telerik:RadTabItem Header="{Binding DesignerResources.PerIntervalAndRecoveryGroup, Source={StaticResource DesignerResources}}">
+                    
+                </telerik:RadTabItem>                                
+            </telerik:RadTabControl>
         </Grid>
     </Grid>
 </UserControl>

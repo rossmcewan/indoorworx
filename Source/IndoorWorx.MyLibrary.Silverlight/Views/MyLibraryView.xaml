@@ -33,7 +33,7 @@
             <StackPanel x:Name="LinksStackPanel" Style="{StaticResource SubMenuLinksStackPanelStyle}">
                 <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.MyLibrary.Silverlight;component/Pages/VideosPage.xaml" TargetName="MyLibraryContentFrame" Content="{Binding MyLibraryResources.VideosTitle, Source={StaticResource MyLibraryResources}}"/>
                 <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.MyLibrary.Silverlight;component/Pages/TemplatesPage.xaml" TargetName="MyLibraryContentFrame" Content="{Binding MyLibraryResources.TemplatesTitle, Source={StaticResource MyLibraryResources}}"/>
-                <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.MyLibrary.Silverlight;component/Pages/RidesPage.xaml" TargetName="MyLibraryContentFrame" Content="{Binding MyLibraryResources.RidesTitle, Source={StaticResource MyLibraryResources}}"/>
+                <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.MyLibrary.Silverlight;component/Pages/TrainingSetsPage.xaml" TargetName="MyLibraryContentFrame" Content="{Binding MyLibraryResources.TrainingSetsTitle, Source={StaticResource MyLibraryResources}}"/>
             </StackPanel>
         </Border>
     </Grid>

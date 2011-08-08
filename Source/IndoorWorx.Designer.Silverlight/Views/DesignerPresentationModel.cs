@@ -18,6 +18,7 @@ using IndoorWorx.Designer.Resources;
 using Microsoft.Practices.Composite.Events;
 using IndoorWorx.Designer.Events;
 using IndoorWorx.Infrastructure.Helpers;
+using System.Collections.Generic;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -33,6 +34,7 @@ namespace IndoorWorx.Designer.Views
             this.serviceLocator = serviceLocator;
             this.shell = shell;
             this.dialogFacade = dialogFacade;
+            this.eventAggregator = eventAggregator;
             this.CancelCommand = new DelegateCommand<object>(Cancel);
             this.SaveCommand = new DelegateCommand<object>(Save);
             eventAggregator.GetEvent<IntervalSelectedEvent>().Subscribe(IntervalSelected, true);
@@ -75,10 +77,25 @@ namespace IndoorWorx.Designer.Views
 
         private void Cancel(object arg) 
         {
+            foreach (var interval in SelectedTemplate.Intervals)
+            {
+                interval.ClearDesignData();
+            }
             Hide();
         }
 
-        private void Save(object arg) { }
+        private void Save(object arg) 
+        {
+            foreach (var set in SelectedTemplate.Sets)
+            {
+                set.ClearDesignData();
+            }
+            foreach (var interval in SelectedTemplate.Intervals)
+            {
+                interval.ClearDesignData();
+            }
+            Hide();
+        }
 
         public IDesignerView View { get; set; }
 
@@ -101,6 +118,9 @@ namespace IndoorWorx.Designer.Views
                         SelectedInterval = selectedTemplate.Sets.FirstOrDefault();
                     IntervalSelected(SelectedInterval);
                 }
+                SelectedInterval.UseSingleVideo = useSingleVideo;
+                SelectedInterval.UseMultipleVideos = useMultipleVideos;
+                FirePropertyChanged("SelectedInterval");
                 FirePropertyChanged("UseSingleVideo");
                 FirePropertyChanged("UseMultipleVideos");
             }
@@ -126,6 +146,9 @@ namespace IndoorWorx.Designer.Views
                     else
                         IntervalSelected(SelectedInterval);
                 }
+                SelectedInterval.UseSingleVideo = useSingleVideo;
+                SelectedInterval.UseMultipleVideos = useMultipleVideos;
+                FirePropertyChanged("SelectedInterval");
                 FirePropertyChanged("UseMultipleVideos");
                 FirePropertyChanged("UseSingleVideo");
             }
@@ -186,6 +209,8 @@ namespace IndoorWorx.Designer.Views
                     videoTo = new TimeSpan(videoTo.Hours, videoTo.Minutes, videoTo.Seconds);
                     videoFrom = new TimeSpan(videoFrom.Hours, videoFrom.Minutes, videoFrom.Seconds);
                 }
+                SelectedInterval.VideoTo = videoTo;
+                SelectedInterval.VideoFrom = videoFrom;
                 FirePropertyChanged("VideoFrom");
                 FirePropertyChanged("VideoTo");
             }
@@ -215,6 +240,8 @@ namespace IndoorWorx.Designer.Views
                     videoTo = new TimeSpan(videoTo.Hours, videoTo.Minutes, videoTo.Seconds);
                     videoFrom = new TimeSpan(videoFrom.Hours, videoFrom.Minutes, videoFrom.Seconds);
                 }
+                SelectedInterval.VideoTo = videoTo;
+                SelectedInterval.VideoFrom = videoFrom;
                 FirePropertyChanged("VideoTo");
                 FirePropertyChanged("VideoFrom");
             }
@@ -243,9 +270,8 @@ namespace IndoorWorx.Designer.Views
                     };
                     video.LoadTelemetry();
                 }
+                SelectedInterval.Video = video;
                 FirePropertyChanged("Video");
-                FirePropertyChanged("MaxRange");
-                FirePropertyChanged("MinRange");
             }
         }
 

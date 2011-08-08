@@ -18,6 +18,12 @@ namespace IndoorWorx.MyLibrary.Views
 
         ICommand AddTemplateCommand { get; }
 
+        ICommand EditTemplateCommand { get; }
+
+        ICommand RemoveTemplateCommand { get; }
+
+        ICommand CreateRideCommand { get; }
+
         void Refresh();
     }
 }

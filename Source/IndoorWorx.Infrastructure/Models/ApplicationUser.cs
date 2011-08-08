@@ -203,6 +203,18 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private ICollection<TrainingSet> trainingSets = new List<TrainingSet>();
+        [DataMember]
+        public virtual ICollection<TrainingSet> TrainingSets
+        {
+            get { return trainingSets; }
+            set
+            {
+                trainingSets = value;
+                FirePropertyChanged("TrainingSets");
+            }
+        }
+
         public static event EventHandler CurrentUserChanged;
 
         private static ApplicationUser currentUser = new ApplicationUser();

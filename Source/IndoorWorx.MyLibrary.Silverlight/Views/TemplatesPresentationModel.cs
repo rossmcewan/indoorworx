@@ -38,7 +38,11 @@ namespace IndoorWorx.MyLibrary.Views
             };
             this.serviceLocator = serviceLocator;
             this.eventAggregator = eventAggregator;
+            this.dialogFacade = dialogFacade;
             this.AddTemplateCommand = new DelegateCommand<object>(AddTemplate);
+            this.RemoveTemplateCommand = new DelegateCommand<TrainingSetTemplate>(RemoveTemplate);
+            this.EditTemplateCommand = new DelegateCommand<TrainingSetTemplate>(EditTemplate);
+            this.CreateRideCommand = new DelegateCommand<TrainingSetTemplate>(CreateRide);
         }
 
         private void AddTemplate(object arg)
@@ -47,6 +51,68 @@ namespace IndoorWorx.MyLibrary.Views
             view.Model.NewTemplate();
         }
 
+        private void RemoveTemplate(TrainingSetTemplate arg)
+        {
+            dialogFacade.Confirm(MyLibraryResources.RemoveTemplateConfirmation, result =>
+            {
+                if (result)
+                {
+                    var service = serviceLocator.GetInstance<ITrainingSetTemplateService>();
+                    service.TrainingSetTemplateRemoved += (sender, e) =>
+                    {
+                        switch (e.Value.Status)
+                        {
+                            case RemoveTemplateStatus.Success:
+                                SmartDispatcher.BeginInvoke(() =>
+                                {
+                                    ApplicationUser.CurrentUser.Templates.Remove(arg);                                    
+                                    this.IsBusy = false;
+                                    //OnTemplateRemoved();
+                                });
+                                break;
+                            case RemoveTemplateStatus.Error:
+                                this.IsBusy = false;
+                                dialogFacade.Alert(MyLibraryResources.ErrorRemovingTemplate);
+                                break;
+                            default:
+                                break;
+                        }
+                    };
+                    service.TrainingSetTemplateRemoveError += (sender, e) =>
+                    {
+                        throw e.Value;
+                    };
+                    this.IsBusy = true;
+                    try
+                    {
+                        service.RemoveTemplate(arg);
+                    }
+                    catch
+                    {
+                        IsBusy = false;
+                        throw;
+                    }
+                }
+            });
+        }
+
+        private void EditTemplate(TrainingSetTemplate arg)
+        {
+            if (arg.IsPublic)
+            {
+                dialogFacade.Alert(MyLibraryResources.NoEditingOfPublicTemplates);
+            }
+            else
+            {
+                var view = serviceLocator.GetInstance<ITemplateView>();
+                view.Model.EditTemplate(arg);
+            }
+        }
+
+        private void CreateRide(TrainingSetTemplate arg)
+        {
+            eventAggregator.GetEvent<DesignEvent>().Publish(arg);
+        }
         #region ITemplatesViewPresentationModel Members
 
         public ITemplatesView View { get; set; }
@@ -74,5 +140,11 @@ namespace IndoorWorx.MyLibrary.Views
         }
 
         public ICommand AddTemplateCommand { get; private set; }
+
+        public ICommand CreateRideCommand { get; private set; }
+
+        public ICommand EditTemplateCommand { get; private set; }
+
+        public ICommand RemoveTemplateCommand { get; private set; }
     }
 }

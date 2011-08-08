@@ -9,21 +9,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using System.Windows.Navigation;
 
-namespace IndoorWorx.MyLibrary.Pages
+namespace IndoorWorx.MyLibrary.Views
 {
-    public partial class RidesPage : Page
+    public partial class TrainingSetsView : UserControl, ITrainingSetsView
     {
-        public RidesPage()
+        public TrainingSetsView(ITrainingSetsPresentationModel model)
         {
+            this.DataContext = model;
             InitializeComponent();
+            model.View = this;
         }
 
-        // Executes when the user navigates to this page.
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        public ITrainingSetsPresentationModel Model
         {
+            get { return this.DataContext as ITrainingSetsPresentationModel; }
         }
-
     }
 }

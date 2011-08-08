@@ -222,5 +222,28 @@ namespace IndoorWorx.Infrastructure.Models
                 return !this.ValuesEquals(backup);
             }
         }
+
+        #region for the designer
+
+        public Video Video { get; set; }
+
+        public TimeSpan VideoFrom { get; set; }
+
+        public TimeSpan VideoTo { get; set; }
+
+        public bool UseSingleVideo { get; set; }
+
+        public bool UseMultipleVideos { get; set; }
+
+        public virtual void ClearDesignData()
+        {
+            Video = null;
+            VideoFrom = TimeSpan.Zero;
+            VideoTo = TimeSpan.Zero;
+            UseSingleVideo = false;
+            UseMultipleVideos = false;
+        }
+
+        #endregion
     }
 }

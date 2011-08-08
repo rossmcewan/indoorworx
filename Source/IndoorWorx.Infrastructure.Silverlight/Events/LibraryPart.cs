@@ -9,6 +9,7 @@ namespace IndoorWorx.Infrastructure.Events
     {
         Videos,
         Templates,
-        Programs
+        Programs,
+        TrainingSets
     }
 }

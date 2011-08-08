@@ -128,6 +128,7 @@
     <Compile Include="Converters\IntervalsToTabItemsConverter.cs" />
     <Compile Include="Converters\IntervalToTabItemConverter.cs" />
     <Compile Include="Events\IntervalSelectedEvent.cs" />
+    <Compile Include="Events\SaveRideEvent.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Pages\DesignerPage.xaml.cs">

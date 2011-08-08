@@ -321,4 +321,10 @@
   <data name="CountdownToStartText" xml:space="preserve">
     <value>to start ...</value>
   </data>
+  <data name="TrainingSetsTitle" xml:space="preserve">
+    <value>TRAININGSETS</value>
+  </data>
+  <data name="NumberOfTrainingSetsLabel" xml:space="preserve">
+    <value>{0} TRAININGSETS</value>
+  </data>
 </root>

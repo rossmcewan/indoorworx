@@ -43,6 +43,14 @@ alter table TrainingSetTemplateToApplicationUser  drop constraint FK604A00512B3E
 alter table TrainingSetTemplateToApplicationUser  drop constraint FK604A0051BCD0E4BF
 
 
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK207E5A3774BBB917]') AND parent_object_id = OBJECT_ID('TrainingSetToApplicationUser'))
+alter table TrainingSetToApplicationUser  drop constraint FK207E5A3774BBB917
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK207E5A37BCD0E4BF]') AND parent_object_id = OBJECT_ID('TrainingSetToApplicationUser'))
+alter table TrainingSetToApplicationUser  drop constraint FK207E5A37BCD0E4BF
+
+
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK7FDA1AFC888C8F93]') AND parent_object_id = OBJECT_ID('[Catalog]'))
 alter table [Catalog]  drop constraint FK7FDA1AFC888C8F93
 
@@ -215,6 +223,8 @@ alter table [VideoText]  drop constraint FKE82DEBED2B3E4BD3
 
     if exists (select * from dbo.sysobjects where id = object_id(N'TrainingSetTemplateToApplicationUser') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table TrainingSetTemplateToApplicationUser
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'TrainingSetToApplicationUser') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table TrainingSetToApplicationUser
+
     if exists (select * from dbo.sysobjects where id = object_id(N'[Catalog]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Catalog]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Category]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Category]
@@ -335,6 +345,11 @@ alter table [VideoText]  drop constraint FKE82DEBED2B3E4BD3
     create table TrainingSetTemplateToApplicationUser (
         ApplicationUser NVARCHAR(255) not null,
        TrainingSetTemplate UNIQUEIDENTIFIER not null
+    )
+
+    create table TrainingSetToApplicationUser (
+        ApplicationUser NVARCHAR(255) not null,
+       TrainingSet UNIQUEIDENTIFIER not null
     )
 
     create table [Catalog] (
@@ -747,6 +762,16 @@ alter table [VideoText]  drop constraint FKE82DEBED2B3E4BD3
 
     alter table TrainingSetTemplateToApplicationUser 
         add constraint FK604A0051BCD0E4BF 
+        foreign key (ApplicationUser) 
+        references [ApplicationUser]
+
+    alter table TrainingSetToApplicationUser 
+        add constraint FK207E5A3774BBB917 
+        foreign key (TrainingSet) 
+        references [TrainingSet]
+
+    alter table TrainingSetToApplicationUser 
+        add constraint FK207E5A37BCD0E4BF 
         foreign key (ApplicationUser) 
         references [ApplicationUser]
 

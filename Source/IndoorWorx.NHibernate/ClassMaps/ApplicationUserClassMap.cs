@@ -36,6 +36,12 @@ namespace IndoorWorx.NHibernate.ClassMaps
                 .ChildKeyColumn("TrainingSetTemplate")
                 .Cascade.SaveUpdate()
                 .Fetch.Subselect();
+            HasManyToMany(x => x.TrainingSets)
+                .Not.LazyLoad()
+                .ParentKeyColumn("ApplicationUser")
+                .ChildKeyColumn("TrainingSet")
+                .Cascade.SaveUpdate()
+                .Fetch.Subselect();
         }
     }
 }

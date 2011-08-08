@@ -97,6 +97,33 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ONE FOR EACH INTERVAL AND RECOVERY.
+        /// </summary>
+        public static string PerInterval {
+            get {
+                return ResourceManager.GetString("PerInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ONE FOR INTERVALS, ONE FOR RECOVERIES.
+        /// </summary>
+        public static string PerIntervalAndRecovery {
+            get {
+                return ResourceManager.GetString("PerIntervalAndRecovery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ONE FOR AN INTERVAL-RECOVERY GROUP.
+        /// </summary>
+        public static string PerIntervalAndRecoveryGroup {
+            get {
+                return ResourceManager.GetString("PerIntervalAndRecoveryGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RECOMMENDED VIDEOS.
         /// </summary>
         public static string RecommendedVideosLabel {
