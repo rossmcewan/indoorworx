@@ -70,6 +70,18 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private Category category;
+        [DataMember]
+        public virtual Category Category
+        {
+            get { return category; }
+            set
+            {
+                category = value;
+                FirePropertyChanged("Category");
+            }
+        }
+
         public virtual bool HasVideos
         {
             get

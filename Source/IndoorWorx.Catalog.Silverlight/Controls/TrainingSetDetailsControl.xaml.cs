@@ -30,20 +30,20 @@ namespace IndoorWorx.Catalog.Controls
 
         void TrainingSetDetailsControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            IoC.Resolve<IEventAggregator>().GetEvent<TrainingSetSelectionChangedEvent>().Unsubscribe(TrainingSetSelectionChanged);
+            //IoC.Resolve<IEventAggregator>().GetEvent<TrainingSetSelectionChangedEvent>().Unsubscribe(TrainingSetSelectionChanged);
             IoC.Resolve<IEventAggregator>().GetEvent<VideoSelectionChangedEvent>().Unsubscribe(VideoSelectionChanged);
         }
 
         void TrainingSetDetailsControl_Loaded(object sender, RoutedEventArgs e)
         {
-            IoC.Resolve<IEventAggregator>().GetEvent<TrainingSetSelectionChangedEvent>().Subscribe(TrainingSetSelectionChanged);
+            //IoC.Resolve<IEventAggregator>().GetEvent<TrainingSetSelectionChangedEvent>().Subscribe(TrainingSetSelectionChanged);
             IoC.Resolve<IEventAggregator>().GetEvent<VideoSelectionChangedEvent>().Subscribe(VideoSelectionChanged);
         }
 
-        public void TrainingSetSelectionChanged(TrainingSet trainingSet)
-        {
-            LoadTelemetryOnChart(trainingSet);
-        }
+        //public void TrainingSetSelectionChanged(TrainingSet trainingSet)
+        //{
+        //    LoadTelemetryOnChart(trainingSet);
+        //}
 
         public void VideoSelectionChanged(Video video)
         {

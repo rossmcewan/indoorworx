@@ -120,14 +120,10 @@
     <Compile Include="Controls\ReviewsControl.xaml.cs">
       <DependentUpon>ReviewsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TrainingSetDetailsControl.xaml.cs">
-      <DependentUpon>TrainingSetDetailsControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Converters\TemplateNavigationUriConverter.cs" />
     <Compile Include="Converters\CreditsToTextConverter.cs" />
     <Compile Include="Converters\OrderByVisibilityConverter.cs" />
     <Compile Include="Converters\VideoNavigationUriConverter.cs" />
-    <Compile Include="Events\TrainingSetSelectionChangedEvent.cs" />
     <Compile Include="Events\VideoSelectionChangedEvent.cs" />
     <Compile Include="Helpers\DropTargetHelper.cs" />
     <Compile Include="Helpers\ResourceWrapper.cs" />
@@ -236,10 +232,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ReviewsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\TrainingSetDetailsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

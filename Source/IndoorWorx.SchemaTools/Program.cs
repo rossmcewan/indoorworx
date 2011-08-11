@@ -84,6 +84,7 @@ namespace IndoorWorx.SchemaTools
                 Description = "Indoor cycling training videos.",
                 Sequence = 1,
                 CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=RIDES&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
+                LibraryUri = new Uri("/IndoorWorx.MyLibrary.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=RIDES&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
                 Catalogs = new List<Catalog>()
                     {                        
                         new Catalog()
@@ -231,6 +232,7 @@ namespace IndoorWorx.SchemaTools
                 Description = "Indoor cycling training videos.",
                 Sequence = 1,
                 CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=PARTS&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
+                LibraryUri = new Uri("/IndoorWorx.MyLibrary.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=PARTS&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
                 Catalogs = new List<Catalog>()
                     {                        
                         new Catalog()
@@ -663,7 +665,7 @@ namespace IndoorWorx.SchemaTools
                     session.Save(trainingTemplate1);
                     #endregion
 
-                    session.Save(new Category() { Title = "ALL", Sequence = 0, CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=ALL&orderBy=CATEGORY", UriKind.RelativeOrAbsolute) });
+                    session.Save(new Category() { Title = "ALL", Sequence = 0, CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=ALL&orderBy=CATEGORY", UriKind.RelativeOrAbsolute), LibraryUri = new Uri("/IndoorWorx.MyLibrary.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=ALL&orderBy=CATEGORY", UriKind.RelativeOrAbsolute) });
                     session.Save(GetRidesCategory());
                     session.Save(GetPartsCategory());
                     transaction.Commit();

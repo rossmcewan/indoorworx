@@ -17,6 +17,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.Title).Not.Nullable();
             Map(x => x.Description);
             Map(x => x.Sequence);
+            References(x => x.Category).Column("Category").Not.LazyLoad();
             HasMany(x => x.Videos).KeyColumn("Catalog").Cascade.SaveUpdate().Fetch.Subselect();
         }
     }

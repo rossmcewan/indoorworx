@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="IndoorWorx.MyLibrary.Views.VideoCatalogView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"                 
+    xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+    xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight" 
+    xmlns:lconverters="clr-namespace:IndoorWorx.MyLibrary.Converters"                 
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"   
+    xmlns:controls="clr-namespace:IndoorWorx.MyLibrary.Controls"             
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <Style x:Key="VideoDetailsFrameStyle" TargetType="navigation:Frame">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="navigation:Frame">
+                        <Grid Background="{TemplateBinding Background}">
+                            <telerik:RadTransitionControl x:Name="PART_FrameCP" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}">
+                                <telerik:RadTransitionControl.Transition>
+                                    <telerik:FadeTransition />
+                                </telerik:RadTransitionControl.Transition>
+                            </telerik:RadTransitionControl>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="DragCueTemplate">
+            <Image Source="{Binding ImageUri}" Width="64" Margin="2"/>
+        </DataTemplate>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <lconverters:VideoNavigationUriConverter x:Key="VideoNavigationUriConverter"/>
+        <lconverters:OrderByVisibilityConverter x:Key="OrderByVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Margin="2" >
+                <TextBlock FontWeight="Bold" FontSize="13" Text="{Binding NumberOfVideosLabel, Mode=OneWay}" VerticalAlignment="Center" Margin="2,0"/>
+                <TextBlock FontWeight="Bold" FontSize="13" Text="{Binding CatalogResources.ByCategory, Source={StaticResource CatalogResources}}" VerticalAlignment="Center" Margin="2,0" Foreground="Gray" Visibility="{Binding OrderBy, Mode=OneWay, Converter={StaticResource OrderByVisibilityConverter}, ConverterParameter=CATEGORY}"/>
+                <TextBlock FontWeight="Bold" FontSize="13" Text="{Binding CatalogResources.ByCatalog, Source={StaticResource CatalogResources}}" VerticalAlignment="Center" Margin="2,0" Foreground="Gray" Visibility="{Binding OrderBy, Mode=OneWay, Converter={StaticResource OrderByVisibilityConverter}, ConverterParameter=CATALOG}"/>
+            </StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Grid.Row="1" >
+                <Grid>
+                    <telerik:ItemsControl ItemsSource="{Binding FilteredCategories, Mode=OneWay}" Visibility="{Binding OrderBy, Mode=OneWay, Converter={StaticResource OrderByVisibilityConverter}, ConverterParameter=CATEGORY}">
+                        <telerik:ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </telerik:ItemsControl.ItemsPanel>
+
+                        <telerik:ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Visibility="{Binding HasVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
+                                    <telerik:ItemsControl ItemsSource="{Binding Videos, Mode=OneWay}" Grid.Row="1" >
+                                        <telerik:ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <telerik:RadWrapPanel Orientation="Horizontal" IsAnimated="True" />
+                                            </ItemsPanelTemplate>
+                                        </telerik:ItemsControl.ItemsPanel>
+                                        <telerik:ItemsControl.ItemContainerStyle>
+                                            <Style TargetType="ContentPresenter">
+                                                <Setter Property="telerik:RadDragAndDropManager.AllowDrag" Value="True" />
+                                                <Setter Property="telerik:RadDragAndDropManager.AllowDrop" Value="True" />
+                                                <Setter Property="telerik:RadDragAndDropManager.AutoDrag" Value="True" />
+                                            </Style>
+                                        </telerik:ItemsControl.ItemContainerStyle>
+                                        <telerik:ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border BorderThickness="0">
+                                                    <HyperlinkButton Width="138" Height="138" Margin="2" TargetName="VideoDetailsFrame" NavigateUri="{Binding Converter={StaticResource VideoNavigationUriConverter}}">
+                                                        <input:ContextMenuService.ContextMenu>
+                                                            <input:ContextMenu Style="{StaticResource ZuneLikeContextMenu}" IsEnabled="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Mode=OneWay}">
+                                                                <input:MenuItem Header="{Binding CatalogResources.AddToMyLibraryHeader, Source={StaticResource CatalogResources}}" Style="{StaticResource ZuneLikeMenuItem}" Command="{Binding DataContext.AddToMyLibraryCommand, ElementName=LayoutRoot}" CommandParameter="{Binding}"/>
+                                                            </input:ContextMenu>
+                                                        </input:ContextMenuService.ContextMenu>
+                                                        <StackPanel>
+                                                            <Image Source="{Binding ImageUri}" Width="128" Margin="5"/>
+                                                            <TextBlock Text="{Binding Title}" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
+                                                        </StackPanel>
+                                                    </HyperlinkButton>
+                                                </Border>
+                                            </DataTemplate>
+                                        </telerik:ItemsControl.ItemTemplate>
+                                    </telerik:ItemsControl>
+                                </Grid>
+                            </DataTemplate>
+                        </telerik:ItemsControl.ItemTemplate>
+                    </telerik:ItemsControl>
+                    <telerik:ItemsControl ItemsSource="{Binding FilteredCatalogs, Mode=OneWay}" Visibility="{Binding OrderBy, Mode=OneWay, Converter={StaticResource OrderByVisibilityConverter}, ConverterParameter=CATALOG}">
+                        <telerik:ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </telerik:ItemsControl.ItemsPanel>
+                        <telerik:ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Visibility="{Binding HasVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
+                                    <telerik:ItemsControl ItemsSource="{Binding Videos, Mode=OneWay}" Grid.Row="1" >
+                                        <telerik:ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <toolkit:WrapPanel Orientation="Horizontal"/>
+                                            </ItemsPanelTemplate>
+                                        </telerik:ItemsControl.ItemsPanel>
+                                        <telerik:ItemsControl.ItemContainerStyle>
+                                            <Style TargetType="ContentPresenter">
+                                                <Setter Property="telerik:RadDragAndDropManager.AllowDrag" Value="True" />
+                                                <Setter Property="telerik:RadDragAndDropManager.AllowDrop" Value="True" />
+                                                <Setter Property="telerik:RadDragAndDropManager.AutoDrag" Value="True" />
+                                            </Style>
+                                        </telerik:ItemsControl.ItemContainerStyle>
+                                        <telerik:ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <HyperlinkButton Width="138" Height="138" Margin="2" TargetName="VideoDetailsFrame" NavigateUri="{Binding Converter={StaticResource VideoNavigationUriConverter}}">
+                                                    <input:ContextMenuService.ContextMenu>
+                                                        <input:ContextMenu Style="{StaticResource ZuneLikeContextMenu}" IsEnabled="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Mode=OneWay}">
+                                                            <input:MenuItem Header="{Binding CatalogResources.AddToMyLibraryHeader, Source={StaticResource CatalogResources}}" Style="{StaticResource ZuneLikeMenuItem}"/>
+                                                        </input:ContextMenu>
+                                                    </input:ContextMenuService.ContextMenu>
+                                                    <StackPanel>
+                                                        <Image Source="{Binding ImageUri}" Width="128" Margin="5"/>
+                                                        <TextBlock Text="{Binding Title}" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
+                                                    </StackPanel>
+                                                </HyperlinkButton>
+                                            </DataTemplate>
+                                        </telerik:ItemsControl.ItemTemplate>
+                                    </telerik:ItemsControl>
+                                </Grid>
+                            </DataTemplate>
+                        </telerik:ItemsControl.ItemTemplate>
+                    </telerik:ItemsControl>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+        <navigation:Frame Grid.Column="1" x:Name="VideoDetailsFrame" Style="{StaticResource VideoDetailsFrameStyle}" JournalOwnership="OwnsJournal"/>
+    </Grid>
+</UserControl>

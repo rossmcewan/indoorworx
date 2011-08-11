@@ -80,31 +80,7 @@ namespace IndoorWorx.Infrastructure.Models
                 reviews = value;
                 FirePropertyChanged("Reviews");
             }
-        }
-
-        private TelemetryInfo telemetryInfo = new TelemetryInfo();
-        [DataMember]
-        public virtual TelemetryInfo TelemetryInfo
-        {
-            get { return telemetryInfo; }
-            set
-            {
-                telemetryInfo = value;
-                FirePropertyChanged("TelemetryInfo");
-            }
-        }
-
-        private ICollection<TrainingMetric> trainingMetrics = new List<TrainingMetric>();
-        [DataMember]
-        public virtual ICollection<TrainingMetric> TrainingMetrics
-        {
-            get { return trainingMetrics; }
-            set
-            {
-                trainingMetrics = value;
-                FirePropertyChanged("TrainingMetrics");
-            }
-        }
+        }               
 
         private VideoMetadata videoMetadata = new VideoMetadata();
         [DataMember]
@@ -139,6 +115,42 @@ namespace IndoorWorx.Infrastructure.Models
             {
                 rideCredits = value;
                 FirePropertyChanged("RideCredits");
+            }
+        }
+
+        private TelemetryInfo telemetryInfo = new TelemetryInfo();
+        [DataMember]
+        public virtual TelemetryInfo TelemetryInfo
+        {
+            get { return telemetryInfo; }
+            set
+            {
+                telemetryInfo = value;
+                FirePropertyChanged("TelemetryInfo");
+            }
+        }
+
+        private ICollection<VideoText> videoText = new List<VideoText>();
+        [DataMember]
+        public virtual ICollection<VideoText> VideoText
+        {
+            get { return videoText; }
+            set
+            {
+                videoText = value;
+                FirePropertyChanged("VideoText");
+            }
+        }
+
+        private Catalog catalog;
+        [DataMember]
+        public virtual Catalog Catalog
+        {
+            get { return catalog; }
+            set
+            {
+                catalog = value;
+                FirePropertyChanged("Catalog");
             }
         }
 

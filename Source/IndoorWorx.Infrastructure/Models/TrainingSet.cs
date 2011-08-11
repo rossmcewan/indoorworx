@@ -9,20 +9,6 @@ namespace IndoorWorx.Infrastructure.Models
     [DataContract(IsReference = true)]
     public partial class TrainingSet : Video
     {
-        public static readonly double DefaultRecordingInterval = 2;
-
-        private double recordingInterval = DefaultRecordingInterval;
-        [DataMember]
-        public virtual double RecordingInterval
-        {
-            get { return recordingInterval; }
-            set
-            {
-                recordingInterval = value;
-                FirePropertyChanged("RecordingInterval");
-            }
-        }
-
         private ICollection<TrainingSetText> videoText = new List<TrainingSetText>();
         [DataMember]
         public virtual ICollection<TrainingSetText> VideoText
@@ -69,6 +55,6 @@ namespace IndoorWorx.Infrastructure.Models
                 effortType = value;
                 FirePropertyChanged("EffortType");
             }
-        }
+        }        
     }
 }

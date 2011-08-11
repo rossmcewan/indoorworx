@@ -27,35 +27,62 @@ namespace IndoorWorx.MyLibrary.Views
     {
         private readonly IServiceLocator serviceLocator;
         private readonly IEventAggregator eventAggregator;
-        
+
         public VideosPresentationModel(IServiceLocator serviceLocator, IEventAggregator eventAggregator)
         {
-            ApplicationContext.Current.PropertyChanged += (sender, e) =>
-                {
-                    if (e.PropertyName == "VideoCount")
-                        FirePropertyChanged("NumberOfVideosLabel");
-                };
             this.serviceLocator = serviceLocator;
-            this.eventAggregator = eventAggregator;
-            this.playVideoCommand = new DelegateCommand<Video>(PlayVideo);
-        }
-
-        public void PlayVideo(Video video)
-        {
-            eventAggregator.GetEvent<PlayVideoEvent>().Publish(video);
-        }
-
-        private ICommand playVideoCommand;
-        public ICommand PlayVideoCommand
-        {
-            get { return this.playVideoCommand; }
+            this.eventAggregator = eventAggregator;                        
         }
 
         public IVideosView View { get; set; }
 
         public void Refresh()
-        {            
-        }        
+        {
+            LoadCategories();
+        }
+
+        private ICollection<Category> categories;
+        public ICollection<Category> Categories
+        {
+            get { return categories; }
+            set
+            {
+                categories = value;
+                FirePropertyChanged("Categories");
+            }
+        }
+
+        private Category selectedCategory;
+        public Category SelectedCategory
+        {
+            get
+            {
+                return this.selectedCategory;
+            }
+            set
+            {
+                this.selectedCategory = value;
+                FirePropertyChanged("SelectedCategory");
+            }
+        }
+
+        private void LoadCategories()
+        {
+            var categoryService = serviceLocator.GetInstance<ICategoryService>();
+            categoryService.CategoryRetrievalError += (sender, e) =>
+            {
+                this.IsBusy = false;
+                throw e.Value;
+            };
+            categoryService.CategoriesRetrieved += (sender, e) =>
+            {
+                Categories = e.Value;
+                SelectedCategory = Categories.FirstOrDefault();
+                this.IsBusy = false;
+            };
+            this.IsBusy = true;
+            categoryService.RetrieveCategories();
+        }
 
         private bool busy;
         public virtual bool IsBusy
@@ -68,9 +95,65 @@ namespace IndoorWorx.MyLibrary.Views
             }
         }
 
+        private ICommand playVideoCommand;
+        public ICommand PlayVideoCommand
+        {
+            get { return this.playVideoCommand; }
+        }
+
         public string NumberOfVideosLabel
         {
             get { return string.Format(MyLibraryResources.NumberOfVideosLabel, ApplicationContext.Current.VideoCount); }
         }
     }
+    //public class VideosPresentationModel : BaseModel, IVideosPresentationModel
+    //{
+    //    private readonly IServiceLocator serviceLocator;
+    //    private readonly IEventAggregator eventAggregator;
+        
+    //    public VideosPresentationModel(IServiceLocator serviceLocator, IEventAggregator eventAggregator)
+    //    {
+    //        ApplicationContext.Current.PropertyChanged += (sender, e) =>
+    //            {
+    //                if (e.PropertyName == "VideoCount")
+    //                    FirePropertyChanged("NumberOfVideosLabel");
+    //            };
+    //        this.serviceLocator = serviceLocator;
+    //        this.eventAggregator = eventAggregator;
+    //        this.playVideoCommand = new DelegateCommand<Video>(PlayVideo);
+    //    }
+
+    //    public void PlayVideo(Video video)
+    //    {
+    //        eventAggregator.GetEvent<PlayVideoEvent>().Publish(video);
+    //    }
+
+    //    private ICommand playVideoCommand;
+    //    public ICommand PlayVideoCommand
+    //    {
+    //        get { return this.playVideoCommand; }
+    //    }
+
+    //    public IVideosView View { get; set; }
+
+    //    public void Refresh()
+    //    {            
+    //    }        
+
+    //    private bool busy;
+    //    public virtual bool IsBusy
+    //    {
+    //        get { return busy; }
+    //        set
+    //        {
+    //            busy = value;
+    //            FirePropertyChanged("IsBusy");
+    //        }
+    //    }
+
+    //    public string NumberOfVideosLabel
+    //    {
+    //        get { return string.Format(MyLibraryResources.NumberOfVideosLabel, ApplicationContext.Current.VideoCount); }
+    //    }
+    //}
 }

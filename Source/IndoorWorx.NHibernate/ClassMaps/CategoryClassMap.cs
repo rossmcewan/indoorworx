@@ -17,6 +17,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.Title).Not.Nullable();
             Map(x => x.Sequence);
             Map(x => x.CatalogUri).CustomType<UriType>();
+            Map(x => x.LibraryUri).CustomType<UriType>();
             HasMany(x => x.Catalogs).KeyColumn("Category").Cascade.SaveUpdate().Fetch.Subselect();
         }
     }

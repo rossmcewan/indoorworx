@@ -68,11 +68,14 @@ namespace IndoorWorx.MyLibrary
             unityContainer.RegisterInstance<ITemplateDetailsPresentationModel>(unityContainer.Resolve<TemplateDetailsPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<ITemplateDetailsView>(unityContainer.Resolve<TemplateDetailsView>(), new ContainerControlledLifetimeManager());
 
-            unityContainer.RegisterInstance<ITrainingSetsPresentationModel>(unityContainer.Resolve<TrainingSetsPresentationModel>(), new ContainerControlledLifetimeManager());
-            unityContainer.RegisterInstance<ITrainingSetsView>(unityContainer.Resolve<TrainingSetsView>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IVideoCatalogPresentationModel>(unityContainer.Resolve<VideoCatalogPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IVideoCatalogView>(unityContainer.Resolve<VideoCatalogView>(), new ContainerControlledLifetimeManager());
 
-            unityContainer.RegisterInstance<ITrainingSetDetailsPresentationModel>(unityContainer.Resolve<TrainingSetDetailsPresentationModel>(), new ContainerControlledLifetimeManager());
-            unityContainer.RegisterInstance<ITrainingSetDetailsView>(unityContainer.Resolve<TrainingSetDetailsView>(), new ContainerControlledLifetimeManager());
+            //unityContainer.RegisterInstance<ITrainingSetsPresentationModel>(unityContainer.Resolve<TrainingSetsPresentationModel>(), new ContainerControlledLifetimeManager());
+            //unityContainer.RegisterInstance<ITrainingSetsView>(unityContainer.Resolve<TrainingSetsView>(), new ContainerControlledLifetimeManager());
+
+            //unityContainer.RegisterInstance<ITrainingSetDetailsPresentationModel>(unityContainer.Resolve<TrainingSetDetailsPresentationModel>(), new ContainerControlledLifetimeManager());
+            //unityContainer.RegisterInstance<ITrainingSetDetailsView>(unityContainer.Resolve<TrainingSetDetailsView>(), new ContainerControlledLifetimeManager());
 
             unityContainer.RegisterType<ITemplateView, TemplateView>();
             unityContainer.RegisterType<ITemplatePresentationModel, TemplatePresentationModel>();

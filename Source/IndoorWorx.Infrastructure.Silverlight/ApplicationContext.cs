@@ -45,8 +45,8 @@ namespace IndoorWorx.Infrastructure
                         (ApplicationUser.CurrentUser.Videos as INotifyCollectionChanged).CollectionChanged += VideoCollectionChanged;
                         TemplateCount = ApplicationUser.CurrentUser.Templates.Count;
                         (ApplicationUser.CurrentUser.Templates as INotifyCollectionChanged).CollectionChanged += TemplateCollectionChanged;
-                        TrainingSetCount = ApplicationUser.CurrentUser.TrainingSets.Count;
-                        (ApplicationUser.CurrentUser.TrainingSets as INotifyCollectionChanged).CollectionChanged += TrainingSetCollectionChanged;
+                        //TrainingSetCount = ApplicationUser.CurrentUser.TrainingSets.Count;
+                        //(ApplicationUser.CurrentUser.TrainingSets as INotifyCollectionChanged).CollectionChanged += TrainingSetCollectionChanged;
                     }
                     else
                     {
@@ -92,10 +92,10 @@ namespace IndoorWorx.Infrastructure
             TemplateCount = ApplicationUser.CurrentUser.Templates.Count;
         }
 
-        private void TrainingSetCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
-        {
-            TrainingSetCount = ApplicationUser.CurrentUser.TrainingSets.Count;
-        }
+        //private void TrainingSetCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+        //{
+        //    TrainingSetCount = ApplicationUser.CurrentUser.TrainingSets.Count;
+        //}
 
         public virtual ApplicationUser CurrentUser
         {
@@ -124,16 +124,16 @@ namespace IndoorWorx.Infrastructure
             }
         }
 
-        private int trainingSetCount;
-        public virtual int TrainingSetCount
-        {
-            get { return trainingSetCount; }
-            set
-            {
-                trainingSetCount = value;
-                FirePropertyChanged("TrainingSetCount");
-            }
-        }
+        //private int trainingSetCount;
+        //public virtual int TrainingSetCount
+        //{
+        //    get { return trainingSetCount; }
+        //    set
+        //    {
+        //        trainingSetCount = value;
+        //        FirePropertyChanged("TrainingSetCount");
+        //    }
+        //}
 
         public bool IsRunningOutOfBrowser
         {

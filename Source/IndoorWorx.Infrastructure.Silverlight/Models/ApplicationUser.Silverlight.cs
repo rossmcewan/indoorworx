@@ -159,10 +159,10 @@ namespace IndoorWorx.Infrastructure.Models
             else
                 this.Templates = new ObservableCollection<TrainingSetTemplate>(templates);
 
-            if (this.TrainingSets == null)
-                this.TrainingSets = new ObservableCollection<TrainingSet>();
-            else
-                this.TrainingSets = new ObservableCollection<TrainingSet>(trainingSets);
+            //if (this.TrainingSets == null)
+            //    this.TrainingSets = new ObservableCollection<TrainingSet>();
+            //else
+            //    this.TrainingSets = new ObservableCollection<TrainingSet>(trainingSets);
         }
     }
 }

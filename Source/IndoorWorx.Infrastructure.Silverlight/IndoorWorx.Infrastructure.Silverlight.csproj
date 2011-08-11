@@ -243,17 +243,8 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingMetricType.cs">
       <Link>Models\TrainingMetricType.cs</Link>
     </Compile>
-    <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingSet.cs">
-      <Link>Models\TrainingSet.cs</Link>
-    </Compile>
-    <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingSetInterval.cs">
-      <Link>Models\TrainingSetInterval.cs</Link>
-    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingSetTemplate.cs">
       <Link>Models\TrainingSetTemplate.cs</Link>
-    </Compile>
-    <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingSetText.cs">
-      <Link>Models\TrainingSetText.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingVolume.cs">
       <Link>Models\TrainingVolume.cs</Link>
@@ -382,7 +373,6 @@
     <Compile Include="Models\Catalog.Silverlight.cs" />
     <Compile Include="Models\Category.Silverlight.cs" />
     <Compile Include="Models\Telemetry.Silverlight.cs" />
-    <Compile Include="Models\TrainingSet.Silverlight.cs" />
     <Compile Include="Models\Video.Silverlight.cs" />
     <Compile Include="Navigation\INavigationLinks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -91,5 +91,17 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("CatalogUri");
             }
         }
+
+        private Uri libraryUri;
+        [DataMember]
+        public virtual Uri LibraryUri
+        {
+            get { return libraryUri; }
+            set
+            {
+                libraryUri = value;
+                FirePropertyChanged("LibraryUri");
+            }
+        }
     }
 }
