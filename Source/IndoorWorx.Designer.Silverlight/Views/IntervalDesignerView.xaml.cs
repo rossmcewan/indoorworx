@@ -10,11 +10,15 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure;
+using Microsoft.Practices.Unity;
 
 namespace IndoorWorx.Designer.Views
 {
     public partial class IntervalDesignerView : UserControl, IIntervalDesignerView
     {
+        public IntervalDesignerView() : this(IoC.Resolve<IIntervalDesignerPresentationModel>()) { }
+
+        [InjectionConstructor]
         public IntervalDesignerView(IIntervalDesignerPresentationModel model)
         {
             this.DataContext = model;

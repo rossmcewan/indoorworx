@@ -88,8 +88,11 @@ namespace IndoorWorx.Designer.Views
                     else
                         eventAggregator.GetEvent<IntervalSelectedEvent>().Publish(SelectedInterval);
                 }
-                Interval.UseSingleVideo = useSingleVideo;
-                Interval.UseMultipleVideos = useMultipleVideos;
+                if (Interval != null)
+                {
+                    Interval.UseSingleVideo = useSingleVideo;
+                    Interval.UseMultipleVideos = useMultipleVideos;
+                }
                 FirePropertyChanged("UseSingleVideo");
                 FirePropertyChanged("UseMultipleVideos");
             }
@@ -114,8 +117,11 @@ namespace IndoorWorx.Designer.Views
                     else
                         eventAggregator.GetEvent<IntervalSelectedEvent>().Publish(SelectedInterval);
                 }
-                Interval.UseSingleVideo = useSingleVideo;
-                Interval.UseMultipleVideos = useMultipleVideos;
+                if (Interval != null)
+                {
+                    Interval.UseSingleVideo = useSingleVideo;
+                    Interval.UseMultipleVideos = useMultipleVideos;
+                }
                 FirePropertyChanged("UseMultipleVideos");
                 FirePropertyChanged("UseSingleVideo");
             }
@@ -145,8 +151,11 @@ namespace IndoorWorx.Designer.Views
                     videoTo = new TimeSpan(videoTo.Hours, videoTo.Minutes, videoTo.Seconds);
                     videoFrom = new TimeSpan(videoFrom.Hours, videoFrom.Minutes, videoFrom.Seconds);
                 }
-                Interval.VideoTo = videoTo;
-                Interval.VideoFrom = videoFrom;
+                if (Interval != null)
+                {
+                    Interval.VideoTo = videoTo;
+                    Interval.VideoFrom = videoFrom;
+                }
                 FirePropertyChanged("VideoFrom");
                 FirePropertyChanged("VideoTo");
             }
@@ -176,8 +185,11 @@ namespace IndoorWorx.Designer.Views
                     videoTo = new TimeSpan(videoTo.Hours, videoTo.Minutes, videoTo.Seconds);
                     videoFrom = new TimeSpan(videoFrom.Hours, videoFrom.Minutes, videoFrom.Seconds);
                 }
-                Interval.VideoTo = videoTo;
-                Interval.VideoFrom = videoFrom;
+                if (Interval != null)
+                {
+                    Interval.VideoTo = videoTo;
+                    Interval.VideoFrom = videoFrom;
+                }
                 FirePropertyChanged("VideoTo");
                 FirePropertyChanged("VideoFrom");
             }
@@ -209,7 +221,10 @@ namespace IndoorWorx.Designer.Views
                     };                    
                     video.LoadTelemetry();
                 }
-                Interval.Video = video;
+                if (Interval != null)
+                {
+                    Interval.Video = video;
+                }
                 FirePropertyChanged("Video");
             }
         }

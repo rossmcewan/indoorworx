@@ -5,7 +5,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"  
-    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"    
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"   
+    xmlns:local="clr-namespace:IndoorWorx.Designer.Views"             
     xmlns:dconverters="clr-namespace:IndoorWorx.Designer.Converters"         
     xmlns:dcontrols="clr-namespace:IndoorWorx.Designer.Controls"             
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"
@@ -46,10 +47,18 @@
                         </controls:MetroContentControl>
                         <Grid Grid.Row="2" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}">
                             <dcontrols:SingleVideoDesignControl Grid.Row="2" Visibility="{Binding UseSingleVideo, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <Grid Grid.Row="2" Visibility="{Binding UseMultipleVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <sdk:TabControl BorderBrush="Transparent" ItemsSource="{Binding SelectedTemplate.Sets, Mode=OneWay, Converter={StaticResource IntervalsToTabItemsConverter}}"
+                            <Grid Visibility="{Binding UseMultipleVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <telerik:RadTabControl BorderBrush="Transparent" ItemsSource="{Binding SelectedTemplate.Sets, Mode=OneWay}" DisplayMemberPath="Title" TabOrientation="Vertical"
+                                    SelectedItem="{Binding SelectedInterval, Mode=TwoWay}" TabStripPlacement="Left" >                                    
+                                    <telerik:RadTabControl.ContentTemplate>
+                                        <DataTemplate>
+                                            <local:IntervalDesignerView/>
+                                        </DataTemplate>
+                                    </telerik:RadTabControl.ContentTemplate>
+                                </telerik:RadTabControl>
+                                <!--<sdk:TabControl BorderBrush="Transparent" ItemsSource="{Binding SelectedTemplate.Sets, Mode=OneWay, Converter={StaticResource IntervalsToTabItemsConverter}}"
                                     SelectedItem="{Binding SelectedInterval, Mode=TwoWay, Converter={StaticResource IntervalToTabItemConverter}}"
-                                    TabStripPlacement="Left"/>
+                                    TabStripPlacement="Left"/>-->
                             </Grid>
                         </Grid>                        
                         <telerik:RadTimeBar x:Name="timeBar" Height="150" Grid.Row="3" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}"
