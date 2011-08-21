@@ -27,7 +27,7 @@ namespace IndoorWorx.Library.Services
 
         public ICollection<Infrastructure.Models.Category> FindAll()
         {
-            var result = CategoryRepository.FindAll(null);                
+            var result = CategoryRepository.FindAll(null).OrderBy(x=>x.Sequence).ToList();                
             return result;
         }
 

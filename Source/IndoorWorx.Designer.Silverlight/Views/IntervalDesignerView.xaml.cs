@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure;
 using Microsoft.Practices.Unity;
+using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -24,11 +25,11 @@ namespace IndoorWorx.Designer.Views
             this.DataContext = model;
             InitializeComponent();
             model.View = this; 
-        }
+        }        
 
         public IIntervalDesignerPresentationModel Model
         {
             get { return this.DataContext as IIntervalDesignerPresentationModel; }
-        }
+        }        
     }
 }

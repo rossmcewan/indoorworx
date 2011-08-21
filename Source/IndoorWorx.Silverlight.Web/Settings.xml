@@ -1,10 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Settings>
-  <Parameter Name="ModulesCatalog" Value="/IndoorWorx.Silverlight;component/ModulesCatalog.xaml"/>
+  <!--<Parameter Name="ModulesCatalog" Value="/IndoorWorx.Silverlight;component/ModulesCatalog.xaml"/>
   <Parameter Name="UserRegistrationUri" Value="http://localhost:3415/IndoorWorx-Silverlight-Web-UserRegistrationService.svc"/>
   <Parameter Name="AuthenticationUri" Value="http://localhost:3415/IndoorWorx-Silverlight-Web-AuthenticationService.svc"/>
   <Parameter Name="TrainingSetTemplateServiceUri" Value="http://localhost:3415/TrainingSetTemplateService.svc"/>
   <Parameter Name="IntervalMetadataServiceUri" Value="http://localhost:3415/IntervalMetadataService.svc"/>
   <Parameter Name="CategoryServiceUri" Value="http://localhost:3415/CategoryService.svc"/>
   <Parameter Name="ApplicationUserServiceUri" Value="http://localhost:3415/ApplicationUserService.svc"/>
+  <Parameter Name="TrainingSetServiceUri" Value="http://localhost:3415/TrainingSetService.svc"/>-->
+  <Parameter Name="ModulesCatalog" Value="/IndoorWorx.Silverlight;component/ModulesCatalog.xaml"/>
+  <Parameter Name="UserRegistrationUri" Value="http://localhost/IndoorWorx.Silverlight.Web/IndoorWorx-Silverlight-Web-UserRegistrationService.svc"/>
+  <Parameter Name="AuthenticationUri" Value="http://localhost/IndoorWorx.Silverlight.Web/IndoorWorx-Silverlight-Web-AuthenticationService.svc"/>
+  <Parameter Name="TrainingSetTemplateServiceUri" Value="http://localhost/IndoorWorx.Silverlight.Web/TrainingSetTemplateService.svc"/>
+  <Parameter Name="IntervalMetadataServiceUri" Value="http://localhost/IndoorWorx.Silverlight.Web/IntervalMetadataService.svc"/>
+  <Parameter Name="CategoryServiceUri" Value="http://localhost/IndoorWorx.Silverlight.Web/CategoryService.svc"/>
+  <Parameter Name="ApplicationUserServiceUri" Value="http://localhost/IndoorWorx.Silverlight.Web/ApplicationUserService.svc"/>
+  <Parameter Name="TrainingSetServiceUri" Value="http://localhost/IndoorWorx.Silverlight.Web/TrainingSetService.svc"/>
 </Settings>

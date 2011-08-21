@@ -30,6 +30,10 @@
                     maxReceivedMessageSize="2147483647">
                     <security mode="None" />
                 </binding>
+                <binding name="BasicHttpBinding_ITrainingSetService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
             </basicHttpBinding>
         </bindings>
         <client>
@@ -59,6 +63,10 @@
                 binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IIntervalMetadataService"
                 contract="IntervalMetadataServiceReference.IIntervalMetadataService"
                 name="BasicHttpBinding_IIntervalMetadataService" />
+            <endpoint address="http://localhost:3415/TrainingSetService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ITrainingSetService"
+                contract="TrainingSetServiceReference.ITrainingSetService"
+                name="BasicHttpBinding_ITrainingSetService" />
         </client>
     </system.serviceModel>
 </configuration>

@@ -45,15 +45,12 @@ namespace IndoorWorx.Infrastructure
                         (ApplicationUser.CurrentUser.Videos as INotifyCollectionChanged).CollectionChanged += VideoCollectionChanged;
                         TemplateCount = ApplicationUser.CurrentUser.Templates.Count;
                         (ApplicationUser.CurrentUser.Templates as INotifyCollectionChanged).CollectionChanged += TemplateCollectionChanged;
-                        //TrainingSetCount = ApplicationUser.CurrentUser.TrainingSets.Count;
-                        //(ApplicationUser.CurrentUser.TrainingSets as INotifyCollectionChanged).CollectionChanged += TrainingSetCollectionChanged;
                     }
                     else
                     {
                         VideoCount = 0;
                     }
                 };
-            //RefreshIntervalMetadata();
         }
 
         public void RefreshIntervalMetadata()

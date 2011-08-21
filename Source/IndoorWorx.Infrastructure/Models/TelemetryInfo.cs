@@ -21,7 +21,7 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        private int recordingInterval;
+        private int recordingInterval = 2;
         [DataMember]
         public virtual int RecordingInterval
         {

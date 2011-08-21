@@ -6,55 +6,22 @@ using System.Runtime.Serialization;
 
 namespace IndoorWorx.Infrastructure.Models
 {
-    [DataContract(IsReference = true)]
-    public partial class TrainingSet : Video
+    [DataContract]
+    public partial class TrainingSet
     {
-        private ICollection<TrainingSetText> videoText = new List<TrainingSetText>();
-        [DataMember]
-        public virtual ICollection<TrainingSetText> VideoText
+        public TrainingSet()
         {
-            get { return videoText; }
-            set
-            {
-                videoText = value;
-                FirePropertyChanged("VideoText");
-            }
+            VideoParts = new List<VideoPart>();
+            VideoText = new List<VideoText>();
         }
 
-        private bool @public;
         [DataMember]
-        public virtual bool IsPublic
-        {
-            get { return @public; }
-            set
-            {
-                @public = value;
-                FirePropertyChanged("IsPublic");
-            }
-        }
+        public Guid TrainingSetTemplateId { get; set; }
 
-        private ICollection<TrainingSetInterval> intervals = new List<TrainingSetInterval>();
         [DataMember]
-        public virtual ICollection<TrainingSetInterval> Intervals
-        {
-            get { return intervals; }
-            set
-            {
-                intervals = value;
-                FirePropertyChanged("Intervals");
-            }
-        }
+        public ICollection<VideoPart> VideoParts { get; set; }
 
-        private EffortType effortType;
         [DataMember]
-        public virtual EffortType EffortType
-        {
-            get { return effortType; }
-            set
-            {
-                effortType = value;
-                FirePropertyChanged("EffortType");
-            }
-        }        
+        public ICollection<VideoText> VideoText { get; set; }
     }
 }

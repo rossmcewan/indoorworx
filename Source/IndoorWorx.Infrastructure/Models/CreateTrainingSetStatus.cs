@@ -5,8 +5,9 @@ using System.Text;
 
 namespace IndoorWorx.Infrastructure.Models
 {
-    public enum SocialMediaTypes
+    public enum CreateTrainingSetStatus
     {
-        Facebook,Twitter
+        Success = 0,
+        Error = 100
     }
 }

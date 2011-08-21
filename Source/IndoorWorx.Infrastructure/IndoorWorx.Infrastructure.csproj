@@ -68,6 +68,7 @@
     <Compile Include="Models\Colour.cs" />
     <Compile Include="Enums\Countries.cs" />
     <Compile Include="Models\CompetitiveLevel.cs" />
+    <Compile Include="Models\CreateTrainingSetStatus.cs" />
     <Compile Include="Models\EffortType.cs" />
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\EquipmentFeatures.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Models\TelemetryOptions.cs" />
     <Compile Include="Models\TrainingMetric.cs" />
     <Compile Include="Models\TrainingMetricType.cs" />
+    <Compile Include="Models\TrainingSet.cs" />
     <Compile Include="Models\TrainingSetTemplate.cs" />
     <Compile Include="Models\TrainingVolume.cs" />
     <Compile Include="Models\TrainingZone.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Models\Video.cs" />
     <Compile Include="Models\VideoInterval.cs" />
     <Compile Include="Models\VideoMetadata.cs" />
+    <Compile Include="Models\VideoPart.cs" />
     <Compile Include="Models\VideoReview.cs" />
     <Compile Include="Models\VideoOptions.cs" />
     <Compile Include="Models\VideoText.cs" />
@@ -133,11 +136,13 @@
     <Compile Include="Repositories\IVideoRepository.cs" />
     <Compile Include="Requests\AddTemplateRequest.cs" />
     <Compile Include="Requests\AddVideoRequest.cs" />
+    <Compile Include="Requests\CreateTrainingSetRequest.cs" />
     <Compile Include="Requests\PlayVideoRequest.cs" />
     <Compile Include="Requests\RemoveTemplateRequest.cs" />
     <Compile Include="Requests\SaveTemplateRequest.cs" />
     <Compile Include="Responses\AddVideoResponse.cs" />
     <Compile Include="Responses\AddTemplateResponse.cs" />
+    <Compile Include="Responses\CreateTrainingSetResponse.cs" />
     <Compile Include="Responses\PlayVideoResponse.cs" />
     <Compile Include="Responses\RemoveTemplateResponse.cs" />
     <Compile Include="Responses\ResponseBase.cs" />
@@ -154,6 +159,7 @@
     <Compile Include="Services\IIntervalMetadataService.cs" />
     <Compile Include="Services\ISocialMediaService.cs" />
     <Compile Include="Services\ISportingHabitsService.cs" />
+    <Compile Include="Services\ITrainingSetService.cs" />
     <Compile Include="Services\ITrainingSetTemplateService.cs" />
     <Compile Include="SmartDispatcher.cs" />
   </ItemGroup>

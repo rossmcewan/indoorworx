@@ -19,6 +19,7 @@ using Microsoft.Practices.Composite.Events;
 using IndoorWorx.Designer.Events;
 using IndoorWorx.Infrastructure.Helpers;
 using System.Collections.Generic;
+using IndoorWorx.Infrastructure.Services;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -86,15 +87,52 @@ namespace IndoorWorx.Designer.Views
 
         private void Save(object arg) 
         {
+            IsBusy = true;
+            var service = serviceLocator.GetInstance<ITrainingSetService>();
+            var trainingSet = new TrainingSet();
+            trainingSet.TrainingSetTemplateId = SelectedTemplate.Id;
             foreach (var set in SelectedTemplate.Sets)
             {
-                set.ClearDesignData();
+                if (set.UseSingleVideo)
+                {
+                    var part = new VideoPart();
+                    part.VideoId = set.Video.Id;
+                    part.From = set.VideoFrom;
+                    part.To = set.VideoTo;
+                    trainingSet.VideoParts.Add(part);
+                }
+                if (set.UseMultipleVideos)
+                {
+                    foreach (var interval in set.Intervals)
+                    {
+                        var part = new VideoPart();
+                        part.VideoId = interval.Video.Id;
+                        part.From = interval.VideoFrom;
+                        part.To = interval.VideoTo;
+                        trainingSet.VideoParts.Add(part);
+                    }
+                }                
             }
-            foreach (var interval in SelectedTemplate.Intervals)
-            {
-                interval.ClearDesignData();
-            }
-            Hide();
+            service.CreateTrainingSetError += (sender, e) =>
+                {
+                    IsBusy = false;
+                    throw e.Value;
+                };
+            service.TrainingSetCreated += (sender, e) =>
+                {
+                    ApplicationUser.CurrentUser.Videos.Add(e.Value.TrainingSet);
+                    foreach (var set in SelectedTemplate.Sets)
+                    {
+                        set.ClearDesignData();
+                    }
+                    foreach (var interval in SelectedTemplate.Intervals)
+                    {
+                        interval.ClearDesignData();
+                    }
+                    IsBusy = false;
+                    Hide();
+                };
+            service.CreateTrainingSet(trainingSet);
         }
 
         public IDesignerView View { get; set; }
@@ -118,8 +156,8 @@ namespace IndoorWorx.Designer.Views
                         SelectedInterval = selectedTemplate.Sets.FirstOrDefault();
                     IntervalSelected(SelectedInterval);
                 }
-                SelectedInterval.UseSingleVideo = useSingleVideo;
-                SelectedInterval.UseMultipleVideos = useMultipleVideos;
+                //SelectedInterval.UseSingleVideo = useSingleVideo;
+                //SelectedInterval.UseMultipleVideos = useMultipleVideos;
                 FirePropertyChanged("SelectedInterval");
                 FirePropertyChanged("UseSingleVideo");
                 FirePropertyChanged("UseMultipleVideos");
@@ -146,8 +184,8 @@ namespace IndoorWorx.Designer.Views
                     else
                         IntervalSelected(SelectedInterval);
                 }
-                SelectedInterval.UseSingleVideo = useSingleVideo;
-                SelectedInterval.UseMultipleVideos = useMultipleVideos;
+                //SelectedInterval.UseSingleVideo = useSingleVideo;
+                //SelectedInterval.UseMultipleVideos = useMultipleVideos;
                 FirePropertyChanged("SelectedInterval");
                 FirePropertyChanged("UseMultipleVideos");
                 FirePropertyChanged("UseSingleVideo");
@@ -290,6 +328,17 @@ namespace IndoorWorx.Designer.Views
         public void Hide()
         {
             shell.RemoveFromLayoutRoot(View as UIElement);
+        }
+
+        private bool busy;
+        public virtual bool IsBusy
+        {
+            get { return busy; }
+            set
+            {
+                busy = value;
+                FirePropertyChanged("IsBusy");
+            }
         }
     }
 }

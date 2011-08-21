@@ -68,7 +68,7 @@
                         string location;
                         if (Debugger.IsAttached)
                         {
-                            location = "http://localhost:3415/";
+                            location = "http://localhost/IndoorWorx.Silverlight.Web/";// "http://localhost:3415/";
                         }
                         else
                         {

@@ -55,28 +55,34 @@ namespace IndoorWorx.MyLibrary.Views
 
         public void SelectVideoWithId(Guid id)
         {
-            var categoryService = serviceLocator.GetInstance<ICategoryService>();
-            categoryService.CategoriesRetrieved += (sender, e) =>
-                {
-                    var categories = e.Value;
-                    foreach (var category in categories)
-                    {
-                        var video = category.Videos.FirstOrDefault(x => x.Id == id);
-                        if (video != null)
-                        {
-                            Video = video;
-                            Video.LoadTelemetry();
-                            break;
-                        }
-                    }
-                    IsBusy = false;
-                };
-            categoryService.CategoryRetrievalError += (sender,e)=>
-                {
-                    IsBusy = false;
-                };
-            IsBusy = true;
-            categoryService.RetrieveCategories();
+            var video = ApplicationUser.CurrentUser.Videos.FirstOrDefault(x => x.Id == id);
+            if (video != null)
+            {
+                Video = video;
+                Video.LoadTelemetry();
+            }
+            //var categoryService = serviceLocator.GetInstance<ICategoryService>();
+            //categoryService.CategoriesRetrieved += (sender, e) =>
+            //    {
+            //        var categories = e.Value;
+            //        foreach (var category in categories)
+            //        {
+            //            var video = category.Videos.FirstOrDefault(x => x.Id == id);
+            //            if (video != null)
+            //            {
+            //                Video = video;
+            //                Video.LoadTelemetry();
+            //                break;
+            //            }
+            //        }
+            //        IsBusy = false;
+            //    };
+            //categoryService.CategoryRetrievalError += (sender,e)=>
+            //    {
+            //        IsBusy = false;
+            //    };
+            //IsBusy = true;
+            //categoryService.RetrieveCategories();
         }
 
         public ICommand PreviewVideoCommand { get; private set; }

@@ -153,6 +153,9 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\CompetitiveLevel.cs">
       <Link>Models\CompetitiveLevel.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\CreateTrainingSetStatus.cs">
+      <Link>Models\CreateTrainingSetStatus.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\EffortType.cs">
       <Link>Models\EffortType.cs</Link>
     </Compile>
@@ -219,9 +222,6 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\SocialMediaType.cs">
       <Link>Models\SocialMediaType.cs</Link>
     </Compile>
-    <Compile Include="..\IndoorWorx.Infrastructure\Models\SocialMediaTypes.cs">
-      <Link>Models\SocialMediaTypes.cs</Link>
-    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Sport.cs">
       <Link>Models\Sport.cs</Link>
     </Compile>
@@ -242,6 +242,9 @@
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingMetricType.cs">
       <Link>Models\TrainingMetricType.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingSet.cs">
+      <Link>Models\TrainingSet.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\TrainingSetTemplate.cs">
       <Link>Models\TrainingSetTemplate.cs</Link>
@@ -264,6 +267,9 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\VideoOptions.cs">
       <Link>Models\VideoOptions.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\VideoPart.cs">
+      <Link>Models\VideoPart.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\VideoReview.cs">
       <Link>Models\VideoReview.cs</Link>
     </Compile>
@@ -275,6 +281,9 @@
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Requests\AddVideoRequest.cs">
       <Link>Requests\AddVideoRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Requests\CreateTrainingSetRequest.cs">
+      <Link>Requests\CreateTrainingSetRequest.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Requests\PlayVideoRequest.cs">
       <Link>Requests\PlayVideoRequest.cs</Link>
@@ -290,6 +299,9 @@
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Responses\AddVideoResponse.cs">
       <Link>Responses\AddVideoResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Responses\CreateTrainingSetResponse.cs">
+      <Link>Responses\CreateTrainingSetResponse.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Responses\PlayVideoResponse.cs">
       <Link>Responses\PlayVideoResponse.cs</Link>
@@ -389,6 +401,7 @@
     <Compile Include="Services\IConfigurationService.cs" />
     <Compile Include="Services\IIntervalMetadataService.cs" />
     <Compile Include="Services\ISportingHabitsService.cs" />
+    <Compile Include="Services\ITrainingSetService.cs" />
     <Compile Include="Services\ITrainingSetTemplateService.cs" />
     <Compile Include="SmartDispatcher.cs" />
     <Compile Include="XmlExtensions.cs" />

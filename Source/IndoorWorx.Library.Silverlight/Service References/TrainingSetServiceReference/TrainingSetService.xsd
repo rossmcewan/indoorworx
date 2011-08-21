@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3415/TrainingSetService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:3415/TrainingSetService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Enums" />
+  <xs:complexType name="Video">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AuditableModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Catalog" nillable="true" type="tns:Catalog" />
+          <xs:element minOccurs="0" name="Credits" type="xs:int" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Duration" type="ser:duration" />
+          <xs:element minOccurs="0" name="ImageUri" nillable="true" type="xs:anyURI" />
+          <xs:element minOccurs="0" name="Reviews" nillable="true" type="tns:ArrayOfVideoReview" />
+          <xs:element minOccurs="0" name="RideCredits" type="xs:int" />
+          <xs:element minOccurs="0" name="StreamUri" nillable="true" type="xs:anyURI" />
+          <xs:element minOccurs="0" name="TelemetryInfo" nillable="true" type="tns:TelemetryInfo" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="VideoMetadata" nillable="true" type="tns:VideoMetadata" />
+          <xs:element minOccurs="0" name="VideoText" nillable="true" type="tns:ArrayOfVideoText" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Video" nillable="true" type="tns:Video" />
+  <xs:complexType name="AuditableModel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Created" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Modified" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AuditableModel" nillable="true" type="tns:AuditableModel" />
+  <xs:complexType name="BaseModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="BaseModel" nillable="true" type="tns:BaseModel" />
+  <xs:complexType name="Catalog">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Category" nillable="true" type="tns:Category" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ImageUri" nillable="true" type="xs:anyURI" />
+          <xs:element minOccurs="0" name="Sequence" type="xs:int" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Videos" nillable="true" type="tns:ArrayOfVideo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Catalog" nillable="true" type="tns:Catalog" />
+  <xs:complexType name="Category">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CatalogUri" nillable="true" type="xs:anyURI" />
+          <xs:element minOccurs="0" name="Catalogs" nillable="true" type="tns:ArrayOfCatalog" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LibraryUri" nillable="true" type="xs:anyURI" />
+          <xs:element minOccurs="0" name="Sequence" type="xs:int" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Category" nillable="true" type="tns:Category" />
+  <xs:complexType name="ArrayOfCatalog">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Catalog" nillable="true" type="tns:Catalog" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCatalog" nillable="true" type="tns:ArrayOfCatalog" />
+  <xs:complexType name="ArrayOfVideo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Video" nillable="true" type="tns:Video" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVideo" nillable="true" type="tns:ArrayOfVideo" />
+  <xs:complexType name="ArrayOfVideoReview">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VideoReview" nillable="true" type="tns:VideoReview" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVideoReview" nillable="true" type="tns:ArrayOfVideoReview" />
+  <xs:complexType name="VideoReview">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Review">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Video" nillable="true" type="tns:Video" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="VideoReview" nillable="true" type="tns:VideoReview" />
+  <xs:complexType name="Review">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AuditableModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Rating" type="xs:int" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Review" nillable="true" type="tns:Review" />
+  <xs:complexType name="TelemetryInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RecordingInterval" type="xs:int" />
+          <xs:element minOccurs="0" name="TelemetryUri" nillable="true" type="xs:anyURI" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TelemetryInfo" nillable="true" type="tns:TelemetryInfo" />
+  <xs:complexType name="VideoMetadata">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FilmedBy" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FilmedWith" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="WhenFilmed" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="VideoMetadata" nillable="true" type="tns:VideoMetadata" />
+  <xs:complexType name="ArrayOfVideoText">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VideoText" nillable="true" type="tns:VideoText" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVideoText" nillable="true" type="tns:ArrayOfVideoText" />
+  <xs:complexType name="VideoText">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/IndoorWorx.Infrastructure.Enums" minOccurs="0" name="Animation" type="q1:VideoTextAnimations" />
+          <xs:element minOccurs="0" name="Duration" type="ser:duration" />
+          <xs:element minOccurs="0" name="MainText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StartTime" type="ser:duration" />
+          <xs:element minOccurs="0" name="SubText" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="VideoText" nillable="true" type="tns:VideoText" />
+</xs:schema>

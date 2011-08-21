@@ -23,84 +23,86 @@
         <dconverters:IntervalsToTabItemsConverter x:Key="IntervalsToTabItemsConverter"/>
     </UserControl.Resources>
     <controls:MetroContentControl>
-        <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
-            <Border x:Name="BackgroundBorder" Style="{StaticResource BackgroundBorderStyle}"/>
+        <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
+            <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
+                <Border x:Name="BackgroundBorder" Style="{StaticResource BackgroundBorderStyle}"/>
 
-            <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
-                <Grid Style="{StaticResource ContentGridStyle}">
-                    <Grid Margin="5,0,5,65">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal" Margin="0,5">
-                            <TextBlock Text="{Binding DesignerResources.TemplateLabel, Source={StaticResource DesignerResources}}" VerticalAlignment="Center" Margin="2"/>
-                            <telerik:RadComboBox Width="150" ItemsSource="{Binding CurrentUser.Templates, Mode=OneWay, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding SelectedTemplate, Mode=TwoWay}" DisplayMemberPath="Title" Margin="2"/>
-                        </StackPanel>
-                        <controls:MetroContentControl Grid.Row="1" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}">
-                            <StackPanel>
-                                <CheckBox telerik:StyleManager.Theme="Metro" Content="{Binding DesignerResources.UseSingleVideoLabel, Source={StaticResource DesignerResources}}" IsChecked="{Binding UseSingleVideo, Mode=TwoWay}" Margin="0,5"/>
-                                <CheckBox telerik:StyleManager.Theme="Metro" Content="{Binding DesignerResources.UseMultipleVideosLabel, Source={StaticResource DesignerResources}}" IsChecked="{Binding UseMultipleVideos, Mode=TwoWay}" Margin="0,5"/>
+                <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
+                    <Grid Style="{StaticResource ContentGridStyle}">
+                        <Grid Margin="5,0,5,65">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="{Binding DesignerResources.TemplateLabel, Source={StaticResource DesignerResources}}" VerticalAlignment="Center" Margin="2"/>
+                                <telerik:RadComboBox Width="150" ItemsSource="{Binding CurrentUser.Templates, Mode=OneWay, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding SelectedTemplate, Mode=TwoWay}" DisplayMemberPath="Title" Margin="2"/>
                             </StackPanel>
-                        </controls:MetroContentControl>
-                        <Grid Grid.Row="2" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}">
-                            <dcontrols:SingleVideoDesignControl Grid.Row="2" Visibility="{Binding UseSingleVideo, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <Grid Visibility="{Binding UseMultipleVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <telerik:RadTabControl BorderBrush="Transparent" ItemsSource="{Binding SelectedTemplate.Sets, Mode=OneWay}" DisplayMemberPath="Title" TabOrientation="Vertical"
-                                    SelectedItem="{Binding SelectedInterval, Mode=TwoWay}" TabStripPlacement="Left" >                                    
+                            <controls:MetroContentControl Grid.Row="1" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}">
+                                <StackPanel>
+                                    <CheckBox telerik:StyleManager.Theme="Metro" Content="{Binding DesignerResources.UseSingleVideoLabel, Source={StaticResource DesignerResources}}" IsChecked="{Binding UseSingleVideo, Mode=TwoWay}" Margin="0,5"/>
+                                    <CheckBox telerik:StyleManager.Theme="Metro" Content="{Binding DesignerResources.UseMultipleVideosLabel, Source={StaticResource DesignerResources}}" IsChecked="{Binding UseMultipleVideos, Mode=TwoWay}" Margin="0,5"/>
+                                </StackPanel>
+                            </controls:MetroContentControl>
+                            <Grid Grid.Row="2" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}">
+                                <dcontrols:SingleVideoDesignControl Grid.Row="2" Visibility="{Binding UseSingleVideo, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                <Grid Visibility="{Binding UseMultipleVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <!--<telerik:RadTabControl BorderBrush="Transparent" ItemsSource="{Binding SelectedTemplate.Sets, Mode=OneWay}" DisplayMemberPath="Title" TabOrientation="Vertical"
+                                    SelectedItem="{Binding SelectedInterval, Mode=TwoWay}" TabStripPlacement="Left" >  
                                     <telerik:RadTabControl.ContentTemplate>
                                         <DataTemplate>
-                                            <local:IntervalDesignerView/>
+                                            <local:IntervalDesignerView Interval="{Binding Mode=TwoWay}"/>
                                         </DataTemplate>
                                     </telerik:RadTabControl.ContentTemplate>
-                                </telerik:RadTabControl>
-                                <!--<sdk:TabControl BorderBrush="Transparent" ItemsSource="{Binding SelectedTemplate.Sets, Mode=OneWay, Converter={StaticResource IntervalsToTabItemsConverter}}"
+                                </telerik:RadTabControl>-->
+                                    <sdk:TabControl BorderBrush="Transparent" ItemsSource="{Binding SelectedTemplate.Sets, Mode=OneWay, Converter={StaticResource IntervalsToTabItemsConverter}}"
                                     SelectedItem="{Binding SelectedInterval, Mode=TwoWay, Converter={StaticResource IntervalToTabItemConverter}}"
-                                    TabStripPlacement="Left"/>-->
+                                    TabStripPlacement="Left"/>
+                                </Grid>
                             </Grid>
-                        </Grid>                        
-                        <telerik:RadTimeBar x:Name="timeBar" Height="150" Grid.Row="3" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}"
+                            <telerik:RadTimeBar x:Name="timeBar" Height="150" Grid.Row="3" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}"
                                 PeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}" 
                                 VisiblePeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}"                                                                            
                                 SelectionStart="{Binding RangeFrom, Mode=TwoWay}" 
                                 SelectionEnd="{Binding RangeTo, Mode=TwoWay}">
-                            <telerik:RadLinearSparkline 
+                                <telerik:RadLinearSparkline 
                                 ItemsSource="{Binding SelectedTemplate.Telemetry, Mode=OneWay}" 
                                 ShowAxis="False"                
                                 MinYValue="0"
                                 AutoRange="False"
                                 YValuePath="PercentageThreshold" 
                                 XValuePath="TimePositionAsDateTime" />
-                        </telerik:RadTimeBar>
+                            </telerik:RadTimeBar>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Border>
+                </Border>
 
-            <Grid x:Name="NavigationOuterGrid" Style="{StaticResource NavigationOuterGridStyle}">
-                <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}">
+                <Grid x:Name="NavigationOuterGrid" Style="{StaticResource NavigationOuterGridStyle}">
+                    <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}">
 
-                    <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}">
-                        <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
-                            <ContentControl Style="{StaticResource LogoIcon}"/>
-                            <TextBlock x:Name="settingsTextBlock" Style="{StaticResource SettingsNameStyle}" 
+                        <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}">
+                            <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
+                                <ContentControl Style="{StaticResource LogoIcon}"/>
+                                <TextBlock x:Name="settingsTextBlock" Style="{StaticResource SettingsNameStyle}" 
                                Text="{Binding ApplicationStrings.ApplicationName, Source={StaticResource ResourceWrapper}}"/>
-                        </StackPanel>
-                    </Border>
+                            </StackPanel>
+                        </Border>
 
-                    <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
-                        <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
-                            <TextBlock Text="{Binding DesignerResources.RideDesignTitle, Source={StaticResource DesignerResources}}" Style="{StaticResource LinkTextBlockStyle}"/>
-                        </StackPanel>
-                    </Border>
+                        <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
+                            <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
+                                <TextBlock Text="{Binding DesignerResources.RideDesignTitle, Source={StaticResource DesignerResources}}" Style="{StaticResource LinkTextBlockStyle}"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <telerik:RadButton Content="{Binding DesignerResources.Cancel, Source={StaticResource DesignerResources}}" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40"/>
+                    <telerik:RadButton Content="{Binding DesignerResources.Save, Source={StaticResource DesignerResources}}" Command="{Binding SaveCommand, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,100,40"/>
                 </Grid>
-                <telerik:RadButton Content="{Binding DesignerResources.Cancel, Source={StaticResource DesignerResources}}" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40"/>
-                <telerik:RadButton Content="{Binding DesignerResources.Save, Source={StaticResource DesignerResources}}" Command="{Binding SaveCommand, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,100,40"/>
+                <HyperlinkButton Command="{Binding CancelCommand}" Margin="-10" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Image Source="/IndoorWorx.Designer.Silverlight;component/Images/back.png" Width="50"  />
+                </HyperlinkButton>
             </Grid>
-            <HyperlinkButton Command="{Binding CancelCommand}" Margin="-10" VerticalAlignment="Top" HorizontalAlignment="Left">
-                <Image Source="/IndoorWorx.Designer.Silverlight;component/Images/back.png" Width="50"  />
-            </HyperlinkButton>
-        </Grid>
+        </telerik:RadBusyIndicator>
     </controls:MetroContentControl>
 </UserControl>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="aba45ade-c761-4f3b-b0f6-2fe329068b52" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3415/TrainingSetService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TrainingSetService.disco" MetadataType="Disco" ID="3cfe3e7b-ca08-44f8-8a45-e5922633f7b6" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetService.svc?disco" />
+    <MetadataFile FileName="TrainingSetService.xsd" MetadataType="Schema" ID="60255dcf-958b-42a1-94ba-94fb8a9424e1" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetService.svc?xsd=xsd4" />
+    <MetadataFile FileName="TrainingSetService1.xsd" MetadataType="Schema" ID="e78f45d6-ef01-48fd-b807-1a962c6cc7c7" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetService.svc?xsd=xsd5" />
+    <MetadataFile FileName="TrainingSetService.wsdl" MetadataType="Wsdl" ID="e903f4e1-4861-4598-8e4d-c06ced5935ea" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetService.svc?wsdl" />
+    <MetadataFile FileName="TrainingSetService2.xsd" MetadataType="Schema" ID="b2c0d438-5b37-4113-8012-c09753ace713" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TrainingSetService3.xsd" MetadataType="Schema" ID="b2d0f30b-9f95-4f5d-9ec8-edbc1c8b196a" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TrainingSetService4.xsd" MetadataType="Schema" ID="e4f1cfc1-efc0-4563-8cbd-2284cece0984" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetService.svc?xsd=xsd2" />
+    <MetadataFile FileName="TrainingSetService5.xsd" MetadataType="Schema" ID="98e94475-6f72-4a58-b722-7c45b6245aa3" SourceId="1" SourceUrl="http://localhost:3415/TrainingSetService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

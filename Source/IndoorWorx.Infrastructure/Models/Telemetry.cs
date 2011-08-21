@@ -52,8 +52,23 @@ namespace IndoorWorx.Infrastructure.Models
                 HeartRate = Convert.ToInt32(elements[6]),
                 Id = Convert.ToInt32(elements[7]),
                 Altitude = Convert.ToDouble(elements[8]),
-                PercentageThreshold = Convert.ToDouble(elements[3]) / 300//must get this from the user
+                PercentageThreshold = Convert.ToDouble(elements[3]) / 300//must get this from the creator of the source file
             };
+        }
+
+        public string ToDelimitedString(char delimiter)
+        {
+            return string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}{0}{8}{0}{9}",
+                delimiter,
+                TimePosition.TotalMinutes,
+                Torque,
+                Speed,
+                PercentageThreshold * 300 / 100,//again, need to get this from the creator of the source file
+                Distance,
+                Cadence,
+                HeartRate,
+                Id,
+                Altitude);
         }
 
         public Telemetry Clone()

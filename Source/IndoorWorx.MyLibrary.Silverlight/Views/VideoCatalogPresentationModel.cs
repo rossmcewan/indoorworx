@@ -15,6 +15,8 @@ using System.Collections.Generic;
 using Microsoft.Practices.Composite.Presentation.Commands;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Composite.Events;
+using IndoorWorx.MyLibrary.Resources;
+using IndoorWorx.Infrastructure;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -26,6 +28,14 @@ namespace IndoorWorx.MyLibrary.Views
         {
             this.serviceLocator = serviceLocator;
             this.eventAggregator = eventAggregator;
+            ApplicationContext.Current.PropertyChanged += (sender, e) =>
+                {
+                    if (e.PropertyName == "VideoCount")
+                    {
+                        FirePropertyChanged("NumberOfVideosLabel");
+                        LoadCategories();
+                    }
+                };
         }
 
         public IVideoCatalogView View { get; set; }
@@ -95,7 +105,7 @@ namespace IndoorWorx.MyLibrary.Views
                 {                    
                     foreach (var cat in FilteredCategories)
                     {
-                        if (video.Catalog.Category.Equals(cat))
+                        if (video.Catalog == null || video.Catalog.Category.Equals(cat))
                             result.Add(video);
                         //result.AddRange(cat.Videos);
                     }
@@ -125,19 +135,33 @@ namespace IndoorWorx.MyLibrary.Views
         private ICollection<Category> LoadCategoriesWithUsersVideos(ICollection<Category> sourceCategories)
         {
             var loadedCategories = new List<Category>();
+            var _workoutCategory = sourceCategories.Last();
+            var workoutCatalog = new Catalog() { Videos = new List<Video>() };
+            var workoutCategory = new Category()
+            {
+                Id = _workoutCategory.Id,
+                Description = _workoutCategory.Description,
+                Title = _workoutCategory.Title,
+                LibraryUri = _workoutCategory.LibraryUri,
+                Catalogs = new List<Catalog>() { workoutCatalog }
+            };
             foreach (var sourceCategory in sourceCategories)
             {
                 var cat = new Category()
                 {
+                    Id = sourceCategory.Id,
                     Description = sourceCategory.Description,
                     Title = sourceCategory.Title,
                     LibraryUri = sourceCategory.LibraryUri,
                     Catalogs = new List<Catalog>()
                 };
+                bool hasContent = false;
                 foreach (var catalog in sourceCategory.Catalogs)
                 {
+                    hasContent = true;
                     var _catalog = new Catalog()
                     {
+                        Id = catalog.Id,
                         Description = catalog.Description,
                         ImageUri = catalog.ImageUri,
                         Title = catalog.Title,
@@ -145,15 +169,22 @@ namespace IndoorWorx.MyLibrary.Views
                     };
                     foreach (var video in ApplicationUser.CurrentUser.Videos)
                     {
-                        if (video.Catalog.Equals(catalog))
+                        if (video.Catalog == null)
+                        {
+                            if (!workoutCatalog.Videos.Contains(video))
+                                workoutCatalog.Videos.Add(video);
+                        }
+                        else if (video.Catalog.Equals(catalog))
                         {
                             _catalog.Videos.Add(video);
                         }
                     }
                     cat.Catalogs.Add(_catalog);
                 }
-                loadedCategories.Add(cat);
+                if(hasContent)
+                    loadedCategories.Add(cat);
             }
+            loadedCategories.Add(workoutCategory);
             return loadedCategories;
         }
 
@@ -196,7 +227,7 @@ namespace IndoorWorx.MyLibrary.Views
 
         public string NumberOfVideosLabel
         {
-            get { return string.Format(Resources.MyLibraryResources.NumberOfVideosLabel, AllFilteredVideos.Count); }
+            get { return string.Format(MyLibraryResources.NumberOfVideosLabel, AllFilteredVideos.Count); }
         }
     }
 }

@@ -52,6 +52,13 @@ namespace IndoorWorx.Designer.Views
                 if (interval is IntervalGroup)
                 {
                     AllowSingleOrMultipleVideoSelection = (interval as IntervalGroup).Intervals.Count > 1;
+                    //if (!AllowSingleOrMultipleVideoSelection)
+                    //    interval.UseSingleVideo = true;
+                }
+                if (interval != null)
+                {
+                    interval.UseMultipleVideos = this.UseMultipleVideos;
+                    interval.UseSingleVideo = this.UseSingleVideo;
                 }
                 FirePropertyChanged("Interval");
             }
@@ -64,6 +71,11 @@ namespace IndoorWorx.Designer.Views
             set
             {
                 selectedInterval = value;
+                if (selectedInterval != null)
+                {
+                    selectedInterval.UseMultipleVideos = this.UseMultipleVideos;
+                    selectedInterval.UseSingleVideo = this.UseSingleVideo;
+                }
                 FirePropertyChanged("SelectedInterval");
                 eventAggregator.GetEvent<IntervalSelectedEvent>().Publish(selectedInterval);
             }
@@ -201,7 +213,7 @@ namespace IndoorWorx.Designer.Views
             get { return video; }
             set
             {
-                if (value != null && value.Duration < Interval.Duration)
+                if (value != null && Interval != null && value.Duration < Interval.Duration)
                 {
                     if(Interval is IntervalGroup)
                         dialogFacade.Alert(DesignerResources.SelectedVideoIsTooShortForIntervalGroup);

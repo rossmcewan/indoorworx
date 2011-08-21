@@ -157,6 +157,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\TrainingSetServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\TrainingSetTemplateServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -169,6 +174,7 @@
     <Compile Include="Services\IntervalMetadataService.cs" />
     <Compile Include="Services\SettingsClient.cs" />
     <Compile Include="Services\SportingHabitsService.cs" />
+    <Compile Include="Services\TrainingSetService.cs" />
     <Compile Include="Services\TrainingSetTemplateService.cs" />
     <Compile Include="Views\AlertWindow.xaml.cs">
       <DependentUpon>AlertWindow.xaml</DependentUpon>
@@ -206,6 +212,7 @@
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Models.TrainingVolume.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.AddTemplateResponse.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.AddVideoResponse.datasource" />
+    <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.CreateTrainingSetResponse.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.PlayVideoResponse.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.RemoveTemplateResponse.datasource" />
     <None Include="Properties\DataSources\IndoorWorx.Infrastructure.Responses.SaveTemplateResponse.datasource" />
@@ -289,6 +296,25 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\TrainingSetServiceReference\TrainingSetService.wsdl" />
+    <None Include="Service References\TrainingSetServiceReference\TrainingSetService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingSetServiceReference\TrainingSetService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingSetServiceReference\TrainingSetService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingSetServiceReference\TrainingSetService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingSetServiceReference\TrainingSetService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingSetServiceReference\TrainingSetService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\TrainingSetTemplateServiceReference\TrainingSetTemplateService.disco" />
     <None Include="Service References\TrainingSetTemplateServiceReference\configuration91.svcinfo" />
     <None Include="Service References\TrainingSetTemplateServiceReference\configuration.svcinfo" />
@@ -300,6 +326,13 @@
     <None Include="Service References\IntervalMetadataServiceReference\configuration91.svcinfo" />
     <None Include="Service References\IntervalMetadataServiceReference\configuration.svcinfo" />
     <None Include="Service References\IntervalMetadataServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\TrainingSetServiceReference\TrainingSetService.disco" />
+    <None Include="Service References\TrainingSetServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\TrainingSetServiceReference\configuration.svcinfo" />
+    <None Include="Service References\TrainingSetServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -348,6 +381,7 @@
     <WCFMetadataStorage Include="Service References\IntervalMetadataServiceReference\" />
     <WCFMetadataStorage Include="Service References\SocialMediaServiceReference\" />
     <WCFMetadataStorage Include="Service References\SportingHabitsServiceReference\" />
+    <WCFMetadataStorage Include="Service References\TrainingSetServiceReference\" />
     <WCFMetadataStorage Include="Service References\TrainingSetTemplateServiceReference\" />
   </ItemGroup>
   <ItemGroup>

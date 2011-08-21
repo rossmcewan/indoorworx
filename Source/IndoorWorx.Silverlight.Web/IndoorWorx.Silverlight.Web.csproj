@@ -142,6 +142,7 @@
     <Content Include="ClientBin\IndoorWorx.Silverlight.xap" />
     <Content Include="ApplicationUserService.svc" />
     <Content Include="ActivityService.svc" />
+    <Content Include="TrainingSetService.svc" />
     <Content Include="IntervalMetadataService.svc" />
     <Content Include="TrainingSetTemplateService.svc" />
     <Content Include="Settings.xml">
@@ -254,6 +255,10 @@
       <Project>{11B702BE-C0C0-4F83-9ECB-928235ED0C0F}</Project>
       <Name>IndoorWorx.NHibernate</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IndoorWorx.SmoothStreaming\IndoorWorx.SmoothStreaming.csproj">
+      <Project>{23ED1E9E-BE8D-458D-8FFE-AD0E3A2E801D}</Project>
+      <Name>IndoorWorx.SmoothStreaming</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="images\narrow\Thumbs.db" />
@@ -279,12 +284,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>3415</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/IndoorWorx.Silverlight.Web</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

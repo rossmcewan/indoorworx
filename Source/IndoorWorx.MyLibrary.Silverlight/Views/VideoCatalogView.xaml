@@ -47,7 +47,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Margin="2" >
+            <StackPanel Orientation="Horizontal" Margin="46,2,2,2">
                 <TextBlock FontWeight="Bold" FontSize="13" Text="{Binding NumberOfVideosLabel, Mode=OneWay}" VerticalAlignment="Center" Margin="2,0"/>
                 <TextBlock FontWeight="Bold" FontSize="13" Text="{Binding CatalogResources.ByCategory, Source={StaticResource CatalogResources}}" VerticalAlignment="Center" Margin="2,0" Foreground="Gray" Visibility="{Binding OrderBy, Mode=OneWay, Converter={StaticResource OrderByVisibilityConverter}, ConverterParameter=CATEGORY}"/>
                 <TextBlock FontWeight="Bold" FontSize="13" Text="{Binding CatalogResources.ByCatalog, Source={StaticResource CatalogResources}}" VerticalAlignment="Center" Margin="2,0" Foreground="Gray" Visibility="{Binding OrderBy, Mode=OneWay, Converter={StaticResource OrderByVisibilityConverter}, ConverterParameter=CATALOG}"/>
@@ -155,5 +155,12 @@
             </ScrollViewer>
         </Grid>
         <navigation:Frame Grid.Column="1" x:Name="VideoDetailsFrame" Style="{StaticResource VideoDetailsFrameStyle}" JournalOwnership="OwnsJournal"/>
+        <Button
+                x:Name="AddVideoButton"
+    		    Style="{StaticResource RoundButton}"
+                Command="{Binding AddVideoCommand, Mode=OneWay}" Margin="0,-30,0,0"
+                HorizontalAlignment="Left" Width="48" Height="48" VerticalAlignment="Top" Opacity="1">
+            <Image Height="48" Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/new.png" Stretch="Fill" Width="48"/>
+        </Button>
     </Grid>
 </UserControl>
