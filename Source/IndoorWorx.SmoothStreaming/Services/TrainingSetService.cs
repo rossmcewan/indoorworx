@@ -78,7 +78,7 @@ namespace IndoorWorx.SmoothStreaming.Services
                 //var _telemetry = new List<Telemetry>();
                 var timer = TimeSpan.Zero;
                 var recordingInterval = TimeSpan.FromSeconds(2);
-                var telemetryFile = new StringBuilder("\"Minutes\",\"Torq(N-m)\",\"Km/h\",\"Watts\",\"Km\",\"Cadence\",\"Hrate\",\"ID\",\"Altitude(m)\"");
+                var telemetryFile = new StringBuilder().AppendLine("\"Minutes\",\"Torq(N-m)\",\"Km/h\",\"Watts\",\"Km\",\"Cadence\",\"Hrate\",\"ID\",\"Altitude(m)\"");
                 foreach (var interval in template.Intervals)
                 {
                     var numberOfElements = interval.Duration.TotalSeconds / recordingInterval.TotalSeconds;
