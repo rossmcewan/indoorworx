@@ -175,5 +175,10 @@ namespace IndoorWorx.Player.Views
         {
             mediaElement.Position = timeSpan;
         }
+
+        private void mediaElement_ClipError(object sender, ClipEventArgs e)
+        {
+
+        }
     }
 }

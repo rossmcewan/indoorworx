@@ -76,6 +76,90 @@ namespace IndoorWorx.SchemaTools
             };
         }
 
+        static Category BuildRidesCategory()
+        {
+            return new Category()
+            {
+                Title = "RIDES",
+                Description = "Longer videos.",
+                Sequence = 1,
+                CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=RIDES&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
+                LibraryUri = new Uri("/IndoorWorx.MyLibrary.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=RIDES&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
+                Catalogs = new List<Catalog>()
+                {
+                    new Catalog()
+                    {
+                        Title = "Blender Foundation",
+                        Sequence = 1,
+                        Description = "A couple of HD toons to use from the Blender Foundation.",
+                        Videos = new List<Video>()
+                        {
+                            new Video()
+                            {
+                                ImageUri = new Uri("http://localhost/IndoorWorx.Silverlight.Web/Media/Elephant/ElephantsDream_Thumb.jpg", UriKind.Absolute),
+                                StreamUri = new Uri("http://localhost/IndoorWorx.Silverlight.Web/Media/Elephant/ElephantsDream.ism/Manifest", UriKind.Absolute),
+                                Title = "Elephants Dream",
+                                Description = "Elephants Dream is the world’s first open movie, made entirely with open source graphics software such as Blender, and with all production files freely available to use however you please, under a Creative Commons license. The short film was created by the Orange Open Movie Project studio in Amsterdam during 2005/2006, bringing together a diverse team of artists and developers from all over the world.",
+                                TelemetryInfo = new TelemetryInfo()
+                                {
+                                    RecordingInterval = 2,
+                                    TelemetryUri = new Uri("http://localhost/IndoorWorx.Silverlight.Web/Mock/telemetry.csv", UriKind.Absolute)
+                                },
+                                Duration = new TimeSpan(0,10,54),
+                                VideoMetadata = new VideoMetadata()
+                                {
+                                    WhenFilmed = new DateTime(2008,4,10),
+                                    FilmedBy = "Blender Foundation"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+        }
+
+        static Category BuildSnippetsCategory()
+        {
+            return new Category()
+            {
+                Title = "SNIPPETS",
+                Description = "Video snippets to create your perfect indoor training experience.",
+                Sequence = 2,
+                CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=SNIPPETS&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
+                LibraryUri = new Uri("/IndoorWorx.MyLibrary.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=SNIPPETS&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
+                Catalogs = new List<Catalog>()
+                {
+                    new Catalog()
+                    {
+                        Title = "Blender Foundation",
+                        Sequence = 1,
+                        Description = "A couple of HD toons to use from the Blender Foundation.",
+                        Videos = new List<Video>()
+                        {
+                            new Video()
+                            {
+                                ImageUri = new Uri("http://localhost/IndoorWorx.Silverlight.Web/Media/Bunny/BigBuckBunny_Thumb.jpg", UriKind.Absolute),
+                                StreamUri = new Uri("http://localhost/IndoorWorx.Silverlight.Web/Media/Bunny/BigBuckBunny.ism/Manifest", UriKind.Absolute),
+                                Title = "Big Buck Bunny",
+                                Description = "As a follow-up to the successful project Orange’s “Elephants Dream”, the Blender Foundation initiated another open movie project. Again a small team (7) of the best 3D artists and developers in the Blender community have been invited to come together to work in Amsterdam from October 2007 until April 2008 on completing a short 3D animation movie. The team members will get a great studio facility and housing in Amsterdam, all travel costs reimbursed, and a fee sufficient to cover all expenses during the period.",
+                                TelemetryInfo = new TelemetryInfo()
+                                {
+                                    RecordingInterval = 2,
+                                    TelemetryUri = new Uri("http://localhost/IndoorWorx.Silverlight.Web/Mock/telemetry.csv", UriKind.Absolute)
+                                },
+                                Duration = new TimeSpan(0,10,00),
+                                VideoMetadata = new VideoMetadata()
+                                {
+                                    WhenFilmed = new DateTime(2008,4,10),
+                                    FilmedBy = "Blender Foundation"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+        }
+
         static Category GetRidesCategory()
         {
             var category = new Category()
@@ -666,8 +750,11 @@ namespace IndoorWorx.SchemaTools
                     #endregion
 
                     session.Save(new Category() { Title = "ALL", Sequence = 0, CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=ALL&orderBy=CATEGORY", UriKind.RelativeOrAbsolute), LibraryUri = new Uri("/IndoorWorx.MyLibrary.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=ALL&orderBy=CATEGORY", UriKind.RelativeOrAbsolute) });
-                    session.Save(GetRidesCategory());
-                    session.Save(GetPartsCategory());
+                    session.Save(BuildRidesCategory());
+                    session.Save(BuildSnippetsCategory());
+                    session.Save(new Category() { Title = "WORKOUTS", Sequence = 3, CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=WORKOUTS&orderBy=CATEGORY", UriKind.RelativeOrAbsolute), LibraryUri = new Uri("/IndoorWorx.MyLibrary.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=WORKOUTS&orderBy=CATEGORY", UriKind.RelativeOrAbsolute) });
+                    //session.Save(GetRidesCategory());
+                    //session.Save(GetPartsCategory());
                     transaction.Commit();
                 }
             }

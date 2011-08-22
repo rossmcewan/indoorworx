@@ -99,8 +99,7 @@ namespace IndoorWorx.SmoothStreaming.Services
                 File.WriteAllText(filePath, telemetryFile.ToString());
 
 
-                var context = System.ServiceModel.OperationContext.Current;
-                var host = context.Host.BaseAddresses.First().Host;
+                var host = "localhost";
 
                 //now create the video
                 var workout = new Video();

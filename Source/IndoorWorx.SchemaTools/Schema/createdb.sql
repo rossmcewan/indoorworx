@@ -575,7 +575,7 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
     create table [Video] (
         Id UNIQUEIDENTIFIER not null,
        Title NVARCHAR(255) not null,
-       Description NVARCHAR(255) null,
+       Description NVARCHAR(2000) null,
        Created DATETIME null,
        CreatedBy NVARCHAR(255) null,
        Modified DATETIME null,

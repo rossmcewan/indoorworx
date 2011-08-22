@@ -2,7 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"             
     xmlns:controls="clr-namespace:IndoorWorx.Player.Controls;assembly=IndoorWorx.Player.Silverlight"
     xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"  
     xmlns:infcontrols="clr-namespace:IndoorWorx.Library.Controls;assembly=IndoorWorx.Library.Silverlight"
@@ -54,11 +55,13 @@
                                                      ManifestReady="videoPlayer_ManifestReady"
                                                      MediaOpened="mediaElement_MediaOpened"
                                                      MediaEnded="mediaElement_MediaEnded"
+                                                     ClipError="mediaElement_ClipError"                                                       
                                                      Position="{Binding PlayerPosition,Mode=TwoWay}"
                                                      SmoothStreamingSource="{Binding Video.StreamUri, Mode=OneWay}" 
                                                      SmoothStreamingErrorOccurred="mediaElement_SmoothStreamingErrorOccurred"/>
 
         <infcontrols:TelemetryChart 
+            telerik:StyleManager.Theme="Transparent"
             Background="Transparent"
             x:Name="profileChart" 
             Grid.ColumnSpan="3" 

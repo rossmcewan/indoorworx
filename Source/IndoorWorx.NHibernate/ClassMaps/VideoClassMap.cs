@@ -15,7 +15,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Id(x => x.Id).GeneratedBy.GuidComb();
             Polymorphism.Explicit();
             Map(x => x.Title).Not.Nullable();
-            Map(x => x.Description);
+            Map(x => x.Description).Length(2000);
             Map(x => x.Created);
             Map(x => x.CreatedBy);
             Map(x => x.Modified);

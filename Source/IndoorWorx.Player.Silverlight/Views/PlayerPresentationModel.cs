@@ -329,6 +329,7 @@ namespace IndoorWorx.Player.Views
         {
             this.hasVideoEnded = true;
             IsMediaOpened = false;
+            View.Hide();
         }
 
         public void MediaError(SmoothStreamingErrorEventArgs e)

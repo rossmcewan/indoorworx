@@ -88,51 +88,59 @@ namespace IndoorWorx.Designer.Views
         private void Save(object arg) 
         {
             IsBusy = true;
-            var service = serviceLocator.GetInstance<ITrainingSetService>();
-            var trainingSet = new TrainingSet();
-            trainingSet.TrainingSetTemplateId = SelectedTemplate.Id;
-            foreach (var set in SelectedTemplate.Sets)
+            try
             {
-                if (set.UseSingleVideo)
+                var service = serviceLocator.GetInstance<ITrainingSetService>();
+                var trainingSet = new TrainingSet();
+                trainingSet.TrainingSetTemplateId = SelectedTemplate.Id;
+                foreach (var set in SelectedTemplate.Sets)
                 {
-                    var part = new VideoPart();
-                    part.VideoId = set.Video.Id;
-                    part.From = set.VideoFrom;
-                    part.To = set.VideoTo;
-                    trainingSet.VideoParts.Add(part);
-                }
-                if (set.UseMultipleVideos)
-                {
-                    foreach (var interval in set.Intervals)
+                    if (set.UseSingleVideo)
                     {
                         var part = new VideoPart();
-                        part.VideoId = interval.Video.Id;
-                        part.From = interval.VideoFrom;
-                        part.To = interval.VideoTo;
+                        part.VideoId = set.Video.Id;
+                        part.From = set.VideoFrom;
+                        part.To = set.VideoTo;
                         trainingSet.VideoParts.Add(part);
                     }
-                }                
+                    if (set.UseMultipleVideos)
+                    {
+                        foreach (var interval in set.Intervals)
+                        {
+                            var part = new VideoPart();
+                            part.VideoId = interval.Video.Id;
+                            part.From = interval.VideoFrom;
+                            part.To = interval.VideoTo;
+                            trainingSet.VideoParts.Add(part);
+                        }
+                    }
+                }
+                service.CreateTrainingSetError += (sender, e) =>
+                    {
+                        IsBusy = false;
+                        throw e.Value;
+                    };
+                service.TrainingSetCreated += (sender, e) =>
+                    {
+                        ApplicationUser.CurrentUser.Videos.Add(e.Value.TrainingSet);
+                        foreach (var set in SelectedTemplate.Sets)
+                        {
+                            set.ClearDesignData();
+                        }
+                        foreach (var interval in SelectedTemplate.Intervals)
+                        {
+                            interval.ClearDesignData();
+                        }
+                        IsBusy = false;
+                        Hide();
+                    };
+                service.CreateTrainingSet(trainingSet);
             }
-            service.CreateTrainingSetError += (sender, e) =>
-                {
-                    IsBusy = false;
-                    throw e.Value;
-                };
-            service.TrainingSetCreated += (sender, e) =>
-                {
-                    ApplicationUser.CurrentUser.Videos.Add(e.Value.TrainingSet);
-                    foreach (var set in SelectedTemplate.Sets)
-                    {
-                        set.ClearDesignData();
-                    }
-                    foreach (var interval in SelectedTemplate.Intervals)
-                    {
-                        interval.ClearDesignData();
-                    }
-                    IsBusy = false;
-                    Hide();
-                };
-            service.CreateTrainingSet(trainingSet);
+            catch
+            {
+                IsBusy = false;
+                throw;
+            }
         }
 
         public IDesignerView View { get; set; }
