@@ -16,6 +16,9 @@ namespace IndoorWorx.Infrastructure.Models
         }
 
         [DataMember]
+        public string Title { get; set; }
+
+        [DataMember]
         public Guid TrainingSetTemplateId { get; set; }
 
         [DataMember]

@@ -52,7 +52,7 @@ namespace IndoorWorx.Player.Views
 
         public void Play()
         {
-            mediaElement.Play();
+            mediaElement.Play();           
             shouldBePlaying = true;
         }
 
@@ -179,6 +179,11 @@ namespace IndoorWorx.Player.Views
         private void mediaElement_ClipError(object sender, ClipEventArgs e)
         {
 
+        }
+
+        public void Cleanup()
+        {
+            mediaElement.Dispose();
         }
     }
 }

@@ -26,5 +26,9 @@ namespace IndoorWorx.Designer.Views
         void Show();
 
         void Hide();
+
+        bool IsBusy { get; set; }
+
+        string Title { get; set; }
     }
 }

@@ -36,9 +36,11 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <StackPanel Orientation="Horizontal" Margin="0,5">                                
                                 <TextBlock Text="{Binding DesignerResources.TemplateLabel, Source={StaticResource DesignerResources}}" VerticalAlignment="Center" Margin="2"/>
                                 <telerik:RadComboBox Width="150" ItemsSource="{Binding CurrentUser.Templates, Mode=OneWay, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding SelectedTemplate, Mode=TwoWay}" DisplayMemberPath="Title" Margin="2"/>
+                                <TextBlock Text="{Binding DesignerResources.TitleLabel, Source={StaticResource DesignerResources}}" VerticalAlignment="Center" Margin="2"/>
+                                <TextBox Text="{Binding Title, Mode=TwoWay}" Margin="2" Width="150"/>
                             </StackPanel>
                             <controls:MetroContentControl Grid.Row="1" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}">
                                 <StackPanel>

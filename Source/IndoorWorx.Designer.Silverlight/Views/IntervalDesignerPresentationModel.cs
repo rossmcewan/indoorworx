@@ -71,11 +71,11 @@ namespace IndoorWorx.Designer.Views
             set
             {
                 selectedInterval = value;
-                if (selectedInterval != null)
-                {
-                    selectedInterval.UseMultipleVideos = this.UseMultipleVideos;
-                    selectedInterval.UseSingleVideo = this.UseSingleVideo;
-                }
+                //if (selectedInterval != null)
+                //{
+                //    selectedInterval.UseMultipleVideos = this.UseMultipleVideos;
+                //    selectedInterval.UseSingleVideo = this.UseSingleVideo;
+                //}
                 FirePropertyChanged("SelectedInterval");
                 eventAggregator.GetEvent<IntervalSelectedEvent>().Publish(selectedInterval);
             }

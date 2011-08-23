@@ -93,25 +93,37 @@ namespace IndoorWorx.Designer.Views
                 var service = serviceLocator.GetInstance<ITrainingSetService>();
                 var trainingSet = new TrainingSet();
                 trainingSet.TrainingSetTemplateId = SelectedTemplate.Id;
-                foreach (var set in SelectedTemplate.Sets)
+                trainingSet.Title = Title;
+                if (UseSingleVideo)
                 {
-                    if (set.UseSingleVideo)
+                    var part = new VideoPart();
+                    part.VideoId = Video.Id;
+                    part.From = VideoFrom;
+                    part.To = VideoTo;
+                    trainingSet.VideoParts.Add(part);
+                }
+                if (UseMultipleVideos)
+                {
+                    foreach (var set in SelectedTemplate.Sets)
                     {
-                        var part = new VideoPart();
-                        part.VideoId = set.Video.Id;
-                        part.From = set.VideoFrom;
-                        part.To = set.VideoTo;
-                        trainingSet.VideoParts.Add(part);
-                    }
-                    if (set.UseMultipleVideos)
-                    {
-                        foreach (var interval in set.Intervals)
+                        if (set.UseSingleVideo)
                         {
                             var part = new VideoPart();
-                            part.VideoId = interval.Video.Id;
-                            part.From = interval.VideoFrom;
-                            part.To = interval.VideoTo;
+                            part.VideoId = set.Video.Id;
+                            part.From = set.VideoFrom;
+                            part.To = set.VideoTo;
                             trainingSet.VideoParts.Add(part);
+                        }
+                        if (set.UseMultipleVideos)
+                        {
+                            foreach (var interval in set.Intervals)
+                            {
+                                var part = new VideoPart();
+                                part.VideoId = interval.Video.Id;
+                                part.From = interval.VideoFrom;
+                                part.To = interval.VideoTo;
+                                trainingSet.VideoParts.Add(part);
+                            }
                         }
                     }
                 }
@@ -164,8 +176,6 @@ namespace IndoorWorx.Designer.Views
                         SelectedInterval = selectedTemplate.Sets.FirstOrDefault();
                     IntervalSelected(SelectedInterval);
                 }
-                //SelectedInterval.UseSingleVideo = useSingleVideo;
-                //SelectedInterval.UseMultipleVideos = useMultipleVideos;
                 FirePropertyChanged("SelectedInterval");
                 FirePropertyChanged("UseSingleVideo");
                 FirePropertyChanged("UseMultipleVideos");
@@ -192,8 +202,6 @@ namespace IndoorWorx.Designer.Views
                     else
                         IntervalSelected(SelectedInterval);
                 }
-                //SelectedInterval.UseSingleVideo = useSingleVideo;
-                //SelectedInterval.UseMultipleVideos = useMultipleVideos;
                 FirePropertyChanged("SelectedInterval");
                 FirePropertyChanged("UseMultipleVideos");
                 FirePropertyChanged("UseSingleVideo");
@@ -214,6 +222,7 @@ namespace IndoorWorx.Designer.Views
                     selectedTemplate.CreateTelemetry();
                     RangeFrom = DateTimeHelper.ZeroTime;
                     RangeTo = RangeFrom.Add(selectedTemplate.Duration);
+                    Title = selectedTemplate.Title;
                 }
                 FirePropertyChanged("SelectedTemplate");
             }
@@ -346,6 +355,17 @@ namespace IndoorWorx.Designer.Views
             {
                 busy = value;
                 FirePropertyChanged("IsBusy");
+            }
+        }
+
+        private string title;
+        public virtual string Title
+        {
+            get { return title; }
+            set
+            {
+                title = value;
+                FirePropertyChanged("Title");
             }
         }
     }

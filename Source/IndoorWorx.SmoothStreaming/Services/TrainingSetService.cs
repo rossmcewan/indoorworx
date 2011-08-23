@@ -104,7 +104,8 @@ namespace IndoorWorx.SmoothStreaming.Services
                 //now create the video
                 var workout = new Video();
                 workout.StreamUri = new Uri(string.Format("http://{0}/IndoorWorx.Silverlight.Web/csm/{1}.csm", host, uniqueName), UriKind.Absolute);
-                workout.Title = uniqueName;
+                workout.Title = request.TrainingSet.Title;
+                workout.Description = template.Description;
                 workout.Duration = totalDuration;
                 workout.TelemetryInfo.TelemetryUri = new Uri(string.Format("http://{0}/IndoorWorx.Silverlight.Web/telemetry/{1}.csv", host, uniqueName), UriKind.Absolute);
                 var savedWorkout = videoRepository.Save(workout);
