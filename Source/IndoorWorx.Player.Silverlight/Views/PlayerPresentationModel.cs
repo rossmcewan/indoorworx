@@ -102,7 +102,7 @@ namespace IndoorWorx.Player.Views
 
         private void StopTimers()
         {
-            if(telemetryTimer != null)
+            if(telemetryTimer != null)                
                 telemetryTimer.Change(Timeout.Infinite, Timeout.Infinite);
             //zoomTimer.Change(Timeout.Infinite, Timeout.Infinite);
             if(textTimer != null)

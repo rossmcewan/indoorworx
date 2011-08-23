@@ -13,7 +13,7 @@
     </UserControl.Resources>
 
 
-    <telerik:RadGauge x:Name="radGauge" >
+    <telerik:RadGauge x:Name="radGauge" telerik:StyleManager.Theme="Transparent" >
         <telerik:RadialGauge x:Name="radialGauge"   Background="{Binding CurrentTelemetry.PercentageThreshold, Mode=OneWay,  Converter={StaticResource IntensityColorConverter}}">
             <telerik:RadialScale x:Name="radialScale" IsInteractive="True" Min="0" Max="150">
                 <telerik:RadialScale.MajorTick>

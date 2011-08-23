@@ -21,14 +21,22 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
                 <StackPanel>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0">
-                        <telerik:RadColumnSparkline 
-                    Width="256" Height="100"
-                    MinYValue="0"
-                    AutoRange="False"
-                    ItemsSource="{Binding Template.Intervals, Mode=TwoWay}" 
-                    ShowAxis="False"                                               
-                    YValuePath="Effort" 
-                    XValuePath="OADateTime"/>
+                        <telerik:RadAreaSparkline 
+                            AutoRange="False"
+                            MinYValue="0"
+                            Width="256" Height="100"
+                            ItemsSource="{Binding Template.Telemetry, Mode=TwoWay}" 
+                            ShowAxis="False"                            
+                            YValuePath="PercentageThreshold" 
+                            XValuePath="TimePositionAsDateTime" />
+                        <!--<telerik:RadColumnSparkline 
+                            Width="256" Height="100"
+                            MinYValue="0"
+                            AutoRange="False"
+                            ItemsSource="{Binding Template.Intervals, Mode=TwoWay}" 
+                            ShowAxis="False"                                               
+                            YValuePath="Effort" 
+                            XValuePath="OADateTime"/>-->
                     </ScrollViewer>
                     <TextBlock FontWeight="Bold" Text="{Binding Template.Title, Mode=OneWay}" Margin="5"/>
                     <TextBlock Text="{Binding Template.Description, Mode=OneWay}" TextWrapping="Wrap" Margin="5"/>

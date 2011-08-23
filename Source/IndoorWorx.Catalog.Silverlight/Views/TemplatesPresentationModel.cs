@@ -88,6 +88,8 @@ namespace IndoorWorx.Catalog.Views
             service.TrainingSetTemplatesRetrieved += (sender, e) =>
                 {
                     Templates = e.Value;
+                    foreach (var template in Templates)
+                        template.LoadTelemetry();
                     IsBusy = false;
                 };
             service.RetrieveTrainingSetTemplates();

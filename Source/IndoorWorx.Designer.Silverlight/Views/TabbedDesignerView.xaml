@@ -64,18 +64,18 @@
                                     TabStripPlacement="Left"/>
                                 </Grid>
                             </Grid>
-                            <telerik:RadTimeBar x:Name="timeBar" Height="150" Grid.Row="3" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}"
-                                PeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}" 
-                                VisiblePeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}"                                                                            
-                                SelectionStart="{Binding RangeFrom, Mode=TwoWay}" 
-                                SelectionEnd="{Binding RangeTo, Mode=TwoWay}">
+                            <telerik:RadTimeBar x:Name="timeBar" Height="150" IsEnabled="False" Grid.Row="3" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}"
+                                    PeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}" 
+                                    VisiblePeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}"                                                                            
+                                    SelectionStart="{Binding RangeFrom, Mode=TwoWay}" 
+                                    SelectionEnd="{Binding RangeTo, Mode=TwoWay}">
                                 <telerik:RadLinearSparkline 
-                                ItemsSource="{Binding SelectedTemplate.Telemetry, Mode=OneWay}" 
-                                ShowAxis="False"                
-                                MinYValue="0"
-                                AutoRange="False"
-                                YValuePath="PercentageThreshold" 
-                                XValuePath="TimePositionAsDateTime" />
+                                    ItemsSource="{Binding SelectedTemplate.Telemetry, Mode=OneWay}" 
+                                    ShowAxis="False"                
+                                    MinYValue="0"
+                                    AutoRange="False"
+                                    YValuePath="PercentageThreshold" 
+                                    XValuePath="TimePositionAsDateTime" />
                             </telerik:RadTimeBar>
                         </Grid>
                     </Grid>

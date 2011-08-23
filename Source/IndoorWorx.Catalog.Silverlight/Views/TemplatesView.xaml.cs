@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Telerik.Windows.Controls.DragDrop;
 using IndoorWorx.Catalog.Helpers;
+using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.Catalog.Views
 {
@@ -56,6 +57,12 @@ namespace IndoorWorx.Catalog.Views
         {
             RadDragAndDropManager.RemoveDragQueryHandler(sender as DependencyObject, Template_DragQuery);
             RadDragAndDropManager.AddDragQueryHandler(sender as DependencyObject, Template_DragQuery);
+        }
+
+        private void RadAreaSparkline_Loaded(object sender, RoutedEventArgs e)
+        {
+            var template = (sender as FrameworkElement).DataContext as TrainingSetTemplate;
+            template.LoadTelemetry();
         }
     }
 }

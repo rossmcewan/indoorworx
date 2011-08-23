@@ -25,7 +25,19 @@
             </TextBlock>
             <TextBlock Text="{Binding Video.Credits, Mode=OneWay, Converter={StaticResource CreditsToTextConverter}}" Margin="5,0"/>
             <telerik:RadBusyIndicator IsBusy="{Binding Video.IsTelemetryLoading, Mode=OneWay}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0">
+                <telerik:RadTimeBar x:Name="timeBar" Height="200" IsEnabled="False"
+                                    PeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}"
+                                    VisiblePeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}" >
+                    <telerik:RadTimeBar.Intervals>
+                        <telerik:DayInterval/>
+                    </telerik:RadTimeBar.Intervals>
+                    <telerik:RadLinearSparkline 
+                            ItemsSource="{Binding Video.Telemetry, Mode=TwoWay}" 
+                            ShowAxis="False"                            
+                            YValuePath="PercentageThreshold" 
+                            XValuePath="TimePositionAsDateTime" />
+                </telerik:RadTimeBar>
+                <!--<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0">
                     <telerik:RadLinearSparkline 
                             Height="150" 
                             Width="500"                                                    
@@ -35,7 +47,7 @@
                             XValuePath="OATimePosition" 
                             VerticalAlignment="Bottom" 
                             HorizontalAlignment="Left"/>
-                </ScrollViewer>
+                </ScrollViewer>-->
             </telerik:RadBusyIndicator>
         </StackPanel>
     </ScrollViewer>

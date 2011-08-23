@@ -61,7 +61,7 @@
                                                      SmoothStreamingErrorOccurred="mediaElement_SmoothStreamingErrorOccurred"/>
 
         <infcontrols:TelemetryChart 
-            telerik:StyleManager.Theme="Transparent"
+            telerik:StyleManager.Theme="Transparent"           
             Background="Transparent"
             x:Name="profileChart" 
             Grid.ColumnSpan="3" 

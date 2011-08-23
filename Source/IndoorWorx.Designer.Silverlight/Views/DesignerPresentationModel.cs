@@ -219,7 +219,7 @@ namespace IndoorWorx.Designer.Views
                 {                    
                     selectedTemplate.ParseSets();
                     selectedTemplate.SetupIntervalTimes();
-                    selectedTemplate.CreateTelemetry();
+                    selectedTemplate.LoadTelemetry();
                     RangeFrom = DateTimeHelper.ZeroTime;
                     RangeTo = RangeFrom.Add(selectedTemplate.Duration);
                     Title = selectedTemplate.Title;

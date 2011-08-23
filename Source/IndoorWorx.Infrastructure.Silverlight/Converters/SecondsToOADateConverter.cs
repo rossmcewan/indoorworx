@@ -9,12 +9,13 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Data;
+using IndoorWorx.Infrastructure.Helpers;
 
 namespace IndoorWorx.Infrastructure.Converters
 {
     public class SecondsToOADateConverter : IValueConverter
     {
-        private static DateTime today = DateTime.Today;
+        private static DateTime zero = DateTimeHelper.ZeroTime;
         #region IValueConverter Members
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -22,7 +23,7 @@ namespace IndoorWorx.Infrastructure.Converters
             if (value == null) return null;
             var valueAsSeconds = System.Convert.ToDouble(value);
             var timespan = TimeSpan.FromSeconds(valueAsSeconds);
-            var datetime = new DateTime(today.Year, today.Month, today.Day, timespan.Hours, timespan.Minutes, timespan.Seconds);
+            var datetime = new DateTime(zero.Year, zero.Month, zero.Day, timespan.Hours, timespan.Minutes, timespan.Seconds);
             return datetime.ToOADate();
         }
 

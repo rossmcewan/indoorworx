@@ -73,7 +73,17 @@
                                         </input:ContextMenu>
                                     </input:ContextMenuService.ContextMenu>
                                     <StackPanel>
-                                        <telerik:RadColumnSparkline
+                                        <telerik:RadBusyIndicator IsBusy="{Binding IsTelemetryLoading, Mode=OneWay}">
+                                            <telerik:RadAreaSparkline Loaded="RadAreaSparkline_Loaded"
+                                                AutoRange="False"
+                                                MinYValue="0"
+                                                Width="128" Height="50"
+                                                ItemsSource="{Binding Telemetry, Mode=TwoWay}" 
+                                                ShowAxis="False"                            
+                                                YValuePath="PercentageThreshold" 
+                                                XValuePath="TimePositionAsDateTime" />
+                                        </telerik:RadBusyIndicator>
+                                        <!--<telerik:RadColumnSparkline
                                             Margin="2"
                                             Width="128" Height="50"
                                             MinYValue="0"
@@ -81,7 +91,7 @@
                                             ItemsSource="{Binding Intervals, Mode=TwoWay}" 
                                             ShowAxis="False"                                               
                                             YValuePath="Effort" 
-                                            XValuePath="OADateTime"/>
+                                            XValuePath="OADateTime"/>-->
                                         <TextBlock Text="{Binding Title}" TextTrimming="WordEllipsis" TextWrapping="Wrap" FontWeight="Bold"/>
                                     </StackPanel>
                                 </HyperlinkButton>

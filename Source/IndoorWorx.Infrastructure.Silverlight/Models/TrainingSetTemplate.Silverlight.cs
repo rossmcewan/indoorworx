@@ -14,6 +14,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Helpers;
+using System.Threading;
 
 namespace IndoorWorx.Infrastructure.Models
 {
@@ -101,24 +102,64 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        public void CreateTelemetry()
+        public event EventHandler TelemetryLoaded;
+
+        private bool telemetryLoading;
+        public virtual bool IsTelemetryLoading
         {
-            var _telemetry = new List<Telemetry>();
-            var timer = TimeSpan.Zero;
-            var recordingInterval = TimeSpan.FromSeconds(2);
-            foreach (var interval in Intervals)
+            get { return telemetryLoading; }
+            set
             {
-                var numberOfElements = interval.Duration.TotalSeconds / recordingInterval.TotalSeconds;
-                for (int i = 0; i < numberOfElements; i++)
-                {
-                    var telemetry = new Telemetry();
-                    telemetry.PercentageThreshold = Convert.ToDouble(interval.Effort);
-                    telemetry.TimePosition = timer;
-                    _telemetry.Add(telemetry);
-                    timer = timer.Add(recordingInterval);
-                }
+                telemetryLoading = value;
+                FirePropertyChanged("IsTelemetryLoading");
             }
-            Telemetry = _telemetry;
+        }
+
+        private bool telemetryLoaded;
+        public virtual bool IsTelemetryLoaded
+        {
+            get { return telemetryLoaded; }
+            set
+            {
+                this.telemetryLoaded = value;
+                FirePropertyChanged("IsTelemetryLoaded");
+            }
+        }
+
+        public void LoadTelemetry()
+        {
+            if (!IsTelemetryLoaded && !IsTelemetryLoading)
+            {
+                IsTelemetryLoading = true;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(obj =>
+                    {
+                        var _telemetry = new List<Telemetry>();
+                        var timer = TimeSpan.Zero;
+                        var recordingInterval = TimeSpan.FromSeconds(2);
+                        foreach (var interval in Intervals)
+                        {
+                            var numberOfElements = interval.Duration.TotalSeconds / recordingInterval.TotalSeconds;
+                            for (int i = 0; i < numberOfElements; i++)
+                            {
+                                var telemetry = new Telemetry();
+                                telemetry.PercentageThreshold = Convert.ToDouble(interval.Effort);
+                                telemetry.TimePosition = timer;
+                                _telemetry.Add(telemetry);
+                                timer = timer.Add(recordingInterval);
+                            }
+                        }
+                        IsTelemetryLoading = false;
+                        Telemetry = _telemetry;
+                        IsTelemetryLoaded = true;
+                        if (TelemetryLoaded != null)
+                            TelemetryLoaded(this, EventArgs.Empty);
+                    }));
+            }
+            else
+            {
+                if (TelemetryLoaded != null)
+                    TelemetryLoaded(this, EventArgs.Empty);
+            }
         }
 
         private Interval selectedInterval;
@@ -202,6 +243,7 @@ namespace IndoorWorx.Infrastructure.Models
 
         public void AcceptChanges()
         {
+            IsTelemetryLoaded = false;
             backupValues = null;
         }
 

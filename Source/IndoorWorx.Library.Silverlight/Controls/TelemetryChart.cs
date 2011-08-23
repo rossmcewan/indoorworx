@@ -70,10 +70,11 @@ namespace IndoorWorx.Library.Controls
         {
             if (telemetry.Any())
             {
-                var max = telemetry.Max(x => x.PercentageThreshold);
+                var max = telemetry.Max(x => x.PercentageThreshold) * 1.2;
                 this.DefaultView.ChartArea.AxisY.AddRange(0, max, 0.2);
-                this.DefaultView.ChartArea.AxisX.MinValue = DateTime.Today.ToOADate();
+                this.DefaultView.ChartArea.AxisX.MinValue = DateTimeHelper.ZeroTime.ToOADate();
                 this.DefaultView.ChartArea.AxisX.MaxValue = telemetry.Max(x => x.TimePositionAsDateTime).ToOADate();
+                this.zone.StartX = DateTimeHelper.ZeroTime.ToOADate();
             }
             this.ItemsSource = telemetry;
         }

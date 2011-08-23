@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Telerik.Windows.Controls.DragDrop;
 using IndoorWorx.MyLibrary.Helpers;
+using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -26,6 +27,12 @@ namespace IndoorWorx.MyLibrary.Views
         public ITemplatesPresentationModel Model
         {
             get { return this.DataContext as ITemplatesPresentationModel; }
+        }
+
+        private void RadAreaSparkline_Loaded(object sender, RoutedEventArgs e)
+        {
+            var template = (sender as FrameworkElement).DataContext as TrainingSetTemplate;
+            template.LoadTelemetry();
         }        
     }
 }
