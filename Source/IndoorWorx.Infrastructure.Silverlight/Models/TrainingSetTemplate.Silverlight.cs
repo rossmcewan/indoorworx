@@ -269,6 +269,20 @@ namespace IndoorWorx.Infrastructure.Models
             return true;
         }
 
+        private bool VideoTextIsEqual(ICollection<VideoText> v1, ICollection<VideoText> v2)
+        {
+            if (v1.Count == 0 && v2.Count == 0) return true;
+            if (v1.Count != v2.Count) return false;
+            for (int i = 0; i < v1.Count; i++)
+            {
+                var x1 = v1.ElementAt(i);
+                var x2 = v2.ElementAt(i);
+                if (!x1.ValuesEquals(x2))
+                    return false;
+            }
+            return true;
+        }
+
         public bool ValuesEquals(TrainingSetTemplate compareTo)
         {
             return
@@ -277,7 +291,8 @@ namespace IndoorWorx.Infrastructure.Models
                 this.Duration == compareTo.Duration &&
                 this.EffortType.Equals(compareTo.EffortType) &&
                 this.Title == compareTo.Title &&
-                IntervalsAreEqual(this.Intervals, compareTo.Intervals);
+                IntervalsAreEqual(this.Intervals, compareTo.Intervals) &&
+                VideoTextIsEqual(this.VideoText, compareTo.VideoText);
         }
     }
 }

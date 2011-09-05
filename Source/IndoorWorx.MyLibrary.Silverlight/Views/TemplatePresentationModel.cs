@@ -504,7 +504,7 @@ namespace IndoorWorx.MyLibrary.Views
                         var textEntry = new VideoText();
                         textEntry.Animation = Infrastructure.Enums.VideoTextAnimations.ZoomCenter;
                         textEntry.Duration = TimeSpan.FromSeconds(1);
-                        textEntry.StartTime = start;
+                        textEntry.StartTime = start.Add(interval.Duration);
                         textEntry.MainText = interval.ToEnd.Message;
                         Template.VideoText.Add(textEntry);
                     }

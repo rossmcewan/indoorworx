@@ -68,6 +68,17 @@ namespace IndoorWorx.Infrastructure.Models
                 duration = value;
                 FirePropertyChanged("Duration");
             }
+        }        
+
+        public virtual VideoText Clone()
+        {
+            var cloned = new VideoText();
+            cloned.Animation = this.Animation;
+            cloned.Duration = this.Duration;
+            cloned.MainText = this.MainText;
+            cloned.StartTime = this.StartTime;
+            cloned.SubText = this.SubText;
+            return cloned;
         }
       
         public virtual void Clear()

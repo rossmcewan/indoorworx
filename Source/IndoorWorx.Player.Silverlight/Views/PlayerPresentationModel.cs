@@ -143,8 +143,8 @@ namespace IndoorWorx.Player.Views
 
         private void LoadVideo(Video video)
         {
-            //foreach (var vt in video.VideoText.OrderBy(x => x.StartTime))
-            //    textQueue.Enqueue(vt);
+            foreach (var vt in video.VideoText.OrderBy(x => x.StartTime))
+                textQueue.Enqueue(vt);
             if (video.IsTelemetryLoaded)
             {
                 LoadLinkedDictionary();

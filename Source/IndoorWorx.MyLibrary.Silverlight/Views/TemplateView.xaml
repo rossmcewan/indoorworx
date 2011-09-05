@@ -48,34 +48,40 @@
                         <sdk:Label Content="{Binding Template.Duration, Mode=OneWay}" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="20" FontWeight="SemiBold" />
                         <sdk:TabControl Grid.Row="3" Grid.ColumnSpan="4" Margin="5">
                             <sdk:TabItem Header="{Binding MyLibraryResources.WarmupHeader, Source={StaticResource MyLibraryResources}}">
-                                <Grid>
-                                    <controls:IntervalsCaptureControl 
+                                <controls:IntervalsCaptureControl 
                                     ItemsSource="{Binding WarmupIntervals, Mode=OneWay}" 
-                                    IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
-                                    MoveDownCommand="{Binding MoveWarmupIntervalDownCommand}"
-                                    MoveUpCommand="{Binding MoveWarmupIntervalUpCommand}"
+                                    IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"                                    
                                     AddIntervalCommand="{Binding AddIntervalToWarmupCommand}"
                                     EditIntervalCommand="{Binding EditIntervalCommand}"
                                     RemoveIntervalCommand="{Binding RemoveIntervalFromWarmupCommand}"/>
-                                </Grid>
                             </sdk:TabItem>
                             <sdk:TabItem Header="{Binding MyLibraryResources.MainSetHeader, Source={StaticResource MyLibraryResources}}">
                                 <controls:IntervalsCaptureControl 
-                                IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
-                                ItemsSource="{Binding MainSetIntervals, Mode=OneWay}" 
-                                AddIntervalCommand="{Binding AddIntervalToMainSetCommand}" 
-                                EditIntervalCommand="{Binding EditIntervalCommand}"
-                                RemoveIntervalCommand="{Binding RemoveIntervalFromMainSetCommand}"/>
+                                    IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
+                                    ItemsSource="{Binding MainSetIntervals, Mode=OneWay}" 
+                                    AddIntervalCommand="{Binding AddIntervalToMainSetCommand}" 
+                                    EditIntervalCommand="{Binding EditIntervalCommand}"
+                                    RemoveIntervalCommand="{Binding RemoveIntervalFromMainSetCommand}"/>
                             </sdk:TabItem>
                             <sdk:TabItem Header="{Binding MyLibraryResources.CooldownHeader, Source={StaticResource MyLibraryResources}}">
                                 <controls:IntervalsCaptureControl 
-                                IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
-                                ItemsSource="{Binding CooldownIntervals, Mode=OneWay}" 
-                                AddIntervalCommand="{Binding AddIntervalToCooldownCommand}"
-                                EditIntervalCommand="{Binding EditIntervalCommand}"
-                                RemoveIntervalCommand="{Binding RemoveIntervalFromCooldownCommand}"/>
+                                    IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
+                                    ItemsSource="{Binding CooldownIntervals, Mode=OneWay}" 
+                                    AddIntervalCommand="{Binding AddIntervalToCooldownCommand}"
+                                    EditIntervalCommand="{Binding EditIntervalCommand}"
+                                    RemoveIntervalCommand="{Binding RemoveIntervalFromCooldownCommand}"/>
                             </sdk:TabItem>
-                            <sdk:TabItem Header="{Binding MyLibraryResources.TextMessagesHeader, Source={StaticResource MyLibraryResources}}"></sdk:TabItem>
+                            <sdk:TabItem Header="{Binding MyLibraryResources.TextMessagesHeader, Source={StaticResource MyLibraryResources}}">
+                                <telerik:RadGridView ItemsSource="{Binding Template.VideoText, Mode=OneWay}" AutoGenerateColumns="False">
+                                    <telerik:RadGridView.Columns>
+                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding StartTime, Mode=TwoWay}" Header="{Binding MyLibraryResources.StartTimeHeader, Source={StaticResource MyLibraryResources}}"/>
+                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Duration, Mode=TwoWay}" Header="{Binding MyLibraryResources.DurationHeader, Source={StaticResource MyLibraryResources}}"/>
+                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding MainText, Mode=TwoWay}" Header="{Binding MyLibraryResources.MainTextHeader, Source={StaticResource MyLibraryResources}}"/>
+                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding SubText, Mode=TwoWay}" Header="{Binding MyLibraryResources.SubTextHeader, Source={StaticResource MyLibraryResources}}"/>
+                                        <telerik:GridViewComboBoxColumn DataMemberBinding="{Binding Animation, Mode=TwoWay}" Header="{Binding MyLibraryResources.AnimationTypeHeader, Source={StaticResource MyLibraryResources}}" SelectedValueMemberPath="Value" DisplayMemberPath="DisplayName"/>
+                                    </telerik:RadGridView.Columns>
+                                </telerik:RadGridView>
+                            </sdk:TabItem>
                             <sdk:TabItem Header="{Binding MyLibraryResources.SocialMediaHeader, Source={StaticResource MyLibraryResources}}"></sdk:TabItem>
                         </sdk:TabControl>
                     </Grid>

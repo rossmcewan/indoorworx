@@ -70,6 +70,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to animation.
+        /// </summary>
+        public static string AnimationTypeHeader {
+            get {
+                return ResourceManager.GetString("AnimationTypeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BEFORE THE END OF THE INTERVAL.
         /// </summary>
         public static string BeforeTheEndOfTheInterval {
@@ -210,6 +219,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string DescriptionLabel {
             get {
                 return ResourceManager.GetString("DescriptionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to duration.
+        /// </summary>
+        public static string DurationHeader {
+            get {
+                return ResourceManager.GetString("DurationHeader", resourceCulture);
             }
         }
         
@@ -390,6 +408,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string MainSetHeader {
             get {
                 return ResourceManager.GetString("MainSetHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to main text.
+        /// </summary>
+        public static string MainTextHeader {
+            get {
+                return ResourceManager.GetString("MainTextHeader", resourceCulture);
             }
         }
         
@@ -597,6 +624,24 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string StartOfIntervalMessageLabel {
             get {
                 return ResourceManager.GetString("StartOfIntervalMessageLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to start time.
+        /// </summary>
+        public static string StartTimeHeader {
+            get {
+                return ResourceManager.GetString("StartTimeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sub text.
+        /// </summary>
+        public static string SubTextHeader {
+            get {
+                return ResourceManager.GetString("SubTextHeader", resourceCulture);
             }
         }
         

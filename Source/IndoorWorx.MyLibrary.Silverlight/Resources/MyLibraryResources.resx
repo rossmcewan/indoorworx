@@ -327,4 +327,19 @@
   <data name="NumberOfTrainingSetsLabel" xml:space="preserve">
     <value>{0} TRAININGSETS</value>
   </data>
+  <data name="AnimationTypeHeader" xml:space="preserve">
+    <value>animation</value>
+  </data>
+  <data name="DurationHeader" xml:space="preserve">
+    <value>duration</value>
+  </data>
+  <data name="MainTextHeader" xml:space="preserve">
+    <value>main text</value>
+  </data>
+  <data name="StartTimeHeader" xml:space="preserve">
+    <value>start time</value>
+  </data>
+  <data name="SubTextHeader" xml:space="preserve">
+    <value>sub text</value>
+  </data>
 </root>

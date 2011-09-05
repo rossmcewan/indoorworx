@@ -108,6 +108,10 @@ namespace IndoorWorx.SmoothStreaming.Services
                 workout.Description = template.Description;
                 workout.Duration = totalDuration;
                 workout.TelemetryInfo.TelemetryUri = new Uri(string.Format("http://{0}/IndoorWorx.Silverlight.Web/telemetry/{1}.csv", host, uniqueName), UriKind.Absolute);
+                foreach (var text in template.VideoText)
+                {
+                    workout.VideoText.Add(text.Clone());
+                }
                 var savedWorkout = videoRepository.Save(workout);
 
                 var userService = serviceLocator.GetInstance<IApplicationUserService>();

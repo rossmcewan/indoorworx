@@ -19,7 +19,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.IsPublic);
             References(x => x.EffortType).Not.Nullable().Not.LazyLoad();
             HasMany(x => x.Intervals).Cascade.AllDeleteOrphan().Not.LazyLoad().OrderBy("Sequence").KeyColumn("TrainingSetTemplate");
-            HasMany(x => x.VideoText).Cascade.AllDeleteOrphan().Not.LazyLoad().KeyColumn("TrainingSetTemplate");
+            HasMany(x => x.VideoText).Cascade.AllDeleteOrphan().Not.LazyLoad().KeyColumn("TrainingSetTemplate").OrderBy("StartTime");
         }
     }
 }

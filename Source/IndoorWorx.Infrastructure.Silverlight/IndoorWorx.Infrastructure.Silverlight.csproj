@@ -378,6 +378,7 @@
     <Compile Include="Models\SportingHabits.Silverlight.cs" />
     <Compile Include="Models\TrainingSetTemplate.Silverlight.cs" />
     <Compile Include="Models\UnitOfMeasure.cs" />
+    <Compile Include="Models\VideoText.Silverlight.cs" />
     <Compile Include="Navigation\IMenuItem.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="IShell.cs" />
