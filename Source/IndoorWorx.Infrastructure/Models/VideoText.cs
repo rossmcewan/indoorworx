@@ -68,7 +68,19 @@ namespace IndoorWorx.Infrastructure.Models
                 duration = value;
                 FirePropertyChanged("Duration");
             }
-        }        
+        }
+
+        private string tag;
+        [DataMember]
+        public virtual string Tag
+        {
+            get { return tag; }
+            set
+            {
+                tag = value;
+                FirePropertyChanged("Tag");
+            }
+        }
 
         public virtual VideoText Clone()
         {

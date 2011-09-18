@@ -21,5 +21,7 @@ namespace IndoorWorx.Infrastructure.Models
                 this.SubText == compareTo.SubText &&
                 this.StartTime == compareTo.StartTime;
         }
+
+        public virtual bool IsShown { get; set; }
     }
 }

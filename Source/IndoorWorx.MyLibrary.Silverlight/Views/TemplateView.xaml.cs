@@ -10,6 +10,9 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IndoorWorx.Infrastructure;
+using Telerik.Windows.Data;
+using IndoorWorx.Infrastructure.Enums;
+using Telerik.Windows.Controls;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -22,6 +25,10 @@ namespace IndoorWorx.MyLibrary.Views
             this.DataContext = model;
             InitializeComponent();
             model.View = this;
+
+            var animations = EnumDataSource.FromType<VideoTextAnimations>();
+            var animationColumn = textGridView.Columns[4] as GridViewComboBoxColumn;
+            animationColumn.ItemsSource = animations;
         }
 
         public ITemplatePresentationModel Model

@@ -105,8 +105,11 @@ namespace IndoorWorx.MyLibrary.Views
                 {                    
                     foreach (var cat in FilteredCategories)
                     {
-                        if (video.Catalog == null || video.Catalog.Category.Equals(cat))
-                            result.Add(video);
+                        if ((video.Catalog == null && FilteredCategories.Any(x => x.Title.ToLower() == "workouts")) || (video.Catalog != null && video.Catalog.Category.Equals(cat)))
+                        {
+                            if(!result.Contains(video))
+                                result.Add(video);
+                        }
                         //result.AddRange(cat.Videos);
                     }
                 }

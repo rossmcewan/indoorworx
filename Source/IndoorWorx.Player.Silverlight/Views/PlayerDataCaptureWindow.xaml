@@ -31,16 +31,17 @@
                 </StackPanel>
                 <TextBlock Text="{Binding PlayerResources.DurationLabel, Source={StaticResource PlayerResources}}" FontWeight="SemiBold"/>
                 <TextBlock Text="{Binding Video.PlayDuration, Mode=OneWay}"/>
-                <telerik:RadTimeBar x:Name="timeBar" Height="200" 
+                <telerik:RadTimeBar x:Name="timeBar" Height="200"
                                     PeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}"
                                     VisiblePeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}"
                                     SelectionStart="{Binding Video.PlayFrom, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}" 
                                     SelectionEnd="{Binding Video.PlayTo, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}">
                     <telerik:RadTimeBar.Intervals>
-                        <telerik:SecondInterval/>
-                        <telerik:MinuteInterval/>
+                        <telerik:DayInterval/>
                     </telerik:RadTimeBar.Intervals>
                     <telerik:RadLinearSparkline 
+                            AutoRange="False"
+                            MinYValue="0"
                             ItemsSource="{Binding Video.Telemetry, Mode=TwoWay}" 
                             ShowAxis="False"                            
                             YValuePath="PercentageThreshold" 

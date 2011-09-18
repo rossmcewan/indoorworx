@@ -144,7 +144,7 @@ namespace IndoorWorx.Infrastructure.Models
 
         public void LoadPlayingTelemetry()
         {
-            this.PlayingTelemetry = Telemetry.Where(x => x.TimePosition > this.PlayFrom && x.TimePosition < this.PlayTo).ToList();
+            this.PlayingTelemetry = Telemetry.Where(x => x.TimePosition >= this.PlayFrom && x.TimePosition <= this.PlayTo).ToList();
         }
 
         private ICollection<Telemetry> playingTelemetry;

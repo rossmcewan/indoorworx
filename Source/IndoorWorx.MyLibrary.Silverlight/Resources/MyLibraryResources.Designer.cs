@@ -358,6 +358,24 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to INTERVAL LEVEL.
+        /// </summary>
+        public static string IntervalLevelLabel {
+            get {
+                return ResourceManager.GetString("IntervalLevelLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INTERVALS.
+        /// </summary>
+        public static string IntervalsHeader {
+            get {
+                return ResourceManager.GetString("IntervalsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to INTERVALS.
         /// </summary>
         public static string IntervalsLabel {

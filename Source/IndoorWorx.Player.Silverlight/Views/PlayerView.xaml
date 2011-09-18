@@ -67,10 +67,10 @@
             Grid.ColumnSpan="3" 
             BorderThickness="0"  
             Margin="0,0,0,24" 
-            ShowProgress="True" 
-            ZoneStartX="0"
+            ShowProgress="True"             
+            ZoneStartX="{Binding ZeroSeconds, Converter={StaticResource SecondsToOADateConverter}}"
             ZoneEndX="{Binding PlayerPosition.TotalSeconds, Mode=OneWay, Converter={StaticResource SecondsToOADateConverter}}" 
-            XAxisMinValue="0" 
+            XAxisMinValue="{Binding ZeroSeconds, Converter={StaticResource SecondsToOADateConverter}}" 
             XAxisMaxValue="{Binding Video.Duration.TotalSeconds, Mode=OneWay, Converter={StaticResource SecondsToOADateConverter}}">
             <infcontrols:TelemetryChart.ZoneBackground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

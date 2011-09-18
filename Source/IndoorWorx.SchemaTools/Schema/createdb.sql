@@ -606,6 +606,7 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
        MainText NVARCHAR(255) null,
        StartTime BIGINT null,
        SubText NVARCHAR(255) null,
+       Tag NVARCHAR(255) null,
        TrainingSetTemplate UNIQUEIDENTIFIER null,
        Video UNIQUEIDENTIFIER null,
        primary key (Id)

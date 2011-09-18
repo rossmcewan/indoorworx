@@ -342,4 +342,10 @@
   <data name="SubTextHeader" xml:space="preserve">
     <value>sub text</value>
   </data>
+  <data name="IntervalLevelLabel" xml:space="preserve">
+    <value>INTERVAL LEVEL</value>
+  </data>
+  <data name="IntervalsHeader" xml:space="preserve">
+    <value>INTERVALS</value>
+  </data>
 </root>

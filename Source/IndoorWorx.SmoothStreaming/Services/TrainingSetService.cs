@@ -87,9 +87,11 @@ namespace IndoorWorx.SmoothStreaming.Services
                         var telemetry = new Telemetry();
                         telemetry.PercentageThreshold = Convert.ToDouble(interval.Effort);
                         telemetry.TimePosition = timer;
-                        //_telemetry.Add(telemetry);
                         timer = timer.Add(recordingInterval);
                         telemetryFile.AppendLine(telemetry.ToDelimitedString(','));
+                        //telemetry.PercentageThreshold = Convert.ToDouble(interval.Effort);
+                        //telemetry.TimePosition = timer;
+                        //telemetryFile.AppendLine(telemetry.ToDelimitedString(','));
                     }
                 }
                 string telemetryPath = HttpContext.Current.Server.MapPath("telemetry");

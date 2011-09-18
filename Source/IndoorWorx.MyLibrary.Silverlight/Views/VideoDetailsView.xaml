@@ -31,10 +31,11 @@
                                     PeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}"
                                     VisiblePeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}" >
                     <telerik:RadTimeBar.Intervals>
-                        <telerik:SecondInterval/>
-                        <telerik:MinuteInterval/>
+                        <telerik:DayInterval/>
                     </telerik:RadTimeBar.Intervals>
                     <telerik:RadLinearSparkline 
+                            AutoRange="False"
+                            MinYValue="0"
                             ItemsSource="{Binding Video.Telemetry, Mode=TwoWay}" 
                             ShowAxis="False"                            
                             YValuePath="PercentageThreshold" 

@@ -27,32 +27,32 @@ namespace IndoorWorx.MyLibrary.Views
 
         TrainingSetTemplate Template { get; }
 
-        ICollection<Interval> WarmupIntervals { get; }
+        //ICollection<Interval> WarmupIntervals { get; }
 
-        ICommand AddIntervalToWarmupCommand { get; }
+        //ICommand AddIntervalToWarmupCommand { get; }
 
-        ICommand RemoveIntervalFromWarmupCommand { get; }
+        //ICommand RemoveIntervalFromWarmupCommand { get; }
 
-        ICommand MoveWarmupIntervalUpCommand { get; }
+        //ICommand MoveWarmupIntervalUpCommand { get; }
 
-        ICommand MoveWarmupIntervalDownCommand { get; }
+        //ICommand MoveWarmupIntervalDownCommand { get; }
 
-        bool HasWarmupIntervals { get; }
+        //bool HasWarmupIntervals { get; }
 
-        ICollection<Interval> MainSetIntervals { get; }
+        ICollection<Interval> Intervals { get; }
 
-        ICommand AddIntervalToMainSetCommand { get; }
+        ICommand AddIntervalCommand { get; }
 
-        ICommand RemoveIntervalFromMainSetCommand { get; }
+        ICommand RemoveIntervalCommand { get; }
 
-        bool HasMainSetIntervals { get; }
+        bool HasIntervals { get; }
 
-        ICollection<Interval> CooldownIntervals { get; }
+        //ICollection<Interval> CooldownIntervals { get; }
 
-        ICommand AddIntervalToCooldownCommand { get; }
+        //ICommand AddIntervalToCooldownCommand { get; }
 
-        ICommand RemoveIntervalFromCooldownCommand { get; }
+        //ICommand RemoveIntervalFromCooldownCommand { get; }
 
-        bool HasCooldownIntervals { get; }
+        //bool HasCooldownIntervals { get; }
     }
 }

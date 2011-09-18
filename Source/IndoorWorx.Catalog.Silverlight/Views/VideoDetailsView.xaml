@@ -32,6 +32,8 @@
                         <telerik:DayInterval/>
                     </telerik:RadTimeBar.Intervals>
                     <telerik:RadLinearSparkline 
+                            AutoRange="False"
+                            MinYValue="0"
                             ItemsSource="{Binding Video.Telemetry, Mode=TwoWay}" 
                             ShowAxis="False"                            
                             YValuePath="PercentageThreshold" 

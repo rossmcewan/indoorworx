@@ -22,6 +22,9 @@ using Microsoft.Practices.Composite.Presentation.Commands;
 using System.Threading;
 using Microsoft.Practices.Composite.Events;
 using IndoorWorx.Infrastructure.Facades;
+using IndoorWorx.Infrastructure.Events;
+using Microsoft.Practices.Composite.Presentation.Events;
+using IndoorWorx.Infrastructure.Helpers;
 
 namespace IndoorWorx.Player.Views
 {
@@ -53,11 +56,41 @@ namespace IndoorWorx.Player.Views
             get { return serviceLocator.GetInstance<IDialogFacade>(); }
         }
 
+        Timer timer;
         private void Play(object arg)
         {
-            View.Play();
-            Video.IsPlaying = true;
-            StartTimers();
+            timer = new Timer(new TimerCallback(Countdown), new Action(() =>
+                {
+                    View.Play();
+                    Video.IsPlaying = true;
+                    StartTimers();
+                }), TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            //for (int i = 1; i <= 5; i++)
+            //{
+            //    View.AddTextAnimation(new VideoText() { MainText = i.ToString(), Duration = TimeSpan.FromSeconds(1), Animation = Infrastructure.Enums.VideoTextAnimations.ZoomCenter });
+            //    //Thread.Sleep(1000);
+            //}            
+            //View.Play();
+            //Video.IsPlaying = true;
+            //StartTimers();
+        }
+
+        private int counter = 0;
+        private const int countFrom = 6;
+        private void Countdown(object arg)
+        {
+            counter++;
+            if (counter > 5)
+            {
+                var play = arg as Action;
+                counter = 0;
+                timer.Change(Timeout.Infinite, Timeout.Infinite);
+                SmartDispatcher.BeginInvoke(() => play());
+            }
+            else
+            {
+                SmartDispatcher.BeginInvoke(() => View.AddTextAnimation(new VideoText() { MainText = (countFrom - counter).ToString(), Duration = TimeSpan.FromSeconds(1), Animation = Infrastructure.Enums.VideoTextAnimations.ZoomCenter }));
+            }
         }
 
         private void Stop(object arg)
@@ -88,9 +121,8 @@ namespace IndoorWorx.Player.Views
 
         private void StartTimers()
         {
-            telemetryTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
-            //zoomTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
-            textTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            //telemetryTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            //textTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
         }
 
         private void Pause(object arg)
@@ -102,11 +134,10 @@ namespace IndoorWorx.Player.Views
 
         private void StopTimers()
         {
-            if(telemetryTimer != null)                
-                telemetryTimer.Change(Timeout.Infinite, Timeout.Infinite);
-            //zoomTimer.Change(Timeout.Infinite, Timeout.Infinite);
-            if(textTimer != null)
-                textTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            //if(telemetryTimer != null)                
+            //    telemetryTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            //if(textTimer != null)
+            //    textTimer.Change(Timeout.Infinite, Timeout.Infinite);           
         }
 
         private void FullScreen(object arg)
@@ -144,7 +175,9 @@ namespace IndoorWorx.Player.Views
         private void LoadVideo(Video video)
         {
             foreach (var vt in video.VideoText.OrderBy(x => x.StartTime))
-                textQueue.Enqueue(vt);
+            {
+                textQueue.Enqueue(vt);                
+            }
             if (video.IsTelemetryLoaded)
             {
                 LoadLinkedDictionary();
@@ -163,7 +196,8 @@ namespace IndoorWorx.Player.Views
             linked.Clear();
             foreach (var t in video.PlayingTelemetry)
             {
-                linked.Add(t.TimePosition.TotalSeconds, t);
+                if(!linked.ContainsKey(t.TimePosition.TotalSeconds))
+                    linked.Add(t.TimePosition.TotalSeconds, t);
                 queue.Enqueue(t);
             }            
         }
@@ -175,6 +209,11 @@ namespace IndoorWorx.Player.Views
             View.LoadTelemetry(video.PlayingTelemetry);
         }
 
+        public double ZeroSeconds
+        {
+            get { return 0; }
+        }
+
         private TimeSpan playerPosition = new TimeSpan();
         public TimeSpan PlayerPosition
         {
@@ -183,7 +222,30 @@ namespace IndoorWorx.Player.Views
             {
                 playerPosition = value;
                 FirePropertyChanged("PlayerPosition");
+                ThreadPool.QueueUserWorkItem(new WaitCallback(CheckForTextToDisplayAt));
+                ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateTelemetryAt));
             }
+        }
+
+        private void CheckForTextToDisplayAt(object arg)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+                {
+                    if (textQueue.Count > 0 && textQueue.Peek().StartTime <= PlayerPosition)
+                    {
+                        LoadVideoText(textQueue.Dequeue());
+                        //SmartDispatcher.BeginInvoke(() => LoadVideoText(textQueue.Dequeue()));
+                    }
+                });
+        }
+
+        private void UpdateTelemetryAt(object arg)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+                {
+                    if (queue.Peek().TimePosition <= PlayerPosition)
+                        CurrentTelemetry = queue.Dequeue();
+                });
         }
 
         private IPlayerView view;
@@ -249,40 +311,28 @@ namespace IndoorWorx.Player.Views
         }
 
         private Timer telemetryTimer;
-        private Timer zoomTimer;
         private Timer textTimer;
 
         public void MediaOpened()
         {
-            telemetryTimer = new Timer(new TimerCallback(obj =>
-                {
-                    if (queue.Peek().TimePosition <= PlayerPosition)
-                        CurrentTelemetry = queue.Dequeue();
-                    System.GC.Collect();
-                }), null, Timeout.Infinite, Timeout.Infinite);
+            //telemetryTimer = new Timer(new TimerCallback(obj =>
+            //    {
+            //        if (queue.Peek().TimePosition <= PlayerPosition)
+            //            CurrentTelemetry = queue.Dequeue();
+            //        System.GC.Collect();
+            //    }), null, Timeout.Infinite, Timeout.Infinite);
 
-            zoomTimer = new Timer(new TimerCallback(obj =>
-            {
-                if (PlayerPosition < Video.Duration)
-                {
-                    var xpos = new DateTime(now.Year, now.Month, now.Day, PlayerPosition.Hours, PlayerPosition.Minutes, PlayerPosition.Seconds).ToOADate();
-                    ZoomRangeFrom = PlayerPosition.TotalSeconds / Video.Duration.TotalSeconds;
-                    ZoomRangeTo = ZoomRangeFrom + zoomedLength;
-                }
-                System.GC.Collect();
-            }), null, Timeout.Infinite, Timeout.Infinite);
-
-            textTimer = new Timer(new TimerCallback(obj =>
-            {
-                if (textQueue.Count > 0 && textQueue.Peek().StartTime <= playerPosition)
-                {
-                    SmartDispatcher.BeginInvoke
-                    (
-                        () => LoadVideoText(textQueue.Dequeue()
-                    ));
-                }
-                System.GC.Collect();
-            }), null, Timeout.Infinite, Timeout.Infinite);
+            //textTimer = new Timer(new TimerCallback(obj =>
+            //{
+            //    if (textQueue.Count > 0 && textQueue.Peek().StartTime <= playerPosition)
+            //    {
+            //        SmartDispatcher.BeginInvoke
+            //        (
+            //            () => LoadVideoText(textQueue.Dequeue()
+            //        ));
+            //    }
+            //    System.GC.Collect();
+            //}), null, Timeout.Infinite, Timeout.Infinite);
             Video.IsMediaLoading = false;
             IsMediaOpened = true;
             View.SetStartPosition(Video.PlayFrom);
@@ -290,6 +340,7 @@ namespace IndoorWorx.Player.Views
 
         private void LoadVideoText(VideoText videoText)
         {
+            videoText.IsShown = true;
             View.AddTextAnimation(videoText);
         }
 

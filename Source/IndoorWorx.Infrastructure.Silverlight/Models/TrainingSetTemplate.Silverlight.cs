@@ -53,12 +53,13 @@ namespace IndoorWorx.Infrastructure.Models
         public void ParseSets()
         {
             sets.Clear();
-            var warmups = this.Intervals.Where(x => x.TemplateSection == Interval.WarmupTag);
-            PopulateIntervals(warmups, x => Sets.Add(x));
-            var mainsets = this.Intervals.Where(x => x.TemplateSection == Interval.MainSetTag);
-            PopulateIntervals(mainsets, x => Sets.Add(x));            
-            var cooldowns = this.Intervals.Where(x => x.TemplateSection == Interval.CooldownTag);
-            PopulateIntervals(cooldowns, x => Sets.Add(x));            
+            PopulateIntervals(this.Intervals, x => Sets.Add(x));
+            //var warmups = this.Intervals.Where(x => x.TemplateSection == Interval.WarmupTag);
+            //PopulateIntervals(warmups, x => Sets.Add(x));
+            //var mainsets = this.Intervals.Where(x => x.TemplateSection == Interval.MainSetTag);
+            //PopulateIntervals(mainsets, x => Sets.Add(x));            
+            //var cooldowns = this.Intervals.Where(x => x.TemplateSection == Interval.CooldownTag);
+            //PopulateIntervals(cooldowns, x => Sets.Add(x));            
         }
 
         private void PopulateIntervals(IEnumerable<Interval> rootIntervals, Action<IntervalGroup> add)
@@ -138,15 +139,25 @@ namespace IndoorWorx.Infrastructure.Models
                         var recordingInterval = TimeSpan.FromSeconds(2);
                         foreach (var interval in Intervals)
                         {
-                            var numberOfElements = interval.Duration.TotalSeconds / recordingInterval.TotalSeconds;
-                            for (int i = 0; i < numberOfElements; i++)
-                            {
-                                var telemetry = new Telemetry();
-                                telemetry.PercentageThreshold = Convert.ToDouble(interval.Effort);
-                                telemetry.TimePosition = timer;
-                                _telemetry.Add(telemetry);
-                                timer = timer.Add(recordingInterval);
-                            }
+                            var telemetry = new Telemetry();
+                            telemetry.PercentageThreshold = Convert.ToDouble(interval.Effort);
+                            telemetry.TimePosition = timer;
+                            _telemetry.Add(telemetry);
+                            timer = timer.Add(interval.Duration);
+                            var nextPoint = new Telemetry();
+                            nextPoint.PercentageThreshold = Convert.ToDouble(interval.Effort);
+                            nextPoint.TimePosition = timer;
+                            _telemetry.Add(nextPoint);
+
+                            //var numberOfElements = interval.Duration.TotalSeconds / recordingInterval.TotalSeconds;
+                            //for (int i = 0; i < numberOfElements; i++)
+                            //{
+                            //    var telemetry = new Telemetry();
+                            //    telemetry.PercentageThreshold = Convert.ToDouble(interval.Effort);
+                            //    telemetry.TimePosition = timer;
+                            //    _telemetry.Add(telemetry);
+                            //    timer = timer.Add(recordingInterval);
+                            //}
                         }
                         IsTelemetryLoading = false;
                         Telemetry = _telemetry;
