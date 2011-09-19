@@ -52,8 +52,6 @@ namespace IndoorWorx.Designer.Views
                 if (interval is IntervalGroup)
                 {
                     AllowSingleOrMultipleVideoSelection = (interval as IntervalGroup).Intervals.Count > 1;
-                    //if (!AllowSingleOrMultipleVideoSelection)
-                    //    interval.UseSingleVideo = true;
                 }
                 if (interval != null)
                 {
@@ -71,12 +69,8 @@ namespace IndoorWorx.Designer.Views
             set
             {
                 selectedInterval = value;
-                //if (selectedInterval != null)
-                //{
-                //    selectedInterval.UseMultipleVideos = this.UseMultipleVideos;
-                //    selectedInterval.UseSingleVideo = this.UseSingleVideo;
-                //}
                 FirePropertyChanged("SelectedInterval");
+                FirePropertyChanged("SelectableVideos");
                 eventAggregator.GetEvent<IntervalSelectedEvent>().Publish(selectedInterval);
             }
         }
@@ -238,6 +232,15 @@ namespace IndoorWorx.Designer.Views
                     Interval.Video = video;
                 }
                 FirePropertyChanged("Video");
+            }
+        }
+
+        public ICollection<Video> SelectableVideos
+        {
+            get
+            {
+                var videos = ApplicationUser.CurrentUser.Videos;
+                return videos.Where(x => x.Catalog != null && (SelectedInterval == null || x.Duration >= SelectedInterval.Duration)).ToList();
             }
         }
     }

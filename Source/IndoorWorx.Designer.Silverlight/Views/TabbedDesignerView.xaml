@@ -50,15 +50,7 @@
                             </controls:MetroContentControl>
                             <Grid Grid.Row="2" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}">
                                 <dcontrols:SingleVideoDesignControl Grid.Row="2" Visibility="{Binding UseSingleVideo, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                <Grid Visibility="{Binding UseMultipleVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <!--<telerik:RadTabControl BorderBrush="Transparent" ItemsSource="{Binding SelectedTemplate.Sets, Mode=OneWay}" DisplayMemberPath="Title" TabOrientation="Vertical"
-                                    SelectedItem="{Binding SelectedInterval, Mode=TwoWay}" TabStripPlacement="Left" >  
-                                    <telerik:RadTabControl.ContentTemplate>
-                                        <DataTemplate>
-                                            <local:IntervalDesignerView Interval="{Binding Mode=TwoWay}"/>
-                                        </DataTemplate>
-                                    </telerik:RadTabControl.ContentTemplate>
-                                </telerik:RadTabControl>-->
+                                <Grid Visibility="{Binding UseMultipleVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">                                    
                                     <sdk:TabControl BorderBrush="Transparent" ItemsSource="{Binding SelectedTemplate.Sets, Mode=OneWay, Converter={StaticResource IntervalsToTabItemsConverter}}"
                                     SelectedItem="{Binding SelectedInterval, Mode=TwoWay, Converter={StaticResource IntervalToTabItemConverter}}"
                                     TabStripPlacement="Left"/>

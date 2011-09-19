@@ -13,6 +13,8 @@ namespace IndoorWorx.Designer.Views
 
         TimeSpan VideoTo { get; set; }
 
-        Video Video { get; set; }        
+        Video Video { get; set; }
+
+        ICollection<Video> SelectableVideos { get; }
     }
 }

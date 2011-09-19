@@ -28,10 +28,13 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="{Binding DesignerResources.VideosInYourLibraryLabel, Source={StaticResource DesignerResources}}" FontWeight="SemiBold"/>
-                <ListBox IsTabStop="False" Grid.Row="1" ItemsSource="{Binding CurrentUser.Videos, Mode=OneWay, Source={StaticResource ApplicationContext}}" 
+                <ListBox IsTabStop="False" Grid.Row="1" 
+                         ItemsSource="{Binding SelectableVideos, Mode=OneWay}"                         
                                      DisplayMemberPath="Title" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                     SelectedItem="{Binding Video, Mode=TwoWay}"/>
+                                     SelectedItem="{Binding Video, Mode=TwoWay}">                    
+                </ListBox>
             </Grid>
+            <!--ItemsSource="{Binding CurrentUser.Videos, Mode=OneWay, Source={StaticResource ApplicationContext}}"-->
         </controls:MetroContentControl>
         <controls:MetroContentControl Grid.Column="1">
             <telerik:RadTimeBar Grid.Column="1"

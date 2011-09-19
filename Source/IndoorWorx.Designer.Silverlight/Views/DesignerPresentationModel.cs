@@ -237,6 +237,7 @@ namespace IndoorWorx.Designer.Views
                 selectedInterval = value;
                 IntervalSelected(selectedInterval);
                 FirePropertyChanged("SelectedInterval");
+                FirePropertyChanged("SelectableVideos");
             }
         }
 
@@ -366,6 +367,15 @@ namespace IndoorWorx.Designer.Views
             {
                 title = value;
                 FirePropertyChanged("Title");
+            }
+        }
+
+        public ICollection<Video> SelectableVideos
+        {
+            get
+            {
+                var videos = ApplicationUser.CurrentUser.Videos;
+                return videos.Where(x => x.Catalog != null && x.Duration >= SelectedTemplate.Duration).ToList();
             }
         }
     }
