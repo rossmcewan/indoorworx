@@ -127,6 +127,15 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        public void ReloadTelemetry()
+        {
+            if (!IsTelemetryLoading)
+            {
+                IsTelemetryLoaded = false;
+                LoadTelemetry();
+            }
+        }
+
         public void LoadTelemetry()
         {
             if (!IsTelemetryLoaded && !IsTelemetryLoading)
@@ -235,16 +244,20 @@ namespace IndoorWorx.Infrastructure.Models
             backupValues.Title = this.Title;
         }
 
+        public bool IsCancellingEdit { get; set; }
+
         public void CancelEdit()
         {
+            IsCancellingEdit = true;
             this.Credits = backupValues.Credits;
             this.Description = backupValues.Description;
             this.Duration = backupValues.Duration;
             this.EffortType = backupValues.EffortType;
             this.Intervals.Clear();
             foreach (var interval in backupValues.Intervals)
-                this.Intervals.Add(interval);
+               this.Intervals.Add(interval);
             this.Title = backupValues.Title;
+            IsCancellingEdit = false;
         }
 
         public void EndEdit()

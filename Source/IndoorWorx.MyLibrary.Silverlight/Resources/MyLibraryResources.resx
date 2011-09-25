@@ -328,24 +328,30 @@
     <value>{0} TRAININGSETS</value>
   </data>
   <data name="AnimationTypeHeader" xml:space="preserve">
-    <value>animation</value>
+    <value>ANIMATION</value>
   </data>
   <data name="DurationHeader" xml:space="preserve">
-    <value>duration</value>
+    <value>DURATION</value>
   </data>
   <data name="MainTextHeader" xml:space="preserve">
-    <value>main text</value>
+    <value>MAINTEXT</value>
   </data>
   <data name="StartTimeHeader" xml:space="preserve">
-    <value>start time</value>
+    <value>START</value>
   </data>
   <data name="SubTextHeader" xml:space="preserve">
-    <value>sub text</value>
+    <value>SUBTEXT</value>
   </data>
   <data name="IntervalLevelLabel" xml:space="preserve">
-    <value>INTERVAL LEVEL</value>
+    <value>LEVEL</value>
   </data>
   <data name="IntervalsHeader" xml:space="preserve">
     <value>INTERVALS</value>
+  </data>
+  <data name="TelemetryPreviewHeader" xml:space="preserve">
+    <value>TELEMETRY</value>
+  </data>
+  <data name="IntervalNameLabel" xml:space="preserve">
+    <value>NAME</value>
   </data>
 </root>

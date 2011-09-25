@@ -517,6 +517,10 @@
       <Project>{8A9B8CA1-5A93-4838-9F3E-EFBB64D237E2}</Project>
       <Name>IndoorWorx.Settings.Silverlight</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IndoorWorx.Trainers.Silverlight\IndoorWorx.Trainers.Silverlight.csproj">
+      <Project>{82F68711-92F2-46FD-B5A6-F8F4773D0999}</Project>
+      <Name>IndoorWorx.Trainers.Silverlight</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

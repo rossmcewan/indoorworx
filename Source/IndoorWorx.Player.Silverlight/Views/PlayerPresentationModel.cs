@@ -44,6 +44,12 @@ namespace IndoorWorx.Player.Views
             StopCommand = new DelegateCommand<object>(Stop);
             PauseCommand = new DelegateCommand<object>(Pause);
             FullScreenCommand = new DelegateCommand<object>(FullScreen);
+            ExportTrainerFileCommand = new DelegateCommand<object>(ExportTrainerFile);
+        }
+
+        private void ExportTrainerFile(object arg)
+        {
+            eventAggregator.GetEvent<ExportTrainerFileEvent>().Publish(Video.Telemetry);
         }
 
         private IShell Shell
@@ -80,8 +86,9 @@ namespace IndoorWorx.Player.Views
         private void Countdown(object arg)
         {
             counter++;
-            if (counter > 5)
+            if (counter > 5 || paused)
             {
+                paused = false;
                 var play = arg as Action;
                 counter = 0;
                 timer.Change(Timeout.Infinite, Timeout.Infinite);
@@ -112,6 +119,7 @@ namespace IndoorWorx.Player.Views
 
         private void Stop()
         {
+            paused = false;
             StopTimers();
             Video.IsPlaying = false;
             View.Stop();
@@ -125,8 +133,10 @@ namespace IndoorWorx.Player.Views
             //textTimer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
         }
 
+        private bool paused;
         private void Pause(object arg)
         {
+            paused = true;
             StopTimers();
             Video.IsPlaying = false;
             View.Pause();
@@ -174,7 +184,7 @@ namespace IndoorWorx.Player.Views
 
         private void LoadVideo(Video video)
         {
-            foreach (var vt in video.VideoText.OrderBy(x => x.StartTime))
+            foreach (var vt in video.VideoText.Where(x=>x.StartTime > video.PlayFrom).OrderBy(x => x.StartTime))
             {
                 textQueue.Enqueue(vt);                
             }
@@ -435,5 +445,7 @@ namespace IndoorWorx.Player.Views
                 FirePropertyChanged("FullScreenCommand");
             }
         }
+
+        public ICommand ExportTrainerFileCommand { get; set; }
     }
 }

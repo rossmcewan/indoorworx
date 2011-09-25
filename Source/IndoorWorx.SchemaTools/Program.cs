@@ -520,22 +520,31 @@ namespace IndoorWorx.SchemaTools
                     var l7 = new IntervalLevel() { Title = "L7 - Neuromuscular Power", Sequence = 70, TypicalMaxDuration = TimeSpan.FromSeconds(30) };
                     session.Save(l7);
 
-                    var warmup = new IntervalType() { Name = "Warm up", Tag = "WARMUP", Sequence = 10 };
-                    session.Save(warmup);
-                    var cooldown = new IntervalType() { Name = "Cool down", Tag = "COOLDOWN", Sequence = 20 };
-                    session.Save(cooldown);
-                    var recover = new IntervalType() { Name = "Recovery", Tag = "RECOVERY", Sequence = 30 };
+                    //var warmup = new IntervalType() { Name = "Warm up", Tag = "WARMUP", Sequence = 10 };
+                    //session.Save(warmup);
+                    //var cooldown = new IntervalType() { Name = "Cool down", Tag = "COOLDOWN", Sequence = 20 };
+                    //session.Save(cooldown);
+                    //var recover = new IntervalType() { Name = "Recovery", Tag = "RECOVERY", Sequence = 30 };
+                    //session.Save(recover);
+                    //var longHills = new IntervalType() { Name = "Long Hills", Tag = "LONGHILLS", Sequence = 40 };
+                    //session.Save(longHills);
+                    //var shortHills = new IntervalType() { Name = "Short Hills", Tag = "SHORTHILLS", Sequence = 50 };
+                    //session.Save(shortHills);
+                    //var tt = new IntervalType() { Name = "Time Trial", Tag = "TIMETRIAL", Sequence = 60 };
+                    //session.Save(tt);
+                    //var sprints = new IntervalType() { Name = "Sprints", Tag = "SPRINTS", Sequence = 70 };
+                    //session.Save(sprints);
+                    //var breakaways = new IntervalType() { Name = "Breakaways", Tag = "BREAKAWAYS", Sequence = 80 };
+                    //session.Save(breakaways);
+
+                    var levels = new IntervalType() { Name = "Levels", Sequence = 10, Tag = IntervalType.LevelsTag };
+                    session.Save(levels);
+
+                    var stepped = new IntervalType() { Name = "Stepped", Sequence = 20, Tag = IntervalType.SteppedTag };
+                    session.Save(stepped);
+
+                    var recover = new IntervalType() { Name = "Recovery", Tag = IntervalType.RecoveryTag, Sequence = 30 };
                     session.Save(recover);
-                    var longHills = new IntervalType() { Name = "Long Hills", Tag = "LONGHILLS", Sequence = 40 };
-                    session.Save(longHills);
-                    var shortHills = new IntervalType() { Name = "Short Hills", Tag = "SHORTHILLS", Sequence = 50 };
-                    session.Save(shortHills);
-                    var tt = new IntervalType() { Name = "Time Trial", Tag = "TIMETRIAL", Sequence = 60 };
-                    session.Save(tt);
-                    var sprints = new IntervalType() { Name = "Sprints", Tag = "SPRINTS", Sequence = 70 };
-                    session.Save(sprints);
-                    var breakaways = new IntervalType() { Name = "Breakaways", Tag = "BREAKAWAYS", Sequence = 80 };
-                    session.Save(breakaways);
 
                     #region 4x10
                     var trainingTemplate = new TrainingSetTemplate();
@@ -549,7 +558,7 @@ namespace IndoorWorx.SchemaTools
                         Title = "Warm up",
                         TemplateSection = "WARMUP",
                         SectionGroup = "W1",
-                        IntervalType = warmup,
+                        IntervalType = levels,
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(10),
                         EffortType = power,
@@ -561,7 +570,7 @@ namespace IndoorWorx.SchemaTools
                         Title = "Interval #1",
                         TemplateSection = "MAINSET",
                         SectionGroup = "M1",
-                        IntervalType = tt,
+                        IntervalType = levels,
                         IntervalLevel = l3,
                         Duration = TimeSpan.FromMinutes(10),
                         EffortType = power,
@@ -573,7 +582,7 @@ namespace IndoorWorx.SchemaTools
                         Title = "Recovery",
                         TemplateSection = "MAINSET",
                         SectionGroup = "M1",
-                        IntervalType = recover,
+                        IntervalType = levels,
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(5),
                         EffortType = power,
@@ -585,7 +594,7 @@ namespace IndoorWorx.SchemaTools
                         Title = "Interval #2",
                         TemplateSection = "MAINSET",
                         SectionGroup = "M1",
-                        IntervalType = tt,
+                        IntervalType = levels,
                         IntervalLevel = l3,
                         Duration = TimeSpan.FromMinutes(10),
                         EffortType = power,
@@ -597,7 +606,7 @@ namespace IndoorWorx.SchemaTools
                         Title = "Recovery",
                         TemplateSection = "MAINSET",
                         SectionGroup = "M1",
-                        IntervalType = recover,
+                        IntervalType = levels,
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(5),
                         EffortType = power,
@@ -609,7 +618,7 @@ namespace IndoorWorx.SchemaTools
                         Title = "Interval #3",
                         TemplateSection = "MAINSET",
                         SectionGroup = "M1",
-                        IntervalType = tt,
+                        IntervalType = levels,
                         IntervalLevel = l3,
                         Duration = TimeSpan.FromMinutes(10),
                         EffortType = power,
@@ -621,7 +630,7 @@ namespace IndoorWorx.SchemaTools
                         Title = "Recovery",
                         TemplateSection = "MAINSET",
                         SectionGroup = "M1",
-                        IntervalType = recover,
+                        IntervalType = levels,
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(5),
                         EffortType = power,
@@ -633,7 +642,7 @@ namespace IndoorWorx.SchemaTools
                         Title = "Interval #4",
                         TemplateSection = "MAINSET",
                         SectionGroup = "M1",
-                        IntervalType = tt,
+                        IntervalType = levels,
                         IntervalLevel = l3,
                         Duration = TimeSpan.FromMinutes(10),
                         EffortType = power,
@@ -645,7 +654,7 @@ namespace IndoorWorx.SchemaTools
                         Title = "Recovery",
                         TemplateSection = "MAINSET",
                         SectionGroup = "M1",
-                        IntervalType = recover,
+                        IntervalType = levels,
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(5),
                         EffortType = power,
@@ -657,7 +666,7 @@ namespace IndoorWorx.SchemaTools
                         Title = "Cool down",
                         TemplateSection = "COOLDOWN",
                         SectionGroup = "C1",
-                        IntervalType = cooldown,
+                        IntervalType = levels,
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(5),
                         EffortType = power,
@@ -679,7 +688,7 @@ namespace IndoorWorx.SchemaTools
                         Title = "Warm up",
                         TemplateSection = "WARMUP",
                         SectionGroup = "W1",
-                        IntervalType = warmup,
+                        IntervalType = levels,
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(10),
                         EffortType = power,
@@ -691,7 +700,7 @@ namespace IndoorWorx.SchemaTools
                         Title = "Interval #1",
                         TemplateSection = "MAINSET",
                         SectionGroup = "M1",
-                        IntervalType = tt,
+                        IntervalType = levels,
                         IntervalLevel = l3,
                         Duration = TimeSpan.FromMinutes(20),
                         EffortType = power,
@@ -701,7 +710,7 @@ namespace IndoorWorx.SchemaTools
                     trainingTemplate1.Intervals.Add(new Interval()
                     {
                         Title = "Recovery",
-                        IntervalType = recover,
+                        IntervalType = levels,
                         TemplateSection = "MAINSET",
                         SectionGroup = "M1",
                         IntervalLevel = l1,
@@ -713,7 +722,7 @@ namespace IndoorWorx.SchemaTools
                     trainingTemplate1.Intervals.Add(new Interval()
                     {
                         Title = "Interval #2",
-                        IntervalType = tt,
+                        IntervalType = levels,
                         TemplateSection = "MAINSET",
                         SectionGroup = "M1",
                         IntervalLevel = l3,
@@ -725,7 +734,7 @@ namespace IndoorWorx.SchemaTools
                     trainingTemplate1.Intervals.Add(new Interval()
                     {
                         Title = "Recovery",
-                        IntervalType = recover,
+                        IntervalType = levels,
                         TemplateSection = "MAINSET",
                         SectionGroup = "M1",
                         IntervalLevel = l1,
@@ -739,7 +748,7 @@ namespace IndoorWorx.SchemaTools
                         Title = "Cool down",
                         TemplateSection = "COOLDOWN",
                         SectionGroup = "C1",
-                        IntervalType = cooldown,
+                        IntervalType = levels,
                         IntervalLevel = l1,
                         Duration = TimeSpan.FromMinutes(5),
                         EffortType = power,

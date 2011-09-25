@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace IndoorWorx.Infrastructure.Models
 {
@@ -116,6 +117,12 @@ namespace IndoorWorx.Infrastructure.Models
         public static Interval NewInterval(string tag, EffortType effortType, Action onChange)
         {
             var interval = new Interval();
+            Setup(interval, tag, effortType, onChange);
+            return interval;
+        }
+
+        public static void Setup(Interval interval, string tag, EffortType effortType, Action onChange)
+        {
             interval.Repeats = 1;
             interval.PropertyChanged += (sender, e) => onChange();
             interval.IntervalDuration.PropertyChanged += (sender, e) => onChange();
@@ -128,7 +135,6 @@ namespace IndoorWorx.Infrastructure.Models
             interval.IntervalType = ApplicationContext.Current.IntervalTypes.FirstOrDefault(x => x.Tag == tag);
             interval.TemplateSection = tag;
             interval.SectionGroup = Guid.NewGuid().ToString();
-            return interval;
         }        
 
         private static void IntervalPropertyChanged(object sender, PropertyChangedEventArgs args)
@@ -141,6 +147,21 @@ namespace IndoorWorx.Infrastructure.Models
             if (args.PropertyName == "EffortType")
             {
                 interval.Effort = interval.IntervalLevel.AverageEffortFor(interval.EffortType);
+            }
+            if (args.PropertyName == "Effort")
+            {
+                if (interval.EffortType.IsHR)
+                {
+                    interval.intervalLevel = ApplicationContext.Current.IntervalLevels.FirstOrDefault(x => interval.effort >= x.MinimumPercentageOfFthr && interval.Effort <= x.MaximumPercentageOfFthr);
+                }
+                if (interval.EffortType.IsPower)
+                {
+                    interval.intervalLevel = ApplicationContext.Current.IntervalLevels.FirstOrDefault(x => interval.effort >= x.MinimumPercentageOfFtp && interval.Effort <= x.MaximumPercentageOfFtp);                    
+                }
+                if (interval.EffortType.IsRPE)
+                {
+                    interval.intervalLevel = ApplicationContext.Current.IntervalLevels.FirstOrDefault(x => interval.effort >= x.MinRPE && interval.Effort <= x.MaxRPE);
+                }
             }
         }
 

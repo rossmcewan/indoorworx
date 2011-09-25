@@ -375,7 +375,9 @@ namespace IndoorWorx.Designer.Views
             get
             {
                 var videos = ApplicationUser.CurrentUser.Videos;
-                return videos.Where(x => x.Catalog != null && x.Duration >= SelectedTemplate.Duration).ToList();
+                if(SelectedTemplate != null)
+                    return videos.Where(x => x.Catalog != null && x.Duration >= SelectedTemplate.Duration).ToList();
+                return videos;
             }
         }
     }

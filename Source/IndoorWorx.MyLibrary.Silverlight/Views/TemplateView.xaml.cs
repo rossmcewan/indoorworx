@@ -27,13 +27,25 @@ namespace IndoorWorx.MyLibrary.Views
             model.View = this;
 
             var animations = EnumDataSource.FromType<VideoTextAnimations>();
-            var animationColumn = textGridView.Columns[4] as GridViewComboBoxColumn;
+            var animationColumn = textGridView.Columns[5] as GridViewComboBoxColumn;
             animationColumn.ItemsSource = animations;
         }
 
         public ITemplatePresentationModel Model
         {
             get { return this.DataContext as ITemplatePresentationModel; }
+        }
+
+        private void timeBar_Loaded(object sender, RoutedEventArgs e)
+        {
+            Model.Template.ReloadTelemetry();
+        }
+
+        private void RadButton_Click(object sender, RoutedEventArgs e)
+        {
+            var element = sender as FrameworkElement;
+            if(Model.EditIntervalCommand.CanExecute(element.DataContext))
+                Model.EditIntervalCommand.Execute(element.DataContext);
         }
     }
 }

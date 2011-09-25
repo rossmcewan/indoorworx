@@ -5,10 +5,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"       
     xmlns:converters="clr-namespace:IndoorWorx.Catalog.Converters"             
+    xmlns:iconverters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"              
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.Resources>
         <converters:CreditsToTextConverter x:Key="CreditsToTextConverter"/>
+        <iconverters:TelemetryToMaxYValueConverter x:Key="TelemetryToMaxYValueConverter"/>
     </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
         <StackPanel>
@@ -16,6 +18,7 @@
                 <telerik:RadAreaSparkline 
                             AutoRange="False"
                             MinYValue="0"
+                            MaxYValue="{Binding Template.Telemetry, Mode=OneWay, Converter={StaticResource TelemetryToMaxYValueConverter}}"
                             Width="256" Height="100"
                             ItemsSource="{Binding Template.Telemetry, Mode=TwoWay}" 
                             ShowAxis="False"                            

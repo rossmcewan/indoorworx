@@ -19,6 +19,7 @@ using IndoorWorx.MyLibrary.Resources;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.Infrastructure.Helpers;
 using IndoorWorx.Infrastructure.Events;
+using System.Threading;
 
 namespace IndoorWorx.MyLibrary.Views
 {

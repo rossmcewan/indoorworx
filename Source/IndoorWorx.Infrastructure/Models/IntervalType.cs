@@ -9,6 +9,12 @@ namespace IndoorWorx.Infrastructure.Models
     [DataContract]
     public partial class IntervalType : BaseModel
     {
+        public static readonly string LevelsTag = "LEVELS";
+
+        public static readonly string SteppedTag = "STEPPED";
+
+        public static readonly string RecoveryTag = "RECOVERY";
+
         private string name;
         [DataMember]
         public virtual string Name
@@ -20,18 +26,6 @@ namespace IndoorWorx.Infrastructure.Models
                 FirePropertyChanged("Name");
             }
         }
-
-        //private IntervalLevel defaultLevel;
-        //[DataMember]
-        //public virtual IntervalLevel DefaultLevel
-        //{
-        //    get { return defaultLevel; }
-        //    set
-        //    {
-        //        defaultLevel = value;
-        //        FirePropertyChanged("DefaultLevel");
-        //    }
-        //}
 
         private string tag;
         [DataMember]
@@ -55,6 +49,11 @@ namespace IndoorWorx.Infrastructure.Models
                 sequence = value;
                 FirePropertyChanged("Sequence");
             }
+        }
+
+        public virtual bool IsRecovery
+        {
+            get { return Tag == RecoveryTag; }
         }
     }
 }

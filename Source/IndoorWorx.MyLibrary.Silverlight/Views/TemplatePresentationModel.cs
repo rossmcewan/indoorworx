@@ -34,20 +34,34 @@ namespace IndoorWorx.MyLibrary.Views
             this.eventAggregator = eventAggregator;
             this.dialogFacade = dialogFacade;
             this.shell = shell;            
-            //this.warmupIntervals = new ObservableCollection<Interval>();
             this.intervals = new ObservableCollection<Interval>();
-            //this.cooldownIntervals = new ObservableCollection<Interval>();
+            this.intervals.CollectionChanged += (sender, e) =>
+                {
+                    switch (e.Action)
+                    {
+                        case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                            if (IsPopulatingIntervals) return;
+                            var interval = e.NewItems[0] as Interval;
+                            Interval.Setup(interval, string.Empty, Template.EffortType, () => RefreshTemplate());
+                            RefreshTemplate();
+                            break;
+                        case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                            RefreshTemplate();
+                            break;
+                        case System.Collections.Specialized.NotifyCollectionChangedAction.Replace:
+                            RefreshTemplate();
+                            break;
+                        case System.Collections.Specialized.NotifyCollectionChangedAction.Reset:
+                            break;
+                        default:
+                            break;
+                    }
+                };
             this.CancelCommand = new DelegateCommand<object>(Cancel);
             this.SaveCommand = new DelegateCommand<object>(Save);
             this.editIntervalCommand = new DelegateCommand<Interval>(EditInterval);
-            //this.addIntervalToWarmupCommand = new DelegateCommand<Interval>(AddIntervalToWarmup);
-            //this.removeIntervalFromWarmupCommand = new DelegateCommand<Interval>(RemoveIntervalFromWarmup);
-            //this.MoveWarmupIntervalDownCommand = new DelegateCommand<Interval>(MoveWarmupIntervalDown);
-            //this.MoveWarmupIntervalUpCommand = new DelegateCommand<Interval>(MoveWarmupIntervalUp);
             this.addIntervalCommand = new DelegateCommand<Interval>(AddInterval);
             this.removeIntervalCommand = new DelegateCommand<Interval>(RemoveInterval);
-            //this.addIntervalToCooldownCommand = new DelegateCommand<Interval>(AddIntervalToCooldown);
-            //this.removeIntervalFromCooldownCommand = new DelegateCommand<Interval>(RemoveIntervalFromCooldown);
         }
 
         private bool busy;
@@ -85,6 +99,7 @@ namespace IndoorWorx.MyLibrary.Views
                         if (confirmed)
                         {
                             this.Template.CancelEdit();
+                            this.Template.ReloadTelemetry();
                             shell.RemoveFromLayoutRoot(View as UIElement);
                         }
                     });
@@ -174,12 +189,8 @@ namespace IndoorWorx.MyLibrary.Views
                 {
                     if (e.PropertyName == "EffortType")
                     {
-                        //foreach (var interval in WarmupIntervals)
-                        //    interval.EffortType = this.Template.EffortType;
                         foreach (var interval in Intervals)
                             interval.EffortType = this.Template.EffortType;
-                        //foreach (var interval in CooldownIntervals)
-                        //    interval.EffortType = this.Template.EffortType;
                     }
                 };
             this.Template.BeginEdit();
@@ -194,26 +205,20 @@ namespace IndoorWorx.MyLibrary.Views
             {
                 if (e.PropertyName == "EffortType")
                 {
-                    //foreach (var interval in WarmupIntervals)
-                    //    interval.EffortType = this.Template.EffortType;
                     foreach (var interval in Intervals)
                         interval.EffortType = this.Template.EffortType;
-                    //foreach (var interval in CooldownIntervals)
-                    //    interval.EffortType = this.Template.EffortType;
                 }
             };
-            //var warmups = template.Intervals.Where(x=>x.TemplateSection == Interval.WarmupTag);
-            //PopulateIntervals(warmups, x => warmupIntervals.Add(x));
-            //var mainsets = template.Intervals.Where(x=>x.TemplateSection == Interval.MainSetTag);
             PopulateIntervals(template.Intervals, x => intervals.Add(x));
-            //var cooldowns = template.Intervals.Where(x=>x.TemplateSection == Interval.CooldownTag);
-            //PopulateIntervals(cooldowns, x => cooldownIntervals.Add(x));
             this.Template.BeginEdit();
             shell.AddToLayoutRoot(View as UIElement);
         }
 
+        public bool IsPopulatingIntervals { get; set; }
+
         private void PopulateIntervals(IEnumerable<Interval> rootIntervals, Action<Interval> add)
         {
+            IsPopulatingIntervals = true;
             var intervalGroups = rootIntervals.GroupBy(x => x.SectionGroup);
             foreach (var group in intervalGroups)
             {
@@ -248,85 +253,8 @@ namespace IndoorWorx.MyLibrary.Views
                 interval.NotifyOnChange(RefreshTemplate);
                 add(interval);
             }
+            IsPopulatingIntervals = false;
         }
-
-        //private ObservableCollection<Interval> warmupIntervals;
-        //public ICollection<Interval> WarmupIntervals
-        //{
-        //    get { return this.warmupIntervals; }
-        //}
-
-        //private ICommand addIntervalToWarmupCommand;
-        //public ICommand AddIntervalToWarmupCommand
-        //{
-        //    get { return this.addIntervalToWarmupCommand; }
-        //}
-
-        //private void AddIntervalToWarmup(Interval arg)
-        //{
-        //    var interval = Interval.NewWarmupInterval(Template.EffortType, () => RefreshTemplate());
-        //    if (arg == null)
-        //    {
-        //        warmupIntervals.Add(interval);
-        //    }
-        //    else
-        //    {
-        //        var index = warmupIntervals.IndexOf(arg);
-        //        if (index != -1)
-        //            warmupIntervals.Insert(++index, interval);
-        //        else
-        //            warmupIntervals.Add(interval);
-        //    }
-        //    FirePropertyChanged("HasWarmupIntervals");
-        //    RefreshTemplate();
-        //}
-
-        //private ICommand removeIntervalFromWarmupCommand;
-        //public ICommand RemoveIntervalFromWarmupCommand
-        //{
-        //    get { return this.removeIntervalFromWarmupCommand; }
-        //}
-
-        //private void RemoveIntervalFromWarmup(Interval arg)
-        //{
-        //    WarmupIntervals.Remove(arg);
-        //    FirePropertyChanged("HasWarmupIntervals");
-        //    RefreshTemplate();
-        //}
-
-        //public ICommand MoveWarmupIntervalUpCommand { get; private set; }
-
-        //private void MoveWarmupIntervalUp(Interval interval)
-        //{
-        //    var index = warmupIntervals.IndexOf(interval);
-        //    if (index >= 1)
-        //    {
-        //        warmupIntervals.RemoveAt(index);
-        //        warmupIntervals.Insert(--index, interval);
-        //        RefreshTemplate();
-        //    }
-        //}
-
-        //public ICommand MoveWarmupIntervalDownCommand { get; private set; }
-
-        //private void MoveWarmupIntervalDown(Interval interval)
-        //{
-        //    var index = warmupIntervals.IndexOf(interval);
-        //    if (index != -1 && index < (warmupIntervals.Count - 1))
-        //    {
-        //        warmupIntervals.RemoveAt(index);
-        //        warmupIntervals.Insert(++index, interval);
-        //        RefreshTemplate();
-        //    }
-        //}
-
-        //public bool HasWarmupIntervals
-        //{
-        //    get
-        //    {
-        //        return warmupIntervals.Count > 0;
-        //    }
-        //}
 
         private ObservableCollection<Interval> intervals;
         public ICollection<Interval> Intervals
@@ -343,7 +271,6 @@ namespace IndoorWorx.MyLibrary.Views
         private void AddInterval(Interval arg)
         {
             var interval = Interval.NewInterval(string.Empty, Template.EffortType, () => RefreshTemplate());
-            //Interval.NewMainSetInterval(Template.EffortType, () => RefreshTemplate());
             if (arg == null)
             {
                 intervals.Add(interval);
@@ -378,55 +305,6 @@ namespace IndoorWorx.MyLibrary.Views
             get { return intervals.Count > 0; }
         }
 
-        //private ObservableCollection<Interval> cooldownIntervals;
-        //public ICollection<Interval> CooldownIntervals
-        //{
-        //    get { return this.cooldownIntervals; }
-        //}
-
-        //private ICommand addIntervalToCooldownCommand;
-        //public ICommand AddIntervalToCooldownCommand
-        //{
-        //    get { return this.addIntervalToCooldownCommand; }
-        //}
-
-        //private void AddIntervalToCooldown(Interval arg)
-        //{
-        //    var interval = Interval.NewCooldownInterval(Template.EffortType, () => RefreshTemplate());
-        //    if (arg == null)
-        //    {
-        //        cooldownIntervals.Add(interval);
-        //    }
-        //    else
-        //    {
-        //        var index = cooldownIntervals.IndexOf(arg);
-        //        if (index != -1)
-        //            cooldownIntervals.Insert(++index, interval);
-        //        else
-        //            cooldownIntervals.Add(interval);
-        //    }
-        //    FirePropertyChanged("HasCooldownIntervals");
-        //    RefreshTemplate();
-        //}
-
-        //private ICommand removeIntervalFromCooldownCommand;
-        //public ICommand RemoveIntervalFromCooldownCommand
-        //{
-        //    get { return this.removeIntervalFromCooldownCommand; }
-        //}
-
-        //private void RemoveIntervalFromCooldown(Interval arg)
-        //{
-        //    CooldownIntervals.Remove(arg);
-        //    FirePropertyChanged("HasCooldownIntervals");
-        //    RefreshTemplate();
-        //}
-
-        //public bool HasCooldownIntervals
-        //{
-        //    get { return this.cooldownIntervals.Count > 0; }
-        //}
-
         protected virtual void RefreshTemplate()
         {
             Template.Intervals.Clear();
@@ -437,15 +315,6 @@ namespace IndoorWorx.MyLibrary.Views
             }
             TimeSpan totalDuration = TimeSpan.Zero;
             int sequence = 0;
-            //foreach (var interval in warmupIntervals)
-            //{
-            //    CreateIntervals(interval, x => 
-            //    {
-            //        x.Sequence = sequence++;
-            //        Template.Intervals.Add(x);
-            //        totalDuration = totalDuration.Add(x.Duration);
-            //    });
-            //}
             foreach (var interval in intervals)
             {
                 CreateIntervals(interval, x =>
@@ -455,15 +324,6 @@ namespace IndoorWorx.MyLibrary.Views
                     totalDuration = totalDuration.Add(x.Duration);
                 });
             }
-            //foreach (var interval in cooldownIntervals)
-            //{
-            //    CreateIntervals(interval, x =>
-            //    {
-            //        x.Sequence = sequence++;
-            //        Template.Intervals.Add(x);
-            //        totalDuration = totalDuration.Add(x.Duration);
-            //    });
-            //}
             Template.SetupIntervalTimes();
             Template.Duration = totalDuration;
 
@@ -533,6 +393,8 @@ namespace IndoorWorx.MyLibrary.Views
                 start += interval.Duration;
             }
             Template.VideoText = new ObservableCollection<VideoText>(Template.VideoText.OrderBy(x => x.StartTime));
+            //if(!Template.IsCancellingEdit)
+            //    Template.ReloadTelemetry();
         }
 
         private void CreateIntervals(Interval interval, Action<Interval> add)
@@ -549,7 +411,7 @@ namespace IndoorWorx.MyLibrary.Views
                     Effort = interval.Effort,
                     EffortType = interval.EffortType,
                     IntervalLevel = interval.IntervalLevel,
-                    Title = string.Format(MyLibraryResources.IntervalTitle, (i+1)),
+                    Title = string.IsNullOrWhiteSpace(interval.Title) ? string.Format(MyLibraryResources.IntervalTitle, (i+1)) : interval.Title,
                     TemplateSection = interval.TemplateSection,
                     SectionGroup = interval.SectionGroup,
                     ToStart = interval.ToStart,

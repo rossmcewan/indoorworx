@@ -117,43 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConfirmStopVideo" xml:space="preserve">
-    <value>Are you sure you would like to stop the video playing?</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>cancel</value>
   </data>
-  <data name="DurationLabel" xml:space="preserve">
-    <value>DURATION</value>
+  <data name="ComputrainerDescription" xml:space="preserve">
+    <value>Computrainer</value>
   </data>
-  <data name="ExportTrainerFile" xml:space="preserve">
-    <value>Export a file for your indoor trainer.</value>
+  <data name="ComputrainerTitle" xml:space="preserve">
+    <value>Computrainer</value>
   </data>
-  <data name="FromLabel" xml:space="preserve">
-    <value>FROM</value>
+  <data name="OK" xml:space="preserve">
+    <value>ok</value>
   </data>
-  <data name="InsufficientCredits" xml:space="preserve">
-    <value>You have insufficient credits to ride this video.</value>
+  <data name="PleaseSelectTrainer" xml:space="preserve">
+    <value>PLEASE SELECT YOUR INDOOR TRAINER FROM THE LIST BELOW</value>
   </data>
-  <data name="MediaError" xml:space="preserve">
-    <value>A smooth streaming media error has occurred.
-Error code : {0}
-Error message : {1}
-Technical support has been notified. We will try to resolve this as soon as possible.</value>
+  <data name="PowerbeamProDescription" xml:space="preserve">
+    <value>Powerbeam Pro</value>
   </data>
-  <data name="PlayerDataCaptureTitle" xml:space="preserve">
-    <value>PLAYER DATA</value>
-  </data>
-  <data name="PlayerDetailsInstructions" xml:space="preserve">
-    <value>You have chosen to ride a video with associated telemetry. You now have the option of configuring what portion of the ride you would like to do by selecting the start and end time.</value>
-  </data>
-  <data name="PowerLabel" xml:space="preserve">
-    <value>Power:</value>
-  </data>
-  <data name="PreviewVideoTitle" xml:space="preserve">
-    <value>Preview - {0}</value>
-  </data>
-  <data name="TimeLabel" xml:space="preserve">
-    <value>Time:</value>
-  </data>
-  <data name="ToLabel" xml:space="preserve">
-    <value>TO</value>
+  <data name="PowerbeamProTitle" xml:space="preserve">
+    <value>Powerbeam Pro</value>
   </data>
 </root>

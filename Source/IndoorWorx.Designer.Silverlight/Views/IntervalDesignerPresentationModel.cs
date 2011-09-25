@@ -240,7 +240,7 @@ namespace IndoorWorx.Designer.Views
             get
             {
                 var videos = ApplicationUser.CurrentUser.Videos;
-                return videos.Where(x => x.Catalog != null && (SelectedInterval == null || x.Duration >= SelectedInterval.Duration)).ToList();
+                return videos.Where(x => x.Catalog != null && (Interval != null && x.Duration >= Interval.Duration)).ToList();
             }
         }
     }

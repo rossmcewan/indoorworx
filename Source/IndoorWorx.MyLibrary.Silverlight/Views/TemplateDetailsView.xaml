@@ -11,6 +11,7 @@
     d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.Resources>
         <iconverters:BooleanToOppositeVisibilityConverter x:Key="BooleanToOppositeVisibilityConverter"/>
+        <iconverters:TelemetryToMaxYValueConverter x:Key="TelemetryToMaxYValueConverter"/>
     </UserControl.Resources>
     <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
         <Grid>
@@ -24,19 +25,12 @@
                         <telerik:RadAreaSparkline 
                             AutoRange="False"
                             MinYValue="0"
+                            MaxYValue="{Binding Template.Telemetry, Mode=OneWay, Converter={StaticResource TelemetryToMaxYValueConverter}}"
                             Width="256" Height="100"
-                            ItemsSource="{Binding Template.Telemetry, Mode=TwoWay}" 
+                            ItemsSource="{Binding Template.Telemetry, Mode=OneWay}" 
                             ShowAxis="False"                            
                             YValuePath="PercentageThreshold" 
                             XValuePath="TimePositionAsDateTime" />
-                        <!--<telerik:RadColumnSparkline 
-                            Width="256" Height="100"
-                            MinYValue="0"
-                            AutoRange="False"
-                            ItemsSource="{Binding Template.Intervals, Mode=TwoWay}" 
-                            ShowAxis="False"                                               
-                            YValuePath="Effort" 
-                            XValuePath="OADateTime"/>-->
                     </ScrollViewer>
                     <TextBlock FontWeight="Bold" Text="{Binding Template.Title, Mode=OneWay}" Margin="5"/>
                     <TextBlock Text="{Binding Template.Description, Mode=OneWay}" TextWrapping="Wrap" Margin="5"/>

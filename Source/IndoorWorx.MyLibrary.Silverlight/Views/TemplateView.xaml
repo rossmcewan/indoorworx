@@ -9,13 +9,15 @@
     xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"  
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
-    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"        
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+    xmlns:telerikGrid="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"             
     xmlns:controls="clr-namespace:IndoorWorx.MyLibrary.Controls"    
     xmlns:infControls="clr-namespace:IndoorWorx.Infrastructure.Controls;assembly=IndoorWorx.Infrastructure.Silverlight"             
     mc:Ignorable="d"    
     d:DesignHeight="300" d:DesignWidth="400" >
     <UserControl.Resources>
         <iconverters:BooleanToOppositeVisibilityConverter x:Key="BooleanToOppositeVisibilityConverter"/>
+        <iconverters:TelemetryToMaxYValueConverter x:Key="TelemetryToMaxYValueConverter"/>
         <converters:TemplateOperationToTextConverter x:Key="TemplateOperationToTextConverter"/>
     </UserControl.Resources>
     <infControls:MetroContentControl>
@@ -47,43 +49,162 @@
                         <sdk:Label Content="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}" Grid.Row="2" Margin="5" />
                         <sdk:Label Content="{Binding Template.Duration, Mode=OneWay}" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="20" FontWeight="SemiBold" />
                         <sdk:TabControl Grid.Row="3" Grid.ColumnSpan="4" Margin="5">
-                            <!--<sdk:TabItem Header="{Binding MyLibraryResources.WarmupHeader, Source={StaticResource MyLibraryResources}}">
-                                <controls:IntervalsCaptureControl 
-                                    ItemsSource="{Binding WarmupIntervals, Mode=OneWay}" 
-                                    IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"                                    
-                                    AddIntervalCommand="{Binding AddIntervalToWarmupCommand}"
-                                    EditIntervalCommand="{Binding EditIntervalCommand}"
-                                    RemoveIntervalCommand="{Binding RemoveIntervalFromWarmupCommand}"/>
-                            </sdk:TabItem>-->
                             <sdk:TabItem Header="{Binding MyLibraryResources.IntervalsHeader, Source={StaticResource MyLibraryResources}}">
-                                <controls:IntervalsCaptureControl 
+                                <Grid>
+                                    <telerik:RadGridView x:Name="intervalGridView" ItemsSource="{Binding Intervals, Mode=OneWay}" ShowGroupPanel="False" Margin="30,25,30,20"
+                                                         CanUserSelect="True" RowIndicatorVisibility="Collapsed" GridLinesVisibility="Vertical" ActionOnLostFocus="CommitEdit" RowDetailsVisibilityMode="Collapsed"
+                                                         AutoGenerateColumns="False" IsFilteringAllowed="False" CanUserFreezeColumns="False" CanUserReorderColumns="False" CanUserInsertRows="True" CanUserDeleteRows="True" CanUserSortColumns="False">
+                                        <telerik:RadGridView.RowDetailsTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Margin="2" Text="{Binding MyLibraryResources.IntervalTypeLabel, Source={StaticResource MyLibraryResources}}"/>
+                                                    <telerik:RadComboBox Grid.Column="1" Margin="2" DisplayMemberPath="Name" ItemsSource="{Binding IntervalTypes, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding IntervalType, Mode=TwoWay}"/>
+                                                    <TextBlock Grid.Column="2" Margin="2" Text="{Binding MyLibraryResources.IntervalLevelLabel, Source={StaticResource MyLibraryResources}}"/>
+                                                    <telerik:RadComboBox Grid.Column="3" Margin="2" DisplayMemberPath="Title" ItemsSource="{Binding IntervalLevels, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding IntervalLevel, Mode=TwoWay}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </telerik:RadGridView.RowDetailsTemplate>
+                                        <telerik:RadGridView.Columns>
+                                            <telerik:GridViewColumn HeaderTextAlignment="Center">
+                                                <telerik:GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <telerik:RadButton Style="{StaticResource RoundButton}" Command="telerikGrid:RadGridViewCommands.Delete" CommandParameter="{Binding}">
+                                                            <Image Height="16" Width="16" Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/delete.png" Stretch="Fill"/>
+                                                        </telerik:RadButton>
+                                                    </DataTemplate>
+                                                </telerik:GridViewColumn.CellTemplate>
+                                            </telerik:GridViewColumn>
+                                            <telerik:GridViewColumn HeaderTextAlignment="Center">
+                                                <telerik:GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <telerik:RadButton Style="{StaticResource RoundButton}" Click="RadButton_Click">
+                                                            <Image Height="16" Width="16" Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/edit.png" Stretch="Fill"/>
+                                                        </telerik:RadButton>
+                                                    </DataTemplate>
+                                                </telerik:GridViewColumn.CellTemplate>
+                                            </telerik:GridViewColumn>
+                                            <telerik:GridViewDataColumn HeaderTextAlignment="Center" Width="100" DataMemberBinding="{Binding Title, Mode=TwoWay}" Header="{Binding MyLibraryResources.IntervalNameLabel, Source={StaticResource MyLibraryResources}}"/>
+                                            <telerik:GridViewColumn HeaderTextAlignment="Center" Header="{Binding MyLibraryResources.NumberOfRepeatsLabel, Source={StaticResource MyLibraryResources}}">
+                                                <telerik:GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <toolkit:NumericUpDown Margin="2" HorizontalAlignment="Right" Value="{Binding Repeats, Mode=TwoWay}"/>
+                                                    </DataTemplate>
+                                                </telerik:GridViewColumn.CellTemplate>
+                                            </telerik:GridViewColumn>
+                                            <telerik:GridViewColumn HeaderTextAlignment="Center" Header="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}">
+                                                <telerik:GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Margin="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                                                            <toolkit:NumericUpDown Width="50" Value="{Binding IntervalDuration.Minutes, Mode=TwoWay}" ToolTipService.ToolTip="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"/>
+                                                            <TextBlock Margin="1,0" Text=":" VerticalAlignment="Center"/>
+                                                            <toolkit:NumericUpDown Width="50" Value="{Binding IntervalDuration.Seconds, Mode=TwoWay}" ToolTipService.ToolTip="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </telerik:GridViewColumn.CellTemplate>
+                                            </telerik:GridViewColumn>
+                                            <telerik:GridViewColumn HeaderTextAlignment="Center" Header="{Binding MyLibraryResources.RecoveryIntervalLabel, Source={StaticResource MyLibraryResources}}">
+                                                <telerik:GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Margin="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                                                            <toolkit:NumericUpDown Width="50" Value="{Binding RecoveryInterval.Minutes, Mode=TwoWay}" ToolTipService.ToolTip="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"/>
+                                                            <TextBlock Margin="1,0" Text=":" VerticalAlignment="Center"/>
+                                                            <toolkit:NumericUpDown Width="50" Value="{Binding RecoveryInterval.Seconds, Mode=TwoWay}" ToolTipService.ToolTip="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </telerik:GridViewColumn.CellTemplate>
+                                            </telerik:GridViewColumn>
+                                            <telerik:GridViewColumn HeaderTextAlignment="Center" Header="{Binding MyLibraryResources.EffortLabel, Source={StaticResource MyLibraryResources}}">
+                                                <telerik:GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <toolkit:NumericUpDown Margin="2" HorizontalAlignment="Right" Value="{Binding Effort, Mode=TwoWay}" Maximum="1000"/>
+                                                    </DataTemplate>
+                                                </telerik:GridViewColumn.CellTemplate>
+                                            </telerik:GridViewColumn>
+                                        </telerik:RadGridView.Columns>
+                                    </telerik:RadGridView>
+                                    <telerik:RadButton
+    		                                x:Name="addInterval"
+    		                                Style="{StaticResource RoundButton}"
+                                            Command="telerikGrid:RadGridViewCommands.BeginInsert" CommandTarget="{Binding ElementName=intervalGridView}"
+                                            HorizontalAlignment="Left" Width="48" Height="48" VerticalAlignment="Top" Margin="0" RenderTransformOrigin="0.5,0.5">
+                                        <Image Height="48" Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/new.png" Stretch="Fill" Width="48"/>
+                                    </telerik:RadButton>
+                                </Grid>
+                                <!--<controls:IntervalsCaptureControl 
                                     IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
                                     ItemsSource="{Binding Intervals, Mode=OneWay}" 
                                     AddIntervalCommand="{Binding AddIntervalCommand}" 
                                     EditIntervalCommand="{Binding EditIntervalCommand}"
-                                    RemoveIntervalCommand="{Binding RemoveIntervalCommand}"/>
+                                    RemoveIntervalCommand="{Binding RemoveIntervalCommand}"/>-->
                             </sdk:TabItem>
-                            <!--<sdk:TabItem Header="{Binding MyLibraryResources.CooldownHeader, Source={StaticResource MyLibraryResources}}">
-                                <controls:IntervalsCaptureControl 
-                                    IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
-                                    ItemsSource="{Binding CooldownIntervals, Mode=OneWay}" 
-                                    AddIntervalCommand="{Binding AddIntervalToCooldownCommand}"
-                                    EditIntervalCommand="{Binding EditIntervalCommand}"
-                                    RemoveIntervalCommand="{Binding RemoveIntervalFromCooldownCommand}"/>
-                            </sdk:TabItem>-->
                             <sdk:TabItem Header="{Binding MyLibraryResources.TextMessagesHeader, Source={StaticResource MyLibraryResources}}">
-                                <telerik:RadGridView x:Name="textGridView" ItemsSource="{Binding Template.VideoText, Mode=OneWay}" AutoGenerateColumns="False">
-                                    <telerik:RadGridView.Columns>
-                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding StartTime, Mode=TwoWay}" Header="{Binding MyLibraryResources.StartTimeHeader, Source={StaticResource MyLibraryResources}}"/>
-                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Duration, Mode=TwoWay}" Header="{Binding MyLibraryResources.DurationHeader, Source={StaticResource MyLibraryResources}}"/>
-                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding MainText, Mode=TwoWay}" Header="{Binding MyLibraryResources.MainTextHeader, Source={StaticResource MyLibraryResources}}"/>
-                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding SubText, Mode=TwoWay}" Header="{Binding MyLibraryResources.SubTextHeader, Source={StaticResource MyLibraryResources}}"/>
-                                        <telerik:GridViewComboBoxColumn DataMemberBinding="{Binding Animation, Mode=TwoWay}" Header="{Binding MyLibraryResources.AnimationTypeHeader, Source={StaticResource MyLibraryResources}}" SelectedValueMemberPath="Value" DisplayMemberPath="DisplayName"/>
-                                    </telerik:RadGridView.Columns>
-                                </telerik:RadGridView>
+                                <Grid>
+                                    <telerik:RadGridView x:Name="textGridView" ItemsSource="{Binding Template.VideoText, Mode=TwoWay}" ShowGroupPanel="False" Margin="30,25,30,20"
+                                                         CanUserSelect="True" RowIndicatorVisibility="Collapsed" GridLinesVisibility="Vertical"
+                                                         AutoGenerateColumns="False" IsFilteringAllowed="False" CanUserFreezeColumns="False" CanUserReorderColumns="False" CanUserInsertRows="True" CanUserDeleteRows="True" CanUserSortColumns="False">                                        
+                                        <telerik:RadGridView.Columns>
+                                            <telerik:GridViewColumn>
+                                                <telerik:GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <telerik:RadButton Style="{StaticResource RoundButton}" Command="telerikGrid:RadGridViewCommands.Delete" CommandParameter="{Binding}">
+                                                            <Image Height="16" Width="16" Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/delete.png" Stretch="Fill"/>
+                                                        </telerik:RadButton>
+                                                    </DataTemplate>
+                                                </telerik:GridViewColumn.CellTemplate>
+                                            </telerik:GridViewColumn>
+                                            <telerik:GridViewDataColumn HeaderTextAlignment="Center" DataMemberBinding="{Binding StartTime, Mode=TwoWay}" Header="{Binding MyLibraryResources.StartTimeHeader, Source={StaticResource MyLibraryResources}}" IsGroupable="False"/>
+                                            <telerik:GridViewDataColumn HeaderTextAlignment="Center" DataMemberBinding="{Binding Duration, Mode=TwoWay}" Header="{Binding MyLibraryResources.DurationHeader, Source={StaticResource MyLibraryResources}}" IsGroupable="False"/>
+                                            <telerik:GridViewDataColumn HeaderTextAlignment="Center" Width="190" DataMemberBinding="{Binding MainText, Mode=TwoWay}" Header="{Binding MyLibraryResources.MainTextHeader, Source={StaticResource MyLibraryResources}}" IsGroupable="False"/>
+                                            <telerik:GridViewDataColumn HeaderTextAlignment="Center" Width="190" DataMemberBinding="{Binding SubText, Mode=TwoWay}" Header="{Binding MyLibraryResources.SubTextHeader, Source={StaticResource MyLibraryResources}}" IsGroupable="False"/>
+                                            <telerik:GridViewComboBoxColumn HeaderTextAlignment="Center" DataMemberBinding="{Binding Animation, Mode=TwoWay}" Header="{Binding MyLibraryResources.AnimationTypeHeader, Source={StaticResource MyLibraryResources}}" SelectedValueMemberPath="Value" DisplayMemberPath="DisplayName" IsGroupable="False"/>
+                                        </telerik:RadGridView.Columns>
+                                    </telerik:RadGridView>
+                                    <telerik:RadButton
+    		                            x:Name="AddLineItem"
+    		                            Style="{StaticResource RoundButton}"
+                                        Command="telerikGrid:RadGridViewCommands.BeginInsert" CommandTarget="{Binding ElementName=textGridView}"
+                                        HorizontalAlignment="Left" Width="48" Height="48" VerticalAlignment="Top" Margin="0" RenderTransformOrigin="0.5,0.5">                                        
+                                        <Image Height="48" Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/new.png" Stretch="Fill" Width="48"/>
+                                    </telerik:RadButton>
+                                </Grid>
                             </sdk:TabItem>
                             <sdk:TabItem Header="{Binding MyLibraryResources.SocialMediaHeader, Source={StaticResource MyLibraryResources}}"></sdk:TabItem>
-                        </sdk:TabControl>
+                            <sdk:TabItem Header="{Binding MyLibraryResources.TelemetryPreviewHeader, Source={StaticResource MyLibraryResources}}">
+                                <telerik:RadLinearSparkline Loaded="timeBar_Loaded"
+                                        ItemsSource="{Binding Template.Telemetry, Mode=OneWay}" 
+                                        Width="740"
+                                        Height="250"
+                                        ShowAxis="False"                
+                                        MinYValue="0"
+                                        MaxYValue="{Binding Template.Telemetry, Mode=OneWay, Converter={StaticResource TelemetryToMaxYValueConverter}}"
+                                        AutoRange="False"
+                                        YValuePath="PercentageThreshold" 
+                                        XValuePath="TimePositionAsDateTime" />
+                                <!--<telerik:RadTimeBar x:Name="timeBar" Height="150" IsEnabled="False" Margin="5" Loaded="timeBar_Loaded"
+                                        PeriodStart="{Binding Template.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding Template.EndDateTime, Mode=TwoWay}" 
+                                        VisiblePeriodStart="{Binding Template.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding Template.EndDateTime, Mode=TwoWay}"                                                                            
+                                        SelectionStart="{Binding Template.StartDateTime, Mode=TwoWay}" 
+                                        SelectionEnd="{Binding Template.EndDateTime, Mode=TwoWay}">
+                                    <telerik:RadLinearSparkline 
+                                        ItemsSource="{Binding Template.Telemetry, Mode=OneWay}" 
+                                        ShowAxis="False"                
+                                        MinYValue="0"
+                                        MaxYValue="{Binding Template.Telemetry, Mode=OneWay, Converter={StaticResource TelemetryToMaxYValueConverter}}"
+                                        AutoRange="False"
+                                        YValuePath="PercentageThreshold" 
+                                        XValuePath="TimePositionAsDateTime" />
+                                </telerik:RadTimeBar>-->
+                            </sdk:TabItem>
+                        </sdk:TabControl>                        
                     </Grid>
                 </Border>
 

@@ -55,10 +55,11 @@
                                                      ManifestReady="videoPlayer_ManifestReady"
                                                      MediaOpened="mediaElement_MediaOpened"
                                                      MediaEnded="mediaElement_MediaEnded"
-                                                     ClipError="mediaElement_ClipError"                                                       
+                                                     ClipError="mediaElement_ClipError"                                                        
                                                      Position="{Binding PlayerPosition,Mode=TwoWay}"
                                                      SmoothStreamingSource="{Binding Video.StreamUri, Mode=OneWay}" 
-                                                     SmoothStreamingErrorOccurred="mediaElement_SmoothStreamingErrorOccurred"/>
+                                                     SmoothStreamingErrorOccurred="mediaElement_SmoothStreamingErrorOccurred">
+        </smoothstreaming:SmoothStreamingMediaElement>
 
         <infcontrols:TelemetryChart 
             telerik:StyleManager.Theme="Transparent"           
@@ -79,6 +80,10 @@
                 </LinearGradientBrush>
             </infcontrols:TelemetryChart.ZoneBackground>
         </infcontrols:TelemetryChart>
+        
+        <telerik:RadButton Style="{StaticResource RoundButton}" Grid.ColumnSpan="3" Margin="5" VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding PlayerResources.ExportTrainerFile, Source={StaticResource PlayerResources}}" Command="{Binding ExportTrainerFileCommand}">
+            <Image Source="/IndoorWorx.Player.Silverlight;component/Images/download.png" Width="16"/>
+        </telerik:RadButton>
 
 
         <Border Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" CornerRadius="10" Visibility="{Binding IsMediaOpened, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">

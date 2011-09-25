@@ -39,6 +39,8 @@ namespace IndoorWorx.Player.Views
 
         ICommand FullScreenCommand { get; set; }
 
+        ICommand ExportTrainerFileCommand { get; set; }
+
         void MediaError(SmoothStreamingErrorEventArgs e);
     }
 }

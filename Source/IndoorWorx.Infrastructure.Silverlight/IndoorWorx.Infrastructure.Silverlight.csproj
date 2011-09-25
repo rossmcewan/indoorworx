@@ -345,6 +345,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Converters\StringToUriConverter.cs" />
+    <Compile Include="Converters\TelemetryToMaxYValueConverter.cs" />
     <Compile Include="Converters\TimeSpanToDateTimeConverter.cs" />
     <Compile Include="Converters\UrlToImageConverter.cs">
       <SubType>Code</SubType>
@@ -352,6 +353,7 @@
     <Compile Include="DragDrop\IDropTarget.cs" />
     <Compile Include="Events\CatalogSearchTextChangedEvent.cs" />
     <Compile Include="Events\DesignEvent.cs" />
+    <Compile Include="Events\ExportTrainerFileEvent.cs" />
     <Compile Include="Events\HelpEvent.cs" />
     <Compile Include="Events\LibraryPart.cs" />
     <Compile Include="Events\MyLibraryEvent.cs" />

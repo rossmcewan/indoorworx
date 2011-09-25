@@ -419,7 +419,7 @@
                 <controls:MetroContentControl						
 						Grid.Row="2"
 						Grid.Column="4">
-                    <toolkit:NumericUpDown Margin="10" HorizontalAlignment="Right" Value="{Binding Effort, Mode=TwoWay}"/>
+                    <toolkit:NumericUpDown Margin="10" HorizontalAlignment="Right" Value="{Binding Effort, Mode=TwoWay}" Maximum="1000"/>
                 </controls:MetroContentControl>
             </Grid>
         </DataTemplate>

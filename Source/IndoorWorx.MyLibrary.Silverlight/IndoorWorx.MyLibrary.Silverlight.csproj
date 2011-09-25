@@ -211,6 +211,7 @@
     <EmbeddedResource Include="Resources\MyLibraryResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MyLibraryResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

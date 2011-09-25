@@ -7,19 +7,8 @@
     <Modularity:ModuleInfoGroup InitializationMode="WhenAvailable">
         <Modularity:ModuleInfo ModuleName="Settings" ModuleType="IndoorWorx.Settings.Module, IndoorWorx.Settings.Silverlight, Version=1.0.0.0"/>
         <Modularity:ModuleInfo ModuleName="Player" ModuleType="IndoorWorx.Player.Module, IndoorWorx.Player.Silverlight, Version=1.0.0.0" >
-            <!--<Modularity:ModuleInfo.DependsOn>
-                <sys:String>Designer</sys:String>
-            </Modularity:ModuleInfo.DependsOn>-->
         </Modularity:ModuleInfo>
-        <!--<Modularity:ModuleInfo ModuleName="Dashboard" ModuleType="IndoorWorx.Dashboard.Module, IndoorWorx.Dashboard.Silverlight, Version=1.0.0.0" >
-            <Modularity:ModuleInfo.DependsOn>
-                <sys:String>Library</sys:String>
-            </Modularity:ModuleInfo.DependsOn>
-        </Modularity:ModuleInfo>-->
         <Modularity:ModuleInfo ModuleName="Catalog" ModuleType="IndoorWorx.Catalog.Module, IndoorWorx.Catalog.Silverlight, Version=1.0.0.0" >
-            <!--<Modularity:ModuleInfo.DependsOn>
-                <sys:String>Dashboard</sys:String>
-            </Modularity:ModuleInfo.DependsOn>-->
         </Modularity:ModuleInfo>
         <Modularity:ModuleInfo ModuleName="MyLibrary" ModuleType="IndoorWorx.MyLibrary.Module, IndoorWorx.MyLibrary.Silverlight, Version=1.0.0.0" >
             <Modularity:ModuleInfo.DependsOn>
@@ -31,20 +20,20 @@
                 <sys:String>MyLibrary</sys:String>
             </Modularity:ModuleInfo.DependsOn>
         </Modularity:ModuleInfo>
-        <!--<Modularity:ModuleInfo ModuleName="4me" ModuleType="IndoorWorx.ForMe.Module, IndoorWorx.4me.Silverlight, Version=1.0.0.0" >
+        <Modularity:ModuleInfo ModuleName="Trainers" ModuleType="IndoorWorx.Trainers.Module, IndoorWorx.Trainers.Silverlight, Version=1.0.0.0" >
             <Modularity:ModuleInfo.DependsOn>
-                <sys:String>Designer</sys:String>
+                <sys:String>MyLibrary</sys:String>
             </Modularity:ModuleInfo.DependsOn>
         </Modularity:ModuleInfo>
-        <Modularity:ModuleInfo ModuleName="4coaches" ModuleType="IndoorWorx.ForCoaches.Module, IndoorWorx.4coaches.Silverlight, Version=1.0.0.0" >
+        <Modularity:ModuleInfo ModuleName="Computrainer" ModuleType="IndoorWorx.Trainers.Computrainer.ComputrainerModule, IndoorWorx.Trainers.Silverlight, Version=1.0.0.0" >
             <Modularity:ModuleInfo.DependsOn>
-                <sys:String>4me</sys:String>
+                <sys:String>Trainers</sys:String>
             </Modularity:ModuleInfo.DependsOn>
         </Modularity:ModuleInfo>
-        <Modularity:ModuleInfo ModuleName="4studios" ModuleType="IndoorWorx.ForStudios.Module, IndoorWorx.4studios.Silverlight, Version=1.0.0.0" >
+        <Modularity:ModuleInfo ModuleName="Powerbeam Pro" ModuleType="IndoorWorx.Trainers.PowerbeamPro.PowerbeamProModule, IndoorWorx.Trainers.Silverlight, Version=1.0.0.0" >
             <Modularity:ModuleInfo.DependsOn>
-                <sys:String>4coaches</sys:String>
+                <sys:String>Trainers</sys:String>
             </Modularity:ModuleInfo.DependsOn>
-        </Modularity:ModuleInfo>-->
+        </Modularity:ModuleInfo>
     </Modularity:ModuleInfoGroup>
 </Modularity:ModuleCatalog>

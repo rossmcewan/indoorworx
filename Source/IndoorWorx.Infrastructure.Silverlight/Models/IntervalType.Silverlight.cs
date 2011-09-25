@@ -12,61 +12,62 @@ using System.Windows.Shapes;
 namespace IndoorWorx.Infrastructure.Models
 {
     public partial class IntervalType
-    {
-        public static readonly string WarmupTag = "WARMUP";
+    {        
 
-        public static readonly string ShortHillsTag = "SHORTHILLS";
+        //public static readonly string WarmupTag = "WARMUP";
 
-        public static readonly string TimeTrialTag = "TIMETRIAL";
+        //public static readonly string ShortHillsTag = "SHORTHILLS";
 
-        public static readonly string RecoveryTag = "RECOVERY";
+        //public static readonly string TimeTrialTag = "TIMETRIAL";
 
-        public static readonly string LongHillsTag = "LONGHILLS";
+        //public static readonly string RecoveryTag = "RECOVERY";
 
-        public static readonly string SprintsTag = "SPRINTS";
+        //public static readonly string LongHillsTag = "LONGHILLS";
 
-        public static readonly string BreakawaysTag = "BREAKAWAYS";
+        //public static readonly string SprintsTag = "SPRINTS";
 
-        public static readonly string CooldownTag = "COOLDOWN";
+        //public static readonly string BreakawaysTag = "BREAKAWAYS";
 
-        public bool IsWarmup
-        {
-            get { return Tag == WarmupTag; }
-        }
+        //public static readonly string CooldownTag = "COOLDOWN";
 
-        public bool IsShortHills
-        {
-            get { return Tag == ShortHillsTag; }
-        }
+        //public bool IsWarmup
+        //{
+        //    get { return Tag == WarmupTag; }
+        //}
 
-        public bool IsTimeTrial
-        {
-            get { return Tag == TimeTrialTag; }
-        }
+        //public bool IsShortHills
+        //{
+        //    get { return Tag == ShortHillsTag; }
+        //}
 
-        public bool IsRecovery
-        {
-            get { return Tag == RecoveryTag; }
-        }
+        //public bool IsTimeTrial
+        //{
+        //    get { return Tag == TimeTrialTag; }
+        //}
 
-        public bool IsLongHills
-        {
-            get { return Tag == LongHillsTag; }
-        }
+        //public bool IsRecovery
+        //{
+        //    get { return Tag == RecoveryTag; }
+        //}
 
-        public bool IsSprints
-        {
-            get { return Tag == SprintsTag; }
-        }
+        //public bool IsLongHills
+        //{
+        //    get { return Tag == LongHillsTag; }
+        //}
 
-        public bool IsBreakaways
-        {
-            get { return Tag == BreakawaysTag; }
-        }
+        //public bool IsSprints
+        //{
+        //    get { return Tag == SprintsTag; }
+        //}
 
-        public bool IsCooldown
-        {
-            get { return Tag == CooldownTag; }
-        }
+        //public bool IsBreakaways
+        //{
+        //    get { return Tag == BreakawaysTag; }
+        //}
+
+        //public bool IsCooldown
+        //{
+        //    get { return Tag == CooldownTag; }
+        //}
     }
 }

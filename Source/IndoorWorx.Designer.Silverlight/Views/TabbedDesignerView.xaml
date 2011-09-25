@@ -65,6 +65,7 @@
                                     ItemsSource="{Binding SelectedTemplate.Telemetry, Mode=OneWay}" 
                                     ShowAxis="False"                
                                     MinYValue="0"
+                                    MaxYValue="{Binding SelectedTemplate.Telemetry, Mode=OneWay, Converter={StaticResource TelemetryToMaxYValueConverter}}"
                                     AutoRange="False"
                                     YValuePath="PercentageThreshold" 
                                     XValuePath="TimePositionAsDateTime" />
