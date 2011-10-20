@@ -18,6 +18,7 @@ using IndoorWorx.Infrastructure.Facades;
 using IndoorWorx.Trainers.Events;
 using IndoorWorx.Trainers.Views;
 using IndoorWorx.Trainers.Helpers;
+using System.IO;
 
 namespace IndoorWorx.Trainers
 {
@@ -49,7 +50,27 @@ namespace IndoorWorx.Trainers
             view.Closed += (sender, e) =>
                 {
                     if (view.DialogResult.GetValueOrDefault())
-                        model.SelectedTrainer.CreateExport(telemetry);
+                    {
+                        var export = model.SelectedTrainer.CreateExport(telemetry);
+                        var sfd = new SaveFileDialog();
+                        sfd.DefaultExt = model.SelectedTrainer.FileExtension;
+                        sfd.Filter = model.SelectedTrainer.FileFilter;
+                        if(sfd.ShowDialog().GetValueOrDefault())
+                        {
+                            try
+                            {
+                                using (var fs = new StreamWriter(sfd.OpenFile()))
+                                {
+                                    fs.Write(export);
+                                    fs.Close();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                throw ex;
+                            }
+                        }
+                    }
                 };
             view.Show();
         }

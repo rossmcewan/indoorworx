@@ -97,7 +97,7 @@ namespace IndoorWorx.Trainers.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PLEASE SELECT YOUR INDOOR TRAINER FROM THE LIST BELOW.
+        ///   Looks up a localized string similar to SELECT YOUR INDOOR TRAINER.
         /// </summary>
         public static string PleaseSelectTrainer {
             get {
@@ -120,6 +120,15 @@ namespace IndoorWorx.Trainers.Resources {
         public static string PowerbeamProTitle {
             get {
                 return ResourceManager.GetString("PowerbeamProTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT TRAINER.
+        /// </summary>
+        public static string WindowTitle {
+            get {
+                return ResourceManager.GetString("WindowTitle", resourceCulture);
             }
         }
     }

@@ -21,6 +21,7 @@
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <dconverters:IntervalToTabItemConverter x:Key="IntervalToTabItemConverter"/>
         <dconverters:IntervalsToTabItemsConverter x:Key="IntervalsToTabItemsConverter"/>
+        <converters:TelemetryToMaxYValueConverter x:Key="TelemetryToMaxYValueConverter"/>
     </UserControl.Resources>
     <controls:MetroContentControl>
         <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">

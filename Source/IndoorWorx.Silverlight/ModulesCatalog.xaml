@@ -32,7 +32,7 @@
         </Modularity:ModuleInfo>
         <Modularity:ModuleInfo ModuleName="Powerbeam Pro" ModuleType="IndoorWorx.Trainers.PowerbeamPro.PowerbeamProModule, IndoorWorx.Trainers.Silverlight, Version=1.0.0.0" >
             <Modularity:ModuleInfo.DependsOn>
-                <sys:String>Trainers</sys:String>
+                <sys:String>Computrainer</sys:String>
             </Modularity:ModuleInfo.DependsOn>
         </Modularity:ModuleInfo>
     </Modularity:ModuleInfoGroup>

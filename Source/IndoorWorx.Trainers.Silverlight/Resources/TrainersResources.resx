@@ -130,12 +130,15 @@
     <value>ok</value>
   </data>
   <data name="PleaseSelectTrainer" xml:space="preserve">
-    <value>PLEASE SELECT YOUR INDOOR TRAINER FROM THE LIST BELOW</value>
+    <value>SELECT YOUR INDOOR TRAINER</value>
   </data>
   <data name="PowerbeamProDescription" xml:space="preserve">
     <value>Powerbeam Pro</value>
   </data>
   <data name="PowerbeamProTitle" xml:space="preserve">
     <value>Powerbeam Pro</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>SELECT TRAINER</value>
   </data>
 </root>

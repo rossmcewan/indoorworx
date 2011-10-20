@@ -20,5 +20,9 @@ namespace IndoorWorx.Trainers
         string Title { get; }
 
         string Description { get; }
+
+        string FileExtension { get; }
+
+        string FileFilter { get; }
     }
 }

@@ -206,8 +206,12 @@ namespace IndoorWorx.Player.Views
             linked.Clear();
             foreach (var t in video.PlayingTelemetry)
             {
-                if(!linked.ContainsKey(t.TimePosition.TotalSeconds))
+                if (!linked.ContainsKey(t.TimePosition.TotalSeconds))
                     linked.Add(t.TimePosition.TotalSeconds, t);
+                else
+                {
+                    linked[t.TimePosition.TotalMinutes] = t;
+                }
                 queue.Enqueue(t);
             }            
         }

@@ -6,18 +6,19 @@
     xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls" 
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"                      
     mc:Ignorable="d"
+    Title="{Binding TrainersResources.WindowTitle, Source={StaticResource TrainersResources}}" Style="{StaticResource ChildWindowStyle}"                      
     d:DesignHeight="300" d:DesignWidth="400">
     
-    <Grid x:Name="LayoutRoot" Background="White">
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel>
             <TextBlock Text="{Binding TrainersResources.PleaseSelectTrainer, Source={StaticResource TrainersResources}}" FontWeight="Bold" Margin="5"/>
-            <telerik:RadComboBox ItemsSource="{Binding AvailableTrainers, Mode=OneWay}" DisplayMemberPath="Title" SelectedItem="{Binding SelectedTrainer, Mode=TwoWay}"/>
+            <telerik:RadComboBox ItemsSource="{Binding AvailableTrainers, Mode=OneWay}" DisplayMemberPath="Title" SelectedItem="{Binding SelectedTrainer, Mode=TwoWay}" Margin="5"/>
         </StackPanel>
-        <Button x:Name="CancelButton" Content="{Binding TrainersResources.Cancel, Source={StaticResource LibraryResources}}" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
-        <Button x:Name="OKButton" Content="{Binding TrainersResources.OK, Source={StaticResource LibraryResources}}" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+        <Button x:Name="CancelButton" Content="{Binding TrainersResources.Cancel, Source={StaticResource TrainersResources}}" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+        <Button x:Name="OKButton" Content="{Binding TrainersResources.OK, Source={StaticResource TrainersResources}}" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
     </Grid>
 </controls:ChildWindow>

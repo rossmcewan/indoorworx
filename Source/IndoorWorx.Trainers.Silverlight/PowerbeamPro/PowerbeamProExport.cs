@@ -30,5 +30,15 @@ namespace IndoorWorx.Trainers.PowerbeamPro
         {
             get { return TrainersResources.PowerbeamProDescription; }
         }
+
+        public string FileExtension
+        {
+            get { return ".xml"; }
+        }
+
+        public string FileFilter
+        {
+            get { return "Powerbeam Pro XML file|*.xml"; }
+        }
     }
 }
