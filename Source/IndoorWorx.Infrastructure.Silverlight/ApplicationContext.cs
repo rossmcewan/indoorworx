@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Services;
+using System.Reflection;
 
 namespace IndoorWorx.Infrastructure
 {
@@ -171,6 +172,14 @@ namespace IndoorWorx.Infrastructure
         public ICollection<IntervalType> IntervalTypes
         {
             get { return this.intervalTypes; }
+        }
+
+        public string Version
+        {
+            get
+            {
+                return new AssemblyName(Application.Current.GetType().Assembly.FullName).Version.ToString();
+            }
         }
     }
 }

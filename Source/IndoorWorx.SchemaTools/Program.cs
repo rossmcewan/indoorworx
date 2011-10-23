@@ -96,20 +96,101 @@ namespace IndoorWorx.SchemaTools
                         {
                             new Video()
                             {
-                                ImageUri = new Uri("http://localhost/IndoorWorx.Silverlight.Web/Media/Elephant/ElephantsDream_Thumb.jpg", UriKind.Absolute),
-                                StreamUri = new Uri("http://localhost/IndoorWorx.Silverlight.Web/Media/Elephant/ElephantsDream.ism/Manifest", UriKind.Absolute),
+                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/Media/Elephant/ElephantsDream_Thumb.jpg", UriKind.Absolute),
+                                StreamUri = new Uri("http://ecn.channel9.msdn.com/o9/content/smf/smoothcontent/elephantsdream/Elephants_Dream_1024-h264-st-aac.ism/manifest", UriKind.Absolute),
                                 Title = "Elephants Dream",
                                 Description = "Elephants Dream is the world’s first open movie, made entirely with open source graphics software such as Blender, and with all production files freely available to use however you please, under a Creative Commons license. The short film was created by the Orange Open Movie Project studio in Amsterdam during 2005/2006, bringing together a diverse team of artists and developers from all over the world.",
                                 TelemetryInfo = new TelemetryInfo()
                                 {
                                     RecordingInterval = 2,
-                                    TelemetryUri = new Uri("http://localhost/IndoorWorx.Silverlight.Web/Mock/telemetry.csv", UriKind.Absolute)
+                                    TelemetryUri = new Uri("http://www.indoorworx.com/IndoorWorx/Mock/telemetry.csv", UriKind.Absolute)
                                 },
                                 Duration = new TimeSpan(0,10,54),
                                 VideoMetadata = new VideoMetadata()
                                 {
                                     WhenFilmed = new DateTime(2008,4,10),
                                     FilmedBy = "Blender Foundation"
+                                }
+                            }
+                        }
+                    },
+                    new Catalog()
+                    {
+                        Title = "Random Internet Finds",
+                        Sequence = 2,
+                        Description = "Some videos that I have found on the internet for testing composite streams.",
+                        Videos = new List<Video>()
+                        {
+                            new Video()
+                            {
+                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/images/unknown.png", UriKind.Absolute),
+                                StreamUri = new Uri("http://devplatem.vo.msecnd.net/3D/NVIDIA_3DV_PC_1080p30_TxB_LeftFirst.ism/manifest", UriKind.Absolute),
+                                Title = "Random 1",
+                                Description = "Random media file 1",
+                                TelemetryInfo = new TelemetryInfo()
+                                {
+                                    RecordingInterval = 2,
+                                    TelemetryUri = new Uri("http://www.indoorworx.com/IndoorWorx/Mock/telemetry.csv", UriKind.Absolute)
+                                },
+                                Duration = new TimeSpan(0,6,48),
+                                VideoMetadata = new VideoMetadata()
+                                {
+                                    WhenFilmed = new DateTime(2011,1,1),
+                                    FilmedBy = "Unknown"
+                                }
+                            },
+                            new Video()
+                            {
+                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/images/unknown.png", UriKind.Absolute),
+                                StreamUri = new Uri("http://playready.directtaps.net/smoothstreaming/TTLSS720VC1/To_The_Limit_720.ism/Manifest", UriKind.Absolute),
+                                Title = "Random 2",
+                                Description = "Random media file 2",
+                                TelemetryInfo = new TelemetryInfo()
+                                {
+                                    RecordingInterval = 2,
+                                    TelemetryUri = new Uri("http://www.indoorworx.com/IndoorWorx/Mock/telemetry.csv", UriKind.Absolute)
+                                },
+                                Duration = new TimeSpan(0,2,10),
+                                VideoMetadata = new VideoMetadata()
+                                {
+                                    WhenFilmed = new DateTime(2011,1,1),
+                                    FilmedBy = "Unknown"
+                                }
+                            },
+                            new Video()
+                            {
+                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/images/unknown.png", UriKind.Absolute),
+                                StreamUri = new Uri("http://djweb.tv/_v/djweb.tv/monkeymondays/15/onviiloft.ism/Manifest", UriKind.Absolute),
+                                Title = "Random 3",
+                                Description = "Random media file 3",
+                                TelemetryInfo = new TelemetryInfo()
+                                {
+                                    RecordingInterval = 2,
+                                    TelemetryUri = new Uri("http://www.indoorworx.com/IndoorWorx/Mock/telemetry.csv", UriKind.Absolute)
+                                },
+                                Duration = new TimeSpan(2,6,20),
+                                VideoMetadata = new VideoMetadata()
+                                {
+                                    WhenFilmed = new DateTime(2011,1,1),
+                                    FilmedBy = "Unknown"
+                                }
+                            },
+                            new Video()
+                            {
+                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/images/unknown.png", UriKind.Absolute),
+                                StreamUri = new Uri("http://videos.msgamestudios.com/mgs/spartan/website/2011_02-01_egypt/en_Egypt_Trailer_FINAL_04k.ism/Manifest", UriKind.Absolute),
+                                Title = "Random 4",
+                                Description = "Random media file 4",
+                                TelemetryInfo = new TelemetryInfo()
+                                {
+                                    RecordingInterval = 2,
+                                    TelemetryUri = new Uri("http://www.indoorworx.com/IndoorWorx/Mock/telemetry.csv", UriKind.Absolute)
+                                },
+                                Duration = new TimeSpan(0,1,21),
+                                VideoMetadata = new VideoMetadata()
+                                {
+                                    WhenFilmed = new DateTime(2011,1,1),
+                                    FilmedBy = "Unknown"
                                 }
                             }
                         }
@@ -138,14 +219,14 @@ namespace IndoorWorx.SchemaTools
                         {
                             new Video()
                             {
-                                ImageUri = new Uri("http://localhost/IndoorWorx.Silverlight.Web/Media/Bunny/BigBuckBunny_Thumb.jpg", UriKind.Absolute),
-                                StreamUri = new Uri("http://localhost/IndoorWorx.Silverlight.Web/Media/Bunny/BigBuckBunny.ism/Manifest", UriKind.Absolute),
+                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/Media/Bunny/BigBuckBunny_Thumb.jpg", UriKind.Absolute),
+                                StreamUri = new Uri("http://ecn.channel9.msdn.com/o9/content/smf/smoothcontent/bbbwp7/big%20buck%20bunny.ism/manifest", UriKind.Absolute),
                                 Title = "Big Buck Bunny",
                                 Description = "As a follow-up to the successful project Orange’s “Elephants Dream”, the Blender Foundation initiated another open movie project. Again a small team (7) of the best 3D artists and developers in the Blender community have been invited to come together to work in Amsterdam from October 2007 until April 2008 on completing a short 3D animation movie. The team members will get a great studio facility and housing in Amsterdam, all travel costs reimbursed, and a fee sufficient to cover all expenses during the period.",
                                 TelemetryInfo = new TelemetryInfo()
                                 {
                                     RecordingInterval = 2,
-                                    TelemetryUri = new Uri("http://localhost/IndoorWorx.Silverlight.Web/Mock/telemetry.csv", UriKind.Absolute)
+                                    TelemetryUri = new Uri("http://www.indoorworx.com/IndoorWorx/Mock/telemetry.csv", UriKind.Absolute)
                                 },
                                 Duration = new TimeSpan(0,10,00),
                                 VideoMetadata = new VideoMetadata()

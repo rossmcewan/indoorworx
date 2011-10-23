@@ -170,16 +170,19 @@ namespace IndoorWorx.MyLibrary.Views
                         Title = catalog.Title,
                         Videos = new List<Video>()
                     };
-                    foreach (var video in ApplicationUser.CurrentUser.Videos)
+                    if (ApplicationUser.CurrentUser != null)
                     {
-                        if (video.Catalog == null)
+                        foreach (var video in ApplicationUser.CurrentUser.Videos)
                         {
-                            if (!workoutCatalog.Videos.Contains(video))
-                                workoutCatalog.Videos.Add(video);
-                        }
-                        else if (video.Catalog.Equals(catalog))
-                        {
-                            _catalog.Videos.Add(video);
+                            if (video.Catalog == null)
+                            {
+                                if (!workoutCatalog.Videos.Contains(video))
+                                    workoutCatalog.Videos.Add(video);
+                            }
+                            else if (video.Catalog.Equals(catalog))
+                            {
+                                _catalog.Videos.Add(video);
+                            }
                         }
                     }
                     cat.Catalogs.Add(_catalog);

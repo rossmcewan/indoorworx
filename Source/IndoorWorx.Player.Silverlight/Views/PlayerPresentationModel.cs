@@ -257,7 +257,7 @@ namespace IndoorWorx.Player.Views
         {
             SmartDispatcher.BeginInvoke(() =>
                 {
-                    if (queue.Peek().TimePosition <= PlayerPosition)
+                    if (queue.Any() && queue.Peek().TimePosition <= PlayerPosition)
                         CurrentTelemetry = queue.Dequeue();
                 });
         }

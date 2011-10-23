@@ -22,10 +22,11 @@ namespace IndoorWorx.Infrastructure.Models
             get
             {
                 var hasRecovery = HasRecoveryIntervals;
+                var interval = Intervals.First();
                 var title = string.Format("{0} x {1} {2}{3}",
                     hasRecovery ? Intervals.Count/2 : Intervals.Count,
-                    Intervals.First().Duration,
-                    Intervals.First().IntervalLevel.Title,
+                    interval.Duration,
+                    interval.IntervalLevel == null ? string.Empty : interval.IntervalLevel.Title,
                     hasRecovery ? string.Format(", {0} RI", Intervals.ElementAt(1).Duration) : string.Empty);
                 return title;
             }

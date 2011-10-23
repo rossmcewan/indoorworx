@@ -126,6 +126,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>cancel</value>
   </data>
+  <data name="ErrorCreatingWorkout" xml:space="preserve">
+    <value>There was an error creating the workout.</value>
+  </data>
   <data name="FromLabel" xml:space="preserve">
     <value>FROM</value>
   </data>

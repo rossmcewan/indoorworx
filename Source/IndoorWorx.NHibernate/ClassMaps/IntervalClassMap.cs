@@ -21,7 +21,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.SectionGroup);
             References(x => x.EffortType).Not.Nullable().Not.LazyLoad();
             References(x => x.IntervalType).Not.LazyLoad();
-            References(x => x.IntervalLevel).Not.Nullable().Not.LazyLoad();
+            References(x => x.IntervalLevel).Not.LazyLoad();
         }
     }
 }

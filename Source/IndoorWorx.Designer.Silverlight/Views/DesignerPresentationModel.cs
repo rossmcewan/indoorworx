@@ -134,14 +134,21 @@ namespace IndoorWorx.Designer.Views
                     };
                 service.TrainingSetCreated += (sender, e) =>
                     {
-                        ApplicationUser.CurrentUser.Videos.Add(e.Value.TrainingSet);
-                        foreach (var set in SelectedTemplate.Sets)
+                        if (e.Value.Status == CreateTrainingSetStatus.Success)
                         {
-                            set.ClearDesignData();
+                            ApplicationUser.CurrentUser.Videos.Add(e.Value.TrainingSet);
+                            foreach (var set in SelectedTemplate.Sets)
+                            {
+                                set.ClearDesignData();
+                            }
+                            foreach (var interval in SelectedTemplate.Intervals)
+                            {
+                                interval.ClearDesignData();
+                            }
                         }
-                        foreach (var interval in SelectedTemplate.Intervals)
+                        else
                         {
-                            interval.ClearDesignData();
+                            dialogFacade.Alert(DesignerResources.ErrorCreatingWorkout);
                         }
                         IsBusy = false;
                         Hide();
@@ -374,10 +381,14 @@ namespace IndoorWorx.Designer.Views
         {
             get
             {
-                var videos = ApplicationUser.CurrentUser.Videos;
-                if(SelectedTemplate != null)
-                    return videos.Where(x => x.Catalog != null && x.Duration >= SelectedTemplate.Duration).ToList();
-                return videos;
+                if (ApplicationUser.CurrentUser != null)
+                {
+                    var videos = ApplicationUser.CurrentUser.Videos;
+                    if (SelectedTemplate != null)
+                        return videos.Where(x => x.Catalog != null && x.Duration >= SelectedTemplate.Duration).ToList();
+                    return videos;
+                }
+                return new List<Video>();
             }
         }
     }

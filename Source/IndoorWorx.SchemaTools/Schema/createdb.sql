@@ -383,7 +383,7 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
        SectionGroup NVARCHAR(255) null,
        EffortType_id UNIQUEIDENTIFIER not null,
        IntervalType_id UNIQUEIDENTIFIER null,
-       IntervalLevel_id UNIQUEIDENTIFIER not null,
+       IntervalLevel_id UNIQUEIDENTIFIER null,
        TrainingSetTemplate UNIQUEIDENTIFIER null,
        primary key (Id)
     )

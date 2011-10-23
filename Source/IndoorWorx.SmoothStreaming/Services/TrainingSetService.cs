@@ -14,6 +14,7 @@ using System.Globalization;
 using System.Web;
 using IndoorWorx.Infrastructure.Models;
 using System.Transactions;
+using System.ServiceModel.Channels;
 
 namespace IndoorWorx.SmoothStreaming.Services
 {
@@ -101,16 +102,21 @@ namespace IndoorWorx.SmoothStreaming.Services
                 string filePath = Path.Combine(telemetryPath, string.Format("{0}.csv", uniqueName));
                 File.WriteAllText(filePath, telemetryFile.ToString());
 
+                //var context = System.ServiceModel.OperationContext.Current;
 
-                var host = "localhost";
+                //RemoteEndpointMessageProperty property = (RemoteEndpointMessageProperty)context.IncomingMessageProperties[RemoteEndpointMessageProperty.Name];
+
+                string host = "www.indoorworx.com";// property.Address;
+
+                //var host = "localhost";
 
                 //now create the video
                 var workout = new Video();
-                workout.StreamUri = new Uri(string.Format("http://{0}/IndoorWorx.Silverlight.Web/csm/{1}.csm", host, uniqueName), UriKind.Absolute);
+                workout.StreamUri = new Uri(string.Format("http://{0}/IndoorWorx/csm/{1}.csm", host, uniqueName), UriKind.Absolute);
                 workout.Title = request.TrainingSet.Title;
                 workout.Description = template.Description;
                 workout.Duration = totalDuration;
-                workout.TelemetryInfo.TelemetryUri = new Uri(string.Format("http://{0}/IndoorWorx.Silverlight.Web/telemetry/{1}.csv", host, uniqueName), UriKind.Absolute);
+                workout.TelemetryInfo.TelemetryUri = new Uri(string.Format("http://{0}/IndoorWorx/telemetry/{1}.csv", host, uniqueName), UriKind.Absolute);
                 foreach (var text in template.VideoText)
                 {
                     workout.VideoText.Add(text.Clone());
