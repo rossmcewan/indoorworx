@@ -144,11 +144,20 @@ Technical support has been notified. We will try to resolve this as soon as poss
   <data name="PlayerDetailsInstructions" xml:space="preserve">
     <value>You have chosen to ride a video with associated telemetry. You now have the option of configuring what portion of the ride you would like to do by selecting the start and end time.</value>
   </data>
+  <data name="PowerHeader" xml:space="preserve">
+    <value>POWER</value>
+  </data>
   <data name="PowerLabel" xml:space="preserve">
     <value>Power:</value>
   </data>
   <data name="PreviewVideoTitle" xml:space="preserve">
     <value>Preview - {0}</value>
+  </data>
+  <data name="ProfileHeader" xml:space="preserve">
+    <value>PROFILE</value>
+  </data>
+  <data name="ThankYouForUsingIndoorWorx" xml:space="preserve">
+    <value>Thank you for using IndoorWorx, we hope you enjoyed your latest foray into the realms of indoor cycling.</value>
   </data>
   <data name="TimeLabel" xml:space="preserve">
     <value>Time:</value>

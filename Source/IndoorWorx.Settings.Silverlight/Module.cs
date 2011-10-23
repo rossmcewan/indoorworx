@@ -43,6 +43,8 @@ namespace IndoorWorx.Settings
             Application.Current.Resources.Add("SettingsResources", new ResourceWrapper());
             unityContainer.RegisterInstance<ISettingsPresentationModel>(unityContainer.Resolve<SettingsPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<ISettingsView>(unityContainer.Resolve<SettingsView>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IGeneralSettingsPresentationModel>(unityContainer.Resolve<GeneralSettingsPresentationModel>(), new ContainerControlledLifetimeManager());
+            unityContainer.RegisterInstance<IGeneralSettingsView>(unityContainer.Resolve<GeneralSettingsView>(), new ContainerControlledLifetimeManager());
         }
     }
 }

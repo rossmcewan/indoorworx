@@ -141,6 +141,12 @@
   <data name="PerIntervalAndRecoveryGroup" xml:space="preserve">
     <value>ONE FOR AN INTERVAL-RECOVERY GROUP</value>
   </data>
+  <data name="PowerHeader" xml:space="preserve">
+    <value>POWER</value>
+  </data>
+  <data name="ProfileHeader" xml:space="preserve">
+    <value>PROFILE</value>
+  </data>
   <data name="RecommendedVideosLabel" xml:space="preserve">
     <value>RECOMMENDED VIDEOS</value>
   </data>

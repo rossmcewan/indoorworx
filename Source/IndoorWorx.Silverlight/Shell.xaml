@@ -143,8 +143,8 @@
 
             <Border x:Name="MenuBorder" Style="{StaticResource MenuContainerStyle}">
                 <StackPanel x:Name="MenuStackPanel" Style="{StaticResource MenuStackPanelStyle}">
-                    <TextBlock Text="{Binding Version, Source={StaticResource ApplicationContext}}" VerticalAlignment="Center"/>
-                    <TextBlock Text="|" Style="{StaticResource SpacerStyle}"/>
+                    <!--<TextBlock Text="{Binding Version, Source={StaticResource ApplicationContext}}" VerticalAlignment="Center"/>
+                    <TextBlock Text="|" Style="{StaticResource SpacerStyle}"/>-->
                     <Button Style="{StaticResource MenuLinkStyle}" Content="SETTINGS" x:Name="settingsButton" Click="settingsButton_Click"/>
                     <TextBlock Text="|" Style="{StaticResource SpacerStyle}"/>
                     <Button Style="{StaticResource MenuLinkStyle}" Content="HELP" x:Name="helpButton" Click="helpButton_Click"/>

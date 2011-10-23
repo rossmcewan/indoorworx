@@ -117,6 +117,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SettingsResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\GeneralSettingsPresentationModel.cs" />
+    <Compile Include="Views\GeneralSettingsView.xaml.cs">
+      <DependentUpon>GeneralSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IGeneralSettingsPresentationModel.cs" />
+    <Compile Include="Views\IGeneralSettingsView.cs" />
     <Compile Include="Views\ISettingsView.cs" />
     <Compile Include="Views\ISettingsPresentationModel.cs" />
     <Compile Include="Views\SettingsPresentationModel.cs" />
@@ -140,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GeneralSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

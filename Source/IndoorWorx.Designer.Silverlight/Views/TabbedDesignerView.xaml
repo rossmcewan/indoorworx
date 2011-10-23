@@ -57,20 +57,40 @@
                                     TabStripPlacement="Left"/>
                                 </Grid>
                             </Grid>
-                            <telerik:RadTimeBar x:Name="timeBar" Height="150" IsEnabled="False" Grid.Row="3" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}"
-                                    PeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}" 
-                                    VisiblePeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}"                                                                            
-                                    SelectionStart="{Binding RangeFrom, Mode=TwoWay}" 
-                                    SelectionEnd="{Binding RangeTo, Mode=TwoWay}">
-                                <telerik:RadLinearSparkline 
-                                    ItemsSource="{Binding SelectedTemplate.Telemetry, Mode=OneWay}" 
-                                    ShowAxis="False"                
-                                    MinYValue="0"
-                                    MaxYValue="{Binding SelectedTemplate.Telemetry, Mode=OneWay, Converter={StaticResource TelemetryToMaxYValueConverter}}"
-                                    AutoRange="False"
-                                    YValuePath="PercentageThreshold" 
-                                    XValuePath="TimePositionAsDateTime" />
-                            </telerik:RadTimeBar>
+                            <telerik:RadTabControl Grid.Row="3" Visibility="{Binding SelectedTemplate, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}">
+                                <telerik:RadTabItem Header="{Binding DesignerResources.PowerHeader, Source={StaticResource DesignerResources}}">
+                                    <telerik:RadTimeBar x:Name="powerTimeBar" Height="150" IsEnabled="False"  
+                                            PeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}" 
+                                            VisiblePeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}"                                                                            
+                                            SelectionStart="{Binding RangeFrom, Mode=TwoWay}" 
+                                            SelectionEnd="{Binding RangeTo, Mode=TwoWay}">
+                                        <telerik:RadLinearSparkline 
+                                            ItemsSource="{Binding SelectedTemplate.Telemetry, Mode=OneWay}" 
+                                            ShowAxis="False"                
+                                            MinYValue="0"
+                                            MaxYValue="{Binding SelectedTemplate.Telemetry, Mode=OneWay, Converter={StaticResource TelemetryToMaxYValueConverter}}"
+                                            AutoRange="False"
+                                            YValuePath="PercentageThreshold" 
+                                            XValuePath="TimePositionAsDateTime" />
+                                    </telerik:RadTimeBar>
+                                </telerik:RadTabItem>
+                                <telerik:RadTabItem Header="{Binding DesignerResources.ProfileHeader, Source={StaticResource DesignerResources}}">
+                                    <telerik:RadTimeBar x:Name="profileTimeBar" Height="150" IsEnabled="False"  
+                                            PeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}" 
+                                            VisiblePeriodStart="{Binding SelectedTemplate.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding SelectedTemplate.EndDateTime, Mode=TwoWay}"                                                                            
+                                            SelectionStart="{Binding RangeFrom, Mode=TwoWay}" 
+                                            SelectionEnd="{Binding RangeTo, Mode=TwoWay}">
+                                        <telerik:RadLinearSparkline 
+                                            ItemsSource="{Binding SelectedTemplate.Telemetry, Mode=OneWay}" 
+                                            ShowAxis="False"                
+                                            MinYValue="0"
+                                            MaxYValue="{Binding SelectedTemplate.Telemetry, Mode=OneWay, Converter={StaticResource TelemetryToMaxYValueConverter}, ConverterParameter=profile}"
+                                            AutoRange="False"
+                                            YValuePath="Altitude" 
+                                            XValuePath="TimePositionAsDateTime" />
+                                    </telerik:RadTimeBar>
+                                </telerik:RadTabItem>
+                            </telerik:RadTabControl>
                         </Grid>
                     </Grid>
                 </Border>

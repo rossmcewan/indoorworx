@@ -354,4 +354,10 @@
   <data name="IntervalNameLabel" xml:space="preserve">
     <value>NAME</value>
   </data>
+  <data name="PowerHeader" xml:space="preserve">
+    <value>POWER</value>
+  </data>
+  <data name="ProfileHeader" xml:space="preserve">
+    <value>PROFILE</value>
+  </data>
 </root>

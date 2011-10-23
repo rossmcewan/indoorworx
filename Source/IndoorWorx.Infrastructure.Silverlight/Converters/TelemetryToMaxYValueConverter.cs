@@ -23,8 +23,13 @@ namespace IndoorWorx.Infrastructure.Converters
             var telemetry = value as ICollection<Telemetry>;
             if (telemetry != null)
             {
-                if(telemetry.Any())
-                    return telemetry.Max(x => x.PercentageThreshold) * 1.1;
+                if (telemetry.Any())
+                {
+                    if(parameter == null || "power".Equals(parameter.ToString().ToLower()))
+                        return telemetry.Max(x => x.PercentageThreshold) * 1.1;
+                    if ("profile".Equals(parameter.ToString().ToLower()))
+                        return telemetry.Max(x => x.Altitude) * 1.1;
+                }
                 return 100;
             }
             throw new Exception("Value must be a collection of Telemetry");

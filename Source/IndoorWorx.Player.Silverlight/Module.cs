@@ -39,11 +39,17 @@ namespace IndoorWorx.Player
 
             eventAggregator.GetEvent<PlayVideoEvent>().Subscribe(PlayVideo, ThreadOption.UIThread, true);
             eventAggregator.GetEvent<PreviewVideoEvent>().Subscribe(PreviewVideo, ThreadOption.UIThread, true);
+            eventAggregator.GetEvent<VideoEndedEvent>().Subscribe(VideoEnded, ThreadOption.UIThread, true);
         }
 
         private IDialogFacade DialogFacade
         {
             get { return serviceLocator.GetInstance<IDialogFacade>(); }
+        }
+
+        private void VideoEnded(Video video)
+        {
+            DialogFacade.Alert(PlayerResources.ThankYouForUsingIndoorWorx);
         }
 
         public void PlayVideo(Video video)

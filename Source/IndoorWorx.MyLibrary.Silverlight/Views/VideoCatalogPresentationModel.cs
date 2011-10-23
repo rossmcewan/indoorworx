@@ -17,6 +17,7 @@ using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Composite.Events;
 using IndoorWorx.MyLibrary.Resources;
 using IndoorWorx.Infrastructure;
+using IndoorWorx.Infrastructure.Events;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -28,6 +29,7 @@ namespace IndoorWorx.MyLibrary.Views
         {
             this.serviceLocator = serviceLocator;
             this.eventAggregator = eventAggregator;
+            this.AddVideoCommand = new DelegateCommand<object>(AddVideo);
             ApplicationContext.Current.PropertyChanged += (sender, e) =>
                 {
                     if (e.PropertyName == "VideoCount")
@@ -36,6 +38,13 @@ namespace IndoorWorx.MyLibrary.Views
                         LoadCategories();
                     }
                 };
+        }
+
+        public ICommand AddVideoCommand { get; private set; }
+
+        private void AddVideo(object arg)
+        {
+            eventAggregator.GetEvent<DesignEvent>().Publish(null);
         }
 
         public IVideoCatalogView View { get; set; }

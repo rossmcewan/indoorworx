@@ -198,6 +198,9 @@
   <data name="PlayTrainingSetToolTip" xml:space="preserve">
     <value>Play this training set.</value>
   </data>
+  <data name="PowerHeader" xml:space="preserve">
+    <value>POWER</value>
+  </data>
   <data name="PreviewButtonText" xml:space="preserve">
     <value>Preview</value>
   </data>
@@ -209,6 +212,9 @@
   </data>
   <data name="PreviewVideoHeader" xml:space="preserve">
     <value>Preview Video</value>
+  </data>
+  <data name="ProfileHeader" xml:space="preserve">
+    <value>PROFILE</value>
   </data>
   <data name="ProfilesDescription" xml:space="preserve">
     <value>View the profiles for the selected training set.</value>

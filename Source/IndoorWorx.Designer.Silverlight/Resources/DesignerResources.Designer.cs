@@ -133,6 +133,24 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to POWER.
+        /// </summary>
+        public static string PowerHeader {
+            get {
+                return ResourceManager.GetString("PowerHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PROFILE.
+        /// </summary>
+        public static string ProfileHeader {
+            get {
+                return ResourceManager.GetString("ProfileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RECOMMENDED VIDEOS.
         /// </summary>
         public static string RecommendedVideosLabel {

@@ -8,11 +8,11 @@
            d:DesignWidth="640" d:DesignHeight="480"
            Title="SettingsPage Page">
     <Grid x:Name="LayoutRoot">
-        <navigation:Frame JournalOwnership="OwnsJournal" Source="/IndoorWorx.Settings.Silverlight;component/Pages/GeneralSettingsPage.xaml" x:Name="CatalogContentFrame" Style="{StaticResource FrameStyle}" Grid.Row="1" Navigated="CatalogContentFrame_Navigated">
+        <navigation:Frame JournalOwnership="OwnsJournal" Source="/IndoorWorx.Settings.Silverlight;component/Pages/GeneralSettingsPage.xaml" x:Name="SettingsContentFrame" Style="{StaticResource FrameStyle}" Margin="0,20,0,0" Navigated="CatalogContentFrame_Navigated">
         </navigation:Frame>
         <Border x:Name="LinksBorder" Style="{StaticResource SubMenuLinksBorderStyle}" Grid.Row="0">
             <StackPanel x:Name="LinksStackPanel" Style="{StaticResource SubMenuLinksStackPanelStyle}">
-                <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.Settings.Silverlight;component/Pages/GeneralSettingsPage.xaml" TargetName="CatalogContentFrame" Content="{Binding SettingsResources.GeneralTitle, Source={StaticResource SettingsResources}}"/>
+                <HyperlinkButton Style="{StaticResource SubMenuHyperlinkButtonStyle}" FontWeight="Bold" NavigateUri="/IndoorWorx.Settings.Silverlight;component/Pages/GeneralSettingsPage.xaml" TargetName="SettingsContentFrame" Content="{Binding SettingsResources.GeneralTitle, Source={StaticResource SettingsResources}}"/>
             </StackPanel>
         </Border>
     </Grid>

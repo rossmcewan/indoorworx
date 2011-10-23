@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
+using IndoorWorx.Infrastructure;
+using IndoorWorx.Settings.Views;
 
 namespace IndoorWorx.Settings.Pages
 {
@@ -18,6 +20,12 @@ namespace IndoorWorx.Settings.Pages
         public GeneralSettingsPage()
         {
             InitializeComponent();
+            var contentElement = IoC.Resolve<IGeneralSettingsView>() as UserControl;
+            if (contentElement.Parent != null)
+            {
+                (contentElement.Parent as GeneralSettingsPage).Content = null;
+            }
+            this.Content = contentElement;
         }
 
         // Executes when the user navigates to this page.

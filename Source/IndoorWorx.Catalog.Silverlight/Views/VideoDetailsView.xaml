@@ -27,32 +27,42 @@
             </TextBlock>
             <TextBlock Text="{Binding Video.Credits, Mode=OneWay, Converter={StaticResource CreditsToTextConverter}}" Margin="5,0"/>
             <telerik:RadBusyIndicator IsBusy="{Binding Video.IsTelemetryLoading, Mode=OneWay}">
-                <telerik:RadTimeBar x:Name="timeBar" Height="200" IsEnabled="False"
+                <telerik:RadTabControl>
+                    <telerik:RadTabItem Header="{Binding CatalogResources.PowerHeader, Source={StaticResource CatalogResources}}">
+                        <telerik:RadTimeBar x:Name="effortTimeBar" Height="200" IsEnabled="False"
                                     PeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}"
                                     VisiblePeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}" >
-                    <telerik:RadTimeBar.Intervals>
-                        <telerik:DayInterval/>
-                    </telerik:RadTimeBar.Intervals>
-                    <telerik:RadLinearSparkline 
+                            <telerik:RadTimeBar.Intervals>
+                                <telerik:DayInterval/>
+                            </telerik:RadTimeBar.Intervals>
+                            <telerik:RadLinearSparkline 
                             AutoRange="False"
                             MinYValue="0"
-                            MaxYValue="{Binding Video.Telemetry, Mode=OneWay, Converter={StaticResource TelemetryToMaxYValueConverter}}"
+                            MaxYValue="{Binding Video.Telemetry, Mode=OneWay, Converter={StaticResource TelemetryToMaxYValueConverter}, ConverterParameter=power}"
                             ItemsSource="{Binding Video.Telemetry, Mode=TwoWay}" 
                             ShowAxis="False"                            
                             YValuePath="PercentageThreshold" 
                             XValuePath="TimePositionAsDateTime" />
-                </telerik:RadTimeBar>
-                <!--<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0">
-                    <telerik:RadLinearSparkline 
-                            Height="150" 
-                            Width="500"                                                    
+                        </telerik:RadTimeBar>
+                    </telerik:RadTabItem>
+                    <telerik:RadTabItem Header="{Binding CatalogResources.ProfileHeader, Source={StaticResource CatalogResources}}">
+                        <telerik:RadTimeBar x:Name="profileTimeBar" Height="200" IsEnabled="False"
+                                    PeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}"
+                                    VisiblePeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}" >
+                            <telerik:RadTimeBar.Intervals>
+                                <telerik:DayInterval/>
+                            </telerik:RadTimeBar.Intervals>
+                            <telerik:RadLinearSparkline 
+                            AutoRange="False"
+                            MinYValue="0"
+                            MaxYValue="{Binding Video.Telemetry, Mode=OneWay, Converter={StaticResource TelemetryToMaxYValueConverter}, ConverterParameter=profile}"
                             ItemsSource="{Binding Video.Telemetry, Mode=TwoWay}" 
                             ShowAxis="False"                            
-                            YValuePath="PercentageThreshold" 
-                            XValuePath="OATimePosition" 
-                            VerticalAlignment="Bottom" 
-                            HorizontalAlignment="Left"/>
-                </ScrollViewer>-->
+                            YValuePath="Altitude" 
+                            XValuePath="TimePositionAsDateTime" />
+                        </telerik:RadTimeBar>
+                    </telerik:RadTabItem>
+                </telerik:RadTabControl>
             </telerik:RadBusyIndicator>
         </StackPanel>
     </ScrollViewer>
