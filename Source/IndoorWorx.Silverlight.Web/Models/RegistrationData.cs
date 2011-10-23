@@ -53,18 +53,20 @@
         /// <summary>
         /// Gets and sets the last name.
         /// </summary>
-        [Key]
-        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        [Display(Order = 5, Name = "DateOfBirthLabel", ResourceType = typeof(RegistrationDataResources))]
+        //[Key]
+        //[Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
+        //[Display(Order = 5, Name = "DateOfBirthLabel", ResourceType = typeof(RegistrationDataResources))]
+        [Display(AutoGenerateField = false)]
         public DateTime DateOfBirth { get; set; }
 
 
         /// <summary>
         /// Gets and sets the last name.
         /// </summary>
-        [Key]
-        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        [Display(Order = 6, Name = "CountryLabel", ResourceType = typeof(RegistrationDataResources))]
+        //[Key]
+        //[Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
+        //[Display(Order = 6, Name = "CountryLabel", ResourceType = typeof(RegistrationDataResources))]
+        [Display(AutoGenerateField = false)]
         public Countries Country { get; set; }
 
 
