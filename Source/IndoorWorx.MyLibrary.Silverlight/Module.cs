@@ -32,9 +32,18 @@ namespace IndoorWorx.MyLibrary
             this.eventAggregator = eventAggregator;
 
             eventAggregator.GetEvent<MyLibraryEvent>().Subscribe(HandleMyLibraryEvent, true);
+            eventAggregator.GetEvent<VideoCreatedEvent>().Subscribe(HandleVideoCreatedEvent, true);
         }
 
-        public void HandleMyLibraryEvent(LibraryPart libraryPart)
+        private void HandleVideoCreatedEvent(Video video)
+        {
+            var libraryView = serviceLocator.GetInstance<IMyLibraryView>();
+            libraryView.NavigateToLibraryPart(LibraryPart.Videos);
+            var detailsModel = serviceLocator.GetInstance<IVideoDetailsPresentationModel>();
+            detailsModel.SelectVideoWithId(video.Id);            
+        }
+
+        private void HandleMyLibraryEvent(LibraryPart libraryPart)
         {
             serviceLocator.GetInstance<INavigationService>().NavigateTo(
                 new Uri(
@@ -70,12 +79,6 @@ namespace IndoorWorx.MyLibrary
 
             unityContainer.RegisterInstance<IVideoCatalogPresentationModel>(unityContainer.Resolve<VideoCatalogPresentationModel>(), new ContainerControlledLifetimeManager());
             unityContainer.RegisterInstance<IVideoCatalogView>(unityContainer.Resolve<VideoCatalogView>(), new ContainerControlledLifetimeManager());
-
-            //unityContainer.RegisterInstance<ITrainingSetsPresentationModel>(unityContainer.Resolve<TrainingSetsPresentationModel>(), new ContainerControlledLifetimeManager());
-            //unityContainer.RegisterInstance<ITrainingSetsView>(unityContainer.Resolve<TrainingSetsView>(), new ContainerControlledLifetimeManager());
-
-            //unityContainer.RegisterInstance<ITrainingSetDetailsPresentationModel>(unityContainer.Resolve<TrainingSetDetailsPresentationModel>(), new ContainerControlledLifetimeManager());
-            //unityContainer.RegisterInstance<ITrainingSetDetailsView>(unityContainer.Resolve<TrainingSetDetailsView>(), new ContainerControlledLifetimeManager());
 
             unityContainer.RegisterType<ITemplateView, TemplateView>();
             unityContainer.RegisterType<ITemplatePresentationModel, TemplatePresentationModel>();

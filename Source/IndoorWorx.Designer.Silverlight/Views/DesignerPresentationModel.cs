@@ -20,6 +20,7 @@ using IndoorWorx.Designer.Events;
 using IndoorWorx.Infrastructure.Helpers;
 using System.Collections.Generic;
 using IndoorWorx.Infrastructure.Services;
+using IndoorWorx.Infrastructure.Events;
 
 namespace IndoorWorx.Designer.Views
 {
@@ -145,13 +146,15 @@ namespace IndoorWorx.Designer.Views
                             {
                                 interval.ClearDesignData();
                             }
+                            IsBusy = false;
+                            Hide();
+                            eventAggregator.GetEvent<VideoCreatedEvent>().Publish(e.Value.TrainingSet);
                         }
                         else
                         {
                             dialogFacade.Alert(DesignerResources.ErrorCreatingWorkout);
-                        }
-                        IsBusy = false;
-                        Hide();
+                            IsBusy = false;
+                        }                        
                     };
                 service.CreateTrainingSet(trainingSet);
             }

@@ -360,6 +360,7 @@
     <Compile Include="Events\PlayVideoEvent.cs" />
     <Compile Include="Events\PreviewVideoEvent.cs" />
     <Compile Include="Events\SettingsEvent.cs" />
+    <Compile Include="Events\VideoCreatedEvent.cs" />
     <Compile Include="Events\VideoEndedEvent.cs" />
     <Compile Include="Events\VideoTickEvent.cs" />
     <Compile Include="Facades\IDialogFacade.cs" />
