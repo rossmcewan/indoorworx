@@ -18,33 +18,40 @@ namespace IndoorWorx.Trainers.Computrainer
 {
     public class ComputrainerExport : ITrainerExport
     {
-        public string CreateExport(ICollection<Telemetry> telemetry)
+        public string CreateExport(Video video)
         {
             var fileContent = new StringBuilder();
             fileContent.AppendLine("[COURSE HEADER]");
             fileContent.AppendLine("VERSION = 2");
             fileContent.AppendLine("UNITS = ENGLISH");
-            fileContent.AppendLine("DESCRIPTION = INDOORWORX");
+            fileContent.AppendLine(string.Format("DESCRIPTION = {0}", video.Title));
             fileContent.AppendLine("FILE NAME = INDOORWORX.ERG");
             fileContent.AppendLine("MINUTES\tWATTS");
             fileContent.AppendLine("[END COURSE HEADER]");
             fileContent.AppendLine("");
             fileContent.AppendLine("[COURSE DATA]");
-            var lines = new Dictionary<string, string>();
-            foreach (var t in telemetry)
+            var timePosition = TimeSpan.Zero;
+            foreach (var interval in video.Intervals)
             {
-                var key = Math.Round(t.TimePosition.TotalMinutes, 2).ToString();
-                var watts = (t.PercentageThreshold * 300).ToString();//need to change this to the current users threshold
-                if (!lines.ContainsKey(key))
-                {
-                    lines.Add(key, watts);
-                }
-                //fileContent.AppendLine(decimal.Round(Convert.ToDecimal(t.TimePosition.TotalMinutes), 1) + "\t" + t.PercentageThreshold * 300);//need to change this to the current users threshold
+                fileContent.AppendLine(string.Format("{0}\t{1}", Math.Round(timePosition.TotalMinutes, 2).ToString(), interval.Effort * ApplicationUser.CurrentUser.FTP / 100.00));
+                timePosition = timePosition.Add(interval.Duration);
+                fileContent.AppendLine(string.Format("{0}\t{1}", Math.Round(timePosition.TotalMinutes, 2).ToString(), interval.Effort * ApplicationUser.CurrentUser.FTP / 100.00));
             }
-            foreach (var line in lines)
-            {
-                fileContent.AppendLine(string.Format("{0}\t{1}", line.Key, line.Value));
-            }
+            //var lines = new Dictionary<string, string>();
+            //foreach (var t in telemetry)
+            //{
+            //    var key = Math.Round(t.TimePosition.TotalMinutes, 2).ToString();
+            //    var watts = (t.PercentageThreshold * 300).ToString();//need to change this to the current users threshold
+            //    if (!lines.ContainsKey(key))
+            //    {
+            //        lines.Add(key, watts);
+            //    }
+            //    //fileContent.AppendLine(decimal.Round(Convert.ToDecimal(t.TimePosition.TotalMinutes), 1) + "\t" + t.PercentageThreshold * 300);//need to change this to the current users threshold
+            //}
+            //foreach (var line in lines)
+            //{
+            //    fileContent.AppendLine(string.Format("{0}\t{1}", line.Key, line.Value));
+            //}
             fileContent.AppendLine("[END COURSE DATA]");
             return fileContent.ToString();
         }

@@ -7,11 +7,14 @@ using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.NHibernate.ClassMaps
 {
-    public class VideoIntervalClassMap : SubclassMap<VideoInterval>
+    public class VideoIntervalClassMap : ClassMap<VideoInterval>
     {
         public VideoIntervalClassMap()
         {
-            KeyColumn("Id");
+            Id(x => x.Id).GeneratedBy.GuidComb();
+            Map(x => x.Duration).Not.Nullable();
+            Map(x => x.Effort);
+            Map(x => x.Sequence).Not.Nullable();
         }
     }
 }

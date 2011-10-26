@@ -30,6 +30,7 @@ namespace IndoorWorx.NHibernate.ClassMaps
             References(x => x.TelemetryInfo).Cascade.SaveUpdate().Not.LazyLoad();
             HasMany(x => x.Reviews).KeyColumn("Video").Cascade.SaveUpdate().Fetch.Subselect().LazyLoad();
             HasMany(x => x.VideoText).Cascade.AllDeleteOrphan().Not.LazyLoad().KeyColumn("Video");
+            HasMany(x => x.Intervals).Cascade.AllDeleteOrphan().Not.LazyLoad().KeyColumn("Video");
         }
     }
 }

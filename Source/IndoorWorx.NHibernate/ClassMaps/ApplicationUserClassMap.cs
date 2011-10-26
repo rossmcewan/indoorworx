@@ -21,6 +21,8 @@ namespace IndoorWorx.NHibernate.ClassMaps
             References(x => x.ReferralSource).Cascade.SaveUpdate();
             Map(x => x.Country);
             Map(x => x.Credits);
+            Map(x => x.FTP);
+            Map(x => x.FTHR);
             References(x => x.SportingHabits).Cascade.SaveUpdate();
             HasMany(x => x.Activities).KeyColumn("Activity").Cascade.SaveUpdate().Fetch.Subselect();
             HasMany(x => x.SocialProfile).KeyColumn("SocialProfile").Cascade.SaveUpdate().Fetch.Subselect();

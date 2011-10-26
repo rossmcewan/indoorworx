@@ -7,30 +7,51 @@ using System.Runtime.Serialization;
 namespace IndoorWorx.Infrastructure.Models
 {
     [DataContract]
-    public class VideoInterval : Interval
+    public class VideoInterval : BaseModel
     {
-        //private TimeSpan startTimestamp;
-        //[DataMember]
-        //public virtual TimeSpan StartTimestamp 
-        //{
-        //    get { return startTimestamp; }
-        //    set
-        //    {
-        //        startTimestamp = value;
-        //        FirePropertyChanged("StartTimestamp");
-        //    }
-        //}
+        public VideoInterval() { }
 
-        //private TimeSpan endTimestamp;
-        //[DataMember]
-        //public virtual TimeSpan EndTimestamp
-        //{
-        //    get { return endTimestamp; }
-        //    set
-        //    {
-        //        endTimestamp = value;
-        //        FirePropertyChanged("EndTimestamp");
-        //    }
-        //}
+        public VideoInterval(TimeSpan duration, int? effort, int sequence)
+        {
+            this.duration = duration;
+            this.effort = effort;
+            this.sequence = sequence;
+        }
+
+        private TimeSpan duration;
+        [DataMember]
+        public virtual TimeSpan Duration
+        {
+            get { return duration; }
+            set
+            {
+                duration = value;
+                FirePropertyChanged("Duration");
+            }
+        }
+
+        private int? effort;
+        [DataMember]
+        public virtual int? Effort
+        {
+            get { return effort; }
+            set
+            {
+                effort = value;
+                FirePropertyChanged("Effort");
+            }
+        }
+
+        private int sequence;
+        [DataMember]
+        public virtual int Sequence
+        {
+            get { return sequence; }
+            set
+            {
+                sequence = value;
+                FirePropertyChanged("Sequence");
+            }
+        }
     }
 }

@@ -106,6 +106,15 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to INTERVAL.
+        /// </summary>
+        public static string Interval {
+            get {
+                return ResourceManager.GetString("Interval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ONE FOR EACH INTERVAL AND RECOVERY.
         /// </summary>
         public static string PerInterval {
@@ -156,6 +165,15 @@ namespace IndoorWorx.Designer.Resources {
         public static string RecommendedVideosLabel {
             get {
                 return ResourceManager.GetString("RecommendedVideosLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RECOVERY.
+        /// </summary>
+        public static string Recovery {
+            get {
+                return ResourceManager.GetString("Recovery", resourceCulture);
             }
         }
         

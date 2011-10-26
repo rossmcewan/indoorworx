@@ -121,6 +121,7 @@ namespace IndoorWorx.SmoothStreaming.Services
                 {
                     workout.VideoText.Add(text.Clone());
                 }
+                workout.Intervals = template.Intervals.Select(x => new VideoInterval(x.Duration, x.Effort, x.Sequence)).ToList();
                 var savedWorkout = videoRepository.Save(workout);
 
                 var userService = serviceLocator.GetInstance<IApplicationUserService>();

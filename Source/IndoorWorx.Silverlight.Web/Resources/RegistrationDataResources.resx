@@ -138,6 +138,18 @@
   <data name="FriendlyNameLabel" xml:space="preserve">
     <value>Friendly name</value>
   </data>
+  <data name="FTHRDescription" xml:space="preserve">
+    <value>FTHR is your Functional Threshold Heart Rate. This is your average heart rate during a 60 minute all out effort. This can be used to determine exercise intensity much more reliably than your maximum heart rate.</value>
+  </data>
+  <data name="FTHRLabel" xml:space="preserve">
+    <value>FTHR</value>
+  </data>
+  <data name="FTPDescription" xml:space="preserve">
+    <value>FTP is your Functional Threshold Power. Basically, the watts you can exert for 60 minutes - no more, no less.</value>
+  </data>
+  <data name="FTPLabel" xml:space="preserve">
+    <value>FTP</value>
+  </data>
   <data name="LastNameLabel" xml:space="preserve">
     <value>Last name</value>
   </data>

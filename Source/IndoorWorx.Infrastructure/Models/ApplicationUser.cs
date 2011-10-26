@@ -203,17 +203,29 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        //private ICollection<TrainingSet> trainingSets = new List<TrainingSet>();
-        //[DataMember]
-        //public virtual ICollection<TrainingSet> TrainingSets
-        //{
-        //    get { return trainingSets; }
-        //    set
-        //    {
-        //        trainingSets = value;
-        //        FirePropertyChanged("TrainingSets");
-        //    }
-        //}
+        private int? ftp;
+        [DataMember]
+        public virtual int? FTP
+        {
+            get { return ftp; }
+            set
+            {
+                ftp = value;
+                FirePropertyChanged("FTP");
+            }
+        }
+
+        private int? fthr;
+        [DataMember]
+        public virtual int? FTHR
+        {
+            get { return fthr; }
+            set
+            {
+                fthr = value;
+                FirePropertyChanged("FTHR");
+            }
+        }
 
         public static event EventHandler CurrentUserChanged;
 

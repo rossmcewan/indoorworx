@@ -38,7 +38,7 @@ namespace IndoorWorx.Trainers
             eventAggregator.GetEvent<ExportTrainerFileEvent>().Subscribe(SaveTrainerFile, ThreadOption.UIThread, true);
         }
 
-        private void SaveTrainerFile(ICollection<Telemetry> telemetry)
+        private void SaveTrainerFile(Video video)
         {
             var supportedTrainers = new List<ITrainerExport>();
             eventAggregator.GetEvent<GetSupportedTrainersEvent>().Publish(supportedTrainers);
@@ -51,7 +51,7 @@ namespace IndoorWorx.Trainers
                 {
                     if (view.DialogResult.GetValueOrDefault())
                     {
-                        var export = model.SelectedTrainer.CreateExport(telemetry);
+                        var export = model.SelectedTrainer.CreateExport(video);
                         var sfd = new SaveFileDialog();
                         sfd.DefaultExt = model.SelectedTrainer.FileExtension;
                         sfd.Filter = model.SelectedTrainer.FileFilter;

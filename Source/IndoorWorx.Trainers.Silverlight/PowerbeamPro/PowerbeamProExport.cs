@@ -20,75 +20,39 @@ namespace IndoorWorx.Trainers.PowerbeamPro
 {
     public class PowerbeamProExport : ITrainerExport
     {
-        public string CreateExport(ICollection<Telemetry> telemetry)
+        public string CreateExport(Video video)
         {
             var template = new Template()
             {
-                Name = "IndoorWorx",
-                Description = "IndoorWorx",
+                Name = video.Title,
+                Description = video.Description,
                 Type = 0,
                 Version = "1.0",
                 Segments = new List<Segment>()
             };
-            string lastPower = string.Empty;
-            var intervalDuration = 0;
-            foreach (var t in telemetry)
+            foreach (var interval in video.Intervals)
             {
-                var tPower = (t.PercentageThreshold * 300).ToString(); //this needs to change to PercentageThreshold * User watts
-                if (string.IsNullOrEmpty(lastPower))
-                    lastPower = tPower;
-                else
-                    intervalDuration += 2;
-                if (!string.Equals(tPower, lastPower))
+                template.Segments.Add(new Segment()
                 {
-                    lastPower = tPower;
-
-                    var s = new Segment();
-                    s.Control = new Control()
+                    Control = new Control()
                     {
                         Type = "target",
                         Param = new Param()
                         {
                             Name = "target",
-                            Value = tPower
+                            Value = ((interval.Effort / 100.0) * ApplicationUser.CurrentUser.FTP).ToString()
                         }
-                    };
-                    s.Duration = new Duration()
+                    },
+                    Duration = new Duration()
                     {
                         Type = "time",
                         Param = new Param()
                         {
                             Name = "seconds",
-                            Value = intervalDuration.ToString()
+                            Value = interval.Duration.TotalSeconds.ToString()
                         }
-                    };
-                    template.Segments.Add(s);
-                    intervalDuration = 0;
-                }                
-            }
-            if (intervalDuration != 0)
-            {
-                intervalDuration += 2;
-                var s = new Segment();
-                s.Control = new Control()
-                {
-                    Type = "target",
-                    Param = new Param()
-                    {
-                        Name = "target",
-                        Value = lastPower
                     }
-                };
-                s.Duration = new Duration()
-                {
-                    Type = "time",
-                    Param = new Param()
-                    {
-                        Name = "seconds",
-                        Value = intervalDuration.ToString()
-                    }
-                };
-                template.Segments.Add(s);
+                });
             }
             var serializer = new XmlSerializer(typeof(Template));
             MemoryStream ms = new MemoryStream();
@@ -96,9 +60,89 @@ namespace IndoorWorx.Trainers.PowerbeamPro
             serializer.Serialize(writer, template);
             ms = (MemoryStream)writer.BaseStream;
             var bytes = ms.ToArray();
-            string xml =  Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+            string xml = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
             return xml;
         }
+
+        //public string CreateExport(ICollection<Telemetry> telemetry)
+        //{
+        //    var template = new Template()
+        //    {
+        //        Name = "IndoorWorx",
+        //        Description = "IndoorWorx",
+        //        Type = 0,
+        //        Version = "1.0",
+        //        Segments = new List<Segment>()
+        //    };
+        //    string lastPower = string.Empty;
+        //    var intervalDuration = 0;
+        //    foreach (var t in telemetry)
+        //    {
+        //        var tPower = (t.PercentageThreshold * ApplicationUser.CurrentUser.FTP).ToString(); 
+        //        if (string.IsNullOrEmpty(lastPower))
+        //            lastPower = tPower;
+        //        else
+        //            intervalDuration += 2;
+        //        if (!string.Equals(tPower, lastPower))
+        //        {
+        //            lastPower = tPower;
+
+        //            var s = new Segment();
+        //            s.Control = new Control()
+        //            {
+        //                Type = "target",
+        //                Param = new Param()
+        //                {
+        //                    Name = "target",
+        //                    Value = tPower
+        //                }
+        //            };
+        //            s.Duration = new Duration()
+        //            {
+        //                Type = "time",
+        //                Param = new Param()
+        //                {
+        //                    Name = "seconds",
+        //                    Value = intervalDuration.ToString()
+        //                }
+        //            };
+        //            template.Segments.Add(s);
+        //            intervalDuration = 0;
+        //        }                
+        //    }
+        //    if (intervalDuration != 0)
+        //    {
+        //        intervalDuration += 2;
+        //        var s = new Segment();
+        //        s.Control = new Control()
+        //        {
+        //            Type = "target",
+        //            Param = new Param()
+        //            {
+        //                Name = "target",
+        //                Value = lastPower
+        //            }
+        //        };
+        //        s.Duration = new Duration()
+        //        {
+        //            Type = "time",
+        //            Param = new Param()
+        //            {
+        //                Name = "seconds",
+        //                Value = intervalDuration.ToString()
+        //            }
+        //        };
+        //        template.Segments.Add(s);
+        //    }
+        //    var serializer = new XmlSerializer(typeof(Template));
+        //    MemoryStream ms = new MemoryStream();
+        //    StreamWriter writer = new StreamWriter(ms, Encoding.UTF8);
+        //    serializer.Serialize(writer, template);
+        //    ms = (MemoryStream)writer.BaseStream;
+        //    var bytes = ms.ToArray();
+        //    string xml =  Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+        //    return xml;
+        //}
 
         public string Title
         {

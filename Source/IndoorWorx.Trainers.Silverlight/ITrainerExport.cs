@@ -15,7 +15,7 @@ namespace IndoorWorx.Trainers
 {
     public interface ITrainerExport
     {
-        string CreateExport(ICollection<Telemetry> telemetry);
+        string CreateExport(Video video);
 
         string Title { get; }
 

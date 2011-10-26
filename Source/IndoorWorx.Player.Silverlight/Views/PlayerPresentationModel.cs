@@ -49,7 +49,7 @@ namespace IndoorWorx.Player.Views
 
         private void ExportTrainerFile(object arg)
         {
-            eventAggregator.GetEvent<ExportTrainerFileEvent>().Publish(Video.Telemetry);
+            eventAggregator.GetEvent<ExportTrainerFileEvent>().Publish(Video);
         }
 
         private IShell Shell

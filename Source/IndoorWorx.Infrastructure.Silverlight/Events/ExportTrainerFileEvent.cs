@@ -14,7 +14,7 @@ using System.Collections.Generic;
 
 namespace IndoorWorx.Infrastructure.Events
 {
-    public class ExportTrainerFileEvent : CompositePresentationEvent<ICollection<Telemetry>>
+    public class ExportTrainerFileEvent : CompositePresentationEvent<Video>
     {
 
     }

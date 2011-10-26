@@ -42,7 +42,14 @@
                             TabStripPlacement="Left"/>
                 </telerik:RadTabItem>
                 <telerik:RadTabItem Header="{Binding DesignerResources.PerIntervalAndRecovery, Source={StaticResource DesignerResources}}">
-                    
+                    <sdk:TabControl>
+                        <sdk:TabItem Header="{Binding DesignerResources.Interval, Source={StaticResource DesignerResources}}">
+                            
+                        </sdk:TabItem>
+                        <sdk:TabItem Header="{Binding DesignerResources.Recovery, Source={StaticResource DesignerResources}}">
+                            
+                        </sdk:TabItem>
+                    </sdk:TabControl> 
                 </telerik:RadTabItem>
                 <telerik:RadTabItem Header="{Binding DesignerResources.PerIntervalAndRecoveryGroup, Source={StaticResource DesignerResources}}">
                     

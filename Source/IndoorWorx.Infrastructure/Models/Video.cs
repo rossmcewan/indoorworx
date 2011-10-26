@@ -154,6 +154,18 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        private ICollection<VideoInterval> intervals;
+        [DataMember]
+        public virtual ICollection<VideoInterval> Intervals
+        {
+            get { return this.intervals; }
+            set
+            {
+                this.intervals = value;
+                FirePropertyChanged("Intervals");
+            }
+        }
+
         public virtual int AverageRating
         {
             get

@@ -102,10 +102,10 @@
                     Username = registrationData.UserName,
                     Firstname = registrationData.FirstName,
                     Lastname = registrationData.LastName,
-                    DateOfBirth = registrationData.DateOfBirth,
                     Email = registrationData.Email,
-                    Country = registrationData.Country,
-                    Gender = registrationData.Gender
+                    Gender = registrationData.Gender,
+                    FTP = registrationData.FTP,
+                    FTHR = registrationData.FTHR
                 });
                return user;
         }

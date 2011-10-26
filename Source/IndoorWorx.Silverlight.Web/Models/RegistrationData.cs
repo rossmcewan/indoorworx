@@ -49,27 +49,6 @@
         [Display(Order = 4, Name = "GenderLabel", ResourceType = typeof(RegistrationDataResources))]
         public Genders Gender { get; set; }
 
-
-        /// <summary>
-        /// Gets and sets the last name.
-        /// </summary>
-        //[Key]
-        //[Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        //[Display(Order = 5, Name = "DateOfBirthLabel", ResourceType = typeof(RegistrationDataResources))]
-        [Display(AutoGenerateField = false)]
-        public DateTime DateOfBirth { get; set; }
-
-
-        /// <summary>
-        /// Gets and sets the last name.
-        /// </summary>
-        //[Key]
-        //[Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        //[Display(Order = 6, Name = "CountryLabel", ResourceType = typeof(RegistrationDataResources))]
-        [Display(AutoGenerateField = false)]
-        public Countries Country { get; set; }
-
-
         [Key]
         [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
         [Display(Order = 7, Name = "EmailLabel", ResourceType = typeof(RegistrationDataResources))]
@@ -77,18 +56,10 @@
                            ErrorMessageResourceName = "ValidationErrorInvalidEmail", ErrorMessageResourceType = typeof(ValidationErrorResources))]
         public string Email { get; set; }
 
-        ///// <summary>
-        ///// Gets and sets the security question.
-        ///// </summary>
-        //[Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        //[Display(Order = 5, Name = "SecurityQuestionLabel", ResourceType = typeof(RegistrationDataResources))]
-        //public string Question { get; set; }
+        [Display(Order = 8, Name = "FTPLabel", ResourceType=typeof(RegistrationDataResources), Description="FTPDescription")]
+        public int? FTP { get; set; }
 
-        ///// <summary>
-        ///// Gets and sets the answer to the security question.
-        ///// </summary>
-        //[Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(ValidationErrorResources))]
-        //[Display(Order = 6, Name = "SecurityAnswerLabel", ResourceType = typeof(RegistrationDataResources))]
-        //public string Answer { get; set; }
+        [Display(Order = 9, Name="FTHRLabel", ResourceType=typeof(RegistrationDataResources), Description="FTHRDescription")]
+        public int? FTHR { get; set; }
     }
 }

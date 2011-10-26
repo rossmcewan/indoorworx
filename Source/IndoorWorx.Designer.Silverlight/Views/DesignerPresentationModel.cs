@@ -79,9 +79,12 @@ namespace IndoorWorx.Designer.Views
 
         private void Cancel(object arg) 
         {
-            foreach (var interval in SelectedTemplate.Intervals)
+            if (SelectedTemplate != null)
             {
-                interval.ClearDesignData();
+                foreach (var interval in SelectedTemplate.Intervals)
+                {
+                    interval.ClearDesignData();
+                }
             }
             Hide();
         }

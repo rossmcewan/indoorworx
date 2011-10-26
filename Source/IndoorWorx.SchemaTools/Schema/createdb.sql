@@ -79,10 +79,6 @@ alter table [Interval]  drop constraint FK8882D83EEB43FADB
 alter table [Interval]  drop constraint FK8882D83E2B3E4BD3
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKD1BC018BCF534679]') AND parent_object_id = OBJECT_ID('[VideoInterval]'))
-alter table [VideoInterval]  drop constraint FKD1BC018BCF534679
-
-
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK66ADF886BFB37A41]') AND parent_object_id = OBJECT_ID('[Measurement]'))
 alter table [Measurement]  drop constraint FK66ADF886BFB37A41
 
@@ -163,6 +159,10 @@ alter table [Video]  drop constraint FK30300B571A252A22
 alter table [Video]  drop constraint FK30300B573C0CDC1E
 
 
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKD1BC018BE9F4749E]') AND parent_object_id = OBJECT_ID('[VideoInterval]'))
+alter table [VideoInterval]  drop constraint FKD1BC018BE9F4749E
+
+
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE82DEBED2B3E4BD3]') AND parent_object_id = OBJECT_ID('[VideoText]'))
 alter table [VideoText]  drop constraint FKE82DEBED2B3E4BD3
 
@@ -202,8 +202,6 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
     if exists (select * from dbo.sysobjects where id = object_id(N'[IndoorTrainingFrequency]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [IndoorTrainingFrequency]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Interval]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Interval]
-
-    if exists (select * from dbo.sysobjects where id = object_id(N'[VideoInterval]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VideoInterval]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[IntervalLevel]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [IntervalLevel]
 
@@ -251,6 +249,8 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Video]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Video]
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'[VideoInterval]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VideoInterval]
+
     if exists (select * from dbo.sysobjects where id = object_id(N'[VideoMetadata]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VideoMetadata]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[VideoText]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VideoText]
@@ -283,6 +283,8 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
        Email NVARCHAR(255) not null,
        Country NVARCHAR(255) null,
        Credits INT null,
+       FTP INT null,
+       FTHR INT null,
        Occupation_id UNIQUEIDENTIFIER null,
        ReferralSource_id UNIQUEIDENTIFIER null,
        SportingHabits_id UNIQUEIDENTIFIER null,
@@ -385,11 +387,6 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
        IntervalType_id UNIQUEIDENTIFIER null,
        IntervalLevel_id UNIQUEIDENTIFIER null,
        TrainingSetTemplate UNIQUEIDENTIFIER null,
-       primary key (Id)
-    )
-
-    create table [VideoInterval] (
-        Id UNIQUEIDENTIFIER not null,
        primary key (Id)
     )
 
@@ -591,6 +588,15 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
        primary key (Id)
     )
 
+    create table [VideoInterval] (
+        Id UNIQUEIDENTIFIER not null,
+       Duration BIGINT not null,
+       Effort INT null,
+       Sequence INT not null,
+       Video UNIQUEIDENTIFIER null,
+       primary key (Id)
+    )
+
     create table [VideoMetadata] (
         Id UNIQUEIDENTIFIER not null,
        FilmedBy NVARCHAR(255) null,
@@ -712,11 +718,6 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
         foreign key (TrainingSetTemplate) 
         references [TrainingSetTemplate]
 
-    alter table [VideoInterval] 
-        add constraint FKD1BC018BCF534679 
-        foreign key (Id) 
-        references [Interval]
-
     alter table [Measurement] 
         add constraint FK66ADF886BFB37A41 
         foreign key (UnitOfMeasure) 
@@ -816,6 +817,11 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
         add constraint FK30300B573C0CDC1E 
         foreign key (TelemetryInfo_id) 
         references [TelemetryInfo]
+
+    alter table [VideoInterval] 
+        add constraint FKD1BC018BE9F4749E 
+        foreign key (Video) 
+        references [Video]
 
     alter table [VideoText] 
         add constraint FKE82DEBED2B3E4BD3 
