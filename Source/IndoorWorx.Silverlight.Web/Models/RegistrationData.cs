@@ -56,10 +56,10 @@
                            ErrorMessageResourceName = "ValidationErrorInvalidEmail", ErrorMessageResourceType = typeof(ValidationErrorResources))]
         public string Email { get; set; }
 
-        [Display(Order = 10, Name = "FTPLabel", ResourceType=typeof(RegistrationDataResources), Description="FTPDescription")]
+        [Display(Order = 20, Name = "FTPLabel", ResourceType=typeof(RegistrationDataResources), Description="FTPDescription")]
         public int? FTP { get; set; }
 
-        [Display(Order = 11, Name="FTHRLabel", ResourceType=typeof(RegistrationDataResources), Description="FTHRDescription")]
+        [Display(Order = 21, Name="FTHRLabel", ResourceType=typeof(RegistrationDataResources), Description="FTHRDescription")]
         public int? FTHR { get; set; }
     }
 }
