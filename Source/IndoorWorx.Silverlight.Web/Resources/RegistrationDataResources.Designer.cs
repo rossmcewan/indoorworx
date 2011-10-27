@@ -178,7 +178,7 @@ namespace IndoorWorx.Silverlight.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password must be 7 characters long and must contain at least one special character e.g. @ or #.
+        ///   Looks up a localized string similar to The password must be 5 characters long and must contain at least one special character e.g. @ or #.
         /// </summary>
         public static string PasswordDescription {
             get {

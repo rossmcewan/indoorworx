@@ -121,7 +121,7 @@
     <value>The friendly name cannot be more than 255 characters long</value>
   </data>
   <data name="ValidationErrorBadPasswordLength" xml:space="preserve">
-    <value>Password must be at least 7 and at most 50 characters long</value>
+    <value>Password must be at least 5 and at most 50 characters long</value>
   </data>
   <data name="ValidationErrorBadPasswordStrength" xml:space="preserve">
     <value>A password needs to contain at least one special character e.g. @ or #</value>

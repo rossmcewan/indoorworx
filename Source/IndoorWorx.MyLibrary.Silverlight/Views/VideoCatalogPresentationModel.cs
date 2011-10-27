@@ -110,16 +110,19 @@ namespace IndoorWorx.MyLibrary.Views
             get
             {
                 var result = new List<Video>();
-                foreach (var video in ApplicationUser.CurrentUser.Videos)
-                {                    
-                    foreach (var cat in FilteredCategories)
+                if (ApplicationUser.CurrentUser != null)
+                {
+                    foreach (var video in ApplicationUser.CurrentUser.Videos)
                     {
-                        if ((video.Catalog == null && FilteredCategories.Any(x => x.Title.ToLower() == "workouts")) || (video.Catalog != null && video.Catalog.Category.Equals(cat)))
+                        foreach (var cat in FilteredCategories)
                         {
-                            if(!result.Contains(video))
-                                result.Add(video);
+                            if ((video.Catalog == null && FilteredCategories.Any(x => x.Title.ToLower() == "workouts")) || (video.Catalog != null && video.Catalog.Category.Equals(cat)))
+                            {
+                                if (!result.Contains(video))
+                                    result.Add(video);
+                            }
+                            //result.AddRange(cat.Videos);
                         }
-                        //result.AddRange(cat.Videos);
                     }
                 }
                 return result;

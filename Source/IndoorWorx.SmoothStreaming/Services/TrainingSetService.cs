@@ -15,6 +15,7 @@ using System.Web;
 using IndoorWorx.Infrastructure.Models;
 using System.Transactions;
 using System.ServiceModel.Channels;
+using IndoorWorx.Infrastructure.Criteria;
 
 namespace IndoorWorx.SmoothStreaming.Services
 {
@@ -30,7 +31,7 @@ namespace IndoorWorx.SmoothStreaming.Services
         }
 
         public CreateTrainingSetResponse CreateTrainingSet(CreateTrainingSetRequest request)
-        {
+        {            
             var response = new CreateTrainingSetResponse();
             try
             {
@@ -75,6 +76,12 @@ namespace IndoorWorx.SmoothStreaming.Services
                     File.Move(tmpFilePath, finalFilePath);
                 }
 
+                var userService = serviceLocator.GetInstance<IApplicationUserService>();
+                var user = userService.RetrieveApplicationUser(new ApplicationUserFindCriteria()
+                {
+                    Username = request.User
+                });
+
                 var template = templateRepository.Get(request.TrainingSet.TrainingSetTemplateId);
                 //var _telemetry = new List<Telemetry>();
                 var timer = TimeSpan.Zero;
@@ -86,7 +93,8 @@ namespace IndoorWorx.SmoothStreaming.Services
                     for (int i = 0; i < numberOfElements; i++)
                     {
                         var telemetry = new Telemetry();
-                        telemetry.PercentageThreshold = Convert.ToDouble(interval.Effort);
+                        telemetry.PercentageThreshold = Convert.ToDouble(interval.Effort) / 100;
+                        telemetry.Watts = ((telemetry.PercentageThreshold) * user.FTP.GetValueOrDefault());
                         telemetry.TimePosition = timer;
                         timer = timer.Add(recordingInterval);
                         telemetryFile.AppendLine(telemetry.ToDelimitedString(','));
@@ -124,7 +132,6 @@ namespace IndoorWorx.SmoothStreaming.Services
                 workout.Intervals = template.Intervals.Select(x => new VideoInterval(x.Duration, x.Effort, x.Sequence)).ToList();
                 var savedWorkout = videoRepository.Save(workout);
 
-                var userService = serviceLocator.GetInstance<IApplicationUserService>();
                 userService.AddVideoToLibrary(new AddVideoRequest()
                 {
                     User = request.User,

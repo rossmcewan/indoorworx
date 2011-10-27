@@ -157,7 +157,7 @@
     <value>Confirm password</value>
   </data>
   <data name="PasswordDescription" xml:space="preserve">
-    <value>The password must be 7 characters long and must contain at least one special character e.g. @ or #</value>
+    <value>The password must be 5 characters long and must contain at least one special character e.g. @ or #</value>
     <comment>Change this if you change your password length and strength policies</comment>
   </data>
   <data name="PasswordLabel" xml:space="preserve">
