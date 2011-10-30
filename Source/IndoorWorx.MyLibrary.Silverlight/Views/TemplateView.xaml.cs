@@ -13,6 +13,8 @@ using IndoorWorx.Infrastructure;
 using Telerik.Windows.Data;
 using IndoorWorx.Infrastructure.Enums;
 using Telerik.Windows.Controls;
+using Telerik.Windows.Controls.GridView;
+using IndoorWorx.Infrastructure.Models;
 
 namespace IndoorWorx.MyLibrary.Views
 {
@@ -47,5 +49,39 @@ namespace IndoorWorx.MyLibrary.Views
             if(Model.EditIntervalCommand.CanExecute(element.DataContext))
                 Model.EditIntervalCommand.Execute(element.DataContext);
         }
+
+        private void RadContextMenu_Opened(object sender, RoutedEventArgs e)
+        {
+            RadContextMenu menu = (RadContextMenu)sender;
+            GridViewRow row = menu.GetClickedElement<GridViewRow>();
+            
+            if (row != null)
+            {
+                row.IsSelected = row.IsCurrent = true;
+                GridViewCell cell = menu.GetClickedElement<GridViewCell>();
+                if (cell != null)
+                {
+                    cell.IsCurrent = true;
+                }
+            }
+            else
+            {
+                menu.IsOpen = false;
+            }
+
+        }
+
+        //public Interval CurrentInterval
+        //{
+        //    get
+        //    {
+        //        return intervalGridView.CurrentItem as Interval;
+        //    }
+        //}
+
+        //public IEnumerable<Interval> SelectedIntervals
+        //{
+        //    get { return intervalGridView.SelectedItems.Cast<Interval>(); }
+        //}
     }
 }

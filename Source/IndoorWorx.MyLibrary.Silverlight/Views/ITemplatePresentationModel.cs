@@ -27,19 +27,7 @@ namespace IndoorWorx.MyLibrary.Views
 
         TrainingSetTemplate Template { get; }
 
-        //ICollection<Interval> WarmupIntervals { get; }
-
-        //ICommand AddIntervalToWarmupCommand { get; }
-
-        //ICommand RemoveIntervalFromWarmupCommand { get; }
-
-        //ICommand MoveWarmupIntervalUpCommand { get; }
-
-        //ICommand MoveWarmupIntervalDownCommand { get; }
-
-        //bool HasWarmupIntervals { get; }
-
-        ICollection<Interval> Intervals { get; }
+        IList<Interval> Intervals { get; }
 
         ICommand AddIntervalCommand { get; }
 
@@ -47,12 +35,14 @@ namespace IndoorWorx.MyLibrary.Views
 
         bool HasIntervals { get; }
 
-        //ICollection<Interval> CooldownIntervals { get; }
+        Interval CurrentInterval { get; }
 
-        //ICommand AddIntervalToCooldownCommand { get; }
+        ICommand InsertRowCommand { get; }
 
-        //ICommand RemoveIntervalFromCooldownCommand { get; }
+        ICommand CopyRowsCommand { get; }
 
-        //bool HasCooldownIntervals { get; }
+        ICommand MoveRowsCommand { get; }
+
+        ICommand DeleteRowsCommand { get; }
     }
 }

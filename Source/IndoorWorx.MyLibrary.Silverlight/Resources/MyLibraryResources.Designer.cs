@@ -124,6 +124,24 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy selected rows after this row.
+        /// </summary>
+        public static string CopySelectedRowsAfter {
+            get {
+                return ResourceManager.GetString("CopySelectedRowsAfter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy selected rows before this row.
+        /// </summary>
+        public static string CopySelectedRowsBefore {
+            get {
+                return ResourceManager.GetString("CopySelectedRowsBefore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to COUNT DOWNS.
         /// </summary>
         public static string CountDownsHeader {
@@ -201,6 +219,15 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string DeleteIntervalTitle {
             get {
                 return ResourceManager.GetString("DeleteIntervalTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteRow {
+            get {
+                return ResourceManager.GetString("DeleteRow", resourceCulture);
             }
         }
         
@@ -349,6 +376,24 @@ namespace IndoorWorx.MyLibrary.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert row after this row.
+        /// </summary>
+        public static string InsertRowAfter {
+            get {
+                return ResourceManager.GetString("InsertRowAfter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert row before this row.
+        /// </summary>
+        public static string InsertRowBefore {
+            get {
+                return ResourceManager.GetString("InsertRowBefore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The interval has changed. If you continue you will lose all of the changes you have made..
         /// </summary>
         public static string IntervalChangedCancelConfirmation {
@@ -453,6 +498,24 @@ namespace IndoorWorx.MyLibrary.Resources {
         public static string MinutesLabel {
             get {
                 return ResourceManager.GetString("MinutesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move selected rows after this row.
+        /// </summary>
+        public static string MoveSelectedRowsAfter {
+            get {
+                return ResourceManager.GetString("MoveSelectedRowsAfter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move selected rows before this row.
+        /// </summary>
+        public static string MoveSelectedRowsBefore {
+            get {
+                return ResourceManager.GetString("MoveSelectedRowsBefore", resourceCulture);
             }
         }
         

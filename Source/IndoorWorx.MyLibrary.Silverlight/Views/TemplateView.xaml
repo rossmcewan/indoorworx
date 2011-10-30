@@ -12,13 +12,17 @@
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
     xmlns:telerikGrid="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"             
     xmlns:controls="clr-namespace:IndoorWorx.MyLibrary.Controls"    
-    xmlns:infControls="clr-namespace:IndoorWorx.Infrastructure.Controls;assembly=IndoorWorx.Infrastructure.Silverlight"             
+    xmlns:infControls="clr-namespace:IndoorWorx.Infrastructure.Controls;assembly=IndoorWorx.Infrastructure.Silverlight"    
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+    xmlns:behaviors="clr-namespace:IndoorWorx.Infrastructure.Behaviors;assembly=IndoorWorx.Infrastructure.Silverlight"             
     mc:Ignorable="d"    
     d:DesignHeight="300" d:DesignWidth="400" >
     <UserControl.Resources>
         <iconverters:BooleanToOppositeVisibilityConverter x:Key="BooleanToOppositeVisibilityConverter"/>
         <iconverters:TelemetryToMaxYValueConverter x:Key="TelemetryToMaxYValueConverter"/>
         <converters:TemplateOperationToTextConverter x:Key="TemplateOperationToTextConverter"/>
+        <iconverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:CrudOperationReadOnlyConverter x:Key="CrudOperationReadOnlyConverter" DefaultValue="True"/>
     </UserControl.Resources>
     <infControls:MetroContentControl>
         <telerik:RadBusyIndicator IsBusy="{Binding IsBusy, Mode=OneWay}">
@@ -43,7 +47,7 @@
                         <sdk:Label Content="{Binding MyLibraryResources.TitleLabel, Source={StaticResource MyLibraryResources}}" Margin="5" />
                         <TextBox Grid.Column="1" Width="200" Margin="5" Text="{Binding Template.Title, Mode=TwoWay}" HorizontalAlignment="Left"/>
                         <sdk:Label Content="{Binding MyLibraryResources.EffortTypeLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Column="2" />
-                        <telerik:RadComboBox Grid.Column="3" Width="200" Margin="5" ItemsSource="{Binding EffortTypes, Mode=OneWay, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding Template.EffortType, Mode=TwoWay}" DisplayMemberPath="Title" HorizontalAlignment="Left"/>
+                        <telerik:RadComboBox IsEnabled="False" Grid.Column="3" Width="200" Margin="5" ItemsSource="{Binding EffortTypes, Mode=OneWay, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding Template.EffortType, Mode=TwoWay}" DisplayMemberPath="Title" HorizontalAlignment="Left"/>
                         <sdk:Label Content="{Binding MyLibraryResources.DescriptionLabel, Source={StaticResource MyLibraryResources}}" Margin="5" Grid.Row="1" />
                         <TextBox TextWrapping="Wrap" AcceptsReturn="True" Margin="5" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Height="100" VerticalContentAlignment="Top" Text="{Binding Template.Description, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch"/>
                         <sdk:Label Content="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}" Grid.Row="2" Margin="5" />
@@ -51,25 +55,158 @@
                         <sdk:TabControl Grid.Row="3" Grid.ColumnSpan="4" Margin="5">
                             <sdk:TabItem Header="{Binding MyLibraryResources.IntervalsHeader, Source={StaticResource MyLibraryResources}}">
                                 <Grid>
-                                    <telerik:RadGridView x:Name="intervalGridView" ItemsSource="{Binding Intervals, Mode=OneWay}" ShowGroupPanel="False" Margin="30,25,30,20"
-                                                         CanUserSelect="True" RowIndicatorVisibility="Collapsed" GridLinesVisibility="Vertical" ActionOnLostFocus="CommitEdit" RowDetailsVisibilityMode="Collapsed"
+                                    <telerik:RadGridView x:Name="intervalGridView" ItemsSource="{Binding Intervals, Mode=OneWay}" ShowGroupPanel="False" Margin="30,25,30,20" SelectionMode="Extended" SelectionUnit="FullRow"
+                                                         CanUserSelect="True" RowIndicatorVisibility="Collapsed" GridLinesVisibility="Vertical" ActionOnLostFocus="CommitEdit" RowDetailsVisibilityMode="Collapsed" CurrentItem="{Binding CurrentInterval, Mode=TwoWay}"
                                                          AutoGenerateColumns="False" IsFilteringAllowed="False" CanUserFreezeColumns="False" CanUserReorderColumns="False" CanUserInsertRows="True" CanUserDeleteRows="True" CanUserSortColumns="False">
+                                        <telerik:RadContextMenu.ContextMenu>
+                                            <telerik:RadContextMenu Opened="RadContextMenu_Opened">
+                                                <telerik:RadContextMenu.Items>
+                                                    <telerik:RadMenuItem Header="{Binding MyLibraryResources.InsertRowBefore, Source={StaticResource MyLibraryResources}}" Command="{Binding InsertRowCommand}" CommandParameter="before"/>
+                                                    <telerik:RadMenuItem Header="{Binding MyLibraryResources.InsertRowAfter, Source={StaticResource MyLibraryResources}}" Command="{Binding InsertRowCommand}" CommandParameter="after"/>
+                                                    <telerik:RadSeparator/>
+                                                    <telerik:RadMenuItem Header="{Binding MyLibraryResources.CopySelectedRowsBefore, Source={StaticResource MyLibraryResources}}" Command="{Binding CopyRowsCommand}" CommandParameter="before"/>
+                                                    <telerik:RadMenuItem Header="{Binding MyLibraryResources.CopySelectedRowsAfter, Source={StaticResource MyLibraryResources}}" Command="{Binding CopyRowsCommand}" CommandParameter="after"/>
+                                                    <telerik:RadSeparator/>
+                                                    <telerik:RadMenuItem Header="{Binding MyLibraryResources.MoveSelectedRowsBefore, Source={StaticResource MyLibraryResources}}" Command="{Binding MoveRowsCommand}" CommandParameter="before"/>
+                                                    <telerik:RadMenuItem Header="{Binding MyLibraryResources.MoveSelectedRowsAfter, Source={StaticResource MyLibraryResources}}" Command="{Binding MoveRowsCommand}" CommandParameter="after"/>
+                                                    <telerik:RadSeparator/>
+                                                    <telerik:RadMenuItem Header="{Binding MyLibraryResources.DeleteRow, Source={StaticResource MyLibraryResources}}" Command="{Binding DeleteRowsCommand}"/>
+                                                </telerik:RadContextMenu.Items>
+                                            </telerik:RadContextMenu>
+                                        </telerik:RadContextMenu.ContextMenu>
                                         <telerik:RadGridView.RowDetailsTemplate>
                                             <DataTemplate>
-                                                <Grid>
+                                                <Grid Margin="2">
                                                     <Grid.RowDefinitions>
-                                                        <RowDefinition/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Margin="2" Text="{Binding MyLibraryResources.IntervalTypeLabel, Source={StaticResource MyLibraryResources}}"/>
-                                                    <telerik:RadComboBox Grid.Column="1" Margin="2" DisplayMemberPath="Name" ItemsSource="{Binding IntervalTypes, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding IntervalType, Mode=TwoWay}"/>
-                                                    <TextBlock Grid.Column="2" Margin="2" Text="{Binding MyLibraryResources.IntervalLevelLabel, Source={StaticResource MyLibraryResources}}"/>
-                                                    <telerik:RadComboBox Grid.Column="3" Margin="2" DisplayMemberPath="Title" ItemsSource="{Binding IntervalLevels, Source={StaticResource ApplicationContext}}" SelectedItem="{Binding IntervalLevel, Mode=TwoWay}"/>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <TextBlock Text="{Binding MyLibraryResources.TitleLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center"/>
+                                                        <TextBox Text="{Binding Title, Mode=TwoWay}" IsReadOnly="{Binding Mode, Mode=OneWay, Converter={StaticResource CrudOperationReadOnlyConverter}}" Grid.Column="1" Margin="2"/>
+                                                        <!--<TextBlock Grid.Row="1" Text="{Binding MyLibraryResources.IntervalTypeLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center"/>
+                                                        <telerik:RadComboBox 
+                                                            Margin="2" 
+                                                            Grid.Row="1"
+                                                            Grid.Column="1" 
+                                                            ItemsSource="{Binding IntervalTypes, Mode=OneWay, Source={StaticResource ApplicationContext}}" 
+                                                            DisplayMemberPath="Name" 
+                                                            SelectedItem="{Binding IntervalType, Mode=TwoWay}"/>-->
+                                                        <TextBlock Grid.Row="2" Text="{Binding MyLibraryResources.LevelLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center"/>
+                                                        <telerik:RadComboBox 
+                                                            Margin="2" 
+                                                            Grid.Row="2"
+                                                            Grid.Column="1" 
+                                                            ItemsSource="{Binding IntervalLevels, Mode=OneWay, Source={StaticResource ApplicationContext}}" 
+                                                            DisplayMemberPath="Title" 
+                                                            SelectedItem="{Binding IntervalLevel, Mode=TwoWay}"/>
+                                                        <TextBlock Grid.Row="3" Text="{Binding MyLibraryResources.NumberOfRepeatsLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center"/>
+                                                        <toolkit:NumericUpDown Grid.Row="3" Grid.Column="1" Value="{Binding Repeats, Mode=TwoWay}" Margin="2" HorizontalAlignment="Left" />
+                                                        <TextBlock Grid.Row="4" Text="{Binding MyLibraryResources.DurationLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center"/>
+                                                        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="2">
+                                                            <toolkit:NumericUpDown 
+                                                                ToolTipService.ToolTip="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"
+                                                                Value="{Binding IntervalDuration.Minutes, Mode=TwoWay}"/>
+                                                            <TextBlock Text=":" Margin="2,0"/>
+                                                            <toolkit:NumericUpDown 
+                                                                ToolTipService.ToolTip="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"
+                                                                Value="{Binding IntervalDuration.Seconds, Mode=TwoWay}"/>
+                                                        </StackPanel>
+                                                        <TextBlock Grid.Row="5" Text="{Binding MyLibraryResources.RecoveryIntervalLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center"/>
+                                                        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" Margin="2">
+                                                            <toolkit:NumericUpDown 
+                                                                ToolTipService.ToolTip="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"
+                                                                Value="{Binding RecoveryMinutes, Mode=TwoWay}"/>
+                                                            <TextBlock Text=":" Margin="2,0"/>
+                                                            <toolkit:NumericUpDown 
+                                                                ToolTipService.ToolTip="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"
+                                                                Value="{Binding RecoverySeconds, Mode=TwoWay}"/>
+                                                        </StackPanel>
+
+                                                        <toolkit:Separator Grid.Row="6" Grid.ColumnSpan="2"/>
+                                                        <CheckBox Grid.ColumnSpan="2" Grid.Row="7" telerik:StyleManager.Theme="Metro" IsChecked="{Binding ToStart.IsActive, Mode=TwoWay}" Content="{Binding MyLibraryResources.CountDownToStartOfIntervalLabel, Source={StaticResource MyLibraryResources}}"/>
+                                                        <TextBlock Grid.Row="8" Text="{Binding MyLibraryResources.FromLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center" Visibility="{Binding ToStart.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                        <StackPanel Grid.Row="8" Grid.Column="1" Margin="2" Orientation="Horizontal" Visibility="{Binding ToStart.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                            <toolkit:NumericUpDown 
+                                                                ToolTipService.ToolTip="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"
+                                                                Value="{Binding ToStart.Duration.Minutes, Mode=TwoWay}"/>
+                                                            <TextBlock Text=":" Margin="2,0"/>
+                                                            <toolkit:NumericUpDown 
+                                                                ToolTipService.ToolTip="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"
+                                                                Value="{Binding ToStart.Duration.Seconds, Mode=TwoWay}"/>
+                                                            <TextBlock Margin="2,0" Text="{Binding MyLibraryResources.BeforeTheStartOfTheInterval, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center"/>
+                                                        </StackPanel>
+                                                        <TextBlock Grid.Row="9" Text="{Binding MyLibraryResources.EveryLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center" Visibility="{Binding ToStart.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                        <StackPanel Grid.Row="9" Grid.Column="1" Margin="2" Orientation="Horizontal" Visibility="{Binding ToStart.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                            <toolkit:NumericUpDown 
+                                                                ToolTipService.ToolTip="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"
+                                                                Value="{Binding ToStart.Tick.Minutes, Mode=TwoWay}"/>
+                                                            <TextBlock Text=":" Margin="2,0"/>
+                                                            <toolkit:NumericUpDown 
+                                                                ToolTipService.ToolTip="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"
+                                                                Value="{Binding ToStart.Tick.Seconds, Mode=TwoWay}"/>
+                                                        </StackPanel>
+                                                        <TextBox Grid.Row="10" Grid.ColumnSpan="2" 
+                                                                Text="{Binding ToStart.Message, Mode=TwoWay}" 
+                                                                Visibility="{Binding ToStart.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                            <i:Interaction.Behaviors>
+                                                                <behaviors:Watermark Foreground="Gray" Text="{Binding MyLibraryResources.StartOfIntervalMessageLabel, Source={StaticResource MyLibraryResources}}"/>
+                                                            </i:Interaction.Behaviors>
+                                                        </TextBox>
+
+                                                        <toolkit:Separator Grid.Row="11" Grid.ColumnSpan="2"/>
+                                                        <CheckBox Grid.ColumnSpan="2" Grid.Row="12" telerik:StyleManager.Theme="Metro" IsChecked="{Binding ToEnd.IsActive, Mode=TwoWay}" Content="{Binding MyLibraryResources.CountDownToEndOfIntervalLabel, Source={StaticResource MyLibraryResources}}"/>
+                                                        <TextBlock Grid.Row="13" Text="{Binding MyLibraryResources.FromLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center" Visibility="{Binding ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                        <StackPanel Grid.Row="13" Grid.Column="1" Margin="2" Orientation="Horizontal" Visibility="{Binding ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                            <toolkit:NumericUpDown 
+                                                                ToolTipService.ToolTip="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"
+                                                                Value="{Binding ToEnd.Duration.Minutes, Mode=TwoWay}"/>
+                                                            <TextBlock Text=":" Margin="2,0"/>
+                                                            <toolkit:NumericUpDown 
+                                                                ToolTipService.ToolTip="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"
+                                                                Value="{Binding ToEnd.Duration.Seconds, Mode=TwoWay}"/>
+                                                            <TextBlock Margin="2,0" Text="{Binding MyLibraryResources.BeforeTheEndOfTheInterval, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center"/>
+                                                        </StackPanel>
+                                                        <TextBlock Grid.Row="14" Text="{Binding MyLibraryResources.EveryLabel, Source={StaticResource MyLibraryResources}}" VerticalAlignment="Center" Visibility="{Binding ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                        <StackPanel Grid.Row="14" Grid.Column="1" Margin="2" Orientation="Horizontal" Visibility="{Binding ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                            <toolkit:NumericUpDown 
+                                                                ToolTipService.ToolTip="{Binding MyLibraryResources.MinutesLabel, Source={StaticResource MyLibraryResources}}"
+                                                                Value="{Binding ToEnd.Tick.Minutes, Mode=TwoWay}"/>
+                                                            <TextBlock Text=":" Margin="2,0"/>
+                                                            <toolkit:NumericUpDown 
+                                                                ToolTipService.ToolTip="{Binding MyLibraryResources.SecondsLabel, Source={StaticResource MyLibraryResources}}"
+                                                                Value="{Binding ToEnd.Tick.Seconds, Mode=TwoWay}"/>
+                                                        </StackPanel>
+                                                        <TextBox Grid.Row="15" Grid.ColumnSpan="2" 
+                                                                Text="{Binding ToEnd.Message, Mode=TwoWay}" 
+                                                                Visibility="{Binding ToEnd.IsActive, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                            <i:Interaction.Behaviors>
+                                                                <behaviors:Watermark Foreground="Gray" Text="{Binding MyLibraryResources.EndOfIntervalMessageLabel, Source={StaticResource MyLibraryResources}}"/>
+                                                            </i:Interaction.Behaviors>
+                                                        </TextBox>
+                                                    </Grid>
                                                 </Grid>
                                             </DataTemplate>
                                         </telerik:RadGridView.RowDetailsTemplate>
@@ -83,7 +220,10 @@
                                                     </DataTemplate>
                                                 </telerik:GridViewColumn.CellTemplate>
                                             </telerik:GridViewColumn>
-                                            <telerik:GridViewColumn HeaderTextAlignment="Center">
+                                            <telerik:GridViewToggleRowDetailsColumn/>
+                                            <telerik:GridViewCheckBoxColumn Header="" AutoSelectOnEdit="True" EditTriggers="CellClick" DataMemberBinding="{Binding IsSelected, Mode=TwoWay}" Width="30"/>
+                                            <!--<telerik:GridViewSelectColumn Width="30"/>-->                                            
+                                            <!--<telerik:GridViewColumn HeaderTextAlignment="Center">
                                                 <telerik:GridViewColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <telerik:RadButton Style="{StaticResource RoundButton}" Click="RadButton_Click">
@@ -91,7 +231,7 @@
                                                         </telerik:RadButton>
                                                     </DataTemplate>
                                                 </telerik:GridViewColumn.CellTemplate>
-                                            </telerik:GridViewColumn>
+                                            </telerik:GridViewColumn>-->
                                             <telerik:GridViewDataColumn HeaderTextAlignment="Center" Width="100" DataMemberBinding="{Binding Title, Mode=TwoWay}" Header="{Binding MyLibraryResources.IntervalNameLabel, Source={StaticResource MyLibraryResources}}"/>
                                             <telerik:GridViewColumn HeaderTextAlignment="Center" Header="{Binding MyLibraryResources.NumberOfRepeatsLabel, Source={StaticResource MyLibraryResources}}">
                                                 <telerik:GridViewColumn.CellTemplate>
@@ -139,18 +279,12 @@
                                         <Image Height="48" Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/new.png" Stretch="Fill" Width="48"/>
                                     </telerik:RadButton>
                                 </Grid>
-                                <!--<controls:IntervalsCaptureControl 
-                                    IntervalTypes="{Binding IntervalTypes, Mode=OneWay}"
-                                    ItemsSource="{Binding Intervals, Mode=OneWay}" 
-                                    AddIntervalCommand="{Binding AddIntervalCommand}" 
-                                    EditIntervalCommand="{Binding EditIntervalCommand}"
-                                    RemoveIntervalCommand="{Binding RemoveIntervalCommand}"/>-->
                             </sdk:TabItem>
                             <sdk:TabItem Header="{Binding MyLibraryResources.TextMessagesHeader, Source={StaticResource MyLibraryResources}}">
                                 <Grid>
                                     <telerik:RadGridView x:Name="textGridView" ItemsSource="{Binding Template.VideoText, Mode=TwoWay}" ShowGroupPanel="False" Margin="30,25,30,20"
                                                          CanUserSelect="True" RowIndicatorVisibility="Collapsed" GridLinesVisibility="Vertical"
-                                                         AutoGenerateColumns="False" IsFilteringAllowed="False" CanUserFreezeColumns="False" CanUserReorderColumns="False" CanUserInsertRows="True" CanUserDeleteRows="True" CanUserSortColumns="False">                                        
+                                                         AutoGenerateColumns="False" IsFilteringAllowed="False" CanUserFreezeColumns="False" CanUserReorderColumns="False" CanUserInsertRows="True" CanUserDeleteRows="True" CanUserSortColumns="False">
                                         <telerik:RadGridView.Columns>
                                             <telerik:GridViewColumn>
                                                 <telerik:GridViewColumn.CellTemplate>
@@ -172,7 +306,7 @@
     		                            x:Name="AddLineItem"
     		                            Style="{StaticResource RoundButton}"
                                         Command="telerikGrid:RadGridViewCommands.BeginInsert" CommandTarget="{Binding ElementName=textGridView}"
-                                        HorizontalAlignment="Left" Width="48" Height="48" VerticalAlignment="Top" Margin="0" RenderTransformOrigin="0.5,0.5">                                        
+                                        HorizontalAlignment="Left" Width="48" Height="48" VerticalAlignment="Top" Margin="0" RenderTransformOrigin="0.5,0.5">
                                         <Image Height="48" Source="/IndoorWorx.MyLibrary.Silverlight;component/Images/new.png" Stretch="Fill" Width="48"/>
                                     </telerik:RadButton>
                                 </Grid>
@@ -189,22 +323,8 @@
                                         AutoRange="False"
                                         YValuePath="PercentageThreshold" 
                                         XValuePath="TimePositionAsDateTime" />
-                                <!--<telerik:RadTimeBar x:Name="timeBar" Height="150" IsEnabled="False" Margin="5" Loaded="timeBar_Loaded"
-                                        PeriodStart="{Binding Template.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding Template.EndDateTime, Mode=TwoWay}" 
-                                        VisiblePeriodStart="{Binding Template.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding Template.EndDateTime, Mode=TwoWay}"                                                                            
-                                        SelectionStart="{Binding Template.StartDateTime, Mode=TwoWay}" 
-                                        SelectionEnd="{Binding Template.EndDateTime, Mode=TwoWay}">
-                                    <telerik:RadLinearSparkline 
-                                        ItemsSource="{Binding Template.Telemetry, Mode=OneWay}" 
-                                        ShowAxis="False"                
-                                        MinYValue="0"
-                                        MaxYValue="{Binding Template.Telemetry, Mode=OneWay, Converter={StaticResource TelemetryToMaxYValueConverter}}"
-                                        AutoRange="False"
-                                        YValuePath="PercentageThreshold" 
-                                        XValuePath="TimePositionAsDateTime" />
-                                </telerik:RadTimeBar>-->
                             </sdk:TabItem>
-                        </sdk:TabControl>                        
+                        </sdk:TabControl>
                     </Grid>
                 </Border>
 

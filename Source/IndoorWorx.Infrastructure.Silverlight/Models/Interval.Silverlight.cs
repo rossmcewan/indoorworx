@@ -117,6 +117,7 @@ namespace IndoorWorx.Infrastructure.Models
         public static Interval NewInterval(string tag, EffortType effortType, Action onChange)
         {
             var interval = new Interval();
+            //interval.Id = Guid.NewGuid();
             Setup(interval, tag, effortType, onChange);
             return interval;
         }
@@ -131,8 +132,8 @@ namespace IndoorWorx.Infrastructure.Models
             interval.ToStart.PropertyChanged += (sender, e) => onChange();
             interval.PropertyChanged += IntervalPropertyChanged;
             interval.IntervalLevel = ApplicationContext.Current.IntervalLevels.FirstOrDefault();
-            interval.EffortType = effortType;
             interval.IntervalType = ApplicationContext.Current.IntervalTypes.FirstOrDefault(x => x.Tag == tag);
+            interval.EffortType = effortType;
             interval.TemplateSection = tag;
             interval.SectionGroup = Guid.NewGuid().ToString();
         }        
@@ -244,7 +245,18 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
-        #region for the designer
+        private bool selected;
+        public virtual bool IsSelected
+        {
+            get { return selected; }
+            set
+            {
+                selected = value;
+                FirePropertyChanged("IsSelected");
+            }
+        }
+
+        #region for the designer        
 
         public Video Video { get; set; }
 

@@ -360,4 +360,25 @@
   <data name="ProfileHeader" xml:space="preserve">
     <value>PROFILE</value>
   </data>
+  <data name="CopySelectedRowsAfter" xml:space="preserve">
+    <value>Copy selected rows after this row</value>
+  </data>
+  <data name="CopySelectedRowsBefore" xml:space="preserve">
+    <value>Copy selected rows before this row</value>
+  </data>
+  <data name="DeleteRow" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="InsertRowAfter" xml:space="preserve">
+    <value>Insert row after this row</value>
+  </data>
+  <data name="InsertRowBefore" xml:space="preserve">
+    <value>Insert row before this row</value>
+  </data>
+  <data name="MoveSelectedRowsAfter" xml:space="preserve">
+    <value>Move selected rows after this row</value>
+  </data>
+  <data name="MoveSelectedRowsBefore" xml:space="preserve">
+    <value>Move selected rows before this row</value>
+  </data>
 </root>

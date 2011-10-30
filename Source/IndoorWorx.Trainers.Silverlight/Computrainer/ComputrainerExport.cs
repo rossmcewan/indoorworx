@@ -31,7 +31,7 @@ namespace IndoorWorx.Trainers.Computrainer
             fileContent.AppendLine("");
             fileContent.AppendLine("[COURSE DATA]");
             var timePosition = TimeSpan.Zero;
-            foreach (var interval in video.Intervals)
+            foreach (var interval in video.Intervals.OrderBy(x=>x.Sequence))
             {
                 fileContent.AppendLine(string.Format("{0}\t{1}", Math.Round(timePosition.TotalMinutes, 2).ToString(), interval.Effort * ApplicationUser.CurrentUser.FTP / 100.00));
                 timePosition = timePosition.Add(interval.Duration);

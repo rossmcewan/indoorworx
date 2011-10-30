@@ -15,6 +15,7 @@ using IndoorWorx.Infrastructure.Models;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.Designer.Views;
 using IndoorWorx.Designer.Controls;
+using Telerik.Windows.Controls;
 
 namespace IndoorWorx.Designer.Converters
 {
@@ -25,7 +26,7 @@ namespace IndoorWorx.Designer.Converters
             var intervals = value as IEnumerable;
             if (intervals != null)
             {
-                var result = new List<TabItem>();
+                var result = new List<RadTabItem>();
                 foreach (Interval interval in intervals)
                 {
                     var view = IoC.Resolve<IIntervalDesignerView>();
@@ -33,7 +34,8 @@ namespace IndoorWorx.Designer.Converters
                     if (parameter != null && "nochoice".Equals(parameter.ToString()))
                         view.Model.AllowSingleOrMultipleVideoSelection = false;
 
-                    var tabItem = new IntervalTabItem();
+                    var tabItem = new RadTabItem();
+                    tabItem.SetValue(RadTabItem.TabOrientationProperty, Orientation.Horizontal);
                     tabItem.Header = interval.Title;
                     tabItem.Content = view;
 

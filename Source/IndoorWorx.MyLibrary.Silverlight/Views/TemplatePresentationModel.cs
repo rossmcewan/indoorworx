@@ -62,7 +62,86 @@ namespace IndoorWorx.MyLibrary.Views
             this.editIntervalCommand = new DelegateCommand<Interval>(EditInterval);
             this.addIntervalCommand = new DelegateCommand<Interval>(AddInterval);
             this.removeIntervalCommand = new DelegateCommand<Interval>(RemoveInterval);
+            this.InsertRowCommand = new DelegateCommand<string>(InsertRow);
+            this.CopyRowsCommand = new DelegateCommand<string>(CopyRows);
+            this.MoveRowsCommand = new DelegateCommand<string>(MoveRows);
+            this.DeleteRowsCommand = new DelegateCommand<string>(DeleteRows);
         }
+
+        private Interval currentInterval;
+        public virtual Interval CurrentInterval
+        {
+            get { return currentInterval; }
+            set
+            {
+                currentInterval = value;
+                FirePropertyChanged("CurrentInterval");
+            }
+        }
+
+        private void InsertRow(string where)
+        {
+            if ("before".Equals(where))
+                AddInterval(CurrentInterval, where);
+            if("after".Equals(where))
+                AddInterval(CurrentInterval, where);
+        }
+
+        public ICommand InsertRowCommand { get; private set; }
+
+        private void CopyRows(string where)            
+        {
+            IsPopulatingIntervals = true;
+            var selectedRows = Intervals.Where(x => x.IsSelected);
+            var toCopy = new List<Interval>();
+            foreach (var interval in selectedRows)
+            {
+                var copy = Interval.NewInterval(string.Empty, Template.EffortType, () => RefreshTemplate());
+                copy.Description = interval.Description;
+                copy.Title = interval.Title;
+                copy.IntervalLevel = interval.IntervalLevel;
+                copy.IntervalType = interval.IntervalType;
+                copy.Effort = interval.Effort;
+                copy.RecoveryInterval = interval.RecoveryInterval;
+                copy.Repeats = interval.Repeats;
+                copy.IntervalDuration = interval.IntervalDuration;
+                copy.ToStart = interval.ToStart.Clone();
+                copy.ToEnd = interval.ToStart.Clone();
+                toCopy.Add(copy);
+            }
+            var relativeTo = CurrentInterval;
+            foreach (var interval in toCopy)
+            {
+                InsertIntervalRelativeTo(interval, relativeTo, where);
+                relativeTo = interval;
+            }
+            IsPopulatingIntervals = false;
+        }
+
+        public ICommand CopyRowsCommand { get; private set; }
+
+        private void MoveRows(string where)
+        {
+            IsPopulatingIntervals = true;
+            var selectedRows = Intervals.Where(x => x.IsSelected).ToList();
+            foreach (var x in selectedRows)
+                Intervals.Remove(x);
+            var relativeTo = CurrentInterval;
+            foreach (var interval in selectedRows)
+            {
+                InsertIntervalRelativeTo(interval, relativeTo, where);
+                relativeTo = interval;
+            }
+            IsPopulatingIntervals = false;
+        }
+
+        public ICommand MoveRowsCommand { get; private set; }
+
+        private void DeleteRows(object arg)
+        {
+        }
+
+        public ICommand DeleteRowsCommand { get; private set; }
 
         private bool busy;
         public virtual bool IsBusy
@@ -257,7 +336,7 @@ namespace IndoorWorx.MyLibrary.Views
         }
 
         private ObservableCollection<Interval> intervals;
-        public ICollection<Interval> Intervals
+        public IList<Interval> Intervals
         {
             get { return this.intervals; }
         }
@@ -270,18 +349,35 @@ namespace IndoorWorx.MyLibrary.Views
 
         private void AddInterval(Interval arg)
         {
+            AddInterval(arg, "after");
+        }
+
+        private void AddInterval(Interval arg, string where)
+        {            
             var interval = Interval.NewInterval(string.Empty, Template.EffortType, () => RefreshTemplate());
-            if (arg == null)
+            InsertIntervalRelativeTo(interval, arg, where);
+        }
+
+        private void InsertIntervalRelativeTo(Interval toInsert, Interval relativeTo, string where)
+        {
+            if (relativeTo == null)
             {
-                intervals.Add(interval);
+                intervals.Add(toInsert);
             }
             else
             {
-                var index = intervals.IndexOf(arg);
-                if (index != -1)
-                    intervals.Insert(++index, interval);
-                else
-                    intervals.Add(interval);
+                var index = Intervals.IndexOf(relativeTo);
+                if ("after".Equals(where))
+                {
+                    if (index != -1)
+                        intervals.Insert(++index, toInsert);
+                    else
+                        intervals.Add(toInsert);
+                }
+                if("before".Equals(where))
+                {
+                    Intervals.Insert(index, toInsert);
+                }
             }
             FirePropertyChanged("HasIntervals");
             RefreshTemplate();

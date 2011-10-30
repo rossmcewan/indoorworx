@@ -30,7 +30,7 @@ namespace IndoorWorx.Trainers.PowerbeamPro
                 Version = "1.0",
                 Segments = new List<Segment>()
             };
-            foreach (var interval in video.Intervals)
+            foreach (var interval in video.Intervals.OrderBy(x=>x.Sequence))
             {
                 template.Segments.Add(new Segment()
                 {

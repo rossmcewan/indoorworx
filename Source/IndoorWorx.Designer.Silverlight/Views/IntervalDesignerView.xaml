@@ -9,7 +9,8 @@
     xmlns:dcontrols="clr-namespace:IndoorWorx.Designer.Controls"             
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
     xmlns:smoothstreaming="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"    
-    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"             
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:local="clr-namespace:IndoorWorx.Designer.Views"             
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.Resources>
@@ -37,9 +38,21 @@
         <Grid Grid.Row="1" Visibility="{Binding UseMultipleVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <telerik:RadTabControl>
                 <telerik:RadTabItem Header="{Binding DesignerResources.PerInterval, Source={StaticResource DesignerResources}}">
-                    <sdk:TabControl BorderBrush="Transparent" ItemsSource="{Binding Interval.Intervals, Mode=OneWay, Converter={StaticResource IntervalsToTabItemsConverter}, ConverterParameter=nochoice}"
+                    <!--<telerik:RadTabControl ItemsSource="{Binding SelectedTemplate.Sets, Mode=OneWay}"
+                                                           SelectedItem="{Binding SelectedInterval, Mode=TwoWay}" Align="Left"
+                                                           TabStripPlacement="Left" TabOrientation="Vertical" DisplayMemberPath="Title">
+                        <telerik:RadTabControl.ContentTemplate>
+                            <DataTemplate>
+                                <local:IntervalDesignerView/>
+                            </DataTemplate>
+                        </telerik:RadTabControl.ContentTemplate>
+                    </telerik:RadTabControl>-->
+                    <telerik:RadTabControl BorderBrush="Transparent" ItemsSource="{Binding Interval.Intervals, Mode=OneWay, Converter={StaticResource IntervalsToTabItemsConverter}, ConverterParameter=nochoice}"
                             SelectedItem="{Binding SelectedInterval, Mode=TwoWay, Converter={StaticResource IntervalToTabItemConverter}, ConverterParameter=nochoice}"
-                            TabStripPlacement="Left"/>
+                            TabStripPlacement="Left" TabOrientation="Vertical" Align="Right"/>
+                    <!--<sdk:TabControl BorderBrush="Transparent" ItemsSource="{Binding Interval.Intervals, Mode=OneWay, Converter={StaticResource IntervalsToTabItemsConverter}, ConverterParameter=nochoice}"
+                            SelectedItem="{Binding SelectedInterval, Mode=TwoWay, Converter={StaticResource IntervalToTabItemConverter}, ConverterParameter=nochoice}"
+                            TabStripPlacement="Left"/>-->
                 </telerik:RadTabItem>
                 <telerik:RadTabItem Header="{Binding DesignerResources.PerIntervalAndRecovery, Source={StaticResource DesignerResources}}">
                     <sdk:TabControl>
