@@ -59,13 +59,15 @@ namespace IndoorWorx.Player.Views
         public void Stop()
         {
             shouldBePlaying = false;
-            mediaElement.Stop();
+            if(mediaElement.Source != null)
+                mediaElement.Stop();
         }
 
         public void Pause()
         {
             shouldBePlaying = false;
-            mediaElement.Pause();
+            if(mediaElement.Source != null)
+                mediaElement.Pause();
         }
 
         public void LoadTelemetry(ICollection<Telemetry> telemetry)

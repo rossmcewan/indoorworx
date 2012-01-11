@@ -57,7 +57,14 @@ namespace IndoorWorx.Designer.Views
                 {
                     interval.UseMultipleVideos = this.UseMultipleVideos;
                     interval.UseSingleVideo = this.UseSingleVideo;
+                    if (interval.Video != null)
+                    {
+                        video = interval.Video;
+                        VideoFrom = interval.VideoFrom;
+                        VideoTo = interval.VideoTo;
+                    }
                 }
+                FirePropertyChanged("Video");
                 FirePropertyChanged("Interval");
             }
         }
@@ -204,7 +211,20 @@ namespace IndoorWorx.Designer.Views
         private Video video;
         public virtual Video Video
         {
-            get { return video; }
+            get 
+            {
+                return video;
+                //if (video != null)
+                //{
+                //    return video;
+                //}
+                //else
+                //{
+                //    if (interval != null)
+                //        return interval.Video;
+                //}
+                //return null;
+            }
             set
             {
                 if (value != null && Interval != null && value.Duration < Interval.Duration)

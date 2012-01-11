@@ -19,7 +19,7 @@ using IndoorWorx.Infrastructure.Helpers;
 
 namespace IndoorWorx.Infrastructure.Models
 {
-    public partial class Video
+    public partial class Video : ISearchable
     {
         public Video()
         {
@@ -218,6 +218,11 @@ namespace IndoorWorx.Infrastructure.Models
         {
             set { this.endDateTime = value; }
             get { return endDateTime; }
+        }
+
+        public bool IsValid(string searchText)
+        {
+            return (string.IsNullOrWhiteSpace(searchText) || Title.ToLower().Contains(searchText.ToLower()));
         }
     }
 }

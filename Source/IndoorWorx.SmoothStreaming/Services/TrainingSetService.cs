@@ -144,7 +144,8 @@ namespace IndoorWorx.SmoothStreaming.Services
             catch (Exception ex)
             {
                 response.Status = CreateTrainingSetStatus.Error;
-                response.Message = ex.Message;
+                response.Message = ex.StackTrace;
+                //response.Message = ex.Message;                
             }
             return response;
         }

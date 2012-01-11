@@ -58,6 +58,7 @@ namespace IndoorWorx.Infrastructure.Behaviors
             AssociatedObject.Foreground = _textBoxForeground;
             AssociatedObject.Text = "";
             _hasWatermark = false;
+            SetIsWatermarked(AssociatedObject, _hasWatermark);
         }
 
         private void SetWatermarkText()
@@ -65,6 +66,7 @@ namespace IndoorWorx.Infrastructure.Behaviors
             AssociatedObject.Foreground = Foreground;
             AssociatedObject.Text = Text;
             _hasWatermark = true;
+            SetIsWatermarked(AssociatedObject, _hasWatermark);
         }
 
         protected override void OnDetaching()
@@ -85,5 +87,21 @@ namespace IndoorWorx.Infrastructure.Behaviors
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
+
+        public static bool GetIsWatermarked(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(IsWatermarkedProperty);
+        }
+
+        public static void SetIsWatermarked(DependencyObject obj, bool value)
+        {
+            obj.SetValue(IsWatermarkedProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for IsWatermarked.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsWatermarkedProperty =
+            DependencyProperty.RegisterAttached("IsWatermarked", typeof(bool), typeof(TextBox), new PropertyMetadata(false));
+
+
     }
 }

@@ -12,6 +12,8 @@ using System.Windows.Shapes;
 using System.Windows.Navigation;
 using IndoorWorx.Infrastructure;
 using IndoorWorx.MyLibrary.Views;
+using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Infrastructure.Events;
 
 namespace IndoorWorx.MyLibrary.Pages
 {
@@ -47,7 +49,8 @@ namespace IndoorWorx.MyLibrary.Pages
             this.NavigationContext.QueryString.TryGetValue("filter", out filter);
             string orderBy = "CATEGORY";
             this.NavigationContext.QueryString.TryGetValue("orderBy", out orderBy);
-            View.Model.FilterVideosBy(filter).OrderVideosBy(orderBy);            
+            View.Model.FilterVideosBy(filter).OrderVideosBy(orderBy);
+            IoC.Resolve<IEventAggregator>().GetEvent<PageLoadedEvent>().Publish(null);
         }
     }
 }

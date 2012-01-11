@@ -11,5 +11,12 @@
             <TextBlock Text="{Binding SettingsResources.Version, Source={StaticResource SettingsResources}}"/>
             <TextBlock Text="{Binding Version, Source={StaticResource ApplicationContext}}" />
         </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+        </Grid>
     </Grid>
 </UserControl>

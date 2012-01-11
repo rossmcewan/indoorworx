@@ -16,6 +16,8 @@ using IndoorWorx.Infrastructure.DragDrop;
 using IndoorWorx.Library.DragDrop;
 using IndoorWorx.Infrastructure.Models;
 using IndoorWorx.Catalog.Resources;
+using Microsoft.Practices.Composite.Events;
+using IndoorWorx.Infrastructure.Events;
 
 namespace IndoorWorx.Catalog.Pages
 {
@@ -43,6 +45,7 @@ namespace IndoorWorx.Catalog.Pages
         {
             if (reloadRequired)
                 View.Model.Refresh();
+            IoC.Resolve<IEventAggregator>().GetEvent<PageLoadedEvent>().Publish(null);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

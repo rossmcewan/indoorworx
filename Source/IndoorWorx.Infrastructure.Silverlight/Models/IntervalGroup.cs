@@ -26,7 +26,8 @@ namespace IndoorWorx.Infrastructure.Models
                 var title = string.Format("{0} x {1} {2}{3}",
                     hasRecovery ? Intervals.Count/2 : Intervals.Count,
                     interval.Duration,
-                    interval.IntervalLevel == null ? string.Empty : interval.IntervalLevel.Title,
+                    interval.Title,
+                    //interval.IntervalLevel == null ? string.Empty : interval.IntervalLevel.Title,
                     hasRecovery ? string.Format(", {0} RI", Intervals.ElementAt(1).Duration) : string.Empty);
                 return title;
             }

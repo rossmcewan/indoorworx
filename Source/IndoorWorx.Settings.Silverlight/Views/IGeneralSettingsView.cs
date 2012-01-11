@@ -7,5 +7,6 @@ namespace IndoorWorx.Settings.Views
 {
     public interface IGeneralSettingsView
     {
+        IGeneralSettingsPresentationModel Model { get; }
     }
 }

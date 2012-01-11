@@ -18,7 +18,7 @@ using System.Threading;
 
 namespace IndoorWorx.Infrastructure.Models
 {
-    public partial class TrainingSetTemplate : IEditableObject, IChangeTracking
+    public partial class TrainingSetTemplate : IEditableObject, IChangeTracking, ISearchable
     {
         public TrainingSetTemplate()
         {
@@ -317,6 +317,11 @@ namespace IndoorWorx.Infrastructure.Models
                 this.Title == compareTo.Title &&
                 IntervalsAreEqual(this.Intervals, compareTo.Intervals) &&
                 VideoTextIsEqual(this.VideoText, compareTo.VideoText);
+        }
+
+        public bool IsValid(string searchText)
+        {
+            return (string.IsNullOrWhiteSpace(searchText) || this.Title.ToLower().Contains(searchText.ToLower()));
         }
     }
 }

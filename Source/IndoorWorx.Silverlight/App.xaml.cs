@@ -31,6 +31,7 @@
         /// </summary>
         public App()
         {
+            
             RadDragAndDropManager.ExecutionMode = DragExecutionMode.Legacy;
             InitializeComponent();
 
@@ -68,7 +69,7 @@
                         string location;
                         if (Debugger.IsAttached)
                         {
-                            location = "http://localhost/IndoorWorx.Silverlight.Web/";// "http://localhost:3415/";
+                            location = "http://www.indoorworx.com/IndoorWorx/";// "http://localhost:3415/";
                         }
                         else
                         {

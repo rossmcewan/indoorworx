@@ -23,26 +23,31 @@ using IndoorWorx.Infrastructure.Models;
     using Microsoft.Practices.Composite.Events;
     using IndoorWorx.Infrastructure.Events;
     using System.Windows.Input;
+    using IndoorWorx.Infrastructure.Behaviors;
 
     /// <summary>
     /// <see cref="UserControl"/> class providing the main UI for the application.
     /// </summary>
     public partial class Shell : UserControl, IShell, INavigationLinks
     {
+        private IUnityContainer container;
         /// <summary>
         /// Creates a new <see cref="MainPage"/> instance.
         /// </summary>
         public Shell(IUnityContainer unityContainer)
-        {            
+        {
+            this.container = unityContainer;
             InitializeComponent();
-
-            //Telerik.Windows.Controls.DragDrop.RadDragAndDropManager.AddDropQueryHandler(dropHere, dropHere_DropQuery);
-            //Telerik.Windows.Controls.DragDrop.RadDragAndDropManager.AddDropInfoHandler(dropHere, dropHere_DropInfo);
 
             WebContext.Current.Authentication.LoggedIn += new EventHandler<AuthenticationEventArgs>(Authentication_LoggedIn);
             WebContext.Current.Authentication.LoggedOut += new EventHandler<AuthenticationEventArgs>(Authentication_LoggedOut);
             this.loginContainer.Child = new LoginStatus();
             unityContainer.RegisterInstance<INavigationLinks>(this);
+        }
+
+        private void PageLoaded(object arg)
+        {
+            searchBox.Text = "";
         }
 
         #region Borderless behaviors
@@ -190,6 +195,8 @@ using IndoorWorx.Infrastructure.Models;
 
         public void Show()
         {
+            container.Resolve<IEventAggregator>().GetEvent<PageLoadedEvent>().Subscribe(PageLoaded, true);
+
             var busyIndicator = new BusyIndicator();
             busyIndicator.Content = this;
             busyIndicator.HorizontalContentAlignment = HorizontalAlignment.Stretch;
@@ -305,6 +312,19 @@ using IndoorWorx.Infrastructure.Models;
         private void helpButton_Click(object sender, RoutedEventArgs e)
         {
             IoC.Resolve<IEventAggregator>().GetEvent<HelpEvent>().Publish(null);
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PublishSearchEvent();
+        }
+
+        private void PublishSearchEvent()
+        {
+            if (!Watermark.GetIsWatermarked(searchBox))
+            {
+                IoC.Resolve<IEventAggregator>().GetEvent<SearchTextChangedEvent>().Publish(searchBox.Text);
+            }
         }
     }
 }

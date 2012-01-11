@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"   
     xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+    xmlns:ibehaviors="clr-namespace:IndoorWorx.Infrastructure.Behaviors;assembly=IndoorWorx.Infrastructure.Silverlight" 
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"      
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
     xmlns:iconverters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight"  
@@ -63,6 +64,9 @@
                     <telerik:ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="0">
+                                <i:Interaction.Behaviors>
+                                    <ibehaviors:SearchTextAwareBehavior/>
+                                </i:Interaction.Behaviors>
                                 <HyperlinkButton Width="138" Height="85" Margin="2" TargetName="TemplateDetailsFrame" NavigateUri="{Binding Converter={StaticResource TemplateNavigationUriConverter}}">
                                     <input:ContextMenuService.ContextMenu>
                                         <input:ContextMenu Style="{StaticResource ZuneLikeContextMenu}" IsEnabled="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Mode=OneWay}">

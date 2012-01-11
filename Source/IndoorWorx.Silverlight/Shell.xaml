@@ -133,7 +133,7 @@
                 </Border>
 
                 <StackPanel Orientation="Horizontal" Style="{StaticResource SearchPanelStyle}">
-                    <TextBox Width="200">
+                    <TextBox Width="200" TextChanged="TextBox_TextChanged" x:Name="searchBox">
                         <i:Interaction.Behaviors>
                             <ibehaviors:Watermark Text="{Binding ApplicationStrings.Search, Source={StaticResource ResourceWrapper}}" Foreground="DarkGray" />
                         </i:Interaction.Behaviors>

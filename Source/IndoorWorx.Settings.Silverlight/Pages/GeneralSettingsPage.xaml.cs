@@ -26,6 +26,7 @@ namespace IndoorWorx.Settings.Pages
                 (contentElement.Parent as GeneralSettingsPage).Content = null;
             }
             this.Content = contentElement;
+            (contentElement as IGeneralSettingsView).Model.Initialize();
         }
 
         // Executes when the user navigates to this page.

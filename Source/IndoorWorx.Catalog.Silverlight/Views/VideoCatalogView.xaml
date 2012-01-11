@@ -3,7 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"                 
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"      
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"  
+    xmlns:ibehaviors="clr-namespace:IndoorWorx.Infrastructure.Behaviors;assembly=IndoorWorx.Infrastructure.Silverlight"             
     xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
     xmlns:converters="clr-namespace:IndoorWorx.Infrastructure.Converters;assembly=IndoorWorx.Infrastructure.Silverlight" 
     xmlns:lconverters="clr-namespace:IndoorWorx.Catalog.Converters"                 
@@ -63,7 +65,7 @@
                         
                         <telerik:ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid Visibility="{Binding HasVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid Visibility="{Binding HasVideos, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">                                    
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="*"/>
@@ -84,7 +86,10 @@
                                         </telerik:ItemsControl.ItemContainerStyle>
                                         <telerik:ItemsControl.ItemTemplate>
                                             <DataTemplate>                                                
-                                                <Border BorderThickness="0"> 
+                                                <Border BorderThickness="0">
+                                                    <i:Interaction.Behaviors>
+                                                        <ibehaviors:SearchTextAwareBehavior/>
+                                                    </i:Interaction.Behaviors>
                                                     <HyperlinkButton Width="138" Height="138" Margin="2" TargetName="VideoDetailsFrame" NavigateUri="{Binding Converter={StaticResource VideoNavigationUriConverter}}">
                                                         <input:ContextMenuService.ContextMenu>
                                                             <input:ContextMenu Style="{StaticResource ZuneLikeContextMenu}" IsEnabled="{Binding User.IsAuthenticated, Source={StaticResource WebContext}, Mode=OneWay}">
