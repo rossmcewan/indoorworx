@@ -47,7 +47,8 @@ using IndoorWorx.Infrastructure.Models;
 
         private void PageLoaded(object arg)
         {
-            searchBox.Text = "";
+            if(!Watermark.GetIsWatermarked(searchBox))
+                searchBox.Text = "";
         }
 
         #region Borderless behaviors

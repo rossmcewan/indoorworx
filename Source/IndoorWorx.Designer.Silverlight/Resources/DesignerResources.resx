@@ -174,8 +174,14 @@
   <data name="SetsLabel" xml:space="preserve">
     <value>SETS</value>
   </data>
+  <data name="SocialMediaHeader" xml:space="preserve">
+    <value>SOCIAL</value>
+  </data>
   <data name="TemplateLabel" xml:space="preserve">
     <value>TEMPLATE</value>
+  </data>
+  <data name="TextHeader" xml:space="preserve">
+    <value>TEXT</value>
   </data>
   <data name="ToLabel" xml:space="preserve">
     <value>TO</value>
@@ -185,6 +191,9 @@
   </data>
   <data name="UseSingleVideoLabel" xml:space="preserve">
     <value>USE SINGLE VIDEO</value>
+  </data>
+  <data name="VideosHeader" xml:space="preserve">
+    <value>VIDEOS</value>
   </data>
   <data name="VideosInYourLibraryLabel" xml:space="preserve">
     <value>VIDEOS IN YOUR LIBRARY</value>

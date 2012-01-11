@@ -232,11 +232,29 @@ namespace IndoorWorx.Designer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SOCIAL.
+        /// </summary>
+        public static string SocialMediaHeader {
+            get {
+                return ResourceManager.GetString("SocialMediaHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TEMPLATE.
         /// </summary>
         public static string TemplateLabel {
             get {
                 return ResourceManager.GetString("TemplateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEXT.
+        /// </summary>
+        public static string TextHeader {
+            get {
+                return ResourceManager.GetString("TextHeader", resourceCulture);
             }
         }
         
@@ -264,6 +282,15 @@ namespace IndoorWorx.Designer.Resources {
         public static string UseSingleVideoLabel {
             get {
                 return ResourceManager.GetString("UseSingleVideoLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VIDEOS.
+        /// </summary>
+        public static string VideosHeader {
+            get {
+                return ResourceManager.GetString("VideosHeader", resourceCulture);
             }
         }
         
