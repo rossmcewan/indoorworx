@@ -125,6 +125,7 @@ namespace IndoorWorx.Infrastructure.Models
             {
                 if (TelemetryLoaded != null)
                     TelemetryLoaded(this, EventArgs.Empty);
+                FirePropertyChanged("Telemetry");
             }
         }
 
@@ -167,7 +168,7 @@ namespace IndoorWorx.Infrastructure.Models
             Initialize();
             PlayTo = Duration;
             StartDateTime = DateTimeHelper.ZeroTime;
-            EndDateTime = StartDateTime.Add(Duration);
+            endDateTime = StartDateTime.Add(Duration);
         }
 
         private void Initialize()
@@ -216,7 +217,7 @@ namespace IndoorWorx.Infrastructure.Models
         private DateTime endDateTime;
         public DateTime EndDateTime
         {
-            set { this.endDateTime = value; }
+            set { /*this.endDateTime = value;*/ }
             get { return endDateTime; }
         }
 

@@ -34,14 +34,13 @@
                                      SelectedItem="{Binding Video, Mode=TwoWay}">                    
                 </ListBox>
             </Grid>
-            <!--ItemsSource="{Binding CurrentUser.Videos, Mode=OneWay, Source={StaticResource ApplicationContext}}"-->
         </controls:MetroContentControl>
         <controls:MetroContentControl Grid.Column="1">
             <telerik:RadBusyIndicator IsBusy="{Binding Video.IsTelemetryLoading, Mode=OneWay}">
                 <telerik:RadTabControl>
                     <telerik:RadTabItem Header="{Binding DesignerResources.PowerHeader, Source={StaticResource DesignerResources}}">
                         <telerik:RadTimeBar Grid.Column="1"
-                                PeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}" SelectionChanged="RadTimeBar_SelectionChanged"
+                                PeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}" 
                                 VisiblePeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}"
                                 SelectionStart="{Binding VideoFrom, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}" 
                                 SelectionEnd="{Binding VideoTo, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}">
@@ -54,7 +53,7 @@
                     </telerik:RadTabItem>
                     <telerik:RadTabItem Header="{Binding DesignerResources.ProfileHeader, Source={StaticResource DesignerResources}}">
                         <telerik:RadTimeBar Grid.Column="1"
-                                PeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}" SelectionChanged="RadTimeBar_SelectionChanged"
+                                PeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" PeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}"
                                 VisiblePeriodStart="{Binding Video.StartDateTime, Mode=TwoWay}" VisiblePeriodEnd="{Binding Video.EndDateTime, Mode=TwoWay}"
                                 SelectionStart="{Binding VideoFrom, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}" 
                                 SelectionEnd="{Binding VideoTo, Mode=TwoWay, Converter={StaticResource TimeSpanToDateTimeConverter}}">
