@@ -489,8 +489,6 @@ namespace IndoorWorx.MyLibrary.Views
                 start += interval.Duration;
             }
             Template.VideoText = new ObservableCollection<VideoText>(Template.VideoText.OrderBy(x => x.StartTime));
-            //if(!Template.IsCancellingEdit)
-            //    Template.ReloadTelemetry();
         }
 
         private void CreateIntervals(Interval interval, Action<Interval> add)

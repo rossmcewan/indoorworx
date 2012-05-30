@@ -59,14 +59,14 @@ namespace IndoorWorx.Player.Views
         public void Stop()
         {
             shouldBePlaying = false;
-            if(mediaElement.Source != null)
+            if(mediaElement.SmoothStreamingSource != null)
                 mediaElement.Stop();
         }
 
         public void Pause()
         {
             shouldBePlaying = false;
-            if(mediaElement.Source != null)
+            if(mediaElement.SmoothStreamingSource != null)
                 mediaElement.Pause();
         }
 
@@ -118,6 +118,7 @@ namespace IndoorWorx.Player.Views
 
         public void Hide()
         {
+            Shell.IsFullScreen = false;
             Shell.RemoveFromLayoutRoot(this);
         }
 

@@ -3,8 +3,8 @@
 alter table [Activity]  drop constraint FKAA25469B1EFA0600
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAA25469B52BE496C]') AND parent_object_id = OBJECT_ID('[Activity]'))
-alter table [Activity]  drop constraint FKAA25469B52BE496C
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKAA25469BBCD0E4BF]') AND parent_object_id = OBJECT_ID('[Activity]'))
+alter table [Activity]  drop constraint FKAA25469BBCD0E4BF
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE824B6D532B0BDDD]') AND parent_object_id = OBJECT_ID('ActivityType_Equipment'))
@@ -99,8 +99,8 @@ alter table [VideoReview]  drop constraint FK218B12D2E9F4749E
 alter table [SocialMediaProfile]  drop constraint FKF4EDF6D218E054F6
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKF4EDF6D2912B3D27]') AND parent_object_id = OBJECT_ID('[SocialMediaProfile]'))
-alter table [SocialMediaProfile]  drop constraint FKF4EDF6D2912B3D27
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKF4EDF6D2BCD0E4BF]') AND parent_object_id = OBJECT_ID('[SocialMediaProfile]'))
+alter table [SocialMediaProfile]  drop constraint FKF4EDF6D2BCD0E4BF
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK1C5DD9686EDD5235]') AND parent_object_id = OBJECT_ID('SocialMediaProfile_SocialMediaNotifications'))
@@ -157,6 +157,10 @@ alter table [Video]  drop constraint FK30300B571A252A22
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK30300B573C0CDC1E]') AND parent_object_id = OBJECT_ID('[Video]'))
 alter table [Video]  drop constraint FK30300B573C0CDC1E
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK2F61BD66E9F4749E]') AND parent_object_id = OBJECT_ID('[VideoHistoryItem]'))
+alter table [VideoHistoryItem]  drop constraint FK2F61BD66E9F4749E
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKD1BC018BE9F4749E]') AND parent_object_id = OBJECT_ID('[VideoInterval]'))
@@ -249,6 +253,8 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Video]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Video]
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'[VideoHistoryItem]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VideoHistoryItem]
+
     if exists (select * from dbo.sysobjects where id = object_id(N'[VideoInterval]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VideoInterval]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[VideoMetadata]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VideoMetadata]
@@ -258,7 +264,7 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
     create table [Activity] (
         Id UNIQUEIDENTIFIER not null,
        ActivityType UNIQUEIDENTIFIER not null,
-       Activity NVARCHAR(255) null,
+       ApplicationUser NVARCHAR(255) null,
        primary key (Id)
     )
 
@@ -305,7 +311,7 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
         Id UNIQUEIDENTIFIER not null,
        ImageUri NVARCHAR(255) null,
        Title NVARCHAR(255) not null,
-       Description NVARCHAR(255) null,
+       Description NVARCHAR(2000) null,
        Sequence INT null,
        Category UNIQUEIDENTIFIER null,
        primary key (Id)
@@ -475,7 +481,7 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
        Username NVARCHAR(255) null,
        Password NVARCHAR(255) null,
        SocialMediaType UNIQUEIDENTIFIER not null,
-       SocialProfile NVARCHAR(255) null,
+       ApplicationUser NVARCHAR(255) null,
        primary key (Id)
     )
 
@@ -588,6 +594,19 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
        primary key (Id)
     )
 
+    create table [VideoHistoryItem] (
+        Id UNIQUEIDENTIFIER not null,
+       Comments NVARCHAR(255) null,
+       Finished DATETIME null,
+       FinishType INT null,
+       PlayFrom DATETIME null,
+       PlayTo DATETIME null,
+       Rating INT null,
+       Started DATETIME null,
+       Video UNIQUEIDENTIFIER null,
+       primary key (Id)
+    )
+
     create table [VideoInterval] (
         Id UNIQUEIDENTIFIER not null,
        Duration BIGINT not null,
@@ -624,8 +643,8 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
         references [ActivityType]
 
     alter table [Activity] 
-        add constraint FKAA25469B52BE496C 
-        foreign key (Activity) 
+        add constraint FKAA25469BBCD0E4BF 
+        foreign key (ApplicationUser) 
         references [ApplicationUser]
 
     alter table ActivityType_Equipment 
@@ -744,8 +763,8 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
         references [SocialMediaType]
 
     alter table [SocialMediaProfile] 
-        add constraint FKF4EDF6D2912B3D27 
-        foreign key (SocialProfile) 
+        add constraint FKF4EDF6D2BCD0E4BF 
+        foreign key (ApplicationUser) 
         references [ApplicationUser]
 
     alter table SocialMediaProfile_SocialMediaNotifications 
@@ -817,6 +836,11 @@ alter table [VideoText]  drop constraint FKE82DEBEDE9F4749E
         add constraint FK30300B573C0CDC1E 
         foreign key (TelemetryInfo_id) 
         references [TelemetryInfo]
+
+    alter table [VideoHistoryItem] 
+        add constraint FK2F61BD66E9F4749E 
+        foreign key (Video) 
+        references [Video]
 
     alter table [VideoInterval] 
         add constraint FKD1BC018BE9F4749E 

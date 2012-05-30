@@ -89,111 +89,14 @@ namespace IndoorWorx.SchemaTools
                 {
                     new Catalog()
                     {
-                        Title = "Blender Foundation",
+                        Title = "CycleFilm",
                         Sequence = 1,
-                        Description = "A couple of HD toons to use from the Blender Foundation.",
+                        Description =   "CYCLEFILM is a European based production company specializing in informative cycling documentaries, how-to ride and reconnaissance films as well as news gathering from cycling events and trade shows around the world. "+
+                                        "We own over 500 hours of road cycling related stock footage available for commercial use.  Please get in touch with us for details on licensing and syndication. "+
+                                        "From backstage coverage of pro events like the Tour de France and Giro d'Italia, to daily diaries of charity rides for the Geoff Thomas Foundation and the Leuka Fireflies, to event and recon films of European Sportives & Gran Fondos, Cyclefilm covers it all. "+
+                                        "Cyclefilm also offers New Media Production services for small businesses and corporations, helping to build stronger customer relationships with emerging media tools. "+
+                                        "Cyclefilm can formulate a comprehensive online strategy, produce powerful, targeted content and help deploy it effectively across the web.",
                         Videos = new List<Video>()
-                        {
-                            new Video()
-                            {
-                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/Media/Elephant/ElephantsDream_Thumb.jpg", UriKind.Absolute),
-                                StreamUri = new Uri("http://ecn.channel9.msdn.com/o9/content/smf/smoothcontent/elephantsdream/Elephants_Dream_1024-h264-st-aac.ism/manifest", UriKind.Absolute),
-                                Title = "Elephants Dream",
-                                Description = "Elephants Dream is the world’s first open movie, made entirely with open source graphics software such as Blender, and with all production files freely available to use however you please, under a Creative Commons license. The short film was created by the Orange Open Movie Project studio in Amsterdam during 2005/2006, bringing together a diverse team of artists and developers from all over the world.",
-                                TelemetryInfo = new TelemetryInfo()
-                                {
-                                    RecordingInterval = 2,
-                                    TelemetryUri = new Uri("http://www.indoorworx.com/IndoorWorx/Mock/telemetry.csv", UriKind.Absolute)
-                                },
-                                Duration = new TimeSpan(0,10,54),
-                                VideoMetadata = new VideoMetadata()
-                                {
-                                    WhenFilmed = new DateTime(2008,4,10),
-                                    FilmedBy = "Blender Foundation"
-                                }
-                            }
-                        }
-                    },
-                    new Catalog()
-                    {
-                        Title = "Random Internet Finds",
-                        Sequence = 2,
-                        Description = "Some videos that I have found on the internet for testing composite streams.",
-                        Videos = new List<Video>()
-                        {
-                            new Video()
-                            {
-                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/images/unknown.png", UriKind.Absolute),
-                                StreamUri = new Uri("http://devplatem.vo.msecnd.net/3D/NVIDIA_3DV_PC_1080p30_TxB_LeftFirst.ism/manifest", UriKind.Absolute),
-                                Title = "Random 1",
-                                Description = "Random media file 1",
-                                TelemetryInfo = new TelemetryInfo()
-                                {
-                                    RecordingInterval = 2,
-                                    TelemetryUri = new Uri("http://www.indoorworx.com/IndoorWorx/Mock/telemetry.csv", UriKind.Absolute)
-                                },
-                                Duration = new TimeSpan(0,6,48),
-                                VideoMetadata = new VideoMetadata()
-                                {
-                                    WhenFilmed = new DateTime(2011,1,1),
-                                    FilmedBy = "Unknown"
-                                }
-                            },
-                            new Video()
-                            {
-                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/images/unknown.png", UriKind.Absolute),
-                                StreamUri = new Uri("http://playready.directtaps.net/smoothstreaming/TTLSS720VC1/To_The_Limit_720.ism/Manifest", UriKind.Absolute),
-                                Title = "Random 2",
-                                Description = "Random media file 2",
-                                TelemetryInfo = new TelemetryInfo()
-                                {
-                                    RecordingInterval = 2,
-                                    TelemetryUri = new Uri("http://www.indoorworx.com/IndoorWorx/Mock/telemetry.csv", UriKind.Absolute)
-                                },
-                                Duration = new TimeSpan(0,2,10),
-                                VideoMetadata = new VideoMetadata()
-                                {
-                                    WhenFilmed = new DateTime(2011,1,1),
-                                    FilmedBy = "Unknown"
-                                }
-                            },
-                            new Video()
-                            {
-                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/images/unknown.png", UriKind.Absolute),
-                                StreamUri = new Uri("http://djweb.tv/_v/djweb.tv/monkeymondays/15/onviiloft.ism/Manifest", UriKind.Absolute),
-                                Title = "Random 3",
-                                Description = "Random media file 3",
-                                TelemetryInfo = new TelemetryInfo()
-                                {
-                                    RecordingInterval = 2,
-                                    TelemetryUri = new Uri("http://www.indoorworx.com/IndoorWorx/Mock/telemetry.csv", UriKind.Absolute)
-                                },
-                                Duration = new TimeSpan(2,6,20),
-                                VideoMetadata = new VideoMetadata()
-                                {
-                                    WhenFilmed = new DateTime(2011,1,1),
-                                    FilmedBy = "Unknown"
-                                }
-                            },
-                            new Video()
-                            {
-                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/images/unknown.png", UriKind.Absolute),
-                                StreamUri = new Uri("http://videos.msgamestudios.com/mgs/spartan/website/2011_02-01_egypt/en_Egypt_Trailer_FINAL_04k.ism/Manifest", UriKind.Absolute),
-                                Title = "Random 4",
-                                Description = "Random media file 4",
-                                TelemetryInfo = new TelemetryInfo()
-                                {
-                                    RecordingInterval = 2,
-                                    TelemetryUri = new Uri("http://www.indoorworx.com/IndoorWorx/Mock/telemetry.csv", UriKind.Absolute)
-                                },
-                                Duration = new TimeSpan(0,1,21),
-                                VideoMetadata = new VideoMetadata()
-                                {
-                                    WhenFilmed = new DateTime(2011,1,1),
-                                    FilmedBy = "Unknown"
-                                }
-                            }
-                        }
                     }
                 }
             };
@@ -212,357 +115,55 @@ namespace IndoorWorx.SchemaTools
                 {
                     new Catalog()
                     {
-                        Title = "Blender Foundation",
+                        Title = "CycleFilm",
                         Sequence = 1,
-                        Description = "A couple of HD toons to use from the Blender Foundation.",
+                        Description =   "CYCLEFILM is a European based production company specializing in informative cycling documentaries, how-to ride and reconnaissance films as well as news gathering from cycling events and trade shows around the world. "+
+                                        "We own over 500 hours of road cycling related stock footage available for commercial use.  Please get in touch with us for details on licensing and syndication. "+
+                                        "From backstage coverage of pro events like the Tour de France and Giro d'Italia, to daily diaries of charity rides for the Geoff Thomas Foundation and the Leuka Fireflies, to event and recon films of European Sportives & Gran Fondos, Cyclefilm covers it all. "+
+                                        "Cyclefilm also offers New Media Production services for small businesses and corporations, helping to build stronger customer relationships with emerging media tools. "+
+                                        "Cyclefilm can formulate a comprehensive online strategy, produce powerful, targeted content and help deploy it effectively across the web.",
                         Videos = new List<Video>()
                         {
                             new Video()
                             {
-                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/Media/Bunny/BigBuckBunny_Thumb.jpg", UriKind.Absolute),
-                                StreamUri = new Uri("http://ecn.channel9.msdn.com/o9/content/smf/smoothcontent/bbbwp7/big%20buck%20bunny.ism/manifest", UriKind.Absolute),
-                                Title = "Big Buck Bunny",
-                                Description = "As a follow-up to the successful project Orange’s “Elephants Dream”, the Blender Foundation initiated another open movie project. Again a small team (7) of the best 3D artists and developers in the Blender community have been invited to come together to work in Amsterdam from October 2007 until April 2008 on completing a short 3D animation movie. The team members will get a great studio facility and housing in Amsterdam, all travel costs reimbursed, and a fee sufficient to cover all expenses during the period.",
+                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/Media/CycleFilm/Climb/DDL_SSG_SD_Thumb.jpg", UriKind.Absolute),
+                                StreamUri = new Uri("http://www.indoorworx.com/IndoorWorx/Media/CycleFilm/Climb/DDL_SSG_SD.ism/Manifest", UriKind.Absolute),
+                                Title = "Survival Guide - Climbing",
+                                Description = "Narrated by UK endurance rider and Sportive Specialist Michael Cotty from Cannondale.",
                                 TelemetryInfo = new TelemetryInfo()
                                 {
                                     RecordingInterval = 2,
                                     TelemetryUri = new Uri("http://www.indoorworx.com/IndoorWorx/Mock/telemetry.csv", UriKind.Absolute)
                                 },
-                                Duration = new TimeSpan(0,10,00),
+                                Duration = new TimeSpan(0,6,20),
                                 VideoMetadata = new VideoMetadata()
                                 {
-                                    WhenFilmed = new DateTime(2008,4,10),
-                                    FilmedBy = "Blender Foundation"
+                                    WhenFilmed = null,
+                                    FilmedBy = "CycleFilm"
+                                }
+                            },
+                            new Video()
+                            {
+                                ImageUri = new Uri("http://www.indoorworx.com/IndoorWorx/Media/CycleFilm/Descent/DDL_SSG_SD_Thumb.jpg", UriKind.Absolute),
+                                StreamUri = new Uri("http://www.indoorworx.com/IndoorWorx/Media/CycleFilm/Descent/DDL_SSG_SD.ism/manifest", UriKind.Absolute),
+                                Title = "Survival Guide - Descending",
+                                Description = "Narrated by UK endurance rider and Sportive Specialist Michael Cotty from Cannondale.",
+                                TelemetryInfo = new TelemetryInfo()
+                                {
+                                    RecordingInterval = 2,
+                                    TelemetryUri = new Uri("http://www.indoorworx.com/IndoorWorx/Mock/telemetry.csv", UriKind.Absolute)
+                                },
+                                Duration = new TimeSpan(0,7,31),
+                                VideoMetadata = new VideoMetadata()
+                                {
+                                    WhenFilmed = null,
+                                    FilmedBy = "CycleFilm"
                                 }
                             }
                         }
                     }
                 }
             };
-        }
-
-        static Category GetRidesCategory()
-        {
-            var category = new Category()
-            {
-                Title = "RIDES",
-                Description = "Indoor cycling training videos.",
-                Sequence = 1,
-                CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=RIDES&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
-                LibraryUri = new Uri("/IndoorWorx.MyLibrary.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=RIDES&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
-                Catalogs = new List<Catalog>()
-                    {                        
-                        new Catalog()
-                        {
-                            Title = "IndoorWorx",
-                            Sequence = 1,
-                            Description = "Training videos filmed by us on our favourite training routes with our favourite training buddies.",
-                            Videos = new List<Video>()
-                            {
-#region Rand Waterboard
-                                new Video()
-                                {
-                                    Created = DateTime.Now,
-                                    CreatedBy = typeof(Program).Assembly.FullName,
-                                    ImageUri = new Uri("http://localhost:3415/Mock/randwaterboard.jpg",UriKind.Absolute),                                    
-                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                    Title = "Rand Waterboard - 2s and 5s",
-                                    Description = "The entire ride entails a quick warm up, followed by 2 by 2 minutes at 120 % FTP with 2 minutes RI; followed by 5 minutes at 110% FTP with 5 minutes RI. We repeat this 5 times before a quick cool down. This is a great set ... dig deep.",
-                                    TelemetryInfo = new TelemetryInfo()
-                                    {
-                                        RecordingInterval = 2,
-                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
-                                    },
-                                    Duration = new TimeSpan(1, 18, 0),
-                                    VideoMetadata = new VideoMetadata()
-                                    {
-                                        WhenFilmed = DateTime.Now.AddYears(-1),
-                                        FilmedWith = "Contour HD 1080p",
-                                        FilmedBy = "Ross McEwan"
-                                    }                                    
-                                },
-#endregion
-
-#region Suikerbosrand
-                                new Video()
-                                {
-                                    Created = DateTime.Now,
-                                    CreatedBy = typeof(Program).Assembly.FullName,
-                                    ImageUri = new Uri("http://localhost:3415/Mock/suikerbosrand.jpg",UriKind.Absolute),                                    
-                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                    Title = "Suikerbosrand Nature Reserve",
-                                    Description = "This is a ride through the Suikerbosrand Nature Reserve. About two and a half hours with some good climbing. Go hard up the climbs, there's recovery on the other side. Keep your eyes peeled for eland and baboon!",
-                                    TelemetryInfo = new TelemetryInfo()
-                                    {
-                                        RecordingInterval = 2,
-                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
-                                    },
-                                    Duration = new TimeSpan(1, 18, 0),
-                                    VideoMetadata = new VideoMetadata()
-                                    {
-                                        WhenFilmed = DateTime.Now.AddYears(-1),
-                                        FilmedWith = "Contour HD 1080p",
-                                        FilmedBy = "Ross McEwan"
-                                    }                                    
-                                },
-#endregion
-
-#region Sun City
-                                new Video()
-                                {
-                                    Created = DateTime.Now,
-                                    CreatedBy = typeof(Program).Assembly.FullName,
-                                    ImageUri = new Uri("http://localhost:3415/Mock/suncity.jpg", UriKind.Absolute),
-                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/sun_city/FILE001.ism/Manifest", UriKind.Absolute),
-                                    Title = "11 Global - Sun City",
-                                    Description = "Ride the 11 Global Sun City triathlon bike leg. A near threshold effort for just over an hour. 2 significant climbs. Hang tough!",
-                                    TelemetryInfo = new TelemetryInfo()
-                                    {
-                                        RecordingInterval = 2,
-                                        TelemetryUri = new Uri("http://localhost:3415/Mock/suncity.csv", UriKind.Absolute)
-                                    },
-                                    Duration = new TimeSpan(1, 18, 0),
-                                    VideoMetadata = new VideoMetadata()
-                                    {
-                                        WhenFilmed = DateTime.Now.AddYears(-1),
-                                        FilmedWith = "Contour HD 1080p",
-                                        FilmedBy = "Ross McEwan"
-                                    }                                    
-                                }
-#endregion
-                            }
-                        },
-                        new Catalog()
-                        {
-                            Title = "MTN Energade",
-                            ImageUri = new Uri("http://localhost:3415/Mock/mtn_energade.jpg", UriKind.Absolute),
-                            Sequence = 2,
-                            Description = "Training videos filmed by the MTN Energade cycling team.",
-                            Videos = new List<Video>()
-                            {
-                                new Video()
-                                {
-                                    Created = DateTime.Now,
-                                    CreatedBy = typeof(Program).Assembly.FullName,
-                                    ImageUri = new Uri("http://localhost:3415/Mock/cyclechallenge.jpg",UriKind.Absolute),                                    
-                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                    Title = "Pick n Pay 94.7",
-                                    Description = "Ride with the men's elite champions of the MTN Energade cycling team racing the world's biggest race! Suffer up the climbs, hang with them on the descent, set yourself up for the win!",
-                                    TelemetryInfo = new TelemetryInfo()
-                                    {
-                                        RecordingInterval = 2,
-                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
-                                    },
-                                    Duration = new TimeSpan(1, 18, 0),
-                                    VideoMetadata = new VideoMetadata()
-                                    {
-                                        WhenFilmed = DateTime.Now.AddYears(-1),
-                                        FilmedWith = "Contour HD 1080p",
-                                        FilmedBy = "Ross McEwan"
-                                    }                                    
-                                },
-                                new Video()
-                                {
-                                    Created = DateTime.Now,
-                                    CreatedBy = typeof(Program).Assembly.FullName,
-                                    ImageUri = new Uri("http://localhost:3415/Mock/cape-argus.jpg",UriKind.Absolute),                                    
-                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                    Title = "Pick n Pay Cape Argus",
-                                    Description = "Ride with the men's elite champions of the MTN Energade cycling team racing the world's biggest race! Suffer up the climbs, hang with them on the descent, set yourself up for the win!",
-                                    TelemetryInfo = new TelemetryInfo()
-                                    {
-                                        RecordingInterval = 2,
-                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
-                                    },
-                                    Duration = new TimeSpan(1, 18, 0),
-                                    VideoMetadata = new VideoMetadata()
-                                    {
-                                        WhenFilmed = DateTime.Now.AddYears(-1),
-                                        FilmedWith = "Contour HD 1080p",
-                                        FilmedBy = "Ross McEwan"
-                                    }
-                                }
-                            }
-                        }
-                    }
-            };
-            return category;
-        }
-
-        static Category GetPartsCategory()
-        {
-            var category = new Category()
-            {
-                Title = "PARTS",
-                Description = "Indoor cycling training videos.",
-                Sequence = 1,
-                CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=PARTS&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
-                LibraryUri = new Uri("/IndoorWorx.MyLibrary.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=PARTS&orderBy=CATALOG", UriKind.RelativeOrAbsolute),
-                Catalogs = new List<Catalog>()
-                    {                        
-                        new Catalog()
-                        {
-                            Title = "Hill climbs",
-                            Sequence = 1,
-                            Description = "Watch the best riding the hills as they should be riddne ... HARD!",
-                            Videos = new List<Video>()
-                            {
-#region Rand Waterboard
-                                new Video()
-                                {
-                                    Created = DateTime.Now,
-                                    CreatedBy = typeof(Program).Assembly.FullName,
-                                    ImageUri = new Uri("http://localhost:3415/Mock/hillclimb1.jpg",UriKind.Absolute),                                    
-                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                    Title = "Hill climb 1",
-                                    Description = "",
-                                    TelemetryInfo = new TelemetryInfo()
-                                    {
-                                        RecordingInterval = 2,
-                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
-                                    },
-                                    Duration = new TimeSpan(1, 18, 0),
-                                    VideoMetadata = new VideoMetadata()
-                                    {
-                                        WhenFilmed = DateTime.Now.AddYears(-1),
-                                        FilmedWith = "Contour HD 1080p",
-                                        FilmedBy = "Ross McEwan"
-                                    }                                    
-                                },
-#endregion
-
-#region Suikerbosrand
-                                new Video()
-                                {
-                                    Created = DateTime.Now,
-                                    CreatedBy = typeof(Program).Assembly.FullName,
-                                    ImageUri = new Uri("http://localhost:3415/Mock/hillclimb2.jpg",UriKind.Absolute),                                    
-                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                    Title = "Hill climb 2",
-                                    Description = "",
-                                    TelemetryInfo = new TelemetryInfo()
-                                    {
-                                        RecordingInterval = 2,
-                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
-                                    },
-                                    Duration = new TimeSpan(1, 18, 0),
-                                    VideoMetadata = new VideoMetadata()
-                                    {
-                                        WhenFilmed = DateTime.Now.AddYears(-1),
-                                        FilmedWith = "Contour HD 1080p",
-                                        FilmedBy = "Ross McEwan"
-                                    }                                    
-                                }
-#endregion
-                            }
-                        },
-                        new Catalog()
-                        {
-                            Title = "Time trials",
-                            ImageUri = new Uri("http://localhost:3415/Mock/mtn_energade.jpg", UriKind.Absolute),
-                            Sequence = 2,
-                            Description = "The deciding moment in a race ... maybe!",
-                            Videos = new List<Video>()
-                            {
-                                new Video()
-                                {
-                                    Created = DateTime.Now,
-                                    CreatedBy = typeof(Program).Assembly.FullName,
-                                    ImageUri = new Uri("http://localhost:3415/Mock/timetrial1.jpg",UriKind.Absolute),                                    
-                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                    Title = "Time trial 1",
-                                    Description = "",
-                                    TelemetryInfo = new TelemetryInfo()
-                                    {
-                                        RecordingInterval = 2,
-                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
-                                    },
-                                    Duration = new TimeSpan(1, 18, 0),
-                                    VideoMetadata = new VideoMetadata()
-                                    {
-                                        WhenFilmed = DateTime.Now.AddYears(-1),
-                                        FilmedWith = "Contour HD 1080p",
-                                        FilmedBy = "Ross McEwan"
-                                    }                                    
-                                },
-                                new Video()
-                                {
-                                    Created = DateTime.Now,
-                                    CreatedBy = typeof(Program).Assembly.FullName,
-                                    ImageUri = new Uri("http://localhost:3415/Mock/timetrial2.jpg",UriKind.Absolute),                                    
-                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                    Title = "Time trial 2",
-                                    Description = "",
-                                    TelemetryInfo = new TelemetryInfo()
-                                    {
-                                        RecordingInterval = 2,
-                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
-                                    },
-                                    Duration = new TimeSpan(1, 18, 0),
-                                    VideoMetadata = new VideoMetadata()
-                                    {
-                                        WhenFilmed = DateTime.Now.AddYears(-1),
-                                        FilmedWith = "Contour HD 1080p",
-                                        FilmedBy = "Ross McEwan"
-                                    }
-                                }
-                            }
-                        },
-                        new Catalog()
-                        {
-                            Title = "Breakaways",
-                            ImageUri = new Uri("http://localhost:3415/Mock/mtn_energade.jpg", UriKind.Absolute),
-                            Sequence = 2,
-                            Description = "The deciding moment in a race ... maybe!",
-                            Videos = new List<Video>()
-                            {
-                                new Video()
-                                {
-                                    Created = DateTime.Now,
-                                    CreatedBy = typeof(Program).Assembly.FullName,
-                                    ImageUri = new Uri("http://localhost:3415/Mock/breakaway1.jpg",UriKind.Absolute),                                    
-                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                    Title = "Breakaway 1",
-                                    Description = "",
-                                    TelemetryInfo = new TelemetryInfo()
-                                    {
-                                        RecordingInterval = 2,
-                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
-                                    },
-                                    Duration = new TimeSpan(1, 18, 0),
-                                    VideoMetadata = new VideoMetadata()
-                                    {
-                                        WhenFilmed = DateTime.Now.AddYears(-1),
-                                        FilmedWith = "Contour HD 1080p",
-                                        FilmedBy = "Ross McEwan"
-                                    }                                    
-                                },
-                                new Video()
-                                {
-                                    Created = DateTime.Now,
-                                    CreatedBy = typeof(Program).Assembly.FullName,
-                                    ImageUri = new Uri("http://localhost:3415/Mock/breakaway2.jpg",UriKind.Absolute),                                    
-                                    StreamUri = new Uri("http://smoothhd.mp.advection.net/mp/indoorworx/_dld/FILE0001.ism/Manifest", UriKind.Absolute),
-                                    Title = "Breakaway 2",
-                                    Description = "",
-                                    TelemetryInfo = new TelemetryInfo()
-                                    {
-                                        RecordingInterval = 2,
-                                        TelemetryUri = new Uri("http://localhost:3415/Mock/telemetry.csv", UriKind.Absolute)
-                                    },
-                                    Duration = new TimeSpan(1, 18, 0),
-                                    VideoMetadata = new VideoMetadata()
-                                    {
-                                        WhenFilmed = DateTime.Now.AddYears(-1),
-                                        FilmedWith = "Contour HD 1080p",
-                                        FilmedBy = "Ross McEwan"
-                                    }
-                                }
-                            }
-                        }
-                    }
-            };
-            return category;
         }
 
         static void Main(string[] args)
@@ -843,8 +444,6 @@ namespace IndoorWorx.SchemaTools
                     session.Save(BuildRidesCategory());
                     session.Save(BuildSnippetsCategory());
                     session.Save(new Category() { Title = "WORKOUTS", Sequence = 3, CatalogUri = new Uri("/IndoorWorx.Catalog.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=WORKOUTS&orderBy=CATEGORY", UriKind.RelativeOrAbsolute), LibraryUri = new Uri("/IndoorWorx.MyLibrary.Silverlight;component/Pages/VideoCatalogPage.xaml?filter=WORKOUTS&orderBy=CATEGORY", UriKind.RelativeOrAbsolute) });
-                    //session.Save(GetRidesCategory());
-                    //session.Save(GetPartsCategory());
                     transaction.Commit();
                 }
             }

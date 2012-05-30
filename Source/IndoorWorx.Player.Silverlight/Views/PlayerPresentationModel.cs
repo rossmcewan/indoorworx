@@ -71,14 +71,6 @@ namespace IndoorWorx.Player.Views
                     Video.IsPlaying = true;
                     StartTimers();
                 }), TimeSpan.Zero, TimeSpan.FromSeconds(1));
-            //for (int i = 1; i <= 5; i++)
-            //{
-            //    View.AddTextAnimation(new VideoText() { MainText = i.ToString(), Duration = TimeSpan.FromSeconds(1), Animation = Infrastructure.Enums.VideoTextAnimations.ZoomCenter });
-            //    //Thread.Sleep(1000);
-            //}            
-            //View.Play();
-            //Video.IsPlaying = true;
-            //StartTimers();
         }
 
         private int counter = 0;
@@ -102,12 +94,13 @@ namespace IndoorWorx.Player.Views
 
         private void Stop(object arg)
         {
-            View.Pause();
+            SmartDispatcher.BeginInvoke(View.Pause);
             DialogFacade.Confirm(Resources.PlayerResources.ConfirmStopVideo,
                 (result) =>
                 {
                     if (result)
                     {
+                        eventAggregator.GetEvent<VideoStoppedEvent>().Publish(Video);
                         Stop();
                     }
                     else
@@ -329,24 +322,6 @@ namespace IndoorWorx.Player.Views
 
         public void MediaOpened()
         {
-            //telemetryTimer = new Timer(new TimerCallback(obj =>
-            //    {
-            //        if (queue.Peek().TimePosition <= PlayerPosition)
-            //            CurrentTelemetry = queue.Dequeue();
-            //        System.GC.Collect();
-            //    }), null, Timeout.Infinite, Timeout.Infinite);
-
-            //textTimer = new Timer(new TimerCallback(obj =>
-            //{
-            //    if (textQueue.Count > 0 && textQueue.Peek().StartTime <= playerPosition)
-            //    {
-            //        SmartDispatcher.BeginInvoke
-            //        (
-            //            () => LoadVideoText(textQueue.Dequeue()
-            //        ));
-            //    }
-            //    System.GC.Collect();
-            //}), null, Timeout.Infinite, Timeout.Infinite);
             Video.IsMediaLoading = false;
             IsMediaOpened = true;
             View.SetStartPosition(Video.PlayFrom);

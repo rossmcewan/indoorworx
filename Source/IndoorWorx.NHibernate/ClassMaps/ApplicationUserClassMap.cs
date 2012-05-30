@@ -24,8 +24,8 @@ namespace IndoorWorx.NHibernate.ClassMaps
             Map(x => x.FTP);
             Map(x => x.FTHR);
             References(x => x.SportingHabits).Cascade.SaveUpdate();
-            HasMany(x => x.Activities).KeyColumn("Activity").Cascade.SaveUpdate().Fetch.Subselect();
-            HasMany(x => x.SocialProfile).KeyColumn("SocialProfile").Cascade.SaveUpdate().Fetch.Subselect();
+            HasMany(x => x.Activities).KeyColumn("ApplicationUser").Cascade.SaveUpdate().Fetch.Subselect();
+            HasMany(x => x.SocialProfile).KeyColumn("ApplicationUser").Cascade.SaveUpdate().Fetch.Subselect();
             HasManyToMany(x => x.Videos)
                 .Not.LazyLoad()
                 .ParentKeyColumn("ApplicationUser")

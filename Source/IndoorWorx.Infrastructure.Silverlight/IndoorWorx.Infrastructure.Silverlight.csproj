@@ -165,6 +165,9 @@
     <Compile Include="..\IndoorWorx.Infrastructure\Models\EquipmentFeatures.cs">
       <Link>Models\EquipmentFeatures.cs</Link>
     </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\FinishType.cs">
+      <Link>Models\FinishType.cs</Link>
+    </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Gender.cs">
       <Link>Enums\Gender.cs</Link>
     </Compile>
@@ -257,6 +260,9 @@
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\Video.cs">
       <Link>Models\Video.cs</Link>
+    </Compile>
+    <Compile Include="..\IndoorWorx.Infrastructure\Models\VideoHistoryItem.cs">
+      <Link>Models\VideoHistoryItem.cs</Link>
     </Compile>
     <Compile Include="..\IndoorWorx.Infrastructure\Models\VideoInterval.cs">
       <Link>Models\VideoInterval.cs</Link>
@@ -364,6 +370,7 @@
     <Compile Include="Events\SettingsEvent.cs" />
     <Compile Include="Events\VideoCreatedEvent.cs" />
     <Compile Include="Events\VideoEndedEvent.cs" />
+    <Compile Include="Events\VideoStoppedEvent.cs" />
     <Compile Include="Events\VideoTickEvent.cs" />
     <Compile Include="Facades\IDialogFacade.cs" />
     <Compile Include="Helpers\CommandExtensions.cs" />

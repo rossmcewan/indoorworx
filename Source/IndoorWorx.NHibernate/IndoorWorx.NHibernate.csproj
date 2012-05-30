@@ -103,6 +103,7 @@
     <Compile Include="ClassMaps\TrainingZoneClassMap.cs" />
     <Compile Include="ClassMaps\UnitOfMeasureClassMap.cs" />
     <Compile Include="ClassMaps\VideoClassMap.cs" />
+    <Compile Include="ClassMaps\VideoHistoryItemClassMap.cs" />
     <Compile Include="ClassMaps\VideoIntervalClassMap.cs" />
     <Compile Include="ClassMaps\VideoMetadataClassMap.cs" />
     <Compile Include="ClassMaps\VideoReviewClassMap.cs" />

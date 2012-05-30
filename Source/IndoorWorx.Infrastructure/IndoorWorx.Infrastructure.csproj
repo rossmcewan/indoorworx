@@ -72,6 +72,7 @@
     <Compile Include="Models\EffortType.cs" />
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\EquipmentFeatures.cs" />
+    <Compile Include="Models\FinishType.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Interval.cs" />
     <Compile Include="Models\IntervalLevel.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Models\TrainingZone.cs" />
     <Compile Include="Models\UnitOfMeasure.cs" />
     <Compile Include="Models\Video.cs" />
+    <Compile Include="Models\VideoHistoryItem.cs" />
     <Compile Include="Models\VideoInterval.cs" />
     <Compile Include="Models\VideoMetadata.cs" />
     <Compile Include="Models\VideoPart.cs" />
@@ -156,6 +158,7 @@
     <Compile Include="Services\IActivityService.cs" />
     <Compile Include="Services\IApplicationUserService.cs" />
     <Compile Include="Services\ICategoryService.cs" />
+    <Compile Include="Services\IHistoryService.cs" />
     <Compile Include="Services\IIntervalMetadataService.cs" />
     <Compile Include="Services\ISocialMediaService.cs" />
     <Compile Include="Services\ISportingHabitsService.cs" />

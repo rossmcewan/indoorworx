@@ -219,7 +219,7 @@ using IndoorWorx.Infrastructure.Models;
         public virtual bool IsFullScreen
         {
             get { return Application.Current.Host.Content.IsFullScreen; }
-            set { Application.Current.Host.Content.IsFullScreen = !Application.Current.Host.Content.IsFullScreen; }
+            set { Application.Current.Host.Content.IsFullScreen = value; }
         }
 
         #endregion

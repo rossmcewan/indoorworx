@@ -40,6 +40,7 @@ namespace IndoorWorx.Player
             eventAggregator.GetEvent<PlayVideoEvent>().Subscribe(PlayVideo, ThreadOption.UIThread, true);
             eventAggregator.GetEvent<PreviewVideoEvent>().Subscribe(PreviewVideo, ThreadOption.UIThread, true);
             eventAggregator.GetEvent<VideoEndedEvent>().Subscribe(VideoEnded, ThreadOption.UIThread, true);
+            eventAggregator.GetEvent<VideoStoppedEvent>().Subscribe(VideoStopped, ThreadOption.UIThread, true);
         }
 
         private IDialogFacade DialogFacade
@@ -50,6 +51,14 @@ namespace IndoorWorx.Player
         private void VideoEnded(Video video)
         {
             DialogFacade.Alert(PlayerResources.ThankYouForUsingIndoorWorx);
+            //tell the user service that the video ended and played the complete lifecycle
+        }
+
+        public void VideoStopped(Video video)
+        {
+            var userService = serviceLocator.GetInstance<IApplicationUserService>();
+            //capture a rating and reason for stopping the video early?
+            //tell the user service that the video has stopped
         }
 
         public void PlayVideo(Video video)

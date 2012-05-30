@@ -227,6 +227,18 @@ namespace IndoorWorx.Infrastructure.Models
             }
         }
 
+        //private ICollection<VideoHistoryItem> videoHistory = new List<VideoHistoryItem>();
+        //[DataMember]
+        //public virtual ICollection<VideoHistoryItem> VideoHistory
+        //{
+        //    get { return videoHistory; }
+        //    set
+        //    {
+        //        videoHistory = value;
+        //        FirePropertyChanged("VideoHistory");
+        //    }
+        //}
+
         public static event EventHandler CurrentUserChanged;
 
         private static ApplicationUser currentUser = new ApplicationUser();
